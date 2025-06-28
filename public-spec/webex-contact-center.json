@@ -3,7 +3,7 @@
   "info": {
     "title": "Webex Contact Center",
     "version": "1.0.0",
-    "description": "Webex Contact Center API Specification"
+    "description": "The Webex Contact Center APIs allow developers to deeply integrate, configure, and manage cloud-based contact center solutions. These APIs cover agent lifecycle management, queue and routing configuration, customer journey tracking, and access to real-time and historical analytics. Use cases include embedding agent controls in custom UIs, automating workforce management, integrating with CRM and ticketing systems, and building custom reporting dashboards. The APIs empower organizations to deliver personalized, efficient customer experiences and optimize contact center operations."
   },
   "tags": [],
   "paths": {

@@ -3,7 +3,7 @@
   "info": {
     "title": "Webex for UCM",
     "version": "1.0.0",
-    "description": "Webex for UCM API Specification"
+    "description": "The Webex for UCM APIs provide integration points for Cisco Unified Communications Manager (UCM) environments, enabling hybrid calling, user management, device provisioning, and migration to the Webex cloud. These APIs support seamless connectivity between on-premises UCM and Webex cloud services, allowing organizations to extend calling capabilities, automate provisioning, synchronize user data, and enable advanced collaboration features. The APIs are ideal for hybrid deployments and gradual cloud migration strategies."
   },
   "tags": [],
   "paths": {

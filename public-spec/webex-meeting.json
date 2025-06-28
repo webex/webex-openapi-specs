@@ -3,7 +3,7 @@
   "info": {
     "title": "Webex Meetings",
     "version": "1.0.0",
-    "description": "Webex Meetings API Specification"
+    "description": "The Webex Meetings APIs enable developers to schedule, manage, and retrieve information about Webex meetings, webinars, and events. They provide endpoints for meeting creation, participant management, recordings, transcripts, in-meeting features such as chat and closed captions, and post-meeting analytics. Common use cases include integrating meeting scheduling into calendar apps, automating follow-ups with recordings and transcripts, embedding meeting controls in custom portals, and extracting insights for compliance or productivity analysis. The APIs support both real-time and asynchronous workflows for seamless collaboration."
   },
   "tags": [],
   "paths": {

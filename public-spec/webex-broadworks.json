@@ -3,7 +3,7 @@
   "info": {
     "title": "Webex Broadworks Calling",
     "version": "1.0.0",
-    "description": "Webex Broadworks Calling API Specification"
+    "description": "The Webex BroadWorks Calling APIs provide access to advanced calling features and user management for BroadWorks-powered Webex Calling deployments. These APIs support provisioning of users and devices, call control, feature management, device inventory, and detailed reporting. Service providers and enterprises can automate onboarding, integrate with OSS/BSS systems, manage user entitlements, and monitor call quality. The APIs are designed for scalable, multi-tenant environments and support seamless integration with existing telephony infrastructure."
   },
   "tags": [],
   "paths": {

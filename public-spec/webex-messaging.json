@@ -3,7 +3,7 @@
   "info": {
     "title": "Webex Messaging",
     "version": "1.0.0",
-    "description": "Webex Messaging API Specification"
+    "description": "The Webex Messaging APIs offer robust programmatic access to messaging features within Webex, including sending and receiving messages, managing spaces, memberships, attachments, and moderating content. These APIs enable integration with bots, workflow automation, notification systems, and custom messaging solutions to enhance team collaboration and productivity. Use cases include building chatbots, integrating with ticketing or alerting platforms, automating onboarding flows, and creating custom collaboration experiences tailored to business needs."
   },
   "tags": [],
   "paths": {

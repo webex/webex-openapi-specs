@@ -3,7 +3,7 @@
   "info": {
     "title": "Webex Device",
     "version": "1.0.0",
-    "description": "Webex Device API Specification"
+    "description": "The Webex Device APIs provide endpoints for managing and monitoring Webex devices, including registration, configuration, status retrieval, workspace assignment, and firmware management. These APIs support automation of device onboarding, health monitoring, remote troubleshooting, and bulk configuration updates. Integration scenarios include custom device dashboards, proactive alerting, and seamless workspace management for meeting rooms and shared spaces. The APIs are essential for IT teams managing large fleets of Webex devices across distributed environments."
   },
   "tags": [],
   "paths": {

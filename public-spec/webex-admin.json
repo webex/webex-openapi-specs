@@ -3,7 +3,7 @@
   "info": {
     "title": "Webex Admin",
     "version": "1.0.0",
-    "description": "Webex Admin API Specification"
+    "description": "The Webex Admin APIs provide comprehensive programmatic access to administrative functions for managing Webex organizations, users, licenses, and settings. These APIs enable automation of user provisioning, license assignment, compliance management, and audit event retrieval. Administrators can integrate with enterprise identity systems, enforce security policies, monitor usage, and streamline onboarding/offboarding processes. The APIs support granular control over organizational resources, making them ideal for large-scale deployments and custom admin tooling."
   },
   "tags": [],
   "paths": {

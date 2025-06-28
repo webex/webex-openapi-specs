@@ -3,7 +3,7 @@
   "info": {
     "title": "Webex Wholesale",
     "version": "1.0.0",
-    "description": "Webex Wholesale API Specification"
+    "description": "The Webex Wholesale APIs are designed for service providers to manage wholesale Webex offerings, including customer onboarding, provisioning, billing, reporting, and lifecycle management. These APIs enable automation and integration with provider systems to deliver scalable, multi-tenant collaboration solutions. Use cases include automated partner onboarding, real-time usage reporting, integration with billing platforms, and management of customer entitlements across large portfolios."
   },
   "tags": [],
   "paths": {
