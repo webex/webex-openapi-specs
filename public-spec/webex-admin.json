@@ -181,11 +181,6 @@
               "description": "List events, by event categories."
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -258,12 +253,7 @@
         "tags": [
           "Admin Audit Events"
         ],
-        "parameters": [],
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        "parameters": []
       }
     },
     "/authorizations": {
@@ -350,7 +340,6 @@
             "name": "personId",
             "in": "query",
             "description": "List authorizations for this user id.",
-            "required": true,
             "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mNWIzNjE4Ny1jOGRkLTQ3MjctOGIyZi1mOWM0NDdmMjkwNDY",
             "schema": {
               "type": "string"
@@ -360,16 +349,10 @@
             "name": "personEmail",
             "in": "query",
             "description": "List authorizations for this user email.",
-            "required": true,
             "example": "john.anderson@example.com",
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -452,11 +435,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -530,11 +508,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -618,12 +591,7 @@
         "tags": [
           "Classifications"
         ],
-        "parameters": [],
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        "parameters": []
       }
     },
     "/dataSources": {
@@ -739,11 +707,6 @@
             "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
           }
         },
-        "security": [
-          {
-            "oauth2": []
-          }
-        ],
         "tags": [
           "Data Sources"
         ],
@@ -877,11 +840,6 @@
             "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
           }
         },
-        "security": [
-          {
-            "oauth2": []
-          }
-        ],
         "tags": [
           "Data Sources"
         ],
@@ -972,11 +930,6 @@
             "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
           }
         },
-        "security": [
-          {
-            "oauth2": []
-          }
-        ],
         "tags": [
           "Data Sources"
         ],
@@ -1095,11 +1048,6 @@
             "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
           }
         },
-        "security": [
-          {
-            "oauth2": []
-          }
-        ],
         "tags": [
           "Data Sources"
         ],
@@ -1173,11 +1121,6 @@
             "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
           }
         },
-        "security": [
-          {
-            "oauth2": []
-          }
-        ],
         "tags": [
           "Data Sources"
         ],
@@ -1309,11 +1252,6 @@
             "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
           }
         },
-        "security": [
-          {
-            "oauth2": []
-          }
-        ],
         "tags": [
           "Data Sources"
         ],
@@ -1445,11 +1383,6 @@
             "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
           }
         },
-        "security": [
-          {
-            "oauth2": []
-          }
-        ],
         "tags": [
           "Data Sources"
         ],
@@ -1604,12 +1537,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/identity/organizations/{orgId}/actions/verifyDomain": {
@@ -1714,12 +1642,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/identity/organizations/{orgId}/actions/claimDomain": {
@@ -1833,12 +1756,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/identity/organizations/{orgId}/actions/unverifyDomain": {
@@ -1942,12 +1860,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/identity/organizations/{orgId}/actions/unclaimDomain": {
@@ -2033,12 +1946,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/identity/organizations/{orgId}": {
@@ -2129,11 +2037,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -2240,12 +2143,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/identity/organizations/{orgId}/users/{userId}/actions/generateOtp": {
@@ -2338,11 +2236,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -2550,11 +2443,6 @@
               "default": 100
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -2686,11 +2574,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -2794,12 +2677,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "get": {
         "responses": {
@@ -2961,11 +2839,6 @@
               "type": "number"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -3080,12 +2953,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "get": {
         "responses": {
@@ -3188,11 +3056,6 @@
               "default": "false"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       },
       "delete": {
@@ -3264,11 +3127,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -3383,11 +3241,6 @@
               "type": "number"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -3490,12 +3343,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/guests/count": {
@@ -3570,12 +3418,7 @@
         "tags": [
           "Guest Management"
         ],
-        "parameters": [],
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        "parameters": []
       }
     },
     "/v1/analytics/messagingMetrics/dailyTotals": {
@@ -3758,11 +3601,6 @@
               "type": "string",
               "default": "Data from the date mentioned in 'from' parameter up to yesterday if 'to' parameter is not provided. If neither 'from' nor 'to' are provided then yesterday's data is returned. Yesterday's data would be the latest data returned."
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -3947,11 +3785,6 @@
               "type": "string",
               "default": "Data from the date mentioned in 'from' parameter up to yesterday if 'to' parameter is not provided. Yesterday's data is returned if neither 'from' nor 'to' are provided. Yesterday is the latest day the data series will contain."
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -4204,11 +4037,6 @@
               "default": "Data from the date mentioned in 'from' parameter up to yesterday if 'to' parameter is not provided. Yesterday's data is returned if neither 'from' nor 'to' are provided. Yesterday is the earliest date for which there will be results."
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -4297,11 +4125,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -4397,11 +4220,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -4506,11 +4324,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -4611,11 +4424,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -4709,11 +4517,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -4851,11 +4654,6 @@
               "default": 300
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -4985,12 +4783,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/meeting/qualities": {
@@ -5202,7 +4995,7 @@
           }
         },
         "summary": "Get Meeting Qualities",
-        "operationId": "Get Meeting Qualities",
+        "operationId": "getMeetingQualities",
         "description": "Get quality data for a meeting, by `meetingId`. Only organization administrators can retrieve meeting quality data.",
         "tags": [
           "Meeting Qualities"
@@ -5236,11 +5029,6 @@
             "schema": {
               "type": "number"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -5426,12 +5214,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/contacts/organizations/{orgId}/contacts/{contactId}": {
@@ -5572,11 +5355,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -5902,12 +5680,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "delete": {
         "responses": {
@@ -5988,11 +5761,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -6174,11 +5942,6 @@
               "description": "Filter contacts based on groups."
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -6352,12 +6115,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/contacts/organizations/{orgId}/contacts/bulk/delete": {
@@ -6446,12 +6204,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/organizations": {
@@ -6529,12 +6282,7 @@
         "tags": [
           "Organizations"
         ],
-        "parameters": [],
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        "parameters": []
       }
     },
     "/organizations/{orgId}": {
@@ -6619,11 +6367,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       },
       "delete": {
@@ -6695,11 +6438,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -6788,11 +6526,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -6888,11 +6621,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -6976,11 +6704,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -7066,11 +6789,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -7144,11 +6862,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -7264,11 +6977,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -7395,12 +7103,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/partner/reports/{reportId}": {
@@ -7496,11 +7199,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       },
       "delete": {
@@ -7572,11 +7270,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -7658,12 +7351,7 @@
         "tags": [
           "Partner Reports/Templates"
         ],
-        "parameters": [],
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        "parameters": []
       }
     },
     "/people": {
@@ -7877,11 +7565,6 @@
               "type": "number",
               "default": 100
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -8233,12 +7916,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/people/{personId}": {
@@ -8387,11 +8065,6 @@
               "type": "boolean",
               "default": "false"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -8779,12 +8452,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "delete": {
         "responses": {
@@ -8855,11 +8523,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -9000,11 +8663,6 @@
               "type": "boolean",
               "default": "false"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -9179,11 +8837,6 @@
             },
             "example": "UTC"
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -9337,11 +8990,6 @@
               "type": "string"
             },
             "example": "UTC"
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -9503,11 +9151,6 @@
               "type": "string"
             },
             "example": "UTC"
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -9766,11 +9409,6 @@
             },
             "example": "UTC"
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -9926,8 +9564,8 @@
           }
         },
         "summary": "List Recordings",
-        "operationId": "List Recordings",
-        "description": "Lists recordings. You can specify a date range, a parent meeting ID, and the maximum number of recordings to return.\n\nOnly recordings of meetings hosted by or shared with the authenticated user will be listed.\n\nThe list returned is sorted in descending order by the date and time that the recordings were created.\n\nLong result sets are split into [pages](/docs/basics#pagination).\n\n* If `meetingId` is specified, only recordings associated with the specified meeting will be listed. **NOTE**: when `meetingId` is specified, parameter of `siteUrl` will be ignored.\n\n* If `siteUrl` is specified, recordings of the specified site will be listed; otherwise, the API lists recordings of all the user's sites. All available Webex sites and preferred site of the user can be retrieved by [Get Site List](/docs/api/v1/meeting-preferences/get-site-list) API.\n\n#### Request Header\n\n* `timezone`: *[Time zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List) in conformance with the [IANA time zone database](https://www.iana.org/time-zones). The default is UTC if `timezone` is not defined.*",
+        "operationId": "listRecordings",
+        "description": "Lists recordings. You can specify a date range, a parent meeting ID, and the maximum number of recordings to return.\n\nOnly recordings of meetings hosted by or shared with the authenticated user will be listed.\n\nThe list returned is sorted in descending order by the date and time that the recordings were created.\n\nLong result sets are split into [pages](/docs/basics#pagination).\n\n* If `meetingId` is specified, only recordings associated with the specified meeting will be listed. **NOTE**: when `meetingId` is specified, parameters of `siteUrl`, `from`, and `to` will be ignored.\n\n* If `siteUrl` is specified, recordings of the specified site will be listed; otherwise, the API lists recordings of all the user's sites. All available Webex sites and preferred site of the user can be retrieved by [Get Site List](/docs/api/v1/meeting-preferences/get-site-list) API.\n\n#### Request Header\n\n* `timezone`: *[Time zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List) in conformance with the [IANA time zone database](https://www.iana.org/time-zones). The default is UTC if `timezone` is not defined.*",
         "tags": [
           "Recordings"
         ],
@@ -10058,11 +9696,6 @@
               "type": "string"
             },
             "example": "UTC"
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -10219,8 +9852,8 @@
           }
         },
         "summary": "List Recordings For an Admin or Compliance Officer",
-        "operationId": "List Recordings For an Admin or Compliance Officer",
-        "description": "List recordings for an admin or compliance officer. You can specify a date range, a parent meeting ID, and the maximum number of recordings to return.\n\nThe list returned is sorted in descending order by the date and time that the recordings were created.\n\nLong result sets are split into [pages](/docs/basics#pagination).\n\n* If `meetingId` is specified, only recordings associated with the specified meeting will be listed. Please note that when `meetingId` is specified, parameter of `siteUrl` will be ignored.\n\n* If `siteUrl` is specified, all the recordings on the specified site are listed; otherwise, all the recordings on the admin user's or compliance officer's preferred site are listed. All the available Webex sites and the admin user's or compliance officer's preferred site can be retrieved by the [Get Site List](/docs/api/v1/meeting-preferences/get-site-list) API.\n\n#### Request Header\n\n* `timezone`: *[Time zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List) in conformance with the [IANA time zone database](https://www.iana.org/time-zones). The default is UTC if `timezone` is not defined.*",
+        "operationId": "listRecordingsForAdminOrComplianceOfficer",
+        "description": "List recordings for an admin or compliance officer. You can specify a date range, a parent meeting ID, and the maximum number of recordings to return.\n\nThe list returned is sorted in descending order by the date and time that the recordings were created.\n\nLong result sets are split into [pages](/docs/basics#pagination).\n\n* If `meetingId` is specified, only recordings associated with the specified meeting will be listed. Please note that when `meetingId` is specified, parameters of `siteUrl`, `from`, and `to` will be ignored.\n\n* If `siteUrl` is specified, all the recordings on the specified site are listed; otherwise, all the recordings on the admin user's or compliance officer's preferred site are listed. All the available Webex sites and the admin user's or compliance officer's preferred site can be retrieved by the [Get Site List](/docs/api/v1/meeting-preferences/get-site-list) API.\n\n#### Request Header\n\n* `timezone`: *[Time zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List) in conformance with the [IANA time zone database](https://www.iana.org/time-zones). The default is UTC if `timezone` is not defined.*",
         "tags": [
           "Recordings"
         ],
@@ -10343,11 +9976,6 @@
             },
             "example": "UTC"
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -10423,11 +10051,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -10568,11 +10191,6 @@
             },
             "example": "example.webex.com"
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       },
       "delete": {
@@ -10669,12 +10287,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/recordings/softDelete": {
@@ -10764,12 +10377,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/recordings/restore": {
@@ -10860,12 +10468,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/recordings/purge": {
@@ -10956,12 +10559,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/report/templates": {
@@ -11051,12 +10649,7 @@
         "tags": [
           "Report Templates"
         ],
-        "parameters": [],
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        "parameters": []
       }
     },
     "/reports": {
@@ -11189,11 +10782,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       },
       "post": {
@@ -11307,12 +10895,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/reports/{reportId}": {
@@ -11405,11 +10988,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       },
       "delete": {
@@ -11481,11 +11059,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -11626,11 +11199,6 @@
               "default": 100
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -11718,11 +11286,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -11864,12 +11427,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/resourceGroups": {
@@ -11957,11 +11515,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -12047,11 +11600,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -12129,12 +11677,7 @@
         "tags": [
           "Roles"
         ],
-        "parameters": [],
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        "parameters": []
       }
     },
     "/roles/{roleId}": {
@@ -12217,11 +11760,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -12351,12 +11889,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/identity/scim/{orgId}/v2/Groups": {
@@ -12534,12 +12067,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "get": {
         "responses": {
@@ -12826,11 +12354,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -12988,11 +12511,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -13180,12 +12698,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "patch": {
         "responses": {
@@ -13353,12 +12866,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "delete": {
         "responses": {
@@ -13439,11 +12947,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -13582,11 +13085,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -13910,12 +13408,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "get": {
         "responses": {
@@ -14083,11 +13576,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -14177,11 +13665,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -14373,12 +13856,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "patch": {
         "responses": {
@@ -14620,12 +14098,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "delete": {
         "responses": {
@@ -14707,11 +14180,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -14781,12 +14249,7 @@
         "tags": [
           "SCIM 2 Users"
         ],
-        "parameters": [],
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        "parameters": []
       }
     },
     "/admin/securityAudit/events": {
@@ -14951,11 +14414,6 @@
               "description": "List events, by event categories."
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -15050,11 +14508,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -15154,12 +14607,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/partner/tags": {
@@ -15247,11 +14695,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -15351,12 +14794,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/partner/tags/organizations/{orgId}": {
@@ -15443,11 +14881,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -15550,11 +14983,6 @@
             "schema": {
               "type": "number"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -15664,12 +15092,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/partner/tags/subscriptions": {
@@ -15772,11 +15195,6 @@
               "type": "number"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -15875,11 +15293,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -16011,11 +15424,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       },
       "post": {
@@ -16112,12 +15520,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/workspaceLocations/{locationId}": {
@@ -16207,11 +15610,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -16321,12 +15719,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "delete": {
         "responses": {
@@ -16397,11 +15790,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -16492,11 +15880,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -16595,12 +15978,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/workspaceLocations/{locationId}/floors/{floorId}": {
@@ -16695,11 +16073,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -16808,12 +16181,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "delete": {
         "responses": {
@@ -16894,11 +16262,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -17069,11 +16432,6 @@
               ]
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -17214,11 +16572,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }

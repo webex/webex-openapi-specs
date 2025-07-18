@@ -52,12 +52,7 @@
           "500": {
             "description": "An Unexpected Error Occurred"
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/agentburnout/action": {
@@ -105,12 +100,7 @@
           "500": {
             "description": "An Unexpected Error Occurred"
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/agent-burnout/{id}": {
@@ -204,12 +194,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       },
       "put": {
         "tags": [
@@ -331,12 +316,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/v2/agent-burnout": {
@@ -472,12 +452,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/auto-csat/{autoCsatId}/question": {
@@ -591,12 +566,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/auto-csat/{autoCsatId}/question/bulk": {
@@ -710,12 +680,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/auto-csat/{autoCsatId}/question/{id}": {
@@ -819,12 +784,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       },
       "delete": {
         "tags": [
@@ -929,12 +889,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/auto-csat/{id}": {
@@ -1028,12 +983,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       },
       "put": {
         "tags": [
@@ -1155,12 +1105,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/v2/auto-csat": {
@@ -1285,12 +1230,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/v2/auto-csat/{autoCsatId}/question": {
@@ -1425,12 +1365,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/generated-summaries/{id}": {
@@ -1524,12 +1459,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       },
       "put": {
         "tags": [
@@ -1651,12 +1581,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/v2/generated-summaries": {
@@ -1781,12 +1706,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/business-hours": {
@@ -1925,12 +1845,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "post": {
         "tags": [
@@ -2033,12 +1948,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/business-hours/bulk": {
@@ -2143,12 +2053,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/business-hours/bulk-export": {
@@ -2253,12 +2158,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/business-hours/{id}": {
@@ -2353,12 +2253,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "put": {
         "tags": [
@@ -2481,12 +2376,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "delete": {
         "tags": [
@@ -2582,12 +2472,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/business-hours/{id}/incoming-references": {
@@ -2712,12 +2597,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/v2/business-hours": {
@@ -2883,12 +2763,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/holiday-list": {
@@ -3027,12 +2902,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "post": {
         "tags": [
@@ -3135,12 +3005,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/holiday-list/bulk": {
@@ -3245,12 +3110,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/holiday-list/bulk-export": {
@@ -3355,12 +3215,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/holiday-list/{id}": {
@@ -3455,12 +3310,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "put": {
         "tags": [
@@ -3583,12 +3433,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "delete": {
         "tags": [
@@ -3684,12 +3529,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/holiday-list/{id}/incoming-references": {
@@ -3814,12 +3654,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/v2/holiday-list": {
@@ -3985,12 +3820,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/overrides": {
@@ -4129,12 +3959,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "post": {
         "tags": [
@@ -4237,12 +4062,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/overrides/bulk": {
@@ -4347,12 +4167,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/overrides/bulk-export": {
@@ -4457,12 +4272,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/overrides/{id}": {
@@ -4557,12 +4367,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "put": {
         "tags": [
@@ -4685,12 +4490,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "delete": {
         "tags": [
@@ -4786,12 +4586,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/overrides/{id}/incoming-references": {
@@ -4916,12 +4711,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/v2/overrides": {
@@ -5087,12 +4877,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/address-book": {
@@ -5221,12 +5006,7 @@
             }
           }
         },
-        "deprecated": true,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": true
       },
       "post": {
         "tags": [
@@ -5329,12 +5109,7 @@
             }
           }
         },
-        "deprecated": true,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": true
       }
     },
     "/organization/{orgid}/address-book/bulk-export": {
@@ -5438,12 +5213,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/address-book/{addressBookId}/entry": {
@@ -5557,12 +5327,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/address-book/{addressBookId}/entry/bulk": {
@@ -5676,12 +5441,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/address-book/{addressBookId}/entry/{id}": {
@@ -5785,12 +5545,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       },
       "put": {
         "tags": [
@@ -5922,12 +5677,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       },
       "delete": {
         "tags": [
@@ -6032,12 +5782,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/address-book/{id}": {
@@ -6132,12 +5877,7 @@
             }
           }
         },
-        "deprecated": true,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": true
       },
       "put": {
         "tags": [
@@ -6260,12 +6000,7 @@
             }
           }
         },
-        "deprecated": true,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": true
       },
       "delete": {
         "tags": [
@@ -6361,12 +6096,7 @@
             }
           }
         },
-        "deprecated": true,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": true
       }
     },
     "/organization/{orgid}/address-book/{id}/incoming-references": {
@@ -6490,12 +6220,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/v2/address-book": {
@@ -6631,12 +6356,7 @@
             }
           }
         },
-        "deprecated": true,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": true
       }
     },
     "/organization/{orgid}/v2/address-book/{addressBookId}/entry": {
@@ -6792,12 +6512,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/v3/address-book": {
@@ -6932,12 +6647,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       },
       "post": {
         "tags": [
@@ -7039,12 +6749,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/v3/address-book/{id}": {
@@ -7138,12 +6843,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       },
       "put": {
         "tags": [
@@ -7265,12 +6965,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       },
       "delete": {
         "tags": [
@@ -7365,12 +7060,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/audio-file": {
@@ -7505,12 +7195,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/audio-file/{id}": {
@@ -7615,12 +7300,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "put": {
         "tags": [
@@ -7773,12 +7453,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "delete": {
         "tags": [
@@ -7874,12 +7549,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "patch": {
         "tags": [
@@ -7997,12 +7667,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/audio-file/{id}/incoming-references": {
@@ -8127,12 +7792,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/v2/audio-file": {
@@ -8268,12 +7928,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/auxiliary-code": {
@@ -8402,12 +8057,7 @@
             }
           }
         },
-        "deprecated": true,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": true
       },
       "post": {
         "tags": [
@@ -8509,12 +8159,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/auxiliary-code/bulk": {
@@ -8618,12 +8263,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       },
       "patch": {
         "tags": [
@@ -8738,12 +8378,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/auxiliary-code/bulk-export": {
@@ -8847,12 +8482,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/auxiliary-code/purge-inactive-entities": {
@@ -8957,12 +8587,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/auxiliary-code/{id}": {
@@ -9056,12 +8681,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       },
       "put": {
         "tags": [
@@ -9183,12 +8803,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       },
       "delete": {
         "tags": [
@@ -9283,12 +8898,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/auxiliary-code/{id}/incoming-references": {
@@ -9412,12 +9022,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/v2/auxiliary-code": {
@@ -9582,12 +9187,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/contact-number": {
@@ -9692,12 +9292,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/contact-number/all-numbers": {
@@ -9785,12 +9380,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/contact-number/bulk": {
@@ -9895,12 +9485,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/contact-number/bulk-export": {
@@ -10005,12 +9590,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/contact-number/{id}": {
@@ -10105,12 +9685,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "put": {
         "tags": [
@@ -10233,12 +9808,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "delete": {
         "tags": [
@@ -10334,12 +9904,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/v2/contact-number": {
@@ -10475,12 +10040,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/contact-service-queue": {
@@ -10632,12 +10192,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       },
       "post": {
         "tags": [
@@ -10739,12 +10294,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/contact-service-queue/bulk": {
@@ -10848,12 +10398,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       },
       "patch": {
         "tags": [
@@ -10970,12 +10515,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/contact-service-queue/bulk-export": {
@@ -11093,12 +10633,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/contact-service-queue/purge-inactive-entities": {
@@ -11203,12 +10738,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/contact-service-queue/{id}": {
@@ -11302,12 +10832,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       },
       "put": {
         "tags": [
@@ -11429,12 +10954,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       },
       "delete": {
         "tags": [
@@ -11529,12 +11049,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/contact-service-queue/{id}/incoming-references": {
@@ -11658,12 +11173,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/contact-service-queue/v2/bulk": {
@@ -11767,12 +11277,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/v2/contact-service-queue": {
@@ -11937,12 +11442,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       },
       "post": {
         "tags": [
@@ -12044,12 +11544,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/v2/contact-service-queue/{id}": {
@@ -12143,12 +11638,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       },
       "put": {
         "tags": [
@@ -12270,12 +11760,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/v3/contact-service-queue": {
@@ -12441,12 +11926,7 @@
             }
           }
         },
-        "deprecated": true,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": true
       }
     },
     "/organization/{orgid}/desktop-layout": {
@@ -12551,12 +12031,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/desktop-layout/bulk": {
@@ -12661,12 +12136,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/desktop-layout/bulk-export": {
@@ -12771,12 +12241,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/desktop-layout/purge-inactive-entities": {
@@ -12882,12 +12347,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/desktop-layout/{id}": {
@@ -12982,12 +12442,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "put": {
         "tags": [
@@ -13110,12 +12565,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "delete": {
         "tags": [
@@ -13211,12 +12661,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/desktop-layout/{id}/incoming-references": {
@@ -13341,12 +12786,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/v2/desktop-layout": {
@@ -13492,12 +12932,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/dial-number": {
@@ -13626,12 +13061,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "post": {
         "tags": [
@@ -13734,12 +13164,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "delete": {
         "tags": [
@@ -13825,12 +13250,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/dial-number/bulk": {
@@ -13935,12 +13355,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/dial-number/bulk-export": {
@@ -14045,12 +13460,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/dial-number/numbers-only": {
@@ -14138,12 +13548,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/dial-number/{id}": {
@@ -14238,12 +13643,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "put": {
         "tags": [
@@ -14366,12 +13766,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "delete": {
         "tags": [
@@ -14467,12 +13862,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/dial-number/{id}/incoming-references": {
@@ -14597,12 +13987,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/v2/dial-number": {
@@ -14748,12 +14133,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/dial-plan": {
@@ -14882,12 +14262,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "post": {
         "tags": [
@@ -14990,12 +14365,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/dial-plan/bulk": {
@@ -15100,12 +14470,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/dial-plan/bulk-export": {
@@ -15210,12 +14575,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/dial-plan/{id}": {
@@ -15310,12 +14670,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "put": {
         "tags": [
@@ -15438,12 +14793,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "delete": {
         "tags": [
@@ -15539,12 +14889,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/dial-plan/{id}/incoming-references": {
@@ -15669,12 +15014,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/v2/dial-plan": {
@@ -15810,12 +15150,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/entry-point": {
@@ -15968,12 +15303,7 @@
             }
           }
         },
-        "deprecated": true,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": true
       },
       "post": {
         "tags": [
@@ -16076,12 +15406,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/entry-point/bulk": {
@@ -16186,12 +15511,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/entry-point/bulk-export": {
@@ -16310,12 +15630,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/entry-point/purge-inactive-entities": {
@@ -16421,12 +15736,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/entry-point/{id}": {
@@ -16531,12 +15841,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "put": {
         "tags": [
@@ -16659,12 +15964,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "delete": {
         "tags": [
@@ -16760,12 +16060,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/entry-point/{id}/incoming-references": {
@@ -16890,12 +16185,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/v2/entry-point": {
@@ -17071,12 +16361,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/cad-variable": {
@@ -17181,12 +16466,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/cad-variable/bulk": {
@@ -17291,12 +16571,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/cad-variable/bulk-export": {
@@ -17401,12 +16676,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/cad-variable/purge-inactive-entities": {
@@ -17512,12 +16782,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/cad-variable/reportable-count": {
@@ -17606,12 +16871,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/cad-variable/{id}": {
@@ -17706,12 +16966,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "put": {
         "tags": [
@@ -17834,12 +17089,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "delete": {
         "tags": [
@@ -17935,12 +17185,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/cad-variable/{id}/incoming-references": {
@@ -18065,12 +17310,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/v2/cad-variable": {
@@ -18206,12 +17446,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/multimedia-profile": {
@@ -18340,12 +17575,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "post": {
         "tags": [
@@ -18448,12 +17678,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/multimedia-profile/bulk": {
@@ -18558,12 +17783,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/multimedia-profile/bulk-export": {
@@ -18668,12 +17888,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/multimedia-profile/purge-inactive-entities": {
@@ -18779,12 +17994,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/multimedia-profile/{id}": {
@@ -18879,12 +18089,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "put": {
         "tags": [
@@ -19007,12 +18212,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "delete": {
         "tags": [
@@ -19108,12 +18308,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/multimedia-profile/{id}/incoming-references": {
@@ -19238,12 +18433,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/v2/multimedia-profile": {
@@ -19379,12 +18569,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/outdial-ani": {
@@ -19523,12 +18708,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "post": {
         "tags": [
@@ -19631,12 +18811,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/outdial-ani/bulk": {
@@ -19741,12 +18916,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/outdial-ani/bulk-export": {
@@ -19851,12 +19021,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/outdial-ani/entry": {
@@ -19992,12 +19157,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/outdial-ani/{id}": {
@@ -20092,12 +19252,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "put": {
         "tags": [
@@ -20220,12 +19375,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "delete": {
         "tags": [
@@ -20321,12 +19471,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/outdial-ani/{id}/incoming-references": {
@@ -20451,12 +19596,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/outdial-ani/{outDialAniId}/entry": {
@@ -20571,12 +19711,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/outdial-ani/{outDialAniId}/entry/bulk": {
@@ -20691,12 +19826,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/outdial-ani/{outDialAniId}/entry/{id}": {
@@ -20801,12 +19931,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "put": {
         "tags": [
@@ -20939,12 +20064,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "delete": {
         "tags": [
@@ -21050,12 +20170,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/v2/outdial-ani": {
@@ -21201,12 +20316,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/v2/outdial-ani/{outDialAniId}/entry": {
@@ -21352,12 +20462,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/site": {
@@ -21466,12 +20571,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "post": {
         "tags": [
@@ -21574,12 +20674,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/site/bulk": {
@@ -21684,12 +20779,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/site/bulk-export": {
@@ -21794,12 +20884,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/site/purge-inactive-entities": {
@@ -21905,12 +20990,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/site/{id}": {
@@ -22005,12 +21085,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "put": {
         "tags": [
@@ -22133,12 +21208,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "delete": {
         "tags": [
@@ -22234,12 +21304,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/site/{id}/incoming-references": {
@@ -22364,12 +21429,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/v2/site": {
@@ -22505,12 +21565,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/skill": {
@@ -22649,12 +21704,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "post": {
         "tags": [
@@ -22757,12 +21807,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/skill/bulk": {
@@ -22867,12 +21912,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/skill/bulk-export": {
@@ -22977,12 +22017,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/skill/purge-inactive-entities": {
@@ -23088,12 +22123,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/skill/{id}": {
@@ -23188,12 +22218,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "put": {
         "tags": [
@@ -23316,12 +22341,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "delete": {
         "tags": [
@@ -23417,12 +22437,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/skill/{id}/incoming-references": {
@@ -23547,12 +22562,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/v2/skill": {
@@ -23698,12 +22708,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/skill-profile": {
@@ -23842,12 +22847,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "post": {
         "tags": [
@@ -23950,12 +22950,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/skill-profile/bulk": {
@@ -24060,12 +23055,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/skill-profile/bulk-export": {
@@ -24170,12 +23160,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/skill-profile/{id}": {
@@ -24280,12 +23265,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "put": {
         "tags": [
@@ -24408,12 +23388,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "delete": {
         "tags": [
@@ -24509,12 +23484,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/skill-profile/{id}/incoming-references": {
@@ -24639,12 +23609,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/v2/skill-profile": {
@@ -24790,12 +23755,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/team": {
@@ -24934,12 +23894,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "post": {
         "tags": [
@@ -25042,12 +23997,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/team/bulk": {
@@ -25152,12 +24102,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/team/bulk-export": {
@@ -25262,12 +24207,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/team/purge-inactive-entities": {
@@ -25373,12 +24313,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/team/{id}": {
@@ -25473,12 +24408,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "put": {
         "tags": [
@@ -25601,12 +24531,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "delete": {
         "tags": [
@@ -25702,12 +24627,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/team/{id}/incoming-references": {
@@ -25832,12 +24752,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/v2/team": {
@@ -26003,12 +24918,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/user-profile": {
@@ -26127,12 +25037,7 @@
             }
           }
         },
-        "deprecated": true,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": true
       }
     },
     "/organization/{orgid}/user-profile/bulk": {
@@ -26237,12 +25142,7 @@
             }
           }
         },
-        "deprecated": true,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": true
       }
     },
     "/organization/{orgid}/user-profile/bulk-export": {
@@ -26346,12 +25246,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/user-profile/purge-inactive-entities": {
@@ -26456,12 +25351,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/user-profile/{id}": {
@@ -26556,12 +25446,7 @@
             }
           }
         },
-        "deprecated": true,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": true
       },
       "put": {
         "tags": [
@@ -26684,12 +25569,7 @@
             }
           }
         },
-        "deprecated": true,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": true
       },
       "delete": {
         "tags": [
@@ -26785,12 +25665,7 @@
             }
           }
         },
-        "deprecated": true,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": true
       }
     },
     "/organization/{orgid}/user-profile/{id}/incoming-references": {
@@ -26914,12 +25789,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/v2/user-profile": {
@@ -27076,12 +25946,7 @@
             }
           }
         },
-        "deprecated": true,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": true
       }
     },
     "/organization/{orgid}/user": {
@@ -27228,12 +26093,7 @@
             }
           }
         },
-        "deprecated": true,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": true
       }
     },
     "/organization/{orgid}/user/bulk": {
@@ -27357,12 +26217,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/user/bulk-export": {
@@ -27471,12 +26326,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/user/by-ci-user-id/{id}": {
@@ -27585,12 +26435,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/user/fetch-user-details-by-ids": {
@@ -27739,12 +26584,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/user/with-user-profile": {
@@ -27839,12 +26679,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/user/with-user-profile/{id}": {
@@ -27943,12 +26778,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/user/{id}": {
@@ -28057,12 +26887,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       },
       "put": {
         "tags": [
@@ -28189,12 +27014,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       },
       "patch": {
         "tags": [
@@ -28316,12 +27136,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/user/{id}/incoming-references": {
@@ -28450,12 +27265,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/v2/user": {
@@ -28637,12 +27447,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/v2/user/by-ci-user-id/{id}": {
@@ -28761,12 +27566,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/work-type": {
@@ -28871,12 +27671,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/work-type/bulk": {
@@ -28981,12 +27776,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/work-type/bulk-export": {
@@ -29091,12 +27881,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/work-type/purge-inactive-entities": {
@@ -29202,12 +27987,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/work-type/{id}": {
@@ -29307,12 +28087,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "put": {
         "tags": [
@@ -29435,12 +28210,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       },
       "delete": {
         "tags": [
@@ -29536,12 +28306,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/work-type/{id}/incoming-references": {
@@ -29666,12 +28431,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/organization/{orgid}/v2/work-type": {
@@ -29807,12 +28567,7 @@
             }
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/dataSources": {
@@ -29928,11 +28683,6 @@
             "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
           }
         },
-        "security": [
-          {
-            "oauth2": []
-          }
-        ],
         "tags": [
           "Data Sources"
         ],
@@ -30066,11 +28816,6 @@
             "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
           }
         },
-        "security": [
-          {
-            "oauth2": []
-          }
-        ],
         "tags": [
           "Data Sources"
         ],
@@ -30161,11 +28906,6 @@
             "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
           }
         },
-        "security": [
-          {
-            "oauth2": []
-          }
-        ],
         "tags": [
           "Data Sources"
         ],
@@ -30284,11 +29024,6 @@
             "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
           }
         },
-        "security": [
-          {
-            "oauth2": []
-          }
-        ],
         "tags": [
           "Data Sources"
         ],
@@ -30362,11 +29097,6 @@
             "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
           }
         },
-        "security": [
-          {
-            "oauth2": []
-          }
-        ],
         "tags": [
           "Data Sources"
         ],
@@ -30498,11 +29228,6 @@
             "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
           }
         },
-        "security": [
-          {
-            "oauth2": []
-          }
-        ],
         "tags": [
           "Data Sources"
         ],
@@ -30634,11 +29359,6 @@
             "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
           }
         },
-        "security": [
-          {
-            "oauth2": []
-          }
-        ],
         "tags": [
           "Data Sources"
         ],
@@ -30846,12 +29566,7 @@
               "application/json": {}
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/notification/subscribe": {
@@ -30895,12 +29610,7 @@
           "503": {
             "description": "Service Unavailable"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/queues/statistics": {
@@ -31042,12 +29752,7 @@
               "application/json": {}
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/realtime/subscribe": {
@@ -31091,12 +29796,7 @@
           "503": {
             "description": "Service Unavailable"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/search": {
@@ -31261,12 +29961,7 @@
               "application/json": {}
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/subscriptions": {
@@ -31350,12 +30045,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "post": {
         "tags": [
@@ -31437,12 +30127,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/subscriptions/{id}": {
@@ -31537,12 +30222,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "delete": {
         "tags": [
@@ -31628,12 +30308,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "patch": {
         "tags": [
@@ -31726,12 +30401,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/event-types": {
@@ -31815,12 +30485,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v2/subscriptions": {
@@ -31904,12 +30569,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "post": {
         "tags": [
@@ -31991,12 +30651,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v2/subscriptions/{id}": {
@@ -32091,12 +30746,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "delete": {
         "tags": [
@@ -32182,12 +30832,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "patch": {
         "tags": [
@@ -32280,12 +30925,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v2/event-types": {
@@ -32369,12 +31009,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/agents/login": {
@@ -32415,12 +31050,7 @@
           "503": {
             "description": "Service Unavailable"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/agents/logout": {
@@ -32461,12 +31091,7 @@
           "503": {
             "description": "Service Unavailable"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/agents/session/state": {
@@ -32507,12 +31132,7 @@
           "503": {
             "description": "Service Unavailable"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/agents/reload": {
@@ -32540,12 +31160,7 @@
           "503": {
             "description": "Service Unavailable"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/agents/buddyList": {
@@ -32586,12 +31201,7 @@
           "503": {
             "description": "Service Unavailable"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/agents/activities": {
@@ -32795,12 +31405,7 @@
               "application/json": {}
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/agents/statistics": {
@@ -32944,12 +31549,7 @@
               "application/json": {}
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v2/agents/session/state": {
@@ -32990,12 +31590,7 @@
           "503": {
             "description": "Service Unavailable"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/monitor": {
@@ -33036,12 +31631,7 @@
           "503": {
             "description": "Service Unavailable"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/monitor/{taskId}/bargeIn": {
@@ -33084,12 +31674,7 @@
           "503": {
             "description": "Service Unavailable"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/monitor/{taskId}/end": {
@@ -33132,12 +31717,7 @@
           "503": {
             "description": "Service Unavailable"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/monitor/{taskId}/hold": {
@@ -33180,12 +31760,7 @@
           "503": {
             "description": "Service Unavailable"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/monitor/{taskId}/unhold": {
@@ -33228,12 +31803,7 @@
           "503": {
             "description": "Service Unavailable"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/monitor/sessions": {
@@ -33264,12 +31834,7 @@
           "503": {
             "description": "Service Unavailable"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/monitor/{requestId}": {
@@ -33312,12 +31877,7 @@
           "503": {
             "description": "Service Unavailable"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/agent-profile": {
@@ -33455,12 +32015,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       },
       "post": {
         "tags": [
@@ -33562,12 +32117,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/agent-profile/bulk": {
@@ -33671,12 +32221,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/agent-profile/bulk-export": {
@@ -33780,12 +32325,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/agent-profile/purge-inactive-entities": {
@@ -33890,12 +32430,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/agent-profile/{id}": {
@@ -33989,12 +32524,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       },
       "put": {
         "tags": [
@@ -34116,12 +32646,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       },
       "delete": {
         "tags": [
@@ -34216,12 +32741,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/agent-profile/{id}/incoming-references": {
@@ -34345,12 +32865,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/organization/{orgid}/v2/agent-profile": {
@@ -34506,12 +33021,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "BEARER_TOKEN_FROM_CI": []
-          }
-        ]
+        }
       }
     },
     "/v1/tasks": {
@@ -34559,12 +33069,7 @@
           "503": {
             "description": "Service Unavailable"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "get": {
         "tags": [
@@ -34723,12 +33228,7 @@
               "application/json": {}
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/tasks/{taskId}": {
@@ -34781,12 +33281,7 @@
           "503": {
             "description": "Service Unavailable"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/tasks/{taskId}/accept": {
@@ -34825,12 +33320,7 @@
           "503": {
             "description": "Service Unavailable"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/tasks/{taskId}/end": {
@@ -34869,12 +33359,7 @@
           "503": {
             "description": "Path is not found"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/tasks/{taskId}/wrapup": {
@@ -34922,12 +33407,7 @@
           "503": {
             "description": "Path is not found"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/tasks/{taskId}/hold": {
@@ -34975,12 +33455,7 @@
           "503": {
             "description": "Path is not found"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/tasks/{taskId}/unhold": {
@@ -35028,12 +33503,7 @@
           "503": {
             "description": "Path is not found"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/tasks/{taskId}/reject": {
@@ -35081,12 +33551,7 @@
           "503": {
             "description": "Path is not found"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/tasks/{taskId}/record/pause": {
@@ -35125,12 +33590,7 @@
           "503": {
             "description": "Path is not found"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/tasks/{taskId}/record/resume": {
@@ -35178,12 +33638,7 @@
           "503": {
             "description": "Path is not found"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/tasks/{taskId}/transfer": {
@@ -35231,12 +33686,7 @@
           "503": {
             "description": "Path is not found"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/tasks/{taskId}/consult": {
@@ -35284,12 +33734,7 @@
           "503": {
             "description": "Path is not found"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/tasks/{taskId}/consult/conference": {
@@ -35337,12 +33782,7 @@
           "503": {
             "description": "Path is not found"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/tasks/{taskId}/consult/transfer": {
@@ -35390,12 +33830,7 @@
           "503": {
             "description": "Path is not found"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/tasks/{taskId}/consult/accept": {
@@ -35434,12 +33869,7 @@
           "503": {
             "description": "Path is not found"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/tasks/{taskId}/assign": {
@@ -35479,12 +33909,7 @@
           "503": {
             "description": "Service Unavailable"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/tasks/{taskId}/consult/end": {
@@ -35532,12 +33957,7 @@
           "503": {
             "description": "Path is not found"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/tasks/{taskId}/conference/exit": {
@@ -35580,12 +34000,7 @@
           "503": {
             "description": "Service Unavailable"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/dialer/campaign/{campaignId}/preview-task/{taskId}/accept": {
@@ -35639,12 +34054,7 @@
           "503": {
             "description": "Service Unavailable"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/dialer/campaign/{campaignId}/preview-task/{taskId}/skip": {
@@ -35698,12 +34108,7 @@
           "503": {
             "description": "Service Unavailable"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/dialer/campaign/{campaignId}/preview-task/{taskId}/reject": {
@@ -35757,12 +34162,7 @@
           "503": {
             "description": "Service Unavailable"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/admin/v1/api/workspace/workspace-id/{workspaceId}": {
@@ -35836,12 +34236,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       },
       "put": {
         "tags": [
@@ -35923,12 +34318,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       },
       "delete": {
         "tags": [
@@ -36000,12 +34390,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       }
     },
     "/admin/v1/api/profile-view-template/workspace-id/{workspaceId}/template-id/{templateId}": {
@@ -36055,12 +34440,7 @@
           "500": {
             "description": "Internal error"
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       },
       "put": {
         "tags": [
@@ -36132,12 +34512,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       },
       "delete": {
         "tags": [
@@ -36185,12 +34560,7 @@
           "500": {
             "description": "Internal error"
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       }
     },
     "/admin/v1/api/person/workspace-id/{workspaceId}/person-id/{personId}": {
@@ -36240,12 +34610,7 @@
           "500": {
             "description": "Internal error"
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       },
       "patch": {
         "tags": [
@@ -36306,12 +34671,7 @@
           "500": {
             "description": "Internal error"
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       }
     },
     "/admin/v1/api/person/add-identities/workspace-id/{workspaceId}/person-id/{personId}": {
@@ -36405,12 +34765,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       }
     },
     "/admin/v1/api/wxcc-subscription/workspace-id/{workspaceId}": {
@@ -36484,12 +34839,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       },
       "post": {
         "tags": [
@@ -36561,12 +34911,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       },
       "delete": {
         "tags": [
@@ -36638,12 +34983,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       }
     },
     "/admin/v1/api/workspace": {
@@ -36757,12 +35097,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       },
       "post": {
         "tags": [
@@ -36844,12 +35179,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       }
     },
     "/admin/v1/api/profile-view-template/workspace-id/{workspaceId}": {
@@ -36939,12 +35269,7 @@
           "500": {
             "description": "Internal error"
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       },
       "post": {
         "tags": [
@@ -37016,12 +35341,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       }
     },
     "/admin/v1/api/person/workspace-id/{workspaceId}": {
@@ -37121,12 +35441,7 @@
           "500": {
             "description": "Internal error"
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       },
       "post": {
         "tags": [
@@ -37198,12 +35513,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       }
     },
     "/admin/v1/api/person/merge/workspace-id/{workspaceId}/primary-person-id/{primaryPersonId}": {
@@ -37266,12 +35576,7 @@
           "500": {
             "description": "Internal error"
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       }
     },
     "/admin/v1/api/person/merge-identities/workspace-id/{workspaceId}": {
@@ -37324,12 +35629,7 @@
           "500": {
             "description": "Internal error"
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       }
     },
     "/admin/v1/api/journey-actions/workspace-id/{workspaceId}": {
@@ -37409,12 +35709,7 @@
           "500": {
             "description": "Internal error"
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       }
     },
     "/admin/v1/api/profile-view-template/workspace-id/{workspaceId}/template-name/{templateName}": {
@@ -37464,12 +35759,7 @@
           "500": {
             "description": "Internal error"
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       }
     },
     "/admin/v1/api/person/workspace-id/{workspaceId}/aliases/{aliases}": {
@@ -37559,12 +35849,7 @@
           "500": {
             "description": "Internal error"
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       }
     },
     "/admin/v1/api/journey-actions/workspace-id/{workspaceId}/template-id/{templateId}": {
@@ -37614,12 +35899,7 @@
           "500": {
             "description": "Internal error"
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       },
       "post": {
         "tags": [
@@ -37691,12 +35971,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       }
     },
     "/admin/v1/api/journey-actions/workspace-id/{workspaceId}/template-id/{templateId}/action-name/{actionName}": {
@@ -37756,12 +36031,7 @@
           "500": {
             "description": "Internal error"
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       }
     },
     "/admin/v1/api/journey-actions/workspace-id/{workspaceId}/template-id/{templateId}/action-id/{actionId}": {
@@ -37821,12 +36091,7 @@
           "500": {
             "description": "Internal error"
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       },
       "put": {
         "tags": [
@@ -37908,12 +36173,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       },
       "delete": {
         "tags": [
@@ -37971,12 +36231,7 @@
           "500": {
             "description": "Internal error"
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       }
     },
     "/admin/v1/api/progressive-profile-view/workspace-id/{workspaceId}/person-id/{personId}/template-name/{templateName}": {
@@ -38060,12 +36315,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       }
     },
     "/v1/api/person/remove-identities/workspace-id/{workspaceId}/person-id/{personId}": {
@@ -38167,12 +36417,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       }
     },
     "/v1/api/progressive-profile-view/workspace-id/{workspaceId}/person-id/{personId}/template-id/{templateId}": {
@@ -38256,12 +36501,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       }
     },
     "/v1/api/progressive-profile-view/workspace-id/{workspaceId}/identity/{identity}/template-name/{templateName}": {
@@ -38345,12 +36585,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       }
     },
     "/v1/api/progressive-profile-view/workspace-id/{workspaceId}/identity/{identity}/template-id/{templateId}": {
@@ -38434,12 +36669,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       }
     },
     "/v1/api/progressive-profile-view/stream/workspace-id/{workspaceId}/identity/{identity}/template-name/{templateName}": {
@@ -38533,12 +36763,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       }
     },
     "/v1/api/progressive-profile-view/stream/workspace-id/{workspaceId}/identity/{identity}/template-id/{templateId}": {
@@ -38632,12 +36857,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       }
     },
     "/v1/api/events/workspace-id/{workspaceId}": {
@@ -38781,12 +37001,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       }
     },
     "/v1/api/events/stream/workspace-id/{workspaceId}/identity/{identity}": {
@@ -38890,12 +37105,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       }
     },
     "/publish/v1/api/event": {
@@ -38979,12 +37189,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       }
     },
     "/v1/dialer/campaign": {
@@ -39031,12 +37236,7 @@
           "503": {
             "description": "Service Unavailable"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/dialer/campaign/{campaignId}": {
@@ -39094,12 +37294,7 @@
           "503": {
             "description": "Service Unavailable"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "delete": {
         "tags": [
@@ -39139,12 +37334,7 @@
           "503": {
             "description": "Service Unavailable"
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/v1/captures/query": {
@@ -39193,12 +37383,7 @@
           "500": {
             "description": "An Unexpected Error Occurred"
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       }
     },
     "/flow-store/{orgId}/project/{projectId}/flows": {
@@ -39330,12 +37515,7 @@
             "description": "Internal Server Error",
             "content": {}
           }
-        },
-        "security": [
-          {
-            "Bearer": []
-          }
-        ]
+        }
       }
     },
     "/flow-store/{orgId}/project/{projectId}/flows/{flowId}:export": {
@@ -39411,12 +37591,7 @@
             "description": "Not Found",
             "content": {}
           }
-        },
-        "security": [
-          {
-            "Bearer": []
-          }
-        ]
+        }
       }
     },
     "/flow-store/{orgId}/project/{projectId}/flows/{flowId}:publish": {
@@ -39514,11 +37689,6 @@
             "content": {}
           }
         },
-        "security": [
-          {
-            "Bearer": []
-          }
-        ],
         "x-codegen-request-body-name": "PublishParameters"
       }
     },
@@ -39639,11 +37809,6 @@
             "content": {}
           }
         },
-        "security": [
-          {
-            "Bearer": []
-          }
-        ],
         "x-codegen-request-body-name": "file"
       }
     }
@@ -62102,7 +60267,7 @@
           "outdialANI": {
             "type": "string",
             "description": "The ANI (E164)  that will be presented to the customer. These must be restricted to the configured outdial Eps in Webex Contact Center, maximum length 50 characters.",
-            "example": "fbed39e1-4ed8-4179-828b-075e3788649c"
+            "example": "9784330011"
           },
           "recordCount": {
             "type": "integer",
@@ -62267,7 +60432,7 @@
           "outdialANI": {
             "type": "string",
             "description": "The ANI (E164)  that will be presented to the customer. These must be restricted to the configured outdial Eps in Webex Contact Center, maximum length 50 characters.",
-            "example": "fbed39e1-4ed8-4179-828b-075e3788649c"
+            "example": "9784330011"
           },
           "noAnswerRingLimit": {
             "type": "integer",
@@ -63512,9 +61677,10 @@
         "scheme": "bearer"
       },
       "Bearer": {
-        "type": "apiKey",
-        "name": "Authorization",
-        "in": "header"
+        "type": "http",
+        "description": "e.g. Bearer YOUR_AUTHORIZATION_TOKEN",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     },
     "parameters": {},

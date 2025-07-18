@@ -107,11 +107,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     }

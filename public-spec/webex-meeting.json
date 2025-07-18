@@ -139,11 +139,6 @@
               "type": "number"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       },
       "delete": {
@@ -212,11 +207,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -317,11 +307,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -438,11 +423,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -554,11 +534,6 @@
               "type": "string"
             },
             "example": "UTC"
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -703,11 +678,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       },
       "post": {
@@ -837,12 +807,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/meetingInvitees/bulkInsert": {
@@ -980,12 +945,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/meetingInvitees/{meetingInviteeId}": {
@@ -1081,11 +1041,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -1226,12 +1181,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "delete": {
         "responses": {
@@ -1324,11 +1274,6 @@
               "default": "true"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -1402,11 +1347,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -1614,11 +1554,6 @@
               "type": "string"
             },
             "example": "UTC"
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -1828,12 +1763,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/meetingParticipants/{participantId}": {
@@ -1962,11 +1892,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -2097,12 +2022,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/meetingParticipants/admit": {
@@ -2184,12 +2104,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/meetingParticipants/callout": {
@@ -2284,12 +2199,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/meetingParticipants/cancelCallout": {
@@ -2364,12 +2274,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/meetings/polls": {
@@ -2477,11 +2382,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -2627,11 +2527,6 @@
               "default": 10
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -2758,11 +2653,6 @@
               "type": "number",
               "default": 10
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -2989,11 +2879,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -3154,11 +3039,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -3345,12 +3225,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/meetingPreferences/audio": {
@@ -3493,11 +3368,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -3670,12 +3540,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/meetingPreferences/video": {
@@ -3812,11 +3677,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -3977,12 +3837,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/meetingPreferences/schedulingOptions": {
@@ -4115,11 +3970,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -4271,12 +4121,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/meetingPreferences/schedulingOptions/delegateEmails/insert": {
@@ -4428,12 +4273,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/meetingPreferences/schedulingOptions/delegateEmails/delete": {
@@ -4529,12 +4369,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/meetingPreferences/sites": {
@@ -4678,11 +4513,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       },
       "put": {
@@ -4822,12 +4652,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/admin/meetingPreferences/personalMeetingRoom/refreshId": {
@@ -4974,12 +4799,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/meetings/q_and_a": {
@@ -5120,11 +4940,6 @@
               "default": 10
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -5257,11 +5072,6 @@
               "type": "number",
               "default": 10
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -5475,7 +5285,7 @@
           }
         },
         "summary": "Get Meeting Qualities",
-        "operationId": "Get Meeting Qualities",
+        "operationId": "getMeetingQualities",
         "description": "Get quality data for a meeting, by `meetingId`. Only organization administrators can retrieve meeting quality data.",
         "tags": [
           "Meeting Qualities"
@@ -5509,11 +5319,6 @@
             "schema": {
               "type": "number"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -5620,11 +5425,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -5756,11 +5556,6 @@
             },
             "example": "`john.andersen@example.com` (string, optional) - The email of the user."
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       },
       "put": {
@@ -5856,12 +5651,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/meetingTranscripts": {
@@ -6028,11 +5818,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -6183,11 +5968,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -6288,11 +6068,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -6404,11 +6179,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -6506,11 +6276,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -6621,12 +6386,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/meetingTranscripts/{transcriptId}": {
@@ -6713,12 +6473,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/meetingReports/usage": {
@@ -6899,11 +6654,6 @@
               "type": "string"
             },
             "example": "Asia/Shanghai"
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -7092,11 +6842,6 @@
               "type": "string"
             },
             "example": "Asia/Shanghai"
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -7338,11 +7083,6 @@
               "type": "string"
             },
             "example": "UTC"
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -7590,11 +7330,6 @@
               "type": "string"
             },
             "example": "UTC"
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -8146,12 +7881,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "get": {
         "responses": {
@@ -8922,11 +8652,6 @@
             },
             "example": "UTC"
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -9297,11 +9022,6 @@
             },
             "example": "UTC"
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       },
       "patch": {
@@ -9631,12 +9351,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "put": {
         "responses": {
@@ -9965,12 +9680,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "delete": {
         "responses": {
@@ -10062,11 +9772,6 @@
               "type": "boolean",
               "default": "true"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -10164,12 +9869,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/meetings/templates": {
@@ -10364,11 +10064,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -10611,11 +10306,6 @@
             },
             "example": "UTC"
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -10700,11 +10390,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -10819,12 +10504,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/meetings/sessionTypes": {
@@ -10931,11 +10611,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -11039,11 +10714,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -11193,11 +10863,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -11479,12 +11144,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "delete": {
         "responses": {
@@ -11565,11 +11225,6 @@
               "type": "string"
             },
             "example": "`brenda.song@example.com` (string, optional) - Email address for the meeting host. This parameter is only used if the user or application calling the API has the admin on-behalf-of scopes. If set, the admin may specify the email of a user in a site they manage and the API will return details for an interpreter of the meeting that is hosted by that user."
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -11736,12 +11391,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "get": {
         "responses": {
@@ -11918,11 +11568,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -12114,12 +11759,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/meetings/{meetingId}/registrants/{registrantId}": {
@@ -12259,11 +11899,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       },
       "delete": {
@@ -12364,11 +11999,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -12540,12 +12170,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/meetings/{meetingId}/registrants/{statusOpType}": {
@@ -12684,12 +12309,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/meetings/{meetingId}/simultaneousInterpretation": {
@@ -12838,12 +12458,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/meetings/{meetingId}/interpreters": {
@@ -12965,12 +12580,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "get": {
         "responses": {
@@ -13084,11 +12694,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -13196,11 +12801,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -13332,12 +12932,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "delete": {
         "responses": {
@@ -13439,11 +13034,6 @@
               "type": "boolean",
               "default": "true"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -13554,11 +13144,6 @@
               "type": "string"
             },
             "example": "`john.andersen@example.com` (string, optional) - Email address for the meeting host. This parameter is only used if the user or application calling the API has the admin-level scopes. If set, the admin may specify the email of a user in a site they manage and the API will return details for a meeting that is hosted by that user."
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -13687,12 +13272,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "delete": {
         "responses": {
@@ -13784,11 +13364,6 @@
               "type": "string"
             },
             "example": "`john.andersen@example.com` (string, optional) - Email address for the meeting host. This parameter is only used if the user or application calling the API has the admin-level scopes. If set, the admin may specify the email of a user in a site they manage and the API will delete breakout sessions that are created by that user."
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -13982,11 +13557,6 @@
               "type": "string"
             },
             "example": "john.andersen@example.com"
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -14209,11 +13779,6 @@
             },
             "example": "john.andersen@example.com"
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -14348,12 +13913,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/meetings/{meetingId}/invitationSources": {
@@ -14501,12 +14061,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "get": {
         "responses": {
@@ -14630,11 +14185,6 @@
               "type": "string"
             },
             "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS8yNWJiZjgzMS01YmU5LTRjMjUtYjRiMC05YjU5MmM4YTA4NmI"
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -14761,11 +14311,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -14900,12 +14445,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/meetings/{meetingId}/end": {
@@ -14991,12 +14531,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/admin/meeting/config/trackingCodes": {
@@ -15166,11 +14701,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -15369,12 +14899,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/admin/meeting/config/trackingCodes/{trackingCodeId}": {
@@ -15507,11 +15032,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -15710,12 +15230,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "delete": {
         "responses": {
@@ -15798,11 +15313,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -15920,11 +15430,6 @@
               "type": "string"
             },
             "example": "john.andersen@example.com"
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -16070,12 +15575,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/people": {
@@ -16289,11 +15789,6 @@
               "type": "number",
               "default": 100
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -16645,12 +16140,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/people/{personId}": {
@@ -16799,11 +16289,6 @@
               "type": "boolean",
               "default": "false"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -17191,12 +16676,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "delete": {
         "responses": {
@@ -17267,11 +16747,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -17412,11 +16887,6 @@
               "type": "boolean",
               "default": "false"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -17591,11 +17061,6 @@
             },
             "example": "UTC"
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -17749,11 +17214,6 @@
               "type": "string"
             },
             "example": "UTC"
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -17915,11 +17375,6 @@
               "type": "string"
             },
             "example": "UTC"
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -18178,11 +17633,6 @@
             },
             "example": "UTC"
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -18338,8 +17788,8 @@
           }
         },
         "summary": "List Recordings",
-        "operationId": "List Recordings",
-        "description": "Lists recordings. You can specify a date range, a parent meeting ID, and the maximum number of recordings to return.\n\nOnly recordings of meetings hosted by or shared with the authenticated user will be listed.\n\nThe list returned is sorted in descending order by the date and time that the recordings were created.\n\nLong result sets are split into [pages](/docs/basics#pagination).\n\n* If `meetingId` is specified, only recordings associated with the specified meeting will be listed. **NOTE**: when `meetingId` is specified, parameter of `siteUrl` will be ignored.\n\n* If `siteUrl` is specified, recordings of the specified site will be listed; otherwise, the API lists recordings of all the user's sites. All available Webex sites and preferred site of the user can be retrieved by [Get Site List](/docs/api/v1/meeting-preferences/get-site-list) API.\n\n#### Request Header\n\n* `timezone`: *[Time zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List) in conformance with the [IANA time zone database](https://www.iana.org/time-zones). The default is UTC if `timezone` is not defined.*",
+        "operationId": "listRecordings",
+        "description": "Lists recordings. You can specify a date range, a parent meeting ID, and the maximum number of recordings to return.\n\nOnly recordings of meetings hosted by or shared with the authenticated user will be listed.\n\nThe list returned is sorted in descending order by the date and time that the recordings were created.\n\nLong result sets are split into [pages](/docs/basics#pagination).\n\n* If `meetingId` is specified, only recordings associated with the specified meeting will be listed. **NOTE**: when `meetingId` is specified, parameters of `siteUrl`, `from`, and `to` will be ignored.\n\n* If `siteUrl` is specified, recordings of the specified site will be listed; otherwise, the API lists recordings of all the user's sites. All available Webex sites and preferred site of the user can be retrieved by [Get Site List](/docs/api/v1/meeting-preferences/get-site-list) API.\n\n#### Request Header\n\n* `timezone`: *[Time zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List) in conformance with the [IANA time zone database](https://www.iana.org/time-zones). The default is UTC if `timezone` is not defined.*",
         "tags": [
           "Recordings"
         ],
@@ -18470,11 +17920,6 @@
               "type": "string"
             },
             "example": "UTC"
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -18631,8 +18076,8 @@
           }
         },
         "summary": "List Recordings For an Admin or Compliance Officer",
-        "operationId": "List Recordings For an Admin or Compliance Officer",
-        "description": "List recordings for an admin or compliance officer. You can specify a date range, a parent meeting ID, and the maximum number of recordings to return.\n\nThe list returned is sorted in descending order by the date and time that the recordings were created.\n\nLong result sets are split into [pages](/docs/basics#pagination).\n\n* If `meetingId` is specified, only recordings associated with the specified meeting will be listed. Please note that when `meetingId` is specified, parameter of `siteUrl` will be ignored.\n\n* If `siteUrl` is specified, all the recordings on the specified site are listed; otherwise, all the recordings on the admin user's or compliance officer's preferred site are listed. All the available Webex sites and the admin user's or compliance officer's preferred site can be retrieved by the [Get Site List](/docs/api/v1/meeting-preferences/get-site-list) API.\n\n#### Request Header\n\n* `timezone`: *[Time zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List) in conformance with the [IANA time zone database](https://www.iana.org/time-zones). The default is UTC if `timezone` is not defined.*",
+        "operationId": "listRecordingsForAdminOrComplianceOfficer",
+        "description": "List recordings for an admin or compliance officer. You can specify a date range, a parent meeting ID, and the maximum number of recordings to return.\n\nThe list returned is sorted in descending order by the date and time that the recordings were created.\n\nLong result sets are split into [pages](/docs/basics#pagination).\n\n* If `meetingId` is specified, only recordings associated with the specified meeting will be listed. Please note that when `meetingId` is specified, parameters of `siteUrl`, `from`, and `to` will be ignored.\n\n* If `siteUrl` is specified, all the recordings on the specified site are listed; otherwise, all the recordings on the admin user's or compliance officer's preferred site are listed. All the available Webex sites and the admin user's or compliance officer's preferred site can be retrieved by the [Get Site List](/docs/api/v1/meeting-preferences/get-site-list) API.\n\n#### Request Header\n\n* `timezone`: *[Time zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List) in conformance with the [IANA time zone database](https://www.iana.org/time-zones). The default is UTC if `timezone` is not defined.*",
         "tags": [
           "Recordings"
         ],
@@ -18755,11 +18200,6 @@
             },
             "example": "UTC"
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -18835,11 +18275,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -18980,11 +18415,6 @@
             },
             "example": "example.webex.com"
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       },
       "delete": {
@@ -19081,12 +18511,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/recordings/softDelete": {
@@ -19176,12 +18601,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/recordings/restore": {
@@ -19272,12 +18692,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/recordings/purge": {
@@ -19368,12 +18783,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/admin/meeting/config/commonSettings": {
@@ -19499,11 +18909,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -19687,12 +19092,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/slido/compliance/events": {
@@ -20816,12 +20216,7 @@
           "504": {
             "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/videoMesh/clusters/availability": {
@@ -20953,11 +20348,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -21091,11 +20481,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -21234,11 +20619,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -21369,11 +20749,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -21693,11 +21068,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -21920,11 +21290,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -22102,11 +21467,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -22243,11 +21603,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -22420,11 +21775,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -22573,11 +21923,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -22741,11 +22086,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -22887,11 +22227,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -23307,11 +22642,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -23582,11 +22912,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -23788,11 +23113,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -23954,11 +23274,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -24084,11 +23399,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -24200,12 +23510,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/videoMesh/triggerTest/nodes/{nodeId}": {
@@ -24308,12 +23613,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/videoMesh/testStatus": {
@@ -24407,11 +23707,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -24535,11 +23830,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -24934,11 +24224,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -25155,11 +24440,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -25378,11 +24658,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -25564,11 +24839,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -25728,11 +24998,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -25871,11 +25136,6 @@
                 "ORG"
               ]
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -26016,12 +25276,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/videoMesh/eventThresholds/{eventThresholdId}": {
@@ -26115,11 +25370,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -26233,12 +25483,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/webhooks": {
@@ -26348,11 +25593,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -26520,12 +25760,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/webhooks/{webhookId}": {
@@ -26616,11 +25851,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -26762,12 +25992,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "delete": {
         "responses": {
@@ -26838,11 +26063,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }

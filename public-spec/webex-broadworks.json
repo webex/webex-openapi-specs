@@ -5,7 +5,12 @@
     "version": "1.0.0",
     "description": "The Webex BroadWorks Calling APIs provide access to advanced calling features and user management for BroadWorks-powered Webex Calling deployments. These APIs support provisioning of users and devices, call control, feature management, device inventory, and detailed reporting. Service providers and enterprises can automate onboarding, integrate with OSS/BSS systems, manage user entitlements, and monitor call quality. The APIs are designed for scalable, multi-tenant environments and support seamless integration with existing telephony infrastructure."
   },
-  "tags": [],
+  "tags": [
+    {
+      "name": "BroadWorks Workspaces",
+      "description": "APIs for managing BroadWorks Workspaces."
+    }
+  ],
   "paths": {
     "/broadworks/billing/reports": {
       "get": {
@@ -121,11 +126,6 @@
               "default": "billingPeriod"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       },
       "post": {
@@ -218,12 +218,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/broadworks/billing/reports/{id}": {
@@ -311,11 +306,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       },
       "delete": {
@@ -387,11 +377,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -518,11 +503,6 @@
               "default": 100
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -631,12 +611,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "post": {
         "responses": {
@@ -742,12 +717,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "get": {
         "responses": {
@@ -841,11 +811,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -957,12 +922,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/broadworks/subscribers": {
@@ -1160,11 +1120,6 @@
               "default": 50
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       },
       "post": {
@@ -1347,12 +1302,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/broadworks/subscribers/{subscriberId}": {
@@ -1449,11 +1399,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -1612,12 +1557,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "delete": {
         "responses": {
@@ -1688,11 +1628,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -1879,12 +1814,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/subscribers/{subscriberId}/emails/consentMove": {
@@ -1945,16 +1875,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "Authorization",
-            "in": "header",
-            "description": "e.g. Bearer YOUR_AUTHORIZATION_TOKEN",
-            "required": false,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Bearer YOUR_AUTHORIZATION_TOKEN"
           }
         ]
       }
@@ -2030,7 +1950,7 @@
           }
         },
         "summary": "Provision a BroadWorks Workspace",
-        "operationId": "Provision a BroadWorks Workspace",
+        "operationId": "provisionBroadWorksWorkspace",
         "description": "Provision a new BroadWorks workspace for Cisco Webex services.\n\nThis API allows a Service Provider to provision a workspace for an existing customer.",
         "tags": [
           "BroadWorks Workspaces"
@@ -2090,12 +2010,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/broadworks/workspaces/{workspaceId}": {
@@ -2169,7 +2084,7 @@
           }
         },
         "summary": "Update a Broadworks Workspace",
-        "operationId": "Update a Broadworks Workspace",
+        "operationId": "updateBroadworksWorkspace",
         "description": "Update certain details of a provisioned BroadWorks workspace on Cisco Webex.",
         "tags": [
           "BroadWorks Workspaces"
@@ -2182,7 +2097,9 @@
             "required": true,
             "example": "Y2lzY29zcGFyazovL3VzL1BMQUNFL2RkMjJlZGZlLTlmZWYtNDdmOS05ODFkLWYxYjA3MWFmMDcwYw",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
             }
           }
         ],
@@ -2216,12 +2133,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "delete": {
         "responses": {
@@ -2277,7 +2189,7 @@
           }
         },
         "summary": "Remove a BroadWorks Workspace",
-        "operationId": "Remove a BroadWorks Workspace",
+        "operationId": "removeBroadWorksWorkspace",
         "description": "Remove the mapping between a BroadWorks workspace and Cisco Webex device.",
         "tags": [
           "BroadWorks Workspaces"
@@ -2290,13 +2202,10 @@
             "required": true,
             "example": "Y2lzY29zcGFyazovL3VzL1BMQUNFL2RkMjJlZGZlLTlmZWYtNDdmOS05ODFkLWYxYjA3MWFmMDcwYw",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -11306,6 +11215,16 @@
       },
       "WorkspaceResponse": {
         "type": "object",
+        "example": {
+          "id": "Y2lzY29zcGFyazovL3VzL1BMQUNFL2RkMjJlZGZlLTlmZWYtNDdmOS05ODFkLWYxYjA3MWFmMDcwYw",
+          "provisioningId": "ZjViMzYxODctYzhkZC00NzI3LThiMmYtZjljNDQ3ZjI5MDQ2OjQyODVmNTk0LTViNTEtNDdiZS05Mzk2LTZjMzZlMmFkODNhNQ",
+          "userId": "95547321@sp.com",
+          "spEnterpriseId": "Reseller1+acme",
+          "displayName": "Conference Room",
+          "primaryPhoneNumber": "+1-240-555-1212",
+          "extension": "51212",
+          "created": "2019-10-18T14:26:16.000Z"
+        },
         "properties": {
           "provisioningId": {
             "type": "string",
@@ -11362,6 +11281,12 @@
         "type": "oauth2"
       },
       "bearer-key": {
+        "type": "http",
+        "description": "e.g. Bearer YOUR_AUTHORIZATION_TOKEN",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      },
+      "bearerAuth": {
         "type": "http",
         "description": "e.g. Bearer YOUR_AUTHORIZATION_TOKEN",
         "scheme": "bearer",

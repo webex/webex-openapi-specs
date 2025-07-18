@@ -125,11 +125,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       },
       "put": {
@@ -236,12 +231,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/telephony/config/devices/{deviceId}/availableMembers": {
@@ -440,11 +430,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -527,11 +512,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -839,11 +819,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       },
       "put": {
@@ -1126,12 +1101,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/telephony/config/locations/{locationId}/devices/settings": {
@@ -1427,11 +1397,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -1542,11 +1507,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       },
       "put": {
@@ -1640,12 +1600,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/telephony/config/people/{personId}/devices": {
@@ -1764,11 +1719,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -1868,12 +1818,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/telephony/config/workspaces/{workspaceId}/devices": {
@@ -1991,11 +1936,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       },
       "put": {
@@ -2091,12 +2031,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/telephony/config/supportedDevices": {
@@ -2242,11 +2177,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -2556,11 +2486,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -2684,12 +2609,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "get": {
         "responses": {
@@ -2787,11 +2707,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -2906,11 +2821,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       },
       "put": {
@@ -3021,12 +2931,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "delete": {
         "responses": {
@@ -3106,11 +3011,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -3234,12 +3134,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/telephony/config/jobs/devices/applyLineKeyTemplate": {
@@ -3385,12 +3280,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "get": {
         "responses": {
@@ -3507,11 +3397,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -3640,11 +3525,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -3746,11 +3626,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -3855,11 +3730,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -3962,11 +3832,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -4083,12 +3948,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/telephony/config/jobs/devices/callDeviceSettings": {
@@ -4307,12 +4167,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "get": {
         "responses": {
@@ -4457,11 +4312,6 @@
               "type": "number"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -4582,11 +4432,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -4719,11 +4564,6 @@
               "type": "number"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -4849,11 +4689,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -4982,12 +4817,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/telephony/config/jobs/devices/rebuildPhones": {
@@ -5116,12 +4946,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "get": {
         "responses": {
@@ -5239,11 +5064,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -5372,11 +5192,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -5484,11 +5299,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -5589,11 +5399,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -5697,12 +5502,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/telephony/config/workspaces/{workspaceId}/devices/settings": {
@@ -5802,11 +5602,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -5910,12 +5705,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/telephony/config/devices/backgroundImages": {
@@ -6023,11 +5813,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -6212,12 +5997,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/telephony/config/devices/{deviceId}/actions/backgroundImageUpload/invoke": {
@@ -6328,11 +6108,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -6425,11 +6200,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -6628,11 +6398,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -6857,12 +6622,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/devices": {
@@ -7172,11 +6932,6 @@
               ]
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       },
       "post": {
@@ -7341,12 +7096,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/devices/{deviceId}": {
@@ -7477,11 +7227,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       },
       "delete": {
@@ -7562,11 +7307,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -7739,12 +7479,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/devices/activationCode": {
@@ -7857,12 +7592,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/hotdesk/sessions": {
@@ -7970,11 +7700,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -8048,11 +7773,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -8184,11 +7904,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       },
       "post": {
@@ -8285,12 +8000,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/workspaceLocations/{locationId}": {
@@ -8380,11 +8090,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -8494,12 +8199,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "delete": {
         "responses": {
@@ -8570,11 +8270,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -8665,11 +8360,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -8768,12 +8458,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/workspaceLocations/{locationId}/floors/{floorId}": {
@@ -8868,11 +8553,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       },
@@ -8981,12 +8661,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "delete": {
         "responses": {
@@ -9067,11 +8742,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -9242,11 +8912,6 @@
               ]
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -9388,11 +9053,6 @@
               "type": "string"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -9476,12 +9136,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/workspaces/{workspaceId}/personalizationTask": {
@@ -9564,11 +9219,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -9917,11 +9567,6 @@
               "type": "boolean"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       },
       "post": {
@@ -10059,12 +9704,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     },
     "/workspaces/{workspaceId}/": {
@@ -10246,11 +9886,6 @@
               "type": "boolean"
             }
           }
-        ],
-        "security": [
-          {
-            "bearer-key": []
-          }
         ]
       }
     },
@@ -10400,12 +10035,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       },
       "delete": {
         "responses": {
@@ -10476,11 +10106,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -10593,11 +10218,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -10723,11 +10343,6 @@
               },
               "description": "A list of status expressions used to query the Webex RoomOS Device. See the [xAPI section of the Device Developers Guide](/docs/api/guides/device-developers-guide#xapi) for a description of status expressions. A request can contain at most 10 different status expressions."
             }
-          }
-        ],
-        "security": [
-          {
-            "bearer-key": []
           }
         ]
       }
@@ -10975,12 +10590,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "bearer-key": []
-          }
-        ]
+        }
       }
     }
   },
