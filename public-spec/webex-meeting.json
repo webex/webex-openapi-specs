@@ -5305,7 +5305,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the maximum number of media sessions in the response.",
-            "example": "100",
+            "example": 100,
             "schema": {
               "type": "number",
               "default": 100
@@ -5315,7 +5315,7 @@
             "name": "offset",
             "in": "query",
             "description": "Offset from the first result that you want to fetch.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }

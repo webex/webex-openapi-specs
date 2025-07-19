@@ -330,7 +330,7 @@
           }
         },
         "summary": "List authorizations for a user",
-        "operationId": "List authorizations for a user",
+        "operationId": "listAuthorizationsForUser",
         "description": "Lists all authorizations for a user. Either `personId` or `personEmail` must be provided. This API does not support pagination.",
         "tags": [
           "Authorizations"
@@ -5015,7 +5015,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the maximum number of media sessions in the response.",
-            "example": "100",
+            "example": 100,
             "schema": {
               "type": "number",
               "default": 100
@@ -5025,7 +5025,7 @@
             "name": "offset",
             "in": "query",
             "description": "Offset from the first result that you want to fetch.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
