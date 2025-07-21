@@ -10304,7 +10304,7 @@
         ],
         "summary": "Bulk save Contact Service Queue(s)",
         "description": "Create, Update or delete Contact Service Queue(s) in bulk in a given organization.",
-        "operationId": "saveAllConfig_16",
+        "operationId": "saveAllConfig_17",
         "parameters": [
           {
             "name": "orgid",
@@ -10636,6 +10636,300 @@
         }
       }
     },
+    "/organization/{orgid}/contact-service-queue/by-skill-profile-id/{id}": {
+      "get": {
+        "tags": [
+          "Contact Service Queue"
+        ],
+        "operationId": "getSkillBasedCSQsBySkillProfileIdPublic",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID to be used for this operation. The specified security token must have permission to interact with the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba1"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of this contact center resource.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "af9eecc5-0472-4549-9a83-2afdae0d4ba0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEnvelopeSkillBasedCSQDTO"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation is forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found or URI is invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests have been sent in a given amount of time and the request has been rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An Unexpected Error Occurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organization/{orgid}/contact-service-queue/delete-reference": {
+      "post": {
+        "tags": [
+          "Contact Service Queue"
+        ],
+        "operationId": "deleteReferences",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FieldRequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid and cannot be served. An accompanying error message will explain further",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation is forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Similar entity is already present",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests have been sent in a given amount of time and the request has been rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An Unexpected Error Occurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organization/{orgid}/contact-service-queue/fetch-manually-assignable-queues": {
+      "post": {
+        "tags": [
+          "Contact Service Queue"
+        ],
+        "operationId": "getManuallyAssignableCSQs",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID to be used for this operation. The specified security token must have permission to interact with the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba1"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ManuallyAssignableQueuesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEnvelopeMappedCSQDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid and cannot be served. An accompanying error message will explain further",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation is forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Similar entity is already present",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests have been sent in a given amount of time and the request has been rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An Unexpected Error Occurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/organization/{orgid}/contact-service-queue/purge-inactive-entities": {
       "post": {
         "tags": [
@@ -10769,6 +11063,16 @@
               "type": "string"
             },
             "example": "2f9eecc5-0472-4549"
+          },
+          {
+            "name": "agentsUpdatedInfo",
+            "in": "query",
+            "description": "If `true`,  It gives the user details who had last updated the agents list in an agent based queue.",
+            "schema": {
+              "type": "boolean",
+              "example": false,
+              "default": false
+            }
           }
         ],
         "responses": {
@@ -11547,6 +11851,366 @@
         }
       }
     },
+    "/organization/{orgid}/v2/contact-service-queue/by-user-id/{userid}/agent-based-queues": {
+      "get": {
+        "tags": [
+          "Contact Service Queue"
+        ],
+        "summary": "List agent based Contact Service Queue(s)by user id",
+        "description": "Retrieve a list of agent based Contact Service Queue(s) by user id in a given organization.",
+        "operationId": "getCSQByUserIDForAgentBasedQueue",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID to be used for this operation. The specified security token must have permission to interact with the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba1"
+          },
+          {
+            "name": "userid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Filter data based on the search keyword.Supported search columns(firstName, lastName, email)\n\nThe examples below show some search queries\n- \"Cisco\"\n- field==\"firstName\";value==\"Cisco\"\n- fields=in=(\"firstName\",\"lastName\");value==\"Cisco\"\n",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "contact center"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Defines the number of displayed page. The page number starts from 0.",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Defines the number of items to be displayed on a page. If the number specified is more than allowed max page size, the API will automatically adjust the page size to the max page size.",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEnvelopeRoutingBasedQueueDTO"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation is forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found or URI is invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests have been sent in a given amount of time and the request has been rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An Unexpected Error Occurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organization/{orgid}/v2/contact-service-queue/by-user-id/{userid}/skill-based-queues": {
+      "get": {
+        "tags": [
+          "Contact Service Queue"
+        ],
+        "summary": "List skill based Contact Service Queue(s)by user id",
+        "description": "Retrieve a list of skill based Contact Service Queue(s) by user id in a given organization.",
+        "operationId": "getSkillBasedQueuesByUserId",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID to be used for this operation. The specified security token must have permission to interact with the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba1"
+          },
+          {
+            "name": "userid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Filter data based on the search keyword.Supported search columns(firstName, lastName, email)\n\nThe examples below show some search queries\n- \"Cisco\"\n- field==\"firstName\";value==\"Cisco\"\n- fields=in=(\"firstName\",\"lastName\");value==\"Cisco\"\n",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "contact center"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Defines the number of displayed page. The page number starts from 0.",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Defines the number of items to be displayed on a page. If the number specified is more than allowed max page size, the API will automatically adjust the page size to the max page size.",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEnvelopeRoutingBasedQueueDTO"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation is forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found or URI is invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests have been sent in a given amount of time and the request has been rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An Unexpected Error Occurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organization/{orgid}/v2/contact-service-queue/by-user-id/{userid}/team-based-queues": {
+      "get": {
+        "tags": [
+          "Contact Service Queue"
+        ],
+        "summary": "List team based Contact Service Queue(s)by user id",
+        "description": "Retrieve a list of team based Contact Service Queue(s) by user id in a given organization.",
+        "operationId": "getCSQByUserIDForTeamBasedQueue",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID to be used for this operation. The specified security token must have permission to interact with the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba1"
+          },
+          {
+            "name": "userid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Filter data based on the search keyword.Supported search columns(firstName, lastName, email)\n\nThe examples below show some search queries\n- \"Cisco\"\n- field==\"firstName\";value==\"Cisco\"\n- fields=in=(\"firstName\",\"lastName\");value==\"Cisco\"\n",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "contact center"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Defines the number of displayed page. The page number starts from 0.",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Defines the number of items to be displayed on a page. If the number specified is more than allowed max page size, the API will automatically adjust the page size to the max page size.",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEnvelopeRoutingBasedQueueDTO"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation is forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found or URI is invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests have been sent in a given amount of time and the request has been rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An Unexpected Error Occurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/organization/{orgid}/v2/contact-service-queue/{id}": {
       "get": {
         "tags": [
@@ -11575,6 +12239,16 @@
               "type": "string"
             },
             "example": "2f9eecc5-0472-4549"
+          },
+          {
+            "name": "agentsUpdatedInfo",
+            "in": "query",
+            "description": "If set to true, it gives the user details who had last updated the agents list in an agent based queue",
+            "schema": {
+              "type": "boolean",
+              "example": false,
+              "default": false
+            }
           }
         ],
         "responses": {
@@ -11732,6 +12406,120 @@
           },
           "412": {
             "description": "Resource referred in other entity(s). Please get all the reference entities info by invoking Get incoming-references api.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests have been sent in a given amount of time and the request has been rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An Unexpected Error Occurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organization/{orgid}/v2/contact-service-queue/{id}/reassign-agents": {
+      "post": {
+        "tags": [
+          "Contact Service Queue"
+        ],
+        "summary": "Add or remove agents/users to/from an agent based queue",
+        "description": "This API can be used by a contact center supervisor to add or remove agents to/from an agent based queue that they have access to by virtue of their user profile access rights. Additionally, the request payload should contain the user id(s) managed by the supervisor.",
+        "operationId": "reassignAgents",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID to be used for this operation. The specified security token must have permission to interact with the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba1"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Resource ID of the Contact Service Queue.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "af9eecc5-0472-4549-9a83-2afdae0d4ba0"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReassignAgentsRequestDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid and cannot be served. An accompanying error message will explain further",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation is forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Similar entity is already present",
             "content": {
               "application/json": {
                 "schema": {
@@ -27582,6 +28370,187 @@
         }
       }
     },
+    "/organization/{orgid}/user/fetch-by-skill-requirements": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get the agents matching skill requirements criteria.",
+        "description": "This API can be used to fetch the agents who match the provided skill requirements criteria. Maximum of 50 skill requirements criteria can be passed in the request.",
+        "operationId": "getUsersBySkillRequirements",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID to be used for this operation. The specified security token must have permission to interact with the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba1"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Filter data based on the search keyword.Supported search columns(firstName, lastName, email)\n\nThe examples below show some search queries\n- \"Cisco\"\n- field==\"firstName\";value==\"Cisco\"\n- fields=in=(\"firstName\",\"lastName\");value==\"Cisco\"\n",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "contact center"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Defines the number of displayed page. The page number starts from 0.",
+            "schema": {
+              "type": "integer",
+              "example": 0,
+              "default": 0
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Defines the number of items to be displayed on a page. If the number specified is more than allowed max page size, the API will automatically adjust the page size to the max page size.",
+            "schema": {
+              "type": "integer",
+              "example": 100,
+              "default": 100
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueueSkillRequirementDTO"
+              },
+              "example": {
+                "skillRequirements": [
+                  {
+                    "organizationId": "0271223b-91de-427d-872a-1b3c1bb746b9",
+                    "id": "5e8cdad5-94da-4ffc-86d7-c904e4490626",
+                    "skillId": "bc5658a9-5aa7-45ec-b960-43dcfc73c34d",
+                    "skillName": "skillA",
+                    "skillType": "TEXT",
+                    "condition": "IS",
+                    "skillValue": "abc"
+                  },
+                  {
+                    "condition": "IS",
+                    "skillValue": "8",
+                    "skillName": "ProfSkillC",
+                    "skillType": "PROFICIENCY",
+                    "skillId": "c683cf8d-49e8-4e85-9e08-c8749affa9cc"
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "meta": {
+                      "$ref": "#/components/schemas/MetaDataWithPagingInfo"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/UserWithSkillDetailsDTO_UserWithSkillDetailsDTO"
+                      }
+                    }
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "meta": {
+                      "$ref": "#/components/schemas/MetaDataWithPagingInfo"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/UserWithSkillDetailsDTO_UserWithSkillDetailsDTO"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid and cannot be served. An accompanying error message will explain further",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation is forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Similar entity is already present",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests have been sent in a given amount of time and the request has been rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An Unexpected Error Occurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/organization/{orgid}/user/fetch-user-details-by-ids": {
       "post": {
         "tags": [
@@ -28500,6 +29469,34 @@
               "type": "boolean",
               "example": false,
               "default": false
+            }
+          },
+          {
+            "name": "buddyTeamAgentsOnly",
+            "in": "query",
+            "description": "If set to true, returns only users who are part of buddy teams without PBAC check.",
+            "schema": {
+              "type": "boolean",
+              "example": false,
+              "default": false
+            }
+          },
+          {
+            "name": "userInQueue",
+            "in": "query",
+            "description": "Can be either assigned or unassigned. If passed, returns the users who are assigned or not assigned to an agent based queue managed by the supervisor.",
+            "schema": {
+              "type": "string",
+              "example": "assigned"
+            }
+          },
+          {
+            "name": "queueId",
+            "in": "query",
+            "description": "Contact Service Queue Id for which the list of assigned/unassigned agents needs to be fetched.",
+            "schema": {
+              "type": "string",
+              "example": "af9eecc5-0472-4549-9a83-2afdae0d4ba0"
             }
           }
         ],
@@ -49100,6 +50097,19 @@
             "description": "Indicates whether the queue can be manually assigned or not",
             "example": false
           },
+          "agentsLastUpdatedByUserName": {
+            "type": "string",
+            "description": "The name of the user who last modified the agents list."
+          },
+          "agentsLastUpdatedByUserEmailPrefix": {
+            "type": "string",
+            "description": "The email of the user who last modified the agents list."
+          },
+          "agentsLastUpdatedTime": {
+            "type": "integer",
+            "description": "The date when the agents list was last modified.",
+            "format": "int64"
+          },
           "createdTime": {
             "type": "integer",
             "description": "Creation time(in epoch millis) of this resource.",
@@ -49737,7 +50747,26 @@
             "format": "int64"
           }
         },
-        "description": "Queue mapping summary per Assistant Skill"
+        "description": "Queue mapping summary per Assistant Skill."
+      },
+      "ReassignAgentsRequestDTO": {
+        "type": "object",
+        "properties": {
+          "add": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "remove": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
       },
       "DesktopLayoutDTO": {
         "required": [
@@ -51870,7 +52899,7 @@
           },
           "controlFlowScriptUrl": {
             "type": "string",
-            "description": "The system automatically populates this field with the URL for this entry point or the default control script of the queue.It happens when you donâ€™t configure the control script using the Webex Contact Center Routing Strategy module.This setting is available for the Telephony channel type.",
+            "description": "The system automatically populates this field with the URL for this entry point or the default control script of the queue.It happens when you don’t configure the control script using the Webex Contact Center Routing Strategy module.This setting is available for the Telephony channel type.",
             "example": "https://flow-control.produs1.ciscoccservice.com/31f1c57f-4fa1-417b-b5c5-6feb6abea062/royal-enfield"
           },
           "overflowNumber": {
@@ -54267,7 +55296,7 @@
           },
           "profileType": {
             "type": "string",
-            "description": "The type determines the privileges applicable for a profile.\n\nIt can take one of these values:\n\nSTANDARD_AGENT â€” Has access to Agent Desktop[m_agent_desktop] module.\n\nPREMIUM_AGENT â€” Has access to Agent Desktop[m_agent_desktop] and Multimedia[m_multimedia] module.\n\nSUPERVISOR â€” Has access to all modules except to manage tenants in the Provisioning[m_provisioning] module.\n\nADMINISTRATOR â€” Has access to all modules.\n\nADMINISTRATOR_ONLY â€” Has access to Provisioning[m_provisioning], Real Time Reports[m_real_time_reports], Call Recording[m_call_recording], IMI Digital Channels[m_imi_digital_channels], and Routing Strategy[m_routing_strategy] modules.\n\nIt is required only during a create operation. \n\nThe profile type cannot be changed for an existing user profile.\n\n",
+            "description": "The type determines the privileges applicable for a profile.\n\nIt can take one of these values:\n\nSTANDARD_AGENT — Has access to Agent Desktop[m_agent_desktop] module.\n\nPREMIUM_AGENT — Has access to Agent Desktop[m_agent_desktop] and Multimedia[m_multimedia] module.\n\nSUPERVISOR — Has access to all modules except to manage tenants in the Provisioning[m_provisioning] module.\n\nADMINISTRATOR — Has access to all modules.\n\nADMINISTRATOR_ONLY — Has access to Provisioning[m_provisioning], Real Time Reports[m_real_time_reports], Call Recording[m_call_recording], IMI Digital Channels[m_imi_digital_channels], and Routing Strategy[m_routing_strategy] modules.\n\nIt is required only during a create operation. \n\nThe profile type cannot be changed for an existing user profile.\n\n",
             "example": "PREMIUM_AGENT",
             "enum": [
               "ADMINISTRATOR",
@@ -54282,7 +55311,7 @@
           },
           "accessAllModules": {
             "type": "string",
-            "description": "This can be used to allow users of this profile access to specific or all the Webex Contact Center modules.\n\nIt can take one of these values:\n\nALL â€” A contact center user with this profile can access all Contact Center modules.\n\nSPECIFIC â€” A contact center user with this profile can access only specific modules.\n\n",
+            "description": "This can be used to allow users of this profile access to specific or all the Webex Contact Center modules.\n\nIt can take one of these values:\n\nALL — A contact center user with this profile can access all Contact Center modules.\n\nSPECIFIC — A contact center user with this profile can access only specific modules.\n\n",
             "example": "ALL",
             "enum": [
               "SPECIFIC",
@@ -54301,7 +55330,7 @@
           },
           "accessAllEntryPoints": {
             "type": "string",
-            "description": "Allow users of this profile access to specific or all the entry points for an organization.\n\nIt can take one of these values:\n\nALL â€” A contact center user with this profile can access all the entry points for an organization.\n\nSPECIFIC â€” A contact center user with this profile can access only specific entry points for an organization.\n\n",
+            "description": "Allow users of this profile access to specific or all the entry points for an organization.\n\nIt can take one of these values:\n\nALL — A contact center user with this profile can access all the entry points for an organization.\n\nSPECIFIC — A contact center user with this profile can access only specific entry points for an organization.\n\n",
             "example": "ALL",
             "enum": [
               "SPECIFIC",
@@ -54312,7 +55341,7 @@
           },
           "accessAllSites": {
             "type": "string",
-            "description": "Allow users of this profile access to specific or all the sites for an organization.\n\nIt can take one of these values:\n\nALL â€” A contact center user with this profile can access all the sites for an organization.\n\nSPECIFIC â€” A contact center user with this profile can access only specific sites for an organization.\n\n",
+            "description": "Allow users of this profile access to specific or all the sites for an organization.\n\nIt can take one of these values:\n\nALL — A contact center user with this profile can access all the sites for an organization.\n\nSPECIFIC — A contact center user with this profile can access only specific sites for an organization.\n\n",
             "example": "ALL",
             "enum": [
               "SPECIFIC",
@@ -54323,7 +55352,7 @@
           },
           "accessAllQueues": {
             "type": "string",
-            "description": "Allow users of this profile access to specific or all the contact center queues for an organization.\n\nIt can take one of these values:\n\nALL â€” A contact center user with this profile can access all the contact center queues for an organization.\n\nSPECIFIC â€” A contact center user with this profile can access only specific contact center queues for an organization.\n\n",
+            "description": "Allow users of this profile access to specific or all the contact center queues for an organization.\n\nIt can take one of these values:\n\nALL — A contact center user with this profile can access all the contact center queues for an organization.\n\nSPECIFIC — A contact center user with this profile can access only specific contact center queues for an organization.\n\n",
             "example": "ALL",
             "enum": [
               "SPECIFIC",
@@ -54334,7 +55363,7 @@
           },
           "accessAllTeams": {
             "type": "string",
-            "description": "Allow users of this profile access to specific or all the contact center teams for an organization.\n\nIt can take one of these values:\n\nALL â€” A contact center user with this profile can access all the contact center teams for an organization.\n\nSPECIFIC â€” A contact center user with this profile can access only specific contact center teams for an organization.\n\n",
+            "description": "Allow users of this profile access to specific or all the contact center teams for an organization.\n\nIt can take one of these values:\n\nALL — A contact center user with this profile can access all the contact center teams for an organization.\n\nSPECIFIC — A contact center user with this profile can access only specific contact center teams for an organization.\n\n",
             "example": "ALL",
             "enum": [
               "SPECIFIC",
@@ -54502,7 +55531,7 @@
           },
           "moduleAccessType": {
             "type": "string",
-            "description": "Indicates the access rights for a user of this profile for a Webex Contact Center module.\n\nIt can take be one of these values:\n\nVIEW â€” A contact center user with this profile has read only access to a Contact Center module.\n\nEDIT â€” A contact center user with this profile has read and write access to a Contact Center module.\n\nNONE â€” A contact center user with this profile cannot access the module.\n\n",
+            "description": "Indicates the access rights for a user of this profile for a Webex Contact Center module.\n\nIt can take be one of these values:\n\nVIEW — A contact center user with this profile has read only access to a Contact Center module.\n\nEDIT — A contact center user with this profile has read and write access to a Contact Center module.\n\nNONE — A contact center user with this profile cannot access the module.\n\n",
             "example": "EDIT",
             "enum": [
               "NONE",
@@ -54574,7 +55603,7 @@
           },
           "featureAccessType": {
             "type": "string",
-            "description": "Indicates whether a user of this profile has access to a module feature.\n\nIt can be one of these values:\n\nOFF â€” A contact center user with this profile cannot access this module feature.\n\nON â€” A contact center user with this profile can access this module feature.\n\n",
+            "description": "Indicates whether a user of this profile has access to a module feature.\n\nIt can be one of these values:\n\nOFF — A contact center user with this profile cannot access this module feature.\n\nON — A contact center user with this profile can access this module feature.\n\n",
             "example": "ON",
             "enum": [
               "OFF",
@@ -54922,14 +55951,14 @@
           "teamIds": {
             "uniqueItems": true,
             "type": "array",
-            "description": "Specify the teams id which got assigned to this user. \nNote: You canâ€™t assign this profile to a capacity-based team.",
+            "description": "Specify the teams id which got assigned to this user. \nNote: You can’t assign this profile to a capacity-based team.",
             "example": [
               "f53c8b54-46ca-43f6-ba05-08426a46e23d",
               "a53c8b54-46ca-43f6-ba05-08426a46e23f"
             ],
             "items": {
               "type": "string",
-              "description": "Specify the teams id which got assigned to this user. \nNote: You canâ€™t assign this profile to a capacity-based team.",
+              "description": "Specify the teams id which got assigned to this user. \nNote: You can’t assign this profile to a capacity-based team.",
               "example": "[\"f53c8b54-46ca-43f6-ba05-08426a46e23d\",\"a53c8b54-46ca-43f6-ba05-08426a46e23f\"]"
             }
           },
@@ -55098,7 +56127,7 @@
           },
           "profileType": {
             "type": "string",
-            "description": "The type determines the privileges applicable for a profile.\n\nIt can take one of these values:\n\nSTANDARD_AGENT â€” Has access to Agent Desktop[m_agent_desktop] module.\n\nPREMIUM_AGENT â€” Has access to Agent Desktop[m_agent_desktop] and Multimedia[m_multimedia] module.\n\nSUPERVISOR â€” Has access to all modules except to manage tenants in the Provisioning[m_provisioning] module.\n\nADMINISTRATOR â€” Has access to all modules.\n\nADMINISTRATOR_ONLY â€” Has access to Provisioning[m_provisioning], Real Time Reports[m_real_time_reports], Call Recording[m_call_recording], IMI Digital Channels[m_imi_digital_channels], and Routing Strategy[m_routing_strategy] modules.\n\nIt is required only during a create operation. \n\nThe profile type cannot be changed for an existing user profile.\n\n",
+            "description": "The type determines the privileges applicable for a profile.\n\nIt can take one of these values:\n\nSTANDARD_AGENT — Has access to Agent Desktop[m_agent_desktop] module.\n\nPREMIUM_AGENT — Has access to Agent Desktop[m_agent_desktop] and Multimedia[m_multimedia] module.\n\nSUPERVISOR — Has access to all modules except to manage tenants in the Provisioning[m_provisioning] module.\n\nADMINISTRATOR — Has access to all modules.\n\nADMINISTRATOR_ONLY — Has access to Provisioning[m_provisioning], Real Time Reports[m_real_time_reports], Call Recording[m_call_recording], IMI Digital Channels[m_imi_digital_channels], and Routing Strategy[m_routing_strategy] modules.\n\nIt is required only during a create operation. \n\nThe profile type cannot be changed for an existing user profile.\n\n",
             "example": "PREMIUM_AGENT",
             "enum": [
               "ADMINISTRATOR",
@@ -55118,7 +56147,7 @@
           },
           "permissionAccessLevel": {
             "type": "string",
-            "description": "This can be used to allow users of this profile access to specific or all the Webex Contact Center permissions.\n\nIt can take one of these values:\n\nALL â€” A contact center user with this profile can access all Contact Center permissions.\n\nSPECIFIC â€” A contact center user with this profile can access only specific permissions.\n\n",
+            "description": "This can be used to allow users of this profile access to specific or all the Webex Contact Center permissions.\n\nIt can take one of these values:\n\nALL — A contact center user with this profile can access all Contact Center permissions.\n\nSPECIFIC — A contact center user with this profile can access only specific permissions.\n\n",
             "example": "ALL",
             "enum": [
               "SPECIFIC",
@@ -55129,7 +56158,7 @@
           },
           "resourceAccessLevel": {
             "type": "string",
-            "description": "This can be used to allow users of this profile access to specific or all the Webex Contact Center resources.\n\nIt can take one of these values:\n\nALL â€” A contact center user with this profile can access all Contact Center resources.\n\nSPECIFIC â€” A contact center user with this profile can access only specific resources.\n\n",
+            "description": "This can be used to allow users of this profile access to specific or all the Webex Contact Center resources.\n\nIt can take one of these values:\n\nALL — A contact center user with this profile can access all Contact Center resources.\n\nSPECIFIC — A contact center user with this profile can access only specific resources.\n\n",
             "example": "ALL",
             "enum": [
               "SPECIFIC",
@@ -55475,14 +56504,14 @@
           "teamIds": {
             "uniqueItems": true,
             "type": "array",
-            "description": "Specify the teams id which got assigned to this user. \nNote: You canâ€™t assign this profile to a capacity-based team. This field is applicable only when contactCenterEnabled is true.",
+            "description": "Specify the teams id which got assigned to this user. \nNote: You can’t assign this profile to a capacity-based team. This field is applicable only when contactCenterEnabled is true.",
             "example": [
               "f53c8b54-46ca-43f6-ba05-08426a46e23d",
               "a53c8b54-46ca-43f6-ba05-08426a46e23f"
             ],
             "items": {
               "type": "string",
-              "description": "Specify the teams id which got assigned to this user. \nNote: You canâ€™t assign this profile to a capacity-based team. This field is applicable only when contactCenterEnabled is true.",
+              "description": "Specify the teams id which got assigned to this user. \nNote: You can’t assign this profile to a capacity-based team. This field is applicable only when contactCenterEnabled is true.",
               "example": "[\"f53c8b54-46ca-43f6-ba05-08426a46e23d\",\"a53c8b54-46ca-43f6-ba05-08426a46e23f\"]"
             }
           },
@@ -55764,14 +56793,14 @@
           "teamIds": {
             "uniqueItems": true,
             "type": "array",
-            "description": "Specify the teams id which got assigned to this user. \nNote: You canâ€™t assign this profile to a capacity-based team.",
+            "description": "Specify the teams id which got assigned to this user. \nNote: You can’t assign this profile to a capacity-based team.",
             "example": [
               "f53c8b54-46ca-43f6-ba05-08426a46e23d",
               "a53c8b54-46ca-43f6-ba05-08426a46e23f"
             ],
             "items": {
               "type": "string",
-              "description": "Specify the teams id which got assigned to this user. \nNote: You canâ€™t assign this profile to a capacity-based team.",
+              "description": "Specify the teams id which got assigned to this user. \nNote: You can’t assign this profile to a capacity-based team.",
               "example": "[\"f53c8b54-46ca-43f6-ba05-08426a46e23d\",\"a53c8b54-46ca-43f6-ba05-08426a46e23f\"]"
             }
           },
@@ -55940,7 +56969,7 @@
           },
           "profileType": {
             "type": "string",
-            "description": "The type determines the privileges applicable for a profile.\n\nIt can take one of these values:\n\nSTANDARD_AGENT â€” Has access to Agent Desktop[m_agent_desktop] module.\n\nPREMIUM_AGENT â€” Has access to Agent Desktop[m_agent_desktop] and Multimedia[m_multimedia] module.\n\nSUPERVISOR â€” Has access to all modules except to manage tenants in the Provisioning[m_provisioning] module.\n\nADMINISTRATOR â€” Has access to all modules.\n\nADMINISTRATOR_ONLY â€” Has access to Provisioning[m_provisioning], Real Time Reports[m_real_time_reports], Call Recording[m_call_recording], IMI Digital Channels[m_imi_digital_channels], and Routing Strategy[m_routing_strategy] modules.\n\nIt is required only during a create operation. \n\nThe profile type cannot be changed for an existing user profile.\n\n",
+            "description": "The type determines the privileges applicable for a profile.\n\nIt can take one of these values:\n\nSTANDARD_AGENT — Has access to Agent Desktop[m_agent_desktop] module.\n\nPREMIUM_AGENT — Has access to Agent Desktop[m_agent_desktop] and Multimedia[m_multimedia] module.\n\nSUPERVISOR — Has access to all modules except to manage tenants in the Provisioning[m_provisioning] module.\n\nADMINISTRATOR — Has access to all modules.\n\nADMINISTRATOR_ONLY — Has access to Provisioning[m_provisioning], Real Time Reports[m_real_time_reports], Call Recording[m_call_recording], IMI Digital Channels[m_imi_digital_channels], and Routing Strategy[m_routing_strategy] modules.\n\nIt is required only during a create operation. \n\nThe profile type cannot be changed for an existing user profile.\n\n",
             "example": "PREMIUM_AGENT",
             "enum": [
               "ADMINISTRATOR",
@@ -55955,7 +56984,7 @@
           },
           "accessAllModules": {
             "type": "string",
-            "description": "This can be used to allow users of this profile access to specific or all the Webex Contact Center modules.\n\nIt can take one of these values:\n\nALL â€” A contact center user with this profile can access all Contact Center modules.\n\nSPECIFIC â€” A contact center user with this profile can access only specific modules.\n\n",
+            "description": "This can be used to allow users of this profile access to specific or all the Webex Contact Center modules.\n\nIt can take one of these values:\n\nALL — A contact center user with this profile can access all Contact Center modules.\n\nSPECIFIC — A contact center user with this profile can access only specific modules.\n\n",
             "example": "ALL",
             "enum": [
               "SPECIFIC",
@@ -55974,7 +57003,7 @@
           },
           "accessAllEntryPoints": {
             "type": "string",
-            "description": "Allow users of this profile access to specific or all the entry points for an organization.\n\nIt can take one of these values:\n\nALL â€” A contact center user with this profile can access all the entry points for an organization.\n\nSPECIFIC â€” A contact center user with this profile can access only specific entry points for an organization.\n\n",
+            "description": "Allow users of this profile access to specific or all the entry points for an organization.\n\nIt can take one of these values:\n\nALL — A contact center user with this profile can access all the entry points for an organization.\n\nSPECIFIC — A contact center user with this profile can access only specific entry points for an organization.\n\n",
             "example": "ALL",
             "enum": [
               "SPECIFIC",
@@ -55985,7 +57014,7 @@
           },
           "accessAllSites": {
             "type": "string",
-            "description": "Allow users of this profile access to specific or all the sites for an organization.\n\nIt can take one of these values:\n\nALL â€” A contact center user with this profile can access all the sites for an organization.\n\nSPECIFIC â€” A contact center user with this profile can access only specific sites for an organization.\n\n",
+            "description": "Allow users of this profile access to specific or all the sites for an organization.\n\nIt can take one of these values:\n\nALL — A contact center user with this profile can access all the sites for an organization.\n\nSPECIFIC — A contact center user with this profile can access only specific sites for an organization.\n\n",
             "example": "ALL",
             "enum": [
               "SPECIFIC",
@@ -55996,7 +57025,7 @@
           },
           "accessAllQueues": {
             "type": "string",
-            "description": "Allow users of this profile access to specific or all the contact center queues for an organization.\n\nIt can take one of these values:\n\nALL â€” A contact center user with this profile can access all the contact center queues for an organization.\n\nSPECIFIC â€” A contact center user with this profile can access only specific contact center queues for an organization.\n\n",
+            "description": "Allow users of this profile access to specific or all the contact center queues for an organization.\n\nIt can take one of these values:\n\nALL — A contact center user with this profile can access all the contact center queues for an organization.\n\nSPECIFIC — A contact center user with this profile can access only specific contact center queues for an organization.\n\n",
             "example": "ALL",
             "enum": [
               "SPECIFIC",
@@ -56007,7 +57036,7 @@
           },
           "accessAllTeams": {
             "type": "string",
-            "description": "Allow users of this profile access to specific or all the contact center teams for an organization.\n\nIt can take one of these values:\n\nALL â€” A contact center user with this profile can access all the contact center teams for an organization.\n\nSPECIFIC â€” A contact center user with this profile can access only specific contact center teams for an organization.\n\n",
+            "description": "Allow users of this profile access to specific or all the contact center teams for an organization.\n\nIt can take one of these values:\n\nALL — A contact center user with this profile can access all the contact center teams for an organization.\n\nSPECIFIC — A contact center user with this profile can access only specific contact center teams for an organization.\n\n",
             "example": "ALL",
             "enum": [
               "SPECIFIC",
@@ -56175,7 +57204,7 @@
           },
           "moduleAccessType": {
             "type": "string",
-            "description": "Indicates the access rights for a user of this profile for a Webex Contact Center module.\n\nIt can take be one of these values:\n\nVIEW â€” A contact center user with this profile has read only access to a Contact Center module.\n\nEDIT â€” A contact center user with this profile has read and write access to a Contact Center module.\n\nNONE â€” A contact center user with this profile cannot access the module.\n\n",
+            "description": "Indicates the access rights for a user of this profile for a Webex Contact Center module.\n\nIt can take be one of these values:\n\nVIEW — A contact center user with this profile has read only access to a Contact Center module.\n\nEDIT — A contact center user with this profile has read and write access to a Contact Center module.\n\nNONE — A contact center user with this profile cannot access the module.\n\n",
             "example": "EDIT",
             "enum": [
               "NONE",
@@ -56247,7 +57276,7 @@
           },
           "featureAccessType": {
             "type": "string",
-            "description": "Indicates whether a user of this profile has access to a module feature.\n\nIt can be one of these values:\n\nOFF â€” A contact center user with this profile cannot access this module feature.\n\nON â€” A contact center user with this profile can access this module feature.\n\n",
+            "description": "Indicates whether a user of this profile has access to a module feature.\n\nIt can be one of these values:\n\nOFF — A contact center user with this profile cannot access this module feature.\n\nON — A contact center user with this profile can access this module feature.\n\n",
             "example": "ON",
             "enum": [
               "OFF",
@@ -56270,6 +57299,65 @@
           }
         },
         "description": "Specifies the module features(s) a user of this profile has access to. \n"
+      },
+      "UserWithSkillDetailsDTO_UserWithSkillDetailsDTO": {
+        "type": "object",
+        "properties": {
+          "organizationId": {
+            "maxLength": 36,
+            "minLength": 32,
+            "pattern": "^[0-9a-fA-F]{8}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{12}$",
+            "type": "string",
+            "description": "ID of the contact center organization. It is required to define for the following operations - All bulk save operations",
+            "format": "uuid",
+            "example": "f53c8b54-46ca-43f6-ba05-08426a46e23d"
+          },
+          "id": {
+            "type": "string",
+            "description": "ID of this contact center resource. It should not be specified when creating a new resource. However, it is mandatory when updating a resource.",
+            "example": "93912f11-6017-404b-bf14-5331890b1797"
+          },
+          "version": {
+            "type": "integer",
+            "description": "The version of this resource. For a newly created resource, it will be 0 unless specified otherwise.",
+            "format": "int32",
+            "example": 1
+          },
+          "firstName": {
+            "type": "string",
+            "description": "The first name of the user. Can be changed using Users Management in Cisco Webex Control Hub.",
+            "example": "John1"
+          },
+          "lastName": {
+            "type": "string",
+            "description": "The last name of the user. Can be changed using Users Management in Cisco Webex Control Hub.",
+            "example": "Wick1"
+          },
+          "email": {
+            "type": "string",
+            "description": "The email address of the user. Can be changed using Users Management in Cisco Webex Control Hub.",
+            "example": "johnwick1@company.com"
+          },
+          "skillProfileName": {
+            "type": "string",
+            "description": "The skillProfileName  of the user. Can be changed using skill Management in Cisco Webex Control Hub.",
+            "example": "skillprofileName"
+          },
+          "createdTime": {
+            "type": "integer",
+            "description": "Creation time(in epoch millis) of this resource.",
+            "format": "int64",
+            "readOnly": true,
+            "example": 1617536244000
+          },
+          "lastUpdatedTime": {
+            "type": "integer",
+            "description": "Time(in epoch millis) when this resource was last updated.",
+            "format": "int64",
+            "readOnly": true,
+            "example": 1617536244000
+          }
+        }
       },
       "UserDetailsRequestDTO": {
         "type": "object",
@@ -56401,14 +57489,14 @@
           "teamIds": {
             "uniqueItems": true,
             "type": "array",
-            "description": "Specify the teams id which got assigned to this user. \nNote: You canâ€™t assign this profile to a capacity-based team.",
+            "description": "Specify the teams id which got assigned to this user. \nNote: You can’t assign this profile to a capacity-based team.",
             "example": [
               "f53c8b54-46ca-43f6-ba05-08426a46e23d",
               "a53c8b54-46ca-43f6-ba05-08426a46e23f"
             ],
             "items": {
               "type": "string",
-              "description": "Specify the teams id which got assigned to this user. \nNote: You canâ€™t assign this profile to a capacity-based team.",
+              "description": "Specify the teams id which got assigned to this user. \nNote: You can’t assign this profile to a capacity-based team.",
               "example": "[\"f53c8b54-46ca-43f6-ba05-08426a46e23d\",\"a53c8b54-46ca-43f6-ba05-08426a46e23f\"]"
             }
           },
@@ -56574,7 +57662,7 @@
           },
           "profileType": {
             "type": "string",
-            "description": "The type determines the privileges applicable for a profile.\n\nIt can take one of these values:\n\nSTANDARD_AGENT â€” Has access to Agent Desktop[m_agent_desktop] module.\n\nPREMIUM_AGENT â€” Has access to Agent Desktop[m_agent_desktop] and Multimedia[m_multimedia] module.\n\nSUPERVISOR â€” Has access to all modules except to manage tenants in the Provisioning[m_provisioning] module.\n\nADMINISTRATOR â€” Has access to all modules.\n\nADMINISTRATOR_ONLY â€” Has access to Provisioning[m_provisioning], Real Time Reports[m_real_time_reports], Call Recording[m_call_recording], IMI Digital Channels[m_imi_digital_channels], and Routing Strategy[m_routing_strategy] modules.\n\nIt is required only during a create operation. \n\nThe profile type cannot be changed for an existing user profile.\n\n",
+            "description": "The type determines the privileges applicable for a profile.\n\nIt can take one of these values:\n\nSTANDARD_AGENT — Has access to Agent Desktop[m_agent_desktop] module.\n\nPREMIUM_AGENT — Has access to Agent Desktop[m_agent_desktop] and Multimedia[m_multimedia] module.\n\nSUPERVISOR — Has access to all modules except to manage tenants in the Provisioning[m_provisioning] module.\n\nADMINISTRATOR — Has access to all modules.\n\nADMINISTRATOR_ONLY — Has access to Provisioning[m_provisioning], Real Time Reports[m_real_time_reports], Call Recording[m_call_recording], IMI Digital Channels[m_imi_digital_channels], and Routing Strategy[m_routing_strategy] modules.\n\nIt is required only during a create operation. \n\nThe profile type cannot be changed for an existing user profile.\n\n",
             "example": "PREMIUM_AGENT",
             "enum": [
               "ADMINISTRATOR",
@@ -56594,7 +57682,7 @@
           },
           "permissionAccessLevel": {
             "type": "string",
-            "description": "This can be used to allow users of this profile access to specific or all the Webex Contact Center permissions.\n\nIt can take one of these values:\n\nALL â€” A contact center user with this profile can access all Contact Center permissions.\n\nSPECIFIC â€” A contact center user with this profile can access only specific permissions.\n\n",
+            "description": "This can be used to allow users of this profile access to specific or all the Webex Contact Center permissions.\n\nIt can take one of these values:\n\nALL — A contact center user with this profile can access all Contact Center permissions.\n\nSPECIFIC — A contact center user with this profile can access only specific permissions.\n\n",
             "example": "ALL",
             "enum": [
               "SPECIFIC",
@@ -56605,7 +57693,7 @@
           },
           "resourceAccessLevel": {
             "type": "string",
-            "description": "This can be used to allow users of this profile access to specific or all the Webex Contact Center resources.\n\nIt can take one of these values:\n\nALL â€” A contact center user with this profile can access all Contact Center resources.\n\nSPECIFIC â€” A contact center user with this profile can access only specific resources.\n\n",
+            "description": "This can be used to allow users of this profile access to specific or all the Webex Contact Center resources.\n\nIt can take one of these values:\n\nALL — A contact center user with this profile can access all Contact Center resources.\n\nSPECIFIC — A contact center user with this profile can access only specific resources.\n\n",
             "example": "ALL",
             "enum": [
               "SPECIFIC",
