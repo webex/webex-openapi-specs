@@ -9,6 +9,18 @@
   "paths": {
     "/v1/agentburnout/subscribe": {
       "post": {
+        "parameters": [
+          {
+            "name": "X-ORGANIZATION-ID",
+            "in": "header",
+            "description": "Organization ID to be used for this operation. The specified security token must have permission to interact with the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba1"
+          }
+        ],
         "tags": [
           "Agent Wellbeing"
         ],
@@ -55,10 +67,22 @@
         }
       }
     },
-    "/agentburnout/action": {
+    "/v1/agentburnout/action": {
       "post": {
         "tags": [
           "Agent Wellbeing"
+        ],
+        "parameters": [
+          {
+            "name": "X-ORGANIZATION-ID",
+            "in": "header",
+            "description": "Organization ID to be used for this operation. The specified security token must have permission to interact with the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba1"
+          }
         ],
         "summary": "Record the realtime burnout events.",
         "description": "The endpoint need to be invoked by Partners and Third-Party that will subscribe to the Agent Burnout system, in order to take certain action based on the agent burnout index calculated.",
@@ -47361,11 +47385,6 @@
             "description": "A unique identifier for each interaction or contact within the contact center.",
             "example": "fb53f6d1-5535-4ac8-b081-53834e17d6f5"
           },
-          "orgId": {
-            "type": "string",
-            "description": "A unique identifier representing the organization to which the resources are associated.",
-            "example": "fb53f6d1-5535-4ac8-b081-53834e17d6f5"
-          },
           "agentId": {
             "type": "string",
             "description": "The identifier for the agent whose burnout index has been calculated.",
@@ -47391,45 +47410,58 @@
       "ActionResponse": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "description": "A unique identifier, identifies the action in our logs.",
-            "example": "fb53f6d1-5535-4ac8-b081-53834e17d6f5"
-          },
-          "interactionId": {
-            "type": "string",
-            "description": "A unique identifier for each interaction or contact within the contact center.",
-            "example": "fb53f6d1-5535-4ac8-b081-53834e17d6f5"
-          },
-          "orgId": {
-            "type": "string",
-            "description": "A unique identifier representing the organization to which the resources are associated.",
-            "example": "fb53f6d1-5535-4ac8-b081-53834e17d6f5"
-          },
-          "agentId": {
-            "type": "string",
-            "description": "The identifier for the agent whose burnout index has been calculated.",
-            "example": "fb53f6d1-5535-4ac8-b081-53834e17d6f5"
-          },
-          "clientId": {
-            "type": "string",
-            "description": "The name of the client initiating the action related to the agent burnout index. The name is limited to a maximum of 20 characters.",
-            "example": "Acme"
-          },
-          "actionType": {
-            "type": "string",
-            "description": "Specifies the type of action initiated based on the agent burnout index",
-            "example": "Break Played, Supervisor Notified, etc."
-          },
-          "actionDateTime": {
+          "data": {
             "type": "object",
-            "description": "The Epoch timestamp indicating the precise time at which the action was executed.",
-            "example": 1617536244000
+            "description": "The data object contains the details of the action taken.",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "A unique identifier for the action taken.",
+                "example": "fb53f6d1-5535-4ac8-b081-53834e17d6f5"
+              },
+              "interactionId": {
+                "type": "string",
+                "description": "A unique identifier for each interaction or contact within the contact center.",
+                "example": "fb53f6d1-5535-4ac8-b081-53834e17d6f5"
+              },
+              "orgId": {
+                "type": "string",
+                "description": "The organization ID to which the agent belongs.",
+                "example": "f53c8b54-46ca-43f6-ba05-08426a46e23d"
+              },
+              "agentId": {
+                "type": "string",
+                "description": "The identifier for the agent whose burnout index has been calculated.",
+                "example": "fb53f6d1-5535-4ac8-b081-53834e17d6f5"
+              },
+              "clientId": {
+                "type": "string",
+                "description": "The name of the client initiating the action related to the agent burnout index. The name is limited to a maximum of 20 characters.",
+                "example": "Acme"
+              },
+              "actionType": {
+                "type": "string",
+                "description": "Specifies the type of action initiated based on the agent burnout index",
+                "example": "Break Played, Supervisor Notified, etc."
+              },
+              "actionDateTime": {
+                "type": "integer",
+                "description": "The Epoch timestamp indicating the precise time at which the action was executed.",
+                "format": "int64",
+                "example": 1617536244000
+              },
+              "createdDateTime": {
+                "type": "integer",
+                "description": "The Epoch timestamp indicating the time when the action was created.",
+                "format": "int64",
+                "example": 1617536244000
+              }
+            }
           },
-          "createdDateTime": {
-            "type": "object",
-            "description": "The Epoch timestamp indicating the precise time at which the action is recorded in the system.",
-            "example": 1617536244000
+          "trackingId": {
+            "type": "string",
+            "description": "The unique tracking ID for this request.",
+            "example": "fb53f6d1-5535-4ac8-b081-53834e17d6f5"
           }
         }
       },
