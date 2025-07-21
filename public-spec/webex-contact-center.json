@@ -35024,168 +35024,6 @@
         }
       }
     },
-    "/v1/dialer/campaign/{campaignId}/preview-task/{taskId}/accept": {
-      "post": {
-        "tags": [
-          "Tasks"
-        ],
-        "summary": "Accept Preview Task",
-        "description": "API to accept the preview campaign task offered to the agent.",
-        "operationId": "CampaignAcceptPreview",
-        "parameters": [
-          {
-            "name": "taskId",
-            "in": "path",
-            "description": "The unique ID represents the task that the user is currently working on. It will be generated automatically during the creation of a new task.",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "UUID"
-            },
-            "example": "315fbb91-2288-427c-9588-ec764cd46ea4"
-          },
-          {
-            "name": "campaignId",
-            "in": "path",
-            "description": "The unique ID represents the campaign that the user is currently working on.",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "UUID"
-            },
-            "example": "315fbb91-2288-427c-9588-ec764cd46ea4"
-          }
-        ],
-        "responses": {
-          "202": {
-            "description": "The request to accept preview task is accepted."
-          },
-          "400": {
-            "description": "Incorrect fields in request"
-          },
-          "401": {
-            "description": "Invalid or absent authorization header"
-          },
-          "403": {
-            "description": "Invalid OAuth 2.0 Bearer Token"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "description": "Service Unavailable"
-          }
-        }
-      }
-    },
-    "/v1/dialer/campaign/{campaignId}/preview-task/{taskId}/skip": {
-      "post": {
-        "tags": [
-          "Tasks"
-        ],
-        "summary": "Skip Preview Task",
-        "description": "API to skip the preview campaign task offered to the agent.",
-        "operationId": "CampaignPreviewSkipped",
-        "parameters": [
-          {
-            "name": "taskId",
-            "in": "path",
-            "description": "The unique ID represents the task that the user is currently working on. It will be generated automatically during the creation of a new task.",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "UUID"
-            },
-            "example": "315fbb91-2288-427c-9588-ec764cd46ea4"
-          },
-          {
-            "name": "campaignId",
-            "in": "path",
-            "description": "The unique ID represents the campaign that the user is currently working on.",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "UUID"
-            },
-            "example": "315fbb91-2288-427c-9588-ec764cd46ea4"
-          }
-        ],
-        "responses": {
-          "202": {
-            "description": "The request to skip preview task accepted."
-          },
-          "400": {
-            "description": "Incorrect fields in request"
-          },
-          "401": {
-            "description": "Invalid or absent authorization header"
-          },
-          "403": {
-            "description": "Invalid OAuth 2.0 Bearer Token"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "description": "Service Unavailable"
-          }
-        }
-      }
-    },
-    "/v1/dialer/campaign/{campaignId}/preview-task/{taskId}/reject": {
-      "post": {
-        "tags": [
-          "Tasks"
-        ],
-        "summary": "Reject Preview Task",
-        "description": "API to reject the preview campaign task offered to the agent",
-        "operationId": "CampaignPreviewRejected",
-        "parameters": [
-          {
-            "name": "taskId",
-            "in": "path",
-            "description": "The unique ID represents the task that the user is currently working on. It will be generated automatically during the creation of a new task.",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "UUID"
-            },
-            "example": "315fbb91-2288-427c-9588-ec764cd46ea4"
-          },
-          {
-            "name": "campaignId",
-            "in": "path",
-            "description": "The unique ID represents the campaign that the user is currently working on.",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "UUID"
-            },
-            "example": "315fbb91-2288-427c-9588-ec764cd46ea4"
-          }
-        ],
-        "responses": {
-          "202": {
-            "description": "The reject preview task request is accepted."
-          },
-          "400": {
-            "description": "Incorrect fields in request"
-          },
-          "401": {
-            "description": "Invalid or absent authorization header"
-          },
-          "403": {
-            "description": "Invalid OAuth 2.0 Bearer Token"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "description": "Service Unavailable"
-          }
-        }
-      }
-    },
     "/admin/v1/api/workspace/workspace-id/{workspaceId}": {
       "get": {
         "tags": [
@@ -61355,7 +61193,7 @@
           },
           "campaignType": {
             "type": "string",
-            "description": "Type of campaign and campaignType should be one of \"progressive\", \"campaign\", \"predictive\", \"progressive_ivr\", \"predictive_ivr\" ",
+            "description": "Type of campaign and campaignType should be one of \"progressive\", \"campaign\", \"predictive\", \"progressive_ivr\", \"predictive_ivr\" , \"preview_standard\", \"preview_direct\" ",
             "example": "Progressive"
           },
           "campaignName": {
@@ -61427,11 +61265,6 @@
             "description": "(Not in use) The percentage of agents to reserve within the queue associated with the campaign. The range is from 0 to 100 , default is 100",
             "example": 50
           },
-          "previewOfferTimeout": {
-            "type": "integer",
-            "description": "(Optional) Number of seconds the dialer waits for an agent to act on a preview campaign record. Once this time has elapsed, the record is marked as skipped and agent reservation call is dropped. The range is from 1 to 7200(2 hours), default is 600(10 minutes).",
-            "example": 300
-          },
           "callProgressAnalysisParams": {
             "$ref": "#/components/schemas/CallProgressAnalysisParamsRequest"
           },
@@ -61439,6 +61272,24 @@
             "type": "integer",
             "description": "The number of IVR ports to use for this campaign. IVR ports are in use when calling a customer until the call is either ended or transferred to an agent. One IVR port can be considered equivalent to an agent in an agent based campaign.The range is from 1 to 1000.",
             "example": 10
+          },
+          "previewOfferTimeout": {
+            "type": "integer",
+            "description": "(Required if previewOfferTimeoutAutoAction is provided, optional otherwise) The number of seconds dialer waits for an agent to act on a preview campaign record, before performing the provided previewOfferTimeoutAutoAction. The range is from 0 to 7200(2 hours) for ACCEPT auto-action and 10 to 7200(2 hours) for other auto-actions. The default is 600(10 minutes).",
+            "example": 300
+          },
+          "previewOfferTimeoutAutoAction": {
+            "type": "string",
+            "description": "(Required if previewOfferTimeout is provided, optional otherwise) The automatic action to be performed after the previewOfferTimeout duration has elapsed, if agent takes no action on the preview campaign record offered. Should be one of \"ACCEPT\", \"SKIP\", \"REMOVE\". The default is \"SKIP\".",
+            "example": "ACCEPT"
+          },
+          "previewActionsDisabled": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "(Optional) The list of preview actions to be disabled for the agent when a preview campaign record is offered. Can be empty if no action should be disabled, otherwise should be one of \"SKIP\", \"REMOVE\" or both. The default is an empty list",
+            "example": "[\"SKIP\", \"REMOVE\"]"
           }
         }
       },
@@ -61572,8 +61423,21 @@
           },
           "previewOfferTimeout": {
             "type": "integer",
-            "description": "(Optional) Number of seconds the dialer waits for an agent to act on a preview campaign record. Once this time has elapsed, the record is marked as skipped and agent reservation call is dropped. The range is from 1 to 7200(2 hours), default is 600(10 minutes).",
+            "description": "(Required only if previewOfferTimeoutAutoAction is provided) The number of seconds dialer waits for an agent to act on a preview campaign record, before performing the provided previewOfferTimeoutAutoAction. The range is from 0 to 7200 seconds(2 hours) for ACCEPT auto-action, and from 10 to 7200 seconds(2 hours) for other auto-actions. The default value is 600 seconds(10 minutes).",
             "example": 300
+          },
+          "previewOfferTimeoutAutoAction": {
+            "type": "string",
+            "description": "(Required only if previewOfferTimeout is provided) The automatic action to be performed after the previewOfferTimeout duration has elapsed, if agent takes no action on the preview campaign record offered. The action can be \"ACCEPT\", \"SKIP\" or \"REMOVE\". The default action is \"SKIP\".",
+            "example": "ACCEPT"
+          },
+          "previewActionsDisabled": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "(Optional) The list of preview actions to be disabled for the agent when a preview campaign record is offered. The list can be empty if no action should be disabled, otherwise it can be either \"SKIP\" or \"REMOVE\" or both. The default is an empty list",
+            "example": "[\"SKIP\", \"REMOVE\"]"
           }
         }
       },
