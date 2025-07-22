@@ -35024,6 +35024,168 @@
         }
       }
     },
+    "/v1/dialer/campaign/{campaignId}/preview-task/{taskId}/accept": {
+      "post": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Accept Preview Task",
+        "description": "API to accept the preview campaign task offered to the agent.",
+        "operationId": "acceptPreviewCampaignTaskRoute",
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "The unique ID represents the task that the user is currently working on. It will be generated automatically during the creation of a new task.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "UUID"
+            },
+            "example": "315fbb91-2288-427c-9588-ec764cd46ea4"
+          },
+          {
+            "name": "campaignId",
+            "in": "path",
+            "description": "The unique ID represents the campaign that the user is currently working on.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "UUID"
+            },
+            "example": "315fbb91-2288-427c-9588-ec764cd46ea4"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "The request to accept preview task is accepted."
+          },
+          "400": {
+            "description": "Incorrect fields in request"
+          },
+          "401": {
+            "description": "Invalid or absent authorization header"
+          },
+          "403": {
+            "description": "Invalid OAuth 2.0 Bearer Token"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service Unavailable"
+          }
+        }
+      }
+    },
+    "/v1/dialer/campaign/{campaignId}/preview-task/{taskId}/skip": {
+      "post": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Skip Preview Task",
+        "description": "API to skip the preview campaign task offered to the agent.",
+        "operationId": "skipPreviewCampaignTaskRoute",
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "The unique ID represents the task that the user is currently working on. It will be generated automatically during the creation of a new task.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "UUID"
+            },
+            "example": "315fbb91-2288-427c-9588-ec764cd46ea4"
+          },
+          {
+            "name": "campaignId",
+            "in": "path",
+            "description": "The unique ID represents the campaign that the user is currently working on.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "UUID"
+            },
+            "example": "315fbb91-2288-427c-9588-ec764cd46ea4"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "The request to skip preview task accepted."
+          },
+          "400": {
+            "description": "Incorrect fields in request"
+          },
+          "401": {
+            "description": "Invalid or absent authorization header"
+          },
+          "403": {
+            "description": "Invalid OAuth 2.0 Bearer Token"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service Unavailable"
+          }
+        }
+      }
+    },
+    "/v1/dialer/campaign/{campaignId}/preview-task/{taskId}/remove": {
+      "post": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Remove Preview Task",
+        "description": "API to remove the preview campaign task offered to the agent",
+        "operationId": "removePreviewCampaignTaskRoute",
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "The unique ID represents the task that the user is currently working on. It will be generated automatically during the creation of a new task.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "UUID"
+            },
+            "example": "315fbb91-2288-427c-9588-ec764cd46ea4"
+          },
+          {
+            "name": "campaignId",
+            "in": "path",
+            "description": "The unique ID represents the campaign that the user is currently working on.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "UUID"
+            },
+            "example": "315fbb91-2288-427c-9588-ec764cd46ea4"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "The remove preview task request is accepted."
+          },
+          "400": {
+            "description": "Incorrect fields in request"
+          },
+          "401": {
+            "description": "Invalid or absent authorization header"
+          },
+          "403": {
+            "description": "Invalid OAuth 2.0 Bearer Token"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service Unavailable"
+          }
+        }
+      }
+    },
     "/admin/v1/api/workspace/workspace-id/{workspaceId}": {
       "get": {
         "tags": [
