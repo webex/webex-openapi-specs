@@ -18895,7 +18895,7 @@
           }
         },
         "summary": "Get Meeting Common Settings Configuration",
-        "operationId": "Get Meeting Common Settings Configuration",
+        "operationId": "getMeetingCommonSettingsConfiguration",
         "description": "Site administrators can use this API to get a list of functions, options, and privileges that are configured for their Webex service sites.\n\n* If `siteUrl` is specified, common settings of the meeting's configuration of the specified site will be queried; otherwise, the API will query from the site administrator's preferred site. All available Webex sites and preferred site of the user can be retrieved by [Get Site List](/docs/api/v1/meeting-preferences/get-site-list) API.",
         "tags": [
           "Site"

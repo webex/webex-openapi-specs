@@ -6,7 +6,2890 @@
     "description": "The Webex Wholesale APIs are designed for service providers to manage wholesale Webex offerings, including customer onboarding, provisioning, billing, reporting, and lifecycle management. These APIs enable automation and integration with provider systems to deliver scalable, multi-tenant collaboration solutions. Use cases include automated partner onboarding, real-time usage reporting, integration with billing platforms, and management of customer entitlements across large portfolios."
   },
   "tags": [],
-  "paths": {},
+  "paths": {
+    "/wholesale/billing/reports": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WholesaleBillingReportsListResponse"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "id": "Y2lzY29zcGFyazovL3VzL0JJTExJTkdfUkVQT1JULzViOGQ1MThhLThmMDAtNDUxYi1hNDA2LWVhZjQ5YjRhN2ZhOA",
+                      "billingStartDate": "2021-05-21",
+                      "billingEndDate": "2021-05-30",
+                      "status": "COMPLETED",
+                      "type": "PARTNER"
+                    },
+                    {
+                      "id": "Y2lzY29zcGFyazovL3VzL0JJTExJTkdfUkVQT1JULzViOGQ1MThhLThmMDAtNDUxYi1hNDA2LWVhZjQ5YjRhN2Zh2B",
+                      "billingStartDate": "2021-05-21",
+                      "billingEndDate": "2021-05-30",
+                      "status": "COMPLETED",
+                      "type": "PARTNER"
+                    },
+                    {
+                      "id": "Y2lzY29zcGFyazovL3VzL0JJTExJTkdfUkVQT1JULzViOGQ1MThhLThmMDAtNDUxYi1hNDA2LWVhZjQ5YjRhN2Zh5D",
+                      "billingStartDate": "2021-05-21",
+                      "billingEndDate": "2021-05-30",
+                      "status": "COMPLETED",
+                      "type": "PARTNER"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "List Wholesale Billing Reports",
+        "operationId": "List Wholesale Billing Reports",
+        "description": "Search for associated wholesale billing reconciliation reports.",
+        "tags": [
+          "Wholesale Billing Reports"
+        ],
+        "parameters": [
+          {
+            "name": "billingStartDate",
+            "in": "query",
+            "description": "Only include billing reports having this billing `startDate`.",
+            "example": "2020-05-21",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "billingEndDate",
+            "in": "query",
+            "description": "Only include billing reports having this billing `endDate`.",
+            "example": "2020-05-30",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Only include reports of this type.",
+            "example": "PARTNER",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "PARTNER",
+                "CUSTOMER",
+                "USER"
+              ]
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "Sort the reports.",
+            "example": "billingStartDate",
+            "schema": {
+              "type": "string",
+              "default": "billingStartDate",
+              "enum": [
+                "id",
+                "billingStartDate",
+                "billingEndDate",
+                "status"
+              ]
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "The status of the billing report",
+            "example": "COMPLETED",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "IN_PROGRESS",
+                "COMPLETED",
+                "FAILED"
+              ]
+            }
+          },
+          {
+            "name": "max",
+            "in": "query",
+            "description": "Limit the maximum number of reports returned in the response, up to 100 per page. Refer to the [Pagination](/docs/basics#pagination) section of [Webex REST API Basics](/docs/api/basics).",
+            "example": "10",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            }
+          },
+          {
+            "name": "subPartnerOrgId",
+            "in": "query",
+            "description": "The Organization ID of the sub partner on Cisco Webex.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi81MmNmNTc2ZC02MGE4LTQwN2EtYjIyYy00NjdjNTE1OTE5MDg",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReportId"
+                },
+                "example": {
+                  "id": "Y2lzY29zcGFyazovL3VzL0JJTExJTkdfUkVQT1JULzViOGQ1MThhLThmMDAtNDUxYi1hNDA2LWVhZjQ5YjRhN2ZhOA",
+                  "billingStartDate": "2021-05-21",
+                  "billingEndDate": "2021-05-30",
+                  "type": "PARTNER"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Create a Wholesale Billing Report",
+        "operationId": "Create a Wholesale Billing Report",
+        "description": "Generate a wholesale billing reconciliation report.",
+        "tags": [
+          "Wholesale Billing Reports"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "billingStartDate": "2020-05-21",
+                "billingEndDate": "2020-05-30",
+                "type": "PARTNER",
+                "subPartnerOrgId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi81MmNmNTc2ZC02MGE4LTQwN2EtYjIyYy00NjdjNTE1OTE5MDg"
+              },
+              "schema": {
+                "type": "object",
+                "required": [
+                  "billingStartDate",
+                  "billingEndDate"
+                ],
+                "properties": {
+                  "billingStartDate": {
+                    "type": "string",
+                    "example": "2020-05-21",
+                    "description": "The `startDate` (`YYYY-MM-DD`) for which the partner requests the billing report."
+                  },
+                  "billingEndDate": {
+                    "type": "string",
+                    "example": "2020-05-30",
+                    "description": "The `endDate` (`YYYY-MM-DD`) for which the partner requests the billing report."
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": "PARTNER",
+                    "description": "Create report of the given type, `PARTNER`, `CUSTOMER`, or `USER`. Default: `PARTNER`."
+                  },
+                  "subPartnerOrgId": {
+                    "type": "string",
+                    "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi81MmNmNTc2ZC02MGE4LTQwN2EtYjIyYy00NjdjNTE1OTE5MDg",
+                    "description": "The Organization ID of the sub partner on Cisco Webex."
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/wholesale/billing/reports/{id}": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Report"
+                },
+                "example": {
+                  "id": "Y2lzY29zcGFyazovL3VzL0JJTExJTkdfUkVQT1JULzViOGQ1MThhLThmMDAtNDUxYi1hNDA2LWVhZjQ5YjRhN2ZhOA",
+                  "billingStartDate": "2021-05-21",
+                  "billingEndDate": "2021-05-30",
+                  "type": "PARTNER",
+                  "created": "2021-06-16T12:40:33.109Z",
+                  "createdBy": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS8wYWNkMzg3NS00ZTEyLTRkNzctYjk4MS1lMzg5ZmQ4ODQ2YzA",
+                  "status": "COMPLETED",
+                  "tempDownloadURL": "https://billing-reports-int-us-east-1.webexcontent.com/a366de9b-3204-4140-8181-25808d360e36/WHOLESALE/340177d1-7f25-41e1-a39f-ad63ec1103a5.csv?Expires=1624978489&Signature=Syp3vrVeMx4P6MeMtm8e1bQaeAdHFe-c7NeHERWh5-qJGLZ1T8Dvl2ee-M8OsFf~z6Yepz94e2Hh1HDVailD0Uryl8SgiM~jl0cBh7L0PmSe~i9oFA0eJ0MulkqGSMVf7ZHhxY55xYMgIBZIERkWm3CqQNDg5BS4EaXapKfOnmFegf36OokCM63m5uOK8-csk08IkZhwo2Z0l1JMtuWYEaLh4dgMHoe~xgH3YmDSSCWInFYaEifUAfgi2YAYS6nP9Zq4BTliBq62XBaehOE1gBrhy4RdwD-3WSs2oD-BdpoRpuGzo3FZzDLVEvd0S2D6gTcHljOHodQKxe-u0BXPWQ__&Key-Pair-Id=APKAJADAKLCI2FW2U32Q"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Get a Wholesale Billing Report",
+        "operationId": "Get a Wholesale Billing Report",
+        "description": "Retrieve a specific wholesale billing reconciliation report.",
+        "tags": [
+          "Wholesale Billing Reports"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "A unique identifier for the report being requested.",
+            "required": true,
+            "example": "Y2lzY29zcGFyazovL3VzL0JJTExJTkdfUkVQT1JULzViOGQ1MThhLThmMDAtNDUxYi1hNDA2LWVhZjQ5YjRhN2ZhOA",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "delete": {
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {},
+            "content": {}
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Delete a Wholesale Billing Report",
+        "operationId": "Delete a Wholesale Billing Report",
+        "description": "Delete a monthly reconciliation report by report ID.",
+        "tags": [
+          "Wholesale Billing Reports"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "A unique report ID that corresponds to a billing report.",
+            "required": true,
+            "example": "Y2lzY29zcGFyazovL3VzL0JJTExJTkdfUkVQT1JULzViOGQ1MThhLThmMDAtNDUxYi1hNDA2LWVhZjQ5YjRhN2ZhOA",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/wholesale/customers": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerListResponse"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "id": "Y2lzY29zcGFyazovL3VzL0VOVEVSUFJJU0UvNTJjZjU3NmQtNjBhOC00MDdhLWIyMmMtNDY3YzUxNTkxOTA4",
+                      "orgId": "Y2lzY29zcGFyazovL3VzL09yZ2FuaXphdGlvbi81MmNmNTc2ZC02MGE4LTQwN2EtYjIyYy00NjdjNTE1OTE5MDk",
+                      "externalId": "c1677a16-557a-4fb4-b48f-24adde57ec99",
+                      "address": {
+                        "addressLine1": "771 Alder Drive",
+                        "addressLine2": "Cisco Site 5",
+                        "city": "Milpitas",
+                        "stateOrProvince": "CA",
+                        "zipOrPostalCode": "95035",
+                        "country": "US"
+                      },
+                      "status": "provisioned_with_errors",
+                      "packages": [
+                        "common_area_calling",
+                        "webex_calling",
+                        "webex_meetings",
+                        "webex_suite",
+                        "webex_voice",
+                        "cx_essentials",
+                        "webex_calling_standard"
+                      ],
+                      "resourceDetails": {
+                        "packages": [
+                          {
+                            "name": "common_area_calling",
+                            "status": "provisioned"
+                          },
+                          {
+                            "name": "webex_calling",
+                            "status": "error",
+                            "warnings": [
+                              {
+                                "errorCode": 2560,
+                                "description": "One or more Webex Calling services are unavailable due to maintenance, unable to start provisioning. Consult status.webex.com and retry later."
+                              }
+                            ]
+                          },
+                          {
+                            "name": "webex_meetings",
+                            "status": "provisioned"
+                          },
+                          {
+                            "name": "webex_suite",
+                            "status": "provisioned"
+                          },
+                          {
+                            "name": "webex_voice",
+                            "status": "provisioned"
+                          },
+                          {
+                            "name": "cx_essentials",
+                            "status": "provisioned"
+                          },
+                          {
+                            "name": "webex_calling_standard",
+                            "status": "provisioned"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "List Wholesale Customers",
+        "operationId": "List Wholesale Customers",
+        "description": "Return a list of wholesale customers. There are a number of filter options, which can be combined in a single request.",
+        "tags": [
+          "Wholesale Provisioning"
+        ],
+        "parameters": [
+          {
+            "name": "externalId",
+            "in": "query",
+            "description": "Customer external ID.",
+            "example": "c1677a16-557a-4fb4-b48f-24adde57ec99",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orgId",
+            "in": "query",
+            "description": "The encoded Organization ID for the customer.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi81MmNmNTc2ZC02MGE4LTQwN2EtYjIyYy00NjdjNTE1OTE5MDg",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Customer API status.",
+            "example": "provisioned_with_errors",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": "provisioned_with_errors"
+              },
+              "description": "Customer API status."
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset value for implementing pagination.",
+            "example": "10",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "max",
+            "in": "query",
+            "description": "The maximum number of customers returned in the response.",
+            "example": "10",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "onBehalfOfSubPartnerOrgId",
+            "in": "query",
+            "description": "The encoded organization ID for the sub partner.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8wZTE4MmUxNS05ZmNhLTQ0NzgtYmEzOC1jNGFiMmUyN2FlZDA=",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "post": {
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "headers": {
+              "Location": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceURL"
+                },
+                "example": {
+                  "url": "https://webexapis.com/v1/wholesale/customers/Y2lzY29zcGFyazovL3VzL0VOVEVSUFJJU0UvNTJjZjU3NmQtNjBhOC00MDdhLWIyMmMtNDY3YzUxNTkxOTA4"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Provision a Wholesale Customer",
+        "operationId": "Provision a Wholesale Customer",
+        "description": "Provision a Wholesale customer for Cisco Webex services.\n\nThis API will allow a Service Provider to map the Wholesale customer and assign the required licenses and entitlements for Webex, Calling and Meetings.\n\nThe Wholesale customer provisioning is asynchronous and thus a background task is created when this endpoint is invoked.\n\n**packages Note:**\n\n* `cisco_calling_plan` is dependent on: `common_area_calling`, `webex_calling`, `webex_suite`, `webex_voice`, `cx_essentials`, `webex_calling_standard`\n\n* `attendant_console` is dependent on: `webex_calling`, `webex_suite`, `cx_essentials`\n\n<div>\n        <Callout type='info'>After successful invocation of this endpoint a URL will be returned in the `Location` header, which will point to the [Get a Wholesale Customer](/docs/api/v1/wholesale-provisioning/get-a-wholesale-customer) endpoint for this customer.</Callout>\n</div>",
+        "tags": [
+          "Wholesale Provisioning"
+        ],
+        "parameters": [
+          {
+            "name": "onBehalfOfSubPartnerOrgId",
+            "in": "query",
+            "description": "The encoded organization ID for the sub partner.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8wZTE4MmUxNS05ZmNhLTQ0NzgtYmEzOC1jNGFiMmUyN2FlZDA=",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "provisioningId": "ZjViMzYxODctYzhkZC00NzI3LThiMmYtZjljNDQ3ZjI5MDQ2",
+                "packages": [
+                  "common_area_calling"
+                ],
+                "orgId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi81MmNmNTc2ZC02MGE4LTQwN2EtYjIyYy00NjdjNTE1OTE5MDg",
+                "externalId": "c1677a16-557a-4fb4-b48f-24adde57ec99",
+                "address": {
+                  "addressLine1": "\"771 Alder Drive\"",
+                  "addressLine2": "\"Cisco Site 5\"",
+                  "city": "\"Milpitas\"",
+                  "stateOrProvince": "\"CA\"",
+                  "zipOrPostalCode": "\"95035\"",
+                  "country": "\"US\""
+                },
+                "customerInfo": {
+                  "name": "\"John's Pizza\"",
+                  "primaryEmail": "\"john.anderson@acme.com\"",
+                  "language": "'en'"
+                },
+                "provisioningParameters": {
+                  "calling": {
+                    "location": {
+                      "name": "\"Head Office\"",
+                      "address": {
+                        "addressLine1": "\"771 Alder Drive\"",
+                        "addressLine2": "\"Cisco Site 5\"",
+                        "city": "\"Milpitas\"",
+                        "stateOrProvince": "\"CA\"",
+                        "zipOrPostalCode": "\"95035\"",
+                        "country": "\"US\""
+                      },
+                      "timezone": "\"America/Los_Angeles\"",
+                      "language": "\"en_us\"",
+                      "emergencyLocationIdentifier": "\"95547321\""
+                    }
+                  },
+                  "meetings": {
+                    "timezone": "\"America/Los_Angeles\""
+                  }
+                },
+                "subPartnerAdminEmail": "admin@subpartnerorg.com"
+              },
+              "schema": {
+                "type": "object",
+                "required": [
+                  "provisioningId",
+                  "packages",
+                  "externalId",
+                  "address"
+                ],
+                "properties": {
+                  "provisioningId": {
+                    "type": "string",
+                    "example": "ZjViMzYxODctYzhkZC00NzI3LThiMmYtZjljNDQ3ZjI5MDQ2",
+                    "description": "This Provisioning ID defines how this customer is to be provisioned for Webex Services.\n\nEach Customer Template will have their own unique Provisioning ID. This ID will be displayed under the chosen Customer Template\non [Webex Control Hub](https://admin.webex.com)."
+                  },
+                  "packages": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/WholesalePackagesCustomer"
+                    },
+                    "description": "The complete list of Webex Wholesale packages to be assigned to the customer."
+                  },
+                  "orgId": {
+                    "type": "string",
+                    "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi81MmNmNTc2ZC02MGE4LTQwN2EtYjIyYy00NjdjNTE1OTE5MDg",
+                    "description": "The organization ID of the enterprise in Webex. Mandatory for existing customers."
+                  },
+                  "externalId": {
+                    "type": "string",
+                    "example": "c1677a16-557a-4fb4-b48f-24adde57ec99",
+                    "description": "External ID of the Wholesale customer."
+                  },
+                  "address": {
+                    "type": "object",
+                    "required": [
+                      "addressLine1",
+                      "city",
+                      "country"
+                    ],
+                    "properties": {
+                      "addressLine1": {
+                        "type": "string",
+                        "example": "\"771 Alder Drive\"",
+                        "description": "Address line 1."
+                      },
+                      "addressLine2": {
+                        "type": "string",
+                        "example": "\"Cisco Site 5\"",
+                        "description": "Address line 2."
+                      },
+                      "city": {
+                        "type": "string",
+                        "example": "\"Milpitas\"",
+                        "description": "Customer's city."
+                      },
+                      "stateOrProvince": {
+                        "type": "string",
+                        "example": "\"CA\"",
+                        "description": "State or Province of the customer. This attribute may be required in specific geographies, please refer to address section in the admin guide for more information."
+                      },
+                      "zipOrPostalCode": {
+                        "type": "string",
+                        "example": "\"95035\"",
+                        "description": "Postal/Zip code of the customer. This attribute may be required in specific geographies, please refer to address section in the admin guide for more information."
+                      },
+                      "country": {
+                        "type": "string",
+                        "example": "\"US\"",
+                        "description": "ISO2 country code of the customer size = 2. This attribute is used to determine the default Dial In number for the Webex Meeting Sites. Refer to the Address section of [help page](https://www.cisco.com/c/en/us/td/docs/voice_ip_comm/cloudCollaboration/wholesale_rtm/wbxbw_b_wholesale-rtm-solution-guide/wbxbw_m_overview-of-webex-wholesale.html#Cisco_Reference.dita_7875bb3e-10c0-4214-8173-7845db31c7a6) for more information."
+                      }
+                    },
+                    "description": "Billing Address of the customer."
+                  },
+                  "customerInfo": {
+                    "type": "object",
+                    "required": [
+                      "name",
+                      "primaryEmail"
+                    ],
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "example": "\"John's Pizza\"",
+                        "description": "The name of the Wholesale customer. Name cannot include the \"%\" character."
+                      },
+                      "primaryEmail": {
+                        "type": "string",
+                        "example": "\"john.anderson@acme.com\"",
+                        "description": "The primary email address of the customer."
+                      },
+                      "language": {
+                        "type": "string",
+                        "example": "'en'",
+                        "description": "The {ISO-639-1}_{ISO-3166} or {ISO-639-1} locale or language code used as preferred language for organization and Webex Meeting Sites. Refer to the [help page](https://www.cisco.com/c/en/us/td/docs/voice_ip_comm/cloudCollaboration/wholesale_rtm/wbxbw_b_wholesale-rtm-solution-guide/wbxbw_m_overview-of-webex-wholesale.html#Cisco_Reference.dita_deb994cb-9c48-4488-b352-54495c54ba1e) for more information."
+                      }
+                    },
+                    "description": "Mandatory for new customer. Optional if Organization ID is provided."
+                  },
+                  "provisioningParameters": {
+                    "type": "object",
+                    "properties": {
+                      "calling": {
+                        "type": "object",
+                        "required": [
+                          "location"
+                        ],
+                        "properties": {
+                          "location": {
+                            "type": "object",
+                            "required": [
+                              "name",
+                              "address",
+                              "timezone",
+                              "language"
+                            ],
+                            "properties": {
+                              "name": {
+                                "type": "string",
+                                "example": "\"Head Office\"",
+                                "description": "Name of the wholesale customer office."
+                              },
+                              "address": {
+                                "type": "object",
+                                "required": [
+                                  "addressLine1",
+                                  "city",
+                                  "country"
+                                ],
+                                "properties": {
+                                  "addressLine1": {
+                                    "type": "string",
+                                    "example": "\"771 Alder Drive\""
+                                  },
+                                  "addressLine2": {
+                                    "type": "string",
+                                    "example": "\"Cisco Site 5\""
+                                  },
+                                  "city": {
+                                    "type": "string",
+                                    "example": "\"Milpitas\""
+                                  },
+                                  "stateOrProvince": {
+                                    "type": "string",
+                                    "example": "\"CA\"",
+                                    "description": "State or Province of the customer. This attribute may be required in specific geographies, please refer to address section in the admin guide for more information."
+                                  },
+                                  "zipOrPostalCode": {
+                                    "type": "string",
+                                    "example": "\"95035\"",
+                                    "description": "Postal/Zip code of the customer. This attribute may be required in specific geographies, please refer to address section in the admin guide for more information."
+                                  },
+                                  "country": {
+                                    "type": "string",
+                                    "example": "\"US\""
+                                  }
+                                },
+                                "description": "Address of the wholesale customer."
+                              },
+                              "timezone": {
+                                "type": "string",
+                                "example": "\"America/Los_Angeles\"",
+                                "description": "Customer timezone for calling package. The full list of supported timezones can be found at [List of Time Zones for Wholesale Provisioning](https://help.webex.com/en-us/article/nuh0amab/List-of-Time-Zones-for-Wholesale-Provisioning)."
+                              },
+                              "language": {
+                                "type": "string",
+                                "example": "\"en_us\"",
+                                "description": "Determine language for all generated emails and voice announcements."
+                              },
+                              "emergencyLocationIdentifier": {
+                                "type": "string",
+                                "example": "\"95547321\"",
+                                "description": "SIP Header for any emergency calls from this location."
+                              }
+                            }
+                          }
+                        },
+                        "description": "Mandatory when provisioning calling packages."
+                      },
+                      "meetings": {
+                        "type": "object",
+                        "properties": {
+                          "timezone": {
+                            "type": "string",
+                            "example": "\"America/Los_Angeles\"",
+                            "description": "Customer timezone for meetings package."
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "subPartnerAdminEmail": {
+                    "type": "string",
+                    "example": "admin@subpartnerorg.com",
+                    "description": "The email of the sub partner organization admin."
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/wholesale/customers/{customerId}": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Location": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Customer"
+                },
+                "example": {
+                  "id": "Y2lzY29zcGFyazovL3VzL0VOVEVSUFJJU0UvNTJjZjU3NmQtNjBhOC00MDdhLWIyMmMtNDY3YzUxNTkxOTA4",
+                  "orgId": "Y2lzY29zcGFyazovL3VzL09yZ2FuaXphdGlvbi81MmNmNTc2ZC02MGE4LTQwN2EtYjIyYy00NjdjNTE1OTE5MDk",
+                  "externalId": "c1677a16-557a-4fb4-b48f-24adde57ec99",
+                  "address": {
+                    "addressLine1": "771 Alder Drive",
+                    "addressLine2": "Cisco Site 5",
+                    "city": "Milpitas",
+                    "stateOrProvince": "CA",
+                    "zipOrPostalCode": "95035",
+                    "country": "US"
+                  },
+                  "status": "provisioned",
+                  "packages": [
+                    "webex_calling"
+                  ],
+                  "resourceDetails": {
+                    "packages": [
+                      {
+                        "name": "webex_calling",
+                        "status": "provisioned",
+                        "warnings": [
+                          {
+                            "errorCode": 2560,
+                            "description": "One or more Webex Calling services are unavailable due to maintenance, unable to start provisioning. Consult status.webex.com and retry later."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Get a Wholesale Customer",
+        "operationId": "Get a Wholesale Customer",
+        "description": "Retrieves details of a provisioned Wholesale customer on Cisco Webex.",
+        "tags": [
+          "Wholesale Provisioning"
+        ],
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "path",
+            "description": "A unique identifier for the customer in question.",
+            "required": true,
+            "example": "Y2lzY29zcGFyazovL3VzL0VOVEVSUFJJU0UvNTJjZjU3NmQtNjBhOC00MDdhLWIyMmMtNDY3YzUxNTkxOTA4",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "onBehalfOfSubPartnerOrgId",
+            "in": "query",
+            "description": "The encoded organization ID for the sub partner.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8wZTE4MmUxNS05ZmNhLTQ0NzgtYmEzOC1jNGFiMmUyN2FlZDA=",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "put": {
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "headers": {
+              "Location": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceURL"
+                },
+                "example": {
+                  "url": "https://webexapis.com/v1/wholesale/customers/Y2lzY29zcGFyazovL3VzL0VOVEVSUFJJU0UvNTJjZjU3NmQtNjBhOC00MDdhLWIyMmMtNDY3YzUxNTkxOTA4"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Update a Wholesale Customer",
+        "operationId": "Update a Wholesale Customer",
+        "description": "Updates certain details of a provisioned Wholesale customer for Cisco Webex services.\n\nThe Wholesale customer provisioning is asynchronous and thus a background task is created when this endpoint is invoked.\n\n**packages Note:**\n\n* `cisco_calling_plan` is dependent on: `common_area_calling`, `webex_calling`, `webex_suite`, `webex_voice`, `cx_essentials`, `webex_calling_standard`\n\n* `attendant_console` is dependent on: `webex_calling`, `webex_suite`, `cx_essentials`\n\n<div>\n        <Callout type='info'>After successful invocation of this endpoint a URL will be returned in the `Location` header, which will point to the [Get a Wholesale Customer](/docs/api/v1/wholesale-provisioning/get-a-wholesale-customer) endpoint for this customer.</Callout>\n</div>",
+        "tags": [
+          "Wholesale Provisioning"
+        ],
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "path",
+            "description": "A unique identifier for the customer to be updated.",
+            "required": true,
+            "example": "Y2lzY29zcGFyazovL3VzL0VOVEVSUFJJU0UvNTJjZjU3NmQtNjBhOC00MDdhLWIyMmMtNDY3YzUxNTkxOTA4",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "onBehalfOfSubPartnerOrgId",
+            "in": "query",
+            "description": "The encoded organization ID for the sub partner.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8wZTE4MmUxNS05ZmNhLTQ0NzgtYmEzOC1jNGFiMmUyN2FlZDA=",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "externalId": "c1677a16-557a-4fb4-b48f-24adde57ec99",
+                "packages": [
+                  "common_area_calling"
+                ],
+                "address": {
+                  "addressLine1": "\"771 Alder Drive\"",
+                  "addressLine2": "\"Cisco Site 5\"",
+                  "city": "\"Milpitas\"",
+                  "stateOrProvince": "\"CA\"",
+                  "zipOrPostalCode": "\"95035\"",
+                  "country": "\"US\""
+                },
+                "provisioningParameters": {
+                  "calling": {
+                    "location": {
+                      "name": "\"Head Office\"",
+                      "address": {
+                        "addressLine1": "\"771 Alder Drive\"",
+                        "addressLine2": "\"Cisco Site 5\"",
+                        "city": "\"Milpitas\"",
+                        "stateOrProvince": "\"CA\"",
+                        "zipOrPostalCode": "\"95035\"",
+                        "country": "\"US\""
+                      },
+                      "timezone": "\"America/Los_Angeles\"",
+                      "language": "\"en_us\"",
+                      "emergencyLocationIdentifier": "\"95547321\""
+                    }
+                  },
+                  "meetings": {
+                    "timezone": "\"America/Los_Angeles\""
+                  }
+                },
+                "subPartnerAdminEmail": "admin@subpartnerorg.com"
+              },
+              "schema": {
+                "type": "object",
+                "required": [
+                  "packages"
+                ],
+                "properties": {
+                  "externalId": {
+                    "type": "string",
+                    "example": "c1677a16-557a-4fb4-b48f-24adde57ec99",
+                    "description": "External ID of the Wholesale customer."
+                  },
+                  "packages": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/WholesalePackagesCustomer"
+                    },
+                    "description": "The complete list of Webex Wholesale packages to be assigned to the customer, including any packages already provisioned. If a package has already been assigned to this customer and is not present in this list, then that package is removed."
+                  },
+                  "address": {
+                    "type": "object",
+                    "required": [
+                      "addressLine1",
+                      "city",
+                      "country"
+                    ],
+                    "properties": {
+                      "addressLine1": {
+                        "type": "string",
+                        "example": "\"771 Alder Drive\"",
+                        "description": "Address line 1."
+                      },
+                      "addressLine2": {
+                        "type": "string",
+                        "example": "\"Cisco Site 5\"",
+                        "description": "Address line 2."
+                      },
+                      "city": {
+                        "type": "string",
+                        "example": "\"Milpitas\"",
+                        "description": "Customer's city."
+                      },
+                      "stateOrProvince": {
+                        "type": "string",
+                        "example": "\"CA\"",
+                        "description": "State or Province of the customer. This attribute may be required in specific geographies, please refer to address section in the admin guide for more information."
+                      },
+                      "zipOrPostalCode": {
+                        "type": "string",
+                        "example": "\"95035\"",
+                        "description": "Postal/Zip code of the customer. This attribute may be required in specific geographies, please refer to address section in the admin guide for more information."
+                      },
+                      "country": {
+                        "type": "string",
+                        "example": "\"US\"",
+                        "description": "ISO2 country code of the customer size = 2."
+                      }
+                    },
+                    "description": "Billing Address of the customer."
+                  },
+                  "provisioningParameters": {
+                    "type": "object",
+                    "properties": {
+                      "calling": {
+                        "type": "object",
+                        "required": [
+                          "location"
+                        ],
+                        "properties": {
+                          "location": {
+                            "type": "object",
+                            "required": [
+                              "name",
+                              "address",
+                              "timezone",
+                              "language"
+                            ],
+                            "properties": {
+                              "name": {
+                                "type": "string",
+                                "example": "\"Head Office\"",
+                                "description": "Name of the wholesale customer office."
+                              },
+                              "address": {
+                                "type": "object",
+                                "required": [
+                                  "addressLine1",
+                                  "city",
+                                  "country"
+                                ],
+                                "properties": {
+                                  "addressLine1": {
+                                    "type": "string",
+                                    "example": "\"771 Alder Drive\""
+                                  },
+                                  "addressLine2": {
+                                    "type": "string",
+                                    "example": "\"Cisco Site 5\""
+                                  },
+                                  "city": {
+                                    "type": "string",
+                                    "example": "\"Milpitas\""
+                                  },
+                                  "stateOrProvince": {
+                                    "type": "string",
+                                    "example": "\"CA\"",
+                                    "description": "State or Province of the customer. This attribute may be required in specific geographies, please refer to address section in the admin guide for more information."
+                                  },
+                                  "zipOrPostalCode": {
+                                    "type": "string",
+                                    "example": "\"95035\"",
+                                    "description": "Postal/Zip code of the customer. This attribute may be required in specific geographies, please refer to address section in the admin guide for more information."
+                                  },
+                                  "country": {
+                                    "type": "string",
+                                    "example": "\"US\""
+                                  }
+                                },
+                                "description": "Address of the wholesale customer."
+                              },
+                              "timezone": {
+                                "type": "string",
+                                "example": "\"America/Los_Angeles\"",
+                                "description": "Customer timezone for calling package. The full list of supported timezones can be found at [List of Time Zones for Wholesale Provisioning](https://help.webex.com/en-us/article/nuh0amab/List-of-Time-Zones-for-Wholesale-Provisioning)."
+                              },
+                              "language": {
+                                "type": "string",
+                                "example": "\"en_us\"",
+                                "description": "Determine language for all generated emails and voice announcements."
+                              },
+                              "emergencyLocationIdentifier": {
+                                "type": "string",
+                                "example": "\"95547321\"",
+                                "description": "SIP Header for any emergency calls from this location."
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "meetings": {
+                        "type": "object",
+                        "properties": {
+                          "timezone": {
+                            "type": "string",
+                            "example": "\"America/Los_Angeles\"",
+                            "description": "Customer timezone for meetings package."
+                          }
+                        }
+                      }
+                    },
+                    "description": "Provisioning parameters are required when updating an existing package."
+                  },
+                  "subPartnerAdminEmail": {
+                    "type": "string",
+                    "example": "admin@subpartnerorg.com",
+                    "description": "The email of the sub partner organization admin."
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "headers": {},
+            "content": {}
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Remove a Wholesale Customer",
+        "operationId": "Remove a Wholesale Customer",
+        "description": "Removes the mapping between a Wholesale Customer and a Cisco Webex organization..",
+        "tags": [
+          "Wholesale Provisioning"
+        ],
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "path",
+            "description": "A unique identifier for the customer in question.",
+            "required": true,
+            "example": "Y2lzY29zcGFyazovL3VzL0VOVEVSUFJJU0UvNTJjZjU3NmQtNjBhOC00MDdhLWIyMmMtNDY3YzUxNTkxOTA4",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "onBehalfOfSubPartnerOrgId",
+            "in": "query",
+            "description": "The encoded organization ID for the sub partner.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8wZTE4MmUxNS05ZmNhLTQ0NzgtYmEzOC1jNGFiMmUyN2FlZDA=",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/wholesale/customers/validate": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerProvisioningPrecheckResponse"
+                },
+                "example": {
+                  "message": "success",
+                  "info": [
+                    {
+                      "infoCode": 100,
+                      "description": "Provisioning preCheck validation successful."
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Precheck a Wholesale Customer Provisioning",
+        "operationId": "Precheck a Wholesale Customer Provisioning",
+        "description": "Allows the Partner sales team to verify likely success of provisioning a Wholesale customer.\n\n**packages Note:**\n\n* `cisco_calling_plan` is dependent on: `common_area_calling`, `webex_calling`, `webex_suite`, `webex_voice`, `cx_essentials`, `webex_calling_standard`\n\n* `attendant_console` is dependent on: `webex_calling`, `webex_suite`, `cx_essentials`\n\n<div>\n<Callout type='info'>\nThe Prerequisite for using this API is to have `wxc-wholesale` entitlement or `webex-wholesale-partner-testing` setting enabled for the Partner Organization. The Provisioning Precheck APIs supports two variants of Wholesale Customer Provisioning Precheck Requests. Please refer to [Using the Provisioning Precheck APIs](/docs/api/guides/webex-for-wholesale#using-the-precheck-provisioning-api) section in [Webex for Wholesale](/docs/api/guides/webex-for-wholesale) guide for more information.\n</Callout>\n</div>",
+        "tags": [
+          "Wholesale Provisioning"
+        ],
+        "parameters": [
+          {
+            "name": "onBehalfOfSubPartnerOrgId",
+            "in": "query",
+            "description": "The encoded organization ID for the sub partner.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8wZTE4MmUxNS05ZmNhLTQ0NzgtYmEzOC1jNGFiMmUyN2FlZDA=",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "address": {
+                  "addressLine1": "771 Alder Drive",
+                  "addressLine2": "Cisco Site 5",
+                  "city": "Milpitas",
+                  "stateOrProvince": "CA",
+                  "zipOrPostalCode": "95035",
+                  "country": "US"
+                },
+                "customerInfo": {
+                  "primaryEmail": "john.anderson@acme.com"
+                }
+              },
+              "schema": {
+                "type": "object",
+                "required": [
+                  "address"
+                ],
+                "properties": {
+                  "provisioningId": {
+                    "type": "string",
+                    "example": "ZjViMzYxODctYzhkZC00NzI3LThiMmYtZjljNDQ3ZjI5MDQ2",
+                    "description": "Defines how this wholesale customer is to be provisioned for Cisco Webex Services.\n\nEach Customer Template will have its unique Provisioning ID. This ID will be displayed under the chosen Customer Template\non Cisco Webex Control Hub."
+                  },
+                  "packages": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/WholesalePackagesCustomer"
+                    },
+                    "description": "The complete list of Webex Wholesale packages to be assigned to the Wholesale customer."
+                  },
+                  "orgId": {
+                    "type": "string",
+                    "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi81MmNmNTc2ZC02MGE4LTQwN2EtYjIyYy00NjdjNTE1OTE5MDg",
+                    "description": "The organization ID of the enterprise in Cisco Webex."
+                  },
+                  "externalId": {
+                    "type": "string",
+                    "example": "c1677a16-557a-4fb4-b48f-24adde57ec99",
+                    "description": "External ID of the Wholesale customer."
+                  },
+                  "address": {
+                    "type": "object",
+                    "required": [
+                      "addressLine1",
+                      "city",
+                      "country"
+                    ],
+                    "properties": {
+                      "addressLine1": {
+                        "type": "string",
+                        "example": "\"771 Alder Drive\"",
+                        "description": "Address line 1."
+                      },
+                      "addressLine2": {
+                        "type": "string",
+                        "example": "\"Cisco Site 5\"",
+                        "description": "Address line 2."
+                      },
+                      "city": {
+                        "type": "string",
+                        "example": "\"Milpitas\"",
+                        "description": "Customer's city."
+                      },
+                      "stateOrProvince": {
+                        "type": "string",
+                        "example": "\"CA\"",
+                        "description": "State or Province of the Wholesale customer. This attribute may be required in specific geographies. Please refer to [Wholesale Customer Address Requirement](/docs/api/guides/webex-for-wholesale#wholesale-customer-address-requirement) for more information."
+                      },
+                      "zipOrPostalCode": {
+                        "type": "string",
+                        "example": "\"95035\"",
+                        "description": "Postal/Zip code of the Wholesale customer. This attribute may be required in specific geographies. Please refer to [Wholesale Customer Address Requirement](/docs/api/guides/webex-for-wholesale#wholesale-customer-address-requirement) for more information."
+                      },
+                      "country": {
+                        "type": "string",
+                        "example": "\"US\"",
+                        "description": "ISO2 country code of the Wholesale customer size = 2."
+                      }
+                    },
+                    "description": "Billing address of the Wholesale customer."
+                  },
+                  "customerInfo": {
+                    "type": "object",
+                    "required": [
+                      "primaryEmail"
+                    ],
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "example": "\"John's Pizza\"",
+                        "description": "The name of the Wholesale customer."
+                      },
+                      "primaryEmail": {
+                        "type": "string",
+                        "example": "\"john.anderson@acme.com\"",
+                        "description": "The primary email address of the Wholesale customer."
+                      }
+                    }
+                  },
+                  "provisioningParameters": {
+                    "type": "object",
+                    "properties": {
+                      "calling": {
+                        "type": "object",
+                        "required": [
+                          "location"
+                        ],
+                        "properties": {
+                          "location": {
+                            "type": "object",
+                            "required": [
+                              "name",
+                              "address",
+                              "timezone",
+                              "language"
+                            ],
+                            "properties": {
+                              "name": {
+                                "type": "string",
+                                "example": "\"Head Office\"",
+                                "description": "Name of the wholesale customer office."
+                              },
+                              "address": {
+                                "type": "object",
+                                "required": [
+                                  "addressLine1",
+                                  "city",
+                                  "country"
+                                ],
+                                "properties": {
+                                  "addressLine1": {
+                                    "type": "string",
+                                    "example": "\"771 Alder Drive\""
+                                  },
+                                  "addressLine2": {
+                                    "type": "string",
+                                    "example": "\"Cisco Site 5\""
+                                  },
+                                  "city": {
+                                    "type": "string",
+                                    "example": "\"Milpitas\""
+                                  },
+                                  "stateOrProvince": {
+                                    "type": "string",
+                                    "example": "\"CA\"",
+                                    "description": "State or Province of the Wholesale customer. This attribute may be required in specific geographies. Please refer to [Wholesale Customer Address Requirement](/docs/api/guides/webex-for-wholesale#wholesale-customer-address-requirement) for more information."
+                                  },
+                                  "zipOrPostalCode": {
+                                    "type": "string",
+                                    "example": "\"95035\"",
+                                    "description": "Postal/Zip code of the Wholesale customer. This attribute may be required in specific geographies. Please refer to [Wholesale Customer Address Requirement](/docs/api/guides/webex-for-wholesale#wholesale-customer-address-requirement) for more information."
+                                  },
+                                  "country": {
+                                    "type": "string",
+                                    "example": "\"US\""
+                                  }
+                                },
+                                "description": "Address of the wholesale customer."
+                              },
+                              "timezone": {
+                                "type": "string",
+                                "example": "\"America/Los_Angeles\"",
+                                "description": "Customer timezone for calling package. The full list of supported timezones can be found at [List of Time Zones for Wholesale Provisioning](https://help.webex.com/en-us/article/nuh0amab/List-of-Time-Zones-for-Wholesale-Provisioning)."
+                              },
+                              "language": {
+                                "type": "string",
+                                "example": "\"en_us\"",
+                                "description": "Determine language for all generated emails and voice announcements."
+                              },
+                              "emergencyLocationIdentifier": {
+                                "type": "string",
+                                "example": "\"95547321\"",
+                                "description": "SIP Header for any emergency calls from this location."
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "meetings": {
+                        "type": "object",
+                        "properties": {
+                          "timezone": {
+                            "type": "string",
+                            "example": "\"America/Los_Angeles\"",
+                            "description": "Wholesale Customer timezone for meetings package."
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/wholesale/subPartners": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubPartnersListResponse"
+                },
+                "example": {
+                  "subPartners": [
+                    {
+                      "orgId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE",
+                      "subscriptionId": "Sub23452345",
+                      "provisioningState": "active",
+                      "created": "2023-02-16T14:10:18.855Z",
+                      "billingStartDate": "2023-02-22T13:43:41.117Z"
+                    },
+                    {
+                      "orgId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8xNmY5MzE2ZC02OWI0LTQ2MDMtYTQ5YS0zOTIyYzUxMGQ1YWQ",
+                      "subscriptionId": "Sub23452345",
+                      "provisioningState": "active",
+                      "created": "2023-02-16T14:10:18.855Z",
+                      "billingStartDate": "2023-02-22T13:43:41.117Z"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "List Wholesale Sub-partners",
+        "operationId": "List Wholesale Sub-partners",
+        "description": "Lists all of the associated sub-partners. There are a number of filter and pagination options that can be combined in a single request.",
+        "tags": [
+          "Wholesale Provisioning"
+        ],
+        "parameters": [
+          {
+            "name": "provisioningState",
+            "in": "query",
+            "description": "Status to filter sub-partners based on provisioning state.",
+            "example": "active",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset value for implementing pagination.",
+            "example": "10",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "max",
+            "in": "query",
+            "description": "The maximum number of sub-partners returned in the response.",
+            "example": "10",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/wholesale/subscribers": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriberListResponse"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "id": "Y2lzY29zcGFyazovL3VzL1NVQlNDUklCRVIvZjViMzYxODctYzhkZC00NzI3LThiMmYtZjljNDQ3ZjI5MDQ2",
+                      "personId": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mNWIzNjE4Ny1jOGRkLTQ3MjctOGIyZi1mOWM0NDdmMjkwNDY",
+                      "email": "johnandersen@acme.com",
+                      "package": "webex_calling",
+                      "customerId": "Y2lzY29zcGFyazovL3VzL0NVU1RPTUVSL2Y1YjM2MTg3LWM4ZGQtNDcyNy04YjJmLWY5YzQ0N2YyOTA0Ng==",
+                      "externalCustomerId": "c1677a16-557a-4fb4-b48f-24adde57ec99",
+                      "status": "provisioned",
+                      "lastStatusChange": "2021-08-06T02:05:41.791232Z",
+                      "created": "2021-08-06T02:03:00.062Z",
+                      "packages": [
+                        "webex_calling"
+                      ]
+                    },
+                    {
+                      "id": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mNWIzNjE4Ny1jOGRkLTQ3MjctOGIyZi1mOWM0NDdmMjkwNDY",
+                      "personId": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mNWIzNjE4Ny1jOGRkLTQ3MjctOGIyZi1mOWM0NDdmMjkwNDY",
+                      "email": "johnandersen@acme.com",
+                      "customerId": "Y2lzY29zcGFyazovL3VzL0NVU1RPTUVSL2Y1YjM2MTg3LWM4ZGQtNDcyNy04YjJmLWY5YzQ0N2YyOTA0Ng==",
+                      "externalCustomerId": "c1677a16-557a-4fb4-b48f-24adde57ec99",
+                      "package": "webex_meetings",
+                      "status": "provisioned",
+                      "lastStatusChange": "2021-08-06T02:05:41.791232Z",
+                      "created": "2021-08-06T02:03:00.062Z",
+                      "packages": [
+                        "webex_meetings"
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "List Wholesale Subscribers",
+        "operationId": "List Wholesale Subscribers",
+        "description": "Allows a Service Provider to search for their associated subscribers. There are a number of filter options, which can be combined in a single request.",
+        "tags": [
+          "Wholesale Provisioning"
+        ],
+        "parameters": [
+          {
+            "name": "max",
+            "in": "query",
+            "description": "Limit the maximum number of subscribers returned in the search response, up to 100 per page. Refer to the [Pagination](/docs/basics#pagination) section of [Webex REST API Basics](/docs/api/basics).",
+            "example": "10",
+            "schema": {
+              "type": "integer",
+              "default": 50
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset value to implement [pagination](/docs/basics#pagination).",
+            "example": "4",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "customerId",
+            "in": "query",
+            "description": "Wholesale customer ID.",
+            "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mNWIzNjE4Ny1jOGRkLTQ3MjctOGIyZi1mOWM0NDdmMjkwNDY",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "personId",
+            "in": "query",
+            "description": "The person ID of the subscriber used in the [/v1/people API](/docs/api/v1/people).",
+            "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mNWIzNjE4Ny1jOGRkLTQ3MjctOGIyZi1mOWM0NDdmMjkwNDY",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "externalCustomerId",
+            "in": "query",
+            "description": "Customer external ID.",
+            "example": "c1677a16-557a-4fb4-b48f-24adde57ec99",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "description": "The email address of the subscriber.",
+            "example": "john.anderson@acme.com",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "The provisioning status of the subscriber.",
+            "example": "provisioned",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "description": "Only include subscribers created after this date and time. Epoch time (in milliseconds) preferred, but ISO 8601 date format also accepted.",
+            "example": "1579046400245",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lastStatusChange",
+            "in": "query",
+            "description": "Only include subscribers with a provisioning status change after this date and time. Epoch time (in milliseconds) preferred, but ISO 8601 date format also accepted.",
+            "example": "1579046400245",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "Supported `sortBy` attributes are `created` and `lastStatusChange`. Default is `created`.",
+            "example": "userCreationTimestamp",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortOrder",
+            "in": "query",
+            "description": "Sort by `ASC` (ascending) or `DESC` (descending).",
+            "example": "ASC",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "onBehalfOfSubPartnerOrgId",
+            "in": "query",
+            "description": "The encoded organization ID for the sub partner.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8wZTE4MmUxNS05ZmNhLTQ0NzgtYmEzOC1jNGFiMmUyN2FlZDA=",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Location": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Subscriber"
+                },
+                "example": {
+                  "id": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mNWIzNjE4Ny1jOGRkLTQ3MjctOGIyZi1mOWM0NDdmMjkwNDY",
+                  "personId": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mNWIzNjE4Ny1jOGRkLTQ3MjctOGIyZi1mOWM0NDdmMjkwNDY",
+                  "email": "johnandersen@acme.com",
+                  "customerId": "Y2lzY29zcGFyazovL3VzL0NVU1RPTUVSL2Y1YjM2MTg3LWM4ZGQtNDcyNy04YjJmLWY5YzQ0N2YyOTA0Ng",
+                  "externalCustomerId": "c1677a16-557a-4fb4-b48f-24adde57ec99",
+                  "package": "webex_calling",
+                  "status": "provisioned",
+                  "lastStatusChange": "2021-08-06T02:05:41.791232Z",
+                  "created": "2021-08-06T02:03:00.062Z",
+                  "packages": [
+                    "webex_calling"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Provision a Wholesale Subscriber",
+        "operationId": "Provision a Wholesale Subscriber",
+        "description": "Provision a new Wholesale subscriber for Cisco Webex services.\n\nThis API allows a Service Provider to map the Wholesale subscriber to a Cisco Webex Wholesale customer and assign the required licenses and entitlements for Webex, Calling and Meetings.\n\n**Note:**\n\n* If this subscriber is an existing Webex Calling entitled user, the `locationId`, `primaryPhoneNumber` and `extension` are optional and if provided are ignored.\n\n**packages Note:**\n\n* `attendant_console` is dependent on: `webex_calling`, `webex_suite`, `cx_essentials`\n\n<div>\n<Callout type='info'>\nEither `packages` or `package` field is required but not both.\n</Callout>\n</div>",
+        "tags": [
+          "Wholesale Provisioning"
+        ],
+        "parameters": [
+          {
+            "name": "onBehalfOfSubPartnerOrgId",
+            "in": "query",
+            "description": "The encoded organization ID for the sub partner.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8wZTE4MmUxNS05ZmNhLTQ0NzgtYmEzOC1jNGFiMmUyN2FlZDA=",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "customerId": "ZjViMzYxODctYzhkZC00NzI3LThiMmYtZjljNDQ3ZjI5MDQ2OjQyODVmNTk0LTViNTEtNDdiZS05Mzk2LTZjMzZlMmFkODNhNQ",
+                "email": "john.anderson@acme.com",
+                "packages": [
+                  "webex_calling"
+                ],
+                "provisioningParameters": {
+                  "firstName": "John",
+                  "lastName": "Andersen",
+                  "primaryPhoneNumber": "+12405551212",
+                  "extension": "51212",
+                  "locationId": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzAxMjM0NTY3LTg5YWItY2RlZi0wMTIzLTQ1Njc4OWFiY2RlZg=="
+                }
+              },
+              "schema": {
+                "type": "object",
+                "required": [
+                  "customerId",
+                  "email",
+                  "provisioningParameters"
+                ],
+                "properties": {
+                  "customerId": {
+                    "type": "string",
+                    "example": "ZjViMzYxODctYzhkZC00NzI3LThiMmYtZjljNDQ3ZjI5MDQ2OjQyODVmNTk0LTViNTEtNDdiZS05Mzk2LTZjMzZlMmFkODNhNQ",
+                    "description": "ID of the Provisioned Customer for Webex Wholesale."
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "john.anderson@acme.com",
+                    "description": "The email address of the subscriber (mandatory for the trusted email provisioning flow)."
+                  },
+                  "package": {
+                    "type": "string",
+                    "enum": [
+                      "webex_calling",
+                      "webex_meetings",
+                      "webex_suite",
+                      "webex_voice",
+                      "cx_essentials",
+                      "webex_calling_standard"
+                    ],
+                    "description": "The Webex Wholesale package to be assigned to the subscriber. **NOTE:** This parameter will be deprecated soon. Please\n\nuse `packages` instead.\n * `webex_calling` - Calling Basic Package.\n * `webex_meetings` - Meetings Package.\n * `webex_suite` - Suite Package.\n * `webex_voice` - Voice Package.\n * `cx_essentials` - Customer Experience Essentials Package.\n * `webex_calling_standard` - Webex Calling Standard Package.\n"
+                  },
+                  "packages": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/WholesalePackagesSubscriber"
+                    },
+                    "description": "The complete list of Webex Wholesale packages assigned to the subscriber. Currently accepts only one package in the list."
+                  },
+                  "provisioningParameters": {
+                    "type": "object",
+                    "properties": {
+                      "firstName": {
+                        "type": "string",
+                        "example": "\"John\"",
+                        "description": "The first name of the subscriber."
+                      },
+                      "lastName": {
+                        "type": "string",
+                        "example": "\"Andersen\"",
+                        "description": "The last name of the subscriber."
+                      },
+                      "primaryPhoneNumber": {
+                        "type": "string",
+                        "example": "\"+12405551212\"",
+                        "description": "The primary phone number configured for the subscriber. A primary phone number, extension, or both must be supplied when assigning a calling-enabled package, unless the subscriber is an existing Webex Calling entitled user."
+                      },
+                      "extension": {
+                        "type": "string",
+                        "example": "\"51212\"",
+                        "description": "The extension configured for the subscriber. An extension, primary phone number or both must be supplied when assigning a calling-enabled package, unless the subscriber is an existing Webex Calling entitled user."
+                      },
+                      "locationId": {
+                        "type": "string",
+                        "example": "\"Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzAxMjM0NTY3LTg5YWItY2RlZi0wMTIzLTQ1Njc4OWFiY2RlZg==\"",
+                        "description": "A unique identifier for the location. This ID should be retrieved via the [List Locations](/docs/api/v1/locations/list-locations) API."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/wholesale/subscribers/{subscriberId}": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Location": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Subscriber"
+                },
+                "example": {
+                  "id": "Y2lzY29zcGFyazovL3VzL1NVQlNDUklCRVIvZjViMzYxODctYzhkZC00NzI3LThiMmYtZjljNDQ3ZjI5MDQ2",
+                  "personId": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mNWIzNjE4Ny1jOGRkLTQ3MjctOGIyZi1mOWM0NDdmMjkwNDY",
+                  "email": "johnandersen@acme.com",
+                  "customerId": "Y2lzY29zcGFyazovL3VzL0NVU1RPTUVSL2Y1YjM2MTg3LWM4ZGQtNDcyNy04YjJmLWY5YzQ0N2YyOTA0Ng",
+                  "externalCustomerId": "c1677a16-557a-4fb4-b48f-24adde57ec99",
+                  "package": "webex_calling",
+                  "status": "provisioned",
+                  "lastStatusChange": "2021-08-06T02:05:41.791232Z",
+                  "created": "2021-08-06T02:03:00.062Z",
+                  "packages": [
+                    "webex_calling"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Get a Wholesale Subscriber",
+        "operationId": "Get a Wholesale Subscriber",
+        "description": "Retrieves details of a provisioned Wholesale subscriber on Cisco Webex.",
+        "tags": [
+          "Wholesale Provisioning"
+        ],
+        "parameters": [
+          {
+            "name": "subscriberId",
+            "in": "path",
+            "description": "A unique identifier for the subscriber in question.",
+            "required": true,
+            "example": "Y2lzY29zcGFyazovL3VzL1NVQlNDUklCRVIvNjk3MGU2YmItNzQzOS00ZmZiLWFkMzQtZDNmZjAxNjdkZGFk",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "onBehalfOfSubPartnerOrgId",
+            "in": "query",
+            "description": "The encoded organization ID for the sub partner.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8wZTE4MmUxNS05ZmNhLTQ0NzgtYmEzOC1jNGFiMmUyN2FlZDA=",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "put": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Location": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Subscriber"
+                },
+                "example": {
+                  "id": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mNWIzNjE4Ny1jOGRkLTQ3MjctOGIyZi1mOWM0NDdmMjkwNDY",
+                  "personId": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mNWIzNjE4Ny1jOGRkLTQ3MjctOGIyZi1mOWM0NDdmMjkwNDY",
+                  "email": "johnandersen@acme.com",
+                  "customerId": "Y2lzY29zcGFyazovL3VzL0NVU1RPTUVSL2Y1YjM2MTg3LWM4ZGQtNDcyNy04YjJmLWY5YzQ0N2YyOTA0Ng",
+                  "externalCustomerId": "c1677a16-557a-4fb4-b48f-24adde57ec99",
+                  "package": "webex_calling",
+                  "status": "provisioned",
+                  "lastStatusChange": "2021-08-06T02:05:41.791232Z",
+                  "created": "2021-08-06T02:03:00.062Z",
+                  "packages": [
+                    "webex_calling"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Update a Wholesale Subscriber",
+        "operationId": "Update a Wholesale Subscriber",
+        "description": "Updates certain details of a provisioned Wholesale subscriber.\n\n**Note:**\n\n* The `provisioningParameters` attributes should only be supplied when changing from the webex_meetings package to any calling-enabled package.\n\n* Even in that scenario, if this subscriber is an existing Webex Calling entitled user, these attributes are optional and if provided are ignored.\n\n**packages Note:**\n\n* `attendant_console` is dependent on: `webex_calling`, `webex_suite`, `cx_essentials`\n\n<div>\n<Callout type='info'>\nEither `packages` or `package` field is required but not both.\n</Callout>\n</div>",
+        "tags": [
+          "Wholesale Provisioning"
+        ],
+        "parameters": [
+          {
+            "name": "subscriberId",
+            "in": "path",
+            "description": "A unique identifier for the subscriber in question.",
+            "required": true,
+            "example": "Y2lzY29zcGFyazovL3VzL1NVQlNDUklCRVIvNjk3MGU2YmItNzQzOS00ZmZiLWFkMzQtZDNmZjAxNjdkZGFk",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "onBehalfOfSubPartnerOrgId",
+            "in": "query",
+            "description": "The encoded organization ID for the sub partner.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8wZTE4MmUxNS05ZmNhLTQ0NzgtYmEzOC1jNGFiMmUyN2FlZDA=",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "packages": [
+                  "webex_calling"
+                ],
+                "provisioningParameters": {
+                  "primaryPhoneNumber": "+1-240-555-1212",
+                  "extension": "5221",
+                  "locationId": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzAxMjM0NTY3LTg5YWItY2RlZi0wMTIzLTQ1Njc4OWFiY2RlZg=="
+                }
+              },
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "package": {
+                    "$ref": "#/components/schemas/WholesalePackagesSubscriber",
+                    "description": "The Webex Wholesale package to be assigned to the subscriber. **NOTE:** This parameter will be deprecated soon. Please\n\nuse `packages` instead."
+                  },
+                  "packages": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/WholesalePackagesSubscriber"
+                    },
+                    "description": "The complete list of Webex Wholesale packages assigned to the subscriber. Currently accepts only one package in the list."
+                  },
+                  "provisioningParameters": {
+                    "type": "object",
+                    "properties": {
+                      "primaryPhoneNumber": {
+                        "type": "string",
+                        "example": "\"+1-240-555-1212\"",
+                        "description": "The primary phone number configured for the subscriber. A primary phone number, extension, or both must be supplied when changing from the webex_meetings package to any calling-enabled package."
+                      },
+                      "extension": {
+                        "type": "string",
+                        "example": "\"5221\"",
+                        "description": "The extension configured for the subscriber. An extension, primary phone number or both must be supplied when changing from the webex_meetings package to any calling-enabled package."
+                      },
+                      "locationId": {
+                        "type": "string",
+                        "example": "\"Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzAxMjM0NTY3LTg5YWItY2RlZi0wMTIzLTQ1Njc4OWFiY2RlZg==\"",
+                        "description": "A unique identifier for the location. This id should be retrieved via the [List Locations](/docs/api/v1/locations/list-locations) API."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {},
+            "content": {}
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Remove a Wholesale Subscriber",
+        "operationId": "Remove a Wholesale Subscriber",
+        "description": "Removes the mapping between Wholesale Subscriber and a Webex user.",
+        "tags": [
+          "Wholesale Provisioning"
+        ],
+        "parameters": [
+          {
+            "name": "subscriberId",
+            "in": "path",
+            "description": "A unique identifier for the subscriber in question.",
+            "required": true,
+            "example": "Y2lzY29zcGFyazovL3VzL1NVQlNDUklCRVIvNjk3MGU2YmItNzQzOS00ZmZiLWFkMzQtZDNmZjAxNjdkZGFk",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "onBehalfOfSubPartnerOrgId",
+            "in": "query",
+            "description": "The encoded organization ID for the sub partner.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8wZTE4MmUxNS05ZmNhLTQ0NzgtYmEzOC1jNGFiMmUyN2FlZDA=",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/wholesale/subscribers/validate": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriberProvisioningPrecheckResponse"
+                },
+                "example": {
+                  "message": "success",
+                  "info": [
+                    {
+                      "infoCode": 100,
+                      "description": "Provisioning preCheck validation successful."
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Precheck a Wholesale Subscriber Provisioning",
+        "operationId": "Precheck a Wholesale Subscriber Provisioning",
+        "description": "Allows the Partner sales team to verify likely success of provisioning a wholesale subscriber.\n**packages Note:**\n\n* `attendant_console` is dependent on: `webex_calling`, `webex_suite`, `cx_essentials`\n\n<div>\n<Callout type='info'>\nThe Prerequisite for using this API is to have `wxc-wholesale` entitlement or `webex-wholesale-partner-testing` setting enabled for the Partner Organization. The Provisioning Precheck APIs supports three variants of Wholesale Subscriber Provisioning Precheck Requests. Please refer to [Using the Provisioning Precheck API](/docs/api/guides/webex-for-wholesale#using-the-precheck-provisioning-api) section in [Webex for Wholesale](/docs/api/guides/webex-for-wholesale) guide for more information.\n</Callout>\n</div>\n\n<div>\n<Callout type='info'>\nEither `packages` or `package` field is required but not both.\n</Callout>\n</div>",
+        "tags": [
+          "Wholesale Provisioning"
+        ],
+        "parameters": [
+          {
+            "name": "onBehalfOfSubPartnerOrgId",
+            "in": "query",
+            "description": "The encoded organization ID for the sub partner.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8wZTE4MmUxNS05ZmNhLTQ0NzgtYmEzOC1jNGFiMmUyN2FlZDA=",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "customerId": "ZjViMzYxODctYzhkZC00NzI3LThiMmYtZjljNDQ3ZjI5MDQ2OjQyODVmNTk0LTViNTEtNDdiZS05Mzk2LTZjMzZlMmFkODNhNQ",
+                "email": "alice.anderson@acme.com"
+              },
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email"
+                ],
+                "properties": {
+                  "provisioningId": {
+                    "type": "string",
+                    "example": "ZjViMzYxODctYzhkZC00NzI3LThiMmYtZjljNDQ3ZjI5MDQ2",
+                    "description": "Defines how this wholesale subscriber is to be provisioned for Cisco Webex Services.\n\nEach Customer template has its unique provisioning ID. This ID is displayed under the chosen customer template on Cisco Webex Control Hub."
+                  },
+                  "customerId": {
+                    "type": "string",
+                    "example": "ZjViMzYxODctYzhkZC00NzI3LThiMmYtZjljNDQ3ZjI5MDQ2OjQyODVmNTk0LTViNTEtNDdiZS05Mzk2LTZjMzZlMmFkODNhNQ",
+                    "description": "ID of the Provisioned Customer for Webex Wholesale."
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "john.anderson@acme.com",
+                    "description": "The email address of the subscriber."
+                  },
+                  "package": {
+                    "type": "string",
+                    "enum": [
+                      "webex_calling",
+                      "webex_meetings",
+                      "webex_suite",
+                      "webex_voice",
+                      "cx_essentials",
+                      "webex_calling_standard"
+                    ],
+                    "description": "The Webex Wholesale package to be assigned to the subscriber. **NOTE:** This parameter will be deprecated soon. Please\n\nuse `packages` instead.\n * `webex_calling` - Calling Basic Package.\n * `webex_meetings` - Meetings Package.\n * `webex_suite` - Suite Package.\n * `webex_voice` - Voice Package.\n * `cx_essentials` - Customer Experience Essentials Package.\n * `webex_calling_standard` - Webex Calling Standard Package.\n"
+                  },
+                  "packages": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/WholesalePackagesSubscriber"
+                    },
+                    "description": "The complete list of Webex Wholesale packages assigned to the subscriber. Currently accepts only one package in the list."
+                  },
+                  "provisioningParameters": {
+                    "type": "object",
+                    "properties": {
+                      "firstName": {
+                        "type": "string",
+                        "example": "\"John\"",
+                        "description": "The first name of the subscriber."
+                      },
+                      "lastName": {
+                        "type": "string",
+                        "example": "\"Andersen\"",
+                        "description": "The last name of the subscriber."
+                      },
+                      "primaryPhoneNumber": {
+                        "type": "string",
+                        "example": "\"+12405551212\"",
+                        "description": "The primary phone number configured for the subscriber."
+                      },
+                      "extension": {
+                        "type": "string",
+                        "example": "\"51212\"",
+                        "description": "The extension configured for the subscriber. An extension, primary phone number or both must be supplied when creating a subscriber."
+                      },
+                      "locationId": {
+                        "type": "string",
+                        "example": "\"Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzAxMjM0NTY3LTg5YWItY2RlZi0wMTIzLTQ1Njc4OWFiY2RlZg==\"",
+                        "description": "A unique identifier for the location. This ID should be retrieved via the Locations API - List Locations."
+                      }
+                    }
+                  },
+                  "customerInfo": {
+                    "type": "object",
+                    "required": [
+                      "primaryEmail"
+                    ],
+                    "properties": {
+                      "primaryEmail": {
+                        "type": "string",
+                        "example": "\"john.anderson@acme.com\"",
+                        "description": "The primary email address of the customer."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/subscribers/{subscriberId}/emails/consentMove": {
+      "post": {
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {},
+            "content": {}
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Send Consent User Move Email to Pending Wholesale Subscribers",
+        "operationId": "Send Consent User Move Email to Pending Wholesale Subscribers",
+        "description": "Allows a Service Provider to send the user consent move email to a subscriber who is currently in `pending_user_migration` state.",
+        "tags": [
+          "Wholesale Provisioning"
+        ],
+        "parameters": [
+          {
+            "name": "subscriberId",
+            "in": "path",
+            "description": "A unique identifier for the subscriber in question.",
+            "required": true,
+            "example": "Y2lzY29zcGFyazovL3VzL1NVQlNDUklCRVIvNjk3MGU2YmItNzQzOS00ZmZiLWFkMzQtZDNmZjAxNjdkZGFk",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "onBehalfOfSubPartnerOrgId",
+            "in": "query",
+            "description": "The encoded organization ID for the sub partner.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8wZTE4MmUxNS05ZmNhLTQ0NzgtYmEzOC1jNGFiMmUyN2FlZDA=",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    }
+  },
   "components": {
     "schemas": {
       "AcdObject": {
@@ -5771,58 +8654,58 @@
         "properties": {
           "id": {
             "type": "string",
-            "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mYzhjMWFhMS00OTM5LTQ2NjEtODAwMy1hYWE0MzFmZWM0ZmE",
-            "description": "Unique identifier for the report."
+            "example": "'Y2lzY29zcGFyazovL3VzL0JJTExJTkdfUkVQT1JULzViOGQ1MThhLThmMDAtNDUxYi1hNDA2LWVhZjQ5YjRhN2ZhOA'",
+            "description": "A unique report ID that corresponds to a billing report."
           },
-          "title": {
+          "billingStartDate": {
             "type": "string",
-            "example": "Bots Activity",
-            "description": "Name of the template to which this report belongs."
+            "example": "2021-05-21",
+            "description": "Billing report `startDate`."
           },
-          "service": {
+          "billingEndDate": {
             "type": "string",
-            "example": "Teams",
-            "description": "The service to which the report belongs."
+            "example": "2021-05-30",
+            "description": "Billing report `endDate`."
           },
-          "startDate": {
+          "type": {
             "type": "string",
-            "example": "2020-02-23",
-            "description": "The data in this report belongs to dates greater than or equal to this."
-          },
-          "endDate": {
-            "type": "string",
-            "example": "2020-03-24",
-            "description": "The data in this report belongs to dates smaller than or equal to this."
-          },
-          "siteList": {
-            "type": "string",
-            "example": "cisco.webex.com",
-            "description": "The site to which this report belongs to. This only exists if the report belongs to service `Webex`."
+            "enum": [
+              "USER",
+              "CUSTOMER",
+              "PARTNER"
+            ],
+            "description": "Billing Report Type"
           },
           "created": {
             "type": "string",
-            "example": "2020-03-24 17:13:39",
-            "description": "Time of creation for this report."
+            "example": "2021-06-16T12:40:33.109Z",
+            "description": "The date and time the report was generated."
           },
           "createdBy": {
             "type": "string",
-            "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mYzhjMWFhMS00OTM5LTQ2NjEtODAwMy1hYWE0MzFmZWM0ZmE",
-            "description": "The person who created the report."
-          },
-          "scheduledFrom": {
-            "type": "string",
-            "example": "API",
-            "description": "Whether this report was scheduled from API or Control Hub."
+            "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS8wYWNkMzg3NS00ZTEyLTRkNzctYjk4MS1lMzg5ZmQ4ODQ2YzA",
+            "description": "The person ID of the partner administrator who created the report."
           },
           "status": {
             "type": "string",
-            "example": "done",
-            "description": "Completion status of this report."
+            "enum": [
+              "IN_PROGRESS",
+              "COMPLETED",
+              "FAILED"
+            ],
+            "description": "The status of the billing report.\n * `IN_PROGRESS` - Report generation is in progress\n * `COMPLETED` - Report generation is complete\n * `FAILED` - Report generation failed\n"
           },
-          "downloadURL": {
+          "tempDownloadURL": {
             "type": "string",
-            "example": "https://downloadservicebts.webex.com/api?reportId=Y2lzY29zcGFyazovL3VzL1JFUE9SVC9hZDBkMjA1NzVkYTA0NWE0OGZhZDQ3ZDk3NGFiNDFmMg",
-            "description": "The link from which the report can be downloaded."
+            "example": "https://billing-reports-int-us-east-1.webexcontent.com/a366de9b-3204-4140-8181-25808d360e36/WHOLESALE/340177d1-7f25-41e1-a39f-ad63ec1103a5.csv?Expires=1624978489&Signature=Syp3vrVeMx4P6MeMtm8e1bQaeAdHFe-c7NeHERWh5-qJGLZ1T8Dvl2ee-M8OsFf~z6Yepz94e2Hh1HDVailD0Uryl8SgiM~jl0cBh7L0PmSe~i9oFA0eJ0MulkqGSMVf7ZHhxY55xYMgIBZIERkWm3CqQNDg5BS4EaXapKfOnmFegf36OokCM63m5uOK8-csk08IkZhwo2Z0l1JMtuWYEaLh4dgMHoe~xgH3YmDSSCWInFYaEifUAfgi2YAYS6nP9Zq4BTliBq62XBaehOE1gBrhy4RdwD-3WSs2oD-BdpoRpuGzo3FZzDLVEvd0S2D6gTcHljOHodQKxe-u0BXPWQ__&Key-Pair-Id=APKAJADAKLCI2FW2U32Q",
+            "description": "The URL for partners to download the billing report."
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReportError"
+            },
+            "description": "List of errors that occurred during report generation.\n\n**Note:**\n\n* This list captures errors that occurred during asynchronous or background report generation, after the request has been accepted and a `202 OK` response is returned."
           }
         }
       },
@@ -8405,6 +11288,487 @@
             "description": "Is the workspace capability configured or not."
           }
         }
+      },
+      "ListReport": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "'Y2lzY29zcGFyazovL3VzL0JJTExJTkdfUkVQT1JULzViOGQ1MThhLThmMDAtNDUxYi1hNDA2LWVhZjQ5YjRhN2ZhOA'",
+            "description": "A unique report id that corresponds to a billing report."
+          },
+          "billingStartDate": {
+            "type": "string",
+            "example": "2021-05-21",
+            "description": "Billing report startDate."
+          },
+          "billingEndDate": {
+            "type": "string",
+            "example": "2021-05-30",
+            "description": "Billing report endDate."
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "IN_PROGRESS",
+              "COMPLETED",
+              "FAILED"
+            ],
+            "description": "The status of the billing report\n * `IN_PROGRESS` - Report generation is in progress.\n * `COMPLETED` - Report generation is complete.\n * `FAILED` - Report generation failed.\n"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "USER",
+              "CUSTOMER",
+              "PARTNER"
+            ],
+            "description": "Billing Report Type."
+          }
+        }
+      },
+      "ReportError": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "example": 2024,
+            "description": "An error code that identifies the reason for the error."
+          },
+          "description": {
+            "type": "string",
+            "example": "Billing Report not found.",
+            "description": "A textual representation of the error code."
+          }
+        }
+      },
+      "ReportId": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "'Y2lzY29zcGFyazovL3VzL0JJTExJTkdfUkVQT1JULzViOGQ1MThhLThmMDAtNDUxYi1hNDA2LWVhZjQ5YjRhN2ZhOA'",
+            "description": "A unique report ID that corresponds to a billing report."
+          },
+          "billingStartDate": {
+            "type": "string",
+            "example": "2021-05-21",
+            "description": "Billing report startDate."
+          },
+          "billingEndDate": {
+            "type": "string",
+            "example": "2021-05-30",
+            "description": "Billing report endDate."
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "USER",
+              "CUSTOMER",
+              "PARTNER"
+            ],
+            "description": "Billing Report Type"
+          }
+        }
+      },
+      "WholesaleBillingReportsListResponse": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ListReport"
+            },
+            "description": "An array of report objects."
+          }
+        }
+      },
+      "WholesalePackagesCustomer": {
+        "type": "string",
+        "enum": [
+          "common_area_calling",
+          "webex_calling",
+          "webex_meetings",
+          "webex_suite",
+          "webex_voice",
+          "cx_essentials",
+          "cisco_calling_plan",
+          "attendant_console"
+        ],
+        "description": " * `common_area_calling` - Webex Common Area Calling Package.\n * `webex_calling` - Webex Calling Package.\n * `webex_meetings` - Webex Meetings Package.\n * `webex_suite` - Webex Suite Package.\n * `webex_voice` - Webex Voice Package.\n * `cx_essentials` - Customer Experience Essentials Package.\n * `cisco_calling_plan` - Cisco Calling Plan Package.\n * `attendant_console` - Attendant Console Package.\n"
+      },
+      "Address": {
+        "type": "object",
+        "properties": {
+          "addressLine1": {
+            "type": "string",
+            "example": "771 Alder Drive",
+            "description": "Address Line 1."
+          },
+          "addressLine2": {
+            "type": "string",
+            "example": "Cisco Site 5",
+            "description": "Address Line 2."
+          },
+          "city": {
+            "type": "string",
+            "example": "Milpitas",
+            "description": "City of the customer."
+          },
+          "stateOrProvince": {
+            "type": "string",
+            "example": "CA",
+            "description": "State or Province of the customer."
+          },
+          "zipOrPostalCode": {
+            "type": "string",
+            "example": "95035",
+            "description": "Postal/Zip code of the customer."
+          },
+          "country": {
+            "type": "string",
+            "example": "`US`:",
+            "description": "ISO2 country code of the customer size = 2."
+          }
+        }
+      },
+      "Customer": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "'Y2lzY29zcGFyazovL3VzL0VOVEVSUFJJU0UvNTJjZjU3NmQtNjBhOC00MDdhLWIyMmMtNDY3YzUxNTkxOTA4'",
+            "description": "A unique Cisco identifier for the customer. This value should be used for the `customerId` parameter in the Wholesale Customers and Wholesale Subscribers API."
+          },
+          "orgId": {
+            "type": "string",
+            "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mNWIzNjE4Ny1jOGRkLTQ3MjctOGIyZi1mOWM0NDdmMjkwNDY",
+            "description": "The Organization ID of the enterprise on Cisco Webex, to be used when referencing this customer on other Cisco Webex APIs. Only presented when status is `provisioned`."
+          },
+          "externalId": {
+            "type": "string",
+            "example": "c1677a16-557a-4fb4-b48f-24adde57ec99",
+            "description": "External ID of the Customer."
+          },
+          "address": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "provisioned",
+              "provisioned_with_errors",
+              "provisioning",
+              "updating",
+              "deleting",
+              "error",
+              "pending_rpl_review"
+            ],
+            "description": "The provisioning status of the customer.\n * `provisioned` - Customer is fully provisioned on Cisco Webex.\n * `provisioned_with_errors` - Customer is provisioned with errors.\n * `provisioning` - Customer is provisioning.\n * `updating` - Customer is updating.\n * `deleting` - Customer is being deleted.\n * `error` - An error occurred provisioning the customer on Cisco Webex.\n * `pending_rpl_review` - The customer is pending a Denied Party List compliance check.\n"
+          },
+          "packages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WholesalePackagesCustomer"
+            },
+            "description": "List of package names provisioned"
+          },
+          "resourceDetails": {
+            "$ref": "#/components/schemas/ResourceDetails"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "description": "List of errors that occurred during that last attempt to provision/update this customer.\n\n *Note:*\n\n+ This list captures errors that occurred during *asynchronous or background* provisioning of the customer, *after* the API has been accepted and 202 response returned.\n\n+ Any errors that occur during initial API request validation will be captured directly in error response with appropriate HTTP status code."
+          }
+        }
+      },
+      "CustomerListResponse": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Customer"
+            },
+            "description": "An array of Customer objects."
+          }
+        }
+      },
+      "CustomerProvisioningPrecheckResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "success",
+            "description": "A textual representation of the Precheck response message containing the `infoCode` object in the case of a success response and the `errorCode` object in the case of failure."
+          },
+          "info": {
+            "type": "object",
+            "properties": {
+              "infoCode": {
+                "type": "number",
+                "example": 100,
+                "description": "Provisioning Precheck `infoCode`."
+              },
+              "description": {
+                "type": "string",
+                "example": "Provisioning Precheck validation successful.",
+                "description": "A textual description of the `infoCode`."
+              }
+            },
+            "description": "A list of ProvisioningPreCheckResponseInfo object."
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "number",
+            "example": 10022,
+            "description": "An error code that identifies the reason for the error."
+          },
+          "description": {
+            "type": "string",
+            "example": "The email is already associated with an existing user.",
+            "description": "A textual representation of the error code."
+          }
+        }
+      },
+      "Package": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "enum": [
+              "common_area_calling",
+              "webex_calling",
+              "webex_meetings",
+              "webex_suite",
+              "webex_voice",
+              "cx_essentials",
+              "cisco_calling_plan",
+              "attendant_console"
+            ],
+            "description": "The Webex Wholesale Packages assigned to the customer.\n * `common_area_calling` - Webex Common Area Calling Package.\n * `webex_calling` - Webex Calling Package.\n * `webex_meetings` - Webex Meetings Package.\n * `webex_suite` - Webex Suite Package.\n * `webex_voice` - Webex Voice Package.\n * `cx_essentials` - Customer Experience Essentials Package.\n * `cisco_calling_plan` - Cisco Calling Plan Package.\n * `attendant_console` - Attendant Console Package.\n"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "provisioned",
+              "provisioning",
+              "deleting",
+              "error"
+            ],
+            "description": "The provisioning status of the a particular package.\n * `provisioned` - Customer is fully provisioned on Cisco Webex.\n * `provisioning` - Customer is provisioning.\n * `deleting` - Customer is being deleted.\n * `error` - An error occurred provisioning the customer on Cisco Webex.\n"
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "description": "List of warnings that occurred during that last attempt to provision/update this customer.\n\n *Note:*\n\n+ This list captures errors that occurred during *asynchronous or background* provisioning of the customer, *after* the API has been accepted and 202 response returned.\n\n+ Any errors that occur during initial API request validation will be captured directly in error response with appropriate HTTP status code."
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "description": "List of errors that occurred during that last attempt to provision/update this customer.\n\n *Note:*\n\n+ This list captures errors that occurred during *asynchronous or background* provisioning of the customer, *after* the API has been accepted and 202 response returned.\n\n+ Any errors that occur during initial API request validation will be captured directly in error response with appropriate HTTP status code."
+          }
+        }
+      },
+      "ResourceURL": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "example": "\"https://webexapis.com/v1/wholesale/customers/Y2lzY29zcGFyazovL3VzL0VOVEVSUFJJU0UvNTJjZjU3NmQtNjBhOC00MDdhLWIyMmMtNDY3YzUxNTkxOTA4\"",
+            "description": "A URL which points to the [Get a Wholesale Customer](/docs/api/v1/wholesale-provisioning/get-a-wholesale-customer) endpoint for the provisioned customer."
+          }
+        }
+      },
+      "ResourceDetails": {
+        "type": "object",
+        "properties": {
+          "packages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Package"
+            }
+          }
+        }
+      },
+      "SubPartner": {
+        "type": "object",
+        "properties": {
+          "orgId": {
+            "type": "string",
+            "example": "'Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE'",
+            "description": "The Organization ID for the sub-partner."
+          },
+          "subscriptionId": {
+            "type": "string",
+            "example": "'Sub23452345'",
+            "description": "The Wholesale Subscription ID of the partner."
+          },
+          "provisioningState": {
+            "type": "string",
+            "enum": [
+              "active",
+              "suspended"
+            ],
+            "description": "The provisioning status of the sub-partner.\n * `active` - Sub-partner can provision new customers and subscribers or update, delete existing ones.\n * `suspended` - Sub-partner cannot provision, update customers and subscribers but can delete existing ones.\n"
+          },
+          "created": {
+            "type": "string",
+            "example": "'2023",
+            "description": "02-16T14:10:18.855Z' (string) - The date and time the sub-partner was created."
+          },
+          "billingStartDate": {
+            "type": "string",
+            "example": "'2023",
+            "description": "02-22T13:43:41.117Z' (string) - The date and time from which new billing for the sub-partner started."
+          }
+        }
+      },
+      "SubPartnersListResponse": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubPartner"
+            },
+            "description": "An array of `SubPartner` objects."
+          }
+        }
+      },
+      "WholesalePackagesSubscriber": {
+        "type": "string",
+        "enum": [
+          "webex_calling",
+          "webex_meetings",
+          "webex_suite",
+          "webex_voice",
+          "cx_essentials",
+          "attendant_console"
+        ],
+        "description": " * `webex_calling` - Calling Basic Package.\n * `webex_meetings` - Meetings Package.\n * `webex_suite` - Suite Package.\n * `webex_voice` - Voice Package.\n * `cx_essentials` - Customer Experience Essentials Package.\n * `attendant_console` - Attendant Console Package.\n"
+      },
+      "Subscriber": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "'Y2lzY29zcGFyazovL3VzL1NVQlNDUklCRVIvNjk3MGU2YmItNzQzOS00ZmZiLWFkMzQtZDNmZjAxNjdkZGFk'",
+            "description": "A unique Cisco identifier for the subscriber."
+          },
+          "personId": {
+            "type": "string",
+            "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mNWIzNjE4Ny1jOGRkLTQ3MjctOGIyZi1mOWM0NDdmMjkwNDY",
+            "description": "The person id of the subscriber used in the /people API. Only presented when status is `provisioned`."
+          },
+          "email": {
+            "type": "string",
+            "example": "john.anderson@acme.com",
+            "description": "The email address of the subscriber."
+          },
+          "customerId": {
+            "type": "string",
+            "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mNWIzNjE4Ny1jOGRkLTQ3MjctOGIyZi1mOWM0NDdmMjkwNDY",
+            "description": "A unique identifier for the customer."
+          },
+          "externalCustomerId": {
+            "type": "string",
+            "example": "c1677a16-557a-4fb4-b48f-24adde57ec99",
+            "description": "External ID of the Wholesale customer."
+          },
+          "package": {
+            "type": "string",
+            "enum": [
+              "webex_calling",
+              "webex_meetings",
+              "webex_suite",
+              "webex_voice",
+              "cx_essentials"
+            ],
+            "description": "The Webex Wholesale Package assigned to the subscriber.\n * `webex_calling` - Calling Basic Package.\n * `webex_meetings` - Meetings Package.\n * `webex_suite` - Suite Package.\n * `webex_voice` - Voice Package.\n * `cx_essentials` - Customer Experience Essentials Package.\n"
+          },
+          "packages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WholesalePackagesSubscriber"
+            },
+            "description": "The list of Webex Wholesale packages assigned to the subscriber."
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "provisioned",
+              "pending_user_migration"
+            ],
+            "description": "The provisioning status of the user.\n * `provisioned` - The subscriber is fully provisioned on Cisco Webex.\n * `pending_user_migration` - The subscriber user migration is pending.\n"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "description": "List of errors that occurred during that last attempt to provision/update this subscriber.\n\n *Note:*\n\n+ This list captures errors that occurred during provisioning of the subscriber.\n\n+ Any errors that occur during initial API request validation will be captured directly in error response with appropriate HTTP status code."
+          },
+          "created": {
+            "type": "string",
+            "example": "2019-10-18T14:26:16.000Z",
+            "description": "The date and time the subscriber was provisioned."
+          },
+          "lastStatusChange": {
+            "type": "string",
+            "example": "2020-03-18T16:05:34.000Z",
+            "description": "The date and time the provisioning status of the subscriber last changed."
+          }
+        }
+      },
+      "SubscriberListResponse": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Subscriber"
+            },
+            "description": "An array of Subscriber objects."
+          }
+        }
+      },
+      "SubscriberProvisioningPrecheckResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "success",
+            "description": "A textual representation of the Precheck response message containing the `infoCode` object in the case of a success response and the `errorCode` object in the case of failure."
+          },
+          "info": {
+            "type": "object",
+            "properties": {
+              "infoCode": {
+                "type": "number",
+                "example": 100,
+                "description": "Provisioning Precheck `infoCode`."
+              },
+              "description": {
+                "type": "string",
+                "example": "Provisioning Precheck validation successful.",
+                "description": "A textual description of the `infoCode`."
+              }
+            },
+            "description": "A list of ProvisioningPreCheckResponseInfo object."
+          }
+        }
       }
     },
     "securitySchemes": {
@@ -8419,6 +11783,12 @@
         "type": "oauth2"
       },
       "bearer-key": {
+        "type": "http",
+        "description": "e.g. Bearer YOUR_AUTHORIZATION_TOKEN",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      },
+      "bearerAuth": {
         "type": "http",
         "description": "e.g. Bearer YOUR_AUTHORIZATION_TOKEN",
         "scheme": "bearer",
