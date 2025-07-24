@@ -25983,8 +25983,7 @@
                   "status": {
                     "type": "string",
                     "enum": [
-                      "active",
-                      "inactive"
+                      "active"
                     ],
                     "description": "Status of the webhook. Use \"active\" to reactivate a disabled webhook."
                   }
