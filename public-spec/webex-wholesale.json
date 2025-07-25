@@ -8676,6 +8676,15 @@
             ],
             "description": "Billing Report Type"
           },
+          "category": {
+            "type": "string",
+            "example": "RECONCILIATION",
+            "enum": [
+              "RECONCILIATION",
+              "POINT_IN_TIME"
+            ],
+            "description": "The category of the billing report."
+          },
           "created": {
             "type": "string",
             "example": "2021-06-16T12:40:33.109Z",
@@ -8707,6 +8716,17 @@
             },
             "description": "List of errors that occurred during report generation.\n\n**Note:**\n\n* This list captures errors that occurred during asynchronous or background report generation, after the request has been accepted and a `202 OK` response is returned."
           }
+        },
+        "example": {
+          "id": "Y2lzY29zcGFyazovL3VzL0JJTExJTkdfUkVQT1JULzViOGQ1MThhLThmMDAtNDUxYi1hNDA2LWVhZjQ5YjRhN2ZhOA",
+          "billingStartDate": "2021-05-21",
+          "billingEndDate": "2021-05-30",
+          "reportType": "PARTNER",
+          "category": "RECONCILIATION",
+          "createdBy": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS8wYWNkMzg3NS00ZTEyLTRkNzctYjk4MS1lMzg5ZmQ4ODQ2YzA",
+          "status": "COMPLETED",
+          "tempDownloadURL": "https://billing-reports-int-us-east-1.webexcontent.com/sample.csv",
+          "errors": []
         }
       },
       "ReportCollectionResponse": {
@@ -11324,6 +11344,16 @@
               "PARTNER"
             ],
             "description": "Billing Report Type."
+          },
+          "category": {
+            "type": "string",
+            "example": "RECONCILIATION",
+            "default": "RECONCILIATION",
+            "enum": [
+              "RECONCILIATION",
+              "POINT_IN_TIME"
+            ],
+            "description": "The category of the billing report."
           }
         }
       },
@@ -11368,7 +11398,23 @@
               "PARTNER"
             ],
             "description": "Billing Report Type"
+          },
+          "category": {
+            "type": "string",
+            "example": "RECONCILIATION",
+            "enum": [
+              "RECONCILIATION",
+              "POINT_IN_TIME"
+            ],
+            "description": "The category of the billing report."
           }
+        },
+        "example": {
+          "id": "Y2lzY29zcGFyazovL3VzL0JJTExJTkdfUkVQT1JULzViOGQ1MThhLThmMDAtNDUxYi1hNDA2LWVhZjQ5YjRhN2ZhOA",
+          "billingStartDate": "2021-05-21",
+          "billingEndDate": "2021-05-30",
+          "type": "PARTNER",
+          "category": "RECONCILIATION"
         }
       },
       "WholesaleBillingReportsListResponse": {
@@ -11381,6 +11427,21 @@
             },
             "description": "An array of report objects."
           }
+        },
+        "example": {
+          "items": [
+            {
+              "id": "Y2lzY29zcGFyazovL3VzL0JJTExJTkdfUkVQT1JULzViOGQ1MThhLThmMDAtNDUxYi1hNDA2LWVhZjQ5YjRhN2ZhOA",
+              "billingStartDate": "2021-05-21",
+              "billingEndDate": "2021-05-30",
+              "type": "PARTNER",
+              "category": "RECONCILIATION",
+              "created": "2021-06-16T12:40:33.109Z",
+              "createdBy": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS8wYWNkMzg3NS00ZTEyLTRkNzctYjk4MS1lMzg5ZmQ4ODQ2YzA",
+              "status": "COMPLETED",
+              "tempDownloadURL": "https://billing-reports-int-us-east-1.webexcontent.com/sample.csv"
+            }
+          ]
         }
       },
       "WholesalePackagesCustomer": {
