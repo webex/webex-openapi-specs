@@ -9943,7 +9943,7 @@
           }
         }
       },
-      "Workspace Type": {
+      "WorkspaceType": {
         "type": "string",
         "enum": [
           "focus",

@@ -5,7 +5,12 @@
     "version": "1.0.0",
     "description": "The Webex Contact Center APIs allow developers to deeply integrate, configure, and manage cloud-based contact center solutions. These APIs cover agent lifecycle management, queue and routing configuration, customer journey tracking, and access to real-time and historical analytics. Use cases include embedding agent controls in custom UIs, automating workforce management, integrating with CRM and ticketing systems, and building custom reporting dashboards. The APIs empower organizations to deliver personalized, efficient customer experiences and optimize contact center operations."
   },
-  "tags": [],
+  "tags": [
+    {
+      "name": "Callbacks",
+      "description": "APIs for scheduling and managing callbacks for customers."
+    }
+  ],
   "paths": {
     "/v1/agentburnout/subscribe": {
       "post": {
@@ -34045,6 +34050,374 @@
         }
       }
     },
+    "/v1/callbacks/organization/{orgId}/scheduled-callback": {
+      "post": {
+        "tags": [
+          "Callbacks"
+        ],
+        "summary": "Schedule a Callback",
+        "description": "Creates a new callback request for a customer. Authorization requires the cjp:user scope. The callback default endpoint (EP) and default ANI must be configured as mandatory settings to successfully make API calls.",
+        "operationId": "ScheduleCallback",
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "path",
+            "description": "The organization ID for which the callback is being scheduled. This should be a valid UUID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScheduleCallbackRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Callback successfully scheduled.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScheduleCallbackResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized, Token is Invalid"
+          },
+          "403": {
+            "description": "Forbidden Request"
+          },
+          "429": {
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service Unavailable"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Callbacks"
+        ],
+        "summary": "Get scheduled callbacks",
+        "description": "Allows the user to list scheduled callbacks for a given customer number, excluding those whose scheduled trigger time has already passed. Requires 'cjp:user' scope for authorization.",
+        "operationId": "GetScheduledCallbacks",
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "path",
+            "description": "The organization ID for which the callback is being scheduled. This should be a valid UUID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          {
+            "name": "callbackNumber",
+            "in": "query",
+            "description": "The callback customer number to filter the scheduled callbacks. Only an exact match will yield the result. Allows an optional country code followed by digits (0-9) and the special characters: space, hyphen -, parentheses ( and ), and period ., ensuring the total length is between 7 and 15 characters.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "+1234567890"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page number to retrieve.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "minimum": 0
+            },
+            "example": 1
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "The number of items per page.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 50,
+              "minimum": 1,
+              "maximum": 100
+            },
+            "example": 10
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "The field to sort the results by.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "customerName",
+                "scheduledTime"
+              ],
+              "default": "scheduledTime"
+            },
+            "example": "scheduledTime"
+          },
+          {
+            "name": "sortOrder",
+            "in": "query",
+            "description": "The order to sort the results in.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "default": "asc"
+            },
+            "example": "asc"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The get scheduled callback request was successfully processed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallbackSchedulesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized, Token is Invalid"
+          },
+          "403": {
+            "description": "Forbidden Request"
+          },
+          "429": {
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service Unavailable"
+          }
+        }
+      }
+    },
+    "/v1/callbacks/organization/{orgId}/scheduled-callback/{id}": {
+      "get": {
+        "tags": [
+          "Callbacks"
+        ],
+        "summary": "Get scheduled callback by Id",
+        "description": "Retrieve an existing scheduled callback by Id, excluding those whose scheduled trigger time has already passed. Requires 'cjp:user' scope for authorization.",
+        "operationId": "GetScheduledCallbackById",
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "path",
+            "description": "The organization ID for which the callback is being scheduled. This should be a valid UUID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id with which the Scheduled Callback has been created.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "UUID"
+            },
+            "example": "5C3E69AC-3695-4D51-899B-4B4CC3ED8ECF"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request was successfully processed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScheduleCallbackResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized, Token is Invalid"
+          },
+          "403": {
+            "description": "Forbidden Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service Unavailable"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Callbacks"
+        ],
+        "summary": "Update scheduled callback by Id",
+        "description": "Update an existing scheduled callback by Id,those whose scheduled trigger time has already passed cannot be updated. Requires 'cjp:user' scope for authorization.",
+        "operationId": "UpdateScheduledCallbackById",
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "path",
+            "description": "The organization ID for which the callback is being scheduled. This should be a valid UUID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id with which the Scheduled Callback has been created.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "UUID"
+            },
+            "example": "5C3E69AC-3695-4D51-899B-4B4CC3ED8ECF"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CallbackScheduleUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The request was successfully updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScheduleCallbackResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized, Token is Invalid"
+          },
+          "403": {
+            "description": "Forbidden Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service Unavailable"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Callbacks"
+        ],
+        "summary": "Delete scheduled callback by Id",
+        "description": "Delete an existing scheduled callback by Id, those whose scheduled trigger time has already passed cannot be deleted. Requires 'cjp:user' scope for authorization.",
+        "operationId": "DeleteScheduledCallbackById",
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "path",
+            "description": "The organization ID for which the callback is being scheduled. This should be a valid UUID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id with which the Scheduled Callback has been created.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "UUID"
+            },
+            "example": "5C3E69AC-3695-4D51-899B-4B4CC3ED8ECF"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "The request was successfully deleted."
+          },
+          "401": {
+            "description": "Unauthorized, Token is Invalid"
+          },
+          "403": {
+            "description": "Forbidden Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service Unavailable"
+          }
+        }
+      }
+    },
     "/v1/tasks": {
       "post": {
         "tags": [
@@ -38377,7 +38750,7 @@
         },
         "responses": {
           "200": {
-            "description": "Returns Recording and Transcription details",
+            "description": "Returns Recording and Transcription details. If a provided taskId is not found for the specified organization, the API will return a 200 OK response with empty recording and transcription fields for that task.\nThis behavior is intentional to allow partial results when multiple taskIds are provided; unmatched taskIds do not result in a 4xx error.",
             "content": {
               "application/json": {
                 "schema": {
@@ -46580,7 +46953,7 @@
           }
         }
       },
-      "Workspace Type": {
+      "WorkspaceType": {
         "type": "string",
         "enum": [
           "focus",
@@ -59437,6 +59810,280 @@
             "example": "false"
           }
         }
+      },
+      "ScheduleCallbackRequest": {
+        "required": [
+          "customerName",
+          "callbackNumber",
+          "timezone",
+          "scheduleDate",
+          "startTime",
+          "endTime",
+          "queueId"
+        ],
+        "type": "object",
+        "properties": {
+          "customerName": {
+            "type": "string",
+            "description": "Name of the Customer for which callback has to be scheduled. Max customer name length should be 250 character",
+            "example": "John Doe"
+          },
+          "callbackNumber": {
+            "type": "string",
+            "description": "Customer's phone number for the callback. Allows an optional country code followed by digits (0-9) and the special characters: space, hyphen -, parentheses ( and ), and period ., ensuring the total length is between 7 and 15 characters.",
+            "example": "+12(345)67-890"
+          },
+          "timezone": {
+            "type": "string",
+            "description": "Valid IANA timezone name",
+            "example": "America/New_York"
+          },
+          "scheduleDate": {
+            "type": "string",
+            "format": "date",
+            "description": "Scheduled date in ISO-8601 (YYYY-MM-DD) format. This must be a valid date in local time zone and within 31 days from current date",
+            "example": "2025-03-28"
+          },
+          "startTime": {
+            "type": "string",
+            "format": "time",
+            "description": "Scheduled start time in ISO-8601 (HH:mm:ss) format. Start time must be at least 30 minutes in the future from current time.",
+            "example": "17:45:15"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "time",
+            "description": "Scheduled end time in ISO-8601 (HH:mm:ss) format. End time must be at least 30 minutes after the startTime and must not exceed 8 hours after startTime.",
+            "example": "16:50:55"
+          },
+          "queueId": {
+            "type": "string",
+            "description": "Unique identifier for the queue to which the callback is associated.",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "callbackReason": {
+            "type": "string",
+            "description": "Reason for the callback request. This is optional and can be used to provide additional context.",
+            "example": "Credit Card Issue"
+          },
+          "sourceInteraction": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Source interaction ID for the callback. This is optional and can be used to link the callback to a specific interaction. This should be a valid UUID.",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          }
+        }
+      },
+      "ScheduleCallbackResponse": {
+        "type": "object",
+        "$ref": "#/components/schemas/CallbackSchedule"
+      },
+      "CallbackSchedule": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Unique identifier for the scheduled callback.",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "customerName": {
+            "type": "string",
+            "description": "Name of the customer requesting the callback.",
+            "example": "John Doe"
+          },
+          "callbackNumber": {
+            "type": "string",
+            "description": "Phone number provided for the callback.",
+            "example": "+1234567890"
+          },
+          "timezone": {
+            "type": "string",
+            "description": "Timezone in which the callback is scheduled.",
+            "example": "America/New_York"
+          },
+          "scheduleDate": {
+            "type": "string",
+            "format": "date",
+            "description": "Date for the callback in ISO format (YYYY-MM-DD).",
+            "example": "2025-04-08"
+          },
+          "startTime": {
+            "type": "string",
+            "format": "time",
+            "description": "Scheduled start time in ISO 8601 format (HH:mm:ss), local to the specified timezone.",
+            "example": "14:30:00"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "time",
+            "description": "Scheduled end time in ISO 8601 format (HH:mm:ss), local to the specified timezone.",
+            "example": "15:30:00"
+          },
+          "queueId": {
+            "type": "string",
+            "description": "Identifier for the queue to route the callback request.",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "callbackReason": {
+            "type": "string",
+            "description": "Reason provided for the callback request.",
+            "example": "Customer requested a follow-up."
+          },
+          "sourceInteraction": {
+            "type": "string",
+            "format": "uuid",
+            "description": "UUID of the source interaction.",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "callbackOrigin": {
+            "type": "string",
+            "description": "Origin of the callback request, such as 'livecall' or 'api'.",
+            "example": "api"
+          },
+          "createdTimestamp": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Unix timestamp in milliseconds when the callback was created.",
+            "example": 1672531199000
+          },
+          "lastUpdatedTimestamp": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Unix timestamp in milliseconds when the callback was last updated.",
+            "example": 1672531199000
+          },
+          "orgId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Unique identifier for the organization.",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          }
+        },
+        "required": [
+          "id",
+          "customerName",
+          "callbackNumber",
+          "timezone",
+          "scheduleDate",
+          "startTime",
+          "endTime",
+          "queueId",
+          "callbackOrigin",
+          "createdTimestamp",
+          "lastUpdatedTimestamp",
+          "orgId"
+        ]
+      },
+      "PaginationLinks": {
+        "type": "object",
+        "properties": {
+          "self": {
+            "type": "string",
+            "description": "Link to the current page.",
+            "example": "/v1/callbacks/organization/${orgId}/scheduled-callback?page=1&pageSize=10"
+          },
+          "first": {
+            "type": "string",
+            "description": "Link to the first page.",
+            "example": "/v1/callbacks/organization/${orgId}/scheduled-callback?page=0&pageSize=10"
+          },
+          "last": {
+            "type": "string",
+            "description": "Link to the last page.",
+            "example": "/v1/callbacks/organization/${orgId}/scheduled-callback?page=4&pageSize=10"
+          },
+          "next": {
+            "type": "string",
+            "description": "Link to the next page.",
+            "example": "/v1/callbacks/organization/${orgId}/scheduled-callback?page=2&pageSize=10"
+          },
+          "prev": {
+            "type": "string",
+            "description": "Link to the previous page.",
+            "example": "/v1/callbacks/organization/${orgId}/scheduled-callback?page=0&pageSize=10"
+          }
+        },
+        "required": [
+          "self"
+        ]
+      },
+      "CallbackScheduleMetadata": {
+        "type": "object",
+        "properties": {
+          "orgId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Unique identifier for the organization.",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "page": {
+            "type": "integer",
+            "description": "Current page number.",
+            "example": 1
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "Number of items per page.",
+            "example": 10
+          },
+          "totalPages": {
+            "type": "integer",
+            "description": "Total number of pages.",
+            "example": 5
+          },
+          "totalRecords": {
+            "type": "integer",
+            "description": "Total number of items.",
+            "example": 50
+          },
+          "links": {
+            "$ref": "#/components/schemas/PaginationLinks"
+          }
+        },
+        "required": [
+          "orgId",
+          "page",
+          "pageSize",
+          "totalPages",
+          "totalRecords",
+          "links"
+        ]
+      },
+      "CallbackSchedulesResponse": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "$ref": "#/components/schemas/CallbackScheduleMetadata"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CallbackSchedule"
+            }
+          }
+        }
+      },
+      "CallbackScheduleUpdateRequest": {
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "description": "Unique identifier for the scheduled callback.",
+                "example": "123e4567-e89b-12d3-a456-426614174000"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          {
+            "$ref": "#/components/schemas/ScheduleCallbackRequest"
+          }
+        ]
       },
       "CreateTaskRequest": {
         "required": [
