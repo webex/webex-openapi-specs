@@ -10113,7 +10113,10 @@
                 "type": "string"
               }
             },
-            "example": "TELEPHONY,CHAT"
+            "example": [
+              "TELEPHONY",
+              "CHAT"
+            ]
           },
           {
             "name": "attributes",
@@ -10433,7 +10436,7 @@
         "tags": [
           "Contact Service Queue"
         ],
-        "summary": "Bulk partial update Contact Service Queue(s).",
+        "summary": "Bulk partial update Contact Service Queue(s)",
         "description": "Update some or all properties for multiple Contact Service Queue(s) in bulk in a given organization.",
         "operationId": "patchAllConfig_1",
         "parameters": [
@@ -10458,13 +10461,77 @@
               "example": {
                 "items": [
                   {
+                    "itemIdentifier": 10,
                     "item": {
-                      "id": "26e2df70-0f77-41b8-8e8f-1d76e92c9638",
+                      "organizationId": "f53c8b54-34ca-43f6-ba05-08426a46e23d",
+                      "id": "93912f11-4417-404b-bf14-5331890b1797",
+                      "version": 1,
+                      "name": "Queue-1",
+                      "description": "Queue created by system",
+                      "queueType": "INBOUND",
+                      "checkAgentAvailability": true,
+                      "channelType": "TELEPHONY",
+                      "socialChannelType": "MESSENGER",
+                      "serviceLevelThreshold": 0,
+                      "maxActiveContacts": 5,
+                      "maxTimeInQueue": 2,
+                      "defaultMusicInQueueMediaFileId": "defaultmusic_on_hold.wav",
+                      "timezone": "America/New_York",
+                      "active": true,
+                      "outdialCampaignEnabled": true,
+                      "monitoringPermitted": true,
+                      "parkingPermitted": true,
+                      "recordingPermitted": true,
+                      "recordingAllCallsPermitted": true,
+                      "pauseRecordingPermitted": true,
+                      "recordingPauseDuration": 2,
+                      "controlFlowScriptUrl": "https://flow-control.produs1.ciscoccservice.com/31f1c57f-4fa1-12bd-b5c5-6feb6abea062/royal-enfield",
+                      "ivrRequeueUrl": "https://www.youtube.com",
+                      "overflowNumber": "1245677",
+                      "vendorId": "AC123CSDR",
+                      "routingType": "SKILLS_BASED",
+                      "skillBasedRoutingType": "BEST_AVAILABLE_AGENT",
+                      "queueRoutingType": "TEAM_BASED",
+                      "queueSkillRequirements": [
+                        {
+                          "organizationId": "f53c4c54-46ca-43f6-ba05-08426a46e23d",
+                          "id": "93912f11-60d3-404b-bf14-5331890b1797",
+                          "version": 1,
+                          "skillId": "af9edfc5-0472-4549-9a83-2afdae0d4ba0",
+                          "skillName": "German Speaking",
+                          "skillType": "BOOLEAN",
+                          "condition": "IS_NOT",
+                          "skillValue": "Credit card SME"
+                        }
+                      ],
+                      "agents": [
+                        {
+                          "id": "16c93b45-f1e9-4a4f-bc47-957b9075a56f",
+                          "ciUserId": "660e125a-8230-47d7-ae98-047fb180e1ff"
+                        }
+                      ],
+                      "callDistributionGroups": [
+                        {
+                          "agentGroups": [
+                            {
+                              "teamId": "76cf3ddc-12df-49ef-88e1-c86226d8a645"
+                            }
+                          ],
+                          "order": 1,
+                          "duration": 0
+                        }
+                      ],
+                      "xspVersion": "xsp-24.0",
+                      "subscriptionId": "04ddedf6-6d6a-4aae-8a8a-71c9152e6478",
                       "assistantSkill": {
-                        "assistantSkillId": "26e2df70-0f77-41b8-8e8f-1d76e92c9639"
-                      }
+                        "assistantSkillId": "af9edsc5-0472-4549-9a83-2afdae0d4ba0"
+                      },
+                      "systemDefault": false,
+                      "manuallyAssignable": false,
+                      "agentsLastUpdatedByUserName": "string",
+                      "agentsLastUpdatedByUserEmailPrefix": "string",
+                      "agentsLastUpdatedTime": 0
                     },
-                    "itemIdentifier": 0,
                     "requestAction": "SAVE"
                   }
                 ]
@@ -10670,7 +10737,9 @@
         "tags": [
           "Contact Service Queue"
         ],
+        "summary": "Get specific By skill profile ID",
         "operationId": "getSkillBasedCSQsBySkillProfileIdPublic",
+        "description": "Retrieve an existing Contact Service Queue by skill profile ID in a given organization.",
         "parameters": [
           {
             "name": "orgid",
@@ -10762,6 +10831,8 @@
         "tags": [
           "Contact Service Queue"
         ],
+        "summary": "Delete References",
+        "description": "Delete References for existing Contact Service Queue in a given organization.",
         "operationId": "deleteReferences",
         "parameters": [
           {
@@ -10790,108 +10861,6 @@
               "*/*": {
                 "schema": {
                   "$ref": "#/components/schemas/Response"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "The request was invalid and cannot be served. An accompanying error message will explain further",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiErrorResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized Operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiErrorResponse"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Operation is forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiErrorResponse"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Similar entity is already present",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiErrorResponse"
-                }
-              }
-            }
-          },
-          "429": {
-            "description": "Too many requests have been sent in a given amount of time and the request has been rate limited",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiErrorResponse"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "An Unexpected Error Occurred",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiErrorResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/organization/{orgid}/contact-service-queue/fetch-manually-assignable-queues": {
-      "post": {
-        "tags": [
-          "Contact Service Queue"
-        ],
-        "operationId": "getManuallyAssignableCSQs",
-        "parameters": [
-          {
-            "name": "orgid",
-            "in": "path",
-            "description": "Organization ID to be used for this operation. The specified security token must have permission to interact with the organization.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba1"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ManuallyAssignableQueuesRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseEnvelopeMappedCSQDTO"
                 }
               }
             }
@@ -11096,7 +11065,7 @@
           {
             "name": "agentsUpdatedInfo",
             "in": "query",
-            "description": "If `true`,  It gives the user details who had last updated the agents list in an agent based queue.",
+            "description": "If `true`, returns the user details who has last updated the agents list in an agent based queue.",
             "schema": {
               "type": "boolean",
               "example": false,
@@ -11885,7 +11854,7 @@
         "tags": [
           "Contact Service Queue"
         ],
-        "summary": "List agent based Contact Service Queue(s)by user id",
+        "summary": "List agent based Contact Service Queue(s)by user ID",
         "description": "Retrieve a list of agent based Contact Service Queue(s) by user id in a given organization.",
         "operationId": "getCSQByUserIDForAgentBasedQueue",
         "parameters": [
@@ -12005,7 +11974,7 @@
         "tags": [
           "Contact Service Queue"
         ],
-        "summary": "List skill based Contact Service Queue(s)by user id",
+        "summary": "List skill based Contact Service Queue(s)by user ID",
         "description": "Retrieve a list of skill based Contact Service Queue(s) by user id in a given organization.",
         "operationId": "getSkillBasedQueuesByUserId",
         "parameters": [
@@ -12125,7 +12094,7 @@
         "tags": [
           "Contact Service Queue"
         ],
-        "summary": "List team based Contact Service Queue(s)by user id",
+        "summary": "List Team based Contact Service Queue(s)by user id",
         "description": "Retrieve a list of team based Contact Service Queue(s) by user id in a given organization.",
         "operationId": "getCSQByUserIDForTeamBasedQueue",
         "parameters": [
@@ -12245,7 +12214,7 @@
         "tags": [
           "Contact Service Queue"
         ],
-        "summary": "Get specific Contact Service Queue by ID",
+        "summary": "Get specific Contact Service Queue by Id",
         "description": "Retrieve an existing Contact Service Queue by ID in a given organization.",
         "operationId": "getConfig_20",
         "parameters": [
@@ -12272,7 +12241,7 @@
           {
             "name": "agentsUpdatedInfo",
             "in": "query",
-            "description": "If set to true, it gives the user details who had last updated the agents list in an agent based queue",
+            "description": "If `true`, returns the user details who has last updated the agents list in an agent based queue.",
             "schema": {
               "type": "boolean",
               "example": false,
@@ -12435,120 +12404,6 @@
           },
           "412": {
             "description": "Resource referred in other entity(s). Please get all the reference entities info by invoking Get incoming-references api.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiErrorResponse"
-                }
-              }
-            }
-          },
-          "429": {
-            "description": "Too many requests have been sent in a given amount of time and the request has been rate limited",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiErrorResponse"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "An Unexpected Error Occurred",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiErrorResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/organization/{orgid}/v2/contact-service-queue/{id}/reassign-agents": {
-      "post": {
-        "tags": [
-          "Contact Service Queue"
-        ],
-        "summary": "Add or remove agents/users to/from an agent based queue",
-        "description": "This API can be used by a contact center supervisor to add or remove agents to/from an agent based queue that they have access to by virtue of their user profile access rights. Additionally, the request payload should contain the user id(s) managed by the supervisor.",
-        "operationId": "reassignAgents",
-        "parameters": [
-          {
-            "name": "orgid",
-            "in": "path",
-            "description": "Organization ID to be used for this operation. The specified security token must have permission to interact with the organization.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba1"
-          },
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Resource ID of the Contact Service Queue.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "af9eecc5-0472-4549-9a83-2afdae0d4ba0"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ReassignAgentsRequestDTO"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "The request was invalid and cannot be served. An accompanying error message will explain further",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiErrorResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized Operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiErrorResponse"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Operation is forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiErrorResponse"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Similar entity is already present",
             "content": {
               "application/json": {
                 "schema": {
@@ -28062,7 +27917,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "Bulk partial update Users.",
+        "summary": "Bulk partial update Users",
         "description": "Update some or all properties for multiple users in bulk for a given organization.",
         "operationId": "patchAllConfig",
         "parameters": [
@@ -28087,13 +27942,41 @@
               "example": {
                 "items": [
                   {
+                    "itemIdentifier": 10,
                     "item": {
-                      "id": "26e2df70-0f77-41b8-8e8f-1d76e92c9638",
-                      "firstName": "John14",
-                      "lastName": "Wick14",
-                      "userLevelBurnoutInclusion": "INCLUDED"
+                      "organizationId": "f53c8b54-46ca-43f6-ba05-08426a46e23d",
+                      "id": "93912f11-6017-404b-bf14-5331890b1797",
+                      "version": 1,
+                      "firstName": "John",
+                      "lastName": "Wick",
+                      "email": "johnwick@company.com",
+                      "workPhone": "1234567890",
+                      "mobile": "1234567890",
+                      "ciUserId": "1dq21e23-1234-5578-9a83-2afdae0d4ba1",
+                      "broadCloudUserId": "1dq21e23-1234-5578-9a83-2afdae0d4ba1",
+                      "userProfileId": "1dq21e23-1234-5578-9a83-2afdae0d4ba1",
+                      "contactCenterEnabled": true,
+                      "timezone": "America/New_York",
+                      "xspVersion": "xsp-24.0",
+                      "subscriptionId": "04d0bdf6-6d6a-4aae-8a8a-71c9152e6478",
+                      "siteId": "8e6bb6da-2a78-4768-bef9-7e229f92af22",
+                      "teamIds": [
+                        "f53c8b54-46ca-43f6-ba05-08426a46e23d",
+                        "a53c8b54-46ca-43f6-ba05-08426a46e23f"
+                      ],
+                      "skillProfileId": "f53c8b54-46ca-43f6-ba05-08426a46e23d",
+                      "agentProfileId": "8e6bb6da-2a78-4768-bef9-7e229f92af22",
+                      "multimediaProfileId": "f53c8b54-46ca-43f6-ba05-08426a46e23d",
+                      "deafultDialledNumber": "1234567890",
+                      "externalIdentifier": "121212",
+                      "active": true,
+                      "imiUserCreated": false,
+                      "preferredSupervisorTeamId": "2f9eecc5-0472-4549-9a83-2afdae0d4ba1",
+                      "userLevelBurnoutInclusion": "INCLUDED",
+                      "userLevelAutoCSATInclusion": "INCLUDED",
+                      "userLevelWellnessBreakReminders": "DISABLED",
+                      "userLevelSummariesInclusion": "INCLUDED"
                     },
-                    "itemIdentifier": 0,
                     "requestAction": "SAVE"
                   }
                 ]
@@ -28295,7 +28178,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "Get specific User by CI User ID.",
+        "summary": "Get specific User by CI User ID",
         "description": "Retrieve an existing User using the CI ID  in a given organization.",
         "operationId": "getUserByCiUserId",
         "parameters": [
@@ -28404,7 +28287,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "Get the agents matching skill requirements criteria.",
+        "summary": "Get the agents matching skill requirements criteria",
         "description": "This API can be used to fetch the agents who match the provided skill requirements criteria. Maximum of 50 skill requirements criteria can be passed in the request.",
         "operationId": "getUsersBySkillRequirements",
         "parameters": [
@@ -28453,7 +28336,15 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/QueueSkillRequirementDTO"
+                "type": "object",
+                "properties": {
+                  "skillRequirements": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/QueueSkillRequirementDTO"
+                    }
+                  }
+                }
               },
               "example": {
                 "skillRequirements": [
@@ -28493,7 +28384,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/UserWithSkillDetailsDTO_UserWithSkillDetailsDTO"
+                        "$ref": "#/components/schemas/UserWithSkillDetailsDTO"
                       }
                     }
                   }
@@ -28509,7 +28400,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/UserWithSkillDetailsDTO_UserWithSkillDetailsDTO"
+                        "$ref": "#/components/schemas/UserWithSkillDetailsDTO"
                       }
                     }
                   }
@@ -28585,8 +28476,8 @@
         "tags": [
           "Users"
         ],
-        "summary": "Get specific User by ID",
-        "description": "Retrieve an existing User by list of IDs in a given organization.",
+        "summary": "Get specific Users by provided IDs",
+        "description": "Retrieve an existing User's first name, last name and email by list of IDs in a given organization.",
         "operationId": "getUserdataByIds",
         "parameters": [
           {
@@ -28634,34 +28525,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "meta": {
-                      "$ref": "#/components/schemas/MetaDataWithPagingInfo"
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/UserResponseDTO"
-                      }
-                    }
-                  }
+                  "$ref": "#/components/schemas/UserDetailsResponseEnvelopeDTO"
                 }
               },
               "application/hal+json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "meta": {
-                      "$ref": "#/components/schemas/MetaDataWithPagingInfo"
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/UserResponseDTO"
-                      }
-                    }
-                  }
+                  "$ref": "#/components/schemas/UserDetailsResponseEnvelopeDTO"
                 }
               }
             }
@@ -28734,7 +28603,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "List Users along with profile.",
+        "summary": "List Users along with profile",
         "description": "Retrieve a list of User(s) along with their UserProfiles in a given organization.",
         "operationId": "getAllUsersWithUserProfile",
         "parameters": [
@@ -28829,7 +28698,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "Get specific User along with profile by ID.",
+        "summary": "Get specific User along with profile by ID",
         "description": "Retrieve an existing User along with the corresponding UserProfile by ID in a given organization.",
         "operationId": "getUserWithUserProfile",
         "parameters": [
@@ -28951,6 +28820,15 @@
               "type": "string"
             },
             "example": "2f9eecc5-0472-4549"
+          },
+          {
+            "name": "includeCount",
+            "in": "query",
+            "description": "If `true`, the API response will include the count of each type of Contact Service Queues which are assigned to user.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
           },
           {
             "name": "includeSkillProfileAudit",
@@ -50599,7 +50477,7 @@
             "example": 1617536244000
           }
         },
-        "description": "Skill requirement for the queue"
+        "description": "Skill requirement for the queue."
       },
       "QueueAgentsDTO": {
         "required": [
@@ -50836,9 +50714,6 @@
             "items": {
               "type": "string"
             }
-          },
-          "manuallyAssignable": {
-            "type": "boolean"
           }
         }
       },
@@ -50912,14 +50787,17 @@
             "example": 1
           },
           "channelType": {
-            "type": "string"
+            "type": "string",
+            "example": "SOCIAL"
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "example": "DebitCard"
           },
           "skillScore": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "example": 2
           },
           "createdTime": {
             "type": "integer",
@@ -51005,17 +50883,6 @@
             "additionalProperties": {
               "type": "string"
             }
-          }
-        }
-      },
-      "ManuallyAssignableQueuesRequest": {
-        "type": "object",
-        "properties": {
-          "agentId": {
-            "type": "string"
-          },
-          "teamId": {
-            "type": "string"
           }
         }
       },
@@ -51153,25 +51020,6 @@
           }
         },
         "description": "Queue mapping summary per Assistant Skill."
-      },
-      "ReassignAgentsRequestDTO": {
-        "type": "object",
-        "properties": {
-          "add": {
-            "uniqueItems": true,
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "remove": {
-            "uniqueItems": true,
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        }
       },
       "DesktopLayoutDTO": {
         "required": [
@@ -56459,6 +56307,9 @@
               "EXCLUDED"
             ]
           },
+          "queuesCount": {
+            "$ref": "#/components/schemas/QueuesCountDTO"
+          },
           "skillProfileUpdatedBy": {
             "type": "string",
             "description": "The ID of the user who last modified the skill profile",
@@ -56768,6 +56619,25 @@
             }
           }
         }
+      },
+      "QueuesCountDTO": {
+        "type": "object",
+        "properties": {
+          "teamBased": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "skillBased": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "agentBased": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "description": "The count of each type of Contact Service Queues that the user is assigned to.\n",
+        "example": "{\n   \"teamBased\": 0\n   \"skillBased\": 0\n   \"agentBased\": 0\n}"
       },
       "BulkRequestDTOUserDTO": {
         "type": "object",
@@ -57298,6 +57168,9 @@
               "EXCLUDED"
             ]
           },
+          "queuesCount": {
+            "$ref": "#/components/schemas/QueuesCountDTO_UserResponseWithUserProfile"
+          },
           "skillProfileUpdatedBy": {
             "type": "string",
             "description": "The ID of the user who last modified the skill profile",
@@ -57705,7 +57578,26 @@
         },
         "description": "Specifies the module features(s) a user of this profile has access to. \n"
       },
-      "UserWithSkillDetailsDTO_UserWithSkillDetailsDTO": {
+      "QueuesCountDTO_UserResponseWithUserProfile": {
+        "type": "object",
+        "properties": {
+          "teamBased": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "skillBased": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "agentBased": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "description": "The count of each type of Contact Service Queues that the user is assigned to.\n",
+        "example": "{\n   \"teamBased\": 0\n   \"skillBased\": 0\n   \"agentBased\": 0\n}"
+      },
+      "UserWithSkillDetailsDTO": {
         "type": "object",
         "properties": {
           "organizationId": {
@@ -57713,7 +57605,7 @@
             "minLength": 32,
             "pattern": "^[0-9a-fA-F]{8}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{12}$",
             "type": "string",
-            "description": "ID of the contact center organization. It is required to define for the following operations - All bulk save operations",
+            "description": "ID of the contact center organization. It is required to define for the following operations - All bulk save operations.",
             "format": "uuid",
             "example": "f53c8b54-46ca-43f6-ba05-08426a46e23d"
           },
@@ -57769,15 +57661,95 @@
         "properties": {
           "userIds": {
             "type": "array",
+            "description": "List of valid user IDs.\nProvide this only when both `search` and `queueId` are not provided.\n",
             "items": {
-              "type": "string"
+              "type": "string",
+              "example": "a1b2c3d4-e5f6-7g8h-9i10-j11k12l13m14"
             }
           },
           "search": {
-            "type": "string"
+            "type": "string",
+            "description": "Text used to search for users (e.g., by firstName, lastName or email of the user).\nIf provided, `queueId` is **required**.\nCannot be used in combination with `userIds`.\n",
+            "example": "john"
           },
           "queueId": {
-            "type": "string"
+            "type": "string",
+            "description": "Agent Based Queue ID to filter users .\nRequired if `search` is provided.\nCannot be used with `userIds`.\n",
+            "example": "c0ffee12-3456-abcd-7890-deadbeef1234"
+          }
+        },
+        "description": "Get User Details by list of  user ids payload"
+      },
+      "UserDetailsResponseEnvelopeDTO": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "description": "Metadata of response with paging information. Includes orgId, page, pageSize, totalPages, totalRecords, and pagination links.",
+              "example": {
+                "orgid": "2f9eecc5-0472-4549-9a83-2afdae0d4ba1",
+                "page": 1,
+                "pageSize": 100,
+                "totalPages": 3,
+                "totalRecords": 300,
+                "links": {
+                  "next": "/organization/bde75a64-f4d5-4ffc-a239-feb607c17ef8/user/fetch-user-details-by-ids?page=2&pageSize=100",
+                  "last": "/organization/bde75a64-f4d5-4ffc-a239-feb607c17ef8/user/fetch-user-details-by-ids?page=2&pageSize=100",
+                  "prev": "/organization/bde75a64-f4d5-4ffc-a239-feb607c17ef8/user/fetch-user-details-by-ids?page=0&pageSize=100",
+                  "self": "/organization/bde75a64-f4d5-4ffc-a239-feb607c17ef8/user/fetch-user-details-by-ids?page=1&pageSize=100",
+                  "first": "/organization/bde75a64-f4d5-4ffc-a239-feb607c17ef8/user/fetch-user-details-by-ids?page=0&pageSize=100"
+                }
+              }
+            },
+            "description": "Metadata of response with paging information. Includes orgId, page, pageSize, totalPages, totalRecords, and pagination links.",
+            "example": {
+              "orgid": "2f9eecc5-0472-4549-9a83-2afdae0d4ba1",
+              "page": 1,
+              "pageSize": 100,
+              "totalPages": 3,
+              "totalRecords": 300,
+              "links": {
+                "next": "/organization/bde75a64-f4d5-4ffc-a239-feb607c17ef8/user/fetch-user-details-by-ids?page=2&pageSize=100",
+                "last": "/organization/bde75a64-f4d5-4ffc-a239-feb607c17ef8/user/fetch-user-details-by-ids?page=2&pageSize=100",
+                "prev": "/organization/bde75a64-f4d5-4ffc-a239-feb607c17ef8/user/fetch-user-details-by-ids?page=0&pageSize=100",
+                "self": "/organization/bde75a64-f4d5-4ffc-a239-feb607c17ef8/user/fetch-user-details-by-ids?page=1&pageSize=100",
+                "first": "/organization/bde75a64-f4d5-4ffc-a239-feb607c17ef8/user/fetch-user-details-by-ids?page=0&pageSize=100"
+              }
+            }
+          },
+          "data": {
+            "type": "array",
+            "description": "List of user details returned in the response",
+            "items": {
+              "$ref": "#/components/schemas/UserDetailsResponseDTO"
+            }
+          }
+        }
+      },
+      "UserDetailsResponseDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique ID of the user",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "firstName": {
+            "type": "string",
+            "description": "First name of the user",
+            "example": "John"
+          },
+          "lastName": {
+            "type": "string",
+            "description": "Last name of the user",
+            "example": "Doe"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email address of the user",
+            "example": "john.doe@example.com"
           }
         }
       },
@@ -57993,6 +57965,9 @@
               "INCLUDED",
               "EXCLUDED"
             ]
+          },
+          "queuesCount": {
+            "$ref": "#/components/schemas/QueuesCountDTO_UserResponseWithUserProfileGranularAccess"
           },
           "skillProfileUpdatedBy": {
             "type": "string",
@@ -58329,6 +58304,25 @@
             }
           }
         }
+      },
+      "QueuesCountDTO_UserResponseWithUserProfileGranularAccess": {
+        "type": "object",
+        "properties": {
+          "teamBased": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "skillBased": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "agentBased": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "description": "The count of each type of Contact Service Queues that the user is assigned to.\n",
+        "example": "{\n   \"teamBased\": 0\n   \"skillBased\": 0\n   \"agentBased\": 0\n}"
       },
       "WorkTypeDTO": {
         "required": [
