@@ -62838,7 +62838,7 @@
           },
           "recordCount": {
             "type": "integer",
-            "description": "Value to indicate the recordCount the Campaign Manager expects the dialer to be able to request. The dialer may request less than this value.",
+            "description": "Value to indicate the recordCount the Campaign Manager expects the dialer to be able to request, the maximum is 400. If the value is greater than 400 it will be set to the maximum when the request is processed.",
             "example": 50
           },
           "noAnswerRingLimit": {
