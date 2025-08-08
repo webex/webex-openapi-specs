@@ -34306,6 +34306,7 @@
         "operationId": "CreateTaskRoute",
         "parameters": [],
         "requestBody": {
+          "description": "Request body to create a task.",
           "content": {
             "application/json": {
               "schema": {
@@ -34317,7 +34318,7 @@
         },
         "responses": {
           "201": {
-            "description": "The new task was successfully created",
+            "description": "The new task was successfully requested for creation",
             "content": {
               "application/json": {
                 "schema": {
@@ -34356,7 +34357,10 @@
             "in": "query",
             "description": "Task channel type(s) permitted in response. Separate values with commas. Use lowercase. By default, there is no channelType filtering.",
             "required": false,
-            "example": "email,telephony",
+            "example": [
+              "email",
+              "telephony"
+            ],
             "schema": {
               "type": "array",
               "items": {
@@ -34439,7 +34443,7 @@
             }
           },
           "400": {
-            "description": "Validation Error",
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -34525,6 +34529,7 @@
           }
         ],
         "requestBody": {
+          "description": "Request body for patching a task.",
           "content": {
             "application/json": {
               "schema": {
@@ -34536,7 +34541,7 @@
         },
         "responses": {
           "202": {
-            "description": "The task was successfully updated"
+            "description": "The request is accepted for processing"
           },
           "400": {
             "description": "Bad Request"
@@ -34562,23 +34567,24 @@
           "Tasks"
         ],
         "summary": "Accept Task",
-        "description": "Access this Endpoint when the user has to accept either an Inbound or an outbound requests. The request can be a call, a chat or an email. Requires 'cjp:user' scope for authorization. For a list of possible response messages, see the [Call Control API Guide](/docs/contact-control-apis).",
+        "description": "Access this endpoint when the user has to accept either an inbound or an outbound requests. The request can be social, a chat or an email. Requires one of the following scopes 'cjp:user' or 'cloud-contact-center:pod_conv' for authorization. For a list of possible response messages, see the [Call Control API Guide](/docs/contact-control-apis).",
         "operationId": "acceptTaskRoute",
         "parameters": [
           {
             "name": "taskId",
             "in": "path",
-            "description": "The Unique ID represents the Task that the user is currently working on. It will be generated Automatically during the creation of a new Task",
+            "description": "The unique ID represents the task that the user is currently working on. It will be generated automatically during the creation of a new task.",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "UUID"
             },
             "example": "315fbb91-2288-427c-9588-ec764cd46ea4"
           }
         ],
         "responses": {
           "202": {
-            "description": "The task was accepted for processing."
+            "description": "The request is accepted for processing"
           },
           "401": {
             "description": "Unauthorized, Token is Invalid"
@@ -34601,23 +34607,24 @@
           "Tasks"
         ],
         "summary": "End Task",
-        "description": "Access this Endpoint when the user has to end either an Inbound or an outbound requests. The request can be a call, a chat or an email. Requires 'cjp:user' scope for authorization. For a list of possible response messages, see the [Call Control API Guide](/docs/contact-control-apis).",
+        "description": "Access this endpoint when the user has to end either an inbound or an outbound requests. Requires one of the following scopes 'cjp:user' or 'cloud-contact-center:pod_conv' for authorization. For a list of possible response messages, see the [Call Control API Guide](/docs/contact-control-apis).",
         "operationId": "endTaskRoute",
         "parameters": [
           {
             "name": "taskId",
             "in": "path",
-            "description": "The Unique ID represents the Task that the user is currently working on. It will be generated Automatically during the creation of a new Task",
+            "description": "The unique ID represents the task that the user is currently working on. It will be generated automatically during the creation of a new task.",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "UUID"
             },
             "example": "315fbb91-2288-427c-9588-ec764cd46ea4"
           }
         ],
         "responses": {
           "202": {
-            "description": "The task was cancelled."
+            "description": "The request is accepted for processing"
           },
           "401": {
             "description": "Unauthorized, Token is Invalid"
@@ -34626,10 +34633,10 @@
             "description": "Forbidden Request"
           },
           "500": {
-            "description": "Bad Request"
+            "description": "Internal Server Error"
           },
           "503": {
-            "description": "Path is not found"
+            "description": "Service Unavailable"
           }
         }
       }
@@ -34640,16 +34647,17 @@
           "Tasks"
         ],
         "summary": "Wrap Up Task",
-        "description": "Access this Endpoint when the user has to wrap up a call, a chat or an email after selecting the Wrap up reason. Requires 'cjp:user' scope for authorization. For a list of possible response messages, see the [Call Control API Guide](/docs/contact-control-apis).",
+        "description": "Access this endpoint when the user has to wrap up a call. Requires one of the following scopes 'cjp:user' or 'cloud-contact-center:pod_conv' for authorization. For a list of possible response messages, see the [Call Control API Guide](/docs/contact-control-apis).",
         "operationId": "agentWrapUpRoute",
         "parameters": [
           {
             "name": "taskId",
             "in": "path",
-            "description": "The Unique ID represents the Task that the user is currently working on. It will be generated Automatically during the creation of a new Task",
+            "description": "The unique ID represents the task that the user is currently working on. It will be generated automatically during the creation of a new task.",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "UUID"
             },
             "example": "315fbb91-2288-427c-9588-ec764cd46ea4"
           }
@@ -34661,11 +34669,15 @@
                 "$ref": "#/components/schemas/WrapUpResourceRequest"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "202": {
-            "description": "Wrap Up Task has been executed successfully"
+            "description": "The request is accepted for processing"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "401": {
             "description": "Unauthorized, Token is Invalid"
@@ -34674,10 +34686,10 @@
             "description": "Forbidden Request"
           },
           "500": {
-            "description": "Bad Request"
+            "description": "Internal Server Error"
           },
           "503": {
-            "description": "Path is not found"
+            "description": "Service Unavailable"
           }
         }
       }
@@ -34688,16 +34700,17 @@
           "Tasks"
         ],
         "summary": "Hold Task",
-        "description": "Access this Endpoint when the user has to hold a call. When an user is in consulting state, the task will be put on hold. It is not applicable for Chats and emails. Requires 'cjp:user' scope for authorization. For a list of possible response messages, see the [Call Control API Guide](/docs/contact-control-apis).",
+        "description": "Access this endpoint when the user has to hold a call. When an user is in consulting state, the task will be put on hold. It is not applicable for chats and emails. Requires one of the following scopes 'cjp:user','cloud-contact-center:pod_conv' for authorization. For a list of possible response messages, see the [Call Control API Guide](/docs/contact-control-apis).",
         "operationId": "agentHoldRoute",
         "parameters": [
           {
             "name": "taskId",
             "in": "path",
-            "description": "The Unique ID represents the Task that the user is currently working on. It will be generated Automatically during the creation of a new Task",
+            "description": "The unique ID represents the task that the user is currently working on. It will be generated automatically during the creation of a new task.",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "UUID"
             },
             "example": "315fbb91-2288-427c-9588-ec764cd46ea4"
           }
@@ -34709,11 +34722,15 @@
                 "$ref": "#/components/schemas/MediaResourceRequest"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "202": {
-            "description": "The task was put on hold for processing."
+            "description": "The request is accepted for processing"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "401": {
             "description": "Unauthorized, Token is Invalid"
@@ -34722,10 +34739,10 @@
             "description": "Forbidden Request"
           },
           "500": {
-            "description": "Bad Request"
+            "description": "Internal Server Error"
           },
           "503": {
-            "description": "Path is not found"
+            "description": "Service Unavailable"
           }
         }
       }
@@ -34736,16 +34753,17 @@
           "Tasks"
         ],
         "summary": "Resume Task",
-        "description": "Access this Endpoint when the user has to resume a call from hold. When an user is done consulting, the previously held interaction with the customer should be resumed. It is not applicable for Chats and emails. Requires 'cjp:user' scope for authorization. For a list of possible response messages, see the [Call Control API Guide](/docs/contact-control-apis).",
+        "description": "Access this endpoint when the user has to resume a call from hold. When an user is done consulting, the previously held interaction with the customer should be resumed. It is not applicable for chats and emails. Requires one of the following scopes 'cjp:user','cloud-contact-center:pod_conv' for authorization. For a list of possible response messages, see the [Call Control API Guide](/docs/contact-control-apis).",
         "operationId": "agentUnHoldRoute",
         "parameters": [
           {
             "name": "taskId",
             "in": "path",
-            "description": "The Unique ID represents the Task that the user is currently working on. It will be generated Automatically during the creation of a new Task",
+            "description": "The unique ID represents the task that the user is currently working on. It will be generated automatically during the creation of a new task.",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "UUID"
             },
             "example": "315fbb91-2288-427c-9588-ec764cd46ea4"
           }
@@ -34757,11 +34775,15 @@
                 "$ref": "#/components/schemas/MediaResourceRequest"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "202": {
-            "description": "The task has been resumed for processing."
+            "description": "The request is accepted for processing"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "401": {
             "description": "Unauthorized, Token is Invalid"
@@ -34770,10 +34792,10 @@
             "description": "Forbidden Request"
           },
           "500": {
-            "description": "Bad Request"
+            "description": "Internal Server Error"
           },
           "503": {
-            "description": "Path is not found"
+            "description": "Service Unavailable"
           }
         }
       }
@@ -34784,16 +34806,17 @@
           "Tasks"
         ],
         "summary": "Reject Task",
-        "description": "Access this Endpoint when the user has to reject a task.Once a task is rejected, the status of the user goes to idle from available. Requires 'cjp:user' scope for authorization. For a list of possible response messages, see the [Call Control API Guide](/docs/contact-control-apis).",
-        "operationId": "rejectContactRoute",
+        "description": "Access this endpoint when the user has to reject a task. Once a task is rejected, the status of the user goes to idle from available. Requires one of the following scopes 'cjp:user' or 'cloud-contact-center:pod_conv' for authorization. For a list of possible response messages, see the [Call Control API Guide](/docs/contact-control-apis).",
+        "operationId": "rejectTaskRoute",
         "parameters": [
           {
             "name": "taskId",
             "in": "path",
-            "description": "The Unique ID represents the Task that the user is currently working on. It will be generated Automatically during the creation of a new Task",
+            "description": "The unique ID represents the task that the user is currently working on. It will be generated automatically during the creation of a new task.",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "UUID"
             },
             "example": "315fbb91-2288-427c-9588-ec764cd46ea4"
           }
@@ -34805,11 +34828,15 @@
                 "$ref": "#/components/schemas/MediaResourceRequest"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "202": {
-            "description": "The task has been rejected for processing."
+            "description": "The request is accepted for processing"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "401": {
             "description": "Unauthorized, Token is Invalid"
@@ -34818,10 +34845,10 @@
             "description": "Forbidden Request"
           },
           "500": {
-            "description": "Bad Request"
+            "description": "Internal Server Error"
           },
           "503": {
-            "description": "Path is not found"
+            "description": "Service Unavailable"
           }
         }
       }
@@ -34832,23 +34859,24 @@
           "Tasks"
         ],
         "summary": "Pause Recording Task",
-        "description": "When configured by the administrator, telephony tasks are often being recorded for various reasons. When an user is handling sensitive customer information, he/she might want to pause the recording and later on resume recording. For a list of possible response messages, see the [Call Control API Guide](/docs/contact-control-apis).",
+        "description": "When configured by the administrator, telephony tasks are often being recorded for various reasons. When an user is handling sensitive customer information, he/she might want to pause the recording and later on resume recording. For a list of possible response messages, see the [Call Control API Guide](/docs/contact-control-apis). Requires one of the following scopes 'cjp:user' or 'cloud-contact-center:pod_conv' for authorization.",
         "operationId": "pauseRecordingRoute",
         "parameters": [
           {
             "name": "taskId",
             "in": "path",
-            "description": "The Unique ID represents the Task that the user is currently working on. It will be generated Automatically during the creation of a new Task",
+            "description": "The unique ID represents the task that the user is currently working on. It will be generated automatically during the creation of a new task.",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "UUID"
             },
             "example": "315fbb91-2288-427c-9588-ec764cd46ea4"
           }
         ],
         "responses": {
           "202": {
-            "description": "The recording has been paused"
+            "description": "The request is accepted for processing"
           },
           "401": {
             "description": "Unauthorized, Token is Invalid"
@@ -34857,10 +34885,10 @@
             "description": "Forbidden Request"
           },
           "500": {
-            "description": "Bad Request"
+            "description": "Internal Server Error"
           },
           "503": {
-            "description": "Path is not found"
+            "description": "Service Unavailable"
           }
         }
       }
@@ -34871,16 +34899,17 @@
           "Tasks"
         ],
         "summary": "Resume Recording Task",
-        "description": "When configured by the administrator, telephony tasks are often being recorded for various reasons. When an user is handling sensitive customer information, he/she might resume the recording after the pause. For a list of possible response messages, see the [Call Control API Guide](/docs/contact-control-apis).",
+        "description": "When configured by the administrator, telephony tasks are often being recorded for various reasons. When an user is handling sensitive customer information, he/she might resume the recording after the pause. For a list of possible response messages, see the [Call Control API Guide](/docs/contact-control-apis). Requires one of the following scopes 'cjp:user' or 'cloud-contact-center:pod_conv' for authorization.",
         "operationId": "resumeRecordingRoute",
         "parameters": [
           {
             "name": "taskId",
             "in": "path",
-            "description": "The Unique ID represents the Task that the user is currently working on. It will be generated Automatically during the creation of a new Task",
+            "description": "The unique ID represents the task that the user is currently working on. It will be generated automatically during the creation of a new task.",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "UUID"
             },
             "example": "315fbb91-2288-427c-9588-ec764cd46ea4"
           }
@@ -34896,7 +34925,10 @@
         },
         "responses": {
           "202": {
-            "description": "The recording has been paused"
+            "description": "The request is accepted for processing"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "401": {
             "description": "Unauthorized, Token is Invalid"
@@ -34905,10 +34937,10 @@
             "description": "Forbidden Request"
           },
           "500": {
-            "description": "Bad Request"
+            "description": "Internal Server Error"
           },
           "503": {
-            "description": "Path is not found"
+            "description": "Service Unavailable"
           }
         }
       }
@@ -34919,16 +34951,17 @@
           "Tasks"
         ],
         "summary": "Transfer Task",
-        "description": "Access this Endpoint when the user has to transfer a call or a chat to another user.Requires 'cjp:user' scope for authorization. For a list of possible response messages, see the [Call Control API Guide](/docs/contact-control-apis).",
+        "description": "Access this endpoint when the user has to transfer a call to another user. Requires one of the following scopes 'cjp:user' or 'cloud-contact-center:pod_conv' scope for authorization. For a list of possible response messages, see the [Call Control API Guide](/docs/contact-control-apis).",
         "operationId": "transferTaskRoute",
         "parameters": [
           {
             "name": "taskId",
             "in": "path",
-            "description": "The Unique ID represents the Task that the user is currently working on. It will be generated Automatically during the creation of a new Task",
+            "description": "The unique ID represents the task that the user is currently working on. It will be generated automatically during the creation of a new task.",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "UUID"
             },
             "example": "315fbb91-2288-427c-9588-ec764cd46ea4"
           }
@@ -34940,11 +34973,15 @@
                 "$ref": "#/components/schemas/TransferResourceRequest"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "202": {
-            "description": "The task is transferred for processing"
+            "description": "The request is accepted for processing"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "401": {
             "description": "Unauthorized, Token is Invalid"
@@ -34953,10 +34990,10 @@
             "description": "Forbidden Request"
           },
           "500": {
-            "description": "Bad Request"
+            "description": "Internal Server Error"
           },
           "503": {
-            "description": "Path is not found"
+            "description": "Service Unavailable"
           }
         }
       }
@@ -34967,16 +35004,17 @@
           "Tasks"
         ],
         "summary": "Consult Task",
-        "description": "Access this Endpoint when the user has to consult a call or a chat to another user.Requires 'cjp:user' scope for authorization. For a list of possible response messages, see the [Call Control API Guide](/docs/contact-control-apis).",
+        "description": "Access this endpoint when the user has to consult a call to another user. Requires one of the following scopes 'cjp:user' or 'cloud-contact-center:pod_conv' for authorization. For a list of possible response messages, see the [Call Control API Guide](/docs/contact-control-apis).",
         "operationId": "consultRoute",
         "parameters": [
           {
             "name": "taskId",
             "in": "path",
-            "description": "The Unique ID represents the Task that the user is currently working on. It will be generated Automatically during the creation of a new Task",
+            "description": "The unique ID represents the task that the user is currently working on. It will be generated automatically during the creation of a new task.",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "UUID"
             },
             "example": "315fbb91-2288-427c-9588-ec764cd46ea4"
           }
@@ -34988,11 +35026,15 @@
                 "$ref": "#/components/schemas/ConsultResourceRequest"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "202": {
-            "description": "The task is accepted for processing"
+            "description": "The request is accepted for processing"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "401": {
             "description": "Unauthorized, Token is Invalid"
@@ -35001,10 +35043,10 @@
             "description": "Forbidden Request"
           },
           "500": {
-            "description": "Bad Request"
+            "description": "Internal Server Error"
           },
           "503": {
-            "description": "Path is not found"
+            "description": "Service Unavailable"
           }
         }
       }
@@ -35015,16 +35057,17 @@
           "Tasks"
         ],
         "summary": "Consult Conference Task",
-        "description": "Access this Endpoint when the user has to initiate a conference with the consulting user. Requires 'cjp:user' scope for authorization. For a list of possible response messages, see the [Call Control API Guide](/docs/contact-control-apis).",
+        "description": "Access this endpoint when the user has to initiate a conference with the consulting user. Requires one of the following scopes 'cjp:user' or 'cloud-contact-center:pod_conv' for authorization. For a list of possible response messages, see the [Call Control API Guide](/docs/contact-control-apis).",
         "operationId": "consultConferenceRoute",
         "parameters": [
           {
             "name": "taskId",
             "in": "path",
-            "description": "The Unique ID represents the Task that the user is currently working on. It will be generated Automatically during the creation of a new Task",
+            "description": "The unique ID represents the task that the user is currently working on. It will be generated automatically during the creation of a new task.",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "UUID"
             },
             "example": "315fbb91-2288-427c-9588-ec764cd46ea4"
           }
@@ -35036,11 +35079,15 @@
                 "$ref": "#/components/schemas/ConferenceResourceRequest"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "202": {
-            "description": "The task is accepted for processing"
+            "description": "The request is accepted for processing"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "401": {
             "description": "Unauthorized, Token is Invalid"
@@ -35049,10 +35096,10 @@
             "description": "Forbidden Request"
           },
           "500": {
-            "description": "Bad Request"
+            "description": "Internal Server Error"
           },
           "503": {
-            "description": "Path is not found"
+            "description": "Service Unavailable"
           }
         }
       }
@@ -35063,16 +35110,17 @@
           "Tasks"
         ],
         "summary": "Consult Transfer Task",
-        "description": "Access this Endpoint when the user has to transfer a call to the consulting user. Requires 'cjp:user' scope for authorization. For a list of possible response messages, see the [Call Control API Guide](/docs/contact-control-apis).",
+        "description": "Access this endpoint when the user has to transfer a call to the consulting user. Requires one of the following scopes 'cjp:user' or 'cloud-contact-center:pod_conv' for authorization. For a list of possible response messages, see the [Call Control API Guide](/docs/contact-control-apis).",
         "operationId": "consultTransferRoute",
         "parameters": [
           {
             "name": "taskId",
             "in": "path",
-            "description": "The Unique ID represents the Task that the user is currently working on. It will be generated Automatically during the creation of a new Task",
+            "description": "The unique ID represents the task that the user is currently working on. It will be generated automatically during the creation of a new task.",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "UUID"
             },
             "example": "315fbb91-2288-427c-9588-ec764cd46ea4"
           }
@@ -35081,14 +35129,18 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TransferResourceRequest"
+                "$ref": "#/components/schemas/ConsultTransferResourceRequest"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "202": {
-            "description": "The task is accepted and transferred for processing"
+            "description": "The request is accepted for processing"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "401": {
             "description": "Unauthorized, Token is Invalid"
@@ -35097,10 +35149,10 @@
             "description": "Forbidden Request"
           },
           "500": {
-            "description": "Bad Request"
+            "description": "Internal Server Error"
           },
           "503": {
-            "description": "Path is not found"
+            "description": "Service Unavailable"
           }
         }
       }
@@ -35111,23 +35163,24 @@
           "Tasks"
         ],
         "summary": "Consult Accept Task",
-        "description": "Access this Endpoint when the user has to accept a call to the consulting user. Requires 'cjp:user' scope for authorization. For a list of possible response messages, see the [Call Control API Guide](/docs/contact-control-apis).",
+        "description": "Access this endpoint when the user has to accept a call to the consulting user. Requires one of the following scopes 'cjp:user' or 'cloud-contact-center:pod_conv' for authorization. For a list of possible response messages, see the [Call Control API Guide](/docs/contact-control-apis).",
         "operationId": "acceptConsultRoute",
         "parameters": [
           {
             "name": "taskId",
             "in": "path",
-            "description": "The Unique ID represents the Task that the user is currently working on. It will be generated Automatically during the creation of a new Task",
+            "description": "The unique ID represents the task that the user is currently working on. It will be generated automatically during the creation of a new task.",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "UUID"
             },
             "example": "315fbb91-2288-427c-9588-ec764cd46ea4"
           }
         ],
         "responses": {
           "202": {
-            "description": "The task is accepted for processing"
+            "description": "The request is accepted for processing"
           },
           "401": {
             "description": "Unauthorized, Token is Invalid"
@@ -35136,10 +35189,10 @@
             "description": "Forbidden Request"
           },
           "500": {
-            "description": "Bad Request"
+            "description": "Internal Server Error"
           },
           "503": {
-            "description": "Path is not found"
+            "description": "Service Unavailable"
           }
         }
       }
@@ -35167,7 +35220,7 @@
         ],
         "responses": {
           "202": {
-            "description": "The task is accepted for processing"
+            "description": "The request is accepted for processing"
           },
           "401": {
             "description": "Unauthorized"
@@ -35190,16 +35243,17 @@
           "Tasks"
         ],
         "summary": "Consult End Task",
-        "description": "Access this Endpoint when the user has to end a call with the consulting user. Requires 'cjp:user' scope for authorization. For a list of possible response messages, see the [Call Control API Guide](/docs/contact-control-apis).",
+        "description": "Access this endpoint when the user has to end a call with the consulting user. Requires one of the following scopes 'cjp:user' or 'cloud-contact-center:pod_conv' for authorization. For a list of possible response messages, see the [Call Control API Guide](/docs/contact-control-apis).",
         "operationId": "endConsultRoute",
         "parameters": [
           {
             "name": "taskId",
             "in": "path",
-            "description": "The Unique ID represents the Task that the user is currently working on. It will be generated Automatically during the creation of a new Task",
+            "description": "The unique ID represents the task that the user is currently working on. It will be generated automatically during the creation of a new task.",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "UUID"
             },
             "example": "315fbb91-2288-427c-9588-ec764cd46ea4"
           }
@@ -35211,11 +35265,15 @@
                 "$ref": "#/components/schemas/EndConsultRequest"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "202": {
-            "description": "The task is accepted and transferred for processing"
+            "description": "The request is accepted for processing"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "401": {
             "description": "Unauthorized, Token is Invalid"
@@ -35224,10 +35282,10 @@
             "description": "Forbidden Request"
           },
           "500": {
-            "description": "Bad Request"
+            "description": "Internal Server Error"
           },
           "503": {
-            "description": "Path is not found"
+            "description": "Service Unavailable"
           }
         }
       }
@@ -35255,7 +35313,7 @@
         ],
         "responses": {
           "202": {
-            "description": "The task is accepted for processing"
+            "description": "The request is accepted for processing"
           },
           "401": {
             "description": "Unauthorized, Token is Invalid"
@@ -35309,10 +35367,10 @@
         ],
         "responses": {
           "202": {
-            "description": "The request to accept preview task is accepted."
+            "description": "The request is accepted for processing"
           },
           "400": {
-            "description": "Incorrect fields in request"
+            "description": "Bad Request"
           },
           "401": {
             "description": "Invalid or absent authorization header"
@@ -35363,10 +35421,10 @@
         ],
         "responses": {
           "202": {
-            "description": "The request to skip preview task accepted."
+            "description": "The request is accepted for processing"
           },
           "400": {
-            "description": "Incorrect fields in request"
+            "description": "Bad Request"
           },
           "401": {
             "description": "Invalid or absent authorization header"
@@ -35417,10 +35475,10 @@
         ],
         "responses": {
           "202": {
-            "description": "The remove preview task request is accepted."
+            "description": "The request is accepted for processing"
           },
           "400": {
-            "description": "Incorrect fields in request"
+            "description": "Bad Request"
           },
           "401": {
             "description": "Invalid or absent authorization header"
@@ -47966,6 +48024,7 @@
         }
       },
       "ApiErrorResponse": {
+        "description": "Response body for an API error.",
         "type": "object",
         "properties": {
           "trackingId": {
@@ -47974,11 +48033,13 @@
             "example": "c1a4fcef-aee2-4dea-8977-29f594760552"
           },
           "error": {
+            "description": "An object containing details about the error.",
             "$ref": "#/components/schemas/ErrorDetails"
           }
         }
       },
       "ErrorDetails": {
+        "description": "Details of an error.",
         "type": "object",
         "properties": {
           "key": {
@@ -47988,6 +48049,7 @@
           },
           "message": {
             "type": "array",
+            "description": "A message providing details about the error.",
             "items": {
               "$ref": "#/components/schemas/OperationError"
             }
@@ -47995,6 +48057,7 @@
         }
       },
       "OperationError": {
+        "description": "An error message providing details about the operation failure.",
         "type": "object",
         "properties": {
           "description": {
@@ -60263,6 +60326,7 @@
         ]
       },
       "CreateTaskRequest": {
+        "description": "Request body for creating a task.",
         "required": [
           "destination",
           "entryPointId",
@@ -60299,7 +60363,7 @@
           },
           "origin": {
             "type": "string",
-            "description": "The contact center number that will be used while making a call to the customer. This field is mandatory for ```EXECUTE_FLOW``` and ```OUTDIAL``` type while it is optional for ```CALLBACK```. If not provided for ```CALLBACK``` type, default out-dial ANI configuration will be used, maximum length 36 characters.",
+            "description": "The contact center number, which is an ANI Outdial number, that will be used while making a call to the customer. This field is mandatory for ```EXECUTE_FLOW``` and ```OUTDIAL``` type while it is optional for ```CALLBACK```. If not provided for ```CALLBACK``` type, default out-dial ANI configuration will be used, maximum length 36 characters.",
             "example": "2147751364"
           },
           "callback": {
@@ -60317,6 +60381,7 @@
         }
       },
       "CallbackDetails": {
+        "description": "Details for a callback task.",
         "type": "object",
         "required": [
           "callbackOrigin",
@@ -60336,6 +60401,7 @@
         }
       },
       "CreateTaskResponse": {
+        "description": "Response body after successfully requesting a task creation.",
         "type": "object",
         "required": [
           "orgId",
@@ -60344,6 +60410,7 @@
         "properties": {
           "meta": {
             "type": "object",
+            "description": "Response metadata.",
             "properties": {
               "orgId": {
                 "type": "string",
@@ -60355,6 +60422,7 @@
           },
           "data": {
             "type": "object",
+            "description": "Response data.",
             "properties": {
               "id": {
                 "type": "string",
@@ -60367,6 +60435,7 @@
         }
       },
       "PatchTaskRequest": {
+        "description": "Request body for patching a task.",
         "required": [
           "attributes"
         ],
@@ -60382,27 +60451,30 @@
         }
       },
       "WrapUpResourceRequest": {
+        "description": "Request body for wrapping up a task.",
         "properties": {
           "auxCodeId": {
-            "description": "Auxiliary Codes are status codes which an agent can select in Webex Contact Center Agent Desktop. They are of two types: Idle Codes and Wrap-Up codes, and every agent profile must have one of each for the agent to use. Idle Codes are used to explain an agent's unavailability to take customer contacts, such as during a lunch break or a meeting. Wrap-up codes indicate the result of customer contacts, such as successful resolution or escalation of the contact. Creating and managing Auxiliary Codes requires an administrator role and the appropriate cjp:config_write or cjp:config_read scopes.",
+            "description": "Auxiliary codes are status codes which an agent can select in Webex Contact Center Agent Desktop. They are of two types: ```Idle``` and ```Wrap-Up``` codes, and every agent profile must have one of each for the agent to use. Idle codes are used to explain an agent's unavailability to take customer contacts, such as during a lunch break or a meeting. Wrap-up codes indicate the result of customer contacts, such as successful resolution or escalation of the contact. Creating and managing auxiliary codes requires an administrator role and the appropriate cjp:config_write or cjp:config_read scopes, maximum length 36 characters.",
             "type": "string",
             "example": "AXUH3oN12eV-WekpnDpl"
           },
           "wrapUpReason": {
-            "description": "Every Wrap Up Reason will have an unique Auxillary code. Use this field to specify the reason for Wrapping up the call",
+            "description": "Every wrap up reason will have an unique auxillary code. Use this field to specify the reason for wrapping up the call, maximum length 128 characters.",
             "type": "string",
-            "example": "Specify the reason E.g.Sales,Marketing etc"
+            "example": "Sales"
           }
         },
         "required": [
           "wrapUpReason",
           "auxCodeId"
-        ]
+        ],
+        "type": "object"
       },
       "MediaResourceRequest": {
+        "description": "Request body for media resource.",
         "properties": {
           "mediaResourceId": {
-            "description": "It is an identifier of a media resource.",
+            "description": "It is an identifier of a media resource, maximum length 36 characters",
             "type": "string",
             "example": "315fbb91-2288-427c-9588-ec764cd46ea4"
           }
@@ -60413,25 +60485,31 @@
         "type": "object"
       },
       "ResumeRecordingResourceRequest": {
+        "description": "Request body for resuming a recording.",
         "properties": {
           "autoResumed": {
-            "description": "The setting to mention if the recording has to resume automatically",
+            "description": "The setting to mention if the recording has to resume automatically.",
             "type": "boolean",
-            "example": "true"
+            "example": true
           }
-        }
+        },
+        "required": [
+          "autoResumed"
+        ],
+        "type": "object"
       },
       "TransferResourceRequest": {
+        "description": "Request body for transferring a task.",
         "properties": {
           "to": {
-            "description": "The Destination ID to transfer",
+            "description": "The user destination ID to transfer, maximum length 43 characters.",
             "type": "string",
             "example": "315fbb91-2288-427c-9588-ec764cd46ea4"
           },
           "destinationType": {
-            "description": "The user can transfer to another user in the team, queue, dial number or entrypoint dial number",
+            "description": "The user can transfer to another user in the team(```agent```), queue(```queue```), dial number(```dialNumber```).",
             "type": "string",
-            "example": "agent/dialNumber/entrypointDialNumber"
+            "example": "dialNumber"
           }
         },
         "required": [
@@ -60441,16 +60519,22 @@
         "type": "object"
       },
       "ConsultResourceRequest": {
+        "description": "Request body for a consult.",
         "properties": {
           "to": {
-            "description": "The Destination ID to consult",
+            "description": "The destination ID to consult, maximum length 36 characters.",
             "type": "string",
             "example": "315fbb91-2288-427c-9588-ec764cd46ea4"
           },
           "destinationType": {
-            "description": "The user can consult to another user in the team, queue or dial number",
+            "description": "The user can consult to another user in the team(```agent```), queue(```queue```), entry point(```entryPoint```) or dial number(```dialNumber```).\n When consulting an Entry Point (EP) that is associated with multiple Directory Numbers (DNs), the consult typically goes to one of the associated DNs.",
             "type": "string",
-            "example": "agent/dialNumber/entrypointDialNumber"
+            "example": "dialNumber"
+          },
+          "holdParticipants": {
+            "description": "This allows the caller to specify their preference for whether the main call should be placed on hold or not during consult.",
+            "type": "boolean",
+            "example": true
           }
         },
         "required": [
@@ -60460,21 +60544,23 @@
         "type": "object"
       },
       "ConferenceResourceRequest": {
+        "description": "Request body for a conference.",
         "properties": {
           "agentId": {
-            "description": "The unique Id of the user logged in as an agent",
+            "description": "The unique Id of the user logged in as an agent.",
             "type": "string",
+            "format": "UUID",
             "example": "315fbb91-2288-427c-9588-ec764cd46ea4"
           },
           "to": {
-            "description": "The Destination ID to consult",
+            "description": "The destination ID to consult, maximum length 36 characters.",
             "type": "string",
             "example": "315fbb91-2288-427c-9588-ec764cd46ea4"
           },
           "destinationType": {
-            "description": "The user can consult to another user in the team, queue or dial number",
+            "description": "The user can consult to another user in the team(```agent```), dial number(```dialNumber```), entry point(```entryPoint```).",
             "type": "string",
-            "example": "agent/dialNumber/entrypointDialNumber"
+            "example": "agent"
           }
         },
         "required": [
@@ -60483,6 +60569,7 @@
         "type": "object"
       },
       "ConsultTransferResourceRequest": {
+        "description": "Request body for a consult transfer.",
         "properties": {
           "to": {
             "description": "The consulted user destination ID to transfer, maximum length 36 characters.",
@@ -60502,15 +60589,18 @@
         "type": "object"
       },
       "EndConsultRequest": {
+        "description": "Request body for ending a consult.",
         "properties": {
           "queueId": {
-            "description": "The unique ID of a particular queue",
+            "description": "The unique ID of a particular queue, maximum length 36 characters.",
             "type": "string",
             "example": "315fbb91-2288-427c-9588-ec764cd46ea4"
           }
-        }
+        },
+        "type": "object"
       },
       "TaskApiResponse": {
+        "description": "API response for a task.",
         "required": [
           "data",
           "meta"
@@ -60518,6 +60608,7 @@
         "type": "object",
         "properties": {
           "meta": {
+            "description": "Response metadata.",
             "$ref": "#/components/schemas/Meta"
           },
           "data": {
@@ -60639,9 +60730,11 @@
             "description": "Name of the agent last assigned to this task.",
             "example": "Joseph Lambert"
           }
-        }
+        },
+        "description": "The owner of the task."
       },
       "TaskQueue": {
+        "description": "The queue where the task belongs.",
         "required": [
           "id",
           "name"
