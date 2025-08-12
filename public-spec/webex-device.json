@@ -100,7 +100,7 @@
           }
         },
         "summary": "Get Device Members",
-        "operationId": "Get Device Members",
+        "operationId": "getDeviceMembers",
         "description": "Get the list of all the members of the device including primary and secondary users.\n\nA device member can be either a person or a workspace. An admin can access the list of member details, modify member details and\nsearch for available members on a device.\n\nRetrieving this list requires a full or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
         "tags": [
           "Device Call Settings"
@@ -181,7 +181,7 @@
           }
         },
         "summary": "Update Members on the device",
-        "operationId": "Update Members on the device",
+        "operationId": "updateMembersOnDevice",
         "description": "Modify member details on the device.\n\nA device member can be either a person, virtual line or a workspace. An admin can access the list of member details, modify member details and\nsearch for available members on a device.\n\nModifying members on the device requires a full administrator auth token with a scope of `spark-admin:telephony_config_write`.",
         "tags": [
           "Device Call Settings"
@@ -327,7 +327,7 @@
           }
         },
         "summary": "Search Members",
-        "operationId": "Search Members",
+        "operationId": "searchMembers",
         "description": "Search members that can be assigned to the device.\n\nA device member can be either a person or a workspace. A admin can access the list of member details, modify member details and\nsearch for available members on a device.\n\nThis requires a full or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
         "tags": [
           "Device Call Settings"
@@ -356,7 +356,7 @@
             "name": "start",
             "in": "query",
             "description": "Specifies the offset from the first result that you want to fetch.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -365,7 +365,7 @@
             "name": "max",
             "in": "query",
             "description": "Specifies the maximum number of records that you want to fetch.",
-            "example": "100",
+            "example": 100,
             "schema": {
               "type": "number",
               "default": 2000
@@ -488,7 +488,7 @@
           }
         },
         "summary": "Apply Changes for a specific device",
-        "operationId": "Apply Changes for a specific device",
+        "operationId": "applyChangesForASpecificDevice",
         "description": "Issues request to the device to download and apply changes to the configuration.\n\nApplying changes for a specific device requires a full administrator auth token with a scope of `spark-admin:telephony_config_write`.",
         "tags": [
           "Device Call Settings"
@@ -565,6 +565,7 @@
                       },
                       "backlightTimer": "ONE_MIN",
                       "background": {
+                        "customUrl": "",
                         "image": "WEBEX_DARK_BLUE"
                       },
                       "displayNameFormat": "PERSON_FIRST_THEN_LAST_NAME",
@@ -714,7 +715,8 @@
                       "backlightTimer68XX78XX": "THIRTY_SEC",
                       "allowMonitorLinesEnabled": false,
                       "voiceFeedbackAccessibilityEnabled": false,
-                      "iceEnabled": true
+                      "iceEnabled": true,
+                      "cfExpandedSoftKey": "ONLY_THE_CALL_FORWARD_ALL"
                     },
                     "wifi": {
                       "audioCodecPriority": {
@@ -784,7 +786,7 @@
           }
         },
         "summary": "Get Device Settings",
-        "operationId": "Get Device Settings",
+        "operationId": "getDeviceSettings",
         "description": "Get override settings for a device.\n\nDevice settings lists all the applicable settings for MPP, ATA and Wifi devices at the device level. An admin can also modify the settings. DECT devices do not support settings at the device level.\n\nThis requires a full or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
         "tags": [
           "Device Call Settings"
@@ -875,7 +877,7 @@
           }
         },
         "summary": "Update device settings",
-        "operationId": "Update device settings",
+        "operationId": "updateDeviceSettings",
         "description": "Modify override settings for a device.\n\nDevice settings list all the applicable settings for an MPP and an ATA devices at the device level. Admins can also modify the settings. NOTE: DECT devices do not support settings at the device level.\n\nUpdating settings on the device requires a full administrator auth token with a scope of `spark-admin:telephony_config_write`.",
         "tags": [
           "Device Call Settings"
@@ -925,10 +927,10 @@
                     },
                     "backlightTimerOldModel": "THIRTY_SECONDS",
                     "background": {
-                      "customUrl": null,
+                      "customUrl": "",
                       "image": "WEBEX_DARK_BLUE"
                     },
-                    "displayNameFormat": "USER_FIRST_THEN_LAST_NAME",
+                    "displayNameFormat": "PERSON_FIRST_THEN_LAST_NAME",
                     "cdpEnabled": false,
                     "defaultLoggingLevel": "DEBUGGING",
                     "dndServicesEnabled": true,
@@ -938,7 +940,7 @@
                     },
                     "shortInterdigitTimer": 14,
                     "longInterdigitTimer": 16,
-                    "lineKeyLabelFormat": "USER_EXTENSION",
+                    "lineKeyLabelFormat": "PERSON_EXTENSION",
                     "lineKeyLEDPattern": "DEFAULT",
                     "lldpEnabled": false,
                     "mppUserWebAccessEnabled": true,
@@ -1076,7 +1078,8 @@
                     "backlightTimer68XX78XX": "THIRTY_SEC",
                     "allowMonitorLinesEnabled": false,
                     "voiceFeedbackAccessibilityEnabled": false,
-                    "iceEnabled": true
+                    "iceEnabled": true,
+                    "cfExpandedSoftKey": "ONLY_THE_CALL_FORWARD_ALL"
                   },
                   "wifi": {
                     "audioCodecPriority": {
@@ -1153,6 +1156,7 @@
                       },
                       "backlightTimer": "ONE_M",
                       "background": {
+                        "customUrl": "",
                         "image": "WEBEX_DARK_BLUE"
                       },
                       "displayNameFormat": "PERSON_FIRST_THEN_LAST_NAME",
@@ -1302,7 +1306,8 @@
                       "backlightTimer68XX78XX": "THIRTY_SEC",
                       "allowMonitorLinesEnabled": false,
                       "voiceFeedbackAccessibilityEnabled": false,
-                      "iceEnabled": true
+                      "iceEnabled": true,
+                      "cfExpandedSoftKey": "ONLY_THE_CALL_FORWARD_ALL"
                     },
                     "wifi": {
                       "audioCodecPriority": {
@@ -1372,7 +1377,7 @@
           }
         },
         "summary": "Get Location Device Settings",
-        "operationId": "Get Location Device Settings",
+        "operationId": "getLocationDeviceSettings",
         "description": "Get device override settings for a location.\n\nThis requires a full or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
         "tags": [
           "Device Call Settings"
@@ -1430,7 +1435,7 @@
                     "your tag",
                     "device tag"
                   ],
-                  "upgradeChannelEnabled": "true"
+                  "upgradeChannelEnabled": true
                 }
               }
             }
@@ -1482,7 +1487,7 @@
           }
         },
         "summary": "Get Webex Calling Device Details",
-        "operationId": "Get Webex Calling Device Details",
+        "operationId": "getWebexCallingDeviceDetails",
         "description": "<div><Callout type=\"warning\">Not supported for Webex for Government (FedRAMP)</Callout></div>\n\nRetrieves Webex Calling device details that include information needed for third-party device management.\n\nWebex calling devices are associated with a specific user Workspace or Virtual Line. Webex Calling devices share the location with the entity that owns them.\n\nPerson or workspace to which the device is assigned. Its fields point to a primary line/port of the device.\n\nRequires a full, location, user, or read-only admin auth token with the scope of `spark-admin:telephony_config_read`.",
         "tags": [
           "Device Call Settings"
@@ -1563,7 +1568,7 @@
           }
         },
         "summary": "Update Third Party Device",
-        "operationId": "Update Third Party Device",
+        "operationId": "updateThirdPartyDevice",
         "description": "<div><Callout type=\"warning\">Not supported for Webex for Government (FedRAMP)</Callout></div>\n\nModify a device's `sipPassword`.\n\nUpdating `sipPassword` on the device requires a full or user administrator auth token with a scope of `spark-admin:telephony_config_write`.",
         "tags": [
           "Device Call Settings"
@@ -1694,7 +1699,7 @@
           }
         },
         "summary": "Get Person Devices",
-        "operationId": "Get Person Devices",
+        "operationId": "getPersonDevices",
         "description": "Get all devices for a person.\n\nThis requires a full or read-only administrator or location administrator auth token with a scope of `spark-admin:telephony_config_read`.",
         "tags": [
           "Device Call Settings"
@@ -1777,7 +1782,7 @@
           }
         },
         "summary": "Modify Hoteling Settings for a Person's Primary Devices",
-        "operationId": "Modify Hoteling Settings for a Person's Primary Devices",
+        "operationId": "modefyHotelingSettingsForPersonsPrimaryDevices",
         "description": "Modify hoteling login configuration on a person's Webex Calling Devices which are in effect when the device is the user's primary device and device type is PRIMARY. To view the current hoteling login settings, see the `hoteling` field in [Get Person Devices](/docs/api/v1/device-call-settings/get-person-devices).\n\nModifying devices for a person requires a full administrator or location administrator auth token with a scope of `spark-admin:telephony_config_write`.",
         "tags": [
           "Device Call Settings"
@@ -1911,7 +1916,7 @@
           }
         },
         "summary": "Get Workspace Devices",
-        "operationId": "Get Workspace Devices",
+        "operationId": "getWorkspaceDevices",
         "description": "Get all devices for a workspace.\n\nThis requires a full or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
         "tags": [
           "Device Call Settings"
@@ -1992,7 +1997,7 @@
           }
         },
         "summary": "Modify Workspace Devices",
-        "operationId": "Modify Workspace Devices",
+        "operationId": "modifyWorkspaceDevices",
         "description": "Modify devices for a workspace.\n\nModifying devices for a workspace requires a full administrator auth token with a scope of `spark-admin:telephony_config_write`.",
         "tags": [
           "Device Call Settings"
@@ -2075,12 +2080,14 @@
                       ],
                       "upgradeChannelEnabled": false,
                       "additionalPrimaryLineAppearancesEnabled": false,
-                      "additionalSecondaryLineAppearancesEnabled": false,
                       "basicEmergencyNomadicEnabled": false,
                       "customizedBehaviorsEnabled": false,
                       "allowConfigurePortsEnabled": false,
                       "customizableLineLabelEnabled": false,
                       "supportsLinePortReorderingEnabled": false,
+                      "kemLinesSupportEnabled": false,
+                      "portNumberSupportEnabled": false,
+                      "numberOfLineKeyButtons": 0,
                       "t38Enabled": false,
                       "callDeclinedEnabled": false,
                       "touchScreenPhone": false,
@@ -2090,8 +2097,45 @@
                       "supportsApplyChangesEnabled": false,
                       "allowConfigureLinesEnabled": true,
                       "allowConfigurePhoneSettingsEnabled": false,
-                      "supportsHotlineEnabled": false,
-                      "supportsHotDeskOnly": false
+                      "supportsHotlineEnabled": false
+                    },
+                    {
+                      "model": "DMS Polycom EE400",
+                      "displayName": "Polycom EE400",
+                      "familyDisplayName": "Poly",
+                      "type": "GENERIC_SIP",
+                      "manufacturer": "THIRD_PARTY",
+                      "managedBy": "CISCO",
+                      "supportedFor": [
+                        "PEOPLE",
+                        "PLACE"
+                      ],
+                      "onboardingMethod": [
+                        "MAC_ADDRESS"
+                      ],
+                      "allowConfigureLayoutEnabled": false,
+                      "numberOfLinePorts": 14,
+                      "kemSupportEnabled": false,
+                      "upgradeChannelEnabled": false,
+                      "additionalPrimaryLineAppearancesEnabled": true,
+                      "basicEmergencyNomadicEnabled": false,
+                      "customizedBehaviorsEnabled": true,
+                      "allowConfigurePortsEnabled": false,
+                      "customizableLineLabelEnabled": false,
+                      "supportsLinePortReorderingEnabled": true,
+                      "kemLinesSupportEnabled": false,
+                      "portNumberSupportEnabled": false,
+                      "numberOfLineKeyButtons": 0,
+                      "touchScreenPhone": false,
+                      "t38Enabled": false,
+                      "callDeclinedEnabled": true,
+                      "deviceSettingsConfiguration": "WEBEX_CALLING_DYNAMIC_DEVICE_CONFIGURATION",
+                      "allowHotelingHostEnabled": true,
+                      "supportsLogCollection": "NONE",
+                      "supportsApplyChangesEnabled": true,
+                      "allowConfigureLinesEnabled": true,
+                      "allowConfigurePhoneSettingsEnabled": true,
+                      "supportsHotlineEnabled": true
                     }
                   ]
                 }
@@ -2145,10 +2189,10 @@
           }
         },
         "summary": "Read the List of Supported Devices",
-        "operationId": "Read the List of Supported Devices",
+        "operationId": "readTheListOfSupportedDevices",
         "description": "Gets the list of supported devices for an organization.\n\nRetrieving this list requires a full or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
         "tags": [
-          "Device Call Settings"
+          "Beta Device Call Settings With Dynamic Device Settings"
         ],
         "parameters": [
           {
@@ -2164,7 +2208,7 @@
             "name": "allowConfigureLayoutEnabled",
             "in": "query",
             "description": "List supported devices that allow the user to configure the layout.",
-            "example": "true",
+            "example": true,
             "schema": {
               "type": "boolean"
             }
@@ -2253,6 +2297,7 @@
                       },
                       "backlightTimer": "ONE_MIN",
                       "background": {
+                        "customUrl": "",
                         "image": "WEBEX_DARK_BLUE"
                       },
                       "displayNameFormat": "PERSON_FIRST_THEN_LAST_NAME",
@@ -2471,7 +2516,7 @@
           }
         },
         "summary": "Read the device override settings for a organization",
-        "operationId": "Read the device override settings for a organization",
+        "operationId": "readDeviceOverrideSettingsForOrganization",
         "description": "Get device override settings for an organization.\n\nRetrieving this list requires a full or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
         "tags": [
           "Device Call Settings"
@@ -2563,7 +2608,7 @@
           }
         },
         "summary": "Create a Line Key Template",
-        "operationId": "Create a Line Key Template",
+        "operationId": "createLineKeyTemplate",
         "description": "Create a Line Key Template in this organization.\n\nLine Keys, also known as Programmable Line Keys (PLK), are the keys found on either side of a typical desk phone display.\nA Line Key Template is a definition of actions that will be performed by each of the Line Keys for a particular device model.\nThis API allows customers to create a `Line Key Template` for a device model.\n\nCreating a Line Key Template requires a full administrator auth token with a scope of `spark-admin:telephony_config_write`.",
         "tags": [
           "Device Call Settings"
@@ -2693,7 +2738,7 @@
           }
         },
         "summary": "Read the list of Line Key Templates",
-        "operationId": "Read the list of Line Key Templates",
+        "operationId": "readListOfLineKeyTemplates",
         "description": "List all Line Key Templates available for this organization.\n\nLine Keys also known as Programmable Line Keys (PLK) are the keys found on either sides of a typical desk phone display.\nA Line Key Template is a definition of actions that will be performed by each of the Line Keys for a particular device model.\nThis API allows users to retrieve the list of Line Key Templates that are available for the organization.\n\nRetrieving this list requires a full, user or read-only administrator or location administrator auth token with a scope of `spark-admin:telephony_config_read`.",
         "tags": [
           "Device Call Settings"
@@ -2796,7 +2841,7 @@
           }
         },
         "summary": "Get details of a Line Key Template",
-        "operationId": "Get details of a Line Key Template",
+        "operationId": "getDetailsOfLineKeyTemplate",
         "description": "Get detailed information about a Line Key Template by template ID in an organization.\n\nLine Keys, also known as Programmable Line Keys (PLK), are the keys found on either side of a typical desk phone display.\nA Line Key Template is a definition of actions that will be performed by each of the Line Keys for a particular device model.\nThis API allows users to retrieve a line key template by its ID in an organization.\n\nRetrieving a line key template requires a full, user, or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
         "tags": [
           "Device Call Settings"
@@ -2877,7 +2922,7 @@
           }
         },
         "summary": "Modify a Line Key Template",
-        "operationId": "Modify a Line Key Template",
+        "operationId": "modifyLineKeyTemplate",
         "description": "Modify a Line Key Template by its template ID in an organization.\n\nLine Keys, also known as Programmable Line Keys (PLK), are the keys found on either side of a typical desk phone display.\nA Line Key Template is a definition of actions that will be performed by each of the Line Keys for a particular device model.\nThis API allows users to modify an existing Line Key Template by its ID in an organization.\n\nModifying an existing Line Key Template requires a full administrator auth token with a scope of `spark-admin:telephony_config_write`.",
         "tags": [
           "Device Call Settings"
@@ -2987,7 +3032,7 @@
           }
         },
         "summary": "Delete a Line Key Template",
-        "operationId": "Delete a Line Key Template",
+        "operationId": "deleteLineKeyTemplate",
         "description": "Delete a Line Key Template by its template ID in an organization.\n\nLine Keys also known as Programmable Line Keys (PLK) are the keys found on either sides of a typical desk phone display.\nA Line Key Template is a definition of actions that will be performed by each of the Line Keys for a particular device model.\nThis API allows users to delete an existing Line Key Templates by its ID in an organization.\n\nDeleting an existing line key template requires a full administrator auth token with a scope of `spark-admin:telephony_config_write`.",
         "tags": [
           "Device Call Settings"
@@ -3088,7 +3133,7 @@
           }
         },
         "summary": "Preview Apply Line Key Template",
-        "operationId": "Preview Apply Line Key Template",
+        "operationId": "previewApplyLineKeyTemplate",
         "description": "Preview the number of devices that will be affected by the application of a Line Key Template or when resetting devices to their factory Line Key settings.\n\nLine Keys, also known as Programmable Line Keys (PLK), are the keys found on either side of a typical desk phone display.\nA Line Key Template is a definition of actions that will be performed by each of the Line Keys for a particular device model.\nThis API allows users to preview the number of devices that will be affected if a customer were to apply a Line Key Template or apply factory default Line Key settings to devices.\n\nRetrieving the number of devices affected requires a full administrator auth token with a scope of `spark-admin:telephony_config_write`.",
         "tags": [
           "Device Call Settings"
@@ -3113,7 +3158,7 @@
                 "locationIds": [
                   "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OL2E4Mjg5NzIyLTFiODAtNDFiNy05Njc4LTBlNzdhZThjMTA5OA"
                 ],
-                "excludeDevicesWithCustomLayout": "true",
+                "excludeDevicesWithCustomLayout": true,
                 "includeDeviceTags": [
                   "accounting",
                   "sales"
@@ -3122,11 +3167,11 @@
                   "admin"
                 ],
                 "advisoryTypes": {
-                  "moreSharedAppearancesEnabled": "true",
-                  "fewSharedAppearancesEnabled": "true",
+                  "moreSharedAppearancesEnabled": true,
+                  "fewSharedAppearancesEnabled": true,
                   "moreMonitorAppearancesEnabled": "true",
                   "moreCPEAppearancesEnabled": "true",
-                  "moreModeManagementAppearancesEnabled": "true"
+                  "moreModeManagementAppearancesEnabled": true
                 }
               },
               "schema": {
@@ -3234,7 +3279,7 @@
           }
         },
         "summary": "Apply a Line Key Template",
-        "operationId": "Apply a Line Key Template",
+        "operationId": "applyLineKeyTemplate",
         "description": "Apply a Line Key Template or reset devices to their factory Line Key settings.\n\nLine Keys, also known as Programmable Line Keys (PLK), are the keys found on either side of a typical desk phone display.\nA Line Key Template is a definition of actions that will be performed by each of the Line Keys for a particular device model.\nThis API allows users to apply a line key template or apply factory default Line Key settings to devices in a set of locations or across all locations in the organization.\n\nApplying a Line Key Template or resetting devices to their default Line Key configuration requires a full administrator auth token with a scope of `spark-admin:telephony_config_write`.",
         "tags": [
           "Device Call Settings"
@@ -3259,7 +3304,7 @@
                 "locationIds": [
                   "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OL2E4Mjg5NzIyLTFiODAtNDFiNy05Njc4LTBlNzdhZThjMTA5OA"
                 ],
-                "excludeDevicesWithCustomLayout": "true",
+                "excludeDevicesWithCustomLayout": true,
                 "includeDeviceTags": [
                   "accounting",
                   "sales"
@@ -3268,11 +3313,11 @@
                   "admin"
                 ],
                 "advisoryTypes": {
-                  "moreSharedAppearancesEnabled": "true",
-                  "fewSharedAppearancesEnabled": "true",
+                  "moreSharedAppearancesEnabled": true,
+                  "fewSharedAppearancesEnabled": true,
                   "moreMonitorAppearancesEnabled": "true",
                   "moreCPEAppearancesEnabled": "true",
-                  "moreModeManagementAppearancesEnabled": "true"
+                  "moreModeManagementAppearancesEnabled": true
                 }
               },
               "schema": {
@@ -3383,7 +3428,7 @@
           }
         },
         "summary": "Get List of Apply Line Key Template jobs",
-        "operationId": "Get List of Apply Line Key Template jobs",
+        "operationId": "getListOfApplyLineKeyTemplatesJobs",
         "description": "Get the list of all apply line key templates jobs in an organization.\n\nLine Keys also known as Programmable Line Keys (PLK) are the keys found on either sides of a typical desk phone display.\nA Line Key Template is a definition of actions that will be performed by each of the Line Keys for a particular device model.\nThis API allows users to retrieve all the apply line key templates jobs in an organization.\n\nRetrieving the list of apply line key templates jobs in an organization requires a full, user or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
         "tags": [
           "Device Call Settings"
@@ -3500,7 +3545,7 @@
           }
         },
         "summary": "Get the job status of an Apply Line Key Template job",
-        "operationId": "Get the job status of an Apply Line Key Template job",
+        "operationId": "getTheJobStatusOfAnApplyLineKeyTemplateJob",
         "description": "Get the status of an apply line key template job by its job ID.\n\nLine Keys also known as Programmable Line Keys (PLK) are the keys found on either sides of a typical desk phone display.\nA Line Key Template is a definition of actions that will be performed by each of the Line Keys for a particular device model.\nThis API allows users to check the status of an apply line key templates job by job ID in an organization.\n\nChecking the the status of an apply line key templates job in an organization requires a full, user or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
         "tags": [
           "Device Call Settings"
@@ -3602,7 +3647,7 @@
           }
         },
         "summary": "Get job errors for an Apply Line Key Template job",
-        "operationId": "Get job errors for an Apply Line Key Template job",
+        "operationId": "getJobErrorsForApplyLineKeyTemplateJob",
         "description": "GET job errors for an apply Line Key Template job in an organization.\n\nLine Keys also known as Programmable Line Keys (PLK) are the keys found on either sides of a typical desk phone display.\nA Line Key Template is a definition of actions that will be performed by each of the Line Keys for a particular device model.\nThis API allows users to retrieve all the errors of an apply line key templates job by job ID in an organization.\n\nRetrieving all the errors of an apply line key templates job in an organization requires a full, user or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
         "tags": [
           "Device Call Settings"
@@ -3715,7 +3760,7 @@
           }
         },
         "summary": "Read the DECT device type list - Deprecated",
-        "operationId": "Read the DECT device type list - Deprecated",
+        "operationId": "readTheDectDeviceTypeListDeprecated",
         "description": "<div><Callout type=\"warning\">Not supported for Webex for Government (FedRAMP).</Callout></div>\n\n<div><Callout type=\"warning\">The REST path for this API has changed to [GET /telephony/config/devices/dectNetworks/supportedDevices{?orgId}]. The use of this old REST path is deprecated and will be decommissioned on October 10, 2024. Please start using it for all future projects.</Callout></div>\n\nGet DECT device type list with base stations and line ports supported count. This is a static list.\n\nRetrieving this list requires a full or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
         "tags": [
           "Device Call Settings"
@@ -3818,7 +3863,7 @@
           }
         },
         "summary": "Read the DECT device type list",
-        "operationId": "Read the DECT device type list",
+        "operationId": "readTheDectDeviceTypeList",
         "description": "<div><Callout type=\"warning\">Not supported for Webex for Government (FedRAMP).</Callout></div>\n\nGet DECT device type list with base stations and line ports supported count. This is a static list.\n\nRetrieving this list requires a full or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
         "tags": [
           "Device Call Settings"
@@ -3918,7 +3963,7 @@
           }
         },
         "summary": "Validate a list of MAC address",
-        "operationId": "Validate a list of MAC address",
+        "operationId": "validateAListOfMACAddress",
         "description": "Validate a list of MAC addresses.\n\nValidating this list requires a full or read-only administrator auth token with a scope of `spark-admin:telephony_config_write`.",
         "tags": [
           "Device Call Settings"
@@ -4044,7 +4089,7 @@
           }
         },
         "summary": "Change Device Settings Across Organization Or Location Job",
-        "operationId": "Change Device Settings Across Organization Or Location Job",
+        "operationId": "changeDeviceSettingsAcrossOrganizationOrLocationJob",
         "description": "Change device settings across organization or locations jobs.\n\nPerforms bulk and asynchronous processing for all types of device settings initiated by organization and system admins in a stateful persistent manner. This job will modify the requested device settings across all the devices. Whenever a location ID is specified in the request, it will modify the requested device settings only for the devices that are part of the provided location within an organization.\n\nReturns a unique job ID which can then be utilized further to retrieve status and errors for the same.\n\nOnly one job per customer can be running at any given time within the same organization. An attempt to run multiple jobs at the same time will result in a 409 error response.\n\nRunning a job requires a full or read-only administrator auth token with a scope of `spark-admin:telephony_config_write`.",
         "tags": [
           "Device Call Settings"
@@ -4110,7 +4155,7 @@
                     },
                     "backlightTimer": "FIVE_M",
                     "background": {
-                      "customUrl": null,
+                      "customUrl": "",
                       "image": "NONE"
                     },
                     "displayNameFormat": "PERSON_FIRST_THEN_LAST_NAME",
@@ -4158,7 +4203,8 @@
                       "userId": "test"
                     },
                     "allowMonitorLinesEnabled": false,
-                    "iceEnabled": true
+                    "iceEnabled": true,
+                    "cfExpandedSoftKey": "ONLY_THE_CALL_FORWARD_ALL"
                   }
                 }
               },
@@ -4279,7 +4325,7 @@
           }
         },
         "summary": "List Change Device Settings Jobs",
-        "operationId": "List Change Device Settings Jobs",
+        "operationId": "listChangeDeviceSettingsJobs",
         "description": "List change device settings jobs.\n\nLists all the jobs for jobType `calldevicesettings` for the given organization in order of most recent one to oldest one irrespective of its status.\n\nThis API requires a full or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
         "tags": [
           "Device Call Settings"
@@ -4417,7 +4463,7 @@
           }
         },
         "summary": "Get Change Device Settings Job Status",
-        "operationId": "Get Change Device Settings Job Status",
+        "operationId": "getChangeDeviceSettingsJobStatus",
         "description": "Get change device settings job status.\n\nProvides details of the job with `jobId` of `jobType` `calldevicesettings`.\n\nThis API requires a full or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
         "tags": [
           "Device Call Settings"
@@ -4521,7 +4567,7 @@
           }
         },
         "summary": "List Change Device Settings Job Errors",
-        "operationId": "List Change Device Settings Job Errors",
+        "operationId": "listChangeDeviceSettingsJobErrors",
         "description": "List change device settings job errors.\n\nLists all error details of the job with `jobId` of `jobType` `calldevicesettings`.\n\nThis API requires a full or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
         "tags": [
           "Device Call Settings"
@@ -4665,7 +4711,7 @@
           }
         },
         "summary": "Get Device Layout by Device ID",
-        "operationId": "Get Device Layout by Device ID",
+        "operationId": "getDeviceLayoutByDeviceId",
         "description": "Get layout information of a device by device ID in an organization.\n\nDevice layout customizes a user’s programmable line keys (PLK) on the phone and any attached Key Expansion Modules (KEM) with the existing configured line members and the user’s monitoring list.\n\nThis API requires a full or location administrator auth token with a scope of `spark-admin:telephony_config_read`.",
         "tags": [
           "Device Call Settings"
@@ -4746,7 +4792,7 @@
           }
         },
         "summary": "Modify Device Layout by Device ID",
-        "operationId": "Modify Device Layout by Device ID",
+        "operationId": "modifyDeviceLayoutByDeviceId",
         "description": "Modify the layout of a device by device ID in an organization.\n\nDevice layout customizes a user’s programmable line keys (PLK) on the phone and any attached Key Expansion Modules (KEM) with the existing configured line members and the user’s monitoring list.\n\nThis API requires a full or location administrator auth token with a scope of `spark-admin:telephony_config_write`.",
         "tags": [
           "Device Call Settings"
@@ -4919,7 +4965,7 @@
           }
         },
         "summary": "Rebuild Phones Configuration",
-        "operationId": "Rebuild Phones Configuration",
+        "operationId": "rebuildPhonesConfiguration",
         "description": "<div><Callout type=\"warning\">Not supported for Webex for Government (FedRAMP)</Callout></div>.\n\nRebuild all phone configurations for the specified location.\n\nRebuild phones jobs are used when there is a change in the network configuration of phones in a location, i.e. a change in the network configuration of devices in a location from public to private and vice-versa.\n\nThis API requires a full administrator auth token with a scope of `spark-admin:telephony_config_write`.",
         "tags": [
           "Device Call Settings"
@@ -5050,7 +5096,7 @@
           }
         },
         "summary": "List Rebuild Phones Jobs",
-        "operationId": "List Rebuild Phones Jobs",
+        "operationId": "listRebuildPhonesJobs",
         "description": "<div><Callout type=\"warning\">Not supported for Webex for Government (FedRAMP)</Callout></div>.\n\nGet the list of all Rebuild Phones jobs in an organization.\n\nRebuild phones jobs are used when there is a change in the network configuration of phones in a location, i.e. a change in the network configuration of devices in a location from public to private and vice-versa.\n\nThis API requires a full administrator auth token with a scope of `spark-admin:telephony_config_read`.",
         "tags": [
           "Device Call Settings"
@@ -5167,7 +5213,7 @@
           }
         },
         "summary": "Get the Job Status of a Rebuild Phones Job",
-        "operationId": "Get the Job Status of a Rebuild Phones Job",
+        "operationId": "getTheJobStatusOfARebuildPhonesJob",
         "description": "<div><Callout type=\"warning\">Not supported for Webex for Government (FedRAMP)</Callout></div>.\n\nGet the details of a rebuild phones job by its job ID.\n\nRebuild phones jobs are used when there is a change in the network configuration of phones in a location, i.e. a change in the network configuration of devices in a location from public to private and vice-versa.\n\nThis API requires requires a full administrator auth token with a scope of `spark-admin:telephony_config_read`.",
         "tags": [
           "Device Call Settings"
@@ -5274,7 +5320,7 @@
           }
         },
         "summary": "Get Job Errors for a Rebuild Phones Job",
-        "operationId": "Get Job Errors for a Rebuild Phones Job",
+        "operationId": "getJobErrorsForARebuildPhonesJob",
         "description": "<div><Callout type=\"warning\">Not supported for Webex for Government (FedRAMP)</Callout></div>.\n\nGet errors for a rebuild phones job in an organization.\n\nRebuild phones jobs are used when there is a change in the network configuration of phones in a location, i.e. a change in the network configuration of devices in a location from public to private and vice-versa.\n\nThis API requires a full administrator auth token with a scope of `spark-admin:telephony_config_read`.",
         "tags": [
           "Device Call Settings"
@@ -5375,7 +5421,7 @@
           }
         },
         "summary": "Get Device Settings for a Person",
-        "operationId": "Get Device Settings for a Person",
+        "operationId": "getDeviceSettingsForAPerson",
         "description": "Device settings list the compression settings for a person.\n\nDevice settings customize a device's behavior and performance. The compression field optimizes call quality for inbound and outbound calls.\n\nThis API requires a full, location, user, or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
         "tags": [
           "Device Call Settings"
@@ -5456,7 +5502,7 @@
           }
         },
         "summary": "Update Device Settings for a Person",
-        "operationId": "Update Device Settings for a Person",
+        "operationId": "updateDeviceSettingsForAPerson",
         "description": "Update device settings modifies the compression settings for a person.\n\nDevice settings customize a device's behavior and performance. The compression field optimizes call quality for inbound and outbound calls.\n\nThis API requires a full, location, or user administrator auth token with a scope of `spark-admin:telephony_config_write`.",
         "tags": [
           "Device Call Settings"
@@ -5578,7 +5624,7 @@
           }
         },
         "summary": "Get Device Settings for a Workspace",
-        "operationId": "Get Device Settings for a Workspace",
+        "operationId": "getDeviceSettingsForAWorkspace",
         "description": "Device settings list the compression settings for a workspace.\n\nDevice settings customize a device's behavior and performance. The compression field optimizes call quality for inbound and outbound calls.\n\nThis API requires a full, location, user, or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
         "tags": [
           "Device Call Settings"
@@ -5659,7 +5705,7 @@
           }
         },
         "summary": "Update Device Settings for a Workspace",
-        "operationId": "Update Device Settings for a Workspace",
+        "operationId": "updateDeviceSettingsForAWorkspace",
         "description": "Update device settings modifies the compression settings for a workspace.\n\nDevice settings customize a device's behavior and performance. The compression field optimizes call quality for inbound and outbound calls.\n\nThis API requires a full, location, or user administrator auth token with a scope of `spark-admin:telephony_config_write`.",
         "tags": [
           "Device Call Settings"
@@ -5799,7 +5845,7 @@
           }
         },
         "summary": "Read the List of Background Images",
-        "operationId": "Read the List of Background Images",
+        "operationId": "readTheListOfBackgroundImages",
         "description": "Gets the list of device background images for an organization.\n\nWebex Calling supports the upload of up to 100 background image files for each org. These image files can then be referenced by MPP phones in that org for use as their background image.\n\nRetrieving this list requires a full, device, or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
         "tags": [
           "Device Call Settings"
@@ -5953,7 +5999,7 @@
           }
         },
         "summary": "Delete Device Background Images",
-        "operationId": "Delete Device Background Images",
+        "operationId": "deleteDeviceBackgroundImages",
         "description": "Delete the list of designated device background images for an organization. Maximum is 10 images per request.\n\nDeleting a device background image requires a full or device administrator auth token with a scope of `spark-admin:telephony_config_write`.",
         "tags": [
           "Device Call Settings"
@@ -6083,7 +6129,7 @@
           }
         },
         "summary": "Upload a Device Background Image",
-        "operationId": "Upload a Device Background Image",
+        "operationId": "uploadADeviceBackgroundImage",
         "description": "Configure a device's background image by uploading an image with file format, `.jpeg` or `.png`, encoded image file. Maximum image file size allowed to upload is 625 KB.\n\nThe request must be a multipart/form-data request rather than JSON, using the image/jpeg or image/png content-type.\n\nWebex Calling supports the upload of up to 100 background image files for each org. These image files can then be referenced by MPP phones in that org for use as their background image.\n\nUploading a device background image requires a full or device administrator auth token with a scope of `spark-admin:telephony_config_write`.\n\n**WARNING:** This API is not callable using the developer portal web interface due to the lack of support for multipart POST. This API can be utilized using other tools that support multipart POST, such as Postman.",
         "tags": [
           "Device Call Settings"
@@ -6176,7 +6222,7 @@
           }
         },
         "summary": "Get User Devices Count",
-        "operationId": "Get User Devices Count",
+        "operationId": "getUserDevicesCount",
         "description": "Get the total device and application count for a person.\n\nThe device count can be used to determine if more devices can be added for users with a device count limit. For example, users with standard calling licenses can only have one physical device.\n\nThis requires a full or read-only administrator or location administrator auth token with a scope of `spark-admin:telephony_config_read`.",
         "tags": [
           "Device Call Settings"
@@ -6199,6 +6245,1382 @@
             "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE",
             "schema": {
               "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/telephony/config/devices/dynamicSettings/validationSchema": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceDynamicSettingsValidationSchemaGet"
+                },
+                "example": {
+                  "tags": [
+                    {
+                      "familyOrModelDisplayName": "Poly",
+                      "tag": "%G711U_ORDER%",
+                      "friendlyName": "voice.codecPref.G711Mu",
+                      "tooltip": "Tag tooltip.",
+                      "level": [
+                        "location",
+                        "device"
+                      ],
+                      "validationRule": {
+                        "type": "int",
+                        "min": 0,
+                        "max": 10,
+                        "increment": 1
+                      }
+                    },
+                    {
+                      "familyOrModelDisplayName": "Poly",
+                      "tag": "%G722_ORDER%",
+                      "friendlyName": "voice.codecPref.G722",
+                      "tooltip": "Tag tooltip.",
+                      "level": [
+                        "location",
+                        "device"
+                      ],
+                      "validationRule": {
+                        "type": "int",
+                        "min": 0,
+                        "max": 10,
+                        "increment": 1
+                      }
+                    },
+                    {
+                      "familyOrModelDisplayName": "Poly",
+                      "tag": "%ENABLE_BLUETOOTH%",
+                      "friendlyName": "feature.bluetooth.enabled",
+                      "tooltip": "Tag tooltip.",
+                      "level": [
+                        "organization",
+                        "location",
+                        "device"
+                      ],
+                      "validationRule": {
+                        "type": "boolean",
+                        "values": [
+                          "1",
+                          "0"
+                        ]
+                      }
+                    },
+                    {
+                      "familyOrModelDisplayName": "Poly",
+                      "tag": "%DO_BLUETOOTH_DEVICE_NAME%",
+                      "friendlyName": "bluetooth.device.name",
+                      "tooltip": "Tag tooltip.",
+                      "alert": "Alert text.",
+                      "level": [
+                        "organization",
+                        "location",
+                        "device"
+                      ],
+                      "validationRule": {
+                        "type": "string",
+                        "regex": "[A-Za-z0-9]+",
+                        "maxLength": 255
+                      }
+                    },
+                    {
+                      "familyOrModelDisplayName": "Poly",
+                      "tag": "%DO_UI_MENU_BACKGROUND%",
+                      "friendlyName": "ui.menu.background",
+                      "tooltip": "Tag tooltip.",
+                      "level": [
+                        "organization",
+                        "location",
+                        "device"
+                      ],
+                      "validationRule": {
+                        "type": "string",
+                        "regex": "#[0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F]",
+                        "maxLength": 7,
+                        "validationHint": "#RRGGBB"
+                      }
+                    },
+                    {
+                      "familyOrModelDisplayName": "Poly",
+                      "tag": "%UP_BACKLIGHT_IDLE_INTENSITY%",
+                      "friendlyName": "up.backlight.idleIntensity",
+                      "tooltip": "Tag tooltip.",
+                      "level": [
+                        "organization",
+                        "location",
+                        "device"
+                      ],
+                      "validationRule": {
+                        "type": "enum",
+                        "values": [
+                          "0",
+                          "1",
+                          "2",
+                          "3"
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "operationId": "getValidationSchema",
+        "summary": "Get Validation Schema",
+        "description": "This API returns the validation schema for `tags` of all or specific `familyOrModelDisplayName`.\n\nThe schema is used to validate the `tag` for devices in the `Webex Calling` platform. The schema includes information about the required fields, data types, and validation rules for each setting.",
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "query",
+            "description": "Validation schema for devices in this organization.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "familyOrModelDisplayName",
+            "in": "query",
+            "description": "Device family or model display name to filter the schema.",
+            "example": "Poly",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "tags": [
+          "Beta Device Call Settings With Dynamic Device Settings"
+        ]
+      }
+    },
+    "/telephony/config/devices/dynamicSettings/settingsGroups": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceDynamicSettingsSettingsGroupsGet"
+                },
+                "example": {
+                  "settingsGroups": [
+                    {
+                      "path": "Voice.Codec Preferences",
+                      "friendlyName": "voice.codecPref.G711Mu",
+                      "tab": "Poly",
+                      "familyOrModelDisplayName": "Poly",
+                      "tags": [
+                        {
+                          "tagBlock": [
+                            "%G711U_ORDER%"
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "path": "Feature.Bluetooth",
+                      "friendlyName": "feature.bluetooth.enabled",
+                      "tab": "Poly",
+                      "familyOrModelDisplayName": "Poly",
+                      "tags": [
+                        {
+                          "tagBlock": [
+                            "%ENABLE_BLUETOOTH%"
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "path": "User Interface.Menu",
+                      "friendlyName": "ui.menu.background",
+                      "tab": "Poly",
+                      "familyOrModelDisplayName": "Poly",
+                      "tags": [
+                        {
+                          "tagBlock": [
+                            "%DO_UI_MENU_BACKGROUND%"
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "settingsTabs": [
+                    "Poly",
+                    "MPP"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "operationId": "getSettingsGroups",
+        "summary": "Get Settings Groups",
+        "description": "This API returns the `settingsGroups` that define the structure and association of tags for dynamic device settings.\n\n The `settingsGroups` are used to organize the tags into logical groups, making it easier to manage and configure dynamic device settings.",
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "query",
+            "description": "Settings groups for devices in this organization.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "familyOrModelDisplayName",
+            "in": "query",
+            "description": "Device family or model display name to filter the `settingsGroups`.",
+            "example": "Poly",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "includeSettingsType",
+            "in": "query",
+            "description": "To show groups or tabs or both. Query param is case insensitive. Default is `ALL`.",
+            "example": "ALL",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "TABS",
+                "GROUPS",
+                "ALL"
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "Beta Device Call Settings With Dynamic Device Settings"
+        ]
+      }
+    },
+    "/telephony/config/lists/devices/dynamicSettings/actions/getSettings/invoke": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerDeviceDynamicSettingsListPostResponse"
+                },
+                "example": {
+                  "tags": [
+                    {
+                      "familyOrModelDisplayName": "Poly",
+                      "tag": "%DO_MENU_ITEM_BACKGROUND%",
+                      "value": "#RRGGBB",
+                      "parentValue": "#FFFFFF",
+                      "parentLevel": "ORGANIZATION"
+                    },
+                    {
+                      "familyOrModelDisplayName": "Poly",
+                      "tag": "%ENABLE_BLUETOOTH%",
+                      "value": "1",
+                      "parentValue": "0",
+                      "parentLevel": "SYSTEM_DEFAULT"
+                    },
+                    {
+                      "familyOrModelDisplayName": "Poly",
+                      "tag": "%DO_MENU_TITLE_BACKGROUND%",
+                      "value": "#1A1A1A",
+                      "parentValue": "#FFFFFF",
+                      "parentLevel": "REGIONAL_DEFAULT"
+                    }
+                  ],
+                  "lastUpdateTime": 1651396800000,
+                  "updateInProgress": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "operationId": "getCustomerDeviceDynamicSettings",
+        "summary": "Get Customer Device Dynamic Settings",
+        "description": "Retrieve dynamic settings for specific device tags at customer level, allowing filters by `familyOrModelDisplayName` and `tag` identifier.\n\nThis API lets you request the values of multiple `Device Settings` at once by specifying a list of `familyOrModelDisplayName` and tag combinations.\n\nThis requires a full, device, or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "query",
+            "description": "List of device dynamic settings in this organization.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "familyOrModelDisplayName",
+            "in": "query",
+            "required": true,
+            "description": "The family or model name for the device. If no tag is specified, all tags related to `familyOrModelDisplayName` are returned.",
+            "example": "Poly",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomerDeviceDynamicSettingsListPostRequest"
+              },
+              "example": {
+                "tags": [
+                  "%DO_MENU_ITEM_BACKGROUND%",
+                  "%ENABLE_BLUETOOTH%",
+                  "%DO_MENU_TITLE_BACKGROUND%"
+                ]
+              }
+            }
+          },
+          "description": "Request body containing the list of device tags to retrieve settings for.",
+          "required": false
+        },
+        "tags": [
+          "Beta Device Call Settings With Dynamic Device Settings"
+        ]
+      }
+    },
+    "/telephony/config/lists/locations/{locationId}/devices/dynamicSettings/actions/getSettings/invoke": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationDeviceDynamicSettingsListPostResponse"
+                },
+                "example": {
+                  "tags": [
+                    {
+                      "familyOrModelDisplayName": "Poly",
+                      "tag": "%G711U_ORDER%",
+                      "value": "4",
+                      "parentValue": "3",
+                      "parentLevel": "ORGANIZATION"
+                    },
+                    {
+                      "familyOrModelDisplayName": "Poly",
+                      "tag": "%ENABLE_BLUETOOTH%",
+                      "value": "1",
+                      "parentValue": "0",
+                      "parentLevel": "SYSTEM_DEFAULT"
+                    },
+                    {
+                      "familyOrModelDisplayName": "Poly",
+                      "tag": "%DO_UI_MENU_BACKGROUND%",
+                      "value": "#1A1A1A",
+                      "parentValue": "#FFFFFF",
+                      "parentLevel": "LOCATION"
+                    }
+                  ],
+                  "lastUpdateTime": 1651396800000,
+                  "updateInProgress": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "operationId": "getLocationDeviceDynamicSettings",
+        "summary": "Get Location Device Dynamic Settings",
+        "description": "Retrieve dynamic settings for specific device tags at the specified location level, allowing filters by `familyOrModelDisplayName` and `tag` identifier.\n\nThis API lets you request the values of multiple `Device Settings` at once by specifying a list of `familyOrModelDisplayName` and tag combinations for a specific location.\n\nThis requires a full, device, or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
+        "parameters": [
+          {
+            "name": "locationId",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier for the `location`.",
+            "example": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzMzZjBlZDFiLWQ1YjctNGI4Mi1iMzIzLTg4ZTFmODMzNGNmMw",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orgId",
+            "in": "query",
+            "description": "Unique identifier for the `organization` to which this location belongs.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "familyOrModelDisplayName",
+            "in": "query",
+            "required": true,
+            "description": "The family or model name for the device. If no tag is specified, all tags related to `familyOrModelDisplayName` are returned.",
+            "example": "Poly",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocationDeviceDynamicSettingsListPostRequest"
+              },
+              "example": {
+                "tags": [
+                  "%G711U_ORDER%",
+                  "%ENABLE_BLUETOOTH%",
+                  "%DO_UI_MENU_BACKGROUND%"
+                ]
+              }
+            }
+          },
+          "description": "Request body containing the list of device tags to retrieve settings for.",
+          "required": false
+        },
+        "tags": [
+          "Beta Device Call Settings With Dynamic Device Settings"
+        ]
+      }
+    },
+    "/telephony/config/lists/devices/{deviceId}/dynamicSettings/actions/getSettings/invoke": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceDynamicSettingsListPostResponse"
+                },
+                "example": {
+                  "tags": [
+                    {
+                      "familyOrModelDisplayName": "Poly",
+                      "tag": "%G711U_ORDER%",
+                      "value": "4",
+                      "parentValue": "3",
+                      "parentLevel": "ORGANIZATION"
+                    },
+                    {
+                      "familyOrModelDisplayName": "Poly",
+                      "tag": "%ENABLE_BLUETOOTH%",
+                      "parentValue": "0",
+                      "parentLevel": "SYSTEM_DEFAULT"
+                    },
+                    {
+                      "familyOrModelDisplayName": "Poly",
+                      "tag": "%DO_UI_MENU_BACKGROUND%",
+                      "value": "#1A1A1A",
+                      "parentValue": "#FFFFFF",
+                      "parentLevel": "LOCATION"
+                    }
+                  ],
+                  "lastUpdateTime": 1651396800000
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "operationId": "getDeviceDynamicSettings",
+        "summary": "Get Device Dynamic Settings",
+        "description": "Retrieve settings for a specified device.\n\nThis API retrieves device settings based on the specified `tags`; if the `tags` field is empty or missing, all settings for the device are returned.\n\nThis requires a full, device, or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
+        "parameters": [
+          {
+            "name": "deviceId",
+            "in": "path",
+            "required": true,
+            "description": "Device for which to retrieve settings.",
+            "example": "Y2lzY29zcGFyazovL3VybjpURUFNOnVzLWVhc3QtMV9pbnQxMy9DQUxMSU5HX0RFVklDRS8zMDAyZWJiZi1iMTVmLTQ1ODktYWNiZS1kZjY3OTA3MTU5NWE=",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orgId",
+            "in": "query",
+            "description": "Organization to which the `device` belongs.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceDynamicSettingsListPostRequest"
+              },
+              "example": {
+                "tags": [
+                  "%G711U_ORDER%",
+                  "%ENABLE_BLUETOOTH%",
+                  "%DO_UI_MENU_BACKGROUND%"
+                ]
+              }
+            }
+          },
+          "description": "Request body containing the list of device tags to retrieve settings for.",
+          "required": true
+        },
+        "tags": [
+          "Beta Device Call Settings With Dynamic Device Settings"
+        ]
+      }
+    },
+    "/telephony/config/devices/{deviceId}/dynamicSettings": {
+      "put": {
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {},
+            "content": {}
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "operationId": "updateSpecifiedSettingsForTheDevice",
+        "summary": "Update specified settings for the device.",
+        "description": "Modify dynamic settings for a specified device.\n\nThis API updates device settings based on the specified `tags`. If the `tags` field is empty, the request has no effect.\n\nThis requires a full, device, or read-only administrator auth token with a scope of `spark-admin:telephony_config_write`.",
+        "parameters": [
+          {
+            "name": "deviceId",
+            "in": "path",
+            "required": true,
+            "description": "Device for which to update settings.",
+            "example": "Y2lzY29zcGFyazovL3VybjpURUFNOnVzLWVhc3QtMV9pbnQxMy9DQUxMSU5HX0RFVklDRS8zMDAyZWJiZi1iMTVmLTQ1ODktYWNiZS1kZjY3OTA3MTU5NWE=",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orgId",
+            "in": "query",
+            "description": "Organization to which the device belongs.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceDynamicSettingsPutRequest"
+              },
+              "example": {
+                "tags": [
+                  {
+                    "action": "CLEAR",
+                    "tag": "%G711A_ORDER%"
+                  },
+                  {
+                    "action": "SET",
+                    "tag": "%ENABLE_BLUETOOTH%",
+                    "value": "0"
+                  }
+                ]
+              }
+            }
+          },
+          "description": "Request body containing the list of device tags for which the values will be updated.",
+          "required": true
+        },
+        "tags": [
+          "Beta Device Call Settings With Dynamic Device Settings"
+        ]
+      }
+    },
+    "/telephony/config/jobs/devices/dynamicDeviceSettings": {
+      "post": {
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostDynamicDeviceSettingsJobResponse"
+                },
+                "example": {
+                  "name": "dynamicdevicesettings",
+                  "id": "Y2lzY29zcGFyazovL3VzL0pPQl9JRC8wZTJjNmI5NC1hNDdlLTQxZGUtODE5ZS04YTcwNTZjMTc5MDk",
+                  "trackingId": "NA_a9ef6908-60cf-40e6-b56f-461abffd6fa3",
+                  "sourceUserId": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS85OThhMThhYi1kZjY5LTQ5MWYtYmViZi03MzUxMGE3ODI5N2I",
+                  "sourceCustomerId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi9hNDVkNmNkYS1hZTVhLTQwYzMtYTdhZC01NjUwZmRkZGQ1M2M",
+                  "targetCustomerId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi9hNDVkNmNkYS1hZTVhLTQwYzMtYTdhZC01NjUwZmRkZGQ1M2M",
+                  "instanceId": 0,
+                  "jobExecutionStatus": [
+                    {
+                      "id": 0,
+                      "startTime": "2025-05-13T10:59:44.106Z",
+                      "lastUpdated": "2025-05-13T10:59:44.106Z",
+                      "statusMessage": "STARTED",
+                      "exitCode": "UNKNOWN",
+                      "createdTime": "2025-05-13T10:50:01.352Z",
+                      "timeElapsed": "PT11.476S"
+                    }
+                  ],
+                  "latestExecutionStatus": "STARTED",
+                  "latestExecutionExitCode": "UNKNOWN",
+                  "target": "CUSTOMER",
+                  "locationId": "",
+                  "percentageComplete": 0
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Updates dynamic Device Settings Across Organization Or Location",
+        "operationId": "updatesDynamicDeviceSettingsAcrossOrganizationOrLocation",
+        "description": "Creates a job to update device settings at location or organization level.\n\nThe job runs asynchronously and persistently, applying the requested settings in bulk to all relevant devices, which may belong to multiple families as specified in the request. If a `locationId` is provided, only devices in that location are affected.\n\nA unique job ID is returned to track status and errors.\n\nOnly one job can run per customer per organization at a time. Additionally, this job cannot run in parallel with other device jobs such as [Call device settings](/docs/api/v1/device-call-settings/change-device-settings-across-organization-or-location-job) and [Rebuild Phones](/docs/api/v1/device-call-settings/rebuild-phones-configuration).\n\nRunning a job requires a full administrator auth token with a scope of `spark-admin:telephony_config_write`.",
+        "tags": [
+          "Beta Device Call Settings With Dynamic Device Settings"
+        ],
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "query",
+            "description": "Apply update dynamic device settings for all the devices under this organization.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "locationId": "",
+                "tags": [
+                  {
+                    "familyOrModelDisplayName": "Poly",
+                    "tag": "%DO_MENU_TITLE_BACKGROUND%",
+                    "action": "CLEAR"
+                  },
+                  {
+                    "familyOrModelDisplayName": "Poly",
+                    "tag": "%ENABLE_BLUETOOTH%",
+                    "action": "SET",
+                    "value": "1"
+                  }
+                ]
+              },
+              "schema": {
+                "$ref": "#/components/schemas/PostDynamicSettingsUpdateStartJobRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      },
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DynamicDeviceSettingsJobListResponse"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "name": "dynamicdevicesettings",
+                      "id": "Y2lzY29zcGFyazovL3VzL0pPQl9JRC8wZTJjNmI5NC1hNDdlLTQxZGUtODE5ZS04YTcwNTZjMTc5MDk",
+                      "trackingId": "NA_a9ef6908-60cf-40e6-b56f-461abffd6fa3",
+                      "sourceUserId": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS85OThhMThhYi1kZjY5LTQ5MWYtYmViZi03MzUxMGE3ODI5N2I",
+                      "sourceCustomerId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi9hNDVkNmNkYS1hZTVhLTQwYzMtYTdhZC01NjUwZmRkZGQ1M2M",
+                      "targetCustomerId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi9hNDVkNmNkYS1hZTVhLTQwYzMtYTdhZC01NjUwZmRkZGQ1M2M",
+                      "instanceId": 0,
+                      "jobExecutionStatus": [
+                        {
+                          "id": 0,
+                          "startTime": "2023-07-05T21:36:53.749Z",
+                          "endTime": "2023-07-05T21:37:06.105Z",
+                          "lastUpdated": "2023-07-05T21:37:06.714Z",
+                          "statusMessage": "COMPLETED",
+                          "exitCode": "COMPLETED",
+                          "createdTime": "2023-07-05T21:36:53.551Z",
+                          "stepExecutionStatuses": [
+                            {
+                              "id": 0,
+                              "startTime": "2023-07-05T21:36:54.601Z",
+                              "endTime": "2023-07-05T21:37:06.077Z",
+                              "lastUpdated": "2023-07-05T21:37:06.078Z",
+                              "statusMessage": "COMPLETED",
+                              "exitCode": "COMPLETED",
+                              "name": "dynamicdevicesettingsUpdate",
+                              "timeElapsed": "PT11.476S"
+                            }
+                          ],
+                          "timeElapsed": "PT11.476S"
+                        }
+                      ],
+                      "latestExecutionStatus": "COMPLETED",
+                      "latestExecutionExitCode": "COMPLETED",
+                      "target": "LOCATION",
+                      "locationId": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzgwZmUxMzdkLTg5NDgtNDlhYS1iODdiLTk4MGMxN2I2YzdiYg",
+                      "percentageComplete": 100
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "List dynamic device Settings Jobs",
+        "operationId": "listDynamicDeviceSettingsJobs",
+        "description": "List dynamic device settings jobs.\n\nLists all the jobs for job type `dynamicdevicesettings` for the given organization in order of most recent one to oldest one irrespective of its status.\n\nThis API requires a full or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
+        "tags": [
+          "Beta Device Call Settings With Dynamic Device Settings"
+        ],
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "query",
+            "description": "Retrieve list of dynamic device settings jobs for this organization.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": "Start at the zero-based offset in the list of jobs. Default is 0.",
+            "example": 0,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "max",
+            "in": "query",
+            "description": "Limit the number of jobs returned to this maximum count. Default is 2000.",
+            "example": 100,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ]
+      }
+    },
+    "/telephony/config/jobs/devices/dynamicDeviceSettings/{jobId}": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostDynamicDeviceSettingsJobResponse"
+                },
+                "example": {
+                  "name": "dynamicdevicesettings",
+                  "id": "Y2lzY29zcGFyazovL3VzL0pPQl9JRC8wMTA4NDJjMy1mNWQ5LTRjOWQtOGZiYi0yYzIxZmU4OWI0YzQ",
+                  "trackingId": "ATLAS_89144033-afb5-44e8-bae8-946e84c71fa3_0",
+                  "sourceUserId": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS85OThhMThhYi1kZjY5LTQ5MWYtYmViZi03MzUxMGE3ODI5N2I",
+                  "sourceCustomerId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi9hNDVkNmNkYS1hZTVhLTQwYzMtYTdhZC01NjUwZmRkZGQ1M2M",
+                  "targetCustomerId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi9hNDVkNmNkYS1hZTVhLTQwYzMtYTdhZC01NjUwZmRkZGQ1M2M",
+                  "instanceId": 235690,
+                  "jobExecutionStatus": [
+                    {
+                      "id": 236410,
+                      "startTime": "2022-08-15T12:54:50.380Z",
+                      "endTime": "2022-08-15T12:55:01.833Z",
+                      "lastUpdated": "2022-08-15T12:55:02.160Z",
+                      "statusMessage": "COMPLETED",
+                      "exitCode": "COMPLETED",
+                      "createdTime": "2022-08-15T12:54:50.350Z",
+                      "stepExecutionStatuses": [
+                        {
+                          "id": 1159389,
+                          "startTime": "2022-08-15T12:54:50.433Z",
+                          "endTime": "2022-08-15T12:55:01.826Z",
+                          "lastUpdated": "2022-08-15T12:55:01.826Z",
+                          "statusMessage": "COMPLETED",
+                          "exitCode": "COMPLETED",
+                          "name": "dynamicdevicesettingsUpdate",
+                          "timeElapsed": "PT11.393S"
+                        }
+                      ],
+                      "timeElapsed": "PT11.393S"
+                    }
+                  ],
+                  "latestExecutionStatus": "COMPLETED",
+                  "latestExecutionExitCode": "COMPLETED",
+                  "target": "CUSTOMER",
+                  "locationId": "",
+                  "percentageComplete": 100
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Get Device Dynamic Settings Job Status",
+        "operationId": "getDeviceDynamicSettingsJobStatus",
+        "description": "Get dynamic device settings job status.\n\nProvides details of the job with `jobId` of `jobType` `dynamicdevicesettings`.\n\nThis API requires a full or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
+        "tags": [
+          "Beta Device Call Settings With Dynamic Device Settings"
+        ],
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "description": "Retrieve job details for this `jobId`.",
+            "required": true,
+            "example": "Y2lzY29zcGFyazovL3VzL0pPQl9JRC8wMTA4NDJjMy1mNWQ5LTRjOWQtOGZiYi0yYzIxZmU4OWI0YzQ",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/telephony/config/jobs/devices/dynamicDeviceSettings/{jobId}/errors": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseObject"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "itemNumber": 0,
+                      "error": {
+                        "key": "error.key",
+                        "message": [
+                          {
+                            "description": "Error description",
+                            "code": "1001",
+                            "locationId": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzMzZjBlZDFiLWQ1YjctNGI4Mi1iMzIzLTg4ZTFmODMzNGNmMw"
+                          }
+                        ]
+                      },
+                      "trackingId": "ROUTER_62F66055-8D70-01BB-0137-AC10A8310137"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "List Dynamic Device Settings Job Errors",
+        "operationId": "listDynamicDeviceSettingsJobErrors",
+        "description": "List Update dynamic device settings job errors.\n\nLists all error details of the job with `jobId` of `jobType` `dynamicdevicesettings`.\n\nThis API requires a full or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
+        "tags": [
+          "Beta Device Call Settings With Dynamic Device Settings"
+        ],
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "description": "Retrieve job details for this `jobId`.",
+            "required": true,
+            "example": "Y2lzY29zcGFyazovL3VzL0pPQl9JRC8wMTA4NDJjMy1mNWQ5LTRjOWQtOGZiYi0yYzIxZmU4OWI0YzQ",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orgId",
+            "in": "query",
+            "description": "Retrieve the status of job for this organization.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": "Specifies the offset from the first result that you want to fetch. Default is 0.",
+            "example": 0,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "max",
+            "in": "query",
+            "description": "Specifies the maximum number of records that you want to fetch. Default is 2000",
+            "example": 100,
+            "schema": {
+              "type": "number"
             }
           }
         ]
@@ -10839,8 +12261,7 @@
           "DARK_BLUE",
           "CISCO_DARK_BLUE",
           "WEBEX_DARK_BLUE",
-          "CUSTOM_BACKGROUND",
-          "customUrl"
+          "CUSTOM_BACKGROUND"
         ],
         "description": " * `NONE` - Indicates that there will be no background image set for the devices.\n * `DARK_BLUE` - Indicates that dark blue background image will be set for the devices.\n * `CISCO_DARK_BLUE` - Indicates that Cisco themed dark blue background image will be set for the devices.\n * `WEBEX_DARK_BLUE` - Indicates that Cisco Webex dark blue background image will be set for the devices.\n * `CUSTOM_BACKGROUND` - Indicates that a custom background image will be set for the devices.\n * `customUrl` - When this option is selected, a field 'Custom Background URL' needs to be added with the image url. URLs provided must link directly to an image file and be in HTTP, HTTPS, or filepath format.\n"
       },
@@ -11163,213 +12584,6 @@
         ],
         "description": " * `ACTIVATING` - Indicates a device is activating.\n * `ACTIVATED` - Indicates a device is activated.\n * `DEACTIVATED` - Indicates a device is deactivated.\n"
       },
-      "DeviceObject": {
-        "type": "object",
-        "required": [
-          "model",
-          "displayName",
-          "type",
-          "manufacturer",
-          "managedBy",
-          "supportedFor",
-          "onboardingMethod",
-          "allowConfigureLayoutEnabled",
-          "numberOfLinePorts",
-          "kemSupportEnabled",
-          "kemLinesSupportEnabled",
-          "upgradeChannelEnabled",
-          "additionalPrimaryLineAppearancesEnabled",
-          "additionalSecondaryLineAppearancesEnabled",
-          "basicEmergencyNomadicEnabled",
-          "customizedBehaviorsEnabled",
-          "allowConfigurePortsEnabled",
-          "customizableLineLabelEnabled",
-          "supportsLinePortReorderingEnabled",
-          "portNumberSupportEnabled",
-          "t38Enabled",
-          "callDeclinedEnabled",
-          "touchScreenPhone",
-          "numberOfLineKeyButtons",
-          "allowHotelingHostEnabled",
-          "supportsApplyChangesEnabled",
-          "allowConfigureLinesEnabled",
-          "allowConfigurePhoneSettingsEnabled",
-          "supportsHotlineEnabled",
-          "supportsHotDeskOnly"
-        ],
-        "properties": {
-          "model": {
-            "type": "string",
-            "example": "2N Customer Managed",
-            "description": "Model name of the device."
-          },
-          "displayName": {
-            "type": "string",
-            "example": "2N Customer Managed",
-            "description": "Display name of the device."
-          },
-          "type": {
-            "$ref": "#/components/schemas/TypeObject",
-            "description": "Type of the device."
-          },
-          "manufacturer": {
-            "$ref": "#/components/schemas/ManufacturerObject",
-            "description": "Manufacturer of the device."
-          },
-          "managedBy": {
-            "$ref": "#/components/schemas/ManagedByObject",
-            "description": "Users who manage the device."
-          },
-          "supportedFor": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SupportedForObject"
-            },
-            "description": "List of places the device is supported for."
-          },
-          "onboardingMethod": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/OnboardingMethodObject"
-            },
-            "description": "Onboarding method."
-          },
-          "allowConfigureLayoutEnabled": {
-            "type": "boolean",
-            "description": "Enables / Disables layout configuration for devices."
-          },
-          "numberOfLinePorts": {
-            "type": "number",
-            "description": "Number of port lines."
-          },
-          "kemSupportEnabled": {
-            "type": "boolean",
-            "example": true,
-            "description": "If `true`, KEM is supported."
-          },
-          "kemModuleCount": {
-            "type": "number",
-            "description": "Module count."
-          },
-          "kemLinesSupportEnabled": {
-            "type": "boolean",
-            "description": "Enables / disables Kem lines support."
-          },
-          "kemModuleType": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/KemModuleType"
-            },
-            "description": "Key expansion module type of the device."
-          },
-          "upgradeChannelEnabled": {
-            "type": "boolean",
-            "description": "Enables / Disables the upgrade channel."
-          },
-          "defaultUpgradeChannel": {
-            "type": "string",
-            "description": "The default upgrade channel."
-          },
-          "additionalPrimaryLineAppearancesEnabled": {
-            "type": "boolean",
-            "description": "Enables / disables the additional primary line appearances."
-          },
-          "additionalSecondaryLineAppearancesEnabled": {
-            "type": "boolean",
-            "description": "Enables / disables the additional shared line appearances."
-          },
-          "basicEmergencyNomadicEnabled": {
-            "type": "boolean",
-            "description": "Enables / disables Basic emergency nomadic."
-          },
-          "customizedBehaviorsEnabled": {
-            "type": "boolean",
-            "description": "Enables / disables customized behavior support on devices."
-          },
-          "allowConfigurePortsEnabled": {
-            "type": "boolean",
-            "description": "Enables / disables configuring port support on device."
-          },
-          "customizableLineLabelEnabled": {
-            "type": "boolean",
-            "description": "Enables / disables customizable line label."
-          },
-          "supportsLinePortReorderingEnabled": {
-            "type": "boolean",
-            "description": "Enables / disables support line port reordering."
-          },
-          "portNumberSupportEnabled": {
-            "type": "boolean",
-            "description": "Enables / disables port number support."
-          },
-          "t38Enabled": {
-            "type": "boolean",
-            "description": "Enables / disables T.38."
-          },
-          "callDeclinedEnabled": {
-            "type": "boolean",
-            "description": "Enables / disables call declined."
-          },
-          "touchScreenPhone": {
-            "type": "boolean",
-            "description": "Supports touch screen on device."
-          },
-          "numberOfLineKeyButtons": {
-            "type": "number",
-            "description": "Number of line key buttons for a device."
-          },
-          "deviceSettingsConfiguration": {
-            "$ref": "#/components/schemas/DeviceSettingsConfigurationObject",
-            "description": "Device settings configuration."
-          },
-          "allowHotelingHostEnabled": {
-            "type": "boolean",
-            "description": "Enables / disables hoteling host."
-          },
-          "supportsLogCollection": {
-            "$ref": "#/components/schemas/SupportsLogCollectionObject",
-            "description": "Device log collection configuration."
-          },
-          "supportsApplyChangesEnabled": {
-            "type": "boolean",
-            "description": "Enables / disables apply changes."
-          },
-          "allowConfigureLinesEnabled": {
-            "type": "boolean",
-            "description": "Enables / disables configure lines."
-          },
-          "allowConfigurePhoneSettingsEnabled": {
-            "type": "boolean",
-            "description": "Enables / disables configure phone settings."
-          },
-          "supportsHotlineEnabled": {
-            "type": "boolean",
-            "description": "Enables / disables hotline support."
-          },
-          "supportsHotDeskOnly": {
-            "type": "boolean",
-            "description": "Supports hot desk only."
-          }
-        }
-      },
-      "DeviceSettingsConfigurationObject": {
-        "type": "string",
-        "enum": [
-          "WEBEX_CALLING_DEVICE_CONFIGURATION",
-          "WEBEX_DEVICE_CONFIGURATION",
-          "NONE"
-        ],
-        "description": " * `WEBEX_CALLING_DEVICE_CONFIGURATION` - Devices which supports Webex Calling Device Settings Configuration.\n * `WEBEX_DEVICE_CONFIGURATION` - Devices which supports Webex Device Settings Configuration.\n * `NONE` - Devices does not support any configuration.\n"
-      },
-      "SupportsLogCollectionObject": {
-        "type": "string",
-        "enum": [
-          "NONE",
-          "CISCO_PRT",
-          "CISCO_ROOMOS"
-        ],
-        "description": " * `NONE` - Devices which does not support log collection.\n * `CISCO_PRT` - Devices which supports Cisco PRT log collection.\n * `CISCO_ROOMOS` - Devices which supports Cisco RoomOS log collection.\n"
-      },
       "DeviceSettingsObject": {
         "type": "object",
         "required": [
@@ -11465,50 +12679,6 @@
           "PERSON_LAST_THEN_FIRST_NAME"
         ],
         "description": " * `PERSON_NUMBER` - Indicates that devices will display the person's phone number, or if a person doesn't have a phone number, the location number will be displayed.\n * `PERSON_FIRST_THEN_LAST_NAME` - Indicates that devices will display the name in first name then last name format.\n * `PERSON_LAST_THEN_FIRST_NAME` - Indicates that devices will display the name in last name then first name format.\n"
-      },
-      "ErrorMessageObject": {
-        "type": "object",
-        "properties": {
-          "description": {
-            "type": "string",
-            "description": "Error message."
-          },
-          "code": {
-            "type": "string",
-            "description": "Internal error code."
-          },
-          "locationId": {
-            "type": "string",
-            "description": "Error messages describing the location id in which the error occurs. For a move operation this is the target location ID."
-          }
-        }
-      },
-      "ErrorObject": {
-        "type": "object",
-        "properties": {
-          "key": {
-            "type": "string",
-            "description": "HTTP error code."
-          },
-          "message": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ErrorMessageObject"
-            },
-            "description": "Message string with further error information."
-          }
-        }
-      },
-      "ErrorResponseObject": {
-        "type": "object",
-        "properties": {
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ItemObject"
-            }
-          }
-        }
       },
       "GetMemberResponse": {
         "type": "object",
@@ -11698,113 +12868,6 @@
             "type": "string",
             "example": "private",
             "description": "Specify a password if authentication settings are enabled."
-          }
-        }
-      },
-      "ItemObject": {
-        "type": "object",
-        "properties": {
-          "item": {
-            "type": "string",
-            "description": "Phone number"
-          },
-          "itemNumber": {
-            "type": "number",
-            "description": "Index of error number."
-          },
-          "trackingId": {
-            "type": "string",
-            "description": "Unique identifier to track the HTTP requests."
-          },
-          "error": {
-            "$ref": "#/components/schemas/ErrorObject"
-          }
-        }
-      },
-      "JobExecutionStatusObject": {
-        "type": "object",
-        "required": [
-          "id"
-        ],
-        "properties": {
-          "id": {
-            "type": "number",
-            "example": 436272,
-            "description": "Unique identifier that identifies each instance of the job."
-          },
-          "startTime": {
-            "type": "string",
-            "example": "2024-03-13T14:57:04.678Z",
-            "description": "Step execution start time in UTC format."
-          },
-          "endTime": {
-            "type": "string",
-            "example": "2024-03-13T14:57:04.678Z",
-            "description": "Step execution end time in UTC format."
-          },
-          "lastUpdated": {
-            "type": "string",
-            "example": "2024-03-13T14:57:04.678Z",
-            "description": "Last updated time (in UTC format) post one of the step execution completion."
-          },
-          "statusMessage": {
-            "type": "string",
-            "example": "STARTING",
-            "description": "Displays status for overall steps that are part of the job."
-          },
-          "exitCode": {
-            "type": "string",
-            "example": "UNKNOWN",
-            "description": "Exit Code for a job."
-          },
-          "createdTime": {
-            "type": "string",
-            "example": "2024-03-13T14:57:04.678Z",
-            "description": "Job creation time in UTC format."
-          },
-          "timeElapsed": {
-            "type": "string",
-            "example": "PT0S",
-            "description": "Time lapsed since the job execution started."
-          },
-          "stepExecutionStatuses": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/stepExecutionStatusesObject"
-            },
-            "description": "Status of each step within a job."
-          }
-        }
-      },
-      "JobExecutionStatusObject1": {
-        "type": "object",
-        "required": [
-          "id"
-        ],
-        "properties": {
-          "id": {
-            "type": "number",
-            "description": "Unique identifier that identifies each instance of the job."
-          },
-          "lastUpdated": {
-            "type": "string",
-            "description": "Last updated time (in UTC format) post one of the step execution completion."
-          },
-          "statusMessage": {
-            "type": "string",
-            "description": "Displays status for overall steps that are part of the job."
-          },
-          "exitCode": {
-            "type": "string",
-            "description": "Exit Code for a job."
-          },
-          "createdTime": {
-            "type": "string",
-            "description": "Job creation time in UTC format."
-          },
-          "timeElapsed": {
-            "type": "string",
-            "description": "Time lapsed since the job execution started."
           }
         }
       },
@@ -12069,22 +13132,6 @@
           }
         }
       },
-      "ManagedByObject": {
-        "type": "string",
-        "enum": [
-          "CISCO",
-          "CUSTOMER"
-        ],
-        "description": " * `CISCO` - Devices managed by Cisco.\n * `CUSTOMER` - Devices managed by a customer that are approved by a Cisco account manager to be enabled for provisioning in the control hub.\n"
-      },
-      "ManufacturerObject": {
-        "type": "string",
-        "enum": [
-          "CISCO",
-          "THIRD_PARTY"
-        ],
-        "description": " * `CISCO` - Devices manufactured by Cisco.\n * `THIRD_PARTY` - Devices manufactured by a third-party that are approved by a Cisco account manager to be enabled for provisioning in the control hub.\n"
-      },
       "MemberObject": {
         "type": "object",
         "required": [
@@ -12336,14 +13383,6 @@
             "description": "Enable/disable to preserve the existing values on the phone and not the value defined for the device setting."
           }
         }
-      },
-      "OnboardingMethodObject": {
-        "type": "string",
-        "enum": [
-          "MAC_ADDRESS",
-          "ACTIVATION_CODE",
-          "NONE"
-        ]
       },
       "PhoneLanguage": {
         "type": "string",
@@ -12909,24 +13948,6 @@
             "description": "Job statistics."
           }
         }
-      },
-      "SupportedForObject": {
-        "type": "string",
-        "enum": [
-          "PEOPLE",
-          "PLACE"
-        ]
-      },
-      "TypeObject": {
-        "type": "string",
-        "enum": [
-          "MPP",
-          "ATA",
-          "GENERIC_SIP",
-          "ESIM",
-          "DESK_PHONE"
-        ],
-        "description": " * `MPP` - Cisco Multiplatform Phone\n * `ATA` - Analog Telephone Adapters\n * `GENERIC_SIP` - GENERIC Session Initiation Protocol\n * `ESIM` - Esim Supported Webex Go\n * `DESK_PHONE` - Desk Phone\n"
       },
       "UsbPortsObject": {
         "type": "object",
@@ -13671,8 +14692,15 @@
             "description": "Choose the length of time (in minutes) for the phone's backlight to remain on."
           },
           "background": {
-            "$ref": "#/components/schemas/BackgroundImage",
-            "description": "Holds the background object of MPP Object."
+            "type": "object",
+            "properties": {
+              "image": {
+                "$ref": "#/components/schemas/BackgroundImage"
+              },
+              "customUrl": {
+                "type": "string"
+              }
+            }
           },
           "displayNameFormat": {
             "$ref": "#/components/schemas/DisplayNameSelection",
@@ -13935,8 +14963,15 @@
             "description": "Choose the length of time (in minutes) for the phone's backlight to remain on."
           },
           "background": {
-            "$ref": "#/components/schemas/BackgroundImage",
-            "description": "Holds the background object of MPP Object."
+            "type": "object",
+            "properties": {
+              "image": {
+                "$ref": "#/components/schemas/BackgroundImage"
+              },
+              "customUrl": {
+                "type": "string"
+              }
+            }
           },
           "displayNameFormat": {
             "$ref": "#/components/schemas/DisplayNameSelection",
@@ -14215,69 +15250,6 @@
           }
         }
       },
-      "stepExecutionStatusesObject": {
-        "type": "object",
-        "required": [
-          "id"
-        ],
-        "properties": {
-          "id": {
-            "type": "number",
-            "example": 1998857,
-            "description": "Unique identifier that identifies each step in a job."
-          },
-          "startTime": {
-            "type": "string",
-            "example": "2024-03-13T03:58:36.886Z",
-            "description": "Step execution start time in UTC format."
-          },
-          "endTime": {
-            "type": "string",
-            "example": "2024-03-13T03:58:48.471Z",
-            "description": "Step execution end time in UTC format."
-          },
-          "lastUpdated": {
-            "type": "string",
-            "example": "2024-03-13T03:58:48.472Z",
-            "description": "Last updated time for a step in UTC format."
-          },
-          "statusMessage": {
-            "type": "string",
-            "example": "COMPLETED",
-            "description": "Displays the status of a step."
-          },
-          "exitCode": {
-            "type": "string",
-            "example": "COMPLETED",
-            "description": "Exit Code for a step."
-          },
-          "name": {
-            "type": "string",
-            "example": "rebuildphonesProcess",
-            "description": "Name of different steps the job goes through."
-          },
-          "timeElapsed": {
-            "type": "string",
-            "example": "PT11.585S",
-            "description": "Time lapsed since the step execution started."
-          }
-        }
-      },
-      "supportedDevicesObject": {
-        "type": "object",
-        "required": [
-          "devices"
-        ],
-        "properties": {
-          "devices": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DeviceObject"
-            },
-            "description": "List of supported devices."
-          }
-        }
-      },
       "wifiObject": {
         "type": "object",
         "required": [
@@ -14474,15 +15446,15 @@
             "description": "Most recent exit code of the job at the time of invocation.\n * `UNKNOWN` - Job is in progress.\n * `COMPLETED` - Job has completed successfully.\n * `FAILED` - Job has failed.\n * `STOPPED` - Job has been stopped.\n * `COMPLETED_WITH_ERRORS` - Job has completed with errors.\n"
           },
           "percentageComplete": {
-            "type": "string",
+            "type": "integer",
             "description": "Indicates the progress of the job."
           },
           "updatedCount": {
-            "type": "string",
+            "type": "integer",
             "description": "Number of job steps completed."
           },
           "advisoryCount": {
-            "type": "string",
+            "type": "integer",
             "description": "Number of job steps completed with advisories."
           }
         }
@@ -14886,15 +15858,6 @@
         ],
         "description": " * `DEFAULT` - Default layout mode when a new device is added.\n * `CUSTOM` - Enables a device to have its custom layout.\n"
       },
-      "KemModuleType": {
-        "type": "string",
-        "enum": [
-          "KEM_14_KEYS",
-          "KEM_18_KEYS",
-          "KEM_20_KEYS"
-        ],
-        "description": " * `KEM_14_KEYS` - Extension module has 14 line keys that can be configured.\n * `KEM_18_KEYS` - Extension module has 18 line keys that can be configured.\n * `KEM_20_KEYS` - Extension module has 20 line keys that can be configured.\n"
-      },
       "RebuildPhonesPostRequest": {
         "type": "object",
         "required": [
@@ -15005,8 +15968,8 @@
             "description": "Unique identifier of a location."
           },
           "percentageComplete": {
-            "type": "string",
-            "example": "10",
+            "type": "integer",
+            "example": 10,
             "description": "Indicates the progress of the job."
           },
           "deviceCount": {
@@ -15015,16 +15978,6 @@
             "description": "Count of number of devices rebuilt."
           }
         }
-      },
-      "LatestExecutionStatus": {
-        "type": "string",
-        "enum": [
-          "STARTING",
-          "STARTED",
-          "COMPLETED",
-          "FAILED"
-        ],
-        "description": " * `STARTING` - Indicates the job has started.\n * `STARTED` - Indicates the job is in progress.\n * `COMPLETED` - Indicates the job has completed.\n * `FAILED` - Indicates the job has failed.\n"
       },
       "EnhancedMulticastObject": {
         "type": "object",
@@ -15201,6 +16154,1323 @@
             "description": "The total count of applications associated with the user."
           }
         }
+      },
+      "DeviceDynamicSettingsValidationSchemaGet": {
+        "type": "object",
+        "example": {
+          "tags": [
+            {
+              "familyOrModelDisplayName": "Poly",
+              "tag": "%G711U_ORDER%",
+              "friendlyName": "voice.codecPref.G711Mu",
+              "tooltip": "Tag tooltip.",
+              "level": [
+                "location",
+                "device"
+              ],
+              "validationRule": {
+                "type": "int",
+                "min": 0,
+                "max": 10,
+                "increment": 1
+              }
+            }
+          ]
+        },
+        "properties": {
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeviceTag"
+            },
+            "description": "Array of device settings tags with their validation rules."
+          }
+        }
+      },
+      "DeviceDynamicSettingsSettingsGroupsGet": {
+        "type": "object",
+        "example": {
+          "settingsGroups": [
+            {
+              "path": "Voice.Codec Preferences",
+              "friendlyName": "voice.codecPref.G711Mu",
+              "tab": "Poly",
+              "familyOrModelDisplayName": "Poly",
+              "tags": [
+                {
+                  "tagBlock": [
+                    "%G711U_ORDER%"
+                  ]
+                }
+              ]
+            }
+          ],
+          "settingsTabs": [
+            "Poly",
+            "MPP"
+          ]
+        },
+        "properties": {
+          "settingsGroups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeviceSettingsGroup"
+            },
+            "description": "Array of settings groups defining structure and association of tags."
+          },
+          "settingsTabs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Array of settings tabs names. Can be filtered using the `includeSettingsType` parameter."
+          }
+        }
+      },
+      "DeviceTag": {
+        "type": "object",
+        "properties": {
+          "familyOrModelDisplayName": {
+            "type": "string",
+            "description": "The family or model name of the device to which these settings apply.",
+            "example": "Poly"
+          },
+          "tag": {
+            "type": "string",
+            "description": "The unique identifier for the setting.",
+            "example": "%G711U_ORDER%"
+          },
+          "friendlyName": {
+            "type": "string",
+            "description": "A user-friendly name for the setting. It helps to correlate the tag with the UI in settings groups.",
+            "example": "voice.codecPref.G711Mu"
+          },
+          "tooltip": {
+            "type": "string",
+            "description": "Explanatory text for the setting.",
+            "example": "Tag tooltip."
+          },
+          "alert": {
+            "type": "string",
+            "description": "Alert message related to this setting, if applicable.",
+            "example": "Alert text."
+          },
+          "level": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The levels at which this setting can be configured. When fetching tags or updating tags, the tag should be allowed at the level the request is made for.",
+            "example": [
+              "organization",
+              "location",
+              "device"
+            ]
+          },
+          "validationRule": {
+            "$ref": "#/components/schemas/ValidationRule"
+          }
+        }
+      },
+      "DeviceSettingsGroup": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "Path of the settings group. Creates an easily navigable settings hierarchy.",
+            "example": "Voice.Codec Preferences"
+          },
+          "friendlyName": {
+            "type": "string",
+            "description": "Friendly name of the settings group.",
+            "example": "voice.codecPref.G711Mu"
+          },
+          "tab": {
+            "type": "string",
+            "description": "Tab name associated with the settings group.",
+            "example": "Poly"
+          },
+          "familyOrModelDisplayName": {
+            "type": "string",
+            "description": "Family or model display name associated with the settings group.",
+            "example": "Poly"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeviceSettingsGroupTag"
+            },
+            "description": "List of `tagBlock` objects associated with the settings group."
+          }
+        }
+      },
+      "DeviceSettingsGroupTag": {
+        "type": "object",
+        "properties": {
+          "tagBlock": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Array of tags associated with the settings group.",
+            "example": [
+              "%G711U_ORDER%"
+            ]
+          }
+        }
+      },
+      "ValidationRule": {
+        "type": "object",
+        "description": "Validation rules and constraints for device setting values.",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The data type of the setting. Possible values are `string`, `integer`, `boolean`, `enum` , `password` or `network`.",
+            "example": "\"int\""
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Possible values for `enum` or `boolean` types.",
+            "example": [
+              "0",
+              "1",
+              "2",
+              "NumberOnly"
+            ]
+          },
+          "min": {
+            "type": "integer",
+            "description": "Minimum value for numeric types.",
+            "example": 0
+          },
+          "max": {
+            "type": "integer",
+            "description": "Maximum value for numeric types.",
+            "example": 10
+          },
+          "increment": {
+            "type": "integer",
+            "description": "Increment value for numeric types.",
+            "example": 1
+          },
+          "regex": {
+            "type": "string",
+            "description": "Regular expression pattern for string validation.",
+            "example": "[A-Za-z0-9]+"
+          },
+          "maxLength": {
+            "type": "integer",
+            "description": "Maximum length for string values.",
+            "example": 255
+          },
+          "validationHint": {
+            "type": "string",
+            "description": "Hint to display to users about validation requirements.",
+            "example": "5-60"
+          }
+        }
+      },
+      "CustomerDeviceDynamicSettingsListPostRequest": {
+        "type": "object",
+        "properties": {
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "description": "Optional array of device tag identifiers to request settings for. Each identifier must have a length between 1 and 64 characters.",
+            "minItems": 0
+          }
+        }
+      },
+      "CustomerDeviceDynamicSettingsListPostResponse": {
+        "type": "object",
+        "example": {
+          "tags": [
+            {
+              "familyOrModelDisplayName": "Poly",
+              "tag": "%DO_MENU_ITEM_BACKGROUND%",
+              "value": "#RRGGBB",
+              "parentValue": "#FFFFFF",
+              "parentLevel": "ORGANIZATION"
+            }
+          ],
+          "lastUpdateTime": 1651396800000,
+          "updateInProgress": false
+        },
+        "properties": {
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomerDevicePostTag"
+            },
+            "description": "Array of device setting values matching the requested tags."
+          },
+          "lastUpdateTime": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Timestamp of the last update to these settings."
+          },
+          "updateInProgress": {
+            "type": "boolean",
+            "description": "Flag indicating if an update to these settings is currently in progress."
+          }
+        }
+      },
+      "CustomerDevicePostTag": {
+        "type": "object",
+        "properties": {
+          "familyOrModelDisplayName": {
+            "type": "string",
+            "description": "The `familyOrModelDisplayName` of the device.",
+            "example": "Poly"
+          },
+          "tag": {
+            "type": "string",
+            "description": "The unique identifier for the setting.",
+            "example": "%G711U_ORDER%"
+          },
+          "value": {
+            "type": "string",
+            "description": "The current value of the setting at `ORGANIZATION` level. If the tag value is not set at the `ORGANIZATION` level, this field will not be included in the response.",
+            "example": "4"
+          },
+          "parentValue": {
+            "type": "string",
+            "description": "The value inherited from the immediate parent level above `ORGANIZATION`. It can be `SYSTEM_DEFAULT`, `REGIONAL_DEFAULT`, or `ORGANIZATION`, depending on which level the setting is actually configured at. If there is no parent level for this tag, this field will not be included in the response.",
+            "example": "3"
+          },
+          "parentLevel": {
+            "$ref": "#/components/schemas/DynamicDeviceSettingsCustomerParentLevel"
+          }
+        }
+      },
+      "DynamicDeviceSettingsCustomerParentLevel": {
+        "type": "string",
+        "enum": [
+          "SYSTEM_DEFAULT",
+          "REGIONAL_DEFAULT",
+          "ORGANIZATION"
+        ],
+        "description": "The level from which the tag's parent value is inherited. If there is no parent level for this tag, this field will not be included in the response."
+      },
+      "LocationDeviceDynamicSettingsListPostRequest": {
+        "type": "object",
+        "properties": {
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "description": "Optional array of device tag identifiers to request settings for. Each identifier must have a length between 1 and 64 characters.",
+            "minItems": 0
+          }
+        }
+      },
+      "LocationDeviceDynamicSettingsListPostResponse": {
+        "type": "object",
+        "example": {
+          "tags": [
+            {
+              "familyOrModelDisplayName": "Poly",
+              "tag": "%G711U_ORDER%",
+              "value": "4",
+              "parentValue": "3",
+              "parentLevel": "ORGANIZATION"
+            }
+          ],
+          "lastUpdateTime": 1651396800000,
+          "updateInProgress": false
+        },
+        "properties": {
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LocationDevicePostResponseTag"
+            },
+            "description": "Array of device setting values matching the requested tags."
+          },
+          "lastUpdateTime": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Timestamp of the last update to these settings."
+          },
+          "updateInProgress": {
+            "type": "boolean",
+            "description": "Flag indicating if an update to these settings is currently in progress."
+          }
+        }
+      },
+      "LocationDevicePostResponseTag": {
+        "type": "object",
+        "properties": {
+          "familyOrModelDisplayName": {
+            "type": "string",
+            "description": "The `familyOrModelDisplayName` of the device.",
+            "example": "Poly"
+          },
+          "tag": {
+            "type": "string",
+            "description": "The unique identifier for the setting.",
+            "example": "%G711U_ORDER%"
+          },
+          "value": {
+            "type": "string",
+            "description": "The current value of the setting at `LOCATION` level. If the tag value is not set at the `LOCATION` level, this field will not be included in the response.",
+            "example": "4"
+          },
+          "parentValue": {
+            "type": "string",
+            "description": "The value inherited from the immediate parent level above `LOCATION`. It can be `SYSTEM_DEFAULT`, `REGIONAL_DEFAULT`, `ORGANIZATION`, or `LOCATION`, depending on which level the setting is actually configured at. If there is no parent level for this tag, this field will not be included in the response.",
+            "example": "3"
+          },
+          "parentLevel": {
+            "$ref": "#/components/schemas/LocationParentLevel"
+          }
+        }
+      },
+      "LocationParentLevel": {
+        "type": "string",
+        "enum": [
+          "SYSTEM_DEFAULT",
+          "REGIONAL_DEFAULT",
+          "ORGANIZATION",
+          "LOCATION"
+        ],
+        "description": "The level from which the tag's parent value is inherited. If there is no parent level for this tag, this field will not be included in the response."
+      },
+      "DeviceDynamicSettingsListPostRequest": {
+        "type": "object",
+        "properties": {
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Optional array of tag identifiers representing specific settings to fetch. If omitted or provided as an empty array, all settings for the device will be returned.",
+            "minItems": 0
+          }
+        }
+      },
+      "DeviceDynamicSettingsListPostResponse": {
+        "type": "object",
+        "required": [
+          "tags"
+        ],
+        "example": {
+          "tags": [
+            {
+              "familyOrModelDisplayName": "Poly",
+              "tag": "%G711U_ORDER%",
+              "value": "4",
+              "parentValue": "3",
+              "parentLevel": "ORGANIZATION"
+            }
+          ],
+          "lastUpdateTime": 1651396800000
+        },
+        "properties": {
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DevicePostResponseTag"
+            },
+            "description": "Array of device setting values matching the requested tags."
+          },
+          "lastUpdateTime": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Timestamp of the last update to these settings."
+          }
+        }
+      },
+      "DeviceDynamicSettingsPutRequest": {
+        "type": "object",
+        "properties": {
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DevicePutItem"
+            },
+            "description": "Optional array of `tag` identifiers representing specific settings to update. If omitted or provided as an empty array, the request will have no effect.",
+            "minItems": 0
+          }
+        }
+      },
+      "DevicePostResponseTag": {
+        "type": "object",
+        "required": [
+          "familyOrModelDisplayName",
+          "tag"
+        ],
+        "properties": {
+          "familyOrModelDisplayName": {
+            "type": "string",
+            "description": "The display name of the device family or model associated with the returned tag.",
+            "example": "Poly"
+          },
+          "tag": {
+            "type": "string",
+            "description": "The unique identifier for the device setting.",
+            "example": "%G711U_ORDER%"
+          },
+          "value": {
+            "type": "string",
+            "description": "The current value of the setting at device level. If the tag value is not set at the device level, this field will not be included in the response.",
+            "example": "4"
+          },
+          "parentValue": {
+            "type": "string",
+            "description": "The setting value at the next available `parentLevel`. It is used if `value` is not set and is omitted when no parent level exists for the tag.",
+            "example": "3"
+          },
+          "parentLevel": {
+            "$ref": "#/components/schemas/DeviceParentLevel"
+          }
+        }
+      },
+      "DeviceParentLevel": {
+        "type": "string",
+        "enum": [
+          "SYSTEM_DEFAULT",
+          "REGIONAL_DEFAULT",
+          "ORGANIZATION",
+          "LOCATION"
+        ],
+        "description": "The level from which the tag's parent value is inherited. If there is no parent level for this tag, this field will not be included in the response."
+      },
+      "DevicePutItem": {
+        "type": "object",
+        "required": [
+          "tag",
+          "action"
+        ],
+        "properties": {
+          "tag": {
+            "type": "string",
+            "description": "The unique identifier for the setting to be updated.",
+            "example": "%G711U_ORDER%",
+            "minLength": 1,
+            "maxLength": 64
+          },
+          "action": {
+            "$ref": "#/components/schemas/Action"
+          },
+          "value": {
+            "type": "string",
+            "description": "The new value to set for the setting. This field is required when `action` is `SET` and ignored otherwise.",
+            "example": "4",
+            "minLength": 1,
+            "maxLength": 256
+          }
+        }
+      },
+      "Action": {
+        "type": "string",
+        "enum": [
+          "SET",
+          "CLEAR"
+        ],
+        "description": "The action to perform on the setting. When action is `SET`, `tag` is updated to specified value. When action is `CLEAR`, the `tag` value at device level is removed, and the device will inherit the value from the parent level, if it exists.",
+        "example": "SET"
+      },
+      "PostDynamicDeviceSettingsJobResponse": {
+        "type": "object",
+        "required": [
+          "name",
+          "id",
+          "trackingId",
+          "sourceUserId",
+          "sourceCustomerId",
+          "targetCustomerId",
+          "instanceId",
+          "jobExecutionStatus",
+          "latestExecutionStatus",
+          "latestExecutionExitCode",
+          "target",
+          "percentageComplete"
+        ],
+        "example": {
+          "name": "dynamicdevicesettings",
+          "id": "Y2lzY29zcGFyazovL3VzL0pPQl9JRC8wNjZkOTQzNC1kODEyLTQzODItODVhMC00MjBlOTFlODg3ZTY",
+          "trackingId": "ROUTERGW_1d458245-ee34-48c8-8ed6-92ea16ed48aa",
+          "sourceUserId": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS81MDRhZmQ1YS0zODRiLTQ0NjYtYTJlNC05Y2ExZjUwMDRlYWQ",
+          "sourceCustomerId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi9lYTRiZTEyNS00Y2ZjLTQ5OTItOGMwNi00Y2U4Mzc2ZDU4MmE",
+          "targetCustomerId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi9lYTRiZTEyNS00Y2ZjLTQ5OTItOGMwNi00Y2U4Mzc2ZDU4MmE",
+          "instanceId": 428989,
+          "jobExecutionStatus": [
+            {
+              "id": 0,
+              "startTime": "2025-05-13T10:59:44.106Z",
+              "lastUpdated": "2025-05-13T10:59:44.106Z",
+              "statusMessage": "STARTED",
+              "exitCode": "UNKNOWN",
+              "createdTime": "2025-05-13T10:50:01.352Z",
+              "timeElapsed": "PT11.476S"
+            }
+          ],
+          "latestExecutionStatus": "STARTED",
+          "latestExecutionExitCode": "UNKNOWN",
+          "target": "CUSTOMER",
+          "locationId": "",
+          "percentageComplete": 100
+        },
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "dynamicdevicesettings",
+            "description": "Name of the job which in this case, is `dynamicdevicesettings`."
+          },
+          "id": {
+            "type": "string",
+            "example": "Y2lzY29zcGFyazovL3VzL0pPQl9JRC8wNjZkOTQzNC1kODEyLTQzODItODVhMC00MjBlOTFlODg3ZTY",
+            "description": "Unique identifier of the job."
+          },
+          "trackingId": {
+            "type": "string",
+            "example": "ROUTERGW_1d458245-ee34-48c8-8ed6-92ea16ed48aa",
+            "description": "Unique identifier to track the flow of HTTP requests."
+          },
+          "sourceUserId": {
+            "type": "string",
+            "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS81MDRhZmQ1YS0zODRiLTQ0NjYtYTJlNC05Y2ExZjUwMDRlYWQ",
+            "description": "Unique identifier of the user who has run the job."
+          },
+          "sourceCustomerId": {
+            "type": "string",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi9lYTRiZTEyNS00Y2ZjLTQ5OTItOGMwNi00Y2U4Mzc2ZDU4MmE",
+            "description": "Unique identifier of the customer who has run the job."
+          },
+          "targetCustomerId": {
+            "type": "string",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi9lYTRiZTEyNS00Y2ZjLTQ5OTItOGMwNi00Y2U4Mzc2ZDU4MmE",
+            "description": "Unique identifier of the customer for which the job was run."
+          },
+          "instanceId": {
+            "type": "number",
+            "example": 428989,
+            "description": "Unique identifier to identify the instance of the job."
+          },
+          "jobExecutionStatus": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobExecutionStatusObject"
+            },
+            "description": "Displays the most recent step's execution status. Contains execution statuses of all the steps involved in the execution of the job."
+          },
+          "latestExecutionStatus": {
+            "$ref": "#/components/schemas/LatestExecutionStatus"
+          },
+          "latestExecutionExitCode": {
+            "type": "string",
+            "enum": [
+              "UNKNOWN",
+              "COMPLETED",
+              "FAILED",
+              "STOPPED",
+              "COMPLETED_WITH_ERRORS"
+            ],
+            "description": "Most recent exit code of the job at the time of invocation.\n * `UNKNOWN` - Job is in progress.\n * `COMPLETED` - Job has completed successfully.\n * `FAILED` - Job has failed.\n * `STOPPED` - Job has been stopped.\n * `COMPLETED_WITH_ERRORS` - Job has completed with errors.\n"
+          },
+          "target": {
+            "type": "string",
+            "enum": [
+              "CUSTOMER",
+              "LOCATION"
+            ],
+            "example": "LOCATION",
+            "description": "Indicates the target entity."
+          },
+          "locationId": {
+            "type": "string",
+            "example": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzQ0Y2UwNDBhLTEzNmMtNDc3NS1hMjIzLTY5OTczYmEyYWNhYw",
+            "description": "Unique identifier of a location."
+          },
+          "locationName": {
+            "type": "string",
+            "example": "Brampton",
+            "description": "Name of the location. Included only when `target` is `LOCATION`."
+          },
+          "percentageComplete": {
+            "type": "integer",
+            "example": 10,
+            "description": "Indicates the progress of the job."
+          }
+        }
+      },
+      "LatestExecutionStatus": {
+        "type": "string",
+        "enum": [
+          "STARTING",
+          "STARTED",
+          "COMPLETED",
+          "FAILED"
+        ],
+        "description": " * `STARTING` - Indicates the job has started.\n * `STARTED` - Indicates the job is in progress.\n * `COMPLETED` - Indicates the job has completed.\n * `FAILED` - Indicates the job has failed.\n"
+      },
+      "JobExecutionStatusObject": {
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 436272,
+            "description": "Unique identifier that identifies each instance of the job."
+          },
+          "startTime": {
+            "type": "string",
+            "example": "2025-05-13T10:59:44.106Z",
+            "description": "Step execution start time in UTC format."
+          },
+          "endTime": {
+            "type": "string",
+            "example": "2025-05-13T10:59:44.692Z",
+            "description": "Step execution end time in UTC format."
+          },
+          "lastUpdated": {
+            "type": "string",
+            "example": "2025-05-13T10:59:44.854Z",
+            "description": "Last updated time (in UTC format) post one of the step execution completion."
+          },
+          "statusMessage": {
+            "type": "string",
+            "example": "STARTING",
+            "description": "Displays status for overall steps that are part of the job."
+          },
+          "exitCode": {
+            "type": "string",
+            "example": "UNKNOWN",
+            "description": "Exit Code for a job."
+          },
+          "createdTime": {
+            "type": "string",
+            "example": "2024-03-13T14:57:04.678Z",
+            "description": "Job creation time in UTC format."
+          },
+          "timeElapsed": {
+            "type": "string",
+            "example": "PT0S",
+            "description": "Time lapsed since the job execution started."
+          },
+          "stepExecutionStatuses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/stepExecutionStatusesObject"
+            },
+            "description": "Status of each step within a job."
+          }
+        }
+      },
+      "JobExecutionStatusObject1": {
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "Unique identifier that identifies each instance of the job."
+          },
+          "lastUpdated": {
+            "type": "string",
+            "description": "Last updated time (in UTC format) post one of the step execution completion."
+          },
+          "statusMessage": {
+            "type": "string",
+            "description": "Displays status for overall steps that are part of the job."
+          },
+          "exitCode": {
+            "type": "string",
+            "description": "Exit Code for a job."
+          },
+          "createdTime": {
+            "type": "string",
+            "description": "Job creation time in UTC format."
+          },
+          "timeElapsed": {
+            "type": "string",
+            "description": "Time lapsed since the job execution started."
+          }
+        }
+      },
+      "stepExecutionStatusesObject": {
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1998857,
+            "description": "Unique identifier that identifies each step in a job."
+          },
+          "startTime": {
+            "type": "string",
+            "example": "2024-03-13T03:58:36.886Z",
+            "description": "Step execution start time in UTC format."
+          },
+          "endTime": {
+            "type": "string",
+            "example": "2024-03-13T03:58:48.471Z",
+            "description": "Step execution end time in UTC format."
+          },
+          "lastUpdated": {
+            "type": "string",
+            "example": "2024-03-13T03:58:48.472Z",
+            "description": "Last updated time for a step in UTC format."
+          },
+          "statusMessage": {
+            "type": "string",
+            "example": "COMPLETED",
+            "description": "Displays the status of a step."
+          },
+          "exitCode": {
+            "type": "string",
+            "example": "COMPLETED",
+            "description": "Exit Code for a step."
+          },
+          "name": {
+            "type": "string",
+            "example": "dynamicdevicesettingsUpdate",
+            "description": "Name of different steps the job goes through."
+          },
+          "timeElapsed": {
+            "type": "string",
+            "example": "PT11.585S",
+            "description": "Time lapsed since the step execution started."
+          }
+        }
+      },
+      "PostDynamicSettingsUpdateStartJobRequest": {
+        "type": "object",
+        "required": [
+          "tags"
+        ],
+        "properties": {
+          "locationId": {
+            "type": "string",
+            "example": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OL2E4Mjg5NzIyLTFiODAtNDFiNy05Njc4LTBlNzdhZThjMTA5OA",
+            "description": "If present, the requested settings will be updated to devices under this location."
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DynamicSettingsUpdateJobDevicePostItem"
+            },
+            "description": "Array of tag identifiers for settings to be updated. Each setting is identified by a `familyOrModelDisplayName` and `tag`. Supports updating multiple settings across different device families in a single request.",
+            "minItems": 1
+          }
+        }
+      },
+      "DynamicSettingsUpdateJobDevicePostItem": {
+        "type": "object",
+        "required": [
+          "familyOrModelDisplayName",
+          "tag",
+          "action"
+        ],
+        "properties": {
+          "familyOrModelDisplayName": {
+            "type": "string",
+            "description": "The `familyOrModelDisplayName` of the device to which the tag applies. This value must exist in the validation schema.",
+            "example": "Poly",
+            "minLength": 1,
+            "maxLength": 40
+          },
+          "tag": {
+            "type": "string",
+            "description": "The unique identifier for the setting to be updated.",
+            "example": "%G711U_ORDER%",
+            "minLength": 1,
+            "maxLength": 64
+          },
+          "action": {
+            "$ref": "#/components/schemas/Action"
+          },
+          "value": {
+            "type": "string",
+            "description": "The new value to set for the setting. This field is required when `action` is `SET` and ignored otherwise.",
+            "example": "4",
+            "minLength": 1,
+            "maxLength": 256
+          }
+        }
+      },
+      "DynamicDeviceSettingsJobListResponse": {
+        "type": "object",
+        "required": [
+          "items"
+        ],
+        "example": {
+          "items": [
+            {
+              "name": "dynamicdevicesettings",
+              "id": "Y2lzY29zcGFyazovL3VzL0pPQl9JRC8wZTJjNmI5NC1hNDdlLTQxZGUtODE5ZS04YTcwNTZjMTc5MDk",
+              "trackingId": "NA_a9ef6908-60cf-40e6-b56f-461abffd6fa3",
+              "sourceUserId": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS85OThhMThhYi1kZjY5LTQ5MWYtYmViZi03MzUxMGE3ODI5N2I",
+              "sourceCustomerId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi9hNDVkNmNkYS1hZTVhLTQwYzMtYTdhZC01NjUwZmRkZGQ1M2M",
+              "targetCustomerId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi9hNDVkNmNkYS1hZTVhLTQwYzMtYTdhZC01NjUwZmRkZGQ1M2M",
+              "instanceId": 0,
+              "jobExecutionStatus": [],
+              "latestExecutionStatus": "COMPLETED",
+              "latestExecutionExitCode": "COMPLETED",
+              "target": "LOCATION",
+              "locationId": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzgwZmUxMzdkLTg5NDgtNDlhYS1iODdiLTk4MGMxN2I2YzdiYg",
+              "percentageComplete": 100
+            }
+          ]
+        },
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostDynamicDeviceSettingsJobResponse"
+            },
+            "description": "Lists all jobs for the customer of type `dynamicdevicesettings` in order of most recent one to oldest one irrespective of its status."
+          }
+        }
+      },
+      "ErrorResponseObject": {
+        "type": "object",
+        "example": {
+          "items": [
+            {
+              "itemNumber": 0,
+              "error": {
+                "key": "error.key",
+                "message": [
+                  {
+                    "description": "Error description",
+                    "code": "1001",
+                    "locationId": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzMzZjBlZDFiLWQ1YjctNGI4Mi1iMzIzLTg4ZTFmODMzNGNmMw"
+                  }
+                ]
+              },
+              "trackingId": "ROUTER_62F66055-8D70-01BB-0137-AC10A8310137"
+            }
+          ]
+        },
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ItemObject"
+            },
+            "description": "Array of error items for failed operations.",
+            "example": [
+              {
+                "itemNumber": 0,
+                "trackingId": "ROUTER_62F66055-8D70-01BB-0137-AC10A8310137"
+              }
+            ]
+          }
+        }
+      },
+      "ItemObject": {
+        "type": "object",
+        "properties": {
+          "itemNumber": {
+            "type": "number",
+            "description": "Index of error number."
+          },
+          "trackingId": {
+            "type": "string",
+            "description": "Unique identifier to track the HTTP requests."
+          },
+          "error": {
+            "$ref": "#/components/schemas/ErrorObject"
+          }
+        }
+      },
+      "ErrorObject": {
+        "type": "object",
+        "description": "Error details object containing error information.",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "HTTP error code."
+          },
+          "message": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ErrorMessageObject"
+            },
+            "description": "Message string with further error information."
+          }
+        }
+      },
+      "ErrorMessageObject": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "Error message."
+          },
+          "code": {
+            "type": "string",
+            "description": "Internal error code."
+          },
+          "locationId": {
+            "type": "string",
+            "description": "Error messages describing the location ID in which the error occurs."
+          }
+        }
+      },
+      "supportedDevicesObject": {
+        "type": "object",
+        "required": [
+          "devices"
+        ],
+        "example": {
+          "devices": [
+            {
+              "model": "2N Customer Managed",
+              "displayName": "2N Customer Managed",
+              "type": "GENERIC_SIP",
+              "manufacturer": "THIRD_PARTY",
+              "managedBy": "CUSTOMER",
+              "supportedFor": [
+                "PEOPLE",
+                "PLACE"
+              ],
+              "onboardingMethod": [
+                "MAC_ADDRESS"
+              ],
+              "allowConfigureLayoutEnabled": false,
+              "numberOfLinePorts": 20,
+              "kemSupportEnabled": true,
+              "kemModuleCount": 1,
+              "kemLinesSupportEnabled": false,
+              "kemModuleType": [
+                "KEM_20_KEYS"
+              ],
+              "upgradeChannelEnabled": false,
+              "additionalPrimaryLineAppearancesEnabled": false,
+              "basicEmergencyNomadicEnabled": false,
+              "customizedBehaviorsEnabled": false,
+              "allowConfigurePortsEnabled": false,
+              "customizableLineLabelEnabled": false,
+              "supportsLinePortReorderingEnabled": false,
+              "portNumberSupportEnabled": false,
+              "t38Enabled": false,
+              "callDeclinedEnabled": false,
+              "touchScreenPhone": false,
+              "numberOfLineKeyButtons": 0,
+              "deviceSettingsConfiguration": "NONE",
+              "allowHotelingHostEnabled": false,
+              "supportsLogCollection": "NONE",
+              "supportsApplyChangesEnabled": false,
+              "allowConfigureLinesEnabled": true,
+              "allowConfigurePhoneSettingsEnabled": false,
+              "supportsHotlineEnabled": false
+            },
+            {
+              "model": "DMS Polycom EE400",
+              "displayName": "Polycom EE400",
+              "familyDisplayName": "Poly",
+              "type": "GENERIC_SIP",
+              "manufacturer": "THIRD_PARTY",
+              "managedBy": "CISCO",
+              "supportedFor": [
+                "PEOPLE",
+                "PLACE"
+              ],
+              "onboardingMethod": [
+                "MAC_ADDRESS"
+              ],
+              "allowConfigureLayoutEnabled": false,
+              "numberOfLinePorts": 14,
+              "kemSupportEnabled": false,
+              "kemLinesSupportEnabled": false,
+              "upgradeChannelEnabled": false,
+              "additionalPrimaryLineAppearancesEnabled": true,
+              "basicEmergencyNomadicEnabled": false,
+              "customizedBehaviorsEnabled": true,
+              "allowConfigurePortsEnabled": false,
+              "customizableLineLabelEnabled": false,
+              "supportsLinePortReorderingEnabled": true,
+              "portNumberSupportEnabled": false,
+              "t38Enabled": false,
+              "callDeclinedEnabled": true,
+              "touchScreenPhone": false,
+              "numberOfLineKeyButtons": 0,
+              "deviceSettingsConfiguration": "WEBEX_CALLING_DYNAMIC_DEVICE_CONFIGURATION",
+              "allowHotelingHostEnabled": true,
+              "supportsLogCollection": "NONE",
+              "supportsApplyChangesEnabled": true,
+              "allowConfigureLinesEnabled": true,
+              "allowConfigurePhoneSettingsEnabled": true,
+              "supportsHotlineEnabled": true
+            }
+          ]
+        },
+        "properties": {
+          "devices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeviceObject"
+            },
+            "description": "List of supported devices."
+          }
+        }
+      },
+      "DeviceObject": {
+        "type": "object",
+        "required": [
+          "model",
+          "displayName",
+          "type",
+          "manufacturer",
+          "managedBy",
+          "supportedFor",
+          "onboardingMethod",
+          "allowConfigureLayoutEnabled",
+          "numberOfLinePorts",
+          "kemSupportEnabled",
+          "kemLinesSupportEnabled",
+          "upgradeChannelEnabled",
+          "additionalPrimaryLineAppearancesEnabled",
+          "basicEmergencyNomadicEnabled",
+          "customizedBehaviorsEnabled",
+          "allowConfigurePortsEnabled",
+          "customizableLineLabelEnabled",
+          "supportsLinePortReorderingEnabled",
+          "portNumberSupportEnabled",
+          "t38Enabled",
+          "callDeclinedEnabled",
+          "touchScreenPhone",
+          "numberOfLineKeyButtons",
+          "allowHotelingHostEnabled",
+          "supportsApplyChangesEnabled",
+          "allowConfigureLinesEnabled",
+          "allowConfigurePhoneSettingsEnabled",
+          "supportsHotlineEnabled"
+        ],
+        "properties": {
+          "model": {
+            "type": "string",
+            "example": "2N Customer Managed",
+            "description": "Model name of the device."
+          },
+          "displayName": {
+            "type": "string",
+            "example": "2N Customer Managed",
+            "description": "Display name of the device."
+          },
+          "familyDisplayName": {
+            "type": "string",
+            "example": "Poly",
+            "description": "The display name of the device family."
+          },
+          "type": {
+            "$ref": "#/components/schemas/TypeObject"
+          },
+          "manufacturer": {
+            "$ref": "#/components/schemas/ManufacturerObject"
+          },
+          "managedBy": {
+            "$ref": "#/components/schemas/ManagedByObject"
+          },
+          "supportedFor": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SupportedForObject"
+            },
+            "description": "List of places the device is supported for."
+          },
+          "onboardingMethod": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OnboardingMethodObject"
+            },
+            "description": "Onboarding method."
+          },
+          "allowConfigureLayoutEnabled": {
+            "type": "boolean",
+            "description": "Enables / Disables layout configuration for devices."
+          },
+          "numberOfLinePorts": {
+            "type": "number",
+            "description": "Number of port lines."
+          },
+          "kemSupportEnabled": {
+            "type": "boolean",
+            "example": true,
+            "description": "Indicates whether Kem support is enabled or not."
+          },
+          "kemModuleCount": {
+            "type": "number",
+            "description": "Module count."
+          },
+          "kemLinesSupportEnabled": {
+            "type": "boolean",
+            "description": "Enables / disables Kem lines support."
+          },
+          "kemModuleType": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/KemModuleType"
+            },
+            "description": "Key expansion module type of the device."
+          },
+          "upgradeChannelEnabled": {
+            "type": "boolean",
+            "description": "Enables / Disables the upgrade channel."
+          },
+          "defaultUpgradeChannel": {
+            "type": "string",
+            "description": "The default upgrade channel."
+          },
+          "additionalPrimaryLineAppearancesEnabled": {
+            "type": "boolean",
+            "description": "Enables / disables the additional primary line appearances."
+          },
+          "basicEmergencyNomadicEnabled": {
+            "type": "boolean",
+            "description": "Enables / disables Basic emergency nomadic."
+          },
+          "customizedBehaviorsEnabled": {
+            "type": "boolean",
+            "description": "Enables / disables customized behavior support on devices."
+          },
+          "allowConfigurePortsEnabled": {
+            "type": "boolean",
+            "description": "Enables / disables configuring port support on device."
+          },
+          "customizableLineLabelEnabled": {
+            "type": "boolean",
+            "description": "Enables / disables customizable line label."
+          },
+          "supportsLinePortReorderingEnabled": {
+            "type": "boolean",
+            "description": "Enables / disables support line port reordering."
+          },
+          "portNumberSupportEnabled": {
+            "type": "boolean",
+            "description": "Enables / disables port number support."
+          },
+          "t38Enabled": {
+            "type": "boolean",
+            "description": "Enables / disables T.38."
+          },
+          "callDeclinedEnabled": {
+            "type": "boolean",
+            "description": "Enables / disables call declined."
+          },
+          "touchScreenPhone": {
+            "type": "boolean",
+            "description": "Supports touch screen on device."
+          },
+          "numberOfLineKeyButtons": {
+            "type": "number",
+            "description": "Number of line key buttons for a device."
+          },
+          "deviceSettingsConfiguration": {
+            "$ref": "#/components/schemas/DeviceSettingsConfigurationObject"
+          },
+          "allowHotelingHostEnabled": {
+            "type": "boolean",
+            "description": "Enables / disables hoteling host."
+          },
+          "supportsLogCollection": {
+            "$ref": "#/components/schemas/SupportsLogCollectionObject"
+          },
+          "supportsApplyChangesEnabled": {
+            "type": "boolean",
+            "description": "Enables / disables apply changes."
+          },
+          "allowConfigureLinesEnabled": {
+            "type": "boolean",
+            "description": "Enables / disables configure lines."
+          },
+          "allowConfigurePhoneSettingsEnabled": {
+            "type": "boolean",
+            "description": "Enables / disables configure phone settings."
+          },
+          "supportsHotlineEnabled": {
+            "type": "boolean",
+            "description": "Enables / disables hotline support."
+          }
+        }
+      },
+      "TypeObject": {
+        "type": "string",
+        "enum": [
+          "MPP",
+          "ATA",
+          "GENERIC_SIP",
+          "ESIM",
+          "DESK_PHONE"
+        ],
+        "description": " * `MPP` - Cisco Multiplatform Phone\n * `ATA` - Analog Telephone Adapters\n * `GENERIC_SIP` - GENERIC Session Initiation Protocol\n * `ESIM` - Esim Supported Webex Go\n * `DESK_PHONE` - Desk Phone\n"
+      },
+      "ManagedByObject": {
+        "type": "string",
+        "enum": [
+          "CISCO",
+          "CUSTOMER"
+        ],
+        "description": " * `CISCO` - Devices managed by Cisco.\n * `CUSTOMER` - Devices managed by a customer that are approved by a Cisco account manager to be enabled for provisioning in the control hub.\n"
+      },
+      "ManufacturerObject": {
+        "type": "string",
+        "enum": [
+          "CISCO",
+          "THIRD_PARTY"
+        ],
+        "description": " * `CISCO` - Devices manufactured by Cisco.\n * `THIRD_PARTY` - Devices manufactured by a third-party that are approved by a Cisco account manager to be enabled for provisioning in the control hub.\n"
+      },
+      "SupportedForObject": {
+        "type": "string",
+        "enum": [
+          "PEOPLE",
+          "PLACE"
+        ]
+      },
+      "OnboardingMethodObject": {
+        "type": "string",
+        "enum": [
+          "MAC_ADDRESS",
+          "ACTIVATION_CODE",
+          "NONE"
+        ]
+      },
+      "SupportsLogCollectionObject": {
+        "type": "string",
+        "enum": [
+          "NONE",
+          "CISCO_PRT",
+          "CISCO_ROOMOS"
+        ],
+        "description": " * `NONE` - Devices which does not support log collection.\n * `CISCO_PRT` - Devices which supports Cisco PRT log collection.\n * `CISCO_ROOMOS` - Devices which supports Cisco RoomOS log collection.\n"
+      },
+      "DeviceSettingsConfigurationObject": {
+        "type": "string",
+        "enum": [
+          "WEBEX_CALLING_DEVICE_CONFIGURATION",
+          "WEBEX_DEVICE_CONFIGURATION",
+          "WEBEX_CALLING_DYNAMIC_DEVICE_CONFIGURATION",
+          "NONE"
+        ],
+        "description": " * `WEBEX_CALLING_DEVICE_CONFIGURATION` - Devices which supports Webex Calling Device Settings Configuration.\n * `WEBEX_DEVICE_CONFIGURATION` - Devices which supports Webex Device Settings Configuration.\n * `WEBEX_CALLING_DYNAMIC_DEVICE_CONFIGURATION` - Devices which supports Webex Calling dynamic Settings Configuration.\n * `NONE` - Devices does not support any configuration.\n"
+      },
+      "KemModuleType": {
+        "type": "string",
+        "enum": [
+          "KEM_14_KEYS",
+          "KEM_18_KEYS",
+          "KEM_20_KEYS"
+        ],
+        "description": " * `KEM_14_KEYS` - Extension module has 14 line keys that can be configured.\n * `KEM_18_KEYS` - Extension module has 18 line keys that can be configured.\n * `KEM_20_KEYS` - Extension module has 20 line keys that can be configured.\n"
       },
       "ActivationCode": {
         "type": "object",
