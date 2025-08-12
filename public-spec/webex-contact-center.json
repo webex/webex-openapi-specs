@@ -7092,6 +7092,869 @@
         }
       }
     },
+    "/organization/{orgid}/agent-personal-greeting": {
+      "post": {
+        "tags": [
+          "Agent Personal Greeting Files"
+        ],
+        "summary": "Create a new Greeting File",
+        "description": "Create a new agent personal greeting File for a given organization.",
+        "operationId": "createConfig_28",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID to be used for this operation. The specified security token must have permission to interact with the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba1"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "agentPersonalGreetingInfo",
+                  "audioFile"
+                ],
+                "type": "object",
+                "properties": {
+                  "agentPersonalGreetingInfo": {
+                    "$ref": "#/components/schemas/AgentPersonalGreetingDTO"
+                  },
+                  "audioFile": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "agentPersonalGreetingInfo",
+                  "audioFile"
+                ],
+                "type": "object",
+                "properties": {
+                  "agentPersonalGreetingInfo": {
+                    "$ref": "#/components/schemas/AgentPersonalGreetingDTO"
+                  },
+                  "audioFile": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentPersonalGreetingDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid and cannot be served. An accompanying error message will explain further",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation is forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Similar entity is already present",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests have been sent in a given amount of time and the request has been rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An Unexpected Error Occurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/organization/{orgid}/agent-personal-greeting/delete-reference": {
+      "post": {
+        "tags": [
+          "Agent Personal Greeting Files"
+        ],
+        "summary": "Delete References",
+        "operationId": "deleteReferences_1",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FieldRequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid and cannot be served. An accompanying error message will explain further",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation is forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Similar entity is already present",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests have been sent in a given amount of time and the request has been rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An Unexpected Error Occurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organization/{orgid}/agent-personal-greeting/{id}": {
+      "get": {
+        "tags": [
+          "Agent Personal Greeting Files"
+        ],
+        "summary": "Get specific Greeting File by ID",
+        "description": "Retrieve an existing Greeting File by ID in a given organization.",
+        "operationId": "getConfig_28",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID to be used for this operation. The specified security token must have permission to interact with the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba1"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Resource ID of the Greeting File.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549"
+          },
+          {
+            "name": "includeUrl",
+            "in": "query",
+            "description": "Indicates if the URL for downloading Greeting Fileshould be included in the response.",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "example": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentPersonalGreetingDTO"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation is forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found or URI is invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests have been sent in a given amount of time and the request has been rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An Unexpected Error Occurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      },
+      "put": {
+        "tags": [
+          "Agent Personal Greeting Files"
+        ],
+        "summary": "Update Greeting File by ID",
+        "description": "Partially update Greeting File by ID in a given organization.",
+        "operationId": "updateConfig_28",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID to be used for this operation. The specified security token must have permission to interact with the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba1"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Resource ID of the Greeting File.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "agentPersonalGreetingInfo",
+                  "audioFile"
+                ],
+                "type": "object",
+                "properties": {
+                  "agentPersonalGreetingInfo": {
+                    "$ref": "#/components/schemas/AgentPersonalGreetingDTO"
+                  },
+                  "audioFile": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "agentPersonalGreetingInfo",
+                  "audioFile"
+                ],
+                "type": "object",
+                "properties": {
+                  "agentPersonalGreetingInfo": {
+                    "$ref": "#/components/schemas/AgentPersonalGreetingDTO"
+                  },
+                  "audioFile": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentPersonalGreetingDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid and cannot be served. An accompanying error message will explain further",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation is forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found or URI is invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "Resource referred in other entity(s). Please get all the reference entities info by invoking Get incoming-references api.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests have been sent in a given amount of time and the request has been rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An Unexpected Error Occurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "Agent Personal Greeting Files"
+        ],
+        "summary": "Delete specific Greeting File by ID",
+        "description": "Delete an existing Greeting File by ID for a given organization.",
+        "operationId": "deleteConfig_25",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID to be used for this operation. The specified security token must have permission to interact with the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba1"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Resource ID of the Greeting File.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation is forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found or URI is invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "Resource referred in other entity(s). Please get all the reference entities info by invoking Get incoming-references api.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests have been sent in a given amount of time and the request has been rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An Unexpected Error Occurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      },
+      "patch": {
+        "tags": [
+          "Agent Personal Greeting Files"
+        ],
+        "summary": "Partially update Greeting File by ID",
+        "description": "Partially update Greeting File by ID in a given organization.",
+        "operationId": "patchConfig_3",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID to be used for this operation. The specified security token must have permission to interact with the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba1"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Resource ID of the Greeting File.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AgentPersonalGreetingPatchDTO"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/AgentPersonalGreetingPatchDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentPersonalGreetingDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid and cannot be served. An accompanying error message will explain further",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation is forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found or URI is invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests have been sent in a given amount of time and the request has been rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An Unexpected Error Occurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/organization/{orgid}/v2/agent-personal-greeting": {
+      "get": {
+        "tags": [
+          "Agent Personal Greeting Files"
+        ],
+        "summary": "List Greeting File(s)",
+        "description": "Retrieve a list of Greeting File(s) in a given organization.",
+        "operationId": "getAllConfigWithMetaData_26",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID to be used for this operation. The specified security token must have permission to interact with the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba1"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "Specify a filter based on which the results will be fetched. Supported fields are : firstname, lastname, email, ciUserId and attribute tag \n\nThe examples below show some search queries\n- id==\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\"\n- id!=\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\"\n- id=in=(\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\",\"a421e0b2-732e-46f3-a057-39160a53afb9\")\n- id=out=(\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\",\"a421e0b2-732e-46f3-a057-39160a53afb9\")\nThis parameter uses the RSQL query syntax, a URI-friendly format for expressing criteria for filtering REST entities. For more information about RSQL in general, see  <a href=\"https://www.here.com/docs/bundle/data-client-library-developer-guide-java-scala/page/client/rsql.html\">this reference</a>. For a list of supported operators, see <a href=\"https://github.com/perplexhub/rsql-jpa-specification#rsql-syntax-reference\">this syntax guide</a>.\n\nNote: values to be used in the filter syntax should not contain space, and if so kindly bound it with quotes to apply filter.\n",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "id==\"2f9eecc5-0472-4549-9a83-2afdae0d4ba1\""
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Filter data based on the search keyword.Supported search columns(firstName, lastName, email, attributeTag)\n\nThe examples below show some search queries\n- \"Cisco\"\n- field==\"firstName\";value==\"Cisco\"\n- fields=in=(\"firstName\",\"email\");value==\"Cisco\"\n",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "contact center"
+          },
+          {
+            "name": "attributes",
+            "in": "query",
+            "description": "Specify the attributes to be returned.Default all attributes are returned along with specified columns. All Attributes are supported",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "string"
+            },
+            "example": "id"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Defines the number of displayed page. The page number starts from 0.",
+            "schema": {
+              "type": "integer",
+              "example": 0,
+              "default": 0
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Defines the number of items to be displayed on a page. If the number specified is more than allowed max page size, the API will automatically adjust the page size to the max page size.",
+            "schema": {
+              "type": "integer",
+              "example": 100,
+              "default": 100
+            }
+          },
+          {
+            "name": "includeAgentDetails",
+            "in": "query",
+            "description": "If includeAgentDetails is set to true then projection, filtering, searching, and sorting on agent firstName, lastName and email will be enabled.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "meta": {
+                      "$ref": "#/components/schemas/MetaDataWithPagingInfo"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/AgentPersonalGreetingDTO"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation is forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found or URI is invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests have been sent in a given amount of time and the request has been rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An Unexpected Error Occurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/organization/{orgid}/audio-file": {
       "post": {
         "tags": [
@@ -49922,6 +50785,194 @@
           }
         }
       },
+      "AgentPersonalGreetingDTO": {
+        "required": [
+          "agentId",
+          "contentType",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "organizationId": {
+            "maxLength": 36,
+            "minLength": 32,
+            "pattern": "^[0-9a-fA-F]{8}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{12}$",
+            "type": "string",
+            "description": "ID of the contact center organization. It is required to define for the following operations - All bulk save operations",
+            "format": "uuid",
+            "example": "f53c8b54-46ca-43f6-ba05-08426a46e23d"
+          },
+          "id": {
+            "type": "string",
+            "description": "ID of this contact center resource. It should not be specified when creating a new resource. However, it is mandatory when updating a resource.",
+            "example": "93912f11-6017-404b-bf14-5331890b1797"
+          },
+          "version": {
+            "type": "integer",
+            "description": "The version of this resource. For a newly created resource, it will be 0 unless specified otherwise.",
+            "format": "int32",
+            "example": 1
+          },
+          "name": {
+            "maxLength": 80,
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9._\\-\\s]*$",
+            "type": "string",
+            "description": "A name for the Agent's personal greeting file. It should have valid extension i.e. .wav ",
+            "example": "WelcomeMessage.wav"
+          },
+          "contentType": {
+            "type": "string",
+            "description": "Indicates Content-Type of the Audio file. It can take one of these values: AUDIO_WAV, AUDIO_X_WAV",
+            "example": "AUDIO_WAV",
+            "enum": [
+              "AUDIO_WAV",
+              "TEXT_HTML",
+              "TEXT_PHP",
+              "AUDIO_X_WAV",
+              "APPLICATION_OCTET_STREAM"
+            ]
+          },
+          "blobId": {
+            "type": "string",
+            "description": "Identifier for the audio file.",
+            "example": "audio-file_a7c700d5-2fac-4a6c-9a16-eb2f2b42d7a8"
+          },
+          "url": {
+            "type": "string",
+            "description": "Audio file download url.",
+            "format": "url",
+            "example": "https://cjp-ccone-devus1-ivr-media.s3.amazonaws.com/bde75a64-f4d5-4ffc-a239-feb607c17ef8/"
+          },
+          "agentId": {
+            "type": "string",
+            "description": "Agent Id with which this greeting file is to be associated with.",
+            "example": "955fe2b9-ba25-4de9-92b0-6cb055d5b432"
+          },
+          "attributeTag": {
+            "maxLength": 80,
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9_-]*$",
+            "type": "string",
+            "description": "This is used to identify the purpose of a greeting.",
+            "example": "ENVIP"
+          },
+          "firstName": {
+            "type": "string",
+            "description": "First Name of the Agent with whom this greeting file is to be associated with.",
+            "example": "John"
+          },
+          "lastName": {
+            "type": "string",
+            "description": "Last Name of the Agent with whom this greeting file is to be associated with.",
+            "example": "Doe"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email of the Agent with whom this greeting file is to be associated with.",
+            "example": "JohnDoe@example.com"
+          },
+          "agentActive": {
+            "type": "boolean",
+            "description": "Indicates whether the Agent with whom this greeting file is to be associated with is active or not active",
+            "example": true
+          },
+          "ciUserId": {
+            "type": "string",
+            "description": "Id of the Agent in common identity with whom this greeting file is to be associated with.",
+            "example": "c71876ae-ddfa-4049-9a1b-298535152578"
+          },
+          "audioFile": {
+            "type": "string",
+            "format": "binary"
+          },
+          "createdTime": {
+            "type": "integer",
+            "description": "Creation time (in epoch milliseconds) of this resource.",
+            "format": "int64",
+            "readOnly": true,
+            "example": 1617536244000
+          },
+          "lastUpdatedTime": {
+            "type": "integer",
+            "description": "Time(in epoch millis) when this resource was last updated.",
+            "format": "int64",
+            "readOnly": true,
+            "example": 1617536244000
+          }
+        }
+      },
+      "FieldRequestBody": {
+        "type": "object",
+        "properties": {
+          "references": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "details": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            }
+          }
+        }
+      },
+      "Link": {
+        "type": "object",
+        "properties": {
+          "href": {
+            "type": "string"
+          },
+          "hreflang": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "deprecation": {
+            "type": "string"
+          },
+          "profile": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "templated": {
+            "type": "boolean"
+          }
+        }
+      },
+      "AgentPersonalGreetingPatchDTO": {
+        "type": "object",
+        "properties": {
+          "attributeTag": {
+            "type": "string",
+            "description": "This is used to identify the purpose of a greeting.",
+            "example": "ENVIP"
+          }
+        }
+      },
       "AudioFileInfoDTO": {
         "required": [
           "contentType",
@@ -50235,56 +51286,6 @@
             "type": "string",
             "description": "Indicates the work type associated with this code.",
             "example": "WRAP_UP_CODE"
-          }
-        }
-      },
-      "Response": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "details": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "object"
-            }
-          },
-          "links": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Link"
-            }
-          }
-        }
-      },
-      "Link": {
-        "type": "object",
-        "properties": {
-          "href": {
-            "type": "string"
-          },
-          "hreflang": {
-            "type": "string"
-          },
-          "title": {
-            "type": "string"
-          },
-          "type": {
-            "type": "string"
-          },
-          "deprecation": {
-            "type": "string"
-          },
-          "profile": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "templated": {
-            "type": "boolean"
           }
         }
       },
@@ -51208,17 +52209,6 @@
             "format": "int64",
             "readOnly": true,
             "example": 1617536244000
-          }
-        }
-      },
-      "FieldRequestBody": {
-        "type": "object",
-        "properties": {
-          "references": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string"
-            }
           }
         }
       },
