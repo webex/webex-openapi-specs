@@ -9327,7 +9327,37 @@
                           "managedBy": "CISCO",
                           "devicePlatform": "cisco"
                         }
-                      ]
+                      ],
+                      "capabilities": {
+                        "occupancyDetection": {
+                          "supported": true,
+                          "configured": true
+                        },
+                        "presenceDetection": {
+                          "supported": true,
+                          "configured": true
+                        },
+                        "ambientNoise": {
+                          "supported": true,
+                          "configured": true
+                        },
+                        "soundLevel": {
+                          "supported": true,
+                          "configured": true
+                        },
+                        "temperature": {
+                          "supported": true,
+                          "configured": true
+                        },
+                        "airQuality": {
+                          "supported": true,
+                          "configured": true
+                        },
+                        "relativeHumidity": {
+                          "supported": true,
+                          "configured": true
+                        }
+                      }
                     }
                   ]
                 }
@@ -9381,7 +9411,7 @@
           }
         },
         "summary": "List Workspaces",
-        "operationId": "List Workspaces",
+        "operationId": "listWorkspaces",
         "description": "List workspaces.\n\nUse query parameters to filter the response. The `orgId` parameter can only be used by admin users of another organization (such as partners). The `locationId`, `workspaceLocationId`, `indoorNavigation`, `floorId`, `capacity` and `type` fields will only be present for workspaces that have a value set for them. The special values `notSet` (for filtering on category) and `-1` (for filtering on capacity) can be used to filter for workspaces without a type and/or capacity.",
         "tags": [
           "Workspaces"
@@ -9436,7 +9466,7 @@
             "name": "capacity",
             "in": "query",
             "description": "List workspaces with the given capacity. Must be -1 or higher. A value of -1 lists workspaces with no capacity set.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -9463,7 +9493,7 @@
             "name": "start",
             "in": "query",
             "description": "Offset. Default is 0.",
-            "example": "50",
+            "example": 50,
             "schema": {
               "type": "number"
             }
@@ -9472,7 +9502,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the maximum number of workspaces in the response.",
-            "example": "100",
+            "example": 100,
             "schema": {
               "type": "number"
             }
@@ -9525,7 +9555,7 @@
             "name": "deviceHostedMeetingsEnabled",
             "in": "query",
             "description": "List workspaces enabled for device hosted meetings.",
-            "example": "true",
+            "example": true,
             "schema": {
               "type": "boolean"
             }
@@ -9562,7 +9592,16 @@
             "name": "includeDevices",
             "in": "query",
             "description": "Flag identifying whether to include the devices associated with the workspace in the response.",
-            "example": "false",
+            "example": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "includeCapabilities",
+            "in": "query",
+            "description": "Flag identifying whether to include the workspace capabilities in the response.",
+            "example": false,
             "schema": {
               "type": "boolean"
             }
@@ -9657,7 +9696,7 @@
           }
         },
         "summary": "Create a Workspace",
-        "operationId": "Create a Workspace",
+        "operationId": "createWorkspace",
         "description": "Create a workspace.\n\nThe `locationId`, `workspaceLocationId`, `floorId`, `indoorNavigation`, `capacity`, `type`, `notes` and `hotdeskingStatus` parameters are optional, and omitting them will result in the creation of a workspace without these values set, or set to their default. A `locationId` must be provided when the `floorId` is set. Calendar and calling can also be set for a new workspace. Omitting them will default to free calling and no calendaring. The `orgId` parameter can only be used by admin users of another organization (such as partners).\n\n* Information for Webex Calling fields may be found here: [locations](/docs/api/v1/locations/list-locations), [available numbers](/docs/api/v1/numbers/get-phone-numbers-for-an-organization-with-given-criterias) and [licenses](/docs/api/v1/licenses).\n\n* The `locationId` and `supportedDevices` fields cannot be changed once configured.\n\n* When creating a `webexCalling` workspace that is not hot desk only, a `locationId` and either a `phoneNumber` or `extension` or both is required. Furthermore, it is possible to set the `licenses` field with a list of Webex Calling license IDs, if desired. If multiple license IDs are provided, the oldest suitable one will be applied. If no licenses are supplied, the oldest suitable one from the active subscriptions will be automaticaly applied.\n\n* When creating a hot desk only workspace, `phoneNumber` and `extension` fields are not applicable. Furthermore, `deviceHostedMeetingsEnabled`, and `calendar` services are not applicable. If any of these fields are provided the API will return an error. The `calling` type is `webexCalling`.",
         "tags": [
           "Workspaces"
@@ -9707,7 +9746,7 @@
         }
       }
     },
-    "/workspaces/{workspaceId}/": {
+    "/workspaces/{workspaceId}": {
       "get": {
         "responses": {
           "200": {
@@ -9809,7 +9848,37 @@
                       "managedBy": "CISCO",
                       "devicePlatform": "cisco"
                     }
-                  ]
+                  ],
+                  "capabilities": {
+                    "occupancyDetection": {
+                      "supported": true,
+                      "configured": true
+                    },
+                    "presenceDetection": {
+                      "supported": true,
+                      "configured": true
+                    },
+                    "ambientNoise": {
+                      "supported": true,
+                      "configured": true
+                    },
+                    "soundLevel": {
+                      "supported": true,
+                      "configured": true
+                    },
+                    "temperature": {
+                      "supported": true,
+                      "configured": true
+                    },
+                    "airQuality": {
+                      "supported": true,
+                      "configured": true
+                    },
+                    "relativeHumidity": {
+                      "supported": true,
+                      "configured": true
+                    }
+                  }
                 }
               }
             }
@@ -9861,7 +9930,7 @@
           }
         },
         "summary": "Get Workspace Details",
-        "operationId": "Get Workspace Details",
+        "operationId": "getWorkspaceDetails",
         "description": "Shows details for a workspace, by ID.\n\nThe `locationId`, `workspaceLocationId`, `floorId`, `indoorNavigation`, `capacity`, `type` and `notes` fields will only be present if they have been set for the workspace. Specify the workspace ID in the `workspaceId` parameter in the URI.",
         "tags": [
           "Workspaces"
@@ -9881,15 +9950,22 @@
             "name": "includeDevices",
             "in": "query",
             "description": "Flag identifying whether to include the devices associated with the workspace in the response.",
-            "example": "false",
+            "example": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "includeCapabilities",
+            "in": "query",
+            "description": "Flag identifying whether to include the workspace capabilities in the response.",
+            "example": false,
             "schema": {
               "type": "boolean"
             }
           }
         ]
-      }
-    },
-    "/workspaces/{workspaceId}": {
+      },
       "put": {
         "responses": {
           "200": {
@@ -9979,7 +10055,7 @@
           }
         },
         "summary": "Update a Workspace",
-        "operationId": "Update a Workspace",
+        "operationId": "updateWorkspace",
         "description": "Updates details for a workspace by ID.\n\nSpecify the workspace ID in the `workspaceId` parameter in the URI. Include all details for the workspace that are present in a [GET request for the workspace details](/docs/api/v1/workspaces/get-workspace-details). Not including the optional `capacity`, `type` or `notes` fields will result in the fields no longer being defined for the workspace. A `locationId` must be provided when the `floorId` is set. The `locationId`, `workspaceLocationId`, `floorId`, `supportedDevices`, `calendar` and `calling` fields do not change when omitted from the update request.\n\n* Information for Webex Calling fields may be found here: [locations](/docs/api/v1/locations/list-locations) and [available numbers](/docs/api/v1/numbers/get-phone-numbers-for-an-organization-with-given-criterias).\n\n* Updating the `calling` parameter is only supported if the existing `calling` type is `freeCalling`, `none`, `thirdPartySipCalling` or `webexCalling`.\n\n* Updating the `calling` parameter to `none`, `thirdPartySipCalling` or `webexCalling` is not supported if the workspace contains any devices.\n\n* The `locationId` and `supportedDevices` fields cannot be changed once configured.\n\n* When updating `webexCalling` information on a workspace that is not hot desk only, a `locationId` and either a `phoneNumber` or `extension` or both is required. Furthermore, the `licenses` field can be set with a list of Webex Calling license IDs, if desired. If multiple license IDs are provided, the oldest suitable one will be applied. If a previously applied license ID is omitted, it will be replaced with one from the list provided. If the `licenses` field is omitted, the current calling license will be retained.\n\n* When specifying a hot desk only license on a hot desk only workspace, `deviceHostedMeetingsEnabled`, and `calendar` services are not supported and will be automatically disabled. In addition to this, the `phoneNumber` and `extension` will be removed from the workspace. Attempting to enable any of these services, or provide a `phoneNumber` or `extension` will result in an error. The `calling` type for these requests is `webexCalling`.",
         "tags": [
           "Workspaces"
@@ -10091,7 +10167,7 @@
           }
         },
         "summary": "Delete a Workspace",
-        "operationId": "Delete a Workspace",
+        "operationId": "deleteWorkspace",
         "description": "Deletes a workspace by ID.\n\nAlso deletes all devices associated with the workspace. Any deleted devices will need to be reactivated. Specify the workspace ID in the `workspaceId` parameter in the URI.",
         "tags": [
           "Workspaces"
@@ -10203,7 +10279,7 @@
           }
         },
         "summary": "Get Workspace Capabilities",
-        "operationId": "Get Workspace Capabilities",
+        "operationId": "getWorkspaceCapabilities",
         "description": "Shows the capabilities for a workspace by ID.\n\nReturns a set of capabilities, including whether or not the capability is supported by any device in the workspace, and if the capability is configured (enabled). For example for a specific capability like `occupancyDetection`, the API will return if the capability is supported and/or configured such that occupancy detection data will flow from the workspace (device) to the cloud. Specify the workspace ID in the `workspaceId` parameter in the URI.",
         "tags": [
           "Workspaces"
@@ -15174,18 +15250,24 @@
             "items": {
               "$ref": "#/components/schemas/DeviceCapabilities"
             },
-            "description": "The capabilities of the device."
+            "description": "The capabilities of the device.",
+            "example": [
+              "xapi"
+            ]
           },
           "permissions": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/DevicePermissions"
             },
-            "description": "The permissions the user has for this device. For example, `xapi` means this user is entitled to using the `xapi` against this device."
+            "description": "The permissions the user has for this device. For example, `xapi` means this user is entitled to using the `xapi` against this device.",
+            "example": [
+              "xapi:readonly",
+              "xapi:all"
+            ]
           },
           "connectionStatus": {
-            "$ref": "#/components/schemas/DeviceConnectionStatus",
-            "description": "The connection status of the device."
+            "$ref": "#/components/schemas/DeviceConnectionStatus"
           },
           "product": {
             "type": "string",
@@ -15203,7 +15285,11 @@
               "type": "string",
               "example": "First Tag, Second Tag"
             },
-            "description": "Tags assigned to the device."
+            "description": "Tags assigned to the device.",
+            "example": [
+              "First Tag",
+              "Second Tag"
+            ]
           },
           "ip": {
             "type": "string",
@@ -15211,8 +15297,7 @@
             "description": "The current IP address of the device."
           },
           "activeInterface": {
-            "$ref": "#/components/schemas/NetworkConnectivityType",
-            "description": "The current network connectivity for the device."
+            "$ref": "#/components/schemas/NetworkConnectivityType"
           },
           "mac": {
             "type": "string",
@@ -15225,6 +15310,10 @@
             "description": "The primary SIP address to dial this device."
           },
           "sipUrls": {
+            "example": [
+              "sample_device@sample_workspacename.orgname.org",
+              "another_device@sample_workspacename.orgname.org"
+            ],
             "type": "array",
             "items": {
               "type": "string",
@@ -15263,6 +15352,9 @@
             "description": "The workspace location associated with the device. Deprecated, prefer `locationId`."
           },
           "errorCodes": {
+            "example": [
+              "sipprofileregistration"
+            ],
             "type": "array",
             "items": {
               "type": "string",
@@ -15281,12 +15373,10 @@
             "description": "Timestamp of the last time device sent a status post."
           },
           "managedBy": {
-            "$ref": "#/components/schemas/ManagedBy",
-            "description": "Entity managing the device configuration."
+            "$ref": "#/components/schemas/ManagedBy"
           },
           "devicePlatform": {
-            "$ref": "#/components/schemas/DevicePlatform",
-            "description": "The device platform."
+            "$ref": "#/components/schemas/DevicePlatform"
           }
         }
       },
@@ -15305,7 +15395,9 @@
         "type": "string",
         "enum": [
           "wired"
-        ]
+        ],
+        "description": "The current network connectivity for the device.",
+        "example": "wired"
       },
       "DeviceConnectionStatus": {
         "type": "string",
@@ -15317,7 +15409,9 @@
           "activating",
           "unknown",
           "offline_deep_sleep"
-        ]
+        ],
+        "description": "The connection status of the device.",
+        "example": "connected"
       },
       "DevicePermissions": {
         "type": "string",
@@ -15338,14 +15432,18 @@
           "CISCO",
           "CUSTOMER",
           "PARTNER"
-        ]
+        ],
+        "description": "Entity managing the device configuration.",
+        "example": "CISCO"
       },
       "DevicePlatform": {
         "type": "string",
         "enum": [
           "cisco",
           "microsoftTeamsRoom"
-        ]
+        ],
+        "description": "Device platform",
+        "example": "cisco"
       },
       "Event": {
         "type": "object",
@@ -18340,18 +18438,6 @@
           }
         }
       },
-      "WorkspaceType": {
-        "type": "string",
-        "enum": [
-          "focus",
-          "huddle",
-          "meetingRoom",
-          "open",
-          "desk",
-          "other"
-        ],
-        "description": " * `focus` - High concentration.\n * `huddle` - Brainstorm/collaboration.\n * `meetingRoom` - Dedicated meeting space.\n * `open` - Unstructured agile.\n * `desk` - Individual.\n * `other` - Unspecified.\n"
-      },
       "WorkspaceIssue": {
         "type": "object",
         "properties": {
@@ -18599,7 +18685,24 @@
               "$ref": "#/components/schemas/Device"
             },
             "description": "A list of devices associated with the workspace."
+          },
+          "capabilities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CapabilityMap"
+            },
+            "description": "The map of workspace capabilities."
           }
+        },
+        "example": {
+          "id": "Y2lzY29zcGFyazovL3VzL1BMQUNFUy81MTAxQjA3Qi00RjhGLTRFRjctQjU2NS1EQjE5QzdCNzIzRjc",
+          "orgId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8xZWI2NWZkZi05NjQzLTQxN2YtOTk3NC1hZDcyY2FlMGUxMGY",
+          "locationId": "YL34GrT...",
+          "workspaceLocationId": "YL34GrT...",
+          "floorId": "Y2lzY29z...",
+          "displayName": "SFO-12 Capanina",
+          "capacity": 5,
+          "sipAddress": ""
         }
       },
       "WorkspaceCreationRequest": {
@@ -18849,7 +18952,7 @@
                   "thirdPartySipCalling",
                   "none"
                 ],
-                "description": "The calling type that is supported on the workspace.\n * `freeCalling` - Free Calling (Default).\n * `hybridCalling` - Hybrid Calling.\n * `webexCalling` - Webex Calling.\n * `webexEdgeForDevices` - Webex Edge For Devices.\n * `thirdPartySipCalling` - Third-party SIP URI.\n * `none` - No Calling.\n"
+                "description": "The calling type that is supported on the workspace.\n * `freeCalling` - Free Calling (Default).\n * `hybridCalling` - Hybrid Calling.\n * `webexCalling` - Webex Calling.\n * `webexEdgeForDevices` - Webex Edge For Devices.\n * `thirdPartySipCalling` - Third-party SIP URI.\n * `none` - No Calling."
               },
               "webexCalling": {
                 "type": "object",
@@ -18934,47 +19037,105 @@
             },
             "description": "An array of workspace objects."
           }
+        },
+        "example": {
+          "items": []
         }
       },
       "CapabilityResponse": {
         "type": "object",
+        "example": {
+          "capabilities": {
+            "occupancyDetection": {
+              "supported": true,
+              "configured": true
+            },
+            "presenceDetection": {
+              "supported": true,
+              "configured": true
+            },
+            "ambientNoise": {
+              "supported": true,
+              "configured": true
+            },
+            "soundLevel": {
+              "supported": true,
+              "configured": true
+            },
+            "temperature": {
+              "supported": true,
+              "configured": true
+            },
+            "airQuality": {
+              "supported": true,
+              "configured": true
+            },
+            "relativeHumidity": {
+              "supported": true,
+              "configured": true
+            }
+          }
+        },
         "properties": {
           "capabilities": {
-            "$ref": "#/components/schemas/CapabilityMap",
-            "description": "The map of workspace capabilities."
+            "$ref": "#/components/schemas/CapabilityMap"
           }
         }
       },
       "CapabilityMap": {
         "type": "object",
-        "properties": {
+        "description": "The map of workspace capabilities.",
+        "example": {
           "occupancyDetection": {
-            "$ref": "#/components/schemas/SupportAndConfiguredInfo",
-            "description": "Occupancy detection."
+            "supported": true,
+            "configured": true
           },
           "presenceDetection": {
-            "$ref": "#/components/schemas/SupportAndConfiguredInfo",
-            "description": "Presence detection."
+            "supported": true,
+            "configured": true
           },
           "ambientNoise": {
-            "$ref": "#/components/schemas/SupportAndConfiguredInfo",
-            "description": "Ambient noise."
+            "supported": true,
+            "configured": true
           },
           "soundLevel": {
-            "$ref": "#/components/schemas/SupportAndConfiguredInfo",
-            "description": "Sound level."
+            "supported": true,
+            "configured": true
           },
           "temperature": {
-            "$ref": "#/components/schemas/SupportAndConfiguredInfo",
-            "description": "Temperature."
+            "supported": true,
+            "configured": true
           },
           "airQuality": {
-            "$ref": "#/components/schemas/SupportAndConfiguredInfo",
-            "description": "Air quality."
+            "supported": true,
+            "configured": true
           },
           "relativeHumidity": {
-            "$ref": "#/components/schemas/SupportAndConfiguredInfo",
-            "description": "Relative humidity."
+            "supported": true,
+            "configured": true
+          }
+        },
+        "properties": {
+          "occupancyDetection": {
+            "$ref": "#/components/schemas/SupportAndConfiguredInfo"
+          },
+          "presenceDetection": {
+            "$ref": "#/components/schemas/SupportAndConfiguredInfo"
+          },
+          "ambientNoise": {
+            "$ref": "#/components/schemas/SupportAndConfiguredInfo"
+          },
+          "soundLevel": {
+            "$ref": "#/components/schemas/SupportAndConfiguredInfo"
+          },
+          "temperature": {
+            "$ref": "#/components/schemas/SupportAndConfiguredInfo"
+          },
+          "airQuality": {
+            "$ref": "#/components/schemas/SupportAndConfiguredInfo"
+          },
+          "relativeHumidity": {
+            "$ref": "#/components/schemas/SupportAndConfiguredInfo"
           }
         }
       },
@@ -18991,6 +19152,11 @@
             "example": true,
             "description": "Is the workspace capability configured or not."
           }
+        },
+        "description": "Support and configured information for a workspace capability.",
+        "example": {
+          "supported": true,
+          "configured": true
         }
       },
       "DeviceConfigurationCollectionResponse": {

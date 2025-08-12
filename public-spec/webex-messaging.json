@@ -11187,18 +11187,24 @@
             "items": {
               "$ref": "#/components/schemas/DeviceCapabilities"
             },
-            "description": "The capabilities of the device."
+            "description": "The capabilities of the device.",
+            "example": [
+              "xapi"
+            ]
           },
           "permissions": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/DevicePermissions"
             },
-            "description": "The permissions the user has for this device. For example, `xapi` means this user is entitled to using the `xapi` against this device."
+            "description": "The permissions the user has for this device. For example, `xapi` means this user is entitled to using the `xapi` against this device.",
+            "example": [
+              "xapi:readonly",
+              "xapi:all"
+            ]
           },
           "connectionStatus": {
-            "$ref": "#/components/schemas/DeviceConnectionStatus",
-            "description": "The connection status of the device."
+            "$ref": "#/components/schemas/DeviceConnectionStatus"
           },
           "product": {
             "type": "string",
@@ -11216,7 +11222,11 @@
               "type": "string",
               "example": "First Tag, Second Tag"
             },
-            "description": "Tags assigned to the device."
+            "description": "Tags assigned to the device.",
+            "example": [
+              "First Tag",
+              "Second Tag"
+            ]
           },
           "ip": {
             "type": "string",
@@ -11224,8 +11234,7 @@
             "description": "The current IP address of the device."
           },
           "activeInterface": {
-            "$ref": "#/components/schemas/NetworkConnectivityType",
-            "description": "The current network connectivity for the device."
+            "$ref": "#/components/schemas/NetworkConnectivityType"
           },
           "mac": {
             "type": "string",
@@ -11238,6 +11247,10 @@
             "description": "The primary SIP address to dial this device."
           },
           "sipUrls": {
+            "example": [
+              "sample_device@sample_workspacename.orgname.org",
+              "another_device@sample_workspacename.orgname.org"
+            ],
             "type": "array",
             "items": {
               "type": "string",
@@ -11276,6 +11289,9 @@
             "description": "The workspace location associated with the device. Deprecated, prefer `locationId`."
           },
           "errorCodes": {
+            "example": [
+              "sipprofileregistration"
+            ],
             "type": "array",
             "items": {
               "type": "string",
@@ -11294,12 +11310,10 @@
             "description": "Timestamp of the last time device sent a status post."
           },
           "managedBy": {
-            "$ref": "#/components/schemas/ManagedBy",
-            "description": "Entity managing the device configuration."
+            "$ref": "#/components/schemas/ManagedBy"
           },
           "devicePlatform": {
-            "$ref": "#/components/schemas/DevicePlatform",
-            "description": "The device platform."
+            "$ref": "#/components/schemas/DevicePlatform"
           }
         }
       },
@@ -11318,7 +11332,9 @@
         "type": "string",
         "enum": [
           "wired"
-        ]
+        ],
+        "description": "The current network connectivity for the device.",
+        "example": "wired"
       },
       "DeviceConnectionStatus": {
         "type": "string",
@@ -11330,7 +11346,9 @@
           "activating",
           "unknown",
           "offline_deep_sleep"
-        ]
+        ],
+        "description": "The connection status of the device.",
+        "example": "connected"
       },
       "DevicePermissions": {
         "type": "string",
@@ -11351,14 +11369,18 @@
           "CISCO",
           "CUSTOMER",
           "PARTNER"
-        ]
+        ],
+        "description": "Entity managing the device configuration.",
+        "example": "CISCO"
       },
       "DevicePlatform": {
         "type": "string",
         "enum": [
           "cisco",
           "microsoftTeamsRoom"
-        ]
+        ],
+        "description": "Device platform",
+        "example": "cisco"
       },
       "Event": {
         "type": "object",
@@ -14353,18 +14375,6 @@
           }
         }
       },
-      "WorkspaceType": {
-        "type": "string",
-        "enum": [
-          "focus",
-          "huddle",
-          "meetingRoom",
-          "open",
-          "desk",
-          "other"
-        ],
-        "description": " * `focus` - High concentration.\n * `huddle` - Brainstorm/collaboration.\n * `meetingRoom` - Dedicated meeting space.\n * `open` - Unstructured agile.\n * `desk` - Individual.\n * `other` - Unspecified.\n"
-      },
       "WorkspaceIssue": {
         "type": "object",
         "properties": {
@@ -14612,7 +14622,24 @@
               "$ref": "#/components/schemas/Device"
             },
             "description": "A list of devices associated with the workspace."
+          },
+          "capabilities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CapabilityMap"
+            },
+            "description": "The map of workspace capabilities."
           }
+        },
+        "example": {
+          "id": "Y2lzY29zcGFyazovL3VzL1BMQUNFUy81MTAxQjA3Qi00RjhGLTRFRjctQjU2NS1EQjE5QzdCNzIzRjc",
+          "orgId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8xZWI2NWZkZi05NjQzLTQxN2YtOTk3NC1hZDcyY2FlMGUxMGY",
+          "locationId": "YL34GrT...",
+          "workspaceLocationId": "YL34GrT...",
+          "floorId": "Y2lzY29z...",
+          "displayName": "SFO-12 Capanina",
+          "capacity": 5,
+          "sipAddress": ""
         }
       },
       "WorkspaceCreationRequest": {
@@ -14862,7 +14889,7 @@
                   "thirdPartySipCalling",
                   "none"
                 ],
-                "description": "The calling type that is supported on the workspace.\n * `freeCalling` - Free Calling (Default).\n * `hybridCalling` - Hybrid Calling.\n * `webexCalling` - Webex Calling.\n * `webexEdgeForDevices` - Webex Edge For Devices.\n * `thirdPartySipCalling` - Third-party SIP URI.\n * `none` - No Calling.\n"
+                "description": "The calling type that is supported on the workspace.\n * `freeCalling` - Free Calling (Default).\n * `hybridCalling` - Hybrid Calling.\n * `webexCalling` - Webex Calling.\n * `webexEdgeForDevices` - Webex Edge For Devices.\n * `thirdPartySipCalling` - Third-party SIP URI.\n * `none` - No Calling."
               },
               "webexCalling": {
                 "type": "object",
@@ -14947,47 +14974,105 @@
             },
             "description": "An array of workspace objects."
           }
+        },
+        "example": {
+          "items": []
         }
       },
       "CapabilityResponse": {
         "type": "object",
+        "example": {
+          "capabilities": {
+            "occupancyDetection": {
+              "supported": true,
+              "configured": true
+            },
+            "presenceDetection": {
+              "supported": true,
+              "configured": true
+            },
+            "ambientNoise": {
+              "supported": true,
+              "configured": true
+            },
+            "soundLevel": {
+              "supported": true,
+              "configured": true
+            },
+            "temperature": {
+              "supported": true,
+              "configured": true
+            },
+            "airQuality": {
+              "supported": true,
+              "configured": true
+            },
+            "relativeHumidity": {
+              "supported": true,
+              "configured": true
+            }
+          }
+        },
         "properties": {
           "capabilities": {
-            "$ref": "#/components/schemas/CapabilityMap",
-            "description": "The map of workspace capabilities."
+            "$ref": "#/components/schemas/CapabilityMap"
           }
         }
       },
       "CapabilityMap": {
         "type": "object",
-        "properties": {
+        "description": "The map of workspace capabilities.",
+        "example": {
           "occupancyDetection": {
-            "$ref": "#/components/schemas/SupportAndConfiguredInfo",
-            "description": "Occupancy detection."
+            "supported": true,
+            "configured": true
           },
           "presenceDetection": {
-            "$ref": "#/components/schemas/SupportAndConfiguredInfo",
-            "description": "Presence detection."
+            "supported": true,
+            "configured": true
           },
           "ambientNoise": {
-            "$ref": "#/components/schemas/SupportAndConfiguredInfo",
-            "description": "Ambient noise."
+            "supported": true,
+            "configured": true
           },
           "soundLevel": {
-            "$ref": "#/components/schemas/SupportAndConfiguredInfo",
-            "description": "Sound level."
+            "supported": true,
+            "configured": true
           },
           "temperature": {
-            "$ref": "#/components/schemas/SupportAndConfiguredInfo",
-            "description": "Temperature."
+            "supported": true,
+            "configured": true
           },
           "airQuality": {
-            "$ref": "#/components/schemas/SupportAndConfiguredInfo",
-            "description": "Air quality."
+            "supported": true,
+            "configured": true
           },
           "relativeHumidity": {
-            "$ref": "#/components/schemas/SupportAndConfiguredInfo",
-            "description": "Relative humidity."
+            "supported": true,
+            "configured": true
+          }
+        },
+        "properties": {
+          "occupancyDetection": {
+            "$ref": "#/components/schemas/SupportAndConfiguredInfo"
+          },
+          "presenceDetection": {
+            "$ref": "#/components/schemas/SupportAndConfiguredInfo"
+          },
+          "ambientNoise": {
+            "$ref": "#/components/schemas/SupportAndConfiguredInfo"
+          },
+          "soundLevel": {
+            "$ref": "#/components/schemas/SupportAndConfiguredInfo"
+          },
+          "temperature": {
+            "$ref": "#/components/schemas/SupportAndConfiguredInfo"
+          },
+          "airQuality": {
+            "$ref": "#/components/schemas/SupportAndConfiguredInfo"
+          },
+          "relativeHumidity": {
+            "$ref": "#/components/schemas/SupportAndConfiguredInfo"
           }
         }
       },
@@ -15004,6 +15089,11 @@
             "example": true,
             "description": "Is the workspace capability configured or not."
           }
+        },
+        "description": "Support and configured information for a workspace capability.",
+        "example": {
+          "supported": true,
+          "configured": true
         }
       },
       "SubmitCardAction": {
