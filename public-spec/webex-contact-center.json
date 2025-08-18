@@ -45744,6 +45744,21 @@
           },
           "devicePlatform": {
             "$ref": "#/components/schemas/DevicePlatform"
+          },
+          "plannedMaintenance": {
+            "type": "object",
+            "description": "The planned maintenance for the device.",
+            "properties": {
+              "mode": {
+                "type": "string",
+                "enum": [
+                  "off",
+                  "on",
+                  "upcoming"
+                ],
+                "description": "The planned maintenance mode for the device"
+              }
+            }
           }
         }
       },
@@ -45811,6 +45826,16 @@
         ],
         "description": "Device platform",
         "example": "cisco"
+      },
+      "MaintenanceMode": {
+        "type": "string",
+        "enum": [
+          "off",
+          "on",
+          "upcoming"
+        ],
+        "example": "off",
+        "description": "The  maintenance mode of the device."
       },
       "Event": {
         "type": "object",
@@ -49059,6 +49084,31 @@
               "$ref": "#/components/schemas/CapabilityMap"
             },
             "description": "The map of workspace capabilities."
+          },
+          "plannedMaintenance": {
+            "type": "object",
+            "description": "The planned maintenance for the workspace.",
+            "properties": {
+              "mode": {
+                "type": "string",
+                "enum": [
+                  "off",
+                  "on",
+                  "upcoming"
+                ],
+                "description": "The planned maintenance mode for the workspace"
+              },
+              "startTime": {
+                "type": "string",
+                "example": "2026-10-01T00:00:00.000Z",
+                "description": "The start of the planned maintenance period."
+              },
+              "endTime": {
+                "type": "string",
+                "example": "2026-10-02T00:00:00.000Z",
+                "description": "The end of the planned maintenance period."
+              }
+            }
           }
         },
         "example": {
@@ -49319,7 +49369,7 @@
                   "thirdPartySipCalling",
                   "none"
                 ],
-                "description": "The calling type that is supported on the workspace.\n * `freeCalling` - Free Calling (Default).\n * `hybridCalling` - Hybrid Calling.\n * `webexCalling` - Webex Calling.\n * `webexEdgeForDevices` - Webex Edge For Devices.\n * `thirdPartySipCalling` - Third-party SIP URI.\n * `none` - No Calling."
+                "description": "The calling type that is supported on the workspace.\n * `freeCalling` - Free Calling (Default).\n * `hybridCalling` - Hybrid Calling.\n * `webexCalling` - Webex Calling.\n * `webexEdgeForDevices` - Webex Edge For Devices.\n * `thirdPartySipCalling` - Third-party SIP URI.\n * `none` - No Calling.\n"
               },
               "webexCalling": {
                 "type": "object",

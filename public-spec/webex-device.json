@@ -8108,7 +8108,8 @@
                       "firstSeen": "2021-02-24T09:08:38.822Z",
                       "lastSeen": "2023-08-15T14:04:00.444Z",
                       "managedBy": "CISCO",
-                      "devicePlatform": "cisco"
+                      "devicePlatform": "cisco",
+                      "plannedMaintenance": "off"
                     }
                   ]
                 }
@@ -8355,6 +8356,20 @@
                 "microsoftTeamsRoom"
               ]
             }
+          },
+          {
+            "name": "plannedMaintenance",
+            "in": "query",
+            "description": "\nList devices with this planned maintenance.\n",
+            "example": "off",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "off",
+                "on",
+                "upcoming"
+              ]
+            }
           }
         ]
       },
@@ -8578,7 +8593,8 @@
                   "firstSeen": "2021-02-24T09:08:38.822Z",
                   "lastSeen": "2023-08-15T14:04:00.444Z",
                   "managedBy": "CISCO",
-                  "devicePlatform": "cisco"
+                  "devicePlatform": "cisco",
+                  "plannedMaintenance": "off"
                 }
               }
             }
@@ -8630,7 +8646,7 @@
           }
         },
         "summary": "Get Device Details",
-        "operationId": "Get Device Details",
+        "operationId": "getDeviceDetails",
         "description": "Shows details for a device, by ID. This requires an auth token with the `spark:devices_read` scope to see your own device, or `spark-admin:devices_read` to see any other device in your organization.\n\nSpecify the device ID in the `deviceId` parameter in the URI.",
         "tags": [
           "Devices"
@@ -10667,9 +10683,9 @@
                 "example": {
                   "items": [
                     {
-                      "id": "Y2lzY29zcGFyazovL3VzL1BMQUNFUy81MTAxQjA3Qi00RjhGLTRFRjctQjU2NS1EQjE5QzdCNzIzRjc",
+                      "id": "Y2lzY28zcGFyazovL3VzL1BMQUNFUy81MTAxQjA3Qi00RjhGLTRFRjctQjU2NS1EQjE5QzdCNzIzRjc",
                       "orgId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8xZWI2NWZkZi05NjQzLTQxN2YtOTk3NC1hZDcyY2FlMGUxMGY",
-                      "locationId": "Y2lzY29...",
+                      "locationId": "Y2lzY29z...",
                       "workspaceLocationId": "YL34GrT...",
                       "floorId": "Y2lzY29z...",
                       "displayName": "SFO-12 Capanina",
@@ -10787,6 +10803,12 @@
                           "supported": true,
                           "configured": true
                         }
+                      },
+                      "plannedMaintenance": {
+                        "mode": "upcoming",
+                        "startTime": "2026-10-01T00:00:00.000Z",
+                        "endTime": "2026-10-02T00:00:00.000Z",
+                        "description": "Scheduled maintenance for the workspace."
                       }
                     }
                   ]
@@ -11034,6 +11056,20 @@
             "example": false,
             "schema": {
               "type": "boolean"
+            }
+          },
+          {
+            "name": "plannedMaintenance",
+            "in": "query",
+            "description": "List workspaces with given maintenance mode.",
+            "example": "off",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "off",
+                "on",
+                "upcoming"
+              ]
             }
           }
         ]
@@ -17655,6 +17691,21 @@
           },
           "devicePlatform": {
             "$ref": "#/components/schemas/DevicePlatform"
+          },
+          "plannedMaintenance": {
+            "type": "object",
+            "description": "The planned maintenance for the device.",
+            "properties": {
+              "mode": {
+                "type": "string",
+                "enum": [
+                  "off",
+                  "on",
+                  "upcoming"
+                ],
+                "description": "The planned maintenance mode for the device"
+              }
+            }
           }
         }
       },
@@ -17722,6 +17773,16 @@
         ],
         "description": "Device platform",
         "example": "cisco"
+      },
+      "MaintenanceMode": {
+        "type": "string",
+        "enum": [
+          "off",
+          "on",
+          "upcoming"
+        ],
+        "example": "off",
+        "description": "The  maintenance mode of the device."
       },
       "Event": {
         "type": "object",
@@ -20970,6 +21031,31 @@
               "$ref": "#/components/schemas/CapabilityMap"
             },
             "description": "The map of workspace capabilities."
+          },
+          "plannedMaintenance": {
+            "type": "object",
+            "description": "The planned maintenance for the workspace.",
+            "properties": {
+              "mode": {
+                "type": "string",
+                "enum": [
+                  "off",
+                  "on",
+                  "upcoming"
+                ],
+                "description": "The planned maintenance mode for the workspace"
+              },
+              "startTime": {
+                "type": "string",
+                "example": "2026-10-01T00:00:00.000Z",
+                "description": "The start of the planned maintenance period."
+              },
+              "endTime": {
+                "type": "string",
+                "example": "2026-10-02T00:00:00.000Z",
+                "description": "The end of the planned maintenance period."
+              }
+            }
           }
         },
         "example": {
@@ -21230,7 +21316,7 @@
                   "thirdPartySipCalling",
                   "none"
                 ],
-                "description": "The calling type that is supported on the workspace.\n * `freeCalling` - Free Calling (Default).\n * `hybridCalling` - Hybrid Calling.\n * `webexCalling` - Webex Calling.\n * `webexEdgeForDevices` - Webex Edge For Devices.\n * `thirdPartySipCalling` - Third-party SIP URI.\n * `none` - No Calling."
+                "description": "The calling type that is supported on the workspace.\n * `freeCalling` - Free Calling (Default).\n * `hybridCalling` - Hybrid Calling.\n * `webexCalling` - Webex Calling.\n * `webexEdgeForDevices` - Webex Edge For Devices.\n * `thirdPartySipCalling` - Third-party SIP URI.\n * `none` - No Calling.\n"
               },
               "webexCalling": {
                 "type": "object",
