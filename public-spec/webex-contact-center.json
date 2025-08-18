@@ -484,6 +484,362 @@
         }
       }
     },
+    "/organization/{orgid}/ai-feature/{id}": {
+      "get": {
+        "tags": [
+          "AI Feature"
+        ],
+        "summary": "Get specific AI Feature resource by ID",
+        "description": "Retrieve an existing AI Feature resource by ID in a given organization.",
+        "operationId": "getConfig_27",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID to be used for this operation. The specified security token must have permission to interact with the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba1"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Resource ID of the AI Feature resource.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AiFeatureDTO"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation is forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found or URI is invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests have been sent in a given amount of time and the request has been rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An Unexpected Error Occurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "AI Feature"
+        ],
+        "summary": "Partially update AI Feature resource by ID",
+        "description": "Partially update AI Feature resource by ID in a given organization.",
+        "operationId": "patchConfig_2",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID to be used for this operation. The specified security token must have permission to interact with the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba1"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Resource ID of the AI Feature resource.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AiFeatureDTO"
+              },
+              "examples": {
+                "realTimeTranscriptsPatchExample": {
+                  "summary": "Real time transcripts configuration update",
+                  "description": "Real time transcripts configuration update. Must have access to update.",
+                  "value": {
+                    "id": "26e2df70-0f77-41b8-8e8f-1d76e92c9638",
+                    "realtimeTranscripts": {
+                      "enable": true,
+                      "agentInclusionType": "ALL"
+                    }
+                  }
+                },
+                "suggestedResponsesPatchExample": {
+                  "summary": "Suggested Responses configuration update",
+                  "description": "Suggested Responses configuration update. Must have access to update.",
+                  "value": {
+                    "id": "26e2df70-0f77-41b8-8e8f-1d76e92c9638",
+                    "suggestedResponses": {
+                      "enable": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AiFeatureDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid and cannot be served. An accompanying error message will explain further",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation is forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found or URI is invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests have been sent in a given amount of time and the request has been rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An Unexpected Error Occurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/organization/{orgid}/v2/ai-feature": {
+      "get": {
+        "tags": [
+          "AI Feature"
+        ],
+        "summary": "List AI Feature resource(s)",
+        "description": "Retrieve a list of AI Feature resource(s) in a given organization.Only one entry per organization can exist for AI Feature resource.",
+        "operationId": "getAllConfigWithMetaData_25",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID to be used for this operation. The specified security token must have permission to interact with the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba1"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "Specify a filter based on which the results will be fetched. Supported filterable fields:  id. \n\nThe examples below show some search queries\n- id==\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\"\n- id!=\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\"\n- id=in=(\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\",\"a421e0b2-732e-46f3-a057-39160a53afb9\")\n- id=out=(\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\",\"a421e0b2-732e-46f3-a057-39160a53afb9\")\nThis parameter uses the RSQL query syntax, a URI-friendly format for expressing criteria for filtering REST entities. For more information about RSQL in general, see  <a href=\"https://www.here.com/docs/bundle/data-client-library-developer-guide-java-scala/page/client/rsql.html\">this reference</a>. For a list of supported operators, see <a href=\"https://github.com/perplexhub/rsql-jpa-specification#rsql-syntax-reference\">this syntax guide</a>.\n\nNote: values to be used in the filter syntax should not contain space, and if so kindly bound it with quotes to apply filter.\n",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "id==\"2f9eecc5-0472-4549-9a83-2afdae0d4ba1\""
+          },
+          {
+            "name": "attributes",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Defines the number of displayed page. The page number starts from 0.",
+            "schema": {
+              "type": "integer",
+              "example": 0,
+              "default": 0
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Defines the number of items to be displayed on a page. If the number specified is more than allowed max page size, the API will automatically adjust the page size to the max page size.",
+            "schema": {
+              "type": "integer",
+              "example": 100,
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEnvelopeAiFeatureDTO"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation is forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found or URI is invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests have been sent in a given amount of time and the request has been rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An Unexpected Error Occurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/organization/{orgid}/auto-csat/{autoCsatId}/question": {
       "post": {
         "tags": [
