@@ -62836,12 +62836,12 @@
         "description": "Request body for transferring a task.",
         "properties": {
           "to": {
-            "description": "The user destination ID to transfer, maximum length 43 characters.",
+            "description": "The user destination ID or the entry point ID to transfer, maximum length 43 characters.",
             "type": "string",
             "example": "315fbb91-2288-427c-9588-ec764cd46ea4"
           },
           "destinationType": {
-            "description": "The user can transfer to another user in the team(```agent```), queue(```queue```), dial number(```dialNumber```).",
+            "description": "The user can transfer to another user in the team(```agent```), queue(```queue```), dial number(```dialNumber```), entry point(```entrypointDialNumber```).",
             "type": "string",
             "example": "dialNumber"
           }
