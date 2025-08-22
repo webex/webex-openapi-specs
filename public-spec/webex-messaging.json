@@ -5132,7 +5132,7 @@
           }
         },
         "summary": "List Team Memberships",
-        "operationId": "List Team Memberships",
+        "operationId": "listTeamMemberships",
         "description": "Lists all team memberships for a given team, specified by the `teamId` query parameter.\n\nUse query parameters to filter the response.",
         "tags": [
           "Team Memberships"
@@ -5152,7 +5152,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the maximum number of team memberships in the response.",
-            "example": "100",
+            "example": 100,
             "schema": {
               "type": "number",
               "default": 100
@@ -5230,7 +5230,7 @@
           }
         },
         "summary": "Create a Team Membership",
-        "operationId": "Create a Team Membership",
+        "operationId": "createTeamMembership",
         "description": "Add someone to a team by Person ID or email address, optionally making them a moderator.",
         "tags": [
           "Team Memberships"
