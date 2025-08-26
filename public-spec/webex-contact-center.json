@@ -12257,7 +12257,7 @@
         "tags": [
           "Contact Service Queue"
         ],
-        "summary": "Get specific Contact Service Queue by ID",
+        "summary": "Get specific Contact Service Queue by Id",
         "description": "Retrieve an existing Contact Service Queue by ID in a given organization.",
         "operationId": "getConfig_19",
         "parameters": [
