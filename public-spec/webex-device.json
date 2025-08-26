@@ -2192,7 +2192,7 @@
         "operationId": "readTheListOfSupportedDevices",
         "description": "Gets the list of supported devices for an organization.\n\nRetrieving this list requires a full or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
         "tags": [
-          "Beta Device Call Settings With Dynamic Device Settings"
+          "Device Call Settings With Device Dynamic Settings"
         ],
         "parameters": [
           {
@@ -6555,7 +6555,7 @@
         },
         "operationId": "getSettingsGroups",
         "summary": "Get Settings Groups",
-        "description": "This API returns the `settingsGroups` that define the structure and association of tags for dynamic device settings.\n\n The `settingsGroups` are used to organize the tags into logical groups, making it easier to manage and configure dynamic device settings.",
+        "description": "This API returns the `settingsGroups` that define the structure and association of tags for device dynamic settings.\n\n The `settingsGroups` are used to organize the tags into logical groups, making it easier to manage and configure device dynamic settings.",
         "parameters": [
           {
             "name": "orgId",
@@ -6591,7 +6591,7 @@
           }
         ],
         "tags": [
-          "Beta Device Call Settings With Dynamic Device Settings"
+          "Device Call Settings With Device Dynamic Settings"
         ]
       }
     },
@@ -6727,7 +6727,7 @@
           "required": false
         },
         "tags": [
-          "Beta Device Call Settings With Dynamic Device Settings"
+          "Device Call Settings With Device Dynamic Settings"
         ]
       }
     },
@@ -6873,7 +6873,7 @@
           "required": false
         },
         "tags": [
-          "Beta Device Call Settings With Dynamic Device Settings"
+          "Device Call Settings With Device Dynamic Settings"
         ]
       }
     },
@@ -7005,7 +7005,7 @@
           "required": true
         },
         "tags": [
-          "Beta Device Call Settings With Dynamic Device Settings"
+          "Device Call Settings With Device Dynamic Settings"
         ]
       }
     },
@@ -7064,7 +7064,7 @@
           }
         },
         "operationId": "updateSpecifiedSettingsForTheDevice",
-        "summary": "Update specified settings for the device.",
+        "summary": "Update Device Dynamic Settings",
         "description": "Modify dynamic settings for a specified device.\n\nThis API updates device settings based on the specified `tags`. If the `tags` field is empty, the request has no effect.\n\nThis requires a full, device, or read-only administrator auth token with a scope of `spark-admin:telephony_config_write`.",
         "parameters": [
           {
@@ -7112,7 +7112,7 @@
           "required": true
         },
         "tags": [
-          "Beta Device Call Settings With Dynamic Device Settings"
+          "Device Call Settings With Device Dynamic Settings"
         ]
       }
     },
@@ -7201,17 +7201,17 @@
             "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
           }
         },
-        "summary": "Updates dynamic Device Settings Across Organization Or Location",
+        "summary": "Update Device Dynamic Settings Across Organization or Location",
         "operationId": "updatesDynamicDeviceSettingsAcrossOrganizationOrLocation",
         "description": "Creates a job to update device settings at location or organization level.\n\nThe job runs asynchronously and persistently, applying the requested settings in bulk to all relevant devices, which may belong to multiple families as specified in the request. If a `locationId` is provided, only devices in that location are affected.\n\nA unique job ID is returned to track status and errors.\n\nOnly one job can run per customer per organization at a time. Additionally, this job cannot run in parallel with other device jobs such as [Call device settings](/docs/api/v1/device-call-settings/change-device-settings-across-organization-or-location-job) and [Rebuild Phones](/docs/api/v1/device-call-settings/rebuild-phones-configuration).\n\nRunning a job requires a full administrator auth token with a scope of `spark-admin:telephony_config_write`.",
         "tags": [
-          "Beta Device Call Settings With Dynamic Device Settings"
+          "Device Call Settings With Device Dynamic Settings"
         ],
         "parameters": [
           {
             "name": "orgId",
             "in": "query",
-            "description": "Apply update dynamic device settings for all the devices under this organization.",
+            "description": "Apply update device dynamic settings for all the devices under this organization.",
             "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE",
             "schema": {
               "type": "string"
@@ -7346,17 +7346,17 @@
             "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
           }
         },
-        "summary": "List dynamic device Settings Jobs",
+        "summary": "List Device Dynamic Settings Jobs",
         "operationId": "listDynamicDeviceSettingsJobs",
-        "description": "List dynamic device settings jobs.\n\nLists all the jobs for job type `dynamicdevicesettings` for the given organization in order of most recent one to oldest one irrespective of its status.\n\nThis API requires a full or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
+        "description": "List device dynamic settings jobs.\n\nLists all the jobs for job type `dynamicdevicesettings` for the given organization in order of most recent one to oldest one irrespective of its status.\n\nThis API requires a full or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
         "tags": [
-          "Beta Device Call Settings With Dynamic Device Settings"
+          "Device Call Settings With Device Dynamic Settings"
         ],
         "parameters": [
           {
             "name": "orgId",
             "in": "query",
-            "description": "Retrieve list of dynamic device settings jobs for this organization.",
+            "description": "Retrieve list of device dynamic settings jobs for this organization.",
             "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE",
             "schema": {
               "type": "string"
@@ -7483,9 +7483,9 @@
         },
         "summary": "Get Device Dynamic Settings Job Status",
         "operationId": "getDeviceDynamicSettingsJobStatus",
-        "description": "Get dynamic device settings job status.\n\nProvides details of the job with `jobId` of `jobType` `dynamicdevicesettings`.\n\nThis API requires a full or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
+        "description": "Get device dynamic settings job status.\n\nProvides details of the job with `jobId` of `jobType` `dynamicdevicesettings`.\n\nThis API requires a full or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
         "tags": [
-          "Beta Device Call Settings With Dynamic Device Settings"
+          "Device Call Settings With Device Dynamic Settings"
         ],
         "parameters": [
           {
@@ -7579,11 +7579,11 @@
             "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
           }
         },
-        "summary": "List Dynamic Device Settings Job Errors",
+        "summary": "List Device Dynamic Settings Job Errors",
         "operationId": "listDynamicDeviceSettingsJobErrors",
-        "description": "List Update dynamic device settings job errors.\n\nLists all error details of the job with `jobId` of `jobType` `dynamicdevicesettings`.\n\nThis API requires a full or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
+        "description": "List Update device dynamic settings job errors.\n\nLists all error details of the job with `jobId` of `jobType` `dynamicdevicesettings`.\n\nThis API requires a full or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
         "tags": [
-          "Beta Device Call Settings With Dynamic Device Settings"
+          "Device Call Settings With Device Dynamic Settings"
         ],
         "parameters": [
           {
