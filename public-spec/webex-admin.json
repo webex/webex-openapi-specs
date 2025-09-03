@@ -28099,6 +28099,11 @@
             "$ref": "#/components/schemas/Meta",
             "description": "Response metadata."
           },
+          "contactId": {
+            "type": "string",
+            "example": "6847ee0f-5e9c-4403-9f0e-0aa8552f7828",
+            "description": "The unique identifier for the contact."
+          },
           "displayName": {
             "type": "string",
             "example": "John Andersen",
@@ -28133,6 +28138,28 @@
             "type": "string",
             "example": "https://avatar-prod-us-east-2.webexcontent.com/default_avatar~1600",
             "description": "The URL to the person's avatar in PNG format."
+          },
+          "addressInfo": {
+            "type": "object",
+            "properties": {
+              "city": {
+                "type": "string",
+                "description": "The city."
+              },
+              "country": {
+                "type": "string",
+                "description": "The country."
+              },
+              "street": {
+                "type": "string",
+                "description": "The street address."
+              },
+              "zipCode": {
+                "type": "string",
+                "description": "The ZIP code."
+              }
+            },
+            "description": "Structured address information."
           },
           "primaryContactMethod": {
             "type": "string",
@@ -28280,6 +28307,15 @@
               }
             },
             "description": "Instant messaging addresses for the user."
+          },
+          "isMigration": {
+            "type": "boolean",
+            "description": "Indicates if this contact is part of a migration."
+          },
+          "orgId": {
+            "type": "string",
+            "example": "d23736ac-8055-433e-b85a-0fc55c96ead9",
+            "description": "The organization ID that the contact belongs to."
           },
           "groupIds": {
             "type": "array",
