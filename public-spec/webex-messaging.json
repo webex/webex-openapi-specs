@@ -4944,7 +4944,7 @@
         },
         "summary": "Delete a Room",
         "operationId": "Delete a Room",
-        "description": "Deletes a room, by ID. Deleted rooms cannot be recovered.\nAs a security measure to prevent accidental deletion, when a non moderator deletes the room they are removed from the room instead.\n\nDeleting a room that is part of a team will archive the room instead.\n\nSpecify the room ID in the `roomId` parameter in the URI.",
+        "description": "Deletes a room, by ID. Deleted rooms cannot be recovered.\nAs a security measure to prevent accidental deletion, when a non moderator deletes the room they are removed from the room instead.\n\nDeleting a room that is part of a team will archive the room instead.\n\nA Compliance Officer has no special privileges, i.e. they cannot delete rooms they are not part of.\n\nSpecify the room ID in the `roomId` parameter in the URI.",
         "tags": [
           "Rooms"
         ],
