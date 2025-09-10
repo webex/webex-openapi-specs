@@ -6977,6 +6977,15 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "onBehalfOfSubPartnerOrgId",
+            "in": "query",
+            "description": "The encoded organization ID for the sub partner.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8wZTE4MmUxNS05ZmNhLTQ0NzgtYmEzOC1jNGFiMmUyN2FlZDA=",
+            "schema": {
+              "type": "string"
+            }
           }
         ]
       },
@@ -7061,7 +7070,17 @@
         "tags": [
           "Partner Reports/Templates"
         ],
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "onBehalfOfSubPartnerOrgId",
+            "in": "query",
+            "description": "The encoded organization ID for the sub partner.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8wZTE4MmUxNS05ZmNhLTQ0NzgtYmEzOC1jNGFiMmUyN2FlZDA=",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -7198,6 +7217,15 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "onBehalfOfSubPartnerOrgId",
+            "in": "query",
+            "description": "The encoded organization ID for the sub partner.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8wZTE4MmUxNS05ZmNhLTQ0NzgtYmEzOC1jNGFiMmUyN2FlZDA=",
+            "schema": {
+              "type": "string"
+            }
           }
         ]
       },
@@ -7267,6 +7295,15 @@
             "description": "The unique identifier for the report.",
             "required": true,
             "example": "Y2lzY29zcGFyazovL3VybjpURUFNOnVzLWVhc3QtMV9pbnQxMy9SRVBPUlQvYWQwZDIwNTc1ZGEwNDVhNDhmYWQ0N2Q5NzRhYjQxZjI",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "onBehalfOfSubPartnerOrgId",
+            "in": "query",
+            "description": "The encoded organization ID for the sub partner.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8wZTE4MmUxNS05ZmNhLTQ0NzgtYmEzOC1jNGFiMmUyN2FlZDA=",
             "schema": {
               "type": "string"
             }
@@ -7351,7 +7388,17 @@
         "tags": [
           "Partner Reports/Templates"
         ],
-        "parameters": []
+        "parameters": [
+          {
+            "name": "onBehalfOfSubPartnerOrgId",
+            "in": "query",
+            "description": "The encoded organization ID for the sub partner.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8wZTE4MmUxNS05ZmNhLTQ0NzgtYmEzOC1jNGFiMmUyN2FlZDA=",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/people": {
