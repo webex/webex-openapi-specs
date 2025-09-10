@@ -815,7 +815,6 @@
             "name": "deviceModel",
             "in": "query",
             "description": "The model type of the device. The corresponding device model display name sometimes called the product name, can also be used to specify the model.",
-            "required": true,
             "example": "DMS Cisco 8811",
             "schema": {
               "type": "string"
