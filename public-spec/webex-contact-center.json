@@ -7,6 +7,10 @@
   },
   "tags": [
     {
+      "name": "DNC Management",
+      "description": "Operations for managing Do Not Contact (DNC) lists and phone number entries"
+    },
+    {
       "name": "Callbacks",
       "description": "APIs for scheduling and managing callbacks for customers."
     }
@@ -128,6 +132,485 @@
           },
           "500": {
             "description": "An Unexpected Error Occurred"
+          }
+        }
+      }
+    },
+    "/v3/campaign-management/dncList/{dncListName}/phoneNumber": {
+      "post": {
+        "tags": [
+          "DNC Management"
+        ],
+        "summary": "Add Phone Number to DNC List",
+        "operationId": "addPhoneNumberToDncList",
+        "description": "Adds a phone number to the specified Do Not Contact (DNC) list. This operation helps ensure compliance with applicable rules & regulations by preventing outbound calls to specific numbers.\n\n**Note:** Phone numbers must be in E.164 format (e.g., +1234567890). Duplicate entries will be rejected with a 409 error.",
+        "parameters": [
+          {
+            "name": "dncListName",
+            "in": "path",
+            "description": "This is the Name of the DNC list to which you want to add a phone number. List names are case-sensitive and must be URL-encoded if they contain special characters.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9_-]+$",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "example": "corporate-dnc-list"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Phone number details to add to the DNC list",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DncEntryRequest"
+              },
+              "examples": {
+                "basic": {
+                  "summary": "Basic phone number entry",
+                  "value": {
+                    "phoneNumber": "+1234567890",
+                    "source": "customer-request"
+                  }
+                },
+                "with-metadata": {
+                  "summary": "Entry with additional metadata",
+                  "value": {
+                    "phoneNumber": "+1987654321",
+                    "source": "regulatory-compliance",
+                    "reason": "Customer opted out via email"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Phone number successfully added to the DNC list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DncEntryResponse"
+                },
+                "example": {
+                  "phoneNumber": "+1234567890",
+                  "source": "customer-request",
+                  "addedDate": "2024-01-15T10:30:00Z",
+                  "addedBy": "admin@example.com"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed. User lacks required permissions to manage DNC lists.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found: The specified DNC list does not exist or the user does not have access to it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict: The phone number already exists in the specified DNC list.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made.",
+            "headers": {
+              "Retry-After": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "Number of seconds to wait before retrying"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalServerError"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadGatewayError"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceUnavailableError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/campaign-management/dncList/{dncListName}/phoneNumber/{phoneNumber}": {
+      "get": {
+        "tags": [
+          "DNC Management"
+        ],
+        "summary": "Get Phone Number from DNC List",
+        "operationId": "getPhoneNumberFromDncList",
+        "description": "Retrieves details of a specific phone number from the specified Do Not Contact (DNC) list. This operation allows you to check if a number is present in the list and view associated metadata.\n\n**Note:** Phone numbers must be URL-encoded and in E.164 format (e.g., %2B1234567890 for +1234567890).",
+        "parameters": [
+          {
+            "name": "dncListName",
+            "in": "path",
+            "description": "The name of the DNC list to search in. List names are case-sensitive and must be URL-encoded if they contain special characters.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9_-]+$",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "example": "corporate-dnc-list"
+          },
+          {
+            "name": "phoneNumber",
+            "in": "path",
+            "description": "The phone number to retrieve from the DNC list. Must be URL-encoded and in E.164 format (e.g., %2B1234567890 for +1234567890).",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^\\+[1-9]\\d{1,14}$"
+            },
+            "example": "+1234567890"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Phone number details successfully retrieved from the DNC list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DncEntryResponse"
+                },
+                "example": {
+                  "phoneNumber": "+1234567890",
+                  "source": "customer-request",
+                  "addedDate": "2024-01-15T10:30:00Z",
+                  "addedBy": "admin@example.com",
+                  "reason": "Customer opted out via phone"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed. User lacks required permissions to view DNC lists.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found: The specified DNC list does not exist, the phone number is not found in the list, or the user does not have access to it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                },
+                "example": {
+                  "code": 1001,
+                  "message": "Phone number +1234567890 not found in DNC list 'corporate-dnc-list'",
+                  "trackingId": "WXC-12345-67892"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made.",
+            "headers": {
+              "Retry-After": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "Number of seconds to wait before retrying"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalServerError"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadGatewayError"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceUnavailableError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "DNC Management"
+        ],
+        "summary": "Remove Phone Number from DNC List",
+        "operationId": "removePhoneNumberFromDncList",
+        "description": "Removes a phone number from the specified Do Not Contact (DNC) list. This operation allows administrators to remove numbers that should no longer be blocked from receiving calls.\n\n**Note:** Phone numbers must be URL-encoded and in E.164 format (e.g., +1234567890 for +1234567890). If the number doesn't exist in the list, a 404 error will be returned.",
+        "parameters": [
+          {
+            "name": "dncListName",
+            "in": "path",
+            "description": "The name of the DNC list to remove the phone number from. List names are case-sensitive and must be URL-encoded if they contain special characters.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9_-]+$",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "example": "corporate-dnc-list"
+          },
+          {
+            "name": "phoneNumber",
+            "in": "path",
+            "description": "The phone number to remove from the DNC list. Must be URL-encoded and in E.164 format (e.g., %2B1234567890 for +1234567890).",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^\\+[1-9]\\d{1,14}$"
+            },
+            "example": "+1234567890"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Phone number successfully removed from the DNC list. No content is returned."
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed. User lacks required permissions to manage DNC lists.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found: The specified DNC list does not exist, the phone number is not found in the list, or the user does not have access to it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                },
+                "example": {
+                  "code": 1001,
+                  "message": "Phone number +1234567890 not found in DNC list 'corporate-dnc-list'",
+                  "trackingId": "WXC-12345-67893"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made.",
+            "headers": {
+              "Retry-After": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "Number of seconds to wait before retrying"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalServerError"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadGatewayError"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceUnavailableError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
           }
         }
       }
@@ -50161,6 +50644,501 @@
             "type": "string",
             "description": "The unique tracking ID for this request.",
             "example": "fb53f6d1-5535-4ac8-b081-53834e17d6f5"
+          }
+        }
+      },
+      "DncEntryRequest": {
+        "type": "object",
+        "required": [
+          "phoneNumber",
+          "source"
+        ],
+        "properties": {
+          "phoneNumber": {
+            "type": "string",
+            "pattern": "^\\+[1-9]\\d{1,14}$",
+            "description": "The phone number to add to the DNC list. Must be in E.164 format (e.g., +1234567890).",
+            "example": "+1234567890"
+          },
+          "source": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "description": "The source or origin of the DNC entry. This helps track where the request originated from.",
+            "example": "customer-request"
+          },
+          "reason": {
+            "type": "string",
+            "maxLength": 500,
+            "description": "Optional reason for adding the phone number to the DNC list. This can help with compliance documentation.",
+            "example": "Customer requested to be removed from all marketing calls"
+          }
+        },
+        "example": {
+          "phoneNumber": "+1234567890",
+          "source": "customer-request",
+          "reason": "Customer opted out via email"
+        }
+      },
+      "DncEntryResponse": {
+        "type": "object",
+        "properties": {
+          "phoneNumber": {
+            "type": "string",
+            "pattern": "^\\+[1-9]\\d{1,14}$",
+            "description": "The phone number in the DNC list, in E.164 format.",
+            "example": "+1234567890"
+          },
+          "source": {
+            "type": "string",
+            "description": "The source or origin of the DNC entry.",
+            "example": "customer-request"
+          },
+          "addedDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the phone number was added to the DNC list.",
+            "example": "2024-01-15T10:30:00Z"
+          },
+          "addedBy": {
+            "type": "string",
+            "description": "The user or system that added the phone number to the DNC list.",
+            "example": "admin@example.com"
+          },
+          "reason": {
+            "type": "string",
+            "description": "The reason for adding the phone number to the DNC list, if provided.",
+            "example": "Customer opted out via phone"
+          },
+          "lastModified": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the DNC entry was last modified.",
+            "example": "2024-01-15T10:30:00Z"
+          }
+        },
+        "example": {
+          "phoneNumber": "+1234567890",
+          "source": "customer-request",
+          "addedDate": "2024-01-15T10:30:00Z",
+          "addedBy": "admin@example.com",
+          "reason": "Customer opted out via phone",
+          "lastModified": "2024-01-15T10:30:00Z"
+        }
+      },
+      "BadRequestError": {
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "integer",
+            "enum": [
+              1001,
+              1002,
+              1003,
+              1004,
+              1005,
+              1006,
+              1007,
+              1008,
+              1010
+            ],
+            "description": "Mandatory field missing - Source should not be empty",
+            "example": 1001
+          },
+          "message": {
+            "type": "string",
+            "description": "A detailed error message explaining what went wrong with the request.",
+            "example": "Invalid phone number format. Phone numbers must be in E.164 format."
+          },
+          "trackingId": {
+            "type": "string",
+            "description": "A unique identifier for this error that can be used for debugging purposes.",
+            "example": "GTWY_e6763c9a-71b2-4515-ad5b-89260f7f594b"
+          }
+        },
+        "example": {
+          "code": 1001,
+          "message": "Mandatory field missing - Source should not be empty",
+          "trackingId": "GTWY_e6763c9a-71b2-4515-ad5b-89260f7f594b"
+        }
+      },
+      "UnauthorizedError": {
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "integer",
+            "enum": [
+              401
+            ],
+            "description": "HTTP status code for Unauthorized.",
+            "example": 401
+          },
+          "message": {
+            "type": "string",
+            "description": "A detailed error message explaining the authentication failure.",
+            "example": "Invalid or expired access token."
+          },
+          "trackingId": {
+            "type": "string",
+            "description": "A unique identifier for this error that can be used for debugging purposes.",
+            "example": "GTWY_e6763c9a-71b2-4515-ad5b-89260f7f591"
+          }
+        },
+        "example": {
+          "code": 401,
+          "message": "Invalid or expired access token.",
+          "trackingId": "GTWY_e6763c9a-71b2-4515-ad5b-89260f7f591"
+        }
+      },
+      "ForbiddenError": {
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "integer",
+            "enum": [
+              403
+            ],
+            "description": "HTTP status code for Forbidden.",
+            "example": 403
+          },
+          "message": {
+            "type": "string",
+            "description": "A detailed error message explaining the authorization failure.",
+            "example": "User lacks required permissions to manage DNC lists."
+          },
+          "trackingId": {
+            "type": "string",
+            "description": "A unique identifier for this error that can be used for debugging purposes.",
+            "example": "GTWY_e6763c9a-71b2-4515-ad5b-89260f7f592"
+          }
+        },
+        "example": {
+          "code": 403,
+          "message": "User lacks required permissions to manage DNC lists.",
+          "trackingId": "GTWY_e6763c9a-71b2-4515-ad5b-89260f7f592"
+        }
+      },
+      "NotFoundError": {
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "integer",
+            "enum": [
+              1001,
+              1002,
+              1003,
+              1004,
+              1005,
+              1006,
+              1007,
+              1008,
+              1010
+            ],
+            "description": "PhoneNumber +1234567890 not found in DNC List 'AT_DNC_DND'",
+            "example": 1004
+          },
+          "message": {
+            "type": "string",
+            "description": "A detailed error message explaining what resource was not found.",
+            "example": "Phone number +1234567890 not found in DNC list 'corporate-dnc-list'"
+          },
+          "trackingId": {
+            "type": "string",
+            "description": "A unique identifier for this error that can be used for debugging purposes.",
+            "example": "GTWY_e6763c9a-71b2-4515-ad5b-89260f7f593"
+          }
+        },
+        "example": {
+          "code": 1001,
+          "message": "Phone number +1234567890 not found in DNC list 'corporate-dnc-list'",
+          "trackingId": "GTWY_e6763c9a-71b2-4515-ad5b-89260f7f593"
+        }
+      },
+      "ConflictError": {
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "integer",
+            "enum": [
+              409
+            ],
+            "description": "HTTP status code for Conflict.",
+            "example": 409
+          },
+          "message": {
+            "type": "string",
+            "description": "A detailed error message explaining the conflict.",
+            "example": "Phone number +1234567890 already exists in DNC list 'corporate-dnc-list'"
+          },
+          "trackingId": {
+            "type": "string",
+            "description": "A unique identifier for this error that can be used for debugging purposes.",
+            "example": "GTWY_e6763c9a-71b2-4515-ad5b-89260f7f594"
+          }
+        },
+        "example": {
+          "code": 409,
+          "message": "Phone number +1234567890 already exists in DNC list 'corporate-dnc-list'",
+          "trackingId": "GTWY_e6763c9a-71b2-4515-ad5b-89260f7f594"
+        }
+      },
+      "TooManyRequestsError": {
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "integer",
+            "enum": [
+              429
+            ],
+            "description": "HTTP status code for Too Many Requests.",
+            "example": 429
+          },
+          "message": {
+            "type": "string",
+            "description": "A detailed error message explaining the rate limit.",
+            "example": "Too many requests. Rate limit exceeded."
+          },
+          "trackingId": {
+            "type": "string",
+            "description": "A unique identifier for this error that can be used for debugging purposes.",
+            "example": "GTWY_e6763c9a-71b2-4515-ad5b-89260f7f595"
+          }
+        },
+        "example": {
+          "code": 429,
+          "message": "Too many requests. Rate limit exceeded.",
+          "trackingId": "GTWY_e6763c9a-71b2-4515-ad5b-89260f7f595"
+        }
+      },
+      "InternalServerError": {
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "integer",
+            "enum": [
+              1006
+            ],
+            "description": "An unexpected error occurred while processing your request. Contact https://developer.webex.com/support for assistance.",
+            "example": 1006
+          },
+          "message": {
+            "type": "string",
+            "description": "A detailed error message explaining the server error.",
+            "example": "An unexpected error occurred while processing your request."
+          },
+          "trackingId": {
+            "type": "string",
+            "description": "A unique identifier for this error that can be used for debugging purposes. Include this when contacting support.",
+            "example": "GTWY_e6763c9a-71b2-4515-ad5b-89260f7f596"
+          }
+        },
+        "example": {
+          "code": 1006,
+          "message": "An unexpected error occurred while processing your request.",
+          "trackingId": "GTWY_e6763c9a-71b2-4515-ad5b-89260f7f596"
+        }
+      },
+      "BadGatewayError": {
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "integer",
+            "enum": [
+              502
+            ],
+            "description": "HTTP status code for Bad Gateway.",
+            "example": 502
+          },
+          "message": {
+            "type": "string",
+            "description": "A detailed error message explaining the gateway error.",
+            "example": "The server received an invalid response from an upstream server."
+          },
+          "trackingId": {
+            "type": "string",
+            "description": "A unique identifier for this error that can be used for debugging purposes.",
+            "example": "GTWY_e6763c9a-71b2-4515-ad5b-89260f7f597"
+          },
+          "details": {
+            "type": "object",
+            "description": "Additional details about the gateway error.",
+            "properties": {
+              "upstreamService": {
+                "type": "string",
+                "description": "The upstream service that failed",
+                "example": "dnc-service"
+              },
+              "retryRecommended": {
+                "type": "boolean",
+                "description": "Whether retrying the request is recommended",
+                "example": true
+              }
+            }
+          }
+        },
+        "example": {
+          "code": 502,
+          "message": "The server received an invalid response from an upstream server.",
+          "trackingId": "WXC-12345-67897",
+          "details": {
+            "upstreamService": "dnc-service",
+            "retryRecommended": true
+          }
+        }
+      },
+      "ServiceUnavailableError": {
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "integer",
+            "enum": [
+              503
+            ],
+            "description": "HTTP status code for Service Unavailable.",
+            "example": 503
+          },
+          "message": {
+            "type": "string",
+            "description": "A detailed error message explaining the service unavailability.",
+            "example": "Service is temporarily unavailable due to maintenance."
+          },
+          "trackingId": {
+            "type": "string",
+            "description": "A unique identifier for this error that can be used for debugging purposes.",
+            "example": "WXC-12345-67898"
+          },
+          "details": {
+            "type": "object",
+            "description": "Additional details about the service unavailability.",
+            "properties": {
+              "maintenanceWindow": {
+                "type": "object",
+                "description": "Information about planned maintenance",
+                "properties": {
+                  "startTime": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2024-01-15T02:00:00Z"
+                  },
+                  "endTime": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2024-01-15T04:00:00Z"
+                  }
+                }
+              },
+              "retryAfter": {
+                "type": "integer",
+                "description": "Number of seconds to wait before retrying",
+                "example": 3600
+              }
+            }
+          }
+        },
+        "example": {
+          "code": 503,
+          "message": "Service is temporarily unavailable due to maintenance.",
+          "trackingId": "WXC-12345-67898",
+          "details": {
+            "maintenanceWindow": {
+              "startTime": "2024-01-15T02:00:00Z",
+              "endTime": "2024-01-15T04:00:00Z"
+            },
+            "retryAfter": 3600
+          }
+        }
+      },
+      "GatewayTimeoutError": {
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "integer",
+            "enum": [
+              504
+            ],
+            "description": "HTTP status code for Gateway Timeout.",
+            "example": 504
+          },
+          "message": {
+            "type": "string",
+            "description": "A detailed error message explaining the timeout.",
+            "example": "The server did not receive a timely response from an upstream server."
+          },
+          "trackingId": {
+            "type": "string",
+            "description": "A unique identifier for this error that can be used for debugging purposes.",
+            "example": "WXC-12345-67899"
+          },
+          "details": {
+            "type": "object",
+            "description": "Additional details about the timeout.",
+            "properties": {
+              "timeoutDuration": {
+                "type": "integer",
+                "description": "The timeout duration in seconds",
+                "example": 30
+              },
+              "upstreamService": {
+                "type": "string",
+                "description": "The upstream service that timed out",
+                "example": "dnc-database"
+              },
+              "retryRecommended": {
+                "type": "boolean",
+                "description": "Whether retrying the request is recommended",
+                "example": true
+              }
+            }
+          }
+        },
+        "example": {
+          "code": 504,
+          "message": "The server did not receive a timely response from an upstream server.",
+          "trackingId": "WXC-12345-67899",
+          "details": {
+            "timeoutDuration": 30,
+            "upstreamService": "dnc-database",
+            "retryRecommended": true
           }
         }
       },
