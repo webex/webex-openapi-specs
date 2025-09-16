@@ -196,7 +196,8 @@
                   "id": "Y2lzY29zcGFyazovL3VzL0JJTExJTkdfUkVQT1JULzViOGQ1MThhLThmMDAtNDUxYi1hNDA2LWVhZjQ5YjRhN2ZhOA",
                   "billingStartDate": "2021-05-21",
                   "billingEndDate": "2021-05-30",
-                  "type": "PARTNER"
+                  "type": "PARTNER",
+                  "internal": true
                 }
               }
             }
@@ -289,6 +290,11 @@
                     "type": "string",
                     "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi81MmNmNTc2ZC02MGE4LTQwN2EtYjIyYy00NjdjNTE1OTE5MDg",
                     "description": "The Organization ID of the sub partner on Cisco Webex."
+                  },
+                  "internal": {
+                    "type": "boolean",
+                    "example": true,
+                    "description": "If true or selected, internal orgs will be included in the billing report. Default: false."
                   }
                 }
               }
