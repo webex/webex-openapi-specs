@@ -21933,6 +21933,10 @@
           "supportsHotlineEnabled": {
             "type": "boolean",
             "description": "Enables / disables hotline support."
+          },
+          "maxNumberOfLineAppearances": {
+            "type": "number",
+            "description": "Maximum number of line appearances available on the device."
           }
         }
       },
