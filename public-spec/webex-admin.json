@@ -13146,6 +13146,3576 @@
         ]
       }
     },
+    "/Schemas/SCIM2/Group": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetGroupSchemaResponse"
+                },
+                "example": {
+                  "urn:ietf:params:scim:schemas:core:2.0:Group": {
+                    "id": "urn:ietf:params:scim:schemas:core:2.0:Group",
+                    "name": "Group",
+                    "description": "Group",
+                    "attributes": [
+                      {
+                        "name": "id",
+                        "type": "String",
+                        "multiValued": false,
+                        "description": "A unique identifier of this `Group` resource defined by the service provider.",
+                        "required": false,
+                        "caseExact": true,
+                        "mutability": "ReadOnly",
+                        "returned": "Default",
+                        "uniqueness": "Global"
+                      },
+                      {
+                        "name": "displayName",
+                        "type": "String",
+                        "multiValued": false,
+                        "description": "A human-readable name for the `Group`. REQUIRED.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "length": 512
+                      },
+                      {
+                        "name": "externalId",
+                        "type": "String",
+                        "multiValued": false,
+                        "description": "An identifier for the resource as defined by the provision client.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "length": 256
+                      },
+                      {
+                        "name": "members",
+                        "type": "String",
+                        "multiValued": true,
+                        "description": "A list of roles for the user that collectively represent who the user is.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "Reference",
+                            "referenceTypes": [
+                              "external"
+                            ],
+                            "multiValued": false,
+                            "description": "The identifier of the member of this `Group`.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "Immutable",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "type",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "A label indicating the type of resource, e.g., 'Group', 'Machine', or 'Group'.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "Immutable",
+                            "returned": "Default",
+                            "canonicalValues": [
+                              "Group",
+                              "User",
+                              "Machine"
+                            ],
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "display",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "A human-readable name, primarily used for display purposes.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadOnly",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "$ref",
+                            "type": "Reference",
+                            "referenceTypes": [
+                              "User",
+                              "Group",
+                              "Machine"
+                            ],
+                            "multiValued": false,
+                            "description": "The URI corresponding to a SCIM resource that is a member of this `Group`.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "Immutable",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 500
+                      }
+                    ]
+                  },
+                  "urn:scim:schemas:extension:cisco:webexidentity:2.0:Group": {
+                    "id": "urn:scim:schemas:extension:cisco:webexidentity:2.0:Group",
+                    "name": "Cisco Group",
+                    "description": "Cisco Group",
+                    "attributes": [
+                      {
+                        "name": "usage",
+                        "type": "String",
+                        "multiValued": false,
+                        "description": "The identifier of this `Group`.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "canonicalValues": [
+                          "location",
+                          "distribution",
+                          "policy"
+                        ],
+                        "uniqueness": "None"
+                      },
+                      {
+                        "name": "provisionSource",
+                        "type": "String",
+                        "multiValued": false,
+                        "description": "The type of the account provision source.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadOnly",
+                        "returned": "Default",
+                        "canonicalValues": [
+                          "SCIM",
+                          "AD",
+                          "AAD",
+                          "BROADWORKS",
+                          "OKTA"
+                        ],
+                        "uniqueness": "None"
+                      },
+                      {
+                        "name": "owners",
+                        "type": "String",
+                        "multiValued": true,
+                        "description": "The owners of this group.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of owners.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "display",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "A human-readable name, primarily used for display purposes.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "primary",
+                            "type": "Boolean",
+                            "multiValued": false,
+                            "description": "A Boolean value indicating the 'primary' or preferred attribute value for this attribute. The primary attribute value 'true' must appear no more than once.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 30
+                      },
+                      {
+                        "name": "managedBy",
+                        "type": "String",
+                        "multiValued": true,
+                        "description": "The resources that have delegated roles on this `Group`.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "orgId",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The organization identifier of the resource.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "Immutable",
+                            "returned": "Default",
+                            "uniqueness": "None",
+                            "length": 64
+                          },
+                          {
+                            "name": "type",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The resource type.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "Immutable",
+                            "returned": "Default",
+                            "canonicalValues": [
+                              "Group",
+                              "User",
+                              "Machine"
+                            ],
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "id",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The identifier of the resource.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "Immutable",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "role",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The delegated role.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None",
+                            "length": 64
+                          }
+                        ],
+                        "size": 30
+                      },
+                      {
+                        "name": "inheritances",
+                        "type": "String",
+                        "multiValued": true,
+                        "description": "Inheritance supported by this group.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "type",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The resource type.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "Immutable",
+                            "returned": "Default",
+                            "canonicalValues": [
+                              "role"
+                            ],
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "Immutable",
+                            "returned": "Default",
+                            "canonicalValues": [
+                              "id_user_admin",
+                              "id_readonly_admin",
+                              "id_device_admin",
+                              "id_full_admin"
+                            ],
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "nested",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The boolean value if field is nested.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "Immutable",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "scope",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The scope.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "Immutable",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 10
+                      },
+                      {
+                        "name": "memberFilter",
+                        "type": "String",
+                        "multiValued": true,
+                        "description": "The memberFilter for the `Group`.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of memberFilter.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "display",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "A human-readable name, primarily used for display purposes.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "type",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "A label indicating the attribute's function.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "canonicalValues": [
+                              "user"
+                            ],
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "primary",
+                            "type": "Boolean",
+                            "multiValued": false,
+                            "description": "A Boolean value indicating the 'primary' or preferred attribute value for this attribute. The primary attribute value 'true' must appear no more than once.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 1
+                      },
+                      {
+                        "name": "groupType",
+                        "type": "String",
+                        "multiValued": false,
+                        "description": "The type of the `Group`.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "canonicalValues": [
+                          "unique_flat_static",
+                          "dynamic",
+                          "flat_static",
+                          "nested_static"
+                        ],
+                        "uniqueness": "None"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Get Group Schema",
+        "operationId": "Get Group Schema",
+        "description": "This API allows the service client to get all the `Group` schemas information from CI.\n\n**Authorization:**\n\nOAuth token rendered by Identity Broker.\n\nOne of the following OAuth scopes is required:\n\n- `identity:people_rw`\n\n- `identity:organizations_rw`\n\nThe following administrators can use this API:\n\n- `id_full_admin`\n\n- `id_user_admin`\n\n- `id_readonly_admin`\n\n- `id_device_admin`",
+        "tags": [
+          "SCIM 2 Schemas"
+        ],
+        "parameters": []
+      }
+    },
+    "/Schemas/SCIM2/User": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserSchemaResponse"
+                },
+                "example": {
+                  "urn:scim:schemas:extension:cisco:webexidentity:2.0:User": {
+                    "id": "urn:scim:schemas:extension:cisco:webexidentity:2.0:User",
+                    "name": "EnterpriseUser",
+                    "description": "Enterprise User",
+                    "attributes": [
+                      {
+                        "name": "accountStatus",
+                        "type": "String",
+                        "multiValued": true,
+                        "description": "Account status of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "canonicalValues": [
+                          "compliance-transient",
+                          "pending-transient",
+                          "marked_deleted",
+                          "transient",
+                          "fraud-transient",
+                          "fraud",
+                          "pending",
+                          "active",
+                          "disabled",
+                          "suspended"
+                        ],
+                        "uniqueness": "None"
+                      },
+                      {
+                        "name": "authProvider",
+                        "type": "String",
+                        "multiValued": false,
+                        "description": "Authentication provider for the user. Base on organization configuration",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "canonicalValues": [
+                          "facebook",
+                          "O365",
+                          "google",
+                          "cco"
+                        ],
+                        "uniqueness": "None"
+                      },
+                      {
+                        "name": "teamsClusterId",
+                        "type": "String",
+                        "multiValued": false,
+                        "description": "teamsClusterId of the organization user belongs to.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadOnly",
+                        "returned": "Default",
+                        "uniqueness": "None"
+                      },
+                      {
+                        "name": "isTeamsOnJabberEnabled",
+                        "type": "Boolean",
+                        "multiValued": false,
+                        "description": "Whether user is enabled teams in Jabber.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None"
+                      },
+                      {
+                        "name": "isUCCallOnJabberEnabled",
+                        "type": "Boolean",
+                        "multiValued": false,
+                        "description": "Whether user is enabled On UC Call in Jabber.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None"
+                      },
+                      {
+                        "name": "mfaEnabled",
+                        "type": "Boolean",
+                        "multiValued": false,
+                        "description": "Whether user is enabled for MFA.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None"
+                      },
+                      {
+                        "name": "macAddresses",
+                        "type": "String",
+                        "multiValued": true,
+                        "description": "macAddresses assigned to this user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "size": 50
+                      },
+                      {
+                        "name": "licenseID",
+                        "type": "String",
+                        "multiValued": true,
+                        "description": "licenseIDs assigned to this user. Webex Identity does not interpret the format or semantics of the value.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "size": 1000
+                      },
+                      {
+                        "name": "userSettings",
+                        "type": "String",
+                        "multiValued": true,
+                        "description": "Settings value for the user. Webex Identity does not interpret the format or semantics of the value.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "size": 1000
+                      },
+                      {
+                        "name": "userPreferences",
+                        "type": "String",
+                        "multiValued": true,
+                        "description": "User preference. Webex Identity does not interpret the format or semantics of the value.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "size": 1000
+                      },
+                      {
+                        "name": "sipAddresses",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "SipAddress values for the User.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of sipAddresses.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "display",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "A human-readable name, primarily used for display purposes.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "type",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "A label indicating the attribute's function.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "canonicalValues": [
+                              "enterprise",
+                              "cloud-calling",
+                              "personal-room"
+                            ],
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "primary",
+                            "type": "Boolean",
+                            "multiValued": false,
+                            "description": "A Boolean value indicating the 'primary' or preferred attribute value for this attribute. The primary attribute value 'true' MUST appear no more than once.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 2000
+                      },
+                      {
+                        "name": "trainSiteNames",
+                        "type": "String",
+                        "multiValued": true,
+                        "description": "List of CI-enabled sites the user belongs to.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "size": 2000
+                      },
+                      {
+                        "name": "managedSites",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "Used to identify that the user is site admin of a site.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "siteName",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "Site name",
+                            "required": true,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None",
+                            "length": 512
+                          },
+                          {
+                            "name": "role",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "Role in the site for the user.",
+                            "required": true,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None",
+                            "length": 64
+                          }
+                        ],
+                        "size": 2000
+                      },
+                      {
+                        "name": "linkedTrainSiteNames",
+                        "type": "String",
+                        "multiValued": true,
+                        "description": "List of none CI-enabled WebEx sites that the user is linked to through account linking process.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "size": 2000
+                      },
+                      {
+                        "name": "primaryLinkedTrainSiteName",
+                        "type": "String",
+                        "multiValued": false,
+                        "description": "If set, Webex Identity will send user to the train site to login. Value is the name of the train site.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "length": 128
+                      },
+                      {
+                        "name": "toBeConverted",
+                        "type": "String",
+                        "multiValued": false,
+                        "description": "To be converted value.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadOnly",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "length": 254
+                      },
+                      {
+                        "name": "managedOrgs",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "Organizations that the user can manage.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "orgId",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "Identity of the organization",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None",
+                            "length": 64
+                          },
+                          {
+                            "name": "role",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "Role in the target organization for the user.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None",
+                            "length": 64
+                          }
+                        ],
+                        "size": 2000
+                      },
+                      {
+                        "name": "managedGroups",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "Organizations that the user can manage.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "orgId",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "Identity of the organization",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None",
+                            "length": 64
+                          },
+                          {
+                            "name": "groupId",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "Identity of the group",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None",
+                            "length": 64
+                          },
+                          {
+                            "name": "role",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "Role in the target group for the user.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None",
+                            "length": 64
+                          }
+                        ],
+                        "size": 2000
+                      },
+                      {
+                        "name": "extLinkedAccts",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "External linked account for the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "providerID",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "Identity for the external linked account provider.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None",
+                            "length": 64
+                          },
+                          {
+                            "name": "accountGUID",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "Identifier of the external account, this should be set to a unique identifier from the external source, CI does not enforce format or semantics of this attribute (as long as it is a string).",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None",
+                            "length": 512
+                          },
+                          {
+                            "name": "status",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "External linked account status.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None",
+                            "length": 64
+                          }
+                        ],
+                        "size": 2000
+                      },
+                      {
+                        "name": "loginIds",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "LoginIds for a partner-upn user",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "UserName of the user",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None",
+                            "length": 512
+                          },
+                          {
+                            "name": "format",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "Format of the user",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None",
+                            "length": 512
+                          },
+                          {
+                            "name": "type",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "Type of the user",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None",
+                            "length": 256
+                          },
+                          {
+                            "name": "status",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "Status of the user",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None",
+                            "length": 64
+                          },
+                          {
+                            "name": "lastValidated",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "TimeStamp for the entry",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None",
+                            "length": 512
+                          }
+                        ],
+                        "size": 2000
+                      },
+                      {
+                        "name": "avatarSyncEnabled",
+                        "type": "Boolean",
+                        "multiValued": false,
+                        "description": "Whether user is enabled for avatar Sync.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadOnly",
+                        "returned": "Default",
+                        "uniqueness": "None"
+                      },
+                      {
+                        "name": "provisionSource",
+                        "type": "String",
+                        "multiValued": false,
+                        "description": "The type of the account provision source.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadOnly",
+                        "returned": "Default",
+                        "canonicalValues": [
+                          "SCIM",
+                          "AD",
+                          "AAD",
+                          "BROADWORKS",
+                          "OKTA"
+                        ],
+                        "uniqueness": "None"
+                      },
+                      {
+                        "name": "pronouns",
+                        "type": "Complex",
+                        "multiValued": false,
+                        "description": "The pronouns of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of pronouns.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "visibility",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The visibility of pronouns. Can be Hidden, Internal, Everyone or global.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "canonicalValues": [
+                              "Everyone",
+                              "Internal",
+                              "Hidden",
+                              "Global"
+                            ],
+                            "uniqueness": "None"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "userNameType",
+                        "type": "String",
+                        "multiValued": false,
+                        "description": "Format of username. Possible Values : Email, PartnerUPN, Phone",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "canonicalValues": [
+                          "phone",
+                          "partner-upn",
+                          "email"
+                        ],
+                        "uniqueness": "None"
+                      },
+                      {
+                        "name": "extensionAttribute1",
+                        "type": "String",
+                        "multiValued": true,
+                        "description": "The extensionAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "size": 100
+                      },
+                      {
+                        "name": "extensionAttribute2",
+                        "type": "String",
+                        "multiValued": true,
+                        "description": "The extensionAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "size": 100
+                      },
+                      {
+                        "name": "extensionAttribute3",
+                        "type": "String",
+                        "multiValued": true,
+                        "description": "The extensionAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "size": 100
+                      },
+                      {
+                        "name": "extensionAttribute4",
+                        "type": "String",
+                        "multiValued": true,
+                        "description": "The extensionAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "size": 100
+                      },
+                      {
+                        "name": "extensionAttribute5",
+                        "type": "String",
+                        "multiValued": true,
+                        "description": "The extensionAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "size": 100
+                      },
+                      {
+                        "name": "extensionAttribute6",
+                        "type": "String",
+                        "multiValued": true,
+                        "description": "The extensionAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "size": 100
+                      },
+                      {
+                        "name": "extensionAttribute7",
+                        "type": "String",
+                        "multiValued": true,
+                        "description": "The extensionAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "size": 100
+                      },
+                      {
+                        "name": "extensionAttribute8",
+                        "type": "String",
+                        "multiValued": true,
+                        "description": "The extensionAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "size": 100
+                      },
+                      {
+                        "name": "extensionAttribute9",
+                        "type": "String",
+                        "multiValued": true,
+                        "description": "The extensionAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "size": 100
+                      },
+                      {
+                        "name": "extensionAttribute10",
+                        "type": "String",
+                        "multiValued": true,
+                        "description": "The extensionAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "size": 100
+                      },
+                      {
+                        "name": "extensionAttribute11",
+                        "type": "String",
+                        "multiValued": true,
+                        "description": "The extensionAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "size": 100
+                      },
+                      {
+                        "name": "extensionAttribute12",
+                        "type": "String",
+                        "multiValued": true,
+                        "description": "The extensionAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "size": 100
+                      },
+                      {
+                        "name": "extensionAttribute13",
+                        "type": "String",
+                        "multiValued": true,
+                        "description": "The extensionAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "size": 100
+                      },
+                      {
+                        "name": "extensionAttribute14",
+                        "type": "String",
+                        "multiValued": true,
+                        "description": "The extensionAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "size": 100
+                      },
+                      {
+                        "name": "extensionAttribute15",
+                        "type": "String",
+                        "multiValued": true,
+                        "description": "The extensionAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "size": 100
+                      },
+                      {
+                        "name": "externalAttribute1",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "The externalAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of external attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "source",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The source of external attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 100
+                      },
+                      {
+                        "name": "externalAttribute2",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "The externalAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of external attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "source",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The source of external attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 100
+                      },
+                      {
+                        "name": "externalAttribute3",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "The externalAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of external attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "source",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The source of external attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 100
+                      },
+                      {
+                        "name": "externalAttribute4",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "The externalAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of external attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "source",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The source of external attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 100
+                      },
+                      {
+                        "name": "externalAttribute5",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "The externalAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of external attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "source",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The source of external attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 100
+                      },
+                      {
+                        "name": "externalAttribute6",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "The externalAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of external attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "source",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The source of external attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 100
+                      },
+                      {
+                        "name": "externalAttribute7",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "The externalAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of external attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "source",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The source of external attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 100
+                      },
+                      {
+                        "name": "externalAttribute8",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "The externalAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of external attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "source",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The source of external attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 100
+                      },
+                      {
+                        "name": "externalAttribute9",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "The externalAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of external attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "source",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The source of external attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 100
+                      },
+                      {
+                        "name": "externalAttribute10",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "The externalAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of external attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "source",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The source of external attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 100
+                      },
+                      {
+                        "name": "externalAttribute11",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "The externalAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of external attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "source",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The source of external attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 100
+                      },
+                      {
+                        "name": "externalAttribute12",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "The externalAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of external attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "source",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The source of external attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 100
+                      },
+                      {
+                        "name": "externalAttribute13",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "The externalAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of external attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "source",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The source of external attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 100
+                      },
+                      {
+                        "name": "externalAttribute14",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "The externalAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of external attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "source",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The source of external attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 100
+                      },
+                      {
+                        "name": "externalAttribute15",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "The externalAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of external attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "source",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The source of external attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 100
+                      },
+                      {
+                        "name": "crossOrgAttribute1",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "The crossOrgAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of cross org attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "orgId",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The orgId of cross org attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 100
+                      },
+                      {
+                        "name": "crossOrgAttribute2",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "The crossOrgAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of cross org attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "orgId",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The orgId of cross org attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 100
+                      },
+                      {
+                        "name": "crossOrgAttribute3",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "The crossOrgAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of cross org attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "orgId",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The orgId of cross org attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 100
+                      },
+                      {
+                        "name": "crossOrgAttribute4",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "The crossOrgAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of cross org attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "orgId",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The orgId of cross org attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 100
+                      },
+                      {
+                        "name": "crossOrgAttribute5",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "The crossOrgAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of cross org attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "orgId",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The orgId of cross org attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 100
+                      },
+                      {
+                        "name": "crossOrgAttribute6",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "The crossOrgAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of cross org attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "orgId",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The orgId of cross org attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 100
+                      },
+                      {
+                        "name": "crossOrgAttribute7",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "The crossOrgAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of cross org attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "orgId",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The orgId of cross org attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 100
+                      },
+                      {
+                        "name": "crossOrgAttribute8",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "The crossOrgAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of cross org attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "orgId",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The orgId of cross org attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 100
+                      },
+                      {
+                        "name": "crossOrgAttribute9",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "The crossOrgAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of cross org attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "orgId",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The orgId of cross org attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 100
+                      },
+                      {
+                        "name": "crossOrgAttribute10",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "The crossOrgAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of cross org attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "orgId",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The orgId of cross org attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 100
+                      },
+                      {
+                        "name": "crossOrgAttribute11",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "The crossOrgAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of cross org attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "orgId",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The orgId of cross org attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 100
+                      },
+                      {
+                        "name": "crossOrgAttribute12",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "The crossOrgAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of cross org attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "orgId",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The orgId of cross org attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 100
+                      },
+                      {
+                        "name": "crossOrgAttribute13",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "The crossOrgAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of cross org attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "orgId",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The orgId of cross org attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 100
+                      },
+                      {
+                        "name": "crossOrgAttribute14",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "The crossOrgAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of cross org attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "orgId",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The orgId of cross org attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 100
+                      },
+                      {
+                        "name": "crossOrgAttribute15",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "The crossOrgAttributes of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of cross org attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "orgId",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The orgId of cross org attribute.",
+                            "required": false,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 100
+                      }
+                    ]
+                  },
+                  "urn:ietf:params:scim:schemas:core:2.0:User": {
+                    "id": "urn:ietf:params:scim:schemas:core:2.0:User",
+                    "name": "User",
+                    "description": "User account",
+                    "attributes": [
+                      {
+                        "name": "id",
+                        "type": "String",
+                        "multiValued": false,
+                        "description": "A unique identifier for a SCIM resource as defined by the service provider.",
+                        "required": false,
+                        "caseExact": true,
+                        "mutability": "ReadOnly",
+                        "returned": "Default",
+                        "uniqueness": "Global"
+                      },
+                      {
+                        "name": "userName",
+                        "type": "String",
+                        "multiValued": false,
+                        "description": "Unique identifier for the User, typically used by the user to directly authenticate to the service provider. Each User MUST include a non-empty userName value. This identifier MUST be unique across the service provider's entire set of Users.",
+                        "required": true,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "length": 254
+                      },
+                      {
+                        "name": "password",
+                        "type": "String",
+                        "multiValued": false,
+                        "description": "The User's cleartext password.",
+                        "required": false,
+                        "caseExact": true,
+                        "mutability": "WriteOnly",
+                        "returned": "Never",
+                        "uniqueness": "None",
+                        "length": 256
+                      },
+                      {
+                        "name": "active",
+                        "type": "Boolean",
+                        "multiValued": false,
+                        "description": "A Boolean value indicating the User's administrative status.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None"
+                      },
+                      {
+                        "name": "roles",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "A list of roles for the User that collectively represent who the User is.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of roles.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "display",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "A human-readable name, primarily used for display purposes.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "type",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "A label indicating the attribute's function.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "canonicalValues": [
+                              "ciRole",
+                              "serviceRole",
+                              "globalRole"
+                            ],
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "primary",
+                            "type": "Boolean",
+                            "multiValued": false,
+                            "description": "A Boolean value indicating the 'primary' or preferred attribute value for this attribute. The primary attribute value 'true' MUST appear no more than once.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 100
+                      },
+                      {
+                        "name": "entitlements",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "A list of entitlements for the User that represent a thing the User has.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of entitlements.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "display",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "A human-readable name, primarily used for display purposes.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "primary",
+                            "type": "Boolean",
+                            "multiValued": false,
+                            "description": "A Boolean value indicating the 'primary' or preferred attribute value for this attribute. The primary attribute value 'true' MUST appear no more than once.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 100
+                      },
+                      {
+                        "name": "name",
+                        "type": "Complex",
+                        "multiValued": false,
+                        "description": "The components of the user's real name.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "familyName",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The family name of the User, or last name in most Western languages (e.g., 'Jensen' given the full name 'Ms. Barbara J Jensen, III').",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None",
+                            "length": 256
+                          },
+                          {
+                            "name": "givenName",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The given name of the User, or first name in most Western languages (e.g., 'Barbara' given the full name 'Ms. Barbara J Jensen, III').",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None",
+                            "length": 256
+                          },
+                          {
+                            "name": "middleName",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The middle name(s) of the User (e.g., 'Jane' given the full name 'Ms. Barbara J Jensen, III').",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None",
+                            "length": 256
+                          },
+                          {
+                            "name": "honorificPrefix",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The honorific prefix(es) of the User, or title in most Western languages (e.g., 'Ms.' given the full name 'Ms. Barbara J Jensen, III').",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None",
+                            "length": 256
+                          },
+                          {
+                            "name": "honorificSuffix",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The honorific suffix(es) of the User, or suffix in most Western languages (e.g., 'III' given the full name 'Ms. Barbara J Jensen, III').",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None",
+                            "length": 256
+                          },
+                          {
+                            "name": "formatted",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The full name, including all middle names, titles, and suffixes as appropriate, formatted for display (e.g., 'Ms. Barbara Jane Jensen, III').",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None",
+                            "length": 512
+                          }
+                        ]
+                      },
+                      {
+                        "name": "displayName",
+                        "type": "String",
+                        "multiValued": false,
+                        "description": "The name of the User, suitable for display to end-users. The name SHOULD be the full name of the User being described, if known.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "length": 512
+                      },
+                      {
+                        "name": "nickName",
+                        "type": "String",
+                        "multiValued": false,
+                        "description": "The casual way to address the user in real life, e.g., 'Bob' or 'Bobby' instead of 'Robert'. This attribute SHOULD NOT be used to represent a User's username (e.g., 'bjensen' or 'mpepperidge').",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "length": 256
+                      },
+                      {
+                        "name": "emails",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "Email addresses for the user. The value SHOULD be canonicalized by the service provider, e.g., 'bjensen@example.com' instead of 'bjensen@EXAMPLE.COM'. Canonical type values of 'work', 'home', and 'other'.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of emails.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "display",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "A human-readable name, primarily used for display purposes.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "type",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "A label indicating the attribute's function.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "canonicalValues": [
+                              "other",
+                              "work",
+                              "room",
+                              "home"
+                            ],
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "primary",
+                            "type": "Boolean",
+                            "multiValued": false,
+                            "description": "A Boolean value indicating the 'primary' or preferred attribute value for this attribute. The primary attribute value 'true' MUST appear no more than once.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 10
+                      },
+                      {
+                        "name": "userType",
+                        "type": "String",
+                        "multiValued": false,
+                        "description": "Type of the user.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "canonicalValues": [
+                          "user",
+                          "external_calling",
+                          "room",
+                          "calling_service"
+                        ],
+                        "uniqueness": "None"
+                      },
+                      {
+                        "name": "profileUrl",
+                        "type": "Reference",
+                        "referenceTypes": [
+                          "external"
+                        ],
+                        "multiValued": false,
+                        "description": "A fully qualified URL pointing to a page representing the User's online profile.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "length": 1000
+                      },
+                      {
+                        "name": "title",
+                        "type": "String",
+                        "multiValued": false,
+                        "description": "The user's title, such as \"Vice President.\"",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "length": 512
+                      },
+                      {
+                        "name": "preferredLanguage",
+                        "type": "String",
+                        "multiValued": false,
+                        "description": "Indicates the User's preferred written or spoken language. Generally used for selecting a localized user interface; e.g., 'en_US' specifies the language English and country US.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None"
+                      },
+                      {
+                        "name": "locale",
+                        "type": "String",
+                        "multiValued": false,
+                        "description": "Used to indicate the User's default location for purposes of localizing items such as currency, date time format, or numerical representations.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None"
+                      },
+                      {
+                        "name": "timezone",
+                        "type": "String",
+                        "multiValued": false,
+                        "description": "The User's time zone in the 'Olson' time zone database format, e.g., 'America/Los_Angeles'.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None"
+                      },
+                      {
+                        "name": "externalId",
+                        "type": "String",
+                        "multiValued": false,
+                        "description": "External Identity.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "length": 256
+                      },
+                      {
+                        "name": "phoneNumbers",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "Phone numbers for the User.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of phoneNumbers.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "display",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "A human-readable name, primarily used for display purposes.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "type",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "A label indicating the attribute's function.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "canonicalValues": [
+                              "alternate1",
+                              "work",
+                              "mobile",
+                              "work_extension",
+                              "fax",
+                              "alternate2"
+                            ],
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "primary",
+                            "type": "Boolean",
+                            "multiValued": false,
+                            "description": "A Boolean value indicating the 'primary' or preferred attribute value for this attribute. The primary attribute value 'true' MUST appear no more than once.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 50
+                      },
+                      {
+                        "name": "ims",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "Instant messaging addresses for the User.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of ims.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "display",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "A human-readable name, primarily used for display purposes.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "type",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "A label indicating the attribute's function.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "canonicalValues": [
+                              "qq",
+                              "aim",
+                              "cucm-jid",
+                              "webex-squared-jid",
+                              "msn",
+                              "xmpp",
+                              "skype",
+                              "gtalk",
+                              "icq",
+                              "yahoo",
+                              "microsoft-sip-uri",
+                              "webex-messenger-jid",
+                              "xmpp-fed-jid"
+                            ],
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "primary",
+                            "type": "Boolean",
+                            "multiValued": false,
+                            "description": "A Boolean value indicating the 'primary' or preferred attribute value for this attribute. The primary attribute value 'true' MUST appear no more than once.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 50
+                      },
+                      {
+                        "name": "photos",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "URLs of photos of the User.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of photos.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "display",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "A human-readable name, primarily used for display purposes.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "type",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "A label indicating the attribute's function.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "canonicalValues": [
+                              "thumbnail",
+                              "resizable",
+                              "photo"
+                            ],
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "primary",
+                            "type": "Boolean",
+                            "multiValued": false,
+                            "description": "A Boolean value indicating the 'primary' or preferred attribute value for this attribute. The primary attribute value 'true' MUST appear no more than once.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 50
+                      },
+                      {
+                        "name": "x509Certificates",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "A list of certificates issued to the User.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The value of x509Certificates.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "display",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "A human-readable name, primarily used for display purposes.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "primary",
+                            "type": "Boolean",
+                            "multiValued": false,
+                            "description": "A Boolean value indicating the 'primary' or preferred attribute value for this attribute. The primary attribute value 'true' MUST appear no more than once.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 30
+                      },
+                      {
+                        "name": "addresses",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "A physical mailing address for this User.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "type",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "A label indicating the attribute's function.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "canonicalValues": [
+                              "other",
+                              "work",
+                              "home"
+                            ],
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "streetAddress",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The full street address component, which may include house number, street name, P.O. box, and multi-line extended street address information. This attribute MAY contain newlines.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None",
+                            "length": 512
+                          },
+                          {
+                            "name": "locality",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The city or locality component.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None",
+                            "length": 128
+                          },
+                          {
+                            "name": "region",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The state or region component.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None",
+                            "length": 64
+                          },
+                          {
+                            "name": "postalCode",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The zip code or postal code component.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None",
+                            "length": 64
+                          },
+                          {
+                            "name": "country",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The country name component.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ],
+                        "size": 10
+                      },
+                      {
+                        "name": "groups",
+                        "type": "Complex",
+                        "multiValued": true,
+                        "description": "A list of groups to which the user belongs.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadOnly",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "Reference",
+                            "referenceTypes": [
+                              "external"
+                            ],
+                            "multiValued": false,
+                            "description": "The identifier of the User's group.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadOnly",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "display",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "A human-readable name, primarily used for display purposes.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadOnly",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "$ref",
+                            "type": "Reference",
+                            "referenceTypes": [
+                              "Group"
+                            ],
+                            "multiValued": false,
+                            "description": "The URI of the corresponding 'Group' resource to which the user belongs.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadOnly",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "inheritances",
+                        "type": "String",
+                        "multiValued": true,
+                        "description": "A list of inheritances for the User.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "type",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The inheritance type.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "Immutable",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The inheritance value.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "Immutable",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "source",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The inheritance source.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "Immutable",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User": {
+                    "id": "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User",
+                    "name": "EnterpriseUser",
+                    "description": "Enterprise User",
+                    "attributes": [
+                      {
+                        "name": "employeeNumber",
+                        "type": "String",
+                        "multiValued": false,
+                        "description": "Numeric or alphanumeric identifier assigned to a person, typically based on order of hire or association with an organization.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "length": 256
+                      },
+                      {
+                        "name": "costCenter",
+                        "type": "String",
+                        "multiValued": false,
+                        "description": "Identifies the name of a cost center.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "length": 256
+                      },
+                      {
+                        "name": "organization",
+                        "type": "String",
+                        "multiValued": false,
+                        "description": "Identifies the name of an organization.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "length": 512
+                      },
+                      {
+                        "name": "division",
+                        "type": "String",
+                        "multiValued": false,
+                        "description": "Identifies the name of a division.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "length": 512
+                      },
+                      {
+                        "name": "department",
+                        "type": "String",
+                        "multiValued": false,
+                        "description": "Identifies the name of a department.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "length": 512
+                      },
+                      {
+                        "name": "manager",
+                        "type": "Complex",
+                        "multiValued": false,
+                        "description": "The User's manager.",
+                        "required": false,
+                        "caseExact": false,
+                        "mutability": "ReadWrite",
+                        "returned": "Default",
+                        "uniqueness": "None",
+                        "subAttributes": [
+                          {
+                            "name": "value",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The identifier of the user's manager.",
+                            "required": true,
+                            "caseExact": true,
+                            "mutability": "ReadWrite",
+                            "returned": "Default",
+                            "uniqueness": "None",
+                            "length": 512
+                          },
+                          {
+                            "name": "displayName",
+                            "type": "String",
+                            "multiValued": false,
+                            "description": "The displayName of the User's manager.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadOnly",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          },
+                          {
+                            "name": "$ref",
+                            "type": "Reference",
+                            "referenceTypes": [
+                              "User"
+                            ],
+                            "multiValued": false,
+                            "description": "The displayName of the User's manager.",
+                            "required": false,
+                            "caseExact": false,
+                            "mutability": "ReadOnly",
+                            "returned": "Default",
+                            "uniqueness": "None"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Get User Schema",
+        "operationId": "Get User Schema",
+        "description": "This API allows the service client to get all the `User` schemas information from CI.\n\n**Authorization:**\n\nOAuth token rendered by Identity Broker.\n\nOne of the following OAuth scopes is required:\n\n- `identity:people_rw`\n\n- `identity:organizations_rw`\n\nThe following administrators can use this API:\n\n- `id_full_admin`\n\n- `id_user_admin`\n\n- `id_readonly_admin`\n\n- `id_device_admin`",
+        "tags": [
+          "SCIM 2 Schemas"
+        ],
+        "parameters": []
+      }
+    },
+    "/Schemas/SCIM2/{schemaId}": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetGroupResponseBySchemaId"
+                },
+                "example": {
+                  "id": "urn:ietf:params:scim:schemas:core:2.0:Group",
+                  "name": "Group",
+                  "description": "Group",
+                  "attributes": [
+                    {
+                      "name": "id",
+                      "type": "String",
+                      "multiValued": false,
+                      "description": "A unique identifier of this `Group` resource defined by the service provider.",
+                      "required": false,
+                      "caseExact": true,
+                      "mutability": "ReadOnly",
+                      "returned": "Default",
+                      "uniqueness": "Global"
+                    },
+                    {
+                      "name": "displayName",
+                      "type": "String",
+                      "multiValued": false,
+                      "description": "A human-readable name for the `Group`. REQUIRED.",
+                      "required": false,
+                      "caseExact": false,
+                      "mutability": "ReadWrite",
+                      "returned": "Default",
+                      "uniqueness": "None",
+                      "length": 512
+                    },
+                    {
+                      "name": "externalId",
+                      "type": "String",
+                      "multiValued": false,
+                      "description": "An identifier for the resource as defined by the provision client.",
+                      "required": false,
+                      "caseExact": false,
+                      "mutability": "ReadWrite",
+                      "returned": "Default",
+                      "uniqueness": "None",
+                      "length": 256
+                    },
+                    {
+                      "name": "members",
+                      "type": "String",
+                      "multiValued": true,
+                      "description": "A list of roles for the user that collectively represent who the user is.",
+                      "required": false,
+                      "caseExact": false,
+                      "mutability": "ReadWrite",
+                      "returned": "Default",
+                      "uniqueness": "None",
+                      "subAttributes": [
+                        {
+                          "name": "value",
+                          "type": "Reference",
+                          "referenceTypes": [
+                            "external"
+                          ],
+                          "multiValued": false,
+                          "description": "The identifier of the member of this `Group`.",
+                          "required": false,
+                          "caseExact": false,
+                          "mutability": "Immutable",
+                          "returned": "Default",
+                          "uniqueness": "None"
+                        },
+                        {
+                          "name": "type",
+                          "type": "String",
+                          "multiValued": false,
+                          "description": "A label indicating the type of resource, e.g., 'Group', 'Machine', or 'Group'.",
+                          "required": false,
+                          "caseExact": false,
+                          "mutability": "Immutable",
+                          "returned": "Default",
+                          "canonicalValues": [
+                            "Group",
+                            "User",
+                            "Machine"
+                          ],
+                          "uniqueness": "None"
+                        },
+                        {
+                          "name": "display",
+                          "type": "String",
+                          "multiValued": false,
+                          "description": "A human-readable name, primarily used for display purposes.",
+                          "required": false,
+                          "caseExact": false,
+                          "mutability": "ReadOnly",
+                          "returned": "Default",
+                          "uniqueness": "None"
+                        },
+                        {
+                          "name": "$ref",
+                          "type": "Reference",
+                          "referenceTypes": [
+                            "User",
+                            "Group",
+                            "Machine"
+                          ],
+                          "multiValued": false,
+                          "description": "The URI corresponding to a SCIM resource that is a member of this `Group`.",
+                          "required": false,
+                          "caseExact": false,
+                          "mutability": "Immutable",
+                          "returned": "Default",
+                          "uniqueness": "None"
+                        }
+                      ],
+                      "size": 500
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Get Schema using Group Schema ID",
+        "operationId": "Get Schema using Group Schema ID",
+        "description": "This API allows the service client to get the Group/User Schema using `Schema Id` from CI.\n\nExample:\n\n- `urn:ietf:params:scim:schemas:core:2.0:Group` is one of the `Group Schema Id`. Using this particular ID, we can fetch all information related to it.\n\n- `urn:ietf:params:scim:schemas:extension:enterprise:2.0:User` is one of the `User Schema Id`. Using this particular ID, we can fetch all information related to it.\n\n**Authorization:**\n\nOAuth token rendered by Identity Broker.\n\nOne of the following OAuth scopes is required:\n\n- `identity:people_rw`\n\n- `identity:organizations_rw`\n\nThe following administrators can use this API:\n\n- `id_full_admin`\n\n- `id_user_admin`\n\n- `id_readonly_admin`\n\n- `id_device_admin`",
+        "tags": [
+          "SCIM 2 Schemas"
+        ],
+        "parameters": [
+          {
+            "name": "schemaId",
+            "in": "path",
+            "description": "The Schema Id of Group/User Schema",
+            "required": true,
+            "example": "urn:ietf:params:scim:schemas:core:2.0:Group",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
     "/identity/scim/{orgId}/v2/Users": {
       "post": {
         "responses": {
