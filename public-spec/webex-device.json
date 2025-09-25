@@ -2056,6 +2056,13 @@
                   "$ref": "#/components/schemas/supportedDevicesObject"
                 },
                 "example": {
+                  "upgradeChannelList": [
+                    "STABLE",
+                    "STABLE_DELAY",
+                    "PREVIEW",
+                    "BETA",
+                    "TESTING"
+                  ],
                   "devices": [
                     {
                       "model": "2N Customer Managed",
@@ -17178,9 +17185,17 @@
       "supportedDevicesObject": {
         "type": "object",
         "required": [
-          "devices"
+          "devices",
+          "upgradeChannelList"
         ],
         "example": {
+          "upgradeChannelList": [
+            "STABLE",
+            "STABLE_DELAY",
+            "PREVIEW",
+            "BETA",
+            "TESTING"
+          ],
           "devices": [
             {
               "model": "2N Customer Managed",
@@ -17264,6 +17279,13 @@
           ]
         },
         "properties": {
+          "upgradeChannelList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UpgradeChannelObject"
+            },
+            "description": "List of available upgrade channels.\n * `STABLE` - These are standard stable releases.\n * `STABLE_DELAY` - These are delayed stable releases.\n * `PREVIEW` - These are Preview/pre-release versions.\n * `BETA` - These are Beta testing versions.\n * `TESTING` - These are testing versions.\n"
+          },
           "devices": {
             "type": "array",
             "items": {
@@ -17272,6 +17294,16 @@
             "description": "List of supported devices."
           }
         }
+      },
+      "UpgradeChannelObject": {
+        "type": "string",
+        "enum": [
+          "STABLE",
+          "STABLE_DELAY",
+          "PREVIEW",
+          "BETA",
+          "TESTING"
+        ]
       },
       "DeviceObject": {
         "type": "object",
