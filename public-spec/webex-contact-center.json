@@ -33,7 +33,7 @@
         "tags": [
           "Agent Wellbeing"
         ],
-        "summary": "Subscribe for realtime burnout events.",
+        "summary": "Subscribe for realtime burnout events",
         "description": "This endpoint provides real-time burnout events that are generated for agents belonging to the organization. It gives us a WebSocket URL to which we can connect to receive the real-time burnout events.",
         "operationId": "subscribe_agentburnout",
         "requestBody": {
@@ -93,7 +93,7 @@
             "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba1"
           }
         ],
-        "summary": "Record the realtime burnout events.",
+        "summary": "Record the realtime burnout events",
         "description": "The endpoint need to be invoked by Partners and Third-Party that will subscribe to the Agent Burnout system, in order to take certain action based on the agent burnout index calculated.",
         "operationId": "post_action",
         "requestBody": {
@@ -10000,7 +10000,7 @@
         "tags": [
           "Auxiliary Code"
         ],
-        "summary": "Bulk partial update Auxiliary Code(s).",
+        "summary": "Bulk partial update Auxiliary Code(s)",
         "description": "Update some or all properties for multiple Auxiliary codes in bulk in a given organization.",
         "operationId": "patchAllConfig_2",
         "parameters": [
@@ -31205,7 +31205,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "Get specific User by CI User ID.",
+        "summary": "Get specific User by CI User ID",
         "description": "Retrieve an existing User using the CI ID  in a given organization.",
         "operationId": "getUserByCiUserIdWithUserProfileGranularAccess",
         "parameters": [
@@ -37255,7 +37255,7 @@
         "tags": [
           "Journey - Customer Identification API"
         ],
-        "summary": "Add/Remove/Replace details of a Person.",
+        "summary": "Add/Remove/Replace details of a Person",
         "description": "The Patch Api can be used to add/remove identities(email, phone, customerId) or replace firstName and lastName of an Individual. We support only add, replace and remove operations. \n\nFor a more information on Patch Requests, see this  [JSON PATCH guide](https://jsonpatch.com). \n\nRole and Scope: Requires id full admin role with cjp:config_write or any role with cjp:user or cjp:config_write scope.",
         "operationId": "addRemoveAliases",
         "parameters": [
@@ -37711,7 +37711,7 @@
         "tags": [
           "Journey - Customer Identification API"
         ],
-        "summary": "Merges Identities to a Primary Identity.",
+        "summary": "Merges Identities to a Primary Identity",
         "description": "Merges one/more Identities to a **Primary** Individual in JDS. \n\nRole and Scope: Requires id full admin role with cjp:config_write scope.",
         "operationId": "mergeAliases",
         "parameters": [
