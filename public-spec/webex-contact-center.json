@@ -49207,6 +49207,30 @@
           }
         }
       },
+      "ShareRecordingObject": {
+        "type": "object",
+        "properties": {
+          "hostEmail": {
+            "type": "string",
+            "example": "john.andersen@example.com",
+            "description": "Email address for the meeting host. This attribute should only be set if the user or application calling the API has the admin-level scopes. When used, the admin may specify the email of a user in a site they manage to be the meeting host. The field is not editable and is only used to share or unshare a recording on behalf of the real meeting host."
+          },
+          "addEmails": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Email addresses of users to share the recording with. The maximum size of the array is `100`."
+          },
+          "removeEmails": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Email addresses of users to unshare the recording with. The maximum size of the array is `100`."
+          }
+        }
+      },
       "Webhook": {
         "type": "object",
         "properties": {

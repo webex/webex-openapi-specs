@@ -10619,6 +10619,102 @@
         }
       }
     },
+    "/recordings/{recordingId}/accessList": {
+      "post": {
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {},
+            "content": {}
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found",
+            "headers": {},
+            "content": {}
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Share a Recording",
+        "operationId": "Share a Recording",
+        "description": "Share or unshare a recording with other users by email addresses.",
+        "tags": [
+          "Recordings"
+        ],
+        "parameters": [
+          {
+            "name": "recordingId",
+            "in": "path",
+            "description": "A unique identifier for the recording.",
+            "required": true,
+            "example": "4f914b1dfe3c4d11a61730f18c0f5387",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "hostEmail": "john.andersen@example.com",
+                "addEmails": [
+                  "alex@example.com",
+                  "bob@example.com"
+                ],
+                "removeEmails": [
+                  "cherry@example.com",
+                  "danielle@example.com"
+                ]
+              },
+              "schema": {
+                "$ref": "#/components/schemas/ShareRecordingObject"
+              }
+            }
+          }
+        }
+      }
+    },
     "/report/templates": {
       "get": {
         "responses": {
@@ -28390,6 +28486,30 @@
             "type": "string",
             "example": "example.webex.com",
             "description": "URL of the Webex site from which the API purges recordings. If not specified, the API purges recordings from user's preferred site. All available Webex sites and preferred sites of the user can be retrieved by [Get Site List](/docs/api/v1/meeting-preferences/get-site-list) API."
+          }
+        }
+      },
+      "ShareRecordingObject": {
+        "type": "object",
+        "properties": {
+          "hostEmail": {
+            "type": "string",
+            "example": "john.andersen@example.com",
+            "description": "Email address for the meeting host. This attribute should only be set if the user or application calling the API has the admin-level scopes. When used, the admin may specify the email of a user in a site they manage to be the meeting host. The field is not editable and is only used to share or unshare a recording on behalf of the real meeting host."
+          },
+          "addEmails": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Email addresses of users to share the recording with. The maximum size of the array is `100`."
+          },
+          "removeEmails": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Email addresses of users to unshare the recording with. The maximum size of the array is `100`."
           }
         }
       },
