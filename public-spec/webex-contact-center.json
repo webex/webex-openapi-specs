@@ -35696,7 +35696,7 @@
           "Callbacks"
         ],
         "summary": "Get scheduled callbacks",
-        "description": "Allows the user to list scheduled callbacks for a given customer number, excluding those whose scheduled trigger time has already passed. Requires 'cjp:user' scope for authorization.",
+        "description": "Allows the user to list scheduled callbacks for a given customer number or assignee agent, excluding those whose scheduled trigger time has already passed. Requires 'cjp:user' scope for authorization.",
         "operationId": "GetScheduledCallbacks",
         "parameters": [
           {
@@ -35713,11 +35713,22 @@
             "name": "callbackNumber",
             "in": "query",
             "description": "The callback customer number to filter the scheduled callbacks. Only an exact match will yield the result. Allows an optional country code followed by digits (0-9) and the special characters: space, hyphen -, parentheses ( and ), and period ., ensuring the total length is between 7 and 15 characters.",
-            "required": true,
+            "required": false,
             "schema": {
               "type": "string"
             },
             "example": "+1234567890"
+          },
+          {
+            "name": "assigneeAgent",
+            "in": "query",
+            "description": "The unique identifier of the agent assigned to handle the callback. Must be in UUID format. This parameter is optional, but at least one of assigneeAgent or callbackNumber must be provided.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "example": "123e4567-e89b-12d3-a456-426614174001"
           },
           {
             "name": "page",
@@ -35747,13 +35758,14 @@
           {
             "name": "sortBy",
             "in": "query",
-            "description": "The field to sort the results by.",
+            "description": "The field to sort the results by. If `sortBy` is set to `assignedTime`, the `assigneeAgent` parameter must also be provided.",
             "required": false,
             "schema": {
               "type": "string",
               "enum": [
                 "customerName",
-                "scheduledTime"
+                "scheduledTime",
+                "assignedTime"
               ],
               "default": "scheduledTime"
             },
@@ -35787,7 +35799,7 @@
             }
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Bad Request: Validation error. This can occur in the following cases:\n- Both `assigneeAgent` and `callbackNumber` are missing.\n- `assigneeAgent` is not in UUID format.\n- `sortBy` is set to `assignedTime` but `assigneeAgent` is not provided."
           },
           "401": {
             "description": "Unauthorized, Token is Invalid"
@@ -63476,6 +63488,12 @@
             "format": "uuid",
             "description": "Source interaction ID for the callback. This is optional and can be used to link the callback to a specific interaction. This should be a valid UUID.",
             "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "assigneeAgent": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The unique identifier of the specific agent (CI userId), who should be assigned to handle the callback. This field is optional and is primarily used for personal callbacks.",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
           }
         }
       },
@@ -63556,6 +63574,18 @@
             "type": "integer",
             "format": "int64",
             "description": "Unix timestamp in milliseconds when the callback was last updated.",
+            "example": 1672531199000
+          },
+          "assigneeAgent": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The unique identifier of the agent assigned to handle the callback.",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "assignedTime": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Unix timestamp in milliseconds when the assigneeAgent was last updated.",
             "example": 1672531199000
           },
           "orgId": {
