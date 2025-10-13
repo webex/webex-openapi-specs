@@ -6927,8 +6927,8 @@
           }
         },
         "summary": "List Reports",
-        "operationId": "List Reports",
-        "description": "Lists all reports previously generated from a given region. Use query parameters to filter the response. The parameters are optional.\n\nTo access this endpoint, you must use an administrator token with `spark-admin:reports_read` and `identity:people_read` scopes.\n\n<div><Callout type=\"info\">CSV reports for Teams services are only supported for organizations based in one region per API request. Organizations based in a different region will require a separate request with region specified.</Callout></div>\n\n<div><Callout type=\"info\">When no region is specified, the request defaults to Partner organization's home region.</Callout></div>\n\n<div><Callout type=\"info\">Reports are usually provided in zip format. A content-header application/zip or application/octet-stream does indicate the zip format. There is usually no .zip file extension.</Callout></div>",
+        "operationId": "listReports",
+        "description": "Lists all reports previously generated from a given region. Use query parameters to filter the response. The parameters are optional.\n\nTo access this endpoint, you must use an administrator token with `spark-admin:reports_read` and `identity:people_read` scopes.\n\n<div><Callout type=\"info\">CSV reports for Webex suite services are only supported for organizations based in one region per API request. Organizations based in a different region will require a separate request with region specified.</Callout></div>\n\n<div><Callout type=\"info\">When no region is specified, the request defaults to Partner organization's home region.</Callout></div>\n\n<div><Callout type=\"info\">Reports are usually provided in zip format. A content-header application/zip or application/octet-stream does indicate the zip format. There is usually no .zip file extension.</Callout></div>",
         "tags": [
           "Partner Reports/Templates"
         ],
@@ -6946,7 +6946,7 @@
             "name": "templateId",
             "in": "query",
             "description": "List reports with this report template ID.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -7065,8 +7065,8 @@
           }
         },
         "summary": "Create a Report",
-        "operationId": "Create a Report",
-        "description": "Create a new report. A new report can be created using `templateId` available from the _List Report Templates_ API. For each `templateId`, there are a set of validation rules that need to be followed.\n\nThe `templateId` parameter is a number. However, it is a limitation of developer.webex.com platform that it is passed as a string when you try to test the API from here.\n\nTo access this endpoint, you must use an administrator token with `spark-admin:reports_write` and `identity:people_read` scopes.\n\n**Notes**:\n\n<div><Callout type=\"info\">CSV reports for Teams services are only created for organizations in the specified region. Organizations based in a different region will require a separate request with region specified.</Callout></div>\n\n<div><Callout type=\"info\">When no region is specified, the request defaults to Partner organization's home region. A request against a region where there are no organizations will return blank CSV files.</Callout></div>",
+        "operationId": "createAReport",
+        "description": "Create a new report. A new report can be created using `templateId` available from the _List Report Templates_ API. For each `templateId`, there are a set of validation rules that need to be followed.\n\nThe `templateId` parameter is a number. However, it is a limitation of developer.webex.com platform that it is passed as a string when you try to test the API from here.\n\nTo access this endpoint, you must use an administrator token with `spark-admin:reports_write` and `identity:people_read` scopes.\n\n**Notes**:\n\n<div><Callout type=\"info\">CSV reports for Webex suite services are only created for organizations in the specified region. Organizations based in a different region will require a separate request with region specified.</Callout></div>\n\n<div><Callout type=\"info\">When no region is specified, the request defaults to Partner organization's home region. A request against a region where there are no organizations will return blank CSV files.</Callout></div>",
         "tags": [
           "Partner Reports/Templates"
         ],
@@ -7202,7 +7202,7 @@
           }
         },
         "summary": "Get Report Details",
-        "operationId": "Get Report Details",
+        "operationId": "getReportDetails",
         "description": "Shows details for a report by report ID.\n\nSpecify the report ID in the `reportId` parameter in the URI.\n\nTo access this endpoint, you must use an administrator token with `spark-admin:reports_read` and `identity:people_read` scopes.\n\n**Notes**:\n\n<div><Callout type=\"info\">Reports are usually provided in zip format. A content-header application/zip or application/octet-stream does indicate the zip format. There is usually no .zip file extension.</Callout></div>",
         "tags": [
           "Partner Reports/Templates"
@@ -7283,7 +7283,7 @@
           }
         },
         "summary": "Delete a Report",
-        "operationId": "Delete a Report",
+        "operationId": "deleteAReport",
         "description": "Remove a report from the system.\n\nSpecify the report ID in the `reportId` parameter in the URI\n\nTo access this endpoint, you must use an administrator token with `spark-admin:reports_write` scope.",
         "tags": [
           "Partner Reports/Templates"
@@ -7383,7 +7383,7 @@
           }
         },
         "summary": "List Report Templates",
-        "operationId": "List Report Templates",
+        "operationId": "listReportTemplates",
         "description": "List report templates. Report templates are available for use with the Partner Reports API.\n\nTo access this endpoint, you must use an administrator token with `spark-admin:reports_read` and `identity:people_read` [scopes](/docs/integrations#scopes). The authenticated user must be a Partner full administrator or Partner read-only administrator of the organization.",
         "tags": [
           "Partner Reports/Templates"
@@ -10884,8 +10884,8 @@
           }
         },
         "summary": "List Reports",
-        "operationId": "List Reports",
-        "description": "Lists all reports. Use query parameters to filter the response. The parameters are optional. However, `from` and `to` parameters should be provided together.\n\n**Notes**:\nCSV reports for Teams services are only supported for organizations based in the North American region. Organizations based in a different region will return blank CSV files for any Teams reports.\n\nReports are usually provided in zip format. A Content-header `application/zip` or `application/octet-stream` does indicate the zip format. There is usually no .zip file extension.",
+        "operationId": "listReports",
+        "description": "Lists all reports. Use query parameters to filter the response. The parameters are optional. However, `from` and `to` parameters should be provided together.\n\n**Notes**:\nCSV reports for Webex suite services are only supported for organizations based in the North American region. Organizations based in a different region will return blank CSV files for any Teams reports.\n\nReports are usually provided in zip format. A Content-header `application/zip` or `application/octet-stream` does indicate the zip format. There is usually no .zip file extension.",
         "tags": [
           "Reports"
         ],
@@ -10912,7 +10912,7 @@
             "name": "templateId",
             "in": "query",
             "description": "List reports with this report template ID.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -11009,8 +11009,8 @@
           }
         },
         "summary": "Create a Report",
-        "operationId": "Create a Report",
-        "description": "Create a new report. For each `templateId`, there are a set of validation rules that need to be followed. For example, for templates belonging to Webex, the user needs to provide `siteUrl`. These validation rules can be retrieved via the [Report Templates API](/docs/api/v1/report-templates).\n\nThe 'templateId' parameter is a number. However, it is a limitation of developer.webex.com platform that it is passed as a string when you try to test the API from here.\n\nCSV reports for Teams services are only supported for organizations based in the North American region. Organizations based in a different region will return blank CSV files for any Teams reports.",
+        "operationId": "createaReport",
+        "description": "Create a new report. For each `templateId`, there are a set of validation rules that need to be followed. For example, for templates belonging to Webex, the user needs to provide `siteUrl`. These validation rules can be retrieved via the [Report Templates API](/docs/api/v1/report-templates).\n\nThe 'templateId' parameter is a number. However, it is a limitation of developer.webex.com platform that it is passed as a string when you try to test the API from here.\n\nCSV reports for Webex suite services are only supported for organizations based in the North American region. Organizations based in a different region will return blank CSV files for any Teams reports.",
         "tags": [
           "Reports"
         ],
@@ -11125,8 +11125,8 @@
           }
         },
         "summary": "Get Report Details",
-        "operationId": "Get Report Details",
-        "description": "Shows details for a report, by report ID.\n\nSpecify the report ID in the `reportId` parameter in the URI.\n\n**Notes**:\nCSV reports for Teams services are only supported for organizations based in the North American region. Organizations based in a different region will return blank CSV files for any Teams reports.\n\nReports are usually provided in zip format. A Content-header `application/zip` or `application/octet-stream` does indicate the zip     format. There is usually no .zip file extension.",
+        "operationId": "getReportDetails",
+        "description": "Shows details for a report, by report ID.\n\nSpecify the report ID in the `reportId` parameter in the URI.\n\n**Notes**:\nCSV reports for Webex suite services are only supported for organizations based in the North American region. Organizations based in a different region will return blank CSV files for any Teams reports.\n\nReports are usually provided in zip format. A Content-header `application/zip` or `application/octet-stream` does indicate the zip     format. There is usually no .zip file extension.",
         "tags": [
           "Reports"
         ],
@@ -11197,8 +11197,8 @@
           }
         },
         "summary": "Delete a Report",
-        "operationId": "Delete a Report",
-        "description": "Remove a report from the system.\n\nSpecify the report ID in the `reportId` parameter in the URI\n\nCSV reports for Teams services are only supported for organizations based in the North American region. Organizations based in a different region will return blank CSV files for any Teams reports.",
+        "operationId": "deleteAReport",
+        "description": "Remove a report from the system.\n\nSpecify the report ID in the `reportId` parameter in the URI\n\nCSV reports for Webex suite services are only supported for organizations based in the North American region. Organizations based in a different region will return blank CSV files for any Teams reports.",
         "tags": [
           "Reports"
         ],
