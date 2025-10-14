@@ -24182,7 +24182,7 @@
         "tags": [
           "Resource Collection"
         ],
-        "summary": "Bulk partial update Resource Collections.",
+        "summary": "Bulk partial update Resource Collections",
         "description": "Update some or all properties for resource collections in bulk for a given organization.",
         "operationId": "bulkPatchResourceCollections",
         "parameters": [
@@ -24391,7 +24391,7 @@
         "tags": [
           "Resource Collection"
         ],
-        "summary": "Update resource with default resource collection.",
+        "summary": "Update resource with default resource collection",
         "description": "Update resource with default resource collection. Ensure resource should not associated to any resource collection and resource should not be updated and not older than 15 min. Only single Resource Collection is allowed to update.",
         "operationId": "updateResourceToResourceCollection",
         "parameters": [
