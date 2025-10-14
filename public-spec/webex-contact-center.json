@@ -66899,7 +66899,7 @@
           },
           "mediaType": {
             "type": "string",
-            "description": "The media type for the request. The ```telephony``` type is required for ```EXECUTE_FLOW``` and ```CALLBACK```. The supported values are ```chat```, ```email```, ```telephony``` or ```social```.",
+            "description": "The media type for the request. The ```telephony``` type is required for ```EXECUTE_FLOW``` and ```CALLBACK```. The supported value is ```telephony```.",
             "example": "telephony"
           },
           "origin": {
