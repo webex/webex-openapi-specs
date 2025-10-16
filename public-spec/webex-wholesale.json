@@ -859,7 +859,7 @@
                         "description": "ISO2 country code of the customer size = 2. This attribute is used to determine the default Dial In number for the Webex Meeting Sites. Refer to the Address section of [help page](https://www.cisco.com/c/en/us/td/docs/voice_ip_comm/cloudCollaboration/wholesale_rtm/wbxbw_b_wholesale-rtm-solution-guide/wbxbw_m_overview-of-webex-wholesale.html#Cisco_Reference.dita_7875bb3e-10c0-4214-8173-7845db31c7a6) for more information."
                       }
                     },
-                    "description": "Billing Address of the customer."
+                    "description": "Billing Address of the customer. (There is a 50 character limit on each address line)"
                   },
                   "customerInfo": {
                     "type": "object",
@@ -944,7 +944,7 @@
                                     "example": "\"US\""
                                   }
                                 },
-                                "description": "Address of the wholesale customer."
+                                "description": "Address of the wholesale customer. (There is a 50 character limit on each address line)"
                               },
                               "timezone": {
                                 "type": "string",
@@ -1306,7 +1306,7 @@
                         "description": "ISO2 country code of the customer size = 2."
                       }
                     },
-                    "description": "Billing Address of the customer."
+                    "description": "Billing Address of the customer. (There is a 50 character limit on each address line)"
                   },
                   "provisioningParameters": {
                     "type": "object",
@@ -1366,7 +1366,7 @@
                                     "example": "\"US\""
                                   }
                                 },
-                                "description": "Address of the wholesale customer."
+                                "description": "Address of the wholesale customer. (There is a 50 character limit on each address line)"
                               },
                               "timezone": {
                                 "type": "string",
@@ -1662,7 +1662,7 @@
                         "description": "ISO2 country code of the Wholesale customer size = 2."
                       }
                     },
-                    "description": "Billing address of the Wholesale customer."
+                    "description": "Billing address of the Wholesale customer. (There is a 50 character limit on each address line)"
                   },
                   "customerInfo": {
                     "type": "object",
@@ -1740,7 +1740,7 @@
                                     "example": "\"US\""
                                   }
                                 },
-                                "description": "Address of the wholesale customer."
+                                "description": "Address of the wholesale customer.(There is a 50 character limit on each address line)"
                               },
                               "timezone": {
                                 "type": "string",
@@ -2129,6 +2129,36 @@
                   "externalCustomerId": "c1677a16-557a-4fb4-b48f-24adde57ec99",
                   "package": "webex_calling",
                   "status": "provisioned",
+                  "lastStatusChange": "2021-08-06T02:05:41.791232Z",
+                  "created": "2021-08-06T02:03:00.062Z",
+                  "packages": [
+                    "webex_calling"
+                  ]
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "Accepted (returned if an active free account is found, and requires consent based flow to onboard)",
+            "headers": {
+              "Location": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Subscriber"
+                },
+                "example": {
+                  "id": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mNWIzNjE4Ny1jOGRkLTQ3MjctOGIyZi1mOWM0NDdmMjkwNDY",
+                  "email": "johnandersen@acme.com",
+                  "customerId": "Y2lzY29zcGFyazovL3VzL0NVU1RPTUVSL2Y1YjM2MTg3LWM4ZGQtNDcyNy04YjJmLWY5YzQ0N2YyOTA0Ng",
+                  "externalCustomerId": "c1677a16-557a-4fb4-b48f-24adde57ec99",
+                  "package": "webex_calling",
+                  "status": "pending_user_migration",
                   "lastStatusChange": "2021-08-06T02:05:41.791232Z",
                   "created": "2021-08-06T02:03:00.062Z",
                   "packages": [
