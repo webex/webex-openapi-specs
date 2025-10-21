@@ -18140,6 +18140,381 @@
         ]
       }
     },
+    "/identity/organizations/{orgId}/jobs/sendActivationEmails": {
+      "post": {
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BulkActivationEmailResendJobDetails"
+                },
+                "example": {
+                  "name": "resendinviteemail",
+                  "id": "Y2lzY29zcGFyazovL3VzL0pPQl9JRC9lNzc4NWU3YS1mNmFiLTRjNTEtYWVjOS00YTg5NWQyOTdjMjc",
+                  "trackingId": "NA_5c8428d1-dbe9-42c3-bb5d-8f0cd98cea07",
+                  "sourceUserId": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS9iZmI0YjA5MC1mY2VhLTQ4OGEtOTRmMC0wZWMxODk3ZTIwZGE",
+                  "sourceCustomerId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8xNjcwNjc3NS00NTQzLTRmZDMtODY3Ny0wYmEwMWYyNTRlZjQ",
+                  "targetCustomerId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8yMDIwYTkyMC0zMTRjLTQ3NmUtYmNiMS1hNDJhNGI2YzM2MDM",
+                  "instanceId": 3,
+                  "jobExecutionStatus": [
+                    {
+                      "id": 3,
+                      "startTime": "2024-05-16T20:24:24.924Z",
+                      "lastUpdated": "2024-05-16T20:24:24.924Z",
+                      "statusMessage": "STARTED",
+                      "exitCode": "UNKNOWN",
+                      "createdTime": "2024-05-16T20:24:24.888Z",
+                      "timeElapsed": "PT0S"
+                    }
+                  ],
+                  "latestExecutionStatus": "STARTED",
+                  "latestExecutionExitCode": "UNKNOWN",
+                  "counts": {
+                    "userResendInviteSent": 0,
+                    "userResendInviteFailed": 0,
+                    "userResendInviteSkipped": 0,
+                    "totalUsers": 0
+                  },
+                  "allowAdminInviteEmails": true
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Initiate Bulk Activation Email Resend Job",
+        "operationId": "Initiate Bulk Activation Email Resend Job",
+        "description": "Initiate a bulk activation email resend job that sends an activation email to all eligible users in an organization. Only a single instance of the job can be running for an organization.\n\nRequires a full or user administrator auth token with a scope of `spark-admin:people_write`.",
+        "tags": [
+          "Send Activation Email"
+        ],
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "path",
+            "description": "Initiate job for this organization.",
+            "required": true,
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8yMDIwYTkyMC0zMTRjLTQ3NmUtYmNiMS1hNDJhNGI2YzM2MDM",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/identity/organizations/{orgId}/jobs/sendActivationEmails/{jobId}/status": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BulkActivationEmailResendJobDetails"
+                },
+                "example": {
+                  "name": "resendinviteemail",
+                  "id": "Y2lzY29zcGFyazovL3VzL0pPQl9JRC9lNzc4NWU3YS1mNmFiLTRjNTEtYWVjOS00YTg5NWQyOTdjMjc",
+                  "trackingId": "NA_5c8428d1-dbe9-42c3-bb5d-8f0cd98cea07",
+                  "sourceUserId": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS9iZmI0YjA5MC1mY2VhLTQ4OGEtOTRmMC0wZWMxODk3ZTIwZGE",
+                  "sourceCustomerId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8xNjcwNjc3NS00NTQzLTRmZDMtODY3Ny0wYmEwMWYyNTRlZjQ",
+                  "targetCustomerId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8yMDIwYTkyMC0zMTRjLTQ3NmUtYmNiMS1hNDJhNGI2YzM2MDM",
+                  "instanceId": 3,
+                  "jobExecutionStatus": [
+                    {
+                      "id": 3,
+                      "startTime": "2024-05-16T20:24:24.924Z",
+                      "endTime": "2024-05-16T20:24:30.772Z",
+                      "lastUpdated": "2024-05-16T20:24:30.782Z",
+                      "statusMessage": "COMPLETED",
+                      "exitCode": "COMPLETED",
+                      "createdTime": "2024-05-16T20:24:24.888Z",
+                      "stepExecutionStatuses": [
+                        {
+                          "id": 5,
+                          "startTime": "2024-05-16T20:24:24.972Z",
+                          "endTime": "2024-05-16T20:24:30.700Z",
+                          "lastUpdated": "2024-05-16T20:24:30.700Z",
+                          "statusMessage": "COMPLETED",
+                          "exitCode": "COMPLETED",
+                          "name": "resendinviteemailGenerateUserReport",
+                          "timeElapsed": "PT5.728S"
+                        },
+                        {
+                          "id": 6,
+                          "startTime": "2024-05-16T20:24:30.706Z",
+                          "endTime": "2024-05-16T20:24:30.765Z",
+                          "lastUpdated": "2024-05-16T20:24:30.765Z",
+                          "statusMessage": "COMPLETED",
+                          "exitCode": "COMPLETED",
+                          "name": "resendinviteemailProcessUsersFromReport",
+                          "timeElapsed": "PT0.059S"
+                        }
+                      ],
+                      "timeElapsed": "PT5.787S"
+                    }
+                  ],
+                  "latestExecutionStatus": "COMPLETED",
+                  "latestExecutionExitCode": "COMPLETED",
+                  "counts": {
+                    "userResendInviteSent": 0,
+                    "userResendInviteFailed": 0,
+                    "userResendInviteSkipped": 1,
+                    "totalUsers": 1
+                  },
+                  "allowAdminInviteEmails": true
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Get Bulk Activation Email Resend Job Status",
+        "operationId": "Get Bulk Activation Email Resend Job Status",
+        "description": "Get the details of an activation email resend job by its job ID.\n\nRequires a full or user administrator auth token with a scope of `spark-admin:people_write` or read-only administrator auth token with a scope of `spark-admin:people_read`.",
+        "tags": [
+          "Send Activation Email"
+        ],
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "path",
+            "description": "Check job status for this organization.",
+            "required": true,
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8yMDIwYTkyMC0zMTRjLTQ3NmUtYmNiMS1hNDJhNGI2YzM2MDM",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "jobId",
+            "in": "path",
+            "description": "Retrieve job status for this `jobId`.",
+            "required": true,
+            "example": "Y2lzY29zcGFyazovL3VzL0pPQl9JRC9lNzc4NWU3YS1mNmFiLTRjNTEtYWVjOS00YTg5NWQyOTdjMjc",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/identity/organizations/{orgId}/jobs/sendActivationEmails/{jobId}/errors": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseObject"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "itemNumber": 1,
+                      "error": {
+                        "key": "304",
+                        "message": [
+                          {
+                            "description": "Re-send invite for 875ae291-3430-4ccb-85de-3db73ccb31d8 by bfb4b090-fcea-488a-94f0-0ec1897e20da is suppressed as the user 875ae291-3430-4ccb-85de-3db73ccb31d8 has already received an invitation email in last 24 hours ; Error with user@example.com.",
+                            "code": "ATLAS-600199",
+                            "locationId": null
+                          }
+                        ]
+                      },
+                      "trackingId": "NA_e0047e0e-804b-4cbc-817a-80c99d5a87a2_1_2"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Get Bulk Activation Email Resend Job Errors",
+        "operationId": "Get Bulk Activation Email Resend Job Errors",
+        "description": "Get errors of an activation email resend job by its job ID.\n\nRequires a full or user administrator auth token with a scope of `spark-admin:people_write` or read-only administrator auth token with a scope of `spark-admin:people_read`.",
+        "tags": [
+          "Send Activation Email"
+        ],
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "path",
+            "description": "Check job status for this organization.",
+            "required": true,
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8yMDIwYTkyMC0zMTRjLTQ3NmUtYmNiMS1hNDJhNGI2YzM2MDM",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "jobId",
+            "in": "path",
+            "description": "Retrieve job status for this `jobId`.",
+            "required": true,
+            "example": "Y2lzY29zcGFyazovL3VzL0pPQl9JRC9lNzc4NWU3YS1mNmFiLTRjNTEtYWVjOS00YTg5NWQyOTdjMjc",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "max",
+            "in": "query",
+            "description": "Limit the maximum number of errors in the response.",
+            "example": "100",
+            "schema": {
+              "type": "number",
+              "default": 50
+            }
+          }
+        ]
+      }
+    },
     "/settings/organizations/{orgId}/settings/{settingKey}": {
       "get": {
         "responses": {
@@ -25241,37 +25616,12 @@
       },
       "ErrorResponseObject": {
         "type": "object",
-        "example": {
-          "items": [
-            {
-              "itemNumber": 0,
-              "error": {
-                "key": "error.key",
-                "message": [
-                  {
-                    "description": "Error description",
-                    "code": "1001",
-                    "locationId": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzMzZjBlZDFiLWQ1YjctNGI4Mi1iMzIzLTg4ZTFmODMzNGNmMw"
-                  }
-                ]
-              },
-              "trackingId": "ROUTER_62F66055-8D70-01BB-0137-AC10A8310137"
-            }
-          ]
-        },
         "properties": {
           "items": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ItemObject"
-            },
-            "description": "Array of error items for failed operations.",
-            "example": [
-              {
-                "itemNumber": 0,
-                "trackingId": "ROUTER_62F66055-8D70-01BB-0137-AC10A8310137"
-              }
-            ]
+            }
           }
         }
       },
@@ -25280,31 +25630,31 @@
         "properties": {
           "itemNumber": {
             "type": "number",
-            "description": "Index of error number."
+            "description": "Index of error."
           },
           "trackingId": {
             "type": "string",
-            "description": "Unique identifier to track the HTTP requests."
+            "description": "Unique identifier to track the HTTP request."
           },
           "error": {
-            "$ref": "#/components/schemas/ErrorObject"
+            "$ref": "#/components/schemas/ErrorObject",
+            "description": "Error details."
           }
         }
       },
       "ErrorObject": {
         "type": "object",
-        "description": "Error details object containing error information.",
         "properties": {
           "key": {
             "type": "string",
-            "description": "HTTP error code."
+            "description": "HTTP status code."
           },
           "message": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ErrorMessageObject"
             },
-            "description": "Message string with further error information."
+            "description": "List of error messages."
           }
         }
       },
@@ -25321,7 +25671,7 @@
           },
           "locationId": {
             "type": "string",
-            "description": "Error messages describing the location ID in which the error occurs."
+            "description": "Not used."
           }
         }
       },
@@ -34777,6 +35127,207 @@
             "type": "string",
             "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS82ZWVmOGE4ZS1lNzg3LTQzMWUtOWM3ZC1hOGVjZmU1MjM5Nzc",
             "description": "The `personId` of the person who made the change."
+          }
+        }
+      },
+      "BulkActivationEmailResendJobDetails": {
+        "type": "object",
+        "required": [
+          "name",
+          "id",
+          "trackingId",
+          "sourceUserId",
+          "sourceCustomerId",
+          "targetCustomerId",
+          "instanceId",
+          "latestExecutionStatus",
+          "counts"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Job name."
+          },
+          "id": {
+            "type": "string",
+            "description": "Unique identifier of the job."
+          },
+          "trackingId": {
+            "type": "string",
+            "description": "Unique identifier to track the flow of HTTP requests."
+          },
+          "sourceUserId": {
+            "type": "string",
+            "description": "Unique identifier to identify which user has run the job."
+          },
+          "sourceCustomerId": {
+            "type": "string",
+            "description": "Unique identifier to identify the customer who has run the job."
+          },
+          "targetCustomerId": {
+            "type": "string",
+            "description": "Unique identifier to identify the customer for which the job was run."
+          },
+          "instanceId": {
+            "type": "number",
+            "description": "Unique identifier to identify the instance of the job."
+          },
+          "jobExecutionStatus": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StepExecutionStatus"
+            },
+            "description": "Contains the execution statuses of all the steps involved in the execution of the job."
+          },
+          "latestExecutionStatus": {
+            "$ref": "#/components/schemas/ExecutionStatus",
+            "description": "Indicates the most recent status of the job at the time of invocation."
+          },
+          "latestExecutionExitCode": {
+            "type": "string",
+            "enum": [
+              "UNKNOWN",
+              "COMPLETED",
+              "FAILED",
+              "STOPPED",
+              "COMPLETED_WITH_ERRORS"
+            ],
+            "description": "Most recent exit code of the job at the time of invocation.\n * `UNKNOWN` - Job is in progress.\n * `COMPLETED` - Job has completed successfully.\n * `FAILED` - Job has failed.\n * `STOPPED` - Job has been stopped.\n * `COMPLETED_WITH_ERRORS` - Job has completed with errors.\n"
+          },
+          "counts": {
+            "$ref": "#/components/schemas/BulkActivationEmailResendJobCounts",
+            "description": "Summary of statuses."
+          },
+          "allowAdminInviteEmails": {
+            "type": "boolean",
+            "description": "Indicates if the org allows admin invite emails to be sent."
+          }
+        }
+      },
+      "BulkActivationEmailResendJobCounts": {
+        "type": "object",
+        "required": [
+          "userResendInviteSent",
+          "userResendInviteFailed",
+          "userResendInviteSkipped",
+          "totalUsers"
+        ],
+        "properties": {
+          "userResendInviteSent": {
+            "type": "number",
+            "description": "Count of users sent an invitation."
+          },
+          "userResendInviteFailed": {
+            "type": "number",
+            "description": "Count of users who failed to receive an invitation."
+          },
+          "userResendInviteSkipped": {
+            "type": "number",
+            "description": "Count of users who were skipped."
+          },
+          "totalUsers": {
+            "type": "number",
+            "description": "Total count of users processed."
+          }
+        }
+      },
+      "ExecutionStatus": {
+        "type": "string",
+        "enum": [
+          "COMPLETED",
+          "STARTING",
+          "STARTED",
+          "STOPPING",
+          "FAILED",
+          "ABANDONED",
+          "UNKNOWN"
+        ],
+        "description": " * `COMPLETED` - Step or job has completed.\n * `STARTING` - Step or job is starting.\n * `STARTED` - Step or job is running.\n * `STOPPING` - Step or job is stopping.\n * `FAILED` - Step or job has failed with an error.\n * `ABANDONED` - Step or job has been abandone (manually stopped).\n * `UNKNOWN` - Step or job status is unknown.\n"
+      },
+      "JobExecutionStatus": {
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "Unique identifier for each instance of the job."
+          },
+          "startTime": {
+            "type": "string",
+            "description": "Job execution start time in UTC format."
+          },
+          "endTime": {
+            "type": "string",
+            "description": "Job execution end time in UTC format."
+          },
+          "lastUpdated": {
+            "type": "string",
+            "description": "Last time the job's execution status was updated in UTC format."
+          },
+          "statusMessage": {
+            "$ref": "#/components/schemas/ExecutionStatus",
+            "description": "Displays status for overall steps that are part of the job."
+          },
+          "exitCode ExecutionStatus, optional)": {
+            "type": "string",
+            "description": "Final execution status for the job."
+          },
+          "createdTime": {
+            "type": "string",
+            "description": "Job creation time in UTC format."
+          },
+          "timeElapsed": {
+            "type": "string",
+            "description": "Time lapsed since the job execution started."
+          },
+          "stepExecutionStatuses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StepExecutionStatus"
+            },
+            "description": "Status of each step within a job."
+          }
+        }
+      },
+      "StepExecutionStatus": {
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "Unique identifier of the step"
+          },
+          "startTime": {
+            "type": "string",
+            "description": "Step execution start time in UTC format."
+          },
+          "endTime": {
+            "type": "string",
+            "description": "Step execution end time in UTC format."
+          },
+          "lastUpdated": {
+            "type": "string",
+            "description": "Last time the step's execution status was updated in UTC format."
+          },
+          "statusMessage": {
+            "$ref": "#/components/schemas/ExecutionStatus",
+            "description": "Displays the most recent execution status of the step."
+          },
+          "exitCode": {
+            "$ref": "#/components/schemas/ExecutionStatus",
+            "description": "Final execution status of the step."
+          },
+          "name": {
+            "type": "string",
+            "description": "Step name."
+          },
+          "timeElapsed": {
+            "type": "string",
+            "description": "Time elapsed since the step execution started."
           }
         }
       },
