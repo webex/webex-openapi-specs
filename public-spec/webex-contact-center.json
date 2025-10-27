@@ -69477,7 +69477,7 @@
           },
           "noAnswerRingLimit": {
             "type": "integer",
-            "description": "(Optional) Number of seconds before a dialed call from the dialer is considered not answered, The range is from 16 to 80, default is 32.",
+            "description": "(Optional) Number of seconds before a dialed call from the dialer is considered not answered, The range is from 16 to 80, default is 32. This field is not applicable for Direct preview campaigns.",
             "example": 32
           },
           "maxDialingRate": {
@@ -69650,7 +69650,7 @@
           },
           "noAnswerRingLimit": {
             "type": "integer",
-            "description": "(Optional) Number of seconds before a dialed call from the dialer is considered not answered. The range is from 16 to 80, default is 32.",
+            "description": "(Optional) Number of seconds before a dialed call from the dialer is considered not answered. The range is from 16 to 80, default is 32. This field is not applicable for Direct preview campaigns.",
             "example": 32
           },
           "maxDialingRate": {
