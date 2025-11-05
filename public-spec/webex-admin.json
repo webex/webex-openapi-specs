@@ -11355,6 +11355,158 @@
         ]
       }
     },
+    "/resourceGroup/memberships/v2": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceGroupMembershipCollectionResponse"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "id": "Y2lzY29zcGFyazovL3VzL1JFU09VUkNFX0dST1VQX01FTUJFUlNISVAvcGVyc29uSWQ6bGljZW5zZUlk",
+                      "resourceGroupId": "Y2lzY29zcGFyazovL3VzL1JFU09VUkNFX0dST1VQL2RlZmF1bHQ",
+                      "licenseId": "Y2lzY29zcGFyazovL3VzL0xJQ0VOU0UvMWNjYmJjMTctZDYxNi00ZDc0LTg2NGItYjFmM2IwNzAxZmJhOk1TXzAzMDRjMDkzLTFjM2MtNDRlMC1iYjBhLWU1ZDE2NDM2NmQ1OQ",
+                      "personId": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mNWIzNjE4Ny1jOGRkLTQ3MjctOGIyZi1mOWM0NDdmMjkwNDY",
+                      "personOrgId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE",
+                      "status": "activated"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "List Resource Group Memberships V2",
+        "operationId": "listResourceGroupMembershipsV2",
+        "description": "Lists all resource group memberships for an organization having filtering option based on entity type (User / Workspace).\n\nUse query parameters to filter the response.",
+        "tags": [
+          "Resource Group Memberships"
+        ],
+        "parameters": [
+          {
+            "name": "licenseId",
+            "in": "query",
+            "description": "List resource group memberships for a license, by ID.",
+            "example": "Y2lzY29zcGFyazovL3VzL0xJQ0VOU0UvMWNjYmJjMTctZDYxNi00ZDc0LTg2NGItYjFmM2IwNzAxZmJhOk1TXzAzMDRjMDkzLTFjM2MtNDRlMC1iYjBhLWU1ZDE2NDM2NmQ1OQ",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "List resource group memberships by ID.",
+            "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS8wZWZiNWVkMC0wY2FmLTRiNTYtYmMxMS03MzhlOWRhMDU5MjM",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orgId",
+            "in": "query",
+            "description": "List resource group memberships for an organization, by ID.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8xZWI2NWZkZi05NjQzLTQxN2YtOTk3NC1hZDcyY2FlMGUxMGY",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Limit resource group memberships to a specific status.",
+            "example": "activated",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "pending",
+                "activated",
+                "error"
+              ]
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "List resource group memberships for an organization, by type. If left blank it will include both User and Workspace type.",
+            "example": "User",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "User",
+                "Workspace"
+              ]
+            }
+          },
+          {
+            "name": "max",
+            "in": "query",
+            "description": "Limit the maximum number of resource group memberships in the response.",
+            "example": 100,
+            "schema": {
+              "type": "number",
+              "default": 100
+            }
+          }
+        ]
+      }
+    },
     "/resourceGroup/memberships/{resourceGroupMembershipId}": {
       "get": {
         "responses": {
