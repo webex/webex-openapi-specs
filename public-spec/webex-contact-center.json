@@ -38079,7 +38079,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/StateResourceRequest"
+                "$ref": "#/components/schemas/AgentChannelStateChangeResourceRequest"
               }
             }
           }
@@ -66626,7 +66626,7 @@
           }
         }
       },
-      "AgentChannelStateChangeRequest": {
+      "AgentChannelStateChangeResourceRequest": {
         "properties": {
           "channelType": {
             "type": "array",
