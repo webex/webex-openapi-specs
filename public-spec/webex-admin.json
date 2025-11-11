@@ -30516,6 +30516,159 @@
           }
         }
       },
+      "ArchiveUser": {
+        "type": "object",
+        "required": [
+          "schemas",
+          "id",
+          "userName",
+          "emails",
+          "meta"
+        ],
+        "properties": {
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "urn:scim:schemas:core:1.0,urn:scim:schemas:extension:cisco:commonidentity:1.0"
+            },
+            "description": "An array of schema URNs that define the structure of the SCIM resource."
+          },
+          "userName": {
+            "type": "string",
+            "example": "test_user2@example.com",
+            "description": "The unique identifier for the user. This must be set to the user's primary email address. The `userName` value must be unique across Webex and is used for authentication."
+          },
+          "emails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EmailObject"
+            },
+            "description": "A list of the user's email addresses."
+          },
+          "name": {
+            "$ref": "#/components/schemas/NameObject"
+          },
+          "organization": {
+            "type": "string",
+            "example": "410139c6-3bff-4404-9782-09a456ba2cae",
+            "description": "The unique identifier for the organization."
+          },
+          "id": {
+            "type": "string",
+            "example": "b96936c9-5b86-4a01-8969-e945c91b62f6",
+            "description": "The unique identifier for the user."
+          },
+          "displayName": {
+            "type": "string",
+            "example": "Mike Tang",
+            "description": "The display name of the user in Webex."
+          },
+          "meta": {
+            "$ref": "#/components/schemas/MetaObject"
+          }
+        }
+      },
+      "NameObject": {
+        "type": "object",
+        "description": "The components of the user's real name.",
+        "properties": {
+          "givenName": {
+            "type": "string",
+            "example": "Sarah",
+            "description": "The given name of the user, or first name in most Western languages (e.g., \"Sarah\" given the full name \"Ms. Sarah J Henderson, III\")."
+          },
+          "familyName": {
+            "type": "string",
+            "example": "Henderson",
+            "description": "The family name of the user, or last name in most Western languages (e.g., \"Henderson\" given the full name \"Ms. Sarah J Henderson, III\")."
+          },
+          "middleName": {
+            "type": "string",
+            "example": "Jane",
+            "description": "The middle name(s) of the user (e.g., \"Jane\" given the full name \"Ms. Sarah J Henderson, III\")."
+          },
+          "honorificPrefix": {
+            "type": "string",
+            "example": "Mr.",
+            "description": "The honorific prefix(es) of the user, or title in most Western languages (e.g., \"Ms.\" given the full name \"Ms. Sarah J Henderson, III\")."
+          },
+          "honorificSuffix": {
+            "type": "string",
+            "example": "III",
+            "description": "The honorific suffix(es) of the user, or suffix in most Western languages (e.g., \"III\" given the full name \"Ms. Sarah J Henderson, III\")."
+          }
+        }
+      },
+      "EmailObject": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "example": "user1@example.home.com",
+            "description": "The email address."
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "work",
+              "home",
+              "room",
+              "other"
+            ],
+            "description": "The type of the email."
+          },
+          "display": {
+            "type": "string",
+            "example": "home email description",
+            "description": "A human-readable description, primarily used for display purposes."
+          },
+          "primary": {
+            "type": "boolean",
+            "description": "Email status boolean value. If the type is work and primary is true, the value must equal `userName`."
+          }
+        }
+      },
+      "MetaObject": {
+        "type": "object",
+        "description": "Response metadata.",
+        "required": [
+          "created",
+          "lastModified",
+          "version",
+          "location"
+        ],
+        "properties": {
+          "resourceType": {
+            "type": "string",
+            "example": "User"
+          },
+          "organizationID": {
+            "type": "string",
+            "example": "The organization ID of the user"
+          },
+          "created": {
+            "type": "string",
+            "example": "2023-01-11T17:38:31.605Z",
+            "description": "The date and time the group was created."
+          },
+          "lastModified": {
+            "type": "string",
+            "example": "2023-01-11T17:38:31.605Z",
+            "description": "The date and time the group was last changed."
+          },
+          "version": {
+            "type": "string",
+            "example": "\"W\\/\\\"e180ee84f0671b1\\\"\"",
+            "description": "The version of the user."
+          },
+          "location": {
+            "type": "string",
+            "example": "https://webexapi.com/identity/scim/0ae87ade-8c8a-4952-af08-318798958d0c/v2/Users/3426a8e3-d414-4bf0-a493-4f6787632a13",
+            "description": "The resource itself."
+          }
+        }
+      },
       "PostDomainVerificationToken": {
         "type": "object",
         "required": [
@@ -33205,46 +33358,6 @@
           }
         }
       },
-      "MetaObject": {
-        "type": "object",
-        "description": "Response metadata.",
-        "required": [
-          "created",
-          "lastModified",
-          "version",
-          "location"
-        ],
-        "properties": {
-          "resourceType": {
-            "type": "string",
-            "example": "User"
-          },
-          "organizationID": {
-            "type": "string",
-            "example": "The organization ID of the user"
-          },
-          "created": {
-            "type": "string",
-            "example": "2023-01-11T17:38:31.605Z",
-            "description": "The date and time the group was created."
-          },
-          "lastModified": {
-            "type": "string",
-            "example": "2023-01-11T17:38:31.605Z",
-            "description": "The date and time the group was last changed."
-          },
-          "version": {
-            "type": "string",
-            "example": "\"W\\/\\\"e180ee84f0671b1\\\"\"",
-            "description": "The version of the user."
-          },
-          "location": {
-            "type": "string",
-            "example": "https://webexapi.com/identity/scim/0ae87ade-8c8a-4952-af08-318798958d0c/v2/Users/3426a8e3-d414-4bf0-a493-4f6787632a13",
-            "description": "The resource itself."
-          }
-        }
-      },
       "SearchGroupResponse": {
         "type": "object",
         "required": [
@@ -34818,66 +34931,6 @@
           "external_calling",
           "calling_service"
         ]
-      },
-      "NameObject": {
-        "type": "object",
-        "description": "The components of the user's real name.",
-        "properties": {
-          "givenName": {
-            "type": "string",
-            "example": "Sarah",
-            "description": "The given name of the user, or first name in most Western languages (e.g., \"Sarah\" given the full name \"Ms. Sarah J Henderson, III\")."
-          },
-          "familyName": {
-            "type": "string",
-            "example": "Henderson",
-            "description": "The family name of the user, or last name in most Western languages (e.g., \"Henderson\" given the full name \"Ms. Sarah J Henderson, III\")."
-          },
-          "middleName": {
-            "type": "string",
-            "example": "Jane",
-            "description": "The middle name(s) of the user (e.g., \"Jane\" given the full name \"Ms. Sarah J Henderson, III\")."
-          },
-          "honorificPrefix": {
-            "type": "string",
-            "example": "Mr.",
-            "description": "The honorific prefix(es) of the user, or title in most Western languages (e.g., \"Ms.\" given the full name \"Ms. Sarah J Henderson, III\")."
-          },
-          "honorificSuffix": {
-            "type": "string",
-            "example": "III",
-            "description": "The honorific suffix(es) of the user, or suffix in most Western languages (e.g., \"III\" given the full name \"Ms. Sarah J Henderson, III\")."
-          }
-        }
-      },
-      "EmailObject": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "type": "string",
-            "example": "user1@example.home.com",
-            "description": "The email address."
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "work",
-              "home",
-              "room",
-              "other"
-            ],
-            "description": "The type of the email."
-          },
-          "display": {
-            "type": "string",
-            "example": "home email description",
-            "description": "A human-readable description, primarily used for display purposes."
-          },
-          "primary": {
-            "type": "boolean",
-            "description": "Email status boolean value. If the type is work and primary is true, the value must equal `userName`."
-          }
-        }
       },
       "PhoneNumberObject": {
         "type": "object",
