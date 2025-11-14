@@ -30981,7 +30981,8 @@
         "type": "object",
         "required": [
           "schema",
-          "totalResults"
+          "totalResults",
+          "resources"
         ],
         "properties": {
           "schema": {
@@ -31006,12 +31007,43 @@
           }
         }
       },
+      "GetPartnerRolesResponse": {
+        "type": "object",
+        "required": [
+          "schema",
+          "totalResults",
+          "resources"
+        ],
+        "properties": {
+          "schema": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+            },
+            "description": "Input JSON schema."
+          },
+          "totalResults": {
+            "type": "number",
+            "example": 1,
+            "description": "Total Partner Roles assigned to that org."
+          },
+          "resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Resource"
+            },
+            "description": "List of Partner Roles assigned to Org."
+          }
+        }
+      },
       "Resource": {
         "type": "object",
         "required": [
           "attribute",
           "value",
-          "enabled"
+          "description",
+          "display"
         ],
         "properties": {
           "attribute": {
@@ -31029,10 +31061,10 @@
             "example": "id_full_admin",
             "description": "A human-readable name, primarily used for display purposes."
           },
-          "enabled": {
-            "type": "boolean",
-            "example": true,
-            "description": "A boolean type that indicates if the role is enabled and usable in the SCIM service provider's system."
+          "description": {
+            "type": "string",
+            "example": "Read-only administrator",
+            "description": "A human-readable description of a role."
           }
         }
       },
