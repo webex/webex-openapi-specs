@@ -7,6 +7,10 @@
   },
   "tags": [
     {
+      "name": "Contact List Management",
+      "description": "Operations for managing contact lists and contacts"
+    },
+    {
       "name": "DNC Management",
       "description": "Operations for managing Do Not Contact (DNC) lists and phone number entries"
     },
@@ -135,6 +139,418 @@
           },
           "500": {
             "description": "An Unexpected Error Occurred"
+          }
+        }
+      }
+    },
+    "/v3/campaign-management/campaigns/{campaignId}/contact-list": {
+      "post": {
+        "tags": [
+          "Contact List Management"
+        ],
+        "summary": "Create contact list",
+        "operationId": "createContactList",
+        "description": "Creates and activates a contact list for a campaign. The system can activate a contact list even if there are no contact records within it.",
+        "parameters": [
+          {
+            "name": "campaignId",
+            "in": "path",
+            "required": true,
+            "description": "Campaign ID to which the contact list belongs.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "CCV_123456789"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateContactListRequest"
+              },
+              "examples": {
+                "basic": {
+                  "value": {
+                    "supportedChannels": [
+                      "Voice",
+                      "SMS"
+                    ],
+                    "activationTimeLagMinutes": 180
+                  }
+                },
+                "withTimestamp": {
+                  "value": {
+                    "supportedChannels": [
+                      "Email"
+                    ],
+                    "activationDateTime": "2025-09-24T18:47:00Z"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Contact list created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateContactListResponse"
+                },
+                "examples": {
+                  "success": {
+                    "value": {
+                      "outcome": "Success",
+                      "statusCode": 0,
+                      "contactListId": "501"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/campaign-management/campaigns/{campaignId}/contact-list/{contactListId}/contacts": {
+      "post": {
+        "tags": [
+          "Contact List Management"
+        ],
+        "summary": "Create contacts within a contact list",
+        "operationId": "createContactsInContactList",
+        "description": "Creates contacts within a contact list (only if that contact list was created using API method). If the contact record is invalid, it will be added as INVALID and reflected in the 'Processed' and 'Invalid' counts. This is an Asynchronous operation. The values within the 'contactAttributes' param should conform to datatypes of the contact attributes as specified in the 'Field mapping' associated with the campaign.",
+        "parameters": [
+          {
+            "name": "campaignId",
+            "in": "path",
+            "required": true,
+            "description": "Campaign ID to which the contact list belongs.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "CCV_123456789"
+          },
+          {
+            "name": "contactListId",
+            "in": "path",
+            "required": true,
+            "description": "Contact List ID (as a number string).",
+            "schema": {
+              "type": "string",
+              "pattern": "^\\d+$"
+            },
+            "example": "501"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateContactRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Request accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateContactResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/campaign-management/campaigns/{campaignId}/contact-list/{contactListId}/contacts/{contactId}": {
+      "patch": {
+        "tags": [
+          "Contact List Management"
+        ],
+        "summary": "Update a contact's status within a contact list",
+        "operationId": "updateContactStatusInContactList",
+        "description": "Updates a contact's status within a contact list. After update, system overwrites 'Latest Telephony Outcome' to blank and 'Latest Business Outcome' to 'Closed via API call' if status is CLOSED. This is an Asynchronous operation.",
+        "parameters": [
+          {
+            "name": "campaignId",
+            "in": "path",
+            "required": true,
+            "description": "Campaign ID.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "CCV_123456789"
+          },
+          {
+            "name": "contactListId",
+            "in": "path",
+            "required": true,
+            "description": "Contact List ID (as a number string).",
+            "schema": {
+              "type": "string",
+              "pattern": "^\\d+$"
+            },
+            "example": "501"
+          },
+          {
+            "name": "contactId",
+            "in": "path",
+            "required": true,
+            "description": "Contact Unique ID (Customer Unique ID or Account Unique ID or Contact_Phone)",
+            "schema": {
+              "type": "string"
+            },
+            "example": "CUST12345"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateContactRequest"
+              },
+              "examples": {
+                "updateStatus": {
+                  "value": {
+                    "contactStatus": "CLOSED"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Request accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateContactResponse"
+                },
+                "examples": {
+                  "success": {
+                    "value": {
+                      "outcome": "Accepted",
+                      "statusCode": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/campaign-management/campaigns/{campaignId}/contact-list/{contactListId}/status": {
+      "patch": {
+        "tags": [
+          "Contact List Management"
+        ],
+        "summary": "Update contact list status",
+        "operationId": "updateContactListStatus",
+        "description": "Updates the status of a contact list (e.g., EXPIRED). Note: This value is not case-sensitive.",
+        "parameters": [
+          {
+            "name": "campaignId",
+            "in": "path",
+            "required": true,
+            "description": "Campaign ID.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "CCV_123456789"
+          },
+          {
+            "name": "contactListId",
+            "in": "path",
+            "required": true,
+            "description": "Contact List ID (as a number string).",
+            "schema": {
+              "type": "string",
+              "pattern": "^\\d+$"
+            },
+            "example": "501"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateContactListStatusRequest"
+              },
+              "examples": {
+                "expire": {
+                  "value": {
+                    "contactListStatus": "EXPIRED"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Contact list status updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateContactListStatusResponse"
+                },
+                "examples": {
+                  "success": {
+                    "value": {
+                      "outcome": "Success",
+                      "statusCode": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/campaign-management/campaigns/{campaignId}/contact-lists": {
+      "get": {
+        "tags": [
+          "Contact List Management"
+        ],
+        "summary": "Get Contact Lists within a Campaign",
+        "operationId": "getContactListsInCampaign",
+        "description": "Retrieves all contact lists within a campaign, with optional filters for status and source.",
+        "parameters": [
+          {
+            "name": "campaignId",
+            "in": "path",
+            "required": true,
+            "description": "Campaign ID.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "CCV_123456789"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "description": "Contact List Status filter (Active, Expired, UploadFailed, etc.)",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Active",
+                "Expired",
+                "UploadFailed"
+              ]
+            },
+            "example": "Active"
+          },
+          {
+            "name": "source",
+            "in": "query",
+            "required": false,
+            "description": "Contact List Source filter (API, SFTP, ManualFile, GlobalUpload, GlobalSFTP)",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "API",
+                "SFTP",
+                "ManualFile",
+                "GlobalUpload",
+                "GlobalSFTP"
+              ]
+            },
+            "example": "API"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Contact lists retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetContactListsResponse"
+                },
+                "examples": {
+                  "success": {
+                    "value": {
+                      "outcome": "Success",
+                      "statusCode": 0,
+                      "contactLists": [
+                        {
+                          "contactListId": "501",
+                          "contactListStatus": "Active",
+                          "contactListRecordCount": 100,
+                          "contactListSource": "API",
+                          "dateOfCreation": "2025-08-01T10:00:00Z",
+                          "dateOfActivation": "2025-08-01T12:00:00Z",
+                          "dateOfExpiry": "2025-09-01T00:00:00Z"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
           }
         }
       }
@@ -53512,6 +53928,419 @@
             "description": "The unique tracking ID for this request.",
             "example": "fb53f6d1-5535-4ac8-b081-53834e17d6f5"
           }
+        }
+      },
+      "CreateContactListRequest": {
+        "type": "object",
+        "required": [
+          "supportedChannels"
+        ],
+        "properties": {
+          "supportedChannels": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "Voice",
+                "SMS",
+                "Email"
+              ]
+            },
+            "description": "Supported channels for the contact list"
+          },
+          "activationTimeLagMinutes": {
+            "type": "integer",
+            "description": "Contact list activation time lag in minutes (0 = immediate activation, 180 = 3 hours delay). Required if activationDateTime is not provided.",
+            "example": "180"
+          },
+          "activationDateTime": {
+            "type": "string",
+            "description": "Contact list activation DateTimeStamp (format: YYYY-MM-DDTHH:MM). Required if activationTimeLagMinutes is not provided.",
+            "example": "2025-09-24T18:47"
+          }
+        },
+        "example": {
+          "supportedChannels": [
+            "Voice"
+          ],
+          "activationTimeLagMinutes": 180,
+          "activationDateTime": "2025-09-24T18:47:00Z"
+        }
+      },
+      "CreateContactListResponse": {
+        "type": "object",
+        "properties": {
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "Success",
+              "Failure"
+            ],
+            "description": "Outcome of the operation",
+            "example": "Success"
+          },
+          "statusCode": {
+            "type": "integer",
+            "description": "0 for success, non-zero for failure or validation failure",
+            "example": 0
+          },
+          "contactListId": {
+            "type": "string",
+            "description": "Contact List ID within the campaign (number only)",
+            "example": "501"
+          }
+        },
+        "example": {
+          "success": {
+            "summary": "Contact list created successfully",
+            "value": {
+              "outcome": "Success",
+              "statusCode": 0,
+              "contactListId": "501"
+            }
+          },
+          "failure": {
+            "summary": "Failed to create contact list",
+            "value": {
+              "outcome": "Failure",
+              "statusCode": 400,
+              "error": {
+                "code": "InvalidRequest",
+                "message": "Invalid request parameters"
+              }
+            }
+          }
+        }
+      },
+      "CreateContactRequest": {
+        "type": "object",
+        "required": [
+          "contactAttributes"
+        ],
+        "properties": {
+          "contactAttributes": {
+            "type": "array",
+            "description": "Array of field mapping field name & value pairs.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "fieldName": {
+                  "type": "string",
+                  "description": "Field name"
+                },
+                "value": {
+                  "type": "string",
+                  "description": "Field value"
+                }
+              },
+              "required": [
+                "fieldName",
+                "value"
+              ],
+              "example": {
+                "fieldName": "FirstName",
+                "value": "John"
+              }
+            },
+            "example": [
+              {
+                "fieldName": "FirstName",
+                "value": "John"
+              },
+              {
+                "fieldName": "LastName",
+                "value": "Doe"
+              },
+              {
+                "fieldName": "AccountStatus",
+                "value": "Active"
+              }
+            ]
+          }
+        }
+      },
+      "CreateContactResponse": {
+        "type": "object",
+        "properties": {
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "Accepted",
+              "Failure"
+            ],
+            "description": "Outcome of the operation",
+            "example": "Accepted"
+          },
+          "statusCode": {
+            "type": "integer",
+            "description": "0 for Accepted, non-zero for failure or validation failure",
+            "example": 0
+          }
+        },
+        "example": {
+          "success": {
+            "summary": "Request accepted",
+            "value": {
+              "outcome": "Accepted",
+              "statusCode": 0
+            }
+          },
+          "failure": {
+            "summary": "Failed to process request",
+            "value": {
+              "outcome": "Failure",
+              "statusCode": 400,
+              "error": {
+                "code": "InvalidRequest",
+                "message": "Invalid request parameters"
+              }
+            }
+          }
+        }
+      },
+      "UpdateContactRequest": {
+        "type": "object",
+        "properties": {
+          "contactStatus": {
+            "type": "string",
+            "enum": [
+              "CLOSED"
+            ],
+            "description": "Contact status (CLOSED)",
+            "example": "CLOSED"
+          }
+        }
+      },
+      "UpdateContactResponse": {
+        "type": "object",
+        "properties": {
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "Success",
+              "Failure"
+            ],
+            "description": "Outcome of the operation",
+            "example": "Success"
+          },
+          "statusCode": {
+            "type": "integer",
+            "description": "0 for success, non-zero for failure or validation failure",
+            "example": 0
+          }
+        },
+        "example": {
+          "success": {
+            "summary": "Contact updated successfully",
+            "value": {
+              "outcome": "Success",
+              "statusCode": 0,
+              "updatedCount": 1
+            }
+          },
+          "failure": {
+            "summary": "Failed to update contact",
+            "value": {
+              "outcome": "Failure",
+              "statusCode": 400,
+              "error": {
+                "code": "InvalidContact",
+                "message": "Contact data is invalid"
+              }
+            }
+          }
+        }
+      },
+      "UpdateContactListStatusRequest": {
+        "type": "object",
+        "properties": {
+          "contactListStatus": {
+            "type": "string",
+            "description": "Contact List Status (e.g., EXPIRED). Note: This value is not case-sensitive.",
+            "example": "EXPIRED"
+          }
+        }
+      },
+      "UpdateContactListStatusResponse": {
+        "type": "object",
+        "properties": {
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "Success",
+              "Failure"
+            ],
+            "description": "Outcome of the operation"
+          },
+          "statusCode": {
+            "type": "integer",
+            "description": "0 for success, non-zero for failure or validation failure"
+          },
+          "contactLists": {
+            "type": "array",
+            "description": "List of contact lists",
+            "items": {
+              "type": "object",
+              "properties": {
+                "contactListId": {
+                  "type": "string",
+                  "description": "Contact List ID",
+                  "example": "501"
+                },
+                "contactListStatus": {
+                  "type": "string",
+                  "description": "Contact List Status",
+                  "example": "Active"
+                },
+                "contactListRecordCount": {
+                  "type": "integer",
+                  "description": "Number of records in the contact list",
+                  "example": 100
+                },
+                "contactListSource": {
+                  "type": "string",
+                  "description": "Source of the contact list",
+                  "example": "API"
+                },
+                "dateOfCreation": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Date of creation",
+                  "example": "2025-08-01T10:00:00Z"
+                },
+                "dateOfActivation": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Date of activation",
+                  "example": "2025-08-01T12:00:00Z"
+                },
+                "dateOfExpiry": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Date of expiry",
+                  "example": "2025-09-01T00:00:00Z"
+                }
+              }
+            }
+          }
+        },
+        "example": {
+          "success": {
+            "summary": "Contact list status updated successfully",
+            "value": {
+              "outcome": "Success",
+              "statusCode": 0
+            }
+          },
+          "failure": {
+            "summary": "Failed to update contact list status",
+            "value": {
+              "outcome": "Failure",
+              "statusCode": 400,
+              "error": {
+                "code": "InvalidStatus",
+                "message": "Contact list status is invalid"
+              }
+            }
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "description": "Error response",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message"
+          },
+          "details": {
+            "type": "string",
+            "description": "Additional error details"
+          }
+        },
+        "example": {
+          "error": "Invalid request",
+          "details": "The contact list ID is missing"
+        }
+      },
+      "GetContactListsResponse": {
+        "type": "object",
+        "description": "Response containing a list of contact lists",
+        "properties": {
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "Success",
+              "Failure"
+            ],
+            "description": "Outcome of the operation"
+          },
+          "statusCode": {
+            "type": "integer",
+            "description": "0 for success, non-zero for failure or validation failure"
+          },
+          "contactLists": {
+            "type": "array",
+            "description": "List of contact lists",
+            "items": {
+              "type": "object",
+              "properties": {
+                "contactListId": {
+                  "type": "string",
+                  "description": "Contact List ID",
+                  "example": "501"
+                },
+                "contactListStatus": {
+                  "type": "string",
+                  "description": "Contact List Status",
+                  "example": "Active"
+                },
+                "contactListRecordProcessed": {
+                  "type": "integer",
+                  "description": "Number of records in the contact list",
+                  "example": 100
+                },
+                "contactListSource": {
+                  "type": "string",
+                  "description": "Source of the contact list",
+                  "example": "API"
+                },
+                "dateOfCreation": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Date of creation",
+                  "example": "2025-08-01T10:00:00Z"
+                },
+                "dateOfActivation": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Date of activation",
+                  "example": "2025-08-01T12:00:00Z"
+                },
+                "dateOfExpiry": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Date of expiry",
+                  "example": "2025-09-01T00:00:00Z"
+                }
+              }
+            }
+          }
+        },
+        "example": {
+          "outcome": "Success",
+          "statusCode": 0,
+          "contactLists": [
+            {
+              "contactListId": "501",
+              "contactListStatus": "Active",
+              "contactListRecordProcessed": 100,
+              "contactListSource": "API",
+              "dateOfCreation": "2025-08-01T10:00:00",
+              "dateOfActivation": "2025-08-01T12:00:00",
+              "dateOfExpiry": "2025-09-01T00:00:00"
+            }
+          ]
         }
       },
       "DncEntryRequest": {
