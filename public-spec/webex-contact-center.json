@@ -16894,7 +16894,7 @@
           {
             "name": "filter",
             "in": "query",
-            "description": "Specify a filter based on which the results will be fetched. Supported filterable fields:  id. \n\nThe examples below show some search queries\n- id==\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\"\n- id!=\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\"\n- id=in=(\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\",\"a421e0b2-732e-46f3-a057-39160a53afb9\")\n- id=out=(\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\",\"a421e0b2-732e-46f3-a057-39160a53afb9\")\nThis parameter uses the RSQL query syntax, a URI-friendly format for expressing criteria for filtering REST entities. For more information about RSQL in general, see  <a href=\"https://www.here.com/docs/bundle/data-client-library-developer-guide-java-scala/page/client/rsql.html\">this reference</a>. For a list of supported operators, see <a href=\"https://github.com/perplexhub/rsql-jpa-specification#rsql-syntax-reference\">this syntax guide</a>.\n\nNote: values to be used in the filter syntax should not contain space, and if so kindly bound it with quotes to apply filter.\n",
+            "description": "Specify a filter based on which the results will be fetched. Supported filterable fields:  id. \n\nThe examples below show some search queries\n- id==\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\"\n- id!=\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\"\n- id=in=(\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\",\"a421e0b2-732e-46f3-a057-39160a53afb9\")\n- id=out=(\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\",\"a421e0b2-732e-46f3-a057-39160a53afb9\")\nThis parameter uses the RSQL query syntax, a URI-friendly format for expressing criteria for filtering REST entities. For more information about RSQL in general, see  <a href=\"https://www.here.com/docs/bundle/data-client-library-developer-guide-java-scala/page/client/rsql.html\">this reference</a>. For a list of supported operators, see <a href=\"https://github.com/perplexhub/rsql-jpa-specification#rsql-syntax-reference\">this syntax guide</a>.\n\nNote: values to be used in the filter syntax should not contain spaces. If they do, please enclose them in quotes to apply the filter.\n",
             "required": false,
             "schema": {
               "type": "string"
@@ -16904,7 +16904,7 @@
           {
             "name": "attributes",
             "in": "query",
-            "description": "Specify the attributes to be returned.Default all attributes are returned along with specified columns. All Attributes are supported except (links)",
+            "description": "Specify the attributes to be returned. By default, all attributes are returned along with the specified columns. All attributes are supported. except (links)",
             "required": false,
             "schema": {
               "type": "string",
@@ -16918,9 +16918,10 @@
             "description": "Defines the number of displayed page. The page number starts from 0.",
             "schema": {
               "type": "integer",
-              "example": 0,
-              "default": 0
-            }
+              "default": 0,
+              "example": 0
+            },
+            "example": 0
           },
           {
             "name": "pageSize",
@@ -16928,9 +16929,10 @@
             "description": "Defines the number of items to be displayed on a page. If the number specified is more than allowed max page size, the API will automatically adjust the page size to the max page size.",
             "schema": {
               "type": "integer",
-              "example": 100,
-              "default": 100
-            }
+              "default": 100,
+              "example": 100
+            },
+            "example": 100
           }
         ],
         "responses": {
@@ -16953,6 +16955,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "401",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "401",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -16963,6 +16980,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "403",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "403",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -16973,6 +17005,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "404",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "404",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -16983,6 +17030,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "429",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "429",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -16993,6 +17055,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "500",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "500",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17006,7 +17083,7 @@
         ],
         "summary": "Create a new Dialed Number Mapping",
         "description": "Create a new Dialed Number Mapping in a given organization.",
-        "operationId": "createConfig_16",
+        "operationId": "createConfig_14",
         "parameters": [
           {
             "name": "orgid",
@@ -17046,6 +17123,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "400",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "400",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17056,6 +17148,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "401",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "401",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17066,6 +17173,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "403",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "403",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17076,6 +17198,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "409",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "409",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17086,6 +17223,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "429",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "429",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17096,6 +17248,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "500",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "500",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17132,6 +17299,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "401",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "401",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17142,6 +17324,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "403",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "403",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17152,6 +17349,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "404",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "404",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17162,6 +17374,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "412",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "412",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17172,6 +17399,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "429",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "429",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17182,6 +17424,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "500",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "500",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17237,6 +17494,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "400",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "400",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17247,6 +17519,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "401",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "401",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17257,6 +17544,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "403",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "403",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17267,6 +17569,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "409",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "409",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17277,6 +17594,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "429",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "429",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17287,6 +17619,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "500",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "500",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17302,7 +17649,7 @@
         ],
         "summary": "Bulk export Dialed Number Mapping(s)",
         "description": "Export all Dialed Number Mapping(s) in a given organization.",
-        "operationId": "bulkExport_14",
+        "operationId": "bulkExport_12",
         "parameters": [
           {
             "name": "orgid",
@@ -17320,9 +17667,10 @@
             "description": "Defines the number of displayed page. The page number starts from 0.",
             "schema": {
               "type": "integer",
-              "example": 0,
-              "default": 0
-            }
+              "default": 0,
+              "example": 0
+            },
+            "example": 0
           },
           {
             "name": "pageSize",
@@ -17330,9 +17678,10 @@
             "description": "Defines the number of items to be displayed on a page. If the number specified is more than allowed max page size, the API will automatically adjust the page size to the max page size.",
             "schema": {
               "type": "integer",
-              "example": 100,
-              "default": 100
-            }
+              "default": 100,
+              "example": 100
+            },
+            "example": 100
           }
         ],
         "responses": {
@@ -17352,6 +17701,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "401",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "401",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17362,6 +17726,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "403",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "403",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17372,6 +17751,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "404",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "404",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17382,6 +17776,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "429",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "429",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17392,6 +17801,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "500",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "500",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17440,6 +17864,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "401",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "401",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17450,6 +17889,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "403",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "403",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17460,6 +17914,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "404",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "404",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17470,6 +17939,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "429",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "429",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17480,6 +17964,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "500",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "500",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17495,7 +17994,7 @@
         ],
         "summary": "Get specific Dialed Number Mapping by ID",
         "description": "Retrieve an existing Dialed Number Mapping by ID in a given organization.",
-        "operationId": "getConfig_17",
+        "operationId": "getConfig_16",
         "parameters": [
           {
             "name": "orgid",
@@ -17515,7 +18014,7 @@
             "schema": {
               "type": "string"
             },
-            "example": "2f9eecc5-0472-4549"
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba2"
           }
         ],
         "responses": {
@@ -17535,6 +18034,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "401",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "401",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17545,6 +18059,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "403",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "403",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17555,6 +18084,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "404",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "404",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17565,6 +18109,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "429",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "429",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17575,6 +18134,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "500",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "500",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17588,7 +18162,7 @@
         ],
         "summary": "Update specific Dialed Number Mapping by ID",
         "description": "Update an existing Dialed Number Mapping by ID in a given organization.",
-        "operationId": "updateConfig_17",
+        "operationId": "updateConfig_16",
         "parameters": [
           {
             "name": "orgid",
@@ -17608,7 +18182,7 @@
             "schema": {
               "type": "string"
             },
-            "example": "2f9eecc5-0472-4549"
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba2"
           }
         ],
         "requestBody": {
@@ -17638,6 +18212,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "400",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "400",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17648,6 +18237,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "401",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "401",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17658,6 +18262,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "403",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "403",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17668,6 +18287,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "404",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "404",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17678,6 +18312,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "412",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "412",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17688,6 +18337,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "429",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "429",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17698,6 +18362,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "500",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "500",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17711,7 +18390,7 @@
         ],
         "summary": "Delete specific Dialed Number Mapping by ID",
         "description": "Delete an existing Dialed Number Mapping by ID in a given organization.",
-        "operationId": "deleteConfig_16",
+        "operationId": "deleteConfig_14",
         "parameters": [
           {
             "name": "orgid",
@@ -17731,7 +18410,7 @@
             "schema": {
               "type": "string"
             },
-            "example": "2f9eecc5-0472-4549"
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba2"
           }
         ],
         "responses": {
@@ -17744,6 +18423,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "401",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "401",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17754,6 +18448,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "403",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "403",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17764,6 +18473,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "404",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "404",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17774,6 +18498,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "412",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "412",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17784,6 +18523,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "429",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "429",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17794,6 +18548,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "500",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "500",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17809,7 +18578,7 @@
         ],
         "summary": "List references for a specific Dialed Number Mapping",
         "description": "Retrieve a list of all entities that have reference to an existing Dialed Number Mapping by ID in a given organization.",
-        "operationId": "getIncomingReferences_13",
+        "operationId": "getIncomingReferences_12",
         "parameters": [
           {
             "name": "orgid",
@@ -17847,9 +18616,10 @@
             "description": "Defines the number of displayed page. The page number starts from 0.",
             "schema": {
               "type": "integer",
-              "example": 0,
-              "default": 0
-            }
+              "default": 0,
+              "example": 0
+            },
+            "example": 0
           },
           {
             "name": "pageSize",
@@ -17857,9 +18627,10 @@
             "description": "Defines the number of items to be displayed on a page. If the number specified is more than allowed max page size, the API will automatically adjust the page size to the max page size.",
             "schema": {
               "type": "integer",
-              "example": 100,
-              "default": 100
-            }
+              "default": 100,
+              "example": 100
+            },
+            "example": 100
           }
         ],
         "responses": {
@@ -17879,6 +18650,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "401",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "401",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17889,6 +18675,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "403",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "403",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17899,6 +18700,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "404",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "404",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17909,6 +18725,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "429",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "429",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17919,6 +18750,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "500",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "500",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -17934,7 +18780,7 @@
         ],
         "summary": "List Dialed Number Mapping(s)",
         "description": "Retrieve a list of Dialed Number Mapping(s) in a given organization.",
-        "operationId": "getAllConfigWithMetaData_17",
+        "operationId": "getAllConfigWithMetaData_15",
         "parameters": [
           {
             "name": "orgid",
@@ -17949,7 +18795,7 @@
           {
             "name": "filter",
             "in": "query",
-            "description": "Specify a filter based on which the results will be fetched. All the fields are supported except: organizationId, createdTime, lastUpdatedTime \n\nThe examples below show some search queries\n- id==\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\"\n- id!=\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\"\n- id=in=(\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\",\"a421e0b2-732e-46f3-a057-39160a53afb9\")\n- id=out=(\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\",\"a421e0b2-732e-46f3-a057-39160a53afb9\")\nThis parameter uses the RSQL query syntax, a URI-friendly format for expressing criteria for filtering REST entities. For more information about RSQL in general, see  <a href=\"https://www.here.com/docs/bundle/data-client-library-developer-guide-java-scala/page/client/rsql.html\">this reference</a>. For a list of supported operators, see <a href=\"https://github.com/perplexhub/rsql-jpa-specification#rsql-syntax-reference\">this syntax guide</a>.\n\nNote: values to be used in the filter syntax should not contain space, and if so kindly bound it with quotes to apply filter.\n",
+            "description": "Specify a filter based on which the results will be fetched. All the fields are supported except: organizationId, createdTime, lastUpdatedTime \n\nThe examples below show some search queries\n- id==\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\"\n- id!=\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\"\n- id=in=(\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\",\"a421e0b2-732e-46f3-a057-39160a53afb9\")\n- id=out=(\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\",\"a421e0b2-732e-46f3-a057-39160a53afb9\")\nThis parameter uses the RSQL query syntax, a URI-friendly format for expressing criteria for filtering REST entities. For more information about RSQL in general, see  <a href=\"https://www.here.com/docs/bundle/data-client-library-developer-guide-java-scala/page/client/rsql.html\">this reference</a>. For a list of supported operators, see <a href=\"https://github.com/perplexhub/rsql-jpa-specification#rsql-syntax-reference\">this syntax guide</a>.\n\nNote: values to be used in the filter syntax should not contain spaces. If they do, please enclose them in quotes to apply the filter.\n",
             "required": false,
             "schema": {
               "type": "string"
@@ -17959,7 +18805,7 @@
           {
             "name": "attributes",
             "in": "query",
-            "description": "Specify the attributes to be returned.Default all attributes are returned along with specified columns. All Attributes are supported except (links)",
+            "description": "Specify the attributes to be returned. By default, all attributes are returned along with the specified columns. All attributes are supported. except (links)",
             "required": false,
             "schema": {
               "type": "string",
@@ -17983,9 +18829,10 @@
             "description": "Defines the number of displayed page. The page number starts from 0.",
             "schema": {
               "type": "integer",
-              "example": 0,
-              "default": 0
-            }
+              "default": 0,
+              "example": 0
+            },
+            "example": 0
           },
           {
             "name": "pageSize",
@@ -17993,9 +18840,10 @@
             "description": "Defines the number of items to be displayed on a page. If the number specified is more than allowed max page size, the API will automatically adjust the page size to the max page size.",
             "schema": {
               "type": "integer",
-              "example": 100,
-              "default": 100
-            }
+              "default": 100,
+              "example": 100
+            },
+            "example": 100
           },
           {
             "name": "includeEntryPointName",
@@ -18003,8 +18851,8 @@
             "description": "If includeEntryPointName is set to true and entryPointName is in the attributes, the API will return entryPointName in the Get All response, and filtering, searching, and sorting on entryPointName will also be enabled.",
             "schema": {
               "type": "boolean",
-              "example": false,
-              "default": false
+              "default": false,
+              "example": false
             }
           }
         ],
@@ -18025,6 +18873,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "401",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "401",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -18035,6 +18898,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "403",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "403",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -18045,6 +18923,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "404",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "404",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -18055,6 +18948,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "429",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "429",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -18065,6 +18973,244 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "500",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "500",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/organization/{orgid}/v3/dial-number": {
+      "get": {
+        "tags": [
+          "Dial Number"
+        ],
+        "summary": "List Dialed Number Mapping(s)",
+        "description": "Retrieve a list of Dialed Number Mapping(s) in a given organization.",
+        "operationId": "getAllConfigWithMetaDataV3",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID to be used for this operation. The specified security token must have permission to interact with the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba1"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "Specify a filter based on which the results will be fetched. All the fields are supported except: organizationId, createdTime, lastUpdatedTime \n\nThe examples below show some search queries\n- id==\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\"\n- id!=\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\"\n- id=in=(\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\",\"a421e0b2-732e-46f3-a057-39160a53afb9\")\n- id=out=(\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\",\"a421e0b2-732e-46f3-a057-39160a53afb9\")\nThis parameter uses the RSQL query syntax, a URI-friendly format for expressing criteria for filtering REST entities. For more information about RSQL in general, see  <a href=\"https://www.here.com/docs/bundle/data-client-library-developer-guide-java-scala/page/client/rsql.html\">this reference</a>. For a list of supported operators, see <a href=\"https://github.com/perplexhub/rsql-jpa-specification#rsql-syntax-reference\">this syntax guide</a>.\n\nNote: values to be used in the filter syntax should not contain spaces. If they do, please enclose them in quotes to apply the filter.\n",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "id==\"2f9eecc5-0472-4549-9a83-2afdae0d4ba1\""
+          },
+          {
+            "name": "attributes",
+            "in": "query",
+            "description": "Specify the attributes to be returned. By default, all attributes are returned along with the specified columns. All attributes are supported. except (links)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "string"
+            },
+            "example": "id"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Filter data based on the search keyword.Supported search columns(dialledNumber)\n\nThe examples below show some search queries\n- \"Cisco\"\n- field==\"dialledNumber\";value==\"Cisco\"\n- fields=in=(\"dialledNumber\");value==\"Cisco\"\n",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "contact center"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Defines the number of displayed page. The page number starts from 0.",
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "example": 0
+            },
+            "example": 0
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Defines the number of items to be displayed on a page. If the number specified is more than allowed max page size, the API will automatically adjust the page size to the max page size.",
+            "schema": {
+              "type": "integer",
+              "default": 100,
+              "example": 100
+            },
+            "example": 100
+          },
+          {
+            "name": "includeEntryPointName",
+            "in": "query",
+            "description": "If includeEntryPointName is set to true and entryPointName is in the attributes, the API will return entryPointName in the Get All response, and filtering, searching, and sorting on entryPointName will also be enabled.",
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "example": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEnvelopeDialledNumberEntryPointDTO"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "401",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "401",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation is forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "403",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "403",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found or URI is invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "404",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "404",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests have been sent in a given amount of time and the request has been rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "429",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "429",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An Unexpected Error Occurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "500",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "500",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -59937,21 +61083,16 @@
         }
       },
       "DialledNumberEntryPointDTO": {
-        "required": [
-          "dialledNumber",
-          "entryPointId",
-          "entryPointName"
-        ],
         "type": "object",
         "properties": {
           "organizationId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "ID of the contact center organization. This field is required for all bulk save operations.",
+            "example": "f53c8b54-46ca-43f6-ba05-08426a46e23d",
             "maxLength": 36,
             "minLength": 32,
-            "pattern": "^[0-9a-fA-F]{8}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{12}$",
-            "type": "string",
-            "description": "ID of the contact center organization. It is required to define for the following operations - All bulk save operations",
-            "format": "uuid",
-            "example": "f53c8b54-46ca-43f6-ba05-08426a46e23d"
+            "pattern": "^[0-9a-fA-F]{8}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{12}$"
           },
           "id": {
             "type": "string",
@@ -59960,17 +61101,41 @@
           },
           "version": {
             "type": "integer",
-            "description": "The version of this resource. For a newly created resource, it will be 0 unless specified otherwise.",
             "format": "int32",
+            "description": "The version of this resource. For a newly created resource, it will be 0 unless specified otherwise.",
             "example": 1
           },
           "dialledNumber": {
-            "maxLength": 20,
-            "minLength": 0,
-            "pattern": "^\\+{0,1}\\d+[\\d.\\-]*$",
             "type": "string",
             "description": "The dialed number(DN) used to map to entry points.",
-            "example": "+1-1234567890"
+            "example": "+1-1234567890",
+            "maxLength": 20,
+            "minLength": 0,
+            "pattern": "^\\+{0,1}\\d+[\\d.\\-]*$"
+          },
+          "extension": {
+            "type": "string",
+            "description": "The extension used to map to entry points.",
+            "example": 1234,
+            "maxLength": 10,
+            "minLength": 0,
+            "pattern": "^\\d{2,10}$"
+          },
+          "routingPrefix": {
+            "type": "string",
+            "description": "The routing prefix is mapped to a location and can be prefixed with an extension",
+            "example": 91,
+            "maxLength": 7,
+            "minLength": 0,
+            "pattern": "^\\d{2,7}$"
+          },
+          "esn": {
+            "type": "string",
+            "description": "The esn is routing prefix with extension",
+            "example": 919876,
+            "maxLength": 17,
+            "minLength": 0,
+            "pattern": "^\\d{2,17}$"
           },
           "routePointId": {
             "type": "string",
@@ -60004,25 +61169,29 @@
           },
           "createdTime": {
             "type": "integer",
-            "description": "Creation time(in epoch millis) of this resource.",
             "format": "int64",
-            "readOnly": true,
-            "example": 1617536244000
+            "description": "This is the created time of the entity."
           },
           "lastUpdatedTime": {
             "type": "integer",
-            "description": "Time(in epoch millis) when this resource was last updated.",
             "format": "int64",
-            "readOnly": true,
-            "example": 1617536244000
+            "description": "This is the updated time of the entity."
+          },
+          "dialledNumberDigits": {
+            "type": "string"
           }
-        }
+        },
+        "required": [
+          "entryPointId",
+          "entryPointName"
+        ]
       },
       "BulkRequestDTODialledNumberEntryPointDTO": {
         "type": "object",
         "properties": {
           "items": {
             "type": "array",
+            "description": "List of items in the bulk request.",
             "items": {
               "$ref": "#/components/schemas/BulkRequestItemDTODialledNumberEntryPointDTO"
             }
@@ -60031,11 +61200,12 @@
       },
       "BulkRequestItemDTODialledNumberEntryPointDTO": {
         "type": "object",
+        "description": "List of items in the bulk request.",
         "properties": {
           "itemIdentifier": {
             "type": "integer",
-            "description": "Unique item identifier for a bulk operation.",
             "format": "int32",
+            "description": "Unique item identifier for a bulk operation.",
             "example": 10
           },
           "item": {
@@ -60043,30 +61213,38 @@
           },
           "requestAction": {
             "type": "string",
-            "description": "Identifier for action type. Possible values can be SAVE and DELETE.",
+            "description": "Identifier for action type. Possible values are `SAVE` and `DELETE`.",
             "example": "SAVE"
           }
         }
       },
       "BulkExportDTODialledNumberEntryPointExportDTO": {
         "type": "object",
+        "description": "Bulk export Dto",
+        "example": {
+          "totalResources": 100,
+          "pageNumber": 0,
+          "pageSize": 50,
+          "rel": "last",
+          "resources": []
+        },
         "properties": {
           "totalResources": {
             "type": "integer",
-            "description": "Total number of items",
             "format": "int32",
+            "description": "Total number of items.",
             "example": 100
           },
           "pageNumber": {
             "type": "integer",
-            "description": "Current page number",
             "format": "int32",
+            "description": "Current page number.",
             "example": 0
           },
           "pageSize": {
             "type": "integer",
-            "description": "Page size for current data set",
             "format": "int32",
+            "description": "Page size for current data set.",
             "example": 50
           },
           "rel": {
@@ -60076,6 +61254,7 @@
           },
           "resources": {
             "type": "array",
+            "description": "Indicate the page resources",
             "items": {
               "$ref": "#/components/schemas/DialledNumberEntryPointExportDTO"
             }
@@ -60086,6 +61265,12 @@
         "type": "object",
         "properties": {
           "dialledNumber": {
+            "type": "string"
+          },
+          "extension": {
+            "type": "string"
+          },
+          "location": {
             "type": "string"
           },
           "entryPointName": {
@@ -60101,9 +61286,7 @@
         "properties": {
           "meta": {
             "type": "object",
-            "additionalProperties": {
-              "type": "object"
-            }
+            "additionalProperties": {}
           },
           "data": {
             "type": "array",
