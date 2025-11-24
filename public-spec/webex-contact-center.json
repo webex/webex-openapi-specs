@@ -14719,7 +14719,7 @@
             }
           }
         },
-        "deprecated": true
+        "deprecated": false
       }
     },
     "/organization/{orgid}/desktop-layout": {
