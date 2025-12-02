@@ -13049,6 +13049,109 @@
         }
       }
     },
+    "/organization/{orgid}/contact-service-queue/fetch-manually-assignable-queues": {
+      "post": {
+        "tags": [
+          "Contact Service Queue"
+        ],
+        "summary": "Fetch manually assignable Queues",
+        "operationId": "getManuallyAssignableCSQs",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID to be used for this operation. The specified security token must have permission to interact with the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba1"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ManuallyAssignableQueuesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEnvelopeMappedCSQDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid and cannot be served. An accompanying error message will explain further",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation is forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Similar entity is already present",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests have been sent in a given amount of time and the request has been rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An Unexpected Error Occurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/organization/{orgid}/contact-service-queue/purge-inactive-entities": {
       "post": {
         "tags": [
@@ -14545,6 +14648,120 @@
           },
           "500": {
             "description": "An Unexpected Error Occurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organization/{orgid}/v2/contact-service-queue/{id}/reassign-agents": {
+      "post": {
+        "tags": [
+          "Contact Service Queue"
+        ],
+        "summary": "Add or remove agents/users to/from an agent based queue",
+        "description": "This API can be used by a contact center supervisor to add or remove agents to/from an agent based queue that they have access to by virtue of their user profile access rights. Additionally, the request payload should contain the user id(s) managed by the supervisor.",
+        "operationId": "reassignAgents",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID to be used for this operation. The specified security token must have permission to interact with the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba1"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Resource ID of the Contact Service Queue.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "af9eecc5-0472-4549-9a83-2afdae0d4ba0"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReassignAgentsRequestDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid and cannot be served. An accompanying error message will explain further.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized Operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation is forbidden.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Similar entity is already present.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests have been sent in a given amount of time and the request has been rate limited.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An Unexpected Error Occurred.",
             "content": {
               "application/json": {
                 "schema": {
@@ -59125,6 +59342,9 @@
             "items": {
               "type": "string"
             }
+          },
+          "manuallyAssignable": {
+            "type": "boolean"
           }
         }
       },
@@ -59286,6 +59506,17 @@
           }
         }
       },
+      "ManuallyAssignableQueuesRequest": {
+        "type": "object",
+        "properties": {
+          "agentId": {
+            "type": "string"
+          },
+          "teamId": {
+            "type": "string"
+          }
+        }
+      },
       "ResponseEnvelopeContactServiceQueueDTO": {
         "type": "object",
         "properties": {
@@ -59420,6 +59651,25 @@
           }
         },
         "description": "Queue mapping summary per Assistant Skill."
+      },
+      "ReassignAgentsRequestDTO": {
+        "type": "object",
+        "properties": {
+          "add": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "remove": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
       },
       "DesktopLayoutDTO": {
         "required": [
