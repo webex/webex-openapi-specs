@@ -7048,7 +7048,7 @@
           }
         },
         "summary": "Get a Meeting By an Admin",
-        "operationId": "Get a Meeting By an Admin",
+        "operationId": "adminGetMeetingById",
         "description": "Retrieves details for a meeting with a specified meeting ID by an admin. The following sensitive attributes are hidden from the response: `agenda`, `hostKey`, `password`, `phoneAndVideoSystemPassword`, `panelistPassword`, `phoneAndVideoSystemPanelistPassword`, `webLink`, `sipAddress`, `dialInIpAddress`, `registration` and `telephony.accessCode`.\n\n* If the `meetingId` value specified is for a meeting series and `current` is `true`, the operation returns details for the current scheduled meeting of the series, i.e. the scheduled meeting ready to join or start or the upcoming scheduled meeting of the meeting series.\n\n* If the `meetingId` value specified is for a meeting series and `current` is `false` or `current` is not specified, the operation returns details for the entire meeting series.\n\n* If the `meetingId` value specified is for a scheduled meeting from a meeting series, the operation returns details for that scheduled meeting.\n\n* If the `meetingId` value specified is for a meeting instance which is happening or has happened, the operation returns details for that meeting instance.\n\n* `trackingCodes` is not supported for ended meeting instances.\n\n* To learn more about which attributes are available for different meeting states, please refer to [Available Meeting Attributes for Different Meeting States](/docs/meetings#available-meeting-attributes-for-different-meeting-states).\n\n#### Request Header\n\n* `timezone`: [Time zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List) for time stamps in response body, defined in conformance with the [IANA time zone database](https://www.iana.org/time-zones). The default value is `UTC` if not specified.",
         "tags": [
           "Meetings"
@@ -7068,10 +7068,10 @@
             "name": "current",
             "in": "query",
             "description": "Whether or not to retrieve only the current scheduled meeting of the meeting series, i.e. the meeting ready to join or start or the upcoming meeting of the meeting series. If it's `true`, return details for the current scheduled meeting of the series, i.e. the scheduled meeting ready to join or start or the upcoming scheduled meeting of the meeting series. If it's `false` or not specified, return details for the entire meeting series. This parameter only applies to meeting series. The default value is `false`.",
-            "example": "false",
+            "example": false,
             "schema": {
               "type": "boolean",
-              "default": "false"
+              "default": false
             }
           },
           {
@@ -7287,7 +7287,7 @@
           }
         },
         "summary": "List Meetings By an Admin",
-        "operationId": "List Meetings By an Admin",
+        "operationId": "adminListMeetings",
         "description": "Retrieves details for meetings by an admin with a specified meeting number or web link. Please note that there are various products in the [Webex Suite](https://www.webex.com/collaboration-suite.html) such as `Meetings` and `Events`. Currently, only meetings of the `Meetings` product are supported by this API, meetings of others in the suite are not supported. Ad-hoc meetings created by [Create a Meeting](/docs/api/v1/meetings/create-a-meeting) with `adhoc` of `true` and a `roomId` will not be listed, but the ended and ongoing ad-hoc meeting instances will be listed. The following sensitive attributes are hidden from the response: `agenda`, `hostKey`, `password`, `phoneAndVideoSystemPassword`, `panelistPassword`, `phoneAndVideoSystemPanelistPassword`, `webLink`, `sipAddress`, `dialInIpAddress`, `registration` and `telephony.accessCode`.\n\n* If `meetingNumber` is specified, the operation returns an array of meeting objects specified by the `meetingNumber`. Each object in the array can be a scheduled meeting or a meeting series depending on whether the `current` parameter is `true` or `false`, and each object contains the simultaneous interpretation object. Please note that `meetingNumber` and `webLink` are mutually exclusive and they cannot be specified simultaneously.\n\n* If `webLink` is specified, the operation returns an array of meeting objects specified by the `webLink`. Each object in the array is a scheduled meeting, and each object contains the simultaneous interpretation object. Please note that `meetingNumber` and `webLink` are mutually exclusive and they cannot be specified simultaneously.\n\n* The `current` parameter only applies to meeting series. If it's `false`, the `start` and `end` attributes of each returned meeting series object are for the first scheduled meeting of that series. If it's `true` or not specified, the `start` and `end` attributes are for the scheduled meeting which is ready to start or join or the upcoming scheduled meeting of that series.\n\n* To learn more about which attributes are available for different meeting states, please refer to [Available Meeting Attributes for Different Meeting States](/docs/meetings#available-meeting-attributes-for-different-meeting-states).\n\n#### Request Header\n\n* `timezone`: [Time zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List) for time stamps in response body, defined in conformance with the [IANA time zone database](https://www.iana.org/time-zones). The default value is `UTC` if not specified.",
         "tags": [
           "Meetings"
@@ -7315,10 +7315,10 @@
             "name": "current",
             "in": "query",
             "description": "Flag identifying to retrieve the current scheduled meeting of the meeting series or the entire meeting series. This parameter only applies to scenarios where `meetingNumber` is specified and the meeting is not an exceptional meeting from a meeting series. If it's `true`, return the scheduled meeting of the meeting series which is ready to join or start or the upcoming scheduled meeting of the meeting series; if it's `false`, return the entire meeting series. The default value is `true`.",
-            "example": "false",
+            "example": false,
             "schema": {
               "type": "boolean",
-              "default": "true"
+              "default": true
             }
           },
           {
@@ -7677,7 +7677,7 @@
           }
         },
         "summary": "Create a Meeting",
-        "operationId": "Create a Meeting",
+        "operationId": "createMeeting",
         "description": "Creates a new meeting. Regular users can schedule up to 100 meetings in 24 hours and admin users up to 3000 overall or 800 for a single user. Please note that the failed requests are also counted toward the limits.\n\n* The `spark:all` scope is required when `roomId` is specified.\n\n* If the parameter `adhoc` is `true` and `roomId` is specified, an ad-hoc meeting is created for the target room. An ad-hoc meeting is a non-recurring instant meeting for the target room which is supposed to be started immediately after being created for a quick collaboration. There's only one ad-hoc meeting for a room at the same time. So, if there's already an ongoing ad-hoc meeting for the room, the API returns this ongoing meeting instead of creating a new one. If it's a [direct](/docs/api/v1/rooms/get-room-details) room, both members of the room can create an ad-hoc meeting for the room. If it's a [group](/docs/api/v1/rooms/get-room-details) room, only room members that are in the same [organization](/docs/api/v1/organizations/get-organization-details) as the room can create an ad-hoc meeting for the room. Please note that an ad-hoc meeting is for the purpose of an instant collaboration with people in a room, user should not persist the `id` and `meetingNumber` of the ad-hoc meeting when it's been created since this meeting may become an inactive ad-hoc meeting for the room if it's not been started after being created for a while or it has been started and ended. Each time a user needs an ad-hoc meeting for a room, they should create one instead of reusing the previous persisted one. Moreover, for the same reason, no email will be sent when an ad-hoc meeting is created. Ad-hoc meetings cannot be updated by [Update a Meeting](/docs/api/v1/meetings/update-a-meeting) or deleted by [Delete a Meeting](/docs/api/v1/meetings/delete-a-meeting). Ad-hoc meetings cannot be listed by [List Meetings](/docs/api/v1/meetings/list-meetings) and the scheduled meetings of an ad-hoc meeting cannot be listed by [List Meetings of a Meeting Series](/docs/api/v1/meetings/list-meetings-of-a-meeting-series), but the ended and ongoing instances of ad-hoc meetings can be listed by [List Meetings](/docs/api/v1/meetings/list-meetings) and [List Meetings of a Meeting Series](/docs/api/v1/meetings/list-meetings-of-a-meeting-series).\n\n* If the parameter `adhoc` is `true`, `roomId` is required and the others are optional or ignored.\n\n* The default value of `title` for an ad-hoc meeting is the user's name if not specified. The following parameters for an ad-hoc meeting have default values and the user's input values will be ignored: `scheduledType` is always `meeting`; `start` and `end` are 5 minutes after the current time and 20 minutes after the current time respectively; `timezone` is `UTC`; `allowAnyUserToBeCoHost`, `allowAuthenticatedDevices`, `enabledJoinBeforeHost`, `enableConnectAudioBeforeHost` are always `true`; `allowFirstUserToBeCoHost`, `enableAutomaticLock`, `publicMeeting`, `sendEmail` are always `false`; `invitees` is the room members except \"me\"; `joinBeforeHostMinutes` is 5; `automaticLockMinutes` is null; `unlockedMeetingJoinSecurity` is `allowJoinWithLobby`. An ad-hoc meeting can be started immediately even if the `start` is 5 minutes after the current time.\n\n* The following parameters are not supported and will be ignored for an ad-hoc meeting: `templateId`, `recurrence`, `excludePassword`, `reminderTime`, `registration`, `integrationTags`, `enabledWebcastView`, and `panelistPassword`.\n\n* If the value of the parameter `recurrence` is null, a non-recurring meeting is created.\n\n* If the parameter `recurrence` has a value, a recurring meeting is created based on the rule defined by the value of `recurrence`. For a non-recurring meeting which has no `recurrence` value set, its `meetingType` is also `meetingSeries` which is a meeting series with only one occurrence in Webex meeting modeling. If you specify a `recurrence` like `FREQ=DAILY;INTERVAL=1` which never ends, the furthest date of the series is unlimited. You can also specify a `recurrence` with a very distant ending date in the future, e.g. `FREQ=DAILY;INTERVAL=1;UNTIL=21241001T000000Z`, but the actual furthest date accepted for the recurring meeting is five years from now. Specifically, if it has an ending date, there can be up to 5 occurrences for a yearly meeting, 60 occurrences for a monthly meeting, 261 occurrences for a weekly meeting, or 1826 occurrences for a daily meeting.\n\n* If the parameter `templateId` has a value, the meeting is created based on the meeting template specified by `templateId`. The list of meeting templates that is available for the authenticated user can be retrieved from [List Meeting Templates](/docs/api/v1/meetings/list-meeting-templates).\n\n* If the parameter `siteUrl` has a value, the meeting is created on the specified site. Otherwise, the meeting is created on the user's preferred site. All available Webex sites and preferred site of the user can be retrieved by `Get Site List` API.\n\n* If the parameter `scheduledType` equals \"personalRoomMeeting\", the meeting is created in the user's [personal room](https://help.webex.com/en-us/article/nul0wut/Webex-Personal-Rooms-in-Webex-Meetings).\n\n* If the parameter `roomId` has a value, the meeting is created for the Webex space specified by `roomId`. If `roomId` is specified but the user calling the API is not a member of the Webex space specified by `roomId`, the API will fail even if the user has the admin-level scopes or he is calling the API on behalf of another user which is specified by `hostEmail` and is a member of the Webex space.\n\n* If the parameter `enabledAudioWatermark` is `true`, `scheduledType` equals or defaults to `meeting`, and `audioConnectionOptions.audioConnectionType` equals `VoIP`, the audio for this meeting will have a watermark. In this case, a unique identifier is embedded into the audio that plays out of each Webex app and device. An administrator can use this watermark when analyzing an unauthorized recording to identify which Webex app or device was the source of the recording.\n\n* If the parameter `enabledVisualWatermark` is `true`, the video for this meeting will have a watermark. In this case, Webex superimposes a watermark image pattern on top of the meeting video and shared content to deter participants from leaking meeting information. Each participant viewing the meeting sees a watermark image pattern with their email address. If the participant is not signed in, the watermark image pattern includes their display name and email address.\n\n* The default value of `visualWatermarkOpacity` is 10 if not specified. The value must be between 5 and 80, inclusive. A smaller value means less distraction for meeting participants, while a larger value shows a clearer watermark. It's supported when `enabledVisualWatermark` is `true`.\n\n* When `enabledLiveStream` is `true`, `liveStream` must be specified. With these setting, the RTMP streaming specified by `liveStream.rtmpUrl` can be started and viewed during the meeting without any ad-hoc settings.\n\n* The `registration` can be specified when creating a meeting, but it can't be updated by [Update a Meeting](/docs/api/v1/meetings/update-a-meeting) or [Patch a Meeting](/docs/api/v1/meetings/patch-a-meeting). Create a registration form for a meeting that doesn't have one or update the registration form for a meeting that already has one by using [Update Meeting Registration Form](/docs/api/v1/meetings/update-meeting-registration-form). Delete the registration form for a meeting by using [Delete Meeting Registration Form](/docs/api/v1/meetings/delete-meeting-registration-form).\n\n* You can't create a meeting that starts 10 years or more in the future.\n\n* If all meeting invitees of a meeting should not receive emails, the host can create a meeting with invitees, and the parameter `sendEmail` is set to `false`. If only some meeting invitees should not receive emails and others can, the host should not invite these invitees along with creating a meeting request. Instead, the host should add the invitees by [Create a Meeting Invitee](/docs/api/v1/meeting-invitees/create-a-meeting-invitee) or [Create Meeting Invitees](/docs/api/v1/meeting-invitees/create-meeting-invitees) with the parameter `sendEmail` is set to `false` after the meeting has been created.",
         "tags": [
           "Meetings"
@@ -8394,8 +8394,8 @@
           }
         },
         "summary": "List Meetings",
-        "operationId": "List Meetings",
-        "description": "<div><Callout type=\"info\">The previous `List Meetings of a Meeting Series` API is merged into the [List Meetings](/docs/api/v1/meetings/list-meetings) API.</Callout></div>\n\nRetrieves details for meetings with a specified meeting number, web link, meeting type, etc. Please note that there are various products in the [Webex Suite](https://www.webex.com/collaboration-suite.html) such as `Meetings` and `Events`. Currently, only meetings of the `Meetings` product are supported by this API, meetings of others in the suite are not supported. Ad-hoc meetings created by [Create a Meeting](/docs/api/v1/meetings/create-a-meeting) with `adhoc` of `true` and a `roomId` will not be listed, but the ended and ongoing ad-hoc meeting instances will be listed.\n\nLists scheduled meeting and meeting instances of a meeting series identified by `meetingSeriesId`. Scheduled meetings of an ad-hoc meeting created by [Create a Meeting](/docs/api/v1/meetings/create-a-meeting) with `adhoc` of `true` and a `roomId` are not listed, but the ended and ongoing meeting instances of it are. Each _scheduled meeting_ or _meeting_ instance of a _meeting series_ has its own `start`, `end`, etc. Thus, for example, when a daily meeting has been scheduled from `2019-04-01` to `2019-04-10`, there are 10 scheduled meeting instances in this series, one instance for each day, and each one has its own attributes. When a scheduled meeting has been started and ended or is happening, there are even more ended or in-progress meeting instances.\n\nLong result sets are split into [pages](/docs/basics#pagination).\n\n* The default value of `meetingSeries` will be used if `meetingType` is not specified. When listing meetings with `meetingType=meetingSeries` implicitly or explicitly, the API returns all the recurring meeting series where the user is the meeting host or an invitee to the meeting. Please note that a meeting with no `recurrence` attribute is considered a meeting series with only one occurrence and it can also be listed with `meetingType=meetingSeries`. A recurring meeting series may have multiple occurrences which are scattered over weeks, months, or years. So, any meeting series that overlaps with the time range specified by `from` and `to` will be listed. For example, a monthly meeting series with `start=2024-01-01T10:00:00Z`, `end=2024-01-01T11:00:00Z` and `recurrence=FREQ=MONTHLY;INTERVAL=1;BYMONTHDAY=1;UNTIL=20250210T000000Z` can be listed with `meetingType=meetingSeries&from=2024-10-01&to=2024-11-01` even if the `start` and `end` are not in the specified time range.\n\n* If `meetingSeriesId` parameter is specified, `meetingNumber`, `webLink`, `roomId`, `current`, `integrationTag`, `scheduledType`, `siteUrl` will be ignored.\n\n* If `meetingNumber` is specified, the operation returns an array of meeting objects specified by the `meetingNumber`. Each object in the array can be a scheduled meeting or a meeting series depending on whether the `current` parameter is `true` or `false`, and each object contains the simultaneous interpretation object. When `meetingNumber` is specified, parameters of `from`, `to`, `meetingType`, `state`, `isModified` and `siteUrl` will be ignored. Please note that `meetingNumber`, `webLink` and `roomId` are mutually exclusive and they cannot be specified simultaneously.\n\n* If `webLink` is specified, the operation returns an array of meeting objects specified by the `webLink`. Each object in the array is a scheduled meeting, and each object contains the simultaneous interpretation object. When `webLink` is specified, parameters of `current`, `from`, `to`, `meetingType`, `state`, `isModified` and `siteUrl` will be ignored. Please note that `meetingNumber`, `webLink` and `roomId` are mutually exclusive and they cannot be specified simultaneously.\n\n* If `roomId` is specified, the operation returns an array of meeting objects of the Webex space specified by the `roomId`. When `roomId` is specified, parameters of `current`, `meetingType`, `state` and `isModified` will be ignored. The meeting objects are queried on the user's preferred site if no `siteUrl` is specified; otherwise, queried on the specified site. `meetingNumber`, `webLink` and `roomId` are mutually exclusive and they cannot be specified simultaneously.\n\n* If `state` parameter is specified, the returned array only has items in the specified state. If `state` is not specified, return items of all states.\n\n* If `meetingType` equals \"meetingSeries\", the `scheduledType` parameter can be \"meeting\", \"webinar\" or null. If `scheduledType` is specified, the returned array only has items of the specified scheduled type; otherwise, it has items of \"meeting\" and \"webinar\".\n\n* If `meetingType` equals \"scheduledMeeting\", the `scheduledType` parameter can be \"meeting\", \"webinar\", \"personalRoomMeeting\" or null. If `scheduledType` is specified, the returned array only has items of the specified scheduled type; otherwise, it has items of all scheduled types.\n\n* If `meetingType` equals \"meeting\", the `scheduledType` parameter can be \"meeting\", \"webinar\" or null. If `scheduledType` is specified, the returned array only has items of the specified scheduled type; otherwise, it has items of \"meeting\" and \"webinar\". Please note that ended or in-progress meeting instances of [personal room](https://help.webex.com/en-us/article/nul0wut/Webex-Personal-Rooms-in-Webex-Meetings) also fall into the category of \"meeting\" `scheduledType`.\n\n* If `meetingType` equals \"meeting\", a maximum of 10000 meeting instances can be listed even if pagination is enabled.\n\n* If `isModified` parameter is specified, the returned array only has items which have been modified to exceptional meetings. This parameter only applies to scheduled meeting.\n\n* If any of the `hasChat`, `hasRecording`, `hasTranscription`, `hasClosedCaption`, `hasPolls `, `hasQA` and `hasSlido` parameters is specified, the `meetingType` must be \"meeting\" and `state` must be \"ended\". These parameters are null by default.\n\n* The `current` parameter only applies to meeting series. If it's `false`, the `start` and `end` attributes of each returned meeting series object are for the first scheduled meeting of that series. If it's `true` or not specified, the `start` and `end` attributes are for the scheduled meeting which is ready to start or join or the upcoming scheduled meeting of that series.\n\n* If `from` and `to` are specified, the operation returns an array of meeting objects in that specified time range.\n\n* If the parameter `siteUrl` has a value, the operation lists meetings on the specified site; otherwise, lists meetings on the user's all sites. All available Webex sites of the user can be retrieved by `Get Site List` API.\n\n* `trackingCodes` is not supported for ended meeting instances.\n\n* A full admin or a content admin can list all the ended and ongoing meeting instances of the organization he manages with the `meeting:admin_schedule_read` scope and `meetingType=meeting` parameter.\n\n* To learn more about which attributes are available for different meeting states, please refer to [Available Meeting Attributes for Different Meeting States](/docs/meetings#available-meeting-attributes-for-different-meeting-states).\n\n#### Request Header\n\n* `password`: Meeting password. Required when the meeting is protected by a password and the current user is not privileged to view it if they are not a host, cohost or invitee of the meeting.\n\n* `timezone`: [Time zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List) for time stamps in response body, defined in conformance with the [IANA time zone database](https://www.iana.org/time-zones). The default value is `UTC` if not specified.",
+        "operationId": "listMeetings",
+        "description": "<div><Callout type=\"info\">The previous `List Meetings of a Meeting Series` API is merged into the [List Meetings](/docs/api/v1/meetings/list-meetings) API.</Callout></div>\n\nRetrieves details for meetings with a specified meeting number, web link, meeting type, etc. Please note that there are various products in the [Webex Suite](https://www.webex.com/collaboration-suite.html) such as `Meetings` and `Events`. Currently, only meetings of the `Meetings` product are supported by this API, meetings of others in the suite are not supported. Ad-hoc meetings created by [Create a Meeting](/docs/api/v1/meetings/create-a-meeting) with `adhoc` of `true` and a `roomId` will not be listed, but the ended and ongoing ad-hoc meeting instances will be listed.\n\nLists scheduled meeting and meeting instances of a meeting series identified by `meetingSeriesId`. Scheduled meetings of an ad-hoc meeting created by [Create a Meeting](/docs/api/v1/meetings/create-a-meeting) with `adhoc` of `true` and a `roomId` are not listed, but the ended and ongoing meeting instances of it are. Each _scheduled meeting_ or _meeting_ instance of a _meeting series_ has its own `start`, `end`, etc. Thus, for example, when a daily meeting has been scheduled from `2019-04-01` to `2019-04-10`, there are 10 scheduled meeting instances in this series, one instance for each day, and each one has its own attributes. When a scheduled meeting has been started and ended or is happening, there are even more ended or in-progress meeting instances.\n\nLong result sets are split into [pages](/docs/basics#pagination).\n\n* The default value of `meetingSeries` will be used if `meetingType` is not specified. When listing meetings with `meetingType=meetingSeries` implicitly or explicitly, the API returns all the recurring meeting series where the user is the meeting host or an invitee to the meeting. Please note that a meeting with no `recurrence` attribute is considered a meeting series with only one occurrence and it can also be listed with `meetingType=meetingSeries`. A recurring meeting series may have multiple occurrences which are scattered over weeks, months, or years. So, any meeting series that overlaps with the time range specified by `from` and `to` will be listed. For example, a monthly meeting series with `start=2024-01-01T10:00:00Z`, `end=2024-01-01T11:00:00Z` and `recurrence=FREQ=MONTHLY;INTERVAL=1;BYMONTHDAY=1;UNTIL=20250210T000000Z` can be listed with `meetingType=meetingSeries&from=2024-10-01&to=2024-11-01` even if the `start` and `end` are not in the specified time range.\n\n* If `meetingType` is specified and equals `meeting`, it lists ongoing and ended instances of the meeting series. The default value of `from` and `to` is: `from` equals the current date and time minus 7 days, and `to` equals the current date and time.\n\n* If `meetingSeriesId` is specified, `meetingNumber`, `webLink`, `roomId`, `current`, `integrationTag`, `scheduledType`, `siteUrl` will be ignored.\n\n* If `meetingNumber` is specified, the operation returns an array of meeting objects specified by the `meetingNumber`. Each object in the array can be a scheduled meeting or a meeting series depending on whether the `current` parameter is `true` or `false`, and each object contains the simultaneous interpretation object. When `meetingNumber` is specified, parameters of `from`, `to`, `meetingType`, `state`, `isModified` and `siteUrl` will be ignored. Please note that `meetingNumber`, `webLink` and `roomId` are mutually exclusive and they cannot be specified simultaneously.\n\n* If `webLink` is specified, the operation returns an array of meeting objects specified by the `webLink`. Each object in the array is a scheduled meeting, and each object contains the simultaneous interpretation object. When `webLink` is specified, parameters of `current`, `from`, `to`, `meetingType`, `state`, `isModified` and `siteUrl` will be ignored. Please note that `meetingNumber`, `webLink` and `roomId` are mutually exclusive and they cannot be specified simultaneously.\n\n* If `roomId` is specified, the operation returns an array of meeting objects of the Webex space specified by the `roomId`. When `roomId` is specified, parameters of `current`, `meetingType`, `state` and `isModified` will be ignored. The meeting objects are queried on the user's preferred site if no `siteUrl` is specified; otherwise, queried on the specified site. `meetingNumber`, `webLink` and `roomId` are mutually exclusive and they cannot be specified simultaneously.\n\n* If `state` parameter is specified, the returned array only has items in the specified state. If `state` is not specified, return items of all states.\n\n* If `meetingType` equals \"meetingSeries\", the `scheduledType` parameter can be \"meeting\", \"webinar\" or null. If `scheduledType` is specified, the returned array only has items of the specified scheduled type; otherwise, it has items of \"meeting\" and \"webinar\".\n\n* If `meetingType` equals \"scheduledMeeting\", the `scheduledType` parameter can be \"meeting\", \"webinar\", \"personalRoomMeeting\" or null. If `scheduledType` is specified, the returned array only has items of the specified scheduled type; otherwise, it has items of all scheduled types.\n\n* If `meetingType` equals \"meeting\", the `scheduledType` parameter can be \"meeting\", \"webinar\" or null. If `scheduledType` is specified, the returned array only has items of the specified scheduled type; otherwise, it has items of \"meeting\" and \"webinar\". Please note that ended or in-progress meeting instances of [personal room](https://help.webex.com/en-us/article/nul0wut/Webex-Personal-Rooms-in-Webex-Meetings) also fall into the category of \"meeting\" `scheduledType`.\n\n* If `meetingType` equals \"meeting\", a maximum of 10000 meeting instances can be listed even if pagination is enabled.\n\n* If `isModified` parameter is specified, the returned array only has items which have been modified to exceptional meetings. This parameter only applies to scheduled meeting.\n\n* If any of the `hasChat`, `hasRecording`, `hasTranscription`, `hasClosedCaption`, `hasPolls `, `hasQA` and `hasSlido` parameters is specified, the `meetingType` must be \"meeting\" and `state` must be \"ended\". These parameters are null by default.\n\n* The `current` parameter only applies to meeting series. If it's `false`, the `start` and `end` attributes of each returned meeting series object are for the first scheduled meeting of that series. If it's `true` or not specified, the `start` and `end` attributes are for the scheduled meeting which is ready to start or join or the upcoming scheduled meeting of that series.\n\n* If `from` and `to` are specified, the operation returns an array of meeting objects in that specified time range.\n\n* If the parameter `siteUrl` has a value, the operation lists meetings on the specified site; otherwise, lists meetings on the user's all sites. All available Webex sites of the user can be retrieved by `Get Site List` API.\n\n* `trackingCodes` is not supported for ended meeting instances.\n\n* A full admin or a content admin can list all the ended and ongoing meeting instances of the organization he manages with the `meeting:admin_schedule_read` scope and `meetingType=meeting` parameter.\n\n* To learn more about which attributes are available for different meeting states, please refer to [Available Meeting Attributes for Different Meeting States](/docs/meetings#available-meeting-attributes-for-different-meeting-states).\n\n#### Request Header\n\n* `password`: Meeting password. Required when the meeting is protected by a password and the current user is not privileged to view it if they are not a host, cohost or invitee of the meeting.\n\n* `timezone`: [Time zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List) for time stamps in response body, defined in conformance with the [IANA time zone database](https://www.iana.org/time-zones). The default value is `UTC` if not specified.",
         "tags": [
           "Meetings"
         ],
@@ -8430,7 +8430,7 @@
           {
             "name": "meetingSeriesId",
             "in": "query",
-            "description": "Unique identifier for the meeting series. The meeting ID of a scheduled [personal room](https://help.webex.com/en-us/article/nul0wut/Webex-Personal-Rooms-in-Webex-Meetings) meeting is not supported.",
+            "description": "Unique identifier for the meeting series. The meeting ID of a scheduled [personal room](https://help.webex.com/en-us/article/nul0wut/Webex-Personal-Rooms-in-Webex-Meetings) meeting is not supported. If `meetingSeriesId` is specified, it lists all occurrences and instances of the meeting series by default; with `meetingType` of `scheduledMeeting`, it lists occurrences; with `meetingType` of `meeting`, it lists ongoing and ended instances.",
             "required": false,
             "example": "25bbf831-5be9-4c25-b4b0-9b592c8a086b",
             "schema": {
@@ -8440,31 +8440,28 @@
           {
             "name": "max",
             "in": "query",
-            "description": "Limit the maximum number of meetings in the response, up to 100. This parameter is ignored if `meetingNumber`, `webLink` or `roomId` is specified.",
+            "description": "Limit the maximum number of meetings in the response, up to 100. This parameter is ignored if `meetingNumber`, `webLink` or `roomId` is specified. The default value is 10.",
             "example": "100",
             "schema": {
-              "type": "number",
-              "default": 10
+              "type": "number"
             }
           },
           {
             "name": "from",
             "in": "query",
-            "description": "Start date and time (inclusive) for the range for which meetings are to be returned in any [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) compliant format. `from` cannot be after `to`. This parameter will be ignored if `meetingNumber`, `webLink` or `roomId` is specified.",
+            "description": "Start date and time (inclusive) for the range for which meetings are to be returned in any [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) compliant format. `from` cannot be after `to`. This parameter will be ignored if `meetingNumber`, `webLink` or `roomId` is specified.\n\nWhen `meetingType` is `meetingSeries`(either explicitly set or by default), if `to` is specified, the default value for `from` is `to` minus 7 days. If `to` is also not specified, the default value for `from` is the current date and time. When `meetingType` is `scheduledMeeting`, `from` is the same as above. When `meetingType` is `meeting`, if `to` is specified, the default value for `from` is `to` minus 7 days. If `to` is also not specified, the default value for `from` is 7 days before the current date and time.",
             "example": "2019-03-18T09:30:00+08:00",
             "schema": {
-              "type": "string",
-              "default": "When `meetingType` is `scheduledMeeting` by explicitly setting it or defaulting to this value, the `from` if not specified equals `to` minus 7 days; if `to` is also not specified, the default value for `from` is the current date and time.  When `meetingType` is `meeting`, the `from` if not specified equals `to` minus 7 days; if `to` is also not specified, the default value for `from` is 7 days before the current date and time."
+              "type": "string"
             }
           },
           {
             "name": "to",
             "in": "query",
-            "description": "End date and time (exclusive) for the range for which meetings are to be returned in any [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) compliant format. `to` cannot be before `from`. This parameter will be ignored if `meetingNumber`, `webLink` or `roomId` is specified.",
+            "description": "End date and time (exclusive) for the range for which meetings are to be returned in any [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) compliant format. `to` cannot be before `from`. This parameter will be ignored if `meetingNumber`, `webLink` or `roomId` is specified.\n\nWhen `meetingType` is `meetingSeries`(either explicitly set or by default), if `from` is specified, the default value for `to` is `from` plus 7 days. If `from` is also not specified, the default value for `to` is 7 days after the current date and time. When `meetingType` is `scheduledMeeting`, `to` is the same as above. When `meetingType` is `meeting`, if `from` is specified, the default value for `to` is `from` plus 7 days. If `from` is also not specified, the default value for `to` is the current date and time.",
             "example": "2019-03-25T09:30:00+08:00",
             "schema": {
-              "type": "string",
-              "default": "When `meetingType` is `scheduledMeeting` by explicitly setting it or defaulting to this value, the `to` if not specified equals `from` plus 7 days; if `from` is also not specified, the default value for `to` is 7 days after current date and time.  When `meetingType` is `meeting`, the `to` if not specified equals `from` plus 7 days; if `from` is also not specified, the default value for `to` is the current date and time."
+              "type": "string"
             }
           },
           {
@@ -8474,7 +8471,6 @@
             "example": "scheduledMeeting",
             "schema": {
               "type": "string",
-              "default": "meetingSeries",
               "enum": [
                 "meetingSeries",
                 "scheduledMeeting",
@@ -8519,7 +8515,7 @@
             "name": "isModified",
             "in": "query",
             "description": "Flag identifying whether a meeting has been modified. Only applies to scheduled meetings. If `true`, only return modified scheduled meetings; if `false`, only return unmodified scheduled meetings; if not specified, all scheduled meetings will be returned.",
-            "example": "false",
+            "example": false,
             "schema": {
               "type": "boolean",
               "default": false
@@ -8529,7 +8525,7 @@
             "name": "hasChat",
             "in": "query",
             "description": "Flag identifying whether a meeting has a chat log. Only applies to ended meeting instances. If `true`, only return meeting instances which have chats; if `false`, only return meeting instances which have no chats; if not specified, all meeting instances will be returned.",
-            "example": "false",
+            "example": false,
             "schema": {
               "type": "boolean",
               "default": false
@@ -8539,7 +8535,7 @@
             "name": "hasRecording",
             "in": "query",
             "description": "Flag identifying meetings which have been recorded. Only applies to ended meeting instances. If true, only return meeting instances which have been recorded; if false, only return meeting instances which have not been recorded; if not specified, all meeting instances will be returned.",
-            "example": "false",
+            "example": false,
             "schema": {
               "type": "boolean",
               "default": false
@@ -8549,7 +8545,7 @@
             "name": "hasTranscription",
             "in": "query",
             "description": "Flag identifying meetings with transcripts. Only applies to ended meeting instances. If `true`, only return meeting instances which have transcripts; if `false`, only return meeting instances which have no transcripts; if not specified, all meeting instances will be returned.",
-            "example": "false",
+            "example": false,
             "schema": {
               "type": "boolean",
               "default": false
@@ -8559,7 +8555,7 @@
             "name": "hasClosedCaption",
             "in": "query",
             "description": "Flag identifying meetings with closed captions. Only applies to ended meeting instances. If `true`, only return meeting instances which have closed captions; if `false`, only return meeting instances which have no closed captions; if not specified, all meeting instances will be returned.",
-            "example": "false",
+            "example": false,
             "schema": {
               "type": "boolean",
               "default": false
@@ -8569,7 +8565,7 @@
             "name": "hasPolls",
             "in": "query",
             "description": "Flag identifying meetings with polls. Only applies to ended meeting instances. If `true`, only return meeting instances which have polls; if `false`, only return meeting instances which have no polls; if not specified, all meeting instances will be returned.",
-            "example": "false",
+            "example": false,
             "schema": {
               "type": "boolean",
               "default": false
@@ -8579,7 +8575,7 @@
             "name": "hasQA",
             "in": "query",
             "description": "Flag identifying meetings with Q&A. Only applies to ended meeting instances. If `true`, only return meeting instances which have Q&A; if `false`, only return meeting instances which have no Q&A; if not specified, all meeting instances will be returned.",
-            "example": "false",
+            "example": false,
             "schema": {
               "type": "boolean",
               "default": false
@@ -8589,7 +8585,7 @@
             "name": "hasSlido",
             "in": "query",
             "description": "Flag identifying meetings with Slido interactions. Only applies to ended meeting instances. If `true`, only return meeting instances which have Slido interactions like Q&A or polling; if `false`, only return meeting instances which have no Slido interactions; if not specified, all meeting instances will be returned.",
-            "example": "false",
+            "example": false,
             "schema": {
               "type": "boolean",
               "default": false
@@ -8599,7 +8595,7 @@
             "name": "current",
             "in": "query",
             "description": "Flag identifying to retrieve the current scheduled meeting of the meeting series or the entire meeting series. This parameter only applies to scenarios where `meetingNumber` is specified and the meeting is not an exceptional meeting from a meeting series. If it's `true`, return the scheduled meeting of the meeting series which is ready to join or start or the upcoming scheduled meeting of the meeting series; if it's `false`, return the entire meeting series.",
-            "example": "false",
+            "example": false,
             "schema": {
               "type": "boolean",
               "default": true
@@ -8626,7 +8622,7 @@
           {
             "name": "integrationTag",
             "in": "query",
-            "description": "External key created by an integration application. This parameter is used by the integration application to query meetings by a key in its own domain such as a Zendesk ticket ID, a Jira ID, a Salesforce Opportunity ID, etc.",
+            "description": "External key created by an integration application. This parameter is used by the integration application to query meetings by a key in its own domain such as a Zendesk ticket ID, a Jira ID, a Salesforce Opportunity ID, etc. An integrationTag created by one client cannot be accessed or used as a filtering parameter by another client. For example, if a meeting has an `integrationTag` of \"Sales\" which is created by the client behind the developer portal, then this integrationTag can't be accessed on the meeting or its recordings by another client. Neither can it be used to filter meetings or recordings by a client other than the one that created the integrationTag of \"Sales\".",
             "example": "dbaeceebea5c4a63ac9d5ef1edfe36b9",
             "schema": {
               "type": "string"
@@ -8668,6 +8664,7 @@
                 },
                 "example": {
                   "id": "870f51ff287b41be84648412901e0402",
+                  "meetingSeriesId": "870f51ff287b41be84648412901e0402",
                   "meetingNumber": "123456789",
                   "title": "Example Daily Meeting",
                   "agenda": "Example Agenda",
@@ -8967,7 +8964,7 @@
           }
         },
         "summary": "Get a Meeting",
-        "operationId": "Get a Meeting",
+        "operationId": "getMeetingById",
         "description": "Retrieves details for a meeting with a specified meeting ID.\n\n* If the `meetingId` value specified is for a meeting series and `current` is `true`, the operation returns details for the current scheduled meeting of the series, i.e. the scheduled meeting ready to join or start or the upcoming scheduled meeting of the meeting series.\n\n* If the `meetingId` value specified is for a meeting series and `current` is `false` or `current` is not specified, the operation returns details for the entire meeting series.\n\n* If the `meetingId` value specified is for a scheduled meeting from a meeting series, the operation returns details for that scheduled meeting.\n\n* If the `meetingId` value specified is for a meeting instance which is happening or has happened, the operation returns details for that meeting instance.\n\n* `trackingCodes` is not supported for ended meeting instances.\n\n* To learn more about which attributes are available for different meeting states, please refer to [Available Meeting Attributes for Different Meeting States](/docs/meetings#available-meeting-attributes-for-different-meeting-states).\n\n#### Request Header\n\n* `password`: Meeting password. Required when the meeting is protected by a password and the current user is not privileged to view it if they are not a host, cohost or invitee of the meeting.\n\n* `timezone`: [Time zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List) for time stamps in response body, defined in conformance with the [IANA time zone database](https://www.iana.org/time-zones). The default value is `UTC` if not specified.",
         "tags": [
           "Meetings"
@@ -8987,10 +8984,10 @@
             "name": "current",
             "in": "query",
             "description": "Whether or not to retrieve only the current scheduled meeting of the meeting series, i.e. the meeting ready to join or start or the upcoming meeting of the meeting series. If it's `true`, return details for the current scheduled meeting of the series, i.e. the scheduled meeting ready to join or start or the upcoming scheduled meeting of the meeting series. If it's `false` or not specified, return details for the entire meeting series. This parameter only applies to meeting series.",
-            "example": "false",
+            "example": false,
             "schema": {
               "type": "boolean",
-              "default": "false"
+              "default": false
             }
           },
           {
@@ -9239,7 +9236,7 @@
           }
         },
         "summary": "Patch a Meeting",
-        "operationId": "Patch a Meeting",
+        "operationId": "patchMeeting",
         "description": "Updates details for a meeting with a specified meeting ID. This operation applies to meeting series and scheduled meetings. It doesn't apply to ended or in-progress meeting instances. Ad-hoc meetings created by [Create a Meeting](/docs/api/v1/meetings/create-a-meeting) with `adhoc` of `true` and a `roomId` cannot be updated.\n\n* If the `meetingId` value specified is for a scheduled meeting, the operation updates that scheduled meeting without impact on other scheduled meeting of the parent meeting series.\n\n* If the `meetingId` value specified is for a meeting series, the operation updates the entire meeting series. **Note**: If the value of `start`, `end`, or `recurrence` for the meeting series is changed, any exceptional scheduled meeting in this series is cancelled when the meeting series is updated.\n\n* The `agenda`, `recurrence`, and `trackingCodes` attributes can be specified as `null` so that these attributes become null and hidden from the response after the patch. Note that it's the keyword `null` not the string \"null\".\n\n* If the parameter `recurrence` has a value, a recurring meeting is created based on the rule defined by the value of `recurrence`. For a non-recurring meeting which has no `recurrence` value set, its `meetingType` is also `meetingSeries` which is a meeting series with only one occurrence in Webex meeting modeling. If you specify a `recurrence` like `FREQ=DAILY;INTERVAL=1` which never ends, the furthest date of the series is unlimited. You can also specify a `recurrence` with a very distant ending date in the future, e.g. `FREQ=DAILY;INTERVAL=1;UNTIL=21241001T000000Z`, but the actual furthest date accepted for the recurring meeting is five years from now. Specifically, if it has an ending date, there can be up to 5 occurrences for a yearly meeting, 60 occurrences for a monthly meeting, 261 occurrences for a weekly meeting, or 1826 occurrences for a daily meeting.\n\n* You can't update a meeting that starts 10 years or more in the future.\n\n* Updating a meeting in the API that was created via a calendar connector is not allowed. The meeting may be updated in Webex, but the calendar event may not be updated, resulting in duplicate entries. This action is therefore blocked. In case you must overwrite this behavior, please contact devsupport@webex.com.",
         "tags": [
           "Meetings"
@@ -9568,7 +9565,7 @@
           }
         },
         "summary": "Update a Meeting",
-        "operationId": "Update a Meeting",
+        "operationId": "updateMeeting",
         "description": "<div>\n<Callout type=\"warning\">The PUT method is still supported and behaves the same as before, will be deprecated in the future. Use the PATCH method instead.</Callout>\n</div>\n\nUpdates details for a meeting with a specified meeting ID. This operation applies to meeting series and scheduled meetings. It doesn't apply to ended or in-progress meeting instances. Ad-hoc meetings created by [Create a Meeting](/docs/api/v1/meetings/create-a-meeting) with `adhoc` of `true` and a `roomId` cannot be updated.\n\n* If the `meetingId` value specified is for a scheduled meeting, the operation updates that scheduled meeting without impact on other scheduled meeting of the parent meeting series.\n\n* If the `meetingId` value specified is for a meeting series, the operation updates the entire meeting series. **Note**: If the value of `start`, `end`, or `recurrence` for the meeting series is changed, any exceptional scheduled meeting in this series is cancelled when the meeting series is updated.\n\n* If the parameter `recurrence` has a value, a recurring meeting is created based on the rule defined by the value of `recurrence`. For a non-recurring meeting which has no `recurrence` value set, its `meetingType` is also `meetingSeries` which is a meeting series with only one occurrence in Webex meeting modeling. If you specify a `recurrence` like `FREQ=DAILY;INTERVAL=1` which never ends, the furthest date of the series is unlimited. You can also specify a `recurrence` with a very distant ending date in the future, e.g. `FREQ=DAILY;INTERVAL=1;UNTIL=21241001T000000Z`, but the actual furthest date accepted for the recurring meeting is five years from now. Specifically, if it has an ending date, there can be up to 5 occurrences for a yearly meeting, 60 occurrences for a monthly meeting, 261 occurrences for a weekly meeting, or 1826 occurrences for a daily meeting.\n\n* You can't update a meeting that starts 10 years or more in the future.\n\n* Updating a meeting created using the API via a calendar connector is not supported. While the meeting may be updated in Webex, the calendar event may not be updated resulting in duplicate entries. If you need to override this behavior, contact devsupport@webex.com.",
         "tags": [
           "Meetings"
@@ -9738,7 +9735,7 @@
           }
         },
         "summary": "Delete a Meeting",
-        "operationId": "Delete a Meeting",
+        "operationId": "deleteMeeting",
         "description": "Deletes a meeting with a specified meeting ID. The deleted meeting cannot be recovered. This operation applies to meeting series and scheduled meetings. It doesn't apply to ended or in-progress meeting instances. Ad-hoc meetings created by [Create a Meeting](/docs/api/v1/meetings/create-a-meeting) with `adhoc` of `true` and a `roomId` cannot be deleted.\n\n* If the `meetingId` value specified is for a scheduled meeting, the operation deletes that scheduled meeting without impact on other scheduled meeting of the parent meeting series.\n\n* If the `meetingId` value specified is for a meeting series, the operation deletes the entire meeting series.",
         "tags": [
           "Meetings"
@@ -9767,10 +9764,10 @@
             "name": "sendEmail",
             "in": "query",
             "description": "Whether or not to send emails to host and invitees. It is an optional field and default value is true.",
-            "example": "true",
+            "example": true,
             "schema": {
               "type": "boolean",
-              "default": "true"
+              "default": true
             }
           }
         ]
@@ -9842,7 +9839,7 @@
           }
         },
         "summary": "Join a Meeting",
-        "operationId": "Join a Meeting",
+        "operationId": "meetingJoin",
         "description": "Retrieves links for a meeting with a specified `meetingId`, `meetingNumber`, or `webLink` that allow users to start or join the meeting directly without logging in and entering a password.\n\n* Please note that `meetingId`, `meetingNumber` and `webLink` are mutually exclusive and they cannot be specified simultaneously.\n\n* If `joinDirectly` is true or not specified, the response will have HTTP response code 302 and the request will be redirected to `joinLink`; otherwise, the response will have HTTP response code 200 and `joinLink` will be returned in response body.\n\n* Only the meeting host or cohost can generate the `startLink`.\n\n* An admin user or a [Service App](/docs/service-apps) can generate the `startLink` and `joinLink` on behalf of another meeting host using the `hostEmail` parameter. When a [Service App](/docs/service-apps) generates the `startLink` and `joinLink`, the `hostEmail` parameter is required. The `hostEmail` parameter only applies to meetings, not webinars.\n\n* For Service Apps, `hostEmail` must be provided in the request.\n\n* Generating a join link or a start link before the time specified by `joinBeforeHostMinutes` for a webinar is not supported.\n\n* The `joinLink` and `startLink` generated by the API only work in a web browser, not in mobile apps. When the `joinLink` or `startLink` is used in a mobile app, the user can't join or start the meeting directly by the dial-in or dial-out phone numbers displayed in the app.\n\n* When `createJoinLinkAsWebLink` or `createStartLinkAsWebLink` is set to true, a user cannot join or start the meeting using the `joinLink` or `startLink` returned in the response, and must complete the login flow. Those options are typically useful if mandatory user login is configured in Control Hub.\n\n* Appending the parameter `&launchApp=true` to the weblink will launch directly into the browser experience without showing the user the download selection for the native client.\n\n* [Embedded Apps](/docs/embedded-apps) are not supported in a meeting which is started from the `startLink` generated by this API.\n\n<div><Callout type=\"warning\">When the `email` or `displayName` is omitted from the API request, the backend inserts the data from the user making the request. That may lead to situations where an attendee is shown in the roster with the hostname which should be avoided. In the future, we will make those two fields required.</Callout></div>",
         "tags": [
           "Meetings"
@@ -10000,7 +9997,7 @@
           }
         },
         "summary": "List Meeting Templates",
-        "operationId": "List Meeting Templates",
+        "operationId": "listTemplates",
         "description": "Retrieves the list of meeting templates that is available for the authenticated user.\n\nThere are separate lists of meeting templates for different `templateType`, `locale` and `siteUrl`.\n\n* If `templateType` is specified, the operation returns an array of meeting template objects specified by the `templateType`; otherwise, returns an array of meeting template objects of all template types.\n\n* If `locale` is specified, the operation returns an array of meeting template objects specified by the `locale`; otherwise, returns an array of meeting template objects of the default `en_US` locale. Refer to [Meeting Template Locales](/docs/meetings#meeting-template-locales) for all the locales supported by Webex.\n\n* If the parameter `siteUrl` has a value, the operation lists meeting templates on the specified site; otherwise, lists meeting templates on the user's preferred site. All available Webex sites and preferred site of the user can be retrieved by `Get Site List` API.",
         "tags": [
           "Meetings"
@@ -10025,15 +10022,14 @@
             "description": "Locale for the meeting template objects being requested. If not specified, return meeting templates of the default `en_US` locale. Refer to [Meeting Template Locales](/docs/meetings#meeting-template-locales) for all the locales supported by Webex.",
             "example": "en_US",
             "schema": {
-              "type": "string",
-              "default": "en_US"
+              "type": "string"
             }
           },
           {
             "name": "isDefault",
             "in": "query",
             "description": "The value is `true` or `false`. If it's `true`, return the default meeting templates; if it's `false`, return the non-default meeting templates. If it's not specified, return both default and non-default meeting templates.",
-            "example": "false",
+            "example": false,
             "schema": {
               "type": "boolean"
             }
@@ -10042,7 +10038,7 @@
             "name": "isStandard",
             "in": "query",
             "description": "The value is `true` or `false`. If it's `true`, return the standard meeting templates; if it's `false`, return the non-standard meeting templates. If it's not specified, return both standard and non-standard meeting templates.",
-            "example": "false",
+            "example": false,
             "schema": {
               "type": "boolean"
             }
@@ -10271,7 +10267,7 @@
           }
         },
         "summary": "Get a Meeting Template",
-        "operationId": "Get a Meeting Template",
+        "operationId": "getTemplateById",
         "description": "Retrieves details for a meeting template with a specified meeting template ID.\n\n#### Request Header\n\n* `timezone`: [Time zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List) for time stamps in response body, defined in conformance with the [IANA time zone database](https://www.iana.org/time-zones). The default value is `UTC` if not specified.",
         "tags": [
           "Meetings"
@@ -10375,7 +10371,7 @@
           }
         },
         "summary": "Get Meeting Control Status",
-        "operationId": "Get Meeting Control Status",
+        "operationId": "getMeetingControl",
         "description": "Get the meeting control of a live meeting, which is consisted of meeting control status on \"locked\" and \"recording\" to reflect whether the meeting is currently locked and there is recording in progress.",
         "tags": [
           "Meetings"
@@ -10458,7 +10454,7 @@
           }
         },
         "summary": "Update Meeting Control Status",
-        "operationId": "Update Meeting Control Status",
+        "operationId": "updateMeetingControl",
         "description": "To start, pause, resume, or stop a meeting recording; To lock or unlock an on-going meeting.",
         "tags": [
           "Meetings"
@@ -10587,7 +10583,7 @@
           }
         },
         "summary": "List Meeting Session Types",
-        "operationId": "List Meeting Session Types",
+        "operationId": "listMeetingSessionTypes",
         "description": "List all the meeting session types enabled for a given user.",
         "tags": [
           "Meetings"
@@ -10681,7 +10677,7 @@
           }
         },
         "summary": "Get a Meeting Session Type",
-        "operationId": "Get a Meeting Session Type",
+        "operationId": "getMeetingSessionTypeById",
         "description": "Retrieves details for a meeting session type with a specified session type ID.",
         "tags": [
           "Meetings"
@@ -10829,7 +10825,7 @@
           }
         },
         "summary": "Get registration form for a meeting",
-        "operationId": "Get registration form for a meeting",
+        "operationId": "getMeetingRegistration",
         "description": "Get a meeting's registration form to understand which fields are required.",
         "tags": [
           "Meetings"
@@ -10849,10 +10845,10 @@
             "name": "current",
             "in": "query",
             "description": "Whether or not to retrieve only the current scheduled meeting of the meeting series, i.e. the meeting ready to join or start or the upcoming meeting of the meeting series. If it's `true`, return details for the current scheduled meeting of the series, i.e. the scheduled meeting ready to join or start or the upcoming scheduled meeting of the meeting series. If it's `false` or not specified, return details for the entire meeting series. This parameter only applies to meeting series.",
-            "example": "false",
+            "example": false,
             "schema": {
               "type": "boolean",
-              "default": "false"
+              "default": false
             }
           },
           {
@@ -11034,7 +11030,7 @@
           }
         },
         "summary": "Update Meeting Registration Form",
-        "operationId": "Update Meeting Registration Form",
+        "operationId": "updateMeetingRegistration",
         "description": "Enable or update a registration form for a meeting.",
         "tags": [
           "Meetings"
@@ -11200,7 +11196,7 @@
           }
         },
         "summary": "Delete Meeting Registration Form",
-        "operationId": "Delete Meeting Registration Form",
+        "operationId": "deleteMeetingRegistration",
         "description": "Disable the registration form for a meeting.",
         "tags": [
           "Meetings"
@@ -11320,7 +11316,7 @@
           }
         },
         "summary": "Register a Meeting Registrant",
-        "operationId": "Register a Meeting Registrant",
+        "operationId": "createRegistrant",
         "description": "Register a new registrant for a meeting. When a meeting or webinar is created, this API can only be used if Registration is checked on the page or the registration attribute is specified through the [Create a Meeting](/docs/api/v1/meetings/create-a-meeting) API.",
         "tags": [
           "Meetings"
@@ -11340,10 +11336,10 @@
             "name": "current",
             "in": "query",
             "description": "Whether or not to retrieve only the current scheduled meeting of the meeting series, i.e. the meeting ready to join or start or the upcoming meeting of the meeting series. If it's `true`, return details for the current scheduled meeting of the series, i.e. the scheduled meeting ready to join or start or the upcoming scheduled meeting of the meeting series. If it's `false` or not specified, return details for the entire meeting series. This parameter only applies to meeting series.",
-            "example": "false",
+            "example": false,
             "schema": {
               "type": "boolean",
-              "default": "false"
+              "default": false
             }
           },
           {
@@ -11497,7 +11493,7 @@
           }
         },
         "summary": "List Meeting Registrants",
-        "operationId": "List Meeting Registrants",
+        "operationId": "listMeetingRegistrants",
         "description": "Meeting's host and cohost can retrieve the list of registrants for a meeting with a specified meeting Id.",
         "tags": [
           "Meetings"
@@ -11516,11 +11512,10 @@
           {
             "name": "max",
             "in": "query",
-            "description": "Limit the maximum number of registrants in the response, up to 100.",
+            "description": "Limit the maximum number of registrants in the response, up to 100. The default is 10.",
             "example": "100",
             "schema": {
-              "type": "number",
-              "default": 10
+              "type": "number"
             }
           },
           {
@@ -11536,10 +11531,10 @@
             "name": "current",
             "in": "query",
             "description": "Whether or not to retrieve only the current scheduled meeting of the meeting series, i.e. the meeting ready to join or start or the upcoming meeting of the meeting series. If it's `true`, return details for the current scheduled meeting of the series, i.e. the scheduled meeting ready to join or start or the upcoming scheduled meeting of the meeting series. If it's `false` or not specified, return details for the entire meeting series. This parameter only applies to meeting series.",
-            "example": "false",
+            "example": false,
             "schema": {
               "type": "boolean",
-              "default": "false"
+              "default": false
             }
           },
           {
@@ -11675,7 +11670,7 @@
           }
         },
         "summary": "Batch register Meeting Registrants",
-        "operationId": "Batch register Meeting Registrants",
+        "operationId": "createRegistrants",
         "description": "Bulk register new registrants for a meeting. When a meeting or webinar is created, this API can only be used if Registration is checked on the page or the registration attribute is specified through the [Create a Meeting](/docs/api/v1/meetings/create-a-meeting) API.",
         "tags": [
           "Meetings"
@@ -11695,10 +11690,10 @@
             "name": "current",
             "in": "query",
             "description": "Whether or not to retrieve only the current scheduled meeting of the meeting series, i.e. the meeting ready to join or start or the upcoming meeting of the meeting series. If it's `true`, return details for the current scheduled meeting of the series, i.e. the scheduled meeting ready to join or start or the upcoming scheduled meeting of the meeting series. If it's `false` or not specified, return details for the entire meeting series. This parameter only applies to meeting series.",
-            "example": "false",
+            "example": false,
             "schema": {
               "type": "boolean",
-              "default": "false"
+              "default": false
             }
           },
           {
@@ -11854,7 +11849,7 @@
           }
         },
         "summary": "Get Detailed Information for a Meeting Registrant",
-        "operationId": "Get Detailed Information for a Meeting Registrant",
+        "operationId": "getRegistrant",
         "description": "Retrieves details for a meeting registrant with a specified registrant Id.",
         "tags": [
           "Meetings"
@@ -11884,10 +11879,10 @@
             "name": "current",
             "in": "query",
             "description": "Whether or not to retrieve only the current scheduled meeting of the meeting series, i.e. the meeting ready to join or start or the upcoming meeting of the meeting series. If it's `true`, return details for the current scheduled meeting of the series, i.e. the scheduled meeting ready to join or start or the upcoming scheduled meeting of the meeting series. If it's `false` or not specified, return details for the entire meeting series. This parameter only applies to meeting series.",
-            "example": "false",
+            "example": false,
             "schema": {
               "type": "boolean",
-              "default": "false"
+              "default": false
             }
           },
           {
@@ -11955,7 +11950,7 @@
           }
         },
         "summary": "Delete a Meeting Registrant",
-        "operationId": "Delete a Meeting Registrant",
+        "operationId": "deleteRegistrant",
         "description": "Meeting's host or cohost can delete a registrant with a specified registrant ID.",
         "tags": [
           "Meetings"
@@ -11985,10 +11980,10 @@
             "name": "current",
             "in": "query",
             "description": "Whether or not to retrieve only the current scheduled meeting of the meeting series, i.e. the meeting ready to join or start or the upcoming meeting of the meeting series. If it's `true`, return details for the current scheduled meeting of the series, i.e. the scheduled meeting ready to join or start or the upcoming scheduled meeting of the meeting series. If it's `false` or not specified, return details for the entire meeting series. This parameter only applies to meeting series.",
-            "example": "false",
+            "example": false,
             "schema": {
               "type": "boolean",
-              "default": "false"
+              "default": false
             }
           },
           {
@@ -12108,7 +12103,7 @@
           }
         },
         "summary": "Query Meeting Registrants",
-        "operationId": "Query Meeting Registrants",
+        "operationId": "queryMeetingRegistrants",
         "description": "Meeting's host and cohost can query the list of registrants for a meeting with a specified meeting ID and registrants email.",
         "tags": [
           "Meetings"
@@ -12127,21 +12122,20 @@
           {
             "name": "max",
             "in": "query",
-            "description": "Limit the maximum number of registrants in the response, up to 100.",
+            "description": "Limit the maximum number of registrants in the response, up to 100. The default is 10.",
             "example": "1000",
             "schema": {
-              "type": "number",
-              "default": 10
+              "type": "number"
             }
           },
           {
             "name": "current",
             "in": "query",
             "description": "Whether or not to retrieve only the current scheduled meeting of the meeting series, i.e. the meeting ready to join or start or the upcoming meeting of the meeting series. If it's `true`, return details for the current scheduled meeting of the series, i.e. the scheduled meeting ready to join or start or the upcoming scheduled meeting of the meeting series. If it's `false` or not specified, return details for the entire meeting series. This parameter only applies to meeting series.",
-            "example": "false",
+            "example": false,
             "schema": {
               "type": "boolean",
-              "default": "false"
+              "default": false
             }
           },
           {
@@ -12228,7 +12222,7 @@
           }
         },
         "summary": "Batch Update Meeting Registrants status",
-        "operationId": "Batch Update Meeting Registrants status",
+        "operationId": "batchUpdateMeetingRegistrantStatus",
         "description": "Meeting's host or cohost can update the set of registrants for a meeting. `cancel` means the registrant(s) will be moved back to the registration list. `bulkDelete` means the registrant(s) will be deleted.",
         "tags": [
           "Meetings"
@@ -12264,7 +12258,7 @@
             "name": "current",
             "in": "query",
             "description": "Whether or not to retrieve only the current scheduled meeting of the meeting series, i.e. the meeting ready to join or start or the upcoming meeting of the meeting series. If it's `true`, return details for the current scheduled meeting of the series, i.e. the scheduled meeting ready to join or start or the upcoming scheduled meeting of the meeting series. If it's `false` or not specified, return details for the entire meeting series. This parameter only applies to meeting series.\n    + Default: `false`\n",
-            "example": "false",
+            "example": false,
             "schema": {
               "type": "boolean"
             }
@@ -12421,7 +12415,7 @@
           }
         },
         "summary": "Update Meeting Simultaneous interpretation",
-        "operationId": "Update Meeting Simultaneous interpretation",
+        "operationId": "updateMeetingSimultaneousInterpretation",
         "description": "Updates simultaneous interpretation options of a meeting with a specified meeting ID. This operation applies to meeting series and scheduled meetings. It doesn't apply to ended or in-progress meeting instances.",
         "tags": [
           "Meetings"
@@ -12549,7 +12543,7 @@
           }
         },
         "summary": "Create a Meeting Interpreter",
-        "operationId": "Create a Meeting Interpreter",
+        "operationId": "createInterpreter",
         "description": "Assign an interpreter to a bi-directional simultaneous interpretation language channel for a meeting.",
         "tags": [
           "Meetings"
@@ -12669,7 +12663,7 @@
           }
         },
         "summary": "List Meeting Interpreters",
-        "operationId": "List Meeting Interpreters",
+        "operationId": "listInterpreters",
         "description": "Lists meeting interpreters for a meeting with a specified `meetingId`.\n\nThis operation can be used for meeting series, scheduled meeting and ended or ongoing meeting instance objects. If the specified `meetingId` is for a meeting series, the interpreters for the series will be listed; if the `meetingId` is for a scheduled meeting, the interpreters for the particular scheduled meeting will be listed; if the `meetingId` is for an ended or ongoing meeting instance, the interpreters for the particular meeting instance will be listed. See the [Webex Meetings](/docs/meetings#meeting-series-scheduled-meetings-and-meeting-instances) guide for more information about the types of meetings.\n\nThe list returned is sorted in descending order by when interpreters were created.",
         "tags": [
           "Meetings"
@@ -12767,7 +12761,7 @@
           }
         },
         "summary": "Get a Meeting Interpreter",
-        "operationId": "Get a Meeting Interpreter",
+        "operationId": "getInterpreterById",
         "description": "Retrieves details for a meeting interpreter identified by `meetingId` and `interpreterId` in the URI.",
         "tags": [
           "Meetings"
@@ -12891,7 +12885,7 @@
           }
         },
         "summary": "Update a Meeting Interpreter",
-        "operationId": "Update a Meeting Interpreter",
+        "operationId": "updateInterpreterById",
         "description": "Updates details for a meeting interpreter identified by `meetingId` and `interpreterId` in the URI.",
         "tags": [
           "Meetings"
@@ -12990,7 +12984,7 @@
           }
         },
         "summary": "Delete a Meeting Interpreter",
-        "operationId": "Delete a Meeting Interpreter",
+        "operationId": "deleteInterpreterById",
         "description": "Removes a meeting interpreter identified by `meetingId` and `interpreterId` in the URI. The deleted meeting interpreter cannot be recovered.",
         "tags": [
           "Meetings"
@@ -13029,10 +13023,10 @@
             "name": "sendEmail",
             "in": "query",
             "description": "If `true`, send email to the interpreter.",
-            "example": "true",
+            "example": true,
             "schema": {
               "type": "boolean",
-              "default": "true"
+              "default": true
             }
           }
         ]
@@ -13119,7 +13113,7 @@
           }
         },
         "summary": "List Meeting Breakout Sessions",
-        "operationId": "List Meeting Breakout Sessions",
+        "operationId": "listBreakoutSessions",
         "description": "Lists meeting breakout sessions for a meeting with a specified `meetingId`.\n\nThis operation can be used for meeting series, scheduled meeting and ended or ongoing meeting instance objects. See the [Webex Meetings](/docs/meetings#meeting-series-scheduled-meetings-and-meeting-instances) guide for more information about the types of meetings.\n\n* If the meeting of `meetingId` is in progress, the operation returns the breakout sessions which are currently held in the meeting.\n\n* If the meeting of `meetingId` is ended meeting instance, the operation returns the breakout sessions which happended during the meeting instance.\n\n* Otherwise, if it's a meeting series or scheduled meeting and it's not in progress, the operation returns the breakout sessions which are created when the meeting is scheduled.",
         "tags": [
           "Meetings"
@@ -13227,7 +13221,7 @@
           }
         },
         "summary": "Update Meeting Breakout Sessions",
-        "operationId": "Update Meeting Breakout Sessions",
+        "operationId": "updateBreakoutSessions",
         "description": "Updates breakout sessions of a meeting with a specified meeting ID in the pre-meeting state. This operation applies to meeting series and scheduled meetings.",
         "tags": [
           "Meetings"
@@ -13330,7 +13324,7 @@
           }
         },
         "summary": "Delete Meeting Breakout Sessions",
-        "operationId": "Delete Meeting Breakout Sessions",
+        "operationId": "deleteBreakoutSessions",
         "description": "Deletes breakout sessions with a specified meeting ID. The deleted breakout sessions cannot be recovered. The value of `enabledBreakoutSessions` attribute is set to `false` automatically.\nThis operation applies to meeting series and scheduled meetings. It doesn't apply to ended or in-progress meeting instances.",
         "tags": [
           "Meetings"
@@ -13532,7 +13526,7 @@
           }
         },
         "summary": "Get a Meeting Survey",
-        "operationId": "Get a Meeting Survey",
+        "operationId": "getSurveyByMeetingId",
         "description": "Retrieves details for a meeting survey identified by `meetingId`.\n\n#### Request Header\n\n* `hostEmail`: Email address for the meeting host. This parameter is only used if the user or application calling the API has the admin on-behalf-of scopes. If set, the admin may specify the email of a user in a site they manage and the API will return survey details of that user.",
         "tags": [
           "Meetings"
@@ -13715,7 +13709,7 @@
           }
         },
         "summary": "List Meeting Survey Results",
-        "operationId": "List Meeting Survey Results",
+        "operationId": "listSurveyResultsByMeetingId",
         "description": "Retrieves results for a meeting survey identified by `meetingId`.\n\n#### Request Header\n\n* `timezone`: Time zone for time stamps in response body, defined in conformance with the [IANA time zone database](https://www.iana.org/time-zones). The default value is `UTC` if not specified.\n\n* `hostEmail`: Email address for the meeting host. This parameter is only used if the user or application calling the API has the admin on-behalf-of scopes. If set, the admin may specify the email of a user in a site they manage and the API will return the survey results of that user.",
         "tags": [
           "Meetings"
@@ -13752,11 +13746,10 @@
           {
             "name": "max",
             "in": "query",
-            "description": "Limit the maximum number of meetings in the response, up to 100.",
+            "description": "Limit the maximum number of meetings in the response, up to 100. The default is 10.",
             "example": "100",
             "schema": {
-              "type": "number",
-              "default": 10
+              "type": "number"
             }
           },
           {
@@ -13868,7 +13861,7 @@
           }
         },
         "summary": "Get Meeting Survey Links",
-        "operationId": "Get Meeting Survey Links",
+        "operationId": "generateSurveyLink",
         "description": "Get survey links of a meeting for different users.\n\n#### Request Header\n\n* `timezone`: Time zone for the `meetingStartTimeFrom` and `meetingStartTimeTo` parameters and defined in conformance with the [IANA time zone database](https://www.iana.org/time-zones). The default value is `UTC` if not specified.",
         "tags": [
           "Meetings"
@@ -14004,7 +13997,7 @@
           }
         },
         "summary": "Create Invitation Sources",
-        "operationId": "Create Invitation Sources",
+        "operationId": "createInvitationSources",
         "description": "Creates one or more invitation sources for a meeting.",
         "tags": [
           "Meetings"
@@ -14150,7 +14143,7 @@
           }
         },
         "summary": "List Invitation Sources",
-        "operationId": "List Invitation Sources",
+        "operationId": "listInvitationSources",
         "description": "Lists invitation sources for a meeting.\n\n#### Request Header\n\n* `hostEmail`: Email address for the meeting host. This parameter is only used if the user or application calling the API has the admin on-behalf-of scopes. If set, the admin may specify the email of a user in a site they manage and the API will return recording details of that user.\n\n* `personId`:  Unique identifier for the meeting host. This attribute should only be set if the user or application calling the API has the admin-level scopes. When used, the admin may specify the email of a user in a site they manage to be the meeting host.",
         "tags": [
           "Meetings"
@@ -14278,7 +14271,7 @@
           }
         },
         "summary": "List Meeting Tracking Codes",
-        "operationId": "List Meeting Tracking Codes",
+        "operationId": "getMeetingHostTrackingCodes",
         "description": "Lists tracking codes on a site by a meeting host. The result indicates which tracking codes and what options can be used to create or update a meeting on the specified site.\n\n* The `options` here differ from those in the [site-level tracking codes](/docs/api/v1/tracking-codes/get-a-tracking-code) and the [user-level tracking codes](/docs/api/v1/tracking-codes/get-user-tracking-codes). It is the result of a selective combination of the two.\n\n* For a tracking code, if there is no user-level tracking code, the API returns the site-level options, and the `defaultValue` of the site-level default option is `true`. If there is a user-level tracking code, it is merged into the `options`. Meanwhile, the `defaultValue` of this user-level option is `true` and the site-level default option becomes non default.\n\n* If `siteUrl` is specified, tracking codes of the specified site will be listed; otherwise, tracking codes of the user's preferred site will be listed. All available Webex sites and the preferred sites of a user can be retrieved by [Get Site List](/docs/api/v1/meeting-preferences/get-site-list) API.",
         "tags": [
           "Meetings"
@@ -14412,8 +14405,8 @@
           }
         },
         "summary": "Reassign Meetings to a New Host",
-        "operationId": "Reassign Meetings to a New Host",
-        "description": "Reassigns a list of meetings to a new host by an admin user.\n\nAll the meetings of `meetingIds` should belong to the same site, which is the `siteUrl` in the request header, if specified, or the admin user's preferred site, if not specified. All available Webex sites and the preferred sites of a user can be retrieved by [Get Site List](/docs/api/v1/meeting-preferences/get-site-list) API.\n\nIf the user of `hostEmail` is not qualified to be a host of the target site, the API returns an error with the HTTP status code `403`. If all the meetings referenced by `meetingIds` have been reassigned the new host successfully, the API returns an empty response with the HTTP status code `204`. Otherwise, if all the meetings of `meetingIds` fail or some of them fail, the API returns a \"Multi-Status\" response with status code of `207`, and individual errors for each meeting in the response body.\n\nIf a meeting already has several ended meeting instances before it's assigned to a new host, the existing ended instances are accessible to the original host and not accessible to the new host, but the new meeting instances which happen after the reassignment are only accessible to the new host.\n\n**Note**: Only IDs of meeting series are supported for the `meetingIds`. IDs of scheduled meetings, meeting instances, or scheduled personal room meetings are not supported. To learn more about different types of meetings, please refer to [Meeting Series, Scheduled Meetings, and Meeting Instances](/docs/meetings#meeting-series-scheduled-meetings-and-meeting-instances).\n\nThere are several limitations when reassigning meetings:\n\n* Users cannot assign an in-progress meeting.\n\n* Users cannot assign a meeting to a user who is not a Webex user, or an attendee who does not have host privilege.\n\n* Users cannot assign a meeting with calling/callback to a host user who does not have calling/callback privileges\n\n* Users cannot assign a meeting with session type A to a host user who does not have session type A privileges.\n\n* Users cannot assign an MC or Webinar to a new host who does not have an MC license or a Webinar license.\n\n* Users cannot assign a TC/EC1.0/SC meeting, or a meeting that is created by on-behalf to a new host.\n\n* Users can reassign hosts for meetings from third-party integrations, such as Outlook or Google. Note that this is not recommended because it may result in inconsistent data between both parties.\n\n#### Request Header\n\n* `siteUrl`: Optional request header parameter. All the meetings of `meetingIds` should belong to the site referenced by siteUrl if specified. Otherwise, the meetings should belong to the admin user's preferred sites. All available Webex sites and the preferred sites of a user can be retrieved by [Get Site List](/docs/api/v1/meeting-preferences/get-site-list) API.",
+        "operationId": "reassignHost",
+        "description": "Reassigns a list of meetings to a new host by an admin user.\n\nAll the meetings of `meetingIds` should belong to the same site, which is the `siteUrl` in the request header, if specified, or the admin user's preferred site, if not specified. All available Webex sites and the preferred sites of a user can be retrieved by [Get Site List](/docs/api/v1/meeting-preferences/get-site-list) API.\n\nIf the user of `hostEmail` is not qualified to be a host of the target site, the API returns an error with the HTTP status code `403`. If all the meetings referenced by `meetingIds` have been reassigned the new host successfully, the API returns an empty response with the HTTP status code `204`. Otherwise, if all the meetings of `meetingIds` fail or some of them fail, the API returns a \"Multi-Status\" response with status code of `207`, and individual errors for each meeting in the response body.\n\nIf a meeting already has several ended meeting instances before it's assigned to a new host, the existing ended instances are accessible to the original host and not accessible to the new host, but the new meeting instances which happen after the reassignment are only accessible to the new host.\n\nAfter the reassignment, the original host will receive an email of meeting cancellation. However, the meeting in the original host's calendar will not necessarily be removed because user's calendar, e.g. Outlook calendar, is not managed by the meeting system directly.\n\n**Note**: Only IDs of meeting series are supported for the `meetingIds`. IDs of scheduled meetings, meeting instances, or scheduled personal room meetings are not supported. To learn more about different types of meetings, please refer to [Meeting Series, Scheduled Meetings, and Meeting Instances](/docs/meetings#meeting-series-scheduled-meetings-and-meeting-instances).\n\nThere are several limitations when reassigning meetings:\n\n* Users cannot assign an in-progress meeting.\n\n* Users cannot assign a meeting to a user who is not a Webex user, or an attendee who does not have host privilege.\n\n* Users cannot assign a meeting with calling/callback to a host user who does not have calling/callback privileges\n\n* Users cannot assign a meeting with session type A to a host user who does not have session type A privileges.\n\n* Users cannot assign an MC or Webinar to a new host who does not have an MC license or a Webinar license.\n\n* Users cannot assign a TC/EC1.0/SC meeting, or a meeting that is created by on-behalf to a new host.\n\n* Users can reassign hosts for meetings from third-party integrations, such as Outlook or Google. Note that this is not recommended because it may result in inconsistent data between both parties.\n\n#### Request Header\n\n* `siteUrl`: Optional request header parameter. All the meetings of `meetingIds` should belong to the site referenced by siteUrl if specified. Otherwise, the meetings should belong to the admin user's preferred sites. All available Webex sites and the preferred sites of a user can be retrieved by [Get Site List](/docs/api/v1/meeting-preferences/get-site-list) API.",
         "tags": [
           "Meetings"
         ],
@@ -14503,7 +14496,7 @@
           }
         },
         "summary": "End a Meeting",
-        "operationId": "End a Meeting",
+        "operationId": "endMeeting",
         "description": "Ends a meeting with a specified meeting ID. This operation applies to meeting series, scheduled meetings, and in-progress meetings. Only the meeting host, cohost, or compliance officer can end a meeting with this API.\n\n* If the `meetingId` value specified is for a scheduled meeting, the operation ends that meeting without impacting other scheduled meetings of the parent meeting series.\n\n* If the `meetingId` value specified is for a meeting series, the operation ends the current meeting occurrence.",
         "tags": [
           "Meetings"
@@ -17863,7 +17856,7 @@
           {
             "name": "integrationTag",
             "in": "query",
-            "description": "External key of the parent meeting created by an integration application. This parameter is used by the integration application to query recordings by a key in its own domain, such as a Zendesk ticket ID, a Jira ID, a Salesforce Opportunity ID, etc.",
+            "description": "External key of the parent meeting created by an integration application. This parameter is used by the integration application to query recordings by a key in its own domain, such as a Zendesk ticket ID, a Jira ID, a Salesforce Opportunity ID, etc. An integrationTag created by one client cannot be accessed or used as a filtering parameter by another client. For example, if a meeting has an `integrationTag` of \"Sales\" which is created by the client behind the developer portal, then this integrationTag can't be accessed on the meeting or its recordings by another client. Neither can it be used to filter meetings or recordings by a client other than the one that created the integrationTag of \"Sales\".",
             "example": "dbaeceebea5c4a63ac9d5ef1edfe36b9",
             "schema": {
               "type": "string"
@@ -18142,7 +18135,7 @@
           {
             "name": "integrationTag",
             "in": "query",
-            "description": "External key of the parent meeting created by an integration application. This parameter is used by the integration application to query recordings by a key in its own domain such as a Zendesk ticket ID, a Jira ID, a Salesforce Opportunity ID, etc.",
+            "description": "External key of the parent meeting created by an integration application. This parameter is used by the integration application to query recordings by a key in its own domain such as a Zendesk ticket ID, a Jira ID, a Salesforce Opportunity ID, etc. An integrationTag created by one client cannot be accessed or used as a filtering parameter by another client. For example, if a meeting has an `integrationTag` of \"Sales\" which is created by the client behind the developer portal, then this integrationTag can't be accessed on the meeting or its recordings by another client. Neither can it be used to filter meetings or recordings by a client other than the one that created the integrationTag of \"Sales\".",
             "example": "dbaeceebea5c4a63ac9d5ef1edfe36b9",
             "schema": {
               "type": "string"
