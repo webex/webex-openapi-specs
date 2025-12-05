@@ -11180,11 +11180,14 @@
               "convergedRecordings",
               "meetingParticipants",
               "meetingTranscripts",
+              "telephony_calls",
+              "telephony_conference",
+              "telephony_mwi",
               "uc_counters",
               "serviceApp",
               "adminBatchJobs"
             ],
-            "description": "Resource type for the webhook. Creating a webhook requires 'read' scope on the resource the webhook is for.\n * `attachmentActions` - [Attachment Actions](/docs/api/v1/attachment-actions) resource.\n * `dataSources` - [data sources](/docs/api/v1/data-sources) resource.\n * `memberships` - [Memberships](/docs/api/v1/memberships) resource.\n * `messages` - [Messages](/docs/api/v1/messages) resource.\n * `rooms` - [Rooms](/docs/api/v1/rooms) resource.\n * `meetings` - [Meetings](/docs/api/v1/meetings) resource.\n * `recordings` - [Recordings](/docs/api/v1/recordings) resource.\n * `convergedRecordings` - [CallRecordings](/docs/api/v1/converged-recordings) resource.\n * `meetingParticipants` - [Meeting Participants](/docs/api/v1/meeting-participants) resource.\n * `meetingTranscripts` - [Meeting Transcripts](/docs/api/v1/meeting-transcripts) resource.\n * `uc_counters` - Performance counter for a dedicated instance.\n * `serviceApp` - Service App authorization notification.\n * `adminBatchJobs` - Admin Batch Jobs notification.\n"
+            "description": "Resource type for the webhook. Creating a webhook requires 'read' scope on the resource the webhook is for.\n * `attachmentActions` - [Attachment Actions](/docs/api/v1/attachment-actions) resource.\n * `dataSources` - [data sources](/docs/api/v1/data-sources) resource.\n * `memberships` - [Memberships](/docs/api/v1/memberships) resource.\n * `messages` - [Messages](/docs/api/v1/messages) resource.\n * `rooms` - [Rooms](/docs/api/v1/rooms) resource.\n * `meetings` - [Meetings](/docs/api/v1/meetings) resource.\n * `recordings` - [Recordings](/docs/api/v1/recordings) resource.\n * `convergedRecordings` - [CallRecordings](/docs/api/v1/converged-recordings) resource.\n * `meetingParticipants` - [Meeting Participants](/docs/api/v1/meeting-participants) resource.\n * `meetingTranscripts` - [Meeting Transcripts](/docs/api/v1/meeting-transcripts) resource.\n * `telephony_calls` - [Webex Calling](/docs/webex-calling-overview) call resources.\n * `telephony_conference` - [Webex Calling](/docs/webex-calling-overview) conference controls resource.\n * `telephony_mwi` - [Webex Calling](/docs/webex-calling-overview) voicemail message waiting indicator resource.\n * `uc_counters` - Performance counter for a dedicated instance.\n * `serviceApp` - Service App authorization notification.\n * `adminBatchJobs` - Admin Batch Jobs notification.\n"
           },
           "event": {
             "type": "string",
