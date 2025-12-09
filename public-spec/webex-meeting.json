@@ -11237,7 +11237,7 @@
                   "$ref": "#/components/schemas/RegistrantCreateResponse"
                 },
                 "example": {
-                  "id": "123456",
+                  "id": "fbd83190-97b2-4bb0-b56b-8fde463d137b",
                   "status": "pending",
                   "firstName": "bob",
                   "lastName": "Lee",
@@ -11411,7 +11411,7 @@
                 "example": {
                   "items": [
                     {
-                      "registrantId": "123456",
+                      "id": "fbd83190-97b2-4bb0-b56b-8fde463d137b",
                       "status": "pending",
                       "firstName": "bob",
                       "lastName": "Lee",
@@ -11589,7 +11589,7 @@
                 "example": {
                   "items": [
                     {
-                      "id": "123456",
+                      "id": "fbd83190-97b2-4bb0-b56b-8fde463d137b",
                       "status": "pending",
                       "firstName": "bob",
                       "lastName": "Lee",
@@ -11769,7 +11769,7 @@
                   "$ref": "#/components/schemas/Registrant"
                 },
                 "example": {
-                  "registrantId": "123456",
+                  "id": "fbd83190-97b2-4bb0-b56b-8fde463d137b",
                   "status": "pending",
                   "firstName": "bob",
                   "lastName": "Lee",
@@ -12021,7 +12021,7 @@
                 "example": {
                   "items": [
                     {
-                      "registrantId": "123456",
+                      "id": "fbd83190-97b2-4bb0-b56b-8fde463d137b",
                       "status": "pending",
                       "firstName": "bob",
                       "lastName": "Lee",
@@ -13344,7 +13344,7 @@
             "name": "sendEmail",
             "in": "query",
             "description": "Whether or not to send emails to host and invitees. It is an optional field and default value is true.",
-            "example": "true",
+            "example": true,
             "schema": {
               "type": "boolean"
             }
@@ -42227,9 +42227,9 @@
       "Registrant": {
         "type": "object",
         "properties": {
-          "registrantId": {
+          "id": {
             "type": "string",
-            "example": "123456",
+            "example": "fbd83190-97b2-4bb0-b56b-8fde463d137b",
             "description": "New registrant's ID."
           },
           "status": {
