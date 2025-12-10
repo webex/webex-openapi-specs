@@ -26502,14 +26502,34 @@
         ]
       },
       "ManagedBy": {
-        "type": "string",
-        "enum": [
-          "CISCO",
-          "CUSTOMER",
-          "PARTNER"
-        ],
-        "description": "Entity managing the device configuration.",
-        "example": "CISCO"
+        "type": "object",
+        "properties": {
+          "orgId": {
+            "type": "string",
+            "description": "The admin's organization ID.",
+            "example": "09ebb769-3098-4446-9093-4b39b296602b"
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of administrator.",
+            "enum": [
+              "user"
+            ],
+            "example": "user"
+          },
+          "id": {
+            "type": "string",
+            "description": "Entryuuid of the user.",
+            "example": "cb092233-b3e6-48fd-ab42-551f8cb01513"
+          },
+          "roles": {
+            "type": "array",
+            "description": "The roles assigned to the admin for managing the customer group.",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
       },
       "DevicePlatform": {
         "type": "string",
@@ -30706,6 +30726,298 @@
           }
         }
       },
+      "CustomerGroupRequest": {
+        "type": "object",
+        "required": [
+          "schemas",
+          "displayName"
+        ],
+        "properties": {
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "An array of schema URNs. Must contain 'urn:scim:schemas:core:1.0' and 'urn:scim:schemas:extension:cisco:commonidentity:1.0'.",
+            "example": [
+              "urn:scim:schemas:core:1.0",
+              "urn:scim:schemas:extension:cisco:commonidentity:1.0"
+            ]
+          },
+          "displayName": {
+            "type": "string",
+            "description": "A human readable name for the Customer Group. Must be unique per org.",
+            "maxLength": 256,
+            "example": "customerGroup09-101"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the group.",
+            "maxLength": 512,
+            "example": "Customer Group For PA63"
+          },
+          "members": {
+            "type": "array",
+            "description": "A list of customer organizations to be added to the group. Max 100 members per creation request.",
+            "items": {
+              "$ref": "#/components/schemas/Member"
+            }
+          },
+          "managedBy": {
+            "type": "array",
+            "description": "Administrators of customer groups.",
+            "items": {
+              "$ref": "#/components/schemas/ManagedBy"
+            }
+          }
+        }
+      },
+      "CustomerGroupPatchRequest": {
+        "type": "object",
+        "required": [
+          "schemas"
+        ],
+        "properties": {
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "An array of schema URNs. Must contain 'urn:scim:schemas:core:1.0'.",
+            "example": [
+              "urn:scim:schemas:core:1.0",
+              "urn:scim:schemas:extension:cisco:commonidentity:1.0"
+            ]
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "attributes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "A list of attributes to be removed from the Resource."
+              }
+            }
+          },
+          "displayName": {
+            "type": "string",
+            "description": "A human readable name for the Customer Group.",
+            "maxLength": 256
+          },
+          "members": {
+            "type": "array",
+            "description": "A list of members to be added or removed.",
+            "items": {
+              "$ref": "#/components/schemas/PatchMember"
+            }
+          },
+          "managedBy": {
+            "type": "array",
+            "description": "Administrators of customer groups to be added or removed.",
+            "items": {
+              "$ref": "#/components/schemas/PatchManagedBy"
+            }
+          }
+        }
+      },
+      "CustomerGroupResponse": {
+        "type": "object",
+        "required": [
+          "schemas",
+          "id",
+          "meta",
+          "displayName",
+          "memberSize"
+        ],
+        "properties": {
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "An array of schema URNs.",
+            "example": [
+              "urn:scim:schemas:core:1.0",
+              "urn:scim:schemas:extension:cisco:commonidentity:1.0"
+            ]
+          },
+          "id": {
+            "type": "string",
+            "description": "Unique Customer Group Id.",
+            "example": "230898d8-f528-432f-93db-d138fa7fb20c"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/GroupMeta"
+          },
+          "displayName": {
+            "type": "string",
+            "description": "A human readable name for the Customer Group.",
+            "example": "customerGroup09-101"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the group.",
+            "example": "Customer Group For PA63"
+          },
+          "cisSyncSource": {
+            "type": "string",
+            "description": "Sync Source.",
+            "enum": [
+              "SCIM",
+              "DIRSYNC"
+            ],
+            "example": "SCIM"
+          },
+          "memberSize": {
+            "type": "integer",
+            "description": "Number of members in the group.",
+            "example": 1
+          },
+          "members": {
+            "type": "array",
+            "description": "A list of members of the Group. Maximum of 500 members will be shown.",
+            "items": {
+              "$ref": "#/components/schemas/MemberResponse"
+            }
+          },
+          "managedBy": {
+            "type": "array",
+            "description": "Administrators of customer groups.",
+            "items": {
+              "$ref": "#/components/schemas/ManagedBy"
+            }
+          },
+          "usage": {
+            "type": "string",
+            "description": "Usage attribute. Not user-configurable.",
+            "example": "customer_group"
+          }
+        }
+      },
+      "Member": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS8xOTUzOTdhMi03MTU5LTRjNTgtYTBiOC00NmQ2ZWZlZTdkMTM",
+            "description": "Person ID of the group member."
+          },
+          "type": {
+            "type": "string",
+            "example": "user",
+            "description": "Member type."
+          },
+          "displayName": {
+            "type": "string",
+            "example": "Jane Smith"
+          }
+        }
+      },
+      "PatchMember": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "The entryuuid of customer org."
+          },
+          "operation": {
+            "type": "string",
+            "enum": [
+              "delete"
+            ],
+            "description": "Only \"delete\" operation is supported for removing members.\nNo operation needs to be selected for adding new members."
+          }
+        }
+      },
+      "MemberResponse": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "The entryuuid of customer org.",
+            "example": "cdb658ca-7aab-4336-a00b-51479273326d"
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of member.",
+            "example": "customer_org"
+          }
+        }
+      },
+      "PatchManagedBy": {
+        "type": "object",
+        "properties": {
+          "orgId": {
+            "type": "string",
+            "description": "The admin's organization ID."
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of administrator.",
+            "enum": [
+              "user"
+            ]
+          },
+          "id": {
+            "type": "string",
+            "description": "Entryuuid of the user."
+          },
+          "roles": {
+            "type": "array",
+            "description": "The roles assigned to the admin.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "operation": {
+            "type": "string",
+            "enum": [
+              "delete"
+            ],
+            "description": "Operation to perform on the admin."
+          }
+        }
+      },
+      "GroupMeta": {
+        "type": "object",
+        "description": "Meta data information of group.",
+        "required": [
+          "location",
+          "organizationID"
+        ],
+        "properties": {
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The create time of group entry. ISO-8601 format.",
+            "example": "2025-06-20T19:53:51.207Z"
+          },
+          "lastModified": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The last modify time of group entry. ISO-8601 format.",
+            "example": "2025-06-20T19:53:51.207Z"
+          },
+          "version": {
+            "type": "string",
+            "description": "The version information of group entry.",
+            "example": "W/\"99393996252\""
+          },
+          "location": {
+            "type": "string",
+            "format": "uri",
+            "description": "The request URI.",
+            "example": "https://webexapis.com/identity/scim/09ebb769-3098-4446-9093-4b39b296602b/v1/CustomerGroups/230898d8-f528-432f-93db-d138fa7fb20c"
+          },
+          "organizationID": {
+            "type": "string",
+            "description": "Org ID.",
+            "example": "09ebb769-3098-4446-9093-4b39b296602b"
+          }
+        }
+      },
       "PostDomainVerificationToken": {
         "type": "object",
         "required": [
@@ -31157,25 +31469,6 @@
             "items": {
               "$ref": "#/components/schemas/Organization"
             }
-          }
-        }
-      },
-      "Member": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS8xOTUzOTdhMi03MTU5LTRjNTgtYTBiOC00NmQ2ZWZlZTdkMTM",
-            "description": "Person ID of the group member."
-          },
-          "type": {
-            "type": "string",
-            "example": "user",
-            "description": "Member type."
-          },
-          "displayName": {
-            "type": "string",
-            "example": "Jane Smith"
           }
         }
       },
