@@ -273,6 +273,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/CreateContactResponse"
+                },
+                "example": {
+                  "outcome": "Queued",
+                  "statusCode": 0,
+                  "summary": "Queued for adding to the contact list"
                 }
               }
             }
@@ -338,31 +343,24 @@
               "schema": {
                 "$ref": "#/components/schemas/UpdateContactRequest"
               },
-              "examples": {
-                "updateStatus": {
-                  "value": {
-                    "contactStatus": "CLOSED"
-                  }
-                }
+              "example": {
+                "contactStatus": "CLOSED"
               }
             }
           }
         },
         "responses": {
           "202": {
-            "description": "Request accepted",
+            "description": "Request queued",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/UpdateContactResponse"
                 },
-                "examples": {
-                  "success": {
-                    "value": {
-                      "outcome": "Accepted",
-                      "statusCode": 0
-                    }
-                  }
+                "example": {
+                  "outcome": "Queued",
+                  "statusCode": 0,
+                  "summary": "Queued for updating the contact status"
                 }
               }
             }
@@ -418,12 +416,8 @@
               "schema": {
                 "$ref": "#/components/schemas/UpdateContactListStatusRequest"
               },
-              "examples": {
-                "expire": {
-                  "value": {
-                    "contactListStatus": "EXPIRED"
-                  }
-                }
+              "example": {
+                "contactListStatus": "EXPIRED"
               }
             }
           }
@@ -436,13 +430,10 @@
                 "schema": {
                   "$ref": "#/components/schemas/UpdateContactListStatusResponse"
                 },
-                "examples": {
-                  "success": {
-                    "value": {
-                      "outcome": "Success",
-                      "statusCode": 0
-                    }
-                  }
+                "example": {
+                  "outcome": "Success",
+                  "statusCode": 0,
+                  "summary": "Contact list status updated successfully"
                 }
               }
             }
@@ -520,24 +511,20 @@
                 "schema": {
                   "$ref": "#/components/schemas/GetContactListsResponse"
                 },
-                "examples": {
-                  "success": {
-                    "value": {
-                      "outcome": "Success",
-                      "statusCode": 0,
-                      "contactLists": [
-                        {
-                          "contactListId": "501",
-                          "contactListStatus": "Active",
-                          "contactListRecordCount": 100,
-                          "contactListSource": "API",
-                          "dateOfCreation": "2025-08-01T10:00:00Z",
-                          "dateOfActivation": "2025-08-01T12:00:00Z",
-                          "dateOfExpiry": "2025-09-01T00:00:00Z"
-                        }
-                      ]
+                "example": {
+                  "outcome": "Success",
+                  "statusCode": 0,
+                  "contactLists": [
+                    {
+                      "contactListId": "501",
+                      "contactListStatus": "Active",
+                      "contactListRecordCount": 100,
+                      "contactListSource": "API",
+                      "dateOfCreation": "2025-08-01T10:00:00Z",
+                      "dateOfActivation": "2025-08-01T12:00:00Z",
+                      "dateOfExpiry": "2025-09-01T00:00:00Z"
                     }
-                  }
+                  ]
                 }
               }
             }
@@ -55317,7 +55304,7 @@
           "activationTimeLagMinutes": {
             "type": "integer",
             "description": "Contact list activation time lag in minutes (0 = immediate activation, 180 = 3 hours delay). Required if activationDateTime is not provided.",
-            "example": "180"
+            "example": 180
           },
           "activationDateTime": {
             "type": "string",
@@ -55380,48 +55367,53 @@
       },
       "CreateContactRequest": {
         "type": "object",
-        "required": [
-          "contactAttributes"
-        ],
         "properties": {
-          "contactAttributes": {
+          "contacts": {
             "type": "array",
-            "description": "Array of field mapping field name & value pairs.",
+            "description": "Array of contact attributes, max 10 contacts per request",
             "items": {
               "type": "object",
-              "properties": {
-                "fieldName": {
-                  "type": "string",
-                  "description": "Field name"
-                },
-                "value": {
-                  "type": "string",
-                  "description": "Field value"
-                }
-              },
               "required": [
-                "fieldName",
-                "value"
+                "contactAttributes"
               ],
-              "example": {
-                "fieldName": "FirstName",
-                "value": "John"
+              "properties": {
+                "contactAttributes": {
+                  "type": "array",
+                  "description": "Array of field mapping field name & value pairs.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "fieldName": {
+                        "type": "string",
+                        "description": "Field name"
+                      },
+                      "value": {
+                        "type": "string",
+                        "description": "Field value"
+                      }
+                    },
+                    "example": {
+                      "fieldName": "FirstName",
+                      "value": "John"
+                    }
+                  },
+                  "example": [
+                    {
+                      "fieldName": "FirstName",
+                      "value": "John"
+                    },
+                    {
+                      "fieldName": "LastName",
+                      "value": "Doe"
+                    },
+                    {
+                      "fieldName": "AccountStatus",
+                      "value": "Active"
+                    }
+                  ]
+                }
               }
-            },
-            "example": [
-              {
-                "fieldName": "FirstName",
-                "value": "John"
-              },
-              {
-                "fieldName": "LastName",
-                "value": "Doe"
-              },
-              {
-                "fieldName": "AccountStatus",
-                "value": "Active"
-              }
-            ]
+            }
           }
         }
       },
@@ -55431,37 +55423,27 @@
           "outcome": {
             "type": "string",
             "enum": [
-              "Accepted",
-              "Failure"
+              "Queued",
+              "Failed"
             ],
             "description": "Outcome of the operation",
-            "example": "Accepted"
+            "example": "Queued"
           },
           "statusCode": {
             "type": "integer",
-            "description": "0 for Accepted, non-zero for failure or validation failure",
+            "description": "0 for Queued, non-zero for Failed",
             "example": 0
+          },
+          "summary": {
+            "type": "string",
+            "description": "Summary of the operation",
+            "example": "Queued for adding to the contact list"
           }
         },
         "example": {
-          "success": {
-            "summary": "Request accepted",
-            "value": {
-              "outcome": "Accepted",
-              "statusCode": 0
-            }
-          },
-          "failure": {
-            "summary": "Failed to process request",
-            "value": {
-              "outcome": "Failure",
-              "statusCode": 400,
-              "error": {
-                "code": "InvalidRequest",
-                "message": "Invalid request parameters"
-              }
-            }
-          }
+          "outcome": "Queued",
+          "statusCode": 0,
+          "summary": "Queued for adding to the contact list"
         }
       },
       "UpdateContactRequest": {
@@ -55483,38 +55465,27 @@
           "outcome": {
             "type": "string",
             "enum": [
-              "Success",
-              "Failure"
+              "Queued",
+              "Failed"
             ],
             "description": "Outcome of the operation",
-            "example": "Success"
+            "example": "Queued"
           },
           "statusCode": {
             "type": "integer",
-            "description": "0 for success, non-zero for failure or validation failure",
+            "description": "0 for Queued, non-zero for Failed",
             "example": 0
+          },
+          "summary": {
+            "type": "string",
+            "description": "Summary of the operation",
+            "example": "Queued for updating the contact status"
           }
         },
         "example": {
-          "success": {
-            "summary": "Contact updated successfully",
-            "value": {
-              "outcome": "Success",
-              "statusCode": 0,
-              "updatedCount": 1
-            }
-          },
-          "failure": {
-            "summary": "Failed to update contact",
-            "value": {
-              "outcome": "Failure",
-              "statusCode": 400,
-              "error": {
-                "code": "InvalidContact",
-                "message": "Contact data is invalid"
-              }
-            }
-          }
+          "outcome": "Queued",
+          "statusCode": 0,
+          "summary": "Queued for updating the contact status"
         }
       },
       "UpdateContactListStatusRequest": {
@@ -55615,18 +55586,18 @@
         "type": "object",
         "description": "Error response",
         "properties": {
-          "error": {
+          "code": {
             "type": "string",
-            "description": "Error message"
+            "description": "Error code"
           },
-          "details": {
+          "message": {
             "type": "string",
-            "description": "Additional error details"
+            "description": "Error description"
           }
         },
         "example": {
-          "error": "Invalid request",
-          "details": "The contact list ID is missing"
+          "code": "InvalidRequest",
+          "message": "The contact list ID is missing"
         }
       },
       "GetContactListsResponse": {
