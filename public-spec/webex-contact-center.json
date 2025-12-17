@@ -7,6 +7,9 @@
   },
   "tags": [
     {
+      "name": "Agent Summaries"
+    },
+    {
       "name": "Contact List Management",
       "description": "Operations for managing contact lists and contacts"
     },
@@ -23,6 +26,155 @@
     }
   ],
   "paths": {
+    "/summary/list": {
+      "post": {
+        "tags": [
+          "Agent Summaries"
+        ],
+        "summary": "List summaries",
+        "description": "Lists summaries based on the requested search type.",
+        "operationId": "listSummaries",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SummaryListRequest"
+              },
+              "examples": {
+                "listByOrganization": {
+                  "summary": "Case 1: List by organizationId",
+                  "value": {
+                    "searchType": "ORGANIZATION",
+                    "orgId": "acc80d18-b1fb-4261-b44e-a46435eea1da"
+                  }
+                },
+                "listByInteraction": {
+                  "summary": "Case 2: List by interactionId",
+                  "value": {
+                    "searchType": "INTERACTION",
+                    "orgId": "acc80d18-b1fb-4261-b44e-a46435eea1da",
+                    "interactionId": "9d2a7879-8957-4cd6-a39c-46d4f21eaea5"
+                  }
+                },
+                "listByAgentCiUserId": {
+                  "summary": "Case 3: List by agentCiUserId",
+                  "value": {
+                    "searchType": "AGENT",
+                    "agentCiUserId": "77e70d79-64b1-402e-9b84-b113ad71b06d",
+                    "orgId": "acc80d18-b1fb-4261-b44e-a46435eea1da"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SummaryListResponse"
+                },
+                "examples": {
+                  "listByOrganization": {
+                    "summary": "Case 1: List by organizationId",
+                    "value": {
+                      "interactionId": null,
+                      "orgId": "acc80d18-b1fb-4261-b44e-a46435eea1da",
+                      "searchType": "ORGANIZATION",
+                      "agentCiUserId": null,
+                      "summaries": {
+                        "POST_CALL": {
+                          "acc80d18-b1fb-4261-b44e-a46435eea1da:1bf3bd99-633b-401a-a3d4-61157a446809:c47d7c08-0776-4e38-a6bb-751d933a0c5d": {
+                            "initialContactReason": "Broken tools appointment request",
+                            "keyActionsTaken": "Scheduled an appointment with Doctor Petrophe for the caller",
+                            "resolution": "RESOLVED"
+                          }
+                        },
+                        "MID_CALL": {
+                          "acc80d18-b1fb-4261-b44e-a46435eea1da:9d2a7879-8957-4cd6-a39c-46d4f21eaea5:c47d7c08-0776-4e38-a6bb-751d933a0c5d": {
+                            "reasonForTransferOrConsult": "The caller wants to purchase fifteen tickets for an upcoming match but the current agent needs to check with teammates for ticket availability, requiring a transfer to another agent who can assist with ticket sales.",
+                            "additionalContext": "The match will take place next weekend at 6 PM, and the caller is part of a group looking to buy a large number of tickets.",
+                            "keyActionsTaken": "Checked the match schedule\\nInquired about the number of tickets needed\\nInitiated a transfer to check ticket availability with teammates"
+                          }
+                        }
+                      },
+                      "queueId": null
+                    }
+                  },
+                  "listByInteraction": {
+                    "summary": "Case 2: List by interactionId",
+                    "value": {
+                      "interactionId": "9d2a7879-8957-4cd6-a39c-46d4f21eaea5",
+                      "orgId": "acc80d18-b1fb-4261-b44e-a46435eea1da",
+                      "searchType": "INTERACTION",
+                      "agentCiUserId": null,
+                      "summaries": {
+                        "POST_CALL": {
+                          "acc80d18-b1fb-4261-b44e-a46435eea1da:9d2a7879-8957-4cd6-a39c-46d4f21eaea5:c47d7c08-0776-4e38-a6bb-751d933a0c5d": {
+                            "additionalContext": "The match is next weekend and the caller represents a group looking for tickets.",
+                            "initialContactReason": "The caller wants to buy tickets for a match.",
+                            "resolution": "UNRESOLVED",
+                            "keyActionsTaken": "The agent checked ticket availability with teammates.\\nThe agent engaged with the caller about their request.",
+                            "nextSteps": "Agent will confirm ticket availability for fifteen tickets and get back to the caller."
+                          }
+                        },
+                        "MID_CALL": {
+                          "acc80d18-b1fb-4261-b44e-a46435eea1da:9d2a7879-8957-4cd6-a39c-46d4f21eaea5:c47d7c08-0776-4e38-a6bb-751d933a0c5d": {
+                            "reasonForTransferOrConsult": "The caller wants to purchase fifteen tickets for an upcoming match but the current agent needs to check with teammates for ticket availability, requiring a transfer to another agent who can assist with ticket sales.",
+                            "additionalContext": "The match will take place next weekend at 6 PM, and the caller is part of a group looking to buy a large number of tickets.",
+                            "keyActionsTaken": "Checked the match schedule\\nInquired about the number of tickets needed\\nInitiated a transfer to check ticket availability with teammates"
+                          }
+                        }
+                      },
+                      "queueId": null
+                    }
+                  },
+                  "listByAgentCiUserId": {
+                    "summary": "Case 3: List by agentCiUserId",
+                    "value": {
+                      "interactionId": null,
+                      "orgId": "acc80d18-b1fb-4261-b44e-a46435eea1da",
+                      "searchType": "AGENT",
+                      "agentCiUserId": "77e70d79-64b1-402e-9b84-b113ad71b06d",
+                      "summaries": {
+                        "POST_CALL": {
+                          "acc80d18-b1fb-4261-b44e-a46435eea1da:9d2a7879-8957-4cd6-a39c-46d4f21eaea5:77e70d79-64b1-402e-9b84-b113ad71b06d": {
+                            "additionalContext": "Customer has a group of fifteen people and needs the tickets to be together.",
+                            "initialContactReason": "Customer wants to buy tickets for an upcoming match.",
+                            "resolution": "RESOLVED",
+                            "keyActionsTaken": "Checked availability of fifteen tickets for the match.\\nConfirmed grouped discount for the tickets.\\nProcessed the ticket purchase and confirmed ticket sending via email.",
+                            "nextSteps": "Send the tickets to the customer's email."
+                          }
+                        }
+                      },
+                      "queueId": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation Error"
+          },
+          "401": {
+            "description": "Unauthorized Operation"
+          },
+          "403": {
+            "description": "Forbidden Operation"
+          },
+          "429": {
+            "description": "Too many requests have been sent in a given amount of time and the request has been rate limited."
+          },
+          "500": {
+            "description": "An Unexpected Error Occurred"
+          }
+        }
+      }
+    },
     "/v1/agentburnout/subscribe": {
       "post": {
         "parameters": [
@@ -55049,6 +55201,162 @@
         "example": {
           "supported": true,
           "configured": true
+        }
+      },
+      "SearchType": {
+        "type": "string",
+        "description": "The type of search to be performed.",
+        "enum": [
+          "ORGANIZATION",
+          "INTERACTION",
+          "AGENT"
+        ]
+      },
+      "SummaryListRequest": {
+        "description": "List summaries based on the given search type.",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/SummaryListByOrganizationRequest"
+          },
+          {
+            "$ref": "#/components/schemas/SummaryListByInteractionRequest"
+          },
+          {
+            "$ref": "#/components/schemas/SummaryListByAgentRequest"
+          }
+        ]
+      },
+      "SummaryListByOrganizationRequest": {
+        "type": "object",
+        "required": [
+          "orgId",
+          "searchType"
+        ],
+        "properties": {
+          "orgId": {
+            "type": "string",
+            "description": "The organization ID."
+          },
+          "searchType": {
+            "type": "string",
+            "enum": [
+              "ORGANIZATION"
+            ],
+            "description": "The type of search to be performed."
+          }
+        }
+      },
+      "SummaryListByInteractionRequest": {
+        "type": "object",
+        "required": [
+          "orgId",
+          "interactionId",
+          "searchType"
+        ],
+        "properties": {
+          "orgId": {
+            "type": "string",
+            "description": "The organization ID."
+          },
+          "interactionId": {
+            "type": "string",
+            "description": "The interaction ID."
+          },
+          "searchType": {
+            "type": "string",
+            "enum": [
+              "INTERACTION"
+            ],
+            "description": "The type of search to be performed."
+          }
+        }
+      },
+      "SummaryListByAgentRequest": {
+        "type": "object",
+        "required": [
+          "orgId",
+          "agentCiUserId",
+          "searchType"
+        ],
+        "properties": {
+          "orgId": {
+            "type": "string",
+            "description": "The organization ID."
+          },
+          "agentCiUserId": {
+            "type": "string",
+            "description": "The agent CI user ID."
+          },
+          "searchType": {
+            "type": "string",
+            "enum": [
+              "AGENT"
+            ],
+            "description": "The type of search to be performed."
+          }
+        }
+      },
+      "SummaryListResponse": {
+        "type": "object",
+        "properties": {
+          "orgId": {
+            "type": "string",
+            "description": "The organization ID."
+          },
+          "agentCiUserId": {
+            "type": "string",
+            "description": "The agent CI user ID (used for AGENT search type).",
+            "nullable": true
+          },
+          "interactionId": {
+            "type": "string",
+            "description": "The interaction ID (used for INTERACTION search type).",
+            "nullable": true
+          },
+          "queueId": {
+            "type": "string",
+            "description": "The queue ID (reserved for future use).",
+            "nullable": true
+          },
+          "searchType": {
+            "$ref": "#/components/schemas/SearchType"
+          },
+          "summaries": {
+            "type": "object",
+            "description": "Map of summaries where the first-level key is feature (e.g., MID_CALL, POST_CALL), the second-level key is a summary identifier, and the third-level map contains summary fields.",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "example": {
+          "interactionId": null,
+          "orgId": "acc80d18-b1fb-4261-b44e-a46435eea1da",
+          "searchType": "ORGANIZATION",
+          "agentCiUserId": null,
+          "summaries": {
+            "POST_CALL": {
+              "acc80d18-b1fb-4261-b44e-a46435eea1da:1bf3bd99-633b-401a-a3d4-61157a446809:c47d7c08-0776-4e38-a6bb-751d933a0c5d": {
+                "initialContactReason": "Broken tools appointment request",
+                "keyActionsTaken": "Scheduled an appointment with Doctor Petrophe for the caller",
+                "resolution": "RESOLVED"
+              }
+            },
+            "MID_CALL": {
+              "acc80d18-b1fb-4261-b44e-a46435eea1da:9d2a7879-8957-4cd6-a39c-46d4f21eaea5:c47d7c08-0776-4e38-a6bb-751d933a0c5d": {
+                "reasonForTransferOrConsult": "The caller wants to purchase fifteen tickets for an upcoming match but the current agent needs to check with teammates for ticket availability, requiring a transfer to another agent who can assist with ticket sales.",
+                "additionalContext": "The match will take place next weekend at 6 PM, and the caller is part of a group looking to buy a large number of tickets.",
+                "keyActionsTaken": "Checked the match schedule\\nInquired about the number of tickets needed\\nInitiated a transfer to check ticket availability with teammates"
+              }
+            }
+          },
+          "queueId": null
         }
       },
       "SubscriptionRequest": {
