@@ -26506,7 +26506,7 @@
         "properties": {
           "orgId": {
             "type": "string",
-            "description": "The admin's organization ID.",
+            "description": "The admin’s organization ID. It represents either the partner organization that owns the customer group or an external administrator’s organization\n",
             "example": "09ebb769-3098-4446-9093-4b39b296602b"
           },
           "type": {
@@ -30888,10 +30888,86 @@
             "items": {
               "$ref": "#/components/schemas/ManagedBy"
             }
+          }
+        }
+      },
+      "CustomerGroupsQueryResponse": {
+        "type": "object",
+        "properties": {
+          "totalResults": {
+            "type": "integer",
+            "description": "Total number of Customer Groups that match the query.",
+            "example": 9
+          },
+          "itemsPerPage": {
+            "type": "integer",
+            "description": "Number of Customer Groups returned in the current response.",
+            "example": 2
+          },
+          "startIndex": {
+            "type": "integer",
+            "description": "1-based index of the first result returned.",
+            "example": 2
+          },
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "An array of schema URNs.",
+            "example": [
+              "urn:scim:schemas:core:1.0",
+              "urn:scim:schemas:extension:cisco:commonidentity:1.0"
+            ]
+          },
+          "Resources": {
+            "type": "array",
+            "description": "List of Customer Groups.",
+            "items": {
+              "$ref": "#/components/schemas/CustomerQueryGroupResponse"
+            }
+          }
+        }
+      },
+      "CustomerQueryGroupResponse": {
+        "type": "object",
+        "properties": {
+          "displayName": {
+            "type": "string",
+            "description": "Human-readable name of the Customer Group."
+          },
+          "members": {
+            "type": "array",
+            "description": "Returned only when includeMembers=true.",
+            "items": {
+              "$ref": "#/components/schemas/MemberResponse"
+            }
+          },
+          "memberSize": {
+            "type": "integer",
+            "description": "Number of members in the group."
+          },
+          "meta": {
+            "$ref": "#/components/schemas/GroupMeta"
+          },
+          "id": {
+            "type": "string",
+            "description": "Unique Customer Group identifier."
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the group.",
+            "example": "Customer Group For PA63"
+          },
+          "cisSyncSource": {
+            "type": "string",
+            "enum": [
+              "SCIM",
+              "DIRSYNC"
+            ]
           },
           "usage": {
             "type": "string",
-            "description": "Usage attribute. Not user-configurable.",
             "example": "customer_group"
           }
         }
@@ -30938,11 +31014,6 @@
             "type": "string",
             "description": "The entryuuid of customer org.",
             "example": "cdb658ca-7aab-4336-a00b-51479273326d"
-          },
-          "type": {
-            "type": "string",
-            "description": "Type of member.",
-            "example": "customer_org"
           }
         }
       },
