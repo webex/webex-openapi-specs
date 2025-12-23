@@ -2698,10 +2698,10 @@
             "name": "callingData",
             "in": "query",
             "description": "Include Webex Calling user details in the response.",
-            "example": "true",
+            "example": true,
             "schema": {
               "type": "boolean",
-              "default": "false"
+              "default": false
             }
           },
           {
@@ -2717,7 +2717,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the maximum number of people in the response. If `callingData`=true, then `max` will not be more than 100. If `locationId` is specified then `max` will not be more than 50.",
-            "example": "100",
+            "example": 100,
             "schema": {
               "type": "number",
               "default": 100
@@ -2727,10 +2727,10 @@
             "name": "excludeStatus",
             "in": "query",
             "description": "Omit people status/availability to enhance query performance.",
-            "example": "true",
+            "example": true,
             "schema": {
               "type": "boolean",
-              "default": "false"
+              "default": false
             }
           }
         ]
@@ -2865,20 +2865,20 @@
             "name": "callingData",
             "in": "query",
             "description": "Include Webex Calling user details in the response.",
-            "example": "true",
+            "example": true,
             "schema": {
               "type": "boolean",
-              "default": "false"
+              "default": false
             }
           },
           {
             "name": "minResponse",
             "in": "query",
             "description": "Set to `true` to improve performance by omitting person details and returning only the ID in the response when successful. If unsuccessful the response will have optional error details.",
-            "example": "true",
+            "example": true,
             "schema": {
               "type": "boolean",
-              "default": "false"
+              "default": false
             }
           }
         ],
@@ -3227,10 +3227,10 @@
             "name": "callingData",
             "in": "query",
             "description": "Include Webex Calling user details in the response.",
-            "example": "true",
+            "example": true,
             "schema": {
               "type": "boolean",
-              "default": "false"
+              "default": false
             }
           }
         ]
@@ -3380,17 +3380,17 @@
             "name": "callingData",
             "in": "query",
             "description": "Include Webex Calling user details in the response.",
-            "example": "true",
+            "example": true,
             "schema": {
               "type": "boolean",
-              "default": "false"
+              "default": false
             }
           },
           {
             "name": "showAllTypes",
             "in": "query",
             "description": "Include additional user data like `#attendee` role.",
-            "example": "true",
+            "example": true,
             "schema": {
               "type": "boolean"
             }
@@ -3399,10 +3399,10 @@
             "name": "minResponse",
             "in": "query",
             "description": "Set to `true` to improve performance by omitting person details in the response. If unsuccessful the response will have optional error details.",
-            "example": "true",
+            "example": true,
             "schema": {
               "type": "boolean",
-              "default": "false"
+              "default": false
             }
           }
         ],
@@ -3676,7 +3676,7 @@
         },
         "summary": "Delete a Person",
         "operationId": "Delete a Person",
-        "description": "Remove a person from the system. Only an admin can remove a person.\n\nSpecify the person ID in the `personId` parameter in the URI.",
+        "description": "Remove a person from the system.\n\n**Required Administrator Roles:**\n\nThe following administrators have permission to use this API:\n\n**Customer Organization:**\n- Full administrator\n- User administrator\n\n**Partner/External Access:**\n- External full administrator\n\n**Note:** External read-only administrators, provisioning administrators, and device administrators cannot delete users.\n\nSpecify the person ID in the `personId` parameter in the URI.",
         "tags": [
           "People"
         ],
@@ -3825,10 +3825,10 @@
             "name": "callingData",
             "in": "query",
             "description": "Include Webex Calling user details in the response.",
-            "example": "true",
+            "example": true,
             "schema": {
               "type": "boolean",
-              "default": "false"
+              "default": false
             }
           }
         ]
