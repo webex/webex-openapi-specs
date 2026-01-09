@@ -5,7 +5,12 @@
     "version": "1.0.0",
     "description": "The Webex Admin APIs provide comprehensive programmatic access to administrative functions for managing Webex organizations, users, licenses, and settings. These APIs enable automation of user provisioning, license assignment, compliance management, and audit event retrieval. Administrators can integrate with enterprise identity systems, enforce security policies, monitor usage, and streamline onboarding/offboarding processes. The APIs support granular control over organizational resources, making them ideal for large-scale deployments and custom admin tooling."
   },
-  "tags": [],
+  "tags": [
+    {
+      "name": "Service Apps",
+      "description": "Operations for managing Service App access tokens"
+    }
+  ],
   "paths": {
     "/adminAudit/events": {
       "get": {
@@ -18701,6 +18706,155 @@
         ]
       }
     },
+    "/applications/{applicationId}/token": {
+      "post": {
+        "summary": "Create Service App Access Token",
+        "description": "Retrieves an organization specific token pair for an already authorized Service App. Service Apps use machine accounts to make API calls on behalf of an organization, independent of individual user life cycles.\n\nThis endpoint allows you to programmatically retrieve access and refresh tokens after a Full Admin has authorized your Service App in Control Hub.\n\nTo call this endpoint, you need an integration or another Service App with the spark:applications_token scope.",
+        "operationId": "createServiceAppAccessToken",
+        "tags": [
+          "Service Apps"
+        ],
+        "parameters": [
+          {
+            "name": "applicationId",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the Service App",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Y2lzY29zcGFyazovL3VzL0FQUExJQ0FUSU9OL0MyNzljYjMwYWI0OTQ3MGFhM2ViYTgwY2Q4MmYxMTc1"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "clientId",
+                  "clientSecret",
+                  "targetOrgId"
+                ],
+                "properties": {
+                  "clientId": {
+                    "type": "string",
+                    "description": "The OAuth client ID of the Service App",
+                    "example": "C1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+                  },
+                  "clientSecret": {
+                    "type": "string",
+                    "description": "The OAuth client secret of the Service App",
+                    "format": "password",
+                    "example": "1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+                  },
+                  "targetOrgId": {
+                    "type": "string",
+                    "description": "The organization ID for which the token will be created",
+                    "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully created Service App access token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "access_token": {
+                      "type": "string",
+                      "description": "The OAuth 2.0 access token",
+                      "example": "ZmFrZVRva2VuRm9yRXhhbXBsZVB1cnBvc2VzT25seQ..."
+                    },
+                    "expires_in": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Token expiration time in seconds",
+                      "example": 3600
+                    },
+                    "refresh_token": {
+                      "type": "string",
+                      "description": "The OAuth 2.0 refresh token (if applicable)",
+                      "example": "ZmFrZVJlZnJlc2hUb2tlbkZvckV4YW1wbGVPbmx5..."
+                    },
+                    "refresh_token_expires_in": {
+                      "type": "integer",
+                      "description": "Refresh token expiration time in seconds",
+                      "example": 7776000
+                    },
+                    "token_type": {
+                      "type": "string",
+                      "description": "The type of token issued",
+                      "example": "Bearer"
+                    }
+                  }
+                },
+                "example": {
+                  "access_token": "ZmFrZVRva2VuRm9yRXhhbXBsZVB1cnBvc2VzT25seQ...",
+                  "expires_in": 3600,
+                  "refresh_token": "ZmFrZVJlZnJlc2hUb2tlbkZvckV4YW1wbGVPbmx5...",
+                  "refresh_token_expires_in": 7776000,
+                  "token_type": "Bearer"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid input parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - Insufficient permissions or Service App not authorized by Full Admin in Control Hub",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Service App not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": [
+              "spark:applications_token"
+            ]
+          }
+        ]
+      }
+    },
     "/settings/organizations/{orgId}/settings/{settingKey}": {
       "get": {
         "responses": {
@@ -35996,6 +36150,49 @@
           }
         }
       },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message",
+            "example": "Invalid client credentials"
+          },
+          "trackingId": {
+            "type": "string",
+            "description": "Unique identifier for tracking this error",
+            "example": "ROUTER_1234567890ABCDEF"
+          },
+          "errors": {
+            "type": "array",
+            "description": "Detailed list of validation errors",
+            "items": {
+              "type": "object",
+              "properties": {
+                "description": {
+                  "type": "string",
+                  "description": "Description of the specific error",
+                  "example": "clientSecret is required"
+                }
+              }
+            },
+            "example": [
+              {
+                "description": "clientSecret is required"
+              }
+            ]
+          }
+        },
+        "example": {
+          "message": "Invalid client credentials",
+          "trackingId": "ROUTER_1234567890ABCDEF",
+          "errors": [
+            {
+              "description": "The provided clientSecret is invalid"
+            }
+          ]
+        }
+      },
       "getOrgSettingResponse": {
         "type": "object",
         "properties": {
@@ -36132,6 +36329,19 @@
         "description": "e.g. Bearer YOUR_AUTHORIZATION_TOKEN",
         "scheme": "bearer",
         "bearerFormat": "JWT"
+      },
+      "bearerAuth": {
+        "type": "oauth2",
+        "description": "OAuth 2.0 Bearer token authentication",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://webexapis.com/v1/authorize",
+            "tokenUrl": "https://webexapis.com/v1/access_token",
+            "scopes": {
+              "spark:applications_token": "Create access tokens for Service Apps"
+            }
+          }
+        }
       }
     },
     "parameters": {},
