@@ -5654,6 +5654,306 @@
         }
       }
     },
+    "/meetingSummaries": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json;charset=UTF-8": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SummaryObject"
+                      },
+                      "description": "Meeting summary object."
+                    }
+                  },
+                  "example": {
+                    "items": [
+                      {
+                        "id": "75ddf169-eef0-45b4-9faa-0112a16ec9d0",
+                        "meetingId": "0ed74a1c0551494fb7a04e2881bf50ae_I_166022169160077044",
+                        "status": "available",
+                        "notes": {
+                          "content": "<p>Summary of the meeting in HTML format</p>"
+                        },
+                        "actionItems": [
+                          {
+                            "content": "Action item No.1 in plaintext"
+                          },
+                          {
+                            "content": "Action item No.2 in plaintext"
+                          },
+                          {
+                            "content": "Action item No.3 in plaintext"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "headers": {},
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Get Summary by Meeting ID",
+        "operationId": "getSummaryByMeetingID",
+        "description": "Get the summary of an ended [meeting instance](/docs/meetings#meeting-series-scheduled-meetings-and-meeting-instances) by the meeting ID.\n\nPlease note that only **meeting instances** in state `ended` are supported, and currently the meeting ID of a meeting series, a scheduled meeting, an in-progress meeting instance, or a scheduled personal room meeting is not supported for this API. This API can only fetch summaries that you have access to, and if a meeting summary is deleted, you won't be able to see it either. And, this is an API for normal user. If you are a compliance officer, please use the Get Summary For Compliance Officer API",
+        "tags": [
+          "Summaries"
+        ],
+        "parameters": [
+          {
+            "name": "meetingId",
+            "in": "query",
+            "description": "Unique identifier for the [meeting instance](/docs/meetings#meeting-series-scheduled-meetings-and-meeting-instances) to which the summary belongs. Please note that currently the meeting ID of a meeting series, a scheduled meeting, an in-progress meeting instance, or a scheduled personal room meeting is not supported for this API. If `meetingId` is not specified, the query will be rejected.",
+            "example": "0ed74a1c0551494fb7a04e2881bf50ae_I_166022169160077044",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/admin/meetingSummaries": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json;charset=UTF-8": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SummaryObject"
+                      },
+                      "description": "Meeting summary object"
+                    }
+                  },
+                  "example": {
+                    "items": [
+                      {
+                        "id": "75ddf169-eef0-45b4-9faa-0112a16ec9d0",
+                        "meetingId": "0ed74a1c0551494fb7a04e2881bf50ae_I_166022169160077044",
+                        "status": "available",
+                        "notes": {
+                          "content": "<p>Summary of the meeting in HTML format</p>"
+                        },
+                        "actionItems": [
+                          {
+                            "content": "Action item No.1 in plaintext"
+                          },
+                          {
+                            "content": "Action item No.2 in plaintext"
+                          },
+                          {
+                            "content": "Action item No.3 in plaintext"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "headers": {},
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Get Summary For Compliance Officer",
+        "operationId": "getSummaryForComplianceOfficer",
+        "description": "Lists available or deleted summaries of an ended [meeting instance](/docs/meetings#meeting-series-scheduled-meetings-and-meeting-instances) by meeting ID. This API can only be accessed by compliance officers. With this API, a compliance officer can list summaries of any ended meeting instances in his organization including available and deleted summaries",
+        "tags": [
+          "Summaries"
+        ],
+        "parameters": [
+          {
+            "name": "meetingId",
+            "in": "query",
+            "description": "Unique identifier for the [meeting instance](/docs/meetings#meeting-series-scheduled-meetings-and-meeting-instances) to which the summary belongs. Please note that currently the meeting ID of a meeting series, a scheduled meeting, an in-progress meeting instance, or a scheduled personal room meeting is not supported for this API. If `meetingId` is not specified, the query will be rejected.",
+            "example": "0ed74a1c0551494fb7a04e2881bf50ae_I_166022169160077044",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/meetingSummaries/{summaryId}": {
+      "delete": {
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {},
+            "content": {}
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Delete a Summary",
+        "operationId": "deleteSummary",
+        "description": "Removes a summary with a specified summary ID. The deleted summary cannot be recovered. A deleted summary can not be accessed by regular users, i.e. host or attendees, but can be access by compliance officers",
+        "tags": [
+          "Summaries"
+        ],
+        "parameters": [
+          {
+            "name": "summaryId",
+            "in": "path",
+            "description": "Unique identifier for the meeting summary.",
+            "required": true,
+            "example": "75ddf169-eef0-45b4-9faa-0112a16ec9d0",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
     "/meetingTranscripts": {
       "get": {
         "responses": {
@@ -37803,6 +38103,81 @@
             },
             "description": "An array of the session type ID."
           }
+        }
+      },
+      "SummaryObject": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "c7428c95-df5f-442c-800a-81a2c1e95500",
+            "description": "A unique identifier for the summary."
+          },
+          "meetingId": {
+            "type": "string",
+            "example": "0ed74a1c0551494fb7a04e2881bf50ae_I_166022169160077044",
+            "description": "Unique identifier for the [meeting instance](/docs/meetings#meeting-series-scheduled-meetings-and-meeting-instances) to which the summary belongs."
+          },
+          "status": {
+            "type": "string",
+            "example": "available",
+            "enum": [
+              "available",
+              "deleted"
+            ],
+            "description": " * `available` - Summary is available.\n * `deleted` - Summary has been deleted.\n\n Normal users can only see available summaries. Compliance officers can see both available and deleted summaries."
+          },
+          "notes": {
+            "type": "object",
+            "required": [
+              "content"
+            ],
+            "properties": {
+              "content": {
+                "type": "string",
+                "example": "<p>Summary of the meeting in HTML format</p>",
+                "description": "Summary of the meeting in HTML format"
+              }
+            },
+            "description": "Meeting summaries in HTML format"
+          },
+          "actionItems": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "content"
+              ],
+              "properties": {
+                "content": {
+                  "type": "string",
+                  "example": "Action item in plaintext",
+                  "description": "Action item in plaintext"
+                }
+              },
+              "description": "One ation item in plaintext"
+            },
+            "description": "A list of action items"
+          }
+        },
+        "example": {
+          "id": "75ddf169-eef0-45b4-9faa-0112a16ec9d0",
+          "meetingId": "d32a7aee5d864adcb8aab61b03e2a64d_I_688397330631637738",
+          "status": "available",
+          "notes": {
+            "content": "<p>Summary of the meeting in HTML format</p>"
+          },
+          "actionItems": [
+            {
+              "content": "Action item No.1 in plaintext"
+            },
+            {
+              "content": "Action item No.2 in plaintext"
+            },
+            {
+              "content": "Action item No.3 in plaintext"
+            }
+          ]
         }
       },
       "TranscriptObject": {
