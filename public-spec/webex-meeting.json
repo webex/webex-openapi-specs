@@ -10149,7 +10149,7 @@
           "content": {
             "application/json": {
               "example": {
-                "meetingId": "98d8c2212c9d62b162b9565932735e58_I_231409844992607809",
+                "meetingId": "98d8c2212c9d62b162b9565932735e59",
                 "meetingNumber": "123456789",
                 "webLink": "https://site4-example.webex.com/site4/j.php?MTID=md41817da6a55b0925530cb88b3577b1e",
                 "joinDirectly": false,
@@ -43200,7 +43200,7 @@
         "properties": {
           "meetingId": {
             "type": "string",
-            "example": "98d8c2212c9d62b162b9565932735e58_I_231409844992607809",
+            "example": "98d8c2212c9d62b162b9565932735e59",
             "description": "Unique identifier for the meeting. This parameter applies to meeting series and scheduled meetings. It doesn't apply to ended or in-progress meeting instances. Please note that currently meeting ID of a scheduled [personal room](https://help.webex.com/en-us/article/nul0wut/Webex-Personal-Rooms-in-Webex-Meetings) meeting is also supported for this API."
           },
           "meetingNumber": {
