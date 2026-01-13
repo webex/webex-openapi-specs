@@ -18709,7 +18709,7 @@
     "/applications/{applicationId}/token": {
       "post": {
         "summary": "Create Service App Access Token",
-        "description": "Retrieves an organization specific token pair for an already authorized Service App. Service Apps use machine accounts to make API calls on behalf of an organization, independent of individual user life cycles.\n\nThis endpoint allows you to programmatically retrieve access and refresh tokens after a Full Admin has authorized your Service App in Control Hub.\n\nTo call this endpoint, you need an integration or another Service App with the spark:applications_token scope.",
+        "description": "Retrieves an organization specific token pair for an already authorized Service App. Service Apps use machine accounts to make API calls on behalf of an organization, independent of individual user life cycles.\n\nThis endpoint allows you to programmatically retrieve access and refresh tokens after a Full Admin has authorized your Service App in Control Hub.\n\nTo call this endpoint, you need an integration with the spark:applications_token scope.",
         "operationId": "createServiceAppAccessToken",
         "tags": [
           "Service Apps"
