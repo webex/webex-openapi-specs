@@ -2061,6 +2061,7 @@
                   ],
                   "id": "82adacf4-453f-4e2b-a406-2939fddcaad2",
                   "displayName": "Acme_New, Inc.",
+                  "preferredLanguage": "en_US",
                   "meta": {
                     "created": "2021-05-13T15:51:09.736Z",
                     "lastModified": "2024-05-20T12:25:16.739Z",
@@ -2141,7 +2142,8 @@
                 "schemas": [
                   "urn:cisco:codev:identity:organization:core:1.0"
                 ],
-                "displayName": "Acme_New, Inc."
+                "displayName": "Acme_New, Inc.",
+                "preferredLanguage": "en_US"
               },
               "schema": {
                 "$ref": "#/components/schemas/updateOrgObject"
@@ -31479,6 +31481,11 @@
             "example": "Acme, Inc.",
             "description": "Full name of the organization."
           },
+          "preferredLanguage": {
+            "type": "string",
+            "example": "en_US",
+            "description": "It is the default preferredLanguage for user creation in this org. It is set in ISO639 format."
+          },
           "meta": {
             "$ref": "#/components/schemas/metaObject",
             "description": "Meta data information of organization."
@@ -31529,6 +31536,11 @@
             "type": "string",
             "example": "Acme_New, Inc.",
             "description": "New full name of the organization."
+          },
+          "preferredLanguage": {
+            "type": "string",
+            "example": "en_US",
+            "description": "It is the default preferredLanguage for user creation in this org. It is set in ISO639 format."
           }
         }
       },
@@ -31548,6 +31560,257 @@
             "type": "number",
             "example": 604800,
             "description": "The expiration time for the OTP in seconds (default: 7 days)."
+          }
+        }
+      },
+      "AuthenticationConfigPatchObject": {
+        "type": "object",
+        "required": [
+          "schemas"
+        ],
+        "properties": {
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "urn:cisco:codev:identity:idbroker:authnconfig:schemas:1.0"
+            },
+            "description": "Input JSON schemas. It should contain the following schema: \n urn:cisco:codev:identity:idbroker:authnconfig:schemas:1.0"
+          },
+          "RememberMyLoginId": {
+            "type": "boolean",
+            "example": true,
+            "description": "Login Id set to true if it should be remembered."
+          },
+          "RememberMyLoginIdDuration": {
+            "type": "number",
+            "example": 30,
+            "description": "Login duration in days, default is 30."
+          }
+        }
+      },
+      "AuthenticationConfigResponse": {
+        "type": "object",
+        "properties": {
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "urn:cisco:codev:identity:idbroker:authnconfig:schemas:1.0"
+            },
+            "description": "Output JSON schemas."
+          },
+          "LockoutDuration": {
+            "type": "number",
+            "example": 1,
+            "description": "The number of minutes that an account will be locked out."
+          },
+          "LockoutDurationMultiplier": {
+            "type": "number",
+            "example": 1,
+            "description": "The multiplier of the LockoutDuration. Each subsequent lockout will be multiplied by this value."
+          },
+          "LockoutFailureCount": {
+            "type": "number",
+            "example": 5,
+            "description": "Number of failed login attempts that will trigger account lockout."
+          },
+          "LockoutFailureDuration": {
+            "type": "number",
+            "example": 5,
+            "description": "Number of minutes that a login failure will be recorded."
+          },
+          "RememberMyLoginId": {
+            "type": "boolean",
+            "example": true,
+            "description": "True to remember the user's Login Id."
+          },
+          "RememberMyLoginIdDuration": {
+            "type": "number",
+            "example": 30,
+            "description": "Number of days the user's remember login Id preference is set. Default is 30 days."
+          }
+        }
+      },
+      "PasswordPolicyObject": {
+        "type": "object",
+        "required": [
+          "schemas",
+          "minimumNumeric",
+          "minimumCapAlpha",
+          "minimumLowAlpha",
+          "minimumSpecial",
+          "minimumLength",
+          "maximumLength",
+          "historyCount",
+          "minPasswordAge",
+          "maxPasswordAge",
+          "lockoutFailureCount",
+          "lockoutDuration",
+          "repeatCharCount",
+          "notAcceptableStrings"
+        ],
+        "properties": {
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "urn:cisco:codev:identity:idbroker:pwdpolicy:schemas:1.0"
+            },
+            "description": "Input JSON schemas. It should contain the following schema: \n urn:cisco:codev:identity:idbroker:pwdpolicy:schemas:1.0"
+          },
+          "minimumNumeric": {
+            "type": "string",
+            "example": "1",
+            "description": "Minimum number of numeric characters in password"
+          },
+          "minimumCapAlpha": {
+            "type": "string",
+            "example": "1",
+            "description": "Minimum number of uppercase alphabetic character letters in password"
+          },
+          "minimumLowAlpha": {
+            "type": "string",
+            "example": "1",
+            "description": "Minimum number of lowercase alphabetic character letters in password"
+          },
+          "minimumSpecial": {
+            "type": "string",
+            "example": "1",
+            "description": "Minimum number of special character included \"~!@#$%^&*()-_=+[]{}|;:,.<>/?\" in password"
+          },
+          "minimumLength": {
+            "type": "string",
+            "example": "8",
+            "description": "Minimum length of password"
+          },
+          "maximumLength": {
+            "type": "string",
+            "example": "256",
+            "description": "Maximum length of password, value of \"0\" means unlimited"
+          },
+          "historyCount": {
+            "type": "string",
+            "example": "3",
+            "description": "The number of former passwords in history, the new password can't be any one of them."
+          },
+          "minPasswordAge": {
+            "type": "string",
+            "example": "3",
+            "description": "User can reset password after \"X\" hours."
+          },
+          "maxPasswordAge": {
+            "type": "string",
+            "example": "90000",
+            "description": "The password expired time, unit: day, that means user need to change password every \"X\" days."
+          },
+          "lockoutFailureCount": {
+            "type": "string",
+            "example": "3",
+            "description": "The number of times that a user may be allowed to attempt if failed to login. The user will be locked out on \"X\"+1 failed attempt."
+          },
+          "lockoutDuration": {
+            "type": "string",
+            "example": "10",
+            "description": "The locked out user will be unlocked after \"X\" minutes, if is \"0\", the account must remain locked until administrator resets the password."
+          },
+          "repeatCharCount": {
+            "type": "string",
+            "example": "3",
+            "description": "The password can not contain a substring in which the same character is repeated more than \"X\" times. \n For example: if value is \"3\", \"aaaa\" will not be acceptable."
+          },
+          "notAcceptableStrings": {
+            "type": "string",
+            "example": "password,passwd,pass,webex,cisco,xebew,ocsic",
+            "description": "The password can not be any one in this string list."
+          }
+        }
+      },
+      "PasswordPolicyResponse": {
+        "type": "object",
+        "properties": {
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "urn:cisco:codev:identity:idbroker:pwdpolicy:schemas:1.0"
+            },
+            "description": "Output JSON schemas."
+          },
+          "url": {
+            "type": "string",
+            "example": "https://identity.webex.com/identity/idbconfig/123456/v1/PasswordPolicy",
+            "description": "The password policy location."
+          },
+          "minimumNumeric": {
+            "type": "string",
+            "example": "8",
+            "description": "Minimum number of numeric characters in password."
+          },
+          "minimumCapAlpha": {
+            "type": "string",
+            "example": "1",
+            "description": "Minimum number of uppercase alphabetic character letters in a password."
+          },
+          "minimumLowAlpha": {
+            "type": "string",
+            "example": "1",
+            "description": "Minimum number of lowercase alphabetic character letters in a password."
+          },
+          "minimumSpecial": {
+            "type": "string",
+            "example": "1",
+            "description": "Minimum number of special character included \"~!@#$%^&*()-_=+[]{}|;:,.<>/?\" in a password."
+          },
+          "minimumLength": {
+            "type": "string",
+            "example": "8",
+            "description": "Minimum length of password."
+          },
+          "maximumLength": {
+            "type": "string",
+            "example": "256",
+            "description": "Maximum length of password, value of \"0\" means unlimited."
+          },
+          "historyCount": {
+            "type": "string",
+            "example": "3",
+            "description": "The number of former password in history, the new password can't be any one of them."
+          },
+          "minPasswordAge": {
+            "type": "string",
+            "example": "3",
+            "description": "User can reset password after \"X\" hours."
+          },
+          "maxPasswordAge": {
+            "type": "string",
+            "example": "90000",
+            "description": "The password expired time, unit: day, that means user need to change password every \"X\" days."
+          },
+          "lockoutFailureCount": {
+            "type": "string",
+            "example": "3",
+            "description": "The number of times that a user may be allowed to attempt to failed login , the user will be locked out on \"X\"+1 failed attempt."
+          },
+          "lockoutDuration": {
+            "type": "string",
+            "example": "10",
+            "description": "The locked out user will be unlocked after \"X\" minutes, if is \"0\", the account must remain locked until administrator resets the password."
+          },
+          "repeatCharCount": {
+            "type": "string",
+            "example": "3",
+            "description": "The password can not contain a substring which the same character is repeated more than \"X\" times, for example: if value is \"3\", \"aaaa\" will not be acceptable."
+          },
+          "notAcceptableStrings": {
+            "type": "string",
+            "example": "password,passwd,pass,webex,cisco,xebew,ocsic",
+            "description": "The password can not be any one in this string list."
+          },
+          "filterString": {
+            "type": "boolean",
+            "example": false,
+            "description": "If true, the password can not be user first name, last name and email."
           }
         }
       },
