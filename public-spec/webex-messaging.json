@@ -1093,6 +1093,205 @@
         ]
       }
     },
+    "/hds/testResults/nodes/{nodeId}/networkTest": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/networkTestsResultsResponse"
+                },
+                "example": {
+                  "orgId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8yYzNjOWY5NS03M2Q5LTQ0NjAtYTY2OC0wNDcxNjJmZjFiYWQ",
+                  "items": [
+                    {
+                      "clusters": {
+                        "clusterId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DTFVTVEVSLzJjM2M5Zjk1LTczZDktNDQ2MC1hNjY4LTA0NzE2MmZmMWJhZDpmMWJmMGI1MC0yMDUyLTQ3ZmUtYjg3ZC01MTFjMmZlNzQ3MWI",
+                        "clusterName": "HDS Cluster 1",
+                        "nodes": [
+                          {
+                            "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+                            "hostname": "hds-node-1.example.com",
+                            "hostIp": "165.49.25.1",
+                            "testResults": [
+                              {
+                                "triggerType": "Periodic",
+                                "results": [
+                                  {
+                                    "timestamp": "2024-01-15T10:15:30Z",
+                                    "type": "HTTPConnectivityTest",
+                                    "results": [
+                                      {
+                                        "serviceType": "WebexCloud",
+                                        "services": [
+                                          {
+                                            "serviceName": "hercules",
+                                            "testResult": "Success"
+                                          },
+                                          {
+                                            "serviceName": "identity",
+                                            "testResult": "Success"
+                                          },
+                                          {
+                                            "serviceName": "idBroker",
+                                            "testResult": "Success"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "serviceType": "ThirdPartyCloud",
+                                        "services": [
+                                          {
+                                            "serviceName": "ecr",
+                                            "testResult": "Success"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "timestamp": "2024-01-15T10:15:30Z",
+                                    "type": "BandwidthTest",
+                                    "results": [
+                                      {
+                                        "serviceType": "ThirdPartyCloud",
+                                        "services": [
+                                          {
+                                            "serviceName": "ecr",
+                                            "testResult": "Success"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "timestamp": "2024-01-15T10:15:30Z",
+                                    "type": "DNSResolutionTest",
+                                    "results": [
+                                      {
+                                        "serviceType": "WebexCloud",
+                                        "services": [
+                                          {
+                                            "serviceName": "identity",
+                                            "testResult": "Success"
+                                          },
+                                          {
+                                            "serviceName": "hercules",
+                                            "testResult": "Success"
+                                          },
+                                          {
+                                            "serviceName": "idBroker",
+                                            "testResult": "Success"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "serviceType": "ThirdPartyCloud",
+                                        "services": [
+                                          {
+                                            "serviceName": "ecr",
+                                            "testResult": "Success"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or could not be otherwise processed. An accompanying error message will provide more details."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request was understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The requested URI is invalid, or the resource requested (such as a user) does not exist. This response is also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type, or with a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present to indicate how many seconds you should wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: The file(s) cannot be scanned for malware and must be force-downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, please contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond in time. If your query uses the max parameter, please try reducing its value."
+          }
+        },
+        "summary": "Returns the test results for a specific HDS node",
+        "operationId": "getNetworkTestResultsForHdsNode",
+        "description": "Get the latest results of the network tests triggered for a single HDS node. The test results are generated as part of the Network Test execution on the node. The network tests include the Bandwidth Test, DNS Resolution Test, and HTTPS Connectivity Test.",
+        "tags": [
+          "HDS"
+        ],
+        "parameters": [
+          {
+            "name": "nodeId",
+            "in": "path",
+            "description": "Unique ID of the HDS node.",
+            "required": true,
+            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "triggerType",
+            "in": "query",
+            "description": "Trigger type.",
+            "required": true,
+            "example": "OnDemand",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "OnDemand",
+                "Periodic",
+                "All"
+              ]
+            }
+          }
+        ]
+      }
+    },
     "/memberships": {
       "get": {
         "responses": {
@@ -16290,6 +16489,150 @@
             "type": "string",
             "example": "https://testecmwebexteams-my.sharepoint.com/:w:/g/personal/admin_testecmwebexteams_onmicrosoft_com/ESCiJiALU0pBlVm6TVhZ2k0B69XNVB1kWoaa7RIV9GERTg",
             "description": "The URL for the content."
+          }
+        }
+      },
+      "networkTestsResultsResponse": {
+        "type": "object",
+        "properties": {
+          "orgId": {
+            "type": "string",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8yYzNjOWY5NS03M2Q5LTQ0NjAtYTY2OC0wNDcxNjJmZjFiYWQ=",
+            "description": "Unique ID of the organization."
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/networkTestResultsForCluster"
+            },
+            "description": "List of network test results for clusters."
+          }
+        }
+      },
+      "networkTestResultsForCluster": {
+        "type": "object",
+        "properties": {
+          "clusters": {
+            "type": "object",
+            "properties": {
+              "clusterId": {
+                "type": "string",
+                "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DTFVTVEVSLzJjM2M5Zjk1LTczZDktNDQ2MC1hNjY4LTA0NzE2MmZmMWJhZDpmMWJmMGI1MC0yMDUyLTQ3ZmUtYjg3ZC01MTFjMmZlNzQ3MWI",
+                "description": "Unique ID of the cluster."
+              },
+              "clusterName": {
+                "type": "string",
+                "example": "HDS Cluster 1",
+                "description": "Name of the cluster."
+              },
+              "nodes": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/networkTestResultsForNode"
+                },
+                "description": "List of nodes with network test results."
+              }
+            },
+            "description": "Cluster details with network test results."
+          }
+        }
+      },
+      "networkTestResultsForNode": {
+        "type": "object",
+        "properties": {
+          "nodeId": {
+            "type": "string",
+            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+            "description": "Unique ID of the connector/node."
+          },
+          "hostname": {
+            "type": "string",
+            "example": "hds-node-1.example.com",
+            "description": "Hostname of the node."
+          },
+          "hostIp": {
+            "type": "string",
+            "example": "165.49.25.1",
+            "description": "IP address of the node."
+          },
+          "testResults": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/networkTestResults"
+            },
+            "description": "List of network test results."
+          }
+        }
+      },
+      "networkTestResults": {
+        "type": "object",
+        "properties": {
+          "triggerType": {
+            "type": "string",
+            "example": "Periodic",
+            "description": "Type of trigger for the test."
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/singleNetworkTestResult"
+            },
+            "description": "List of individual network test results."
+          }
+        }
+      },
+      "singleNetworkTestResult": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-01-15T10:15:30Z",
+            "description": "Timestamp when the test was triggered"
+          },
+          "type": {
+            "type": "string",
+            "example": "HTTPConnectivityTest",
+            "description": "Type of network test."
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/serviceTestResults"
+            },
+            "description": "List of service test results."
+          }
+        }
+      },
+      "serviceTestResults": {
+        "type": "object",
+        "properties": {
+          "serviceType": {
+            "type": "string",
+            "example": "WebexCloud",
+            "description": "Type of service."
+          },
+          "services": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/singleServiceTestResult"
+            },
+            "description": "List of individual service test results."
+          }
+        }
+      },
+      "singleServiceTestResult": {
+        "type": "object",
+        "properties": {
+          "serviceName": {
+            "type": "string",
+            "example": "hercules",
+            "description": "Name of the service."
+          },
+          "testResult": {
+            "type": "string",
+            "example": "Success",
+            "description": "Result of the test for the service."
           }
         }
       },
