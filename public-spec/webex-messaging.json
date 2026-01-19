@@ -14582,7 +14582,7 @@
           },
           "password": {
             "type": "string",
-            "example": "BgJep@43",
+            "example": "********",
             "description": "The recording's password."
           },
           "format": {
@@ -14835,7 +14835,7 @@
           },
           "password": {
             "type": "string",
-            "example": "BgJep@43",
+            "example": "********",
             "description": "The recording's password."
           },
           "format": {

@@ -9622,7 +9622,7 @@
                       "siteUrl": "site4-example.webex.com",
                       "downloadUrl": "https://site4-example.webex.com/site4/lsr.php?RCID=b91990e37417bda24986e46cf43345ab",
                       "playbackUrl": "https://site4-example.webex.com/site4/ldr.php?RCID=69201a61d1d94a84aca18817261d1a73",
-                      "password": "BgJep@43",
+                      "password": "********",
                       "format": "ARF",
                       "serviceType": "MeetingCenter",
                       "durationSeconds": 18416,
@@ -9646,7 +9646,7 @@
                       "siteUrl": "site4-example.webex.com",
                       "downloadUrl": "https://site4-example.webex.com/site4/lsr.php?RCID=8a763939dec1fa26c565700d628fcb98",
                       "playbackUrl": "https://site4-example.webex.com/site4/ldr.php?RCID=b05e9c4f773745e7b88725cc97bc3161",
-                      "password": "BgJep@43",
+                      "password": "********",
                       "format": "ARF",
                       "serviceType": "MeetingCenter",
                       "durationSeconds": 181562,
@@ -9670,7 +9670,7 @@
                       "siteUrl": "site4-example.webex.com",
                       "downloadUrl": "https://site4-example.webex.com/site4/lsr.php?RCID=0edd48adbb183e7da97884a0a984e877",
                       "playbackUrl": "https://site4-example.webex.com/site4/ldr.php?RCID=b64b28ebf70e4645954420c295a9fcad",
-                      "password": "BgJep@4",
+                      "password": "********",
                       "format": "ARF",
                       "serviceType": "MeetingCenter",
                       "durationSeconds": 181562,
@@ -9912,10 +9912,12 @@
                       "siteUrl": "site4-example.webex.com",
                       "downloadUrl": "https://site4-example.webex.com/site4/lsr.php?RCID=b91990e37417bda24986e46cf43345ab",
                       "playbackUrl": "https://site4-example.webex.com/site4/ldr.php?RCID=69201a61d1d94a84aca18817261d1a73",
+                      "password": "********",
                       "format": "ARF",
                       "serviceType": "MeetingCenter",
                       "durationSeconds": 18416,
                       "sizeBytes": 168103,
+                      "shareToMe": false,
                       "integrationTags": [
                         "dbaeceebea5c4a63ac9d5ef1edfe36b9",
                         "85e1d6319aa94c0583a6891280e3437d",
@@ -9936,10 +9938,12 @@
                       "siteUrl": "site4-example.webex.com",
                       "downloadUrl": "https://site4-example.webex.com/site4/lsr.php?RCID=8a763939dec1fa26c565700d628fcb98",
                       "playbackUrl": "https://site4-example.webex.com/site4/ldr.php?RCID=b05e9c4f773745e7b88725cc97bc3161",
+                      "password": "********",
                       "format": "ARF",
                       "serviceType": "MeetingCenter",
                       "durationSeconds": 181562,
                       "sizeBytes": 199134,
+                      "shareToMe": false,
                       "integrationTags": [
                         "dbaeceebea5c4a63ac9d5ef1edfe36b9",
                         "85e1d6319aa94c0583a6891280e3437d",
@@ -9960,10 +9964,12 @@
                       "siteUrl": "site4-example.webex.com",
                       "downloadUrl": "https://site4-example.webex.com/site4/lsr.php?RCID=0edd48adbb183e7da97884a0a984e877",
                       "playbackUrl": "https://site4-example.webex.com/site4/ldr.php?RCID=b64b28ebf70e4645954420c295a9fcad",
+                      "password": "********",
                       "format": "ARF",
                       "serviceType": "MeetingCenter",
                       "durationSeconds": 181562,
                       "sizeBytes": 199134,
+                      "shareToMe": false,
                       "integrationTags": [
                         "dbaeceebea5c4a63ac9d5ef1edfe36b9",
                         "85e1d6319aa94c0583a6891280e3437d",
@@ -10022,7 +10028,7 @@
             "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
           }
         },
-        "summary": "List Recordings For an Admin or Compliance Officer",
+        "summary": "List Recordings For Admin or Compliance Officer",
         "operationId": "listRecordingsForAdminOrComplianceOfficer",
         "description": "List recordings for an admin or compliance officer. You can specify a date range, a parent meeting ID, and the maximum number of recordings to return.\n\nThe list returned is sorted in descending order by the date and time that the recordings were created.\n\nLong result sets are split into [pages](/docs/basics#pagination).\n\n* If `meetingId` is specified, only recordings associated with the specified meeting will be listed. Please note that when `meetingId` is specified, parameters of `siteUrl`, `from`, and `to` will be ignored.\n\n* If `siteUrl` is specified, all the recordings on the specified site are listed; otherwise, all the recordings on the admin user's or compliance officer's preferred site are listed. All the available Webex sites and the admin user's or compliance officer's preferred site can be retrieved by the [Get Site List](/docs/api/v1/meeting-preferences/get-site-list) API.\n\n#### Request Header\n\n* `timezone`: *[Time zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List) in conformance with the [IANA time zone database](https://www.iana.org/time-zones). The default is UTC if `timezone` is not defined.*",
         "tags": [
@@ -10207,7 +10213,7 @@
           }
         },
         "summary": "Delete a Recording By an Admin",
-        "operationId": "Delete a Recording By an Admin",
+        "operationId": "adminDeleteRecordingById",
         "description": "Removes a recording with a specified recording ID by an admin. The deleted recording cannot be recovered. It will be inaccessible to regular users (host, attendees and shared) or an admin, but it will be still available to the Compliance Officer.\n\nAny recording on a site which is managed by the admin can be deleted by him.\n\nThe `temporaryDirectDownloadLinks` of a recording which are retrieved by the [Get Recording Details](/docs/api/v1/recordings/get-recording-details) API are still available to Compliance Officers even if the recording has been deleted.",
         "tags": [
           "Recordings"
@@ -10248,7 +10254,7 @@
                   "siteUrl": "site4-example.webex.com",
                   "downloadUrl": "https://site4-example.webex.com/site4/lsr.php?RCID=b91990e37417bda24986e46cf43345ab",
                   "playbackUrl": "https://site4-example.webex.com/site4/ldr.php?RCID=69201a61d1d94a84aca18817261d1a73",
-                  "password": "BgJep@43",
+                  "password": "********",
                   "temporaryDirectDownloadLinks": {
                     "recordingDownloadLink": "https://site4-example.webex.com/nbr/MultiThreadDownloadServlet?siteid=2062842&recordid=305462&confid=137735449369118342&language=en_US&userid=3516472&serviceRecordID=305492&ticket=SDJTSwAAAIUBSHkvL6Z5ddyBim5%2FHcJYcvn6IoXNEyCE2mAYQ5BlBg%3D%3D&timestamp=1567125236465&islogin=yes&isprevent=no&ispwd=yes",
                     "audioDownloadLink": "https://site4-example.webex.com/nbr/downloadMedia.do?siteid=2062842&recordid=305462&confid=137735449369118342&language=en_US&userid=3516472&serviceRecordID=305492&ticket=SDJTSwAAAIXCIXsuBt%2BAgtK7WoQ2VhgeI608N4ZMIJ3vxQaQNZuLZA%3D%3D&timestamp=1567125236708&islogin=yes&isprevent=no&ispwd=yes&mediaType=1",
@@ -10317,7 +10323,7 @@
           }
         },
         "summary": "Get Recording Details",
-        "operationId": "Get Recording Details",
+        "operationId": "getRecordByRecordId",
         "description": "Retrieves details for a recording with a specified recording ID.\n\nOnly recordings of meetings hosted by or shared with the authenticated user may be retrieved.\n\n#### Request Header\n\n* `timezone`: *[Time zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List) in conformance with the [IANA time zone database](https://www.iana.org/time-zones). The default is UTC if `timezone` is not defined.*\n\n* `siteUrl`: Optional request header parameter. If specified, retrieve the recording details from that site; otherwise, retrieve it from the site which is implied based on the recording ID.",
         "tags": [
           "Recordings"
@@ -10420,7 +10426,7 @@
           }
         },
         "summary": "Delete a Recording",
-        "operationId": "Delete a Recording",
+        "operationId": "deleteRecordingByRecordId",
         "description": "Removes a recording with a specified recording ID. The deleted recording cannot be recovered. If a Compliance Officer deletes another user's recording, the recording will be inaccessible to regular users (host, attendees and shared), but will be still available to the Compliance Officer.\n\nOnly recordings of meetings hosted by the authenticated user can be deleted.\n\nThe `temporaryDirectDownloadLinks` of a recording which are retrieved by the [Get Recording Details](/docs/api/v1/recordings/get-recording-details) API are still available to Compliance Officers even if the recording has been deleted.",
         "tags": [
           "Recordings"
@@ -10518,7 +10524,7 @@
           }
         },
         "summary": "Move Recordings into the Recycle Bin",
-        "operationId": "Move Recordings into the Recycle Bin",
+        "operationId": "bulkSoftDeleteRecordings",
         "description": "Move recordings into the recycle bin with recording IDs. Recordings in the recycle bin can be recovered by [Restore Recordings from Recycle Bin](/docs/api/v1/recordings/restore-recordings-from-recycle-bin) API. If you'd like to empty recordings from the recycle bin, you can use [Purge Recordings from Recycle Bin](/docs/api/v1/recordings/purge-recordings-from-recycle-bin) API to purge all or some of them.\n\nOnly recordings of meetings hosted by the authenticated user can be moved into the recycle bin.\n\n* `recordingIds` should not be empty and its maximum size is `100`.\n\n* All the IDs of `recordingIds` should belong to the site of `siteUrl` or the user's preferred site if `siteUrl` is not specified.",
         "tags": [
           "Recordings"
@@ -10608,7 +10614,7 @@
           }
         },
         "summary": "Restore Recordings from Recycle Bin",
-        "operationId": "Restore Recordings from Recycle Bin",
+        "operationId": "bulkRestoreRecordings",
         "description": "Restore all or some recordings from the recycle bin. Only recordings of meetings hosted by the authenticated user can be restored from recycle bin.\n\n* If `restoreAll` is `true`, `recordingIds` should be empty.\n\n* If `restoreAll` is `false`, `recordingIds` should not be empty and its maximum size is `100`.\n\n* All the IDs of `recordingIds` should belong to the site of `siteUrl` or the user's preferred site if `siteUrl` is not specified.",
         "tags": [
           "Recordings"
@@ -10699,7 +10705,7 @@
           }
         },
         "summary": "Purge Recordings from Recycle Bin",
-        "operationId": "Purge Recordings from Recycle Bin",
+        "operationId": "bulkPurgeRecordings",
         "description": "Purge recordings from recycle bin with recording IDs or purge all the recordings that are in the recycle bin.\n\nOnly recordings of meetings hosted by the authenticated user can be purged from recycle bin.\n\n* If `purgeAll` is `true`, `recordingIds` should be empty.\n\n* If `purgeAll` is `false`, `recordingIds` should not be empty and its maximum size is `100`.\n\n* All the IDs of `recordingIds` should belong to the site of `siteUrl` or the user's preferred site if `siteUrl` is not specified.",
         "tags": [
           "Recordings"
@@ -10790,7 +10796,7 @@
           }
         },
         "summary": "Share a Recording",
-        "operationId": "Share a Recording",
+        "operationId": "updateRecordingShare",
         "description": "Share or unshare a recording with other users by email addresses.",
         "tags": [
           "Recordings"
@@ -10827,6 +10833,427 @@
             }
           }
         }
+      }
+    },
+    "/group/recordings": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json;charset=UTF-8": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/RecordingObject"
+                      },
+                      "description": "An array of recording objects."
+                    }
+                  }
+                },
+                "example": {
+                  "items": [
+                    {
+                      "id": "4f914b1dfe3c4d11a61730f18c0f5387",
+                      "meetingId": "f91b6edce9864428af084977b7c68291_I_166641849979635652",
+                      "scheduledMeetingId": "f91b6edce9864428af084977b7c68291_20200713T121500Z",
+                      "meetingSeriesId": "f91b6edce9864428af084977b7c68291",
+                      "topic": "Example Topic",
+                      "createTime": "2020-07-13T17:11:35Z",
+                      "timeRecorded": "2020-07-13T17:05:35Z",
+                      "hostDisplayName": "John Andersen",
+                      "hostEmail": "john.andersen@example.com",
+                      "siteUrl": "site4-example.webex.com",
+                      "downloadUrl": "https://site4-example.webex.com/site4/lsr.php?RCID=b91990e37417bda24986e46cf43345ab",
+                      "playbackUrl": "https://site4-example.webex.com/site4/ldr.php?RCID=69201a61d1d94a84aca18817261d1a73",
+                      "password": "********",
+                      "format": "ARF",
+                      "serviceType": "MeetingCenter",
+                      "durationSeconds": 18416,
+                      "sizeBytes": 168103,
+                      "shareToMe": false,
+                      "integrationTags": [
+                        "dbaeceebea5c4a63ac9d5ef1edfe36b9",
+                        "85e1d6319aa94c0583a6891280e3437d",
+                        "27226d1311b947f3a68d6bdf8e4e19a1"
+                      ],
+                      "status": "available"
+                    },
+                    {
+                      "id": "3324fb76946249cfa07fc30b3ccbf580",
+                      "meetingId": "f91b6edce9864428af084977b7c68291_I_166641849979635652",
+                      "scheduledMeetingId": "f91b6edce9864428af084977b7c68291_20200713T121500Z",
+                      "meetingSeriesId": "f91b6edce9864428af084977b7c68291",
+                      "topic": "Example Topic",
+                      "createTime": "2020-07-13T17:11:34Z",
+                      "timeRecorded": "2020-07-13T17:05:35Z",
+                      "hostDisplayName": "John Andersen",
+                      "hostEmail": "john.andersen@example.com",
+                      "siteUrl": "site4-example.webex.com",
+                      "downloadUrl": "https://site4-example.webex.com/site4/lsr.php?RCID=8a763939dec1fa26c565700d628fcb98",
+                      "playbackUrl": "https://site4-example.webex.com/site4/ldr.php?RCID=b05e9c4f773745e7b88725cc97bc3161",
+                      "password": "********",
+                      "format": "ARF",
+                      "serviceType": "MeetingCenter",
+                      "durationSeconds": 181562,
+                      "sizeBytes": 199134,
+                      "shareToMe": false,
+                      "integrationTags": [
+                        "dbaeceebea5c4a63ac9d5ef1edfe36b9",
+                        "85e1d6319aa94c0583a6891280e3437d",
+                        "27226d1311b947f3a68d6bdf8e4e19a1"
+                      ],
+                      "status": "available"
+                    },
+                    {
+                      "id": "42b80117a2a74dcf9863bf06264f8075",
+                      "meetingId": "f91b6edce9864428af084977b7c68291_I_166641849979635652",
+                      "scheduledMeetingId": "f91b6edce9864428af084977b7c68291_20200713T121500Z",
+                      "meetingSeriesId": "f91b6edce9864428af084977b7c68291",
+                      "topic": "Example Topic",
+                      "createTime": "2020-07-13T17:11:33Z",
+                      "timeRecorded": "2020-07-13T17:05:35Z",
+                      "hostDisplayName": "John Andersen",
+                      "hostEmail": "john.andersen@example.com",
+                      "siteUrl": "site4-example.webex.com",
+                      "downloadUrl": "https://site4-example.webex.com/site4/lsr.php?RCID=0edd48adbb183e7da97884a0a984e877",
+                      "playbackUrl": "https://site4-example.webex.com/site4/ldr.php?RCID=b64b28ebf70e4645954420c295a9fcad",
+                      "password": "********",
+                      "format": "ARF",
+                      "serviceType": "MeetingCenter",
+                      "durationSeconds": 181562,
+                      "sizeBytes": 199134,
+                      "shareToMe": false,
+                      "integrationTags": [
+                        "dbaeceebea5c4a63ac9d5ef1edfe36b9",
+                        "85e1d6319aa94c0583a6891280e3437d",
+                        "27226d1311b947f3a68d6bdf8e4e19a1"
+                      ],
+                      "status": "available"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "List Group Recordings",
+        "operationId": "listGroupRecordings",
+        "description": "List group recordings for a service app which has group recording access. You can specify a date range, the maximum number of recordings to return, and `personId` or `hostEmail` of whom the recordings will be retrieved.\n\n* The list returned is sorted in descending order by the date and time that the recordings were created.\n\n* Only recordings which are in the `available` status and not shared by others can be listed. Those in the `deleted` or `purged` status or shared by others can't be listed.\n\n* Long result sets are split into [pages](/docs/basics#pagination).\n\n* If `siteUrl` is specified, the API lists group recordings on the specified site; otherwise, the API lists group recordings on all the sites managed by the service app. All the sites managed by a service app can be retrieved by the [Get Site List](/docs/api/v1/meeting-preferences/get-site-list) API.\n\n* One of the parameters `personId` and `hostEmail` must be specified so that only recordings of meetings hosted by the person of `personId` or `hostEmail` will be returned.\n\n#### Request Header\n\n* `timezone`: [Time zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List) in conformance with the [IANA time zone database](https://www.iana.org/time-zones). The default is UTC if `timezone` is not defined.\n\n* `hostEmail`: Email of the user whose recordings will be retrieved. The `hostEmail` parameter is optional, but one of the two parameters `personId` and `hostEmail` must be specified.",
+        "tags": [
+          "Recordings"
+        ],
+        "parameters": [
+          {
+            "name": "personId",
+            "in": "query",
+            "description": "Person ID of the user whose recordings will be retrieved. The person ID can be retrieved from the [People APIs](/docs/api/v1/people), e.g. [Lit People](/docs/api/v1/people/list-people). Note that a person ID retrieved from the People APIs is a Base64-encoded string, e.g. `Y2lzY29zcGFyazovL3VzL1BFT1BMRS9kNDdiMmU3ZC01ZTBmLTRmNjktYWVmNC1lNGZmOTBhZWE3Yzk`. The person ID in the raw UUID format which is the last part of the Base64-decoded string, e.g. `d47b2e7d-5e0f-4f69-aef4-e4ff90aea7c9`, is also supported. The `personId` parameter is optional, but one of the two parameters `personId` and `hostEmail` must be specified.",
+            "required": false,
+            "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS9kNDdiMmU3ZC01ZTBmLTRmNjktYWVmNC1lNGZmOTBhZWE3Yzk",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "max",
+            "in": "query",
+            "description": "Maximum number of recordings to return in a single page. `max` must be equal to or greater than `1` and equal to or less than `100`.",
+            "schema": {
+              "type": "number",
+              "default": 10
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "description": "Starting date and time (inclusive) for recordings to return, in any [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) compliant format. `from` cannot be after `to`. The interval between `from` and `to` must be within 30 days.",
+            "example": "2020-07-12T09:30:00+08:00",
+            "schema": {
+              "type": "string",
+              "default": "If only `to` is specified, the default `from` value is 7 days before `to`; if no `to` or `from` is specified, the default `from` value is 7 days before current date and time."
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "Ending date and time (exclusive) for List recordings to return, in any [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) compliant format. `to` cannot be before `from`. The interval between `from` and `to` must be within 30 days.",
+            "example": "2020-07-31T09:30:00+08:00",
+            "schema": {
+              "type": "string",
+              "default": "If `from` is specified, the default value is 7 days after `from`; if `from` is not specified, the default value is the current date and time."
+            }
+          },
+          {
+            "name": "siteUrl",
+            "in": "query",
+            "description": "URL of the Webex site which the API lists recordings from. If not specified, the API lists recordings from user's preferred site. All available Webex sites and preferred site of the user can be retrieved by [Get Site List](/docs/api/v1/meeting-preferences/get-site-list) API.",
+            "example": "example.webex.com",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "integrationTag",
+            "in": "query",
+            "description": "External key of the parent meeting created by an integration application. This parameter is used by the integration application to query recordings by a key in its own domain such as a Zendesk ticket ID, a Jira ID, a Salesforce Opportunity ID, etc. An integrationTag created by one client cannot be accessed or used as a filtering parameter by another client. For example, if a meeting has an `integrationTag` of \"Sales\" which is created by the client behind the developer portal, then this integrationTag can't be accessed on the meeting or its recordings by another client. Neither can it be used to filter meetings or recordings by a client other than the one that created the integrationTag of \"Sales\".",
+            "example": "dbaeceebea5c4a63ac9d5ef1edfe36b9",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "topic",
+            "in": "query",
+            "description": "Recording topic. If specified, the API filters recordings by topic in a case-insensitive manner.",
+            "example": "John's Meeting",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Recording's file format. If specified, the API filters recordings by format.",
+            "example": "ARF",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "MP4",
+                "ARF"
+              ]
+            }
+          },
+          {
+            "name": "serviceType",
+            "in": "query",
+            "description": "The service type for recordings. If specified, the API filters recordings by service type.",
+            "example": "MeetingCenter",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "MeetingCenter",
+                "EventCenter",
+                "SupportCenter",
+                "TrainingCenter"
+              ]
+            }
+          },
+          {
+            "name": "timezone",
+            "in": "header",
+            "description": "e.g. UTC",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "UTC"
+          },
+          {
+            "name": "hostEmail",
+            "in": "header",
+            "description": "Email of the user whose recordings will be retrieved. The `hostEmail` parameter is optional, but one of the two parameters `personId` and `hostEmail` must be specified.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "john.andersen@example.com"
+          }
+        ]
+      }
+    },
+    "/group/recordings/{recordingId}": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecordingObjectWithDirectDownloadLinks"
+                },
+                "example": {
+                  "id": "4f914b1dfe3c4d11a61730f18c0f5387",
+                  "meetingId": "f91b6edce9864428af084977b7c68291_I_166641849979635652",
+                  "scheduledMeetingId": "f91b6edce9864428af084977b7c68291_20200713T121500Z",
+                  "meetingSeriesId": "f91b6edce9864428af084977b7c68291",
+                  "topic": "Example Topic",
+                  "createTime": "2020-07-13T17:11:35Z",
+                  "timeRecorded": "2020-07-13T17:05:35Z",
+                  "siteUrl": "site4-example.webex.com",
+                  "downloadUrl": "https://site4-example.webex.com/site4/lsr.php?RCID=b91990e37417bda24986e46cf43345ab",
+                  "playbackUrl": "https://site4-example.webex.com/site4/ldr.php?RCID=69201a61d1d94a84aca18817261d1a73",
+                  "password": "********",
+                  "temporaryDirectDownloadLinks": {
+                    "recordingDownloadLink": "https://site4-example.webex.com/nbr/MultiThreadDownloadServlet?siteid=2062842&recordid=305462&confid=137735449369118342&language=en_US&userid=3516472&serviceRecordID=305492&ticket=SDJTSwAAAIUBSHkvL6Z5ddyBim5%2FHcJYcvn6IoXNEyCE2mAYQ5BlBg%3D%3D&timestamp=1567125236465&islogin=yes&isprevent=no&ispwd=yes",
+                    "audioDownloadLink": "https://site4-example.webex.com/nbr/downloadMedia.do?siteid=2062842&recordid=305462&confid=137735449369118342&language=en_US&userid=3516472&serviceRecordID=305492&ticket=SDJTSwAAAIXCIXsuBt%2BAgtK7WoQ2VhgeI608N4ZMIJ3vxQaQNZuLZA%3D%3D&timestamp=1567125236708&islogin=yes&isprevent=no&ispwd=yes&mediaType=1",
+                    "transcriptDownloadLink": "https://site4-example.webex.com/nbr/downloadMedia.do?siteid=2062842&recordid=305462&confid=137735449369118342&language=en_US&userid=3516472&serviceRecordID=305492&ticket=SDJTSwAAAAJVUJDxeA08qKkF%2FlxlSkDxuEFPwgGT0XW1z21NhY%2BCvg%3D%3D&timestamp=1567125236866&islogin=yes&isprevent=no&ispwd=yes&mediaType=2",
+                    "expiration": "2022-05-01T10:30:25Z"
+                  },
+                  "format": "ARF",
+                  "serviceType": "MeetingCenter",
+                  "durationSeconds": 18416,
+                  "sizeBytes": 168103,
+                  "shareToMe": false,
+                  "integrationTags": [
+                    "dbaeceebea5c4a63ac9d5ef1edfe36b9",
+                    "85e1d6319aa94c0583a6891280e3437d",
+                    "27226d1311b947f3a68d6bdf8e4e19a1"
+                  ],
+                  "status": "available"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Get Group Recording Details",
+        "operationId": "getGroupRecordingById",
+        "description": "Retrieves details for a group recording for a service app which has group recording access.\n\n* Only recordings which are in the `available` status and not shared by others can be listed. Those in the `deleted` or `purged` status or shared by others can't be listed.\n\n* One of the parameters `personId` and `hostEmail` must be specified so that only recordings of meetings hosted by the person of `personId` or `hostEmail` will be returned.\n\n#### Request Header\n\n* `timezone`: *[Time zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List) in conformance with the [IANA time zone database](https://www.iana.org/time-zones). The default is UTC if `timezone` is not defined.*\n\n* `hostEmail`: Email of the user whose recordings will be retrieved. The `hostEmail` parameter is optional, but one of the two parameters `personId` and `hostEmail` must be specified.",
+        "tags": [
+          "Recordings"
+        ],
+        "parameters": [
+          {
+            "name": "personId",
+            "in": "query",
+            "description": "Person ID of the user whose recordings will be retrieved. The person ID can be retrieved from the [People APIs](/docs/api/v1/people), e.g. [Lit People](/docs/api/v1/people/list-people). Note that a person ID retrieved from the People APIs is a Base64-encoded string, e.g. `Y2lzY29zcGFyazovL3VzL1BFT1BMRS9kNDdiMmU3ZC01ZTBmLTRmNjktYWVmNC1lNGZmOTBhZWE3Yzk`. The person ID in the raw UUID format which is the last part of the Base64-decoded string, e.g. `d47b2e7d-5e0f-4f69-aef4-e4ff90aea7c9`, is also supported. The `personId` parameter is optional, but one of the two parameters `personId` and `hostEmail` must be specified.",
+            "required": false,
+            "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS9kNDdiMmU3ZC01ZTBmLTRmNjktYWVmNC1lNGZmOTBhZWE3Yzk",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "recordingId",
+            "in": "path",
+            "description": "A unique identifier for the recording.",
+            "required": true,
+            "example": "4f914b1dfe3c4d11a61730f18c0f5387",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "timezone",
+            "in": "header",
+            "description": "e.g. UTC",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "UTC"
+          },
+          {
+            "name": "hostEmail",
+            "in": "header",
+            "description": "Email of the user whose recordings will be retrieved. The `hostEmail` parameter is optional, but one of the two parameters `personId` and `hostEmail` must be specified.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "john.andersen@example.com"
+          }
+        ]
       }
     },
     "/report/templates": {
@@ -28902,7 +29329,7 @@
           },
           "password": {
             "type": "string",
-            "example": "BgJep@43",
+            "example": "********",
             "description": "The recording's password."
           },
           "format": {
@@ -29155,7 +29582,7 @@
           },
           "password": {
             "type": "string",
-            "example": "BgJep@43",
+            "example": "********",
             "description": "The recording's password."
           },
           "format": {
