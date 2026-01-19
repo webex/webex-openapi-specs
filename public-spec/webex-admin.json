@@ -4793,6 +4793,113 @@
         }
       }
     },
+    "/livemonitoring/liveMeetingsByCountry": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LivemeetingByCountryResponse"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "country": "Indonesia",
+                      "countryLatitude": -6.1666665,
+                      "countryLongitude": 106.816666,
+                      "liveMeetingCount": 5,
+                      "liveParticipantCount": 14,
+                      "totalLiveMeetingCount": 1541,
+                      "totalLiveParticipantCount": 5827,
+                      "datacenterBreakdownForLiveMeetingCount": "JFK(100.00%)",
+                      "datacenterBreakdownForLiveParticipantCount": "JFK(100.00%)",
+                      "badQualityLiveMeetingCount": 0,
+                      "badQualityLiveParticipantCount": 0,
+                      "datacenterBreakdownForBadQualityLiveMeetingCount": "",
+                      "datacenterBreakdownForBadQualityLiveParticipantCount": "",
+                      "liveParticipantPercentage": 0.002,
+                      "badQualityLiveMeetingConfIds": "",
+                      "dataCenters": [
+                        {
+                          "datacenter": "JFK",
+                          "datacenterLatitude": 37.33548,
+                          "datacenterLongitude": -121.89303,
+                          "country": "US",
+                          "countryLatitude": 0,
+                          "countryLongitude": 0,
+                          "liveMeetingCount": 1,
+                          "liveParticipantCount": 8,
+                          "badQualityLiveParticipantCount": 0
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Get Live Meeting metrics categorized by Country",
+        "operationId": "getLiveMeetingMetricsByCountry",
+        "description": "Retrieve live meeting metrics categorized by country for a specific meeting site or for all meeting sites owned by the customer. \n\nTo retrieve live monitoring information, you must use an administrator token with the `analytics:read_all` [scope](/docs/integrations#scopes). The authenticated user must be a read-only or full administrator of the organization to which the meeting belongs and must not be an external administrator.\n\nTo use this endpoint, the org needs to be licensed for the Webex Pro Pack.\n\nFor CI-Native site, no additional settings are required.\n\nFor CI-linked site, the admin must also be set as the Full/ReadOnly Site Admin of the site.\n\nA rate limit of one API call per minute applies to each customer organization.",
+        "tags": [
+          "Live Monitoring"
+        ],
+        "parameters": [
+          {
+            "name": "siteIds",
+            "in": "query",
+            "description": "An array of meeting site Ids for each meeting site.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            }
+          }
+        ]
+      }
+    },
     "/meeting/qualities": {
       "get": {
         "responses": {
@@ -32702,6 +32809,168 @@
             "type": "string",
             "example": "133",
             "description": "Webex Calling extension of the user. Applicable to Webex Calling license."
+          }
+        }
+      },
+      "LivemeetingByCountryResponse": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LiveMetricsByCountry"
+            },
+            "description": "A list of live meeting metrics categorized by country."
+          }
+        }
+      },
+      "LiveMetricsByCountry": {
+        "type": "object",
+        "required": [
+          "country"
+        ],
+        "properties": {
+          "country": {
+            "type": "string",
+            "example": "Malaysia",
+            "description": "The country of the participant."
+          },
+          "countryLatitude": {
+            "type": "number",
+            "example": 3.1666667,
+            "description": "The latitude of the country of the participant."
+          },
+          "countryLongitude": {
+            "type": "number",
+            "example": 101.686855,
+            "description": "The longitude of the country of the participant."
+          },
+          "liveMeetingCount": {
+            "type": "integer",
+            "example": 150,
+            "description": "The count of live meetings in the country."
+          },
+          "liveParticipantCount": {
+            "type": "integer",
+            "example": 1200,
+            "description": "The count of live participants in the country."
+          },
+          "totalLiveMeetingCount": {
+            "type": "integer",
+            "example": 5793,
+            "description": "The total count of live meetings."
+          },
+          "totalLiveParticipantCount": {
+            "type": "integer",
+            "example": 12000,
+            "description": "The total count of live participants."
+          },
+          "datacenterBreakdownForLiveMeetingCount": {
+            "type": "string",
+            "example": "JFK(100.00%)",
+            "description": "Data center and the ratio of live meetings served by the data center."
+          },
+          "datacenterBreakdownForLiveParticipantCount": {
+            "type": "string",
+            "example": "JFK(100.00%)",
+            "description": "Data center and the ratio of live participants served by the data center."
+          },
+          "badQualityLiveMeetingCount": {
+            "type": "integer",
+            "example": 42,
+            "description": "The count of live meetings with bad quality."
+          },
+          "badQualityLiveParticipantCount": {
+            "type": "integer",
+            "example": 120,
+            "description": "The count of live participants with bad quality."
+          },
+          "datacenterBreakdownForBadQualityLiveMeetingCount": {
+            "type": "string",
+            "example": "JFK(100.00%)",
+            "description": "Data center and the ratio of live meetings with bad quality served by the data center."
+          },
+          "networkType": {
+            "type": "string",
+            "enum": [
+              "wifi",
+              "cellular",
+              "ethernet",
+              "unknown"
+            ],
+            "description": "The type of network."
+          },
+          "datacenterBreakdownForBadQualityLiveParticipantCount": {
+            "type": "string",
+            "example": "SJC(100.00%)",
+            "description": "Data center and the ratio of live participants with bad quality served by the data center."
+          },
+          "liveParticipantPercentage": {
+            "type": "number",
+            "example": 0.009,
+            "description": "The percentage of live participants in the country."
+          },
+          "badQualityLiveMeetingConfIds": {
+            "type": "string",
+            "example": "690262104543218003,690079079757623267",
+            "description": "The conference IDs of live meetings with bad quality."
+          },
+          "dataCenters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DataCenterMetrics"
+            },
+            "description": "The data center metrics for live meetings in the country."
+          }
+        }
+      },
+      "DataCenterMetrics": {
+        "type": "object",
+        "properties": {
+          "datacenter": {
+            "type": "string",
+            "example": "JFK",
+            "description": "The data center identifier."
+          },
+          "datacenterLatitude": {
+            "type": "number",
+            "example": 37.33548,
+            "description": "The latitude of the data center."
+          },
+          "datacenterLongitude": {
+            "type": "number",
+            "example": -121.89496,
+            "description": "The longitude of the data center."
+          },
+          "country": {
+            "type": "string",
+            "example": "US",
+            "description": "The country identifier."
+          },
+          "countryLatitude": {
+            "type": "number",
+            "example": 3.1666667,
+            "description": "The latitude of the country."
+          },
+          "countryLongitude": {
+            "type": "number",
+            "example": 101.7,
+            "description": "The longitude of the country."
+          },
+          "liveMeetingCount": {
+            "type": "integer",
+            "example": 100,
+            "description": "The count of live meetings served by the data center in the country."
+          },
+          "liveParticipantCount": {
+            "type": "integer",
+            "example": 800,
+            "description": "The count of live participants served by the data center in the country."
+          },
+          "badQualityLiveParticipantCount": {
+            "type": "integer",
+            "example": 100,
+            "description": "The count of live participants with bad quality served by the data center in the country."
           }
         }
       },
