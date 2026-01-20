@@ -4880,24 +4880,34 @@
         },
         "summary": "Get Live Meeting metrics categorized by Country",
         "operationId": "getLiveMeetingMetricsByCountry",
-        "description": "Retrieve live meeting metrics categorized by country for a specific meeting site or for all meeting sites owned by the customer. \n\nTo retrieve live monitoring information, you must use an administrator token with the `analytics:read_all` [scope](/docs/integrations#scopes). The authenticated user must be a read-only or full administrator of the organization to which the meeting belongs and must not be an external administrator.\n\nTo use this endpoint, the org needs to be licensed for the Webex Pro Pack.\n\nFor CI-Native site, no additional settings are required.\n\nFor CI-linked site, the admin must also be set as the Full/ReadOnly Site Admin of the site.\n\nA rate limit of one API call per minute applies to each customer organization.",
+        "description": "Retrieve live meeting metrics categorized by country for a specific meeting site or for all meeting sites owned by the customer. \n\nTo retrieve live monitoring information, you must use an administrator token with the `analytics:read_all` [scope](/docs/integrations#scopes). The authenticated user must be a read-only or full administrator of the organization to which the meeting belongs and must not be an external administrator.\n\nTo use this endpoint, the org needs to be licensed for the Webex Pro Pack.\n\nA rate limit of one API call per minute applies to each customer organization.",
         "tags": [
           "Live Monitoring"
         ],
-        "parameters": [
-          {
-            "name": "siteIds",
-            "in": "query",
-            "description": "An array of meeting site Ids for each meeting site.",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "integer"
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "siteIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer"
+                    },
+                    "description": "A list of meeting site Ids.",
+                    "example": [
+                      1234567,
+                      2345678,
+                      3456789
+                    ]
+                  }
+                }
               }
             }
           }
-        ]
+        }
       }
     },
     "/meeting/qualities": {
