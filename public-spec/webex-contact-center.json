@@ -8557,38 +8557,38 @@
           "content": {
             "application/json": {
               "schema": {
-                "required": [
-                  "agentPersonalGreetingInfo",
-                  "audioFile"
-                ],
                 "type": "object",
                 "properties": {
                   "agentPersonalGreetingInfo": {
-                    "$ref": "#/components/schemas/AgentPersonalGreetingDTO"
+                    "$ref": "#/components/schemas/AgentPersonalGreetingDTO_AgentPersonalGreetingsWithAttributeTag"
                   },
                   "audioFile": {
                     "type": "string",
                     "format": "binary"
                   }
-                }
+                },
+                "required": [
+                  "agentPersonalGreetingInfo",
+                  "audioFile"
+                ]
               }
             },
             "multipart/form-data": {
               "schema": {
-                "required": [
-                  "agentPersonalGreetingInfo",
-                  "audioFile"
-                ],
                 "type": "object",
                 "properties": {
                   "agentPersonalGreetingInfo": {
-                    "$ref": "#/components/schemas/AgentPersonalGreetingDTO"
+                    "$ref": "#/components/schemas/AgentPersonalGreetingDTO_AgentPersonalGreetingsWithAttributeTag"
                   },
                   "audioFile": {
                     "type": "string",
                     "format": "binary"
                   }
-                }
+                },
+                "required": [
+                  "agentPersonalGreetingInfo",
+                  "audioFile"
+                ]
               }
             }
           }
@@ -8599,7 +8599,7 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/AgentPersonalGreetingDTO"
+                  "$ref": "#/components/schemas/AgentPersonalGreetingDTO_AgentPersonalGreetingsWithAttributeTag"
                 }
               }
             }
@@ -8610,6 +8610,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "400",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "400",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -8620,6 +8635,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "401",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "401",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -8630,6 +8660,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "403",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "403",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -8640,6 +8685,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "409",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "409",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -8650,6 +8710,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "429",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "429",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -8660,12 +8735,27 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "500",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "500",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
           }
         },
-        "deprecated": false
+        "deprecated": true
       }
     },
     "/organization/{orgid}/agent-personal-greeting/delete-reference": {
@@ -8673,7 +8763,6 @@
         "tags": [
           "Agent Personal Greeting Files"
         ],
-        "summary": "Delete References",
         "operationId": "deleteReferences_1",
         "parameters": [
           {
@@ -8712,6 +8801,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "400",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "400",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -8722,6 +8826,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "401",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "401",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -8732,6 +8851,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "403",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "403",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -8742,6 +8876,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "409",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "409",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -8752,6 +8901,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "429",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "429",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -8762,6 +8926,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "500",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "500",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -8796,7 +8975,7 @@
             "schema": {
               "type": "string"
             },
-            "example": "2f9eecc5-0472-4549"
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba2"
           },
           {
             "name": "includeUrl",
@@ -8815,7 +8994,7 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/AgentPersonalGreetingDTO"
+                  "$ref": "#/components/schemas/AgentPersonalGreetingDTO_AgentPersonalGreetingsWithAttributeTag"
                 }
               }
             }
@@ -8826,6 +9005,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "401",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "401",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -8836,6 +9030,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "403",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "403",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -8846,6 +9055,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "404",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "404",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -8856,6 +9080,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "429",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "429",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -8866,19 +9105,34 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "500",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "500",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
           }
         },
-        "deprecated": false
+        "deprecated": true
       },
       "put": {
         "tags": [
           "Agent Personal Greeting Files"
         ],
-        "summary": "Update Greeting File by ID",
-        "description": "Partially update Greeting File by ID in a given organization.",
+        "summary": "Update specific Greeting File by ID",
+        "description": "Update specific Greeting File by ID in a given organization.",
         "operationId": "updateConfig_28",
         "parameters": [
           {
@@ -8899,45 +9153,45 @@
             "schema": {
               "type": "string"
             },
-            "example": "2f9eecc5-0472-4549"
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba2"
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "required": [
-                  "agentPersonalGreetingInfo",
-                  "audioFile"
-                ],
                 "type": "object",
                 "properties": {
                   "agentPersonalGreetingInfo": {
-                    "$ref": "#/components/schemas/AgentPersonalGreetingDTO"
+                    "$ref": "#/components/schemas/AgentPersonalGreetingDTO_AgentPersonalGreetingsWithAttributeTag"
                   },
                   "audioFile": {
                     "type": "string",
                     "format": "binary"
                   }
-                }
+                },
+                "required": [
+                  "agentPersonalGreetingInfo",
+                  "audioFile"
+                ]
               }
             },
             "multipart/form-data": {
               "schema": {
-                "required": [
-                  "agentPersonalGreetingInfo",
-                  "audioFile"
-                ],
                 "type": "object",
                 "properties": {
                   "agentPersonalGreetingInfo": {
-                    "$ref": "#/components/schemas/AgentPersonalGreetingDTO"
+                    "$ref": "#/components/schemas/AgentPersonalGreetingDTO_AgentPersonalGreetingsWithAttributeTag"
                   },
                   "audioFile": {
                     "type": "string",
                     "format": "binary"
                   }
-                }
+                },
+                "required": [
+                  "agentPersonalGreetingInfo",
+                  "audioFile"
+                ]
               }
             }
           }
@@ -8948,7 +9202,7 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/AgentPersonalGreetingDTO"
+                  "$ref": "#/components/schemas/AgentPersonalGreetingDTO_AgentPersonalGreetingsWithAttributeTag"
                 }
               }
             }
@@ -8959,6 +9213,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "400",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "400",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -8969,6 +9238,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "401",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "401",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -8979,6 +9263,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "403",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "403",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -8989,6 +9288,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "404",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "404",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -8999,6 +9313,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "412",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "412",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -9009,6 +9338,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "429",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "429",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -9019,12 +9363,27 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "500",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "500",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
           }
         },
-        "deprecated": false
+        "deprecated": true
       },
       "delete": {
         "tags": [
@@ -9032,7 +9391,7 @@
         ],
         "summary": "Delete specific Greeting File by ID",
         "description": "Delete an existing Greeting File by ID for a given organization.",
-        "operationId": "deleteConfig_25",
+        "operationId": "deleteConfig_24",
         "parameters": [
           {
             "name": "orgid",
@@ -9052,7 +9411,7 @@
             "schema": {
               "type": "string"
             },
-            "example": "2f9eecc5-0472-4549"
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba2"
           }
         ],
         "responses": {
@@ -9065,6 +9424,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "401",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "401",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -9075,6 +9449,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "403",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "403",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -9085,6 +9474,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "404",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "404",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -9095,6 +9499,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "412",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "412",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -9105,6 +9524,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "429",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "429",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -9115,12 +9549,27 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "500",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "500",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
           }
         },
-        "deprecated": false
+        "deprecated": true
       },
       "patch": {
         "tags": [
@@ -9128,7 +9577,7 @@
         ],
         "summary": "Partially update Greeting File by ID",
         "description": "Partially update Greeting File by ID in a given organization.",
-        "operationId": "patchConfig_3",
+        "operationId": "patchConfig_4",
         "parameters": [
           {
             "name": "orgid",
@@ -9148,19 +9597,19 @@
             "schema": {
               "type": "string"
             },
-            "example": "2f9eecc5-0472-4549"
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba2"
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AgentPersonalGreetingPatchDTO"
+                "$ref": "#/components/schemas/AgentPersonalGreetingPatchDTO_AgentPersonalGreetingsWithAttributeTag"
               }
             },
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/AgentPersonalGreetingPatchDTO"
+                "$ref": "#/components/schemas/AgentPersonalGreetingPatchDTO_AgentPersonalGreetingsWithAttributeTag"
               }
             }
           },
@@ -9172,7 +9621,7 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/AgentPersonalGreetingDTO"
+                  "$ref": "#/components/schemas/AgentPersonalGreetingDTO_AgentPersonalGreetingsWithAttributeTag"
                 }
               }
             }
@@ -9183,6 +9632,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "400",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "400",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -9193,6 +9657,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "401",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "401",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -9203,6 +9682,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "403",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "403",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -9213,6 +9707,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "404",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "404",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -9223,6 +9732,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "429",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "429",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -9233,12 +9757,27 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "500",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "500",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
           }
         },
-        "deprecated": false
+        "deprecated": true
       }
     },
     "/organization/{orgid}/v2/agent-personal-greeting": {
@@ -9246,9 +9785,7 @@
         "tags": [
           "Agent Personal Greeting Files"
         ],
-        "summary": "List Greeting File(s)",
-        "description": "Retrieve a list of Greeting File(s) in a given organization.",
-        "operationId": "getAllConfigWithMetaData_26",
+        "operationId": "getAllConfigWithMetaData",
         "parameters": [
           {
             "name": "orgid",
@@ -9263,7 +9800,7 @@
           {
             "name": "filter",
             "in": "query",
-            "description": "Specify a filter based on which the results will be fetched. Supported fields are : firstname, lastname, email, ciUserId and attribute tag \n\nThe examples below show some search queries\n- id==\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\"\n- id!=\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\"\n- id=in=(\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\",\"a421e0b2-732e-46f3-a057-39160a53afb9\")\n- id=out=(\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\",\"a421e0b2-732e-46f3-a057-39160a53afb9\")\nThis parameter uses the RSQL query syntax, a URI-friendly format for expressing criteria for filtering REST entities. For more information about RSQL in general, see  <a href=\"https://www.here.com/docs/bundle/data-client-library-developer-guide-java-scala/page/client/rsql.html\">this reference</a>. For a list of supported operators, see <a href=\"https://github.com/perplexhub/rsql-jpa-specification#rsql-syntax-reference\">this syntax guide</a>.\n\nNote: values to be used in the filter syntax should not contain space, and if so kindly bound it with quotes to apply filter.\n",
+            "description": "Specify a filter based on which the results will be fetched. Supported fields are : firstname, lastname, email, ciUserId and attribute tag \n\nThe examples below show some search queries\n- id==\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\"\n- id!=\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\"\n- id=in=(\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\",\"a421e0b2-732e-46f3-a057-39160a53afb9\")\n- id=out=(\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\",\"a421e0b2-732e-46f3-a057-39160a53afb9\")\nThis parameter uses the RSQL query syntax, a URI-friendly format for expressing criteria for filtering REST entities. For more information about RSQL in general, see  <a href=\"https://www.here.com/docs/bundle/data-client-library-developer-guide-java-scala/page/client/rsql.html\">this reference</a>. For a list of supported operators, see <a href=\"https://github.com/perplexhub/rsql-jpa-specification#rsql-syntax-reference\">this syntax guide</a>.\n\nNote: values to be used in the filter syntax should not contain spaces. If they do, please enclose them in quotes to apply the filter.\n",
             "required": false,
             "schema": {
               "type": "string"
@@ -9283,7 +9820,7 @@
           {
             "name": "attributes",
             "in": "query",
-            "description": "Specify the attributes to be returned.Default all attributes are returned along with specified columns. All Attributes are supported",
+            "description": "Specify the attributes to be returned. By default, all attributes are returned along with the specified columns. All attributes are supported.",
             "required": false,
             "schema": {
               "type": "string",
@@ -9297,9 +9834,10 @@
             "description": "Defines the number of displayed page. The page number starts from 0.",
             "schema": {
               "type": "integer",
-              "example": 0,
-              "default": 0
-            }
+              "default": 0,
+              "example": 0
+            },
+            "example": 0
           },
           {
             "name": "pageSize",
@@ -9307,9 +9845,10 @@
             "description": "Defines the number of items to be displayed on a page. If the number specified is more than allowed max page size, the API will automatically adjust the page size to the max page size.",
             "schema": {
               "type": "integer",
-              "example": 100,
-              "default": 100
-            }
+              "default": 100,
+              "example": 100
+            },
+            "example": 100
           },
           {
             "name": "includeAgentDetails",
@@ -9335,7 +9874,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/AgentPersonalGreetingDTO"
+                        "$ref": "#/components/schemas/AgentPersonalGreetingDTO_AgentPersonalGreetingsWithAttributeTag"
                       }
                     }
                   }
@@ -9349,6 +9888,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "401",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "401",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -9359,6 +9913,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "403",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "403",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -9369,6 +9938,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "404",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "404",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -9379,6 +9963,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "429",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "429",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -9389,6 +9988,1306 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "500",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "500",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Agent Personal Greeting Files"
+        ],
+        "summary": "Create a new Greeting File using v2 API",
+        "operationId": "createV2Config",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID to be used for this operation. The specified security token must have permission to interact with the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba1"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "agentPersonalGreetingInfo": {
+                    "$ref": "#/components/schemas/AgentPersonalGreetingDTO_AgentPersonalGreetingsWithGreetingPurpose"
+                  },
+                  "audioFile": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "required": [
+                  "agentPersonalGreetingInfo",
+                  "audioFile"
+                ]
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "agentPersonalGreetingInfo": {
+                    "$ref": "#/components/schemas/AgentPersonalGreetingDTO_AgentPersonalGreetingsWithGreetingPurpose"
+                  },
+                  "audioFile": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "required": [
+                  "agentPersonalGreetingInfo",
+                  "audioFile"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentPersonalGreetingDTO_AgentPersonalGreetingsWithGreetingPurpose"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid and cannot be served. An accompanying error message will explain further",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "400",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "400",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "401",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "401",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation is forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "403",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "403",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Similar entity is already present",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "409",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "409",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests have been sent in a given amount of time and the request has been rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "429",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "429",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An Unexpected Error Occurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "500",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "500",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organization/{orgid}/v2/agent-personal-greeting/{id}": {
+      "get": {
+        "tags": [
+          "Agent Personal Greeting Files"
+        ],
+        "summary": "Get specific Greeting File by ID using v2 API",
+        "description": "Retrieve an existing Greeting File by ID in a given organization.",
+        "operationId": "getV2Config",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID to be used for this operation. The specified security token must have permission to interact with the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba1"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Resource ID of the Greeting File.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba2"
+          },
+          {
+            "name": "includeUrl",
+            "in": "query",
+            "description": "Indicates if the URL for downloading Greeting Fileshould be included in the response.",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "example": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentPersonalGreetingDTO_AgentPersonalGreetingsWithGreetingPurpose"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "401",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "401",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation is forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "403",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "403",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found or URI is invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "404",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "404",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests have been sent in a given amount of time and the request has been rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "429",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "429",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An Unexpected Error Occurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "500",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "500",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      },
+      "put": {
+        "tags": [
+          "Agent Personal Greeting Files"
+        ],
+        "summary": "Update specific Greeting File by ID using v2 API",
+        "description": "Update specific Greeting File by ID in a given organization.",
+        "operationId": "updateV2Config",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID to be used for this operation. The specified security token must have permission to interact with the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba1"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Resource ID of the Greeting File.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba2"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "agentPersonalGreetingInfo": {
+                    "$ref": "#/components/schemas/AgentPersonalGreetingDTO_AgentPersonalGreetingsWithGreetingPurpose"
+                  },
+                  "audioFile": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "required": [
+                  "agentPersonalGreetingInfo",
+                  "audioFile"
+                ]
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "agentPersonalGreetingInfo": {
+                    "$ref": "#/components/schemas/AgentPersonalGreetingDTO_AgentPersonalGreetingsWithGreetingPurpose"
+                  },
+                  "audioFile": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "required": [
+                  "agentPersonalGreetingInfo",
+                  "audioFile"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentPersonalGreetingDTO_AgentPersonalGreetingsWithGreetingPurpose"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid and cannot be served. An accompanying error message will explain further",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "400",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "400",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "401",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "401",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation is forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "403",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "403",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found or URI is invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "404",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "404",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "Resource referred in other entity(s). Please get all the reference entities info by invoking Get incoming-references api.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "412",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "412",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests have been sent in a given amount of time and the request has been rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "429",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "429",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An Unexpected Error Occurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "500",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "500",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "Agent Personal Greeting Files"
+        ],
+        "summary": "Delete specific Greeting File by ID using v2 API",
+        "description": "Delete an existing Greeting File by ID for a given organization.",
+        "operationId": "deleteV2Config",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID to be used for this operation. The specified security token must have permission to interact with the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba1"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Resource ID of the Greeting File.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba2"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "401",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "401",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation is forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "403",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "403",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found or URI is invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "404",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "404",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "Resource referred in other entity(s). Please get all the reference entities info by invoking Get incoming-references api.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "412",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "412",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests have been sent in a given amount of time and the request has been rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "429",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "429",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An Unexpected Error Occurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "500",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "500",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      },
+      "patch": {
+        "tags": [
+          "Agent Personal Greeting Files"
+        ],
+        "summary": "Partially update Greeting File by ID using v2 API",
+        "description": "Partially update Greeting File by ID in a given organization.",
+        "operationId": "patchV2Config",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID to be used for this operation. The specified security token must have permission to interact with the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba1"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Resource ID of the Greeting File.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba2"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AgentPersonalGreetingPatchDTO_AgentPersonalGreetingsWithGreetingPurpose"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/AgentPersonalGreetingPatchDTO_AgentPersonalGreetingsWithGreetingPurpose"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentPersonalGreetingDTO_AgentPersonalGreetingsWithGreetingPurpose"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid and cannot be served. An accompanying error message will explain further",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "400",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "400",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "401",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "401",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation is forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "403",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "403",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found or URI is invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "404",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "404",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests have been sent in a given amount of time and the request has been rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "429",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "429",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An Unexpected Error Occurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "500",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "500",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/organization/{orgid}/v3/agent-personal-greeting": {
+      "get": {
+        "tags": [
+          "Agent Personal Greeting Files"
+        ],
+        "summary": "List Greeting File(s)",
+        "description": "Retrieve a list of Greeting File(s) in a given organization.",
+        "operationId": "getAllV2ConfigWithMetaData",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID to be used for this operation. The specified security token must have permission to interact with the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba1"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "Specify a filter based on which the results will be fetched. Supported fields are : firstname, lastname, email, ciUserId and attribute tag \n\nThe examples below show some search queries\n- id==\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\"\n- id!=\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\"\n- id=in=(\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\",\"a421e0b2-732e-46f3-a057-39160a53afb9\")\n- id=out=(\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\",\"a421e0b2-732e-46f3-a057-39160a53afb9\")\nThis parameter uses the RSQL query syntax, a URI-friendly format for expressing criteria for filtering REST entities. For more information about RSQL in general, see  <a href=\"https://www.here.com/docs/bundle/data-client-library-developer-guide-java-scala/page/client/rsql.html\">this reference</a>. For a list of supported operators, see <a href=\"https://github.com/perplexhub/rsql-jpa-specification#rsql-syntax-reference\">this syntax guide</a>.\n\nNote: values to be used in the filter syntax should not contain spaces. If they do, please enclose them in quotes to apply the filter.\n",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "id==\"2f9eecc5-0472-4549-9a83-2afdae0d4ba1\""
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Filter data based on the search keyword.Supported search columns(firstName, lastName, email, attributeTag)\n\nThe examples below show some search queries\n- \"Cisco\"\n- field==\"firstName\";value==\"Cisco\"\n- fields=in=(\"firstName\",\"email\");value==\"Cisco\"\n",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "contact center"
+          },
+          {
+            "name": "attributes",
+            "in": "query",
+            "description": "Specify the attributes to be returned. By default, all attributes are returned along with the specified columns. All attributes are supported.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "string"
+            },
+            "example": "id"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Defines the number of displayed page. The page number starts from 0.",
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "example": 0
+            },
+            "example": 0
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Defines the number of items to be displayed on a page. If the number specified is more than allowed max page size, the API will automatically adjust the page size to the max page size.",
+            "schema": {
+              "type": "integer",
+              "default": 100,
+              "example": 100
+            },
+            "example": 100
+          },
+          {
+            "name": "includeAgentDetails",
+            "in": "query",
+            "description": "If includeAgentDetails is set to true then projection, filtering, searching, and sorting on agent firstName, lastName and email will be enabled.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "meta": {
+                      "$ref": "#/components/schemas/MetaDataWithPagingInfo"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/AgentPersonalGreetingDTO_AgentPersonalGreetingsWithGreetingPurpose"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "401",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "401",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Operation is forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "403",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "403",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found or URI is invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "404",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "404",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests have been sent in a given amount of time and the request has been rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "429",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "429",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An Unexpected Error Occurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "500",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "500",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -58341,22 +60240,17 @@
           }
         }
       },
-      "AgentPersonalGreetingDTO": {
-        "required": [
-          "agentId",
-          "contentType",
-          "name"
-        ],
+      "AgentPersonalGreetingDTO_AgentPersonalGreetingsWithAttributeTag": {
         "type": "object",
         "properties": {
           "organizationId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "ID of the contact center organization. This field is required for all bulk save operations.",
+            "example": "f53c8b54-46ca-43f6-ba05-08426a46e23d",
             "maxLength": 36,
             "minLength": 32,
-            "pattern": "^[0-9a-fA-F]{8}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{12}$",
-            "type": "string",
-            "description": "ID of the contact center organization. It is required to define for the following operations - All bulk save operations",
-            "format": "uuid",
-            "example": "f53c8b54-46ca-43f6-ba05-08426a46e23d"
+            "pattern": "^[0-9a-fA-F]{8}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{12}$"
           },
           "id": {
             "type": "string",
@@ -58365,29 +60259,29 @@
           },
           "version": {
             "type": "integer",
-            "description": "The version of this resource. For a newly created resource, it will be 0 unless specified otherwise.",
             "format": "int32",
+            "description": "The version of this resource. For a newly created resource, it will be 0 unless specified otherwise.",
             "example": 1
           },
           "name": {
-            "maxLength": 80,
-            "minLength": 0,
-            "pattern": "^[a-zA-Z0-9._\\-\\s]*$",
             "type": "string",
             "description": "A name for the Agent's personal greeting file. It should have valid extension i.e. .wav ",
-            "example": "WelcomeMessage.wav"
+            "example": "WelcomeMessage.wav",
+            "maxLength": 80,
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9._\\-\\s]*$"
           },
           "contentType": {
             "type": "string",
             "description": "Indicates Content-Type of the Audio file. It can take one of these values: AUDIO_WAV, AUDIO_X_WAV",
-            "example": "AUDIO_WAV",
             "enum": [
               "AUDIO_WAV",
               "TEXT_HTML",
               "TEXT_PHP",
               "AUDIO_X_WAV",
               "APPLICATION_OCTET_STREAM"
-            ]
+            ],
+            "example": "AUDIO_WAV"
           },
           "blobId": {
             "type": "string",
@@ -58396,22 +60290,23 @@
           },
           "url": {
             "type": "string",
-            "description": "Audio file download url.",
             "format": "url",
+            "description": "Audio file download url.",
             "example": "https://cjp-ccone-devus1-ivr-media.s3.amazonaws.com/bde75a64-f4d5-4ffc-a239-feb607c17ef8/"
           },
           "agentId": {
             "type": "string",
             "description": "Agent Id with which this greeting file is to be associated with.",
-            "example": "955fe2b9-ba25-4de9-92b0-6cb055d5b432"
+            "example": "955fe2b9-ba25-4de9-92b0-6cb055d5b432",
+            "minLength": 1
           },
           "attributeTag": {
-            "maxLength": 80,
-            "minLength": 0,
-            "pattern": "^[a-zA-Z0-9_-]*$",
             "type": "string",
             "description": "This is used to identify the purpose of a greeting.",
-            "example": "ENVIP"
+            "example": "ENVIP",
+            "maxLength": 80,
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9_-]*$"
           },
           "firstName": {
             "type": "string",
@@ -58444,19 +60339,20 @@
           },
           "createdTime": {
             "type": "integer",
-            "description": "Creation time (in epoch milliseconds) of this resource.",
             "format": "int64",
-            "readOnly": true,
-            "example": 1617536244000
+            "description": "This is the created time of the entity."
           },
           "lastUpdatedTime": {
             "type": "integer",
-            "description": "Time(in epoch millis) when this resource was last updated.",
             "format": "int64",
-            "readOnly": true,
-            "example": 1617536244000
+            "description": "This is the updated time of the entity."
           }
-        }
+        },
+        "required": [
+          "agentId",
+          "contentType",
+          "name"
+        ]
       },
       "FieldRequestBody": {
         "type": "object",
@@ -58519,13 +60415,149 @@
           }
         }
       },
-      "AgentPersonalGreetingPatchDTO": {
+      "AgentPersonalGreetingPatchDTO_AgentPersonalGreetingsWithAttributeTag": {
         "type": "object",
         "properties": {
           "attributeTag": {
             "type": "string",
             "description": "This is used to identify the purpose of a greeting.",
             "example": "ENVIP"
+          },
+          "greetingPurposeId": {
+            "type": "string",
+            "description": "Id of the greeting purpose",
+            "example": "f53c8b54-46ca-43f6-ba05-08426a46e23d"
+          }
+        }
+      },
+      "AgentPersonalGreetingDTO_AgentPersonalGreetingsWithGreetingPurpose": {
+        "type": "object",
+        "properties": {
+          "organizationId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "ID of the contact center organization. This field is required for all bulk save operations.",
+            "example": "f53c8b54-46ca-43f6-ba05-08426a46e23d",
+            "maxLength": 36,
+            "minLength": 32,
+            "pattern": "^[0-9a-fA-F]{8}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{12}$"
+          },
+          "id": {
+            "type": "string",
+            "description": "ID of this contact center resource. It should not be specified when creating a new resource. However, it is mandatory when updating a resource.",
+            "example": "93912f11-6017-404b-bf14-5331890b1797"
+          },
+          "version": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The version of this resource. For a newly created resource, it will be 0 unless specified otherwise.",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "A name for the Agent's personal greeting file. It should have valid extension i.e. .wav ",
+            "example": "WelcomeMessage.wav",
+            "maxLength": 80,
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9._\\-\\s]*$"
+          },
+          "contentType": {
+            "type": "string",
+            "description": "Indicates Content-Type of the Audio file. It can take one of these values: AUDIO_WAV, AUDIO_X_WAV",
+            "enum": [
+              "AUDIO_WAV",
+              "TEXT_HTML",
+              "TEXT_PHP",
+              "AUDIO_X_WAV",
+              "APPLICATION_OCTET_STREAM"
+            ],
+            "example": "AUDIO_WAV"
+          },
+          "blobId": {
+            "type": "string",
+            "description": "Identifier for the audio file.",
+            "example": "audio-file_a7c700d5-2fac-4a6c-9a16-eb2f2b42d7a8"
+          },
+          "url": {
+            "type": "string",
+            "format": "url",
+            "description": "Audio file download url.",
+            "example": "https://cjp-ccone-devus1-ivr-media.s3.amazonaws.com/bde75a64-f4d5-4ffc-a239-feb607c17ef8/"
+          },
+          "agentId": {
+            "type": "string",
+            "description": "Agent Id with which this greeting file is to be associated with.",
+            "example": "955fe2b9-ba25-4de9-92b0-6cb055d5b432",
+            "minLength": 1
+          },
+          "firstName": {
+            "type": "string",
+            "description": "First Name of the Agent with whom this greeting file is to be associated with.",
+            "example": "John"
+          },
+          "lastName": {
+            "type": "string",
+            "description": "Last Name of the Agent with whom this greeting file is to be associated with.",
+            "example": "Doe"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email of the Agent with whom this greeting file is to be associated with.",
+            "example": "JohnDoe@example.com"
+          },
+          "agentActive": {
+            "type": "boolean",
+            "description": "Indicates whether the Agent with whom this greeting file is to be associated with is active or not active",
+            "example": true
+          },
+          "ciUserId": {
+            "type": "string",
+            "description": "Id of the Agent in common identity with whom this greeting file is to be associated with.",
+            "example": "c71876ae-ddfa-4049-9a1b-298535152578"
+          },
+          "greetingPurposeId": {
+            "type": "string",
+            "description": "Id of the greeting purpose",
+            "example": "f53c8b54-46ca-43f6-ba05-08426a46e23d"
+          },
+          "greetingPurposeName": {
+            "type": "string",
+            "description": "Name of the greeting purpose",
+            "example": "en"
+          },
+          "audioFile": {
+            "type": "string",
+            "format": "binary"
+          },
+          "createdTime": {
+            "type": "integer",
+            "format": "int64",
+            "description": "This is the created time of the entity."
+          },
+          "lastUpdatedTime": {
+            "type": "integer",
+            "format": "int64",
+            "description": "This is the updated time of the entity."
+          }
+        },
+        "required": [
+          "agentId",
+          "contentType",
+          "name"
+        ]
+      },
+      "AgentPersonalGreetingPatchDTO_AgentPersonalGreetingsWithGreetingPurpose": {
+        "type": "object",
+        "properties": {
+          "attributeTag": {
+            "type": "string",
+            "description": "This is used to identify the purpose of a greeting.",
+            "example": "ENVIP"
+          },
+          "greetingPurposeId": {
+            "type": "string",
+            "description": "Id of the greeting purpose",
+            "example": "f53c8b54-46ca-43f6-ba05-08426a46e23d"
           }
         }
       },
