@@ -38537,9 +38537,12 @@
           "sessionTypeIds": {
             "type": "array",
             "items": {
-              "type": "string",
-              "example": "3,9"
+              "type": "string"
             },
+            "example": [
+              "3",
+              "9"
+            ],
             "description": "An array of the session type ID."
           }
         }
@@ -39418,15 +39421,15 @@
               },
               "enabledSaveDocument": {
                 "type": "boolean",
-                "description": "Whether or not to allow any attendee to save shared documents, slides, or whiteboards when they are shared as files in the content viewer instead of in a window or application."
+                "description": "Whether or not to allow any attendee to save shared documents, slides, or whiteboards when they are shared as files in the content viewer instead of in a window or application. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledPrintDocument": {
                 "type": "boolean",
-                "description": "Whether or not to allow any attendee to print shared documents, slides, or whiteboards when they are shared as files in the content viewer instead of in a window or application."
+                "description": "Whether or not to allow any attendee to print shared documents, slides, or whiteboards when they are shared as files in the content viewer instead of in a window or application. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledAnnotate": {
                 "type": "boolean",
-                "description": "Whether or not to allow any attendee to annotate shared documents, slides, or whiteboards when they are shared as files in the content viewer instead of in a window or application."
+                "description": "Whether or not to allow any attendee to annotate shared documents, slides, or whiteboards when they are shared as files in the content viewer instead of in a window or application. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledViewParticipantList": {
                 "type": "boolean",
@@ -39435,39 +39438,39 @@
               },
               "enabledViewThumbnails": {
                 "type": "boolean",
-                "description": "Whether or not to allow any attendee to see a small preview image of any page of shared documents or slides when they are shared as files in the content viewer instead of in a window or application."
+                "description": "Whether or not to allow any attendee to see a small preview image of any page of shared documents or slides when they are shared as files in the content viewer instead of in a window or application. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledRemoteControl": {
                 "type": "boolean",
                 "example": true,
-                "description": "Whether or not to allow any attendee to control applications, web browsers, or desktops remotely."
+                "description": "Whether or not to allow any attendee to control applications, web browsers, or desktops remotely. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledViewAnyDocument": {
                 "type": "boolean",
-                "description": "Whether or not to allow any attendee to view any shared documents or slides when they are shared as files in the content viewer instead of in a window or application."
+                "description": "Whether or not to allow any attendee to view any shared documents or slides when they are shared as files in the content viewer instead of in a window or application. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledViewAnyPage": {
                 "type": "boolean",
-                "description": "Whether or not to allow any attendee to scroll through any page of shared documents or slides when they are shared as files in the content viewer instead of in a window or application."
+                "description": "Whether or not to allow any attendee to scroll through any page of shared documents or slides when they are shared as files in the content viewer instead of in a window or application. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledContactOperatorPrivately": {
                 "type": "boolean",
-                "description": "Whether or not to allow any attendee to contact the operator privately."
+                "description": "Whether or not to allow any attendee to contact the operator privately. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledChatHost": {
                 "type": "boolean",
                 "example": true,
-                "description": "Whether or not to allow any attendee to chat with the host in private."
+                "description": "Whether or not to allow any attendee to chat with the host in private. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledChatPresenter": {
                 "type": "boolean",
                 "example": true,
-                "description": "Whether or not to allow any attendee to chat with the presenter in private."
+                "description": "Whether or not to allow any attendee to chat with the presenter in private. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledChatOtherParticipants": {
                 "type": "boolean",
                 "example": true,
-                "description": "Whether or not to allow any attendee to chat with other participants in private."
+                "description": "Whether or not to allow any attendee to chat with other participants in private. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               }
             },
             "description": "Attendee Privileges. This attribute is not supported for a webinar."
@@ -40111,15 +40114,15 @@
               },
               "enabledSaveDocument": {
                 "type": "boolean",
-                "description": "Whether or not to allow any attendee to save shared documents, slides, or whiteboards when they are shared as files in the content viewer instead of in a window or application."
+                "description": "Whether or not to allow any attendee to save shared documents, slides, or whiteboards when they are shared as files in the content viewer instead of in a window or application. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledPrintDocument": {
                 "type": "boolean",
-                "description": "Whether or not to allow any attendee to print shared documents, slides, or whiteboards when they are shared as files in the content viewer instead of in a window or application."
+                "description": "Whether or not to allow any attendee to print shared documents, slides, or whiteboards when they are shared as files in the content viewer instead of in a window or application. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledAnnotate": {
                 "type": "boolean",
-                "description": "Whether or not to allow any attendee to annotate shared documents, slides, or whiteboards when they are shared as files in the content viewer instead of in a window or application."
+                "description": "Whether or not to allow any attendee to annotate shared documents, slides, or whiteboards when they are shared as files in the content viewer instead of in a window or application. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledViewParticipantList": {
                 "type": "boolean",
@@ -40128,39 +40131,39 @@
               },
               "enabledViewThumbnails": {
                 "type": "boolean",
-                "description": "Whether or not to allow any attendee to see a small preview image of any page of shared documents or slides when they are shared as files in the content viewer instead of in a window or application."
+                "description": "Whether or not to allow any attendee to see a small preview image of any page of shared documents or slides when they are shared as files in the content viewer instead of in a window or application. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledRemoteControl": {
                 "type": "boolean",
                 "example": true,
-                "description": "Whether or not to allow any attendee to control applications, web browsers, or desktops remotely."
+                "description": "Whether or not to allow any attendee to control applications, web browsers, or desktops remotely. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledViewAnyDocument": {
                 "type": "boolean",
-                "description": "Whether or not to allow any attendee to view any shared documents or slides when they are shared as files in the content viewer instead of in a window or application."
+                "description": "Whether or not to allow any attendee to view any shared documents or slides when they are shared as files in the content viewer instead of in a window or application. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledViewAnyPage": {
                 "type": "boolean",
-                "description": "Whether or not to allow any attendee to scroll through any page of shared documents or slides when they are shared as files in the content viewer instead of in a window or application."
+                "description": "Whether or not to allow any attendee to scroll through any page of shared documents or slides when they are shared as files in the content viewer instead of in a window or application. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledContactOperatorPrivately": {
                 "type": "boolean",
-                "description": "Whether or not to allow any attendee to contact the operator privately."
+                "description": "Whether or not to allow any attendee to contact the operator privately. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledChatHost": {
                 "type": "boolean",
                 "example": true,
-                "description": "Whether or not to allow any attendee to chat with the host in private."
+                "description": "Whether or not to allow any attendee to chat with the host in private. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledChatPresenter": {
                 "type": "boolean",
                 "example": true,
-                "description": "Whether or not to allow any attendee to chat with the presenter in private."
+                "description": "Whether or not to allow any attendee to chat with the presenter in private. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledChatOtherParticipants": {
                 "type": "boolean",
                 "example": true,
-                "description": "Whether or not to allow any attendee to chat with other participants in private."
+                "description": "Whether or not to allow any attendee to chat with other participants in private. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               }
             },
             "description": "Attendee Privileges. This attribute is not supported for a webinar."
@@ -42023,15 +42026,15 @@
               },
               "enabledSaveDocument": {
                 "type": "boolean",
-                "description": "Whether or not to allow any attendee to save shared documents, slides, or whiteboards when they are shared as files in the content viewer instead of in a window or application."
+                "description": "Whether or not to allow any attendee to save shared documents, slides, or whiteboards when they are shared as files in the content viewer instead of in a window or application. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledPrintDocument": {
                 "type": "boolean",
-                "description": "Whether or not to allow any attendee to print shared documents, slides, or whiteboards when they are shared as files in the content viewer instead of in a window or application."
+                "description": "Whether or not to allow any attendee to print shared documents, slides, or whiteboards when they are shared as files in the content viewer instead of in a window or application. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledAnnotate": {
                 "type": "boolean",
-                "description": "Whether or not to allow any attendee to annotate shared documents, slides, or whiteboards when they are shared as files in the content viewer instead of in a window or application."
+                "description": "Whether or not to allow any attendee to annotate shared documents, slides, or whiteboards when they are shared as files in the content viewer instead of in a window or application. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledViewParticipantList": {
                 "type": "boolean",
@@ -42040,39 +42043,39 @@
               },
               "enabledViewThumbnails": {
                 "type": "boolean",
-                "description": "Whether or not to allow any attendee to see a small preview image of any page of shared documents or slides when they are shared as files in the content viewer instead of in a window or application."
+                "description": "Whether or not to allow any attendee to see a small preview image of any page of shared documents or slides when they are shared as files in the content viewer instead of in a window or application. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledRemoteControl": {
                 "type": "boolean",
                 "example": true,
-                "description": "Whether or not to allow any attendee to control applications, web browsers, or desktops remotely."
+                "description": "Whether or not to allow any attendee to control applications, web browsers, or desktops remotely. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledViewAnyDocument": {
                 "type": "boolean",
-                "description": "Whether or not to allow any attendee to view any shared documents or slides when they are shared as files in the content viewer instead of in a window or application."
+                "description": "Whether or not to allow any attendee to view any shared documents or slides when they are shared as files in the content viewer instead of in a window or application. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledViewAnyPage": {
                 "type": "boolean",
-                "description": "Whether or not to allow any attendee to scroll through any page of shared documents or slides when they are shared as files in the content viewer instead of in a window or application."
+                "description": "Whether or not to allow any attendee to scroll through any page of shared documents or slides when they are shared as files in the content viewer instead of in a window or application. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledContactOperatorPrivately": {
                 "type": "boolean",
-                "description": "Whether or not to allow any attendee to contact the operator privately."
+                "description": "Whether or not to allow any attendee to contact the operator privately. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledChatHost": {
                 "type": "boolean",
                 "example": true,
-                "description": "Whether or not to allow any attendee to chat with the host in private."
+                "description": "Whether or not to allow any attendee to chat with the host in private. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledChatPresenter": {
                 "type": "boolean",
                 "example": true,
-                "description": "Whether or not to allow any attendee to chat with the presenter in private."
+                "description": "Whether or not to allow any attendee to chat with the presenter in private. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledChatOtherParticipants": {
                 "type": "boolean",
                 "example": true,
-                "description": "Whether or not to allow any attendee to chat with other participants in private."
+                "description": "Whether or not to allow any attendee to chat with other participants in private. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               }
             },
             "description": "Attendee Privileges. This attribute is not supported for a webinar."
@@ -42391,15 +42394,15 @@
               },
               "enabledSaveDocument": {
                 "type": "boolean",
-                "description": "Whether or not to allow any attendee to save shared documents, slides, or whiteboards when they are shared as files in the content viewer instead of in a window or application."
+                "description": "Whether or not to allow any attendee to save shared documents, slides, or whiteboards when they are shared as files in the content viewer instead of in a window or application. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledPrintDocument": {
                 "type": "boolean",
-                "description": "Whether or not to allow any attendee to print shared documents, slides, or whiteboards when they are shared as files in the content viewer instead of in a window or application."
+                "description": "Whether or not to allow any attendee to print shared documents, slides, or whiteboards when they are shared as files in the content viewer instead of in a window or application. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledAnnotate": {
                 "type": "boolean",
-                "description": "Whether or not to allow any attendee to annotate shared documents, slides, or whiteboards when they are shared as files in the content viewer instead of in a window or application."
+                "description": "Whether or not to allow any attendee to annotate shared documents, slides, or whiteboards when they are shared as files in the content viewer instead of in a window or application. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledViewParticipantList": {
                 "type": "boolean",
@@ -42408,39 +42411,39 @@
               },
               "enabledViewThumbnails": {
                 "type": "boolean",
-                "description": "Whether or not to allow any attendee to see a small preview image of any page of shared documents or slides when they are shared as files in the content viewer instead of in a window or application."
+                "description": "Whether or not to allow any attendee to see a small preview image of any page of shared documents or slides when they are shared as files in the content viewer instead of in a window or application. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledRemoteControl": {
                 "type": "boolean",
                 "example": true,
-                "description": "Whether or not to allow any attendee to control applications, web browsers, or desktops remotely."
+                "description": "Whether or not to allow any attendee to control applications, web browsers, or desktops remotely. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledViewAnyDocument": {
                 "type": "boolean",
-                "description": "Whether or not to allow any attendee to view any shared documents or slides when they are shared as files in the content viewer instead of in a window or application."
+                "description": "Whether or not to allow any attendee to view any shared documents or slides when they are shared as files in the content viewer instead of in a window or application. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledViewAnyPage": {
                 "type": "boolean",
-                "description": "Whether or not to allow any attendee to scroll through any page of shared documents or slides when they are shared as files in the content viewer instead of in a window or application."
+                "description": "Whether or not to allow any attendee to scroll through any page of shared documents or slides when they are shared as files in the content viewer instead of in a window or application. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledContactOperatorPrivately": {
                 "type": "boolean",
-                "description": "Whether or not to allow any attendee to contact the operator privately."
+                "description": "Whether or not to allow any attendee to contact the operator privately. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledChatHost": {
                 "type": "boolean",
                 "example": true,
-                "description": "Whether or not to allow any attendee to chat with the host in private."
+                "description": "Whether or not to allow any attendee to chat with the host in private. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledChatPresenter": {
                 "type": "boolean",
                 "example": true,
-                "description": "Whether or not to allow any attendee to chat with the presenter in private."
+                "description": "Whether or not to allow any attendee to chat with the presenter in private. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               },
               "enabledChatOtherParticipants": {
                 "type": "boolean",
                 "example": true,
-                "description": "Whether or not to allow any attendee to chat with other participants in private."
+                "description": "Whether or not to allow any attendee to chat with other participants in private. This option is no longer supported for meetings on a site which has been migrated to the Webex Suite Meeting Platform (WSMP)."
               }
             },
             "description": "Attendee Privileges. This attribute is not supported for a webinar."
