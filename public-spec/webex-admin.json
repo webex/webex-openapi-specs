@@ -4510,7 +4510,7 @@
           }
         },
         "summary": "List Licenses",
-        "operationId": "List Licenses",
+        "operationId": "List_Licenses",
         "description": "List all licenses for a given organization.  If no `orgId` is specified, the default is the organization of the authenticated user.\n\nResponse properties that are not applicable to the license will not be present in the response.",
         "tags": [
           "Licenses"
@@ -4614,7 +4614,7 @@
           }
         },
         "summary": "Get License Details",
-        "operationId": "Get License Details",
+        "operationId": "Get_License_Details",
         "description": "Shows details for a license, by ID.\n\nSpecify the license ID in the `licenseId` parameter in the URI.\nUse the optional query parameter `includeAssignedTo` to get a list of all objects that are assigned with the license. The objects include but not limited to, users including external users. Long result sets will be split into [pages](/docs/basics#pagination).\n\nResponse properties that are not applicable to the license will not be present in the response.",
         "tags": [
           "Licenses"
@@ -4655,7 +4655,7 @@
             "name": "limit",
             "in": "query",
             "description": "A limit on the number of users to be returned in the response. Applicable only if `includeAssignedTo` is populated. limit cannot be more than 300.",
-            "example": "10",
+            "example": 0,
             "schema": {
               "type": "number",
               "default": 300
@@ -4698,8 +4698,250 @@
               }
             }
           },
+          "206": {
+            "description": "Partial Content: Some licenses were successfully assigned, but others could not be assigned due to various constraints or errors. Compare the returned licenses with the requested licenses to determine which ones failed.",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserLicensesResponse"
+                },
+                "example": {
+                  "orgId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE",
+                  "personId": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mNWIzNjE4Ny1jOGRkLTQ3MjctOGIyZi1mOWM0NDdmMjkwNDY",
+                  "email": "john.andersen@example.com",
+                  "licenses": [
+                    "Y2lzY29zcGFyazovL3VzL0xJQ0VOU0UvOTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh"
+                  ],
+                  "siteUrls": [
+                    {
+                      "siteUrl": "mysite.webex.com",
+                      "accountType": "attendee"
+                    }
+                  ]
+                }
+              }
+            }
+          },
           "400": {
-            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. Specific error codes indicate license assignment issues.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LicenseError"
+                },
+                "examples": {
+                  "locationNotFound": {
+                    "summary": "Location not found",
+                    "value": {
+                      "message": "Unable to find location",
+                      "errors": [
+                        {
+                          "errorCode": 400,
+                          "description": "Unable to find location."
+                        }
+                      ],
+                      "trackingId": "NA_88b8b4ce-6338-4d3a-8d6c-22b37e62354f"
+                    }
+                  },
+                  "licenseNotRecognized": {
+                    "summary": "License not recognized",
+                    "value": {
+                      "message": "License not recognized",
+                      "errors": [
+                        {
+                          "errorCode": 400000,
+                          "description": "License not recognized {licenses}"
+                        }
+                      ],
+                      "trackingId": "NA_88b8b4ce-6338-4d3a-8d6c-22b37e62354f"
+                    }
+                  },
+                  "callingLicenseDowngrade": {
+                    "summary": "Webex Calling license downgrade not allowed",
+                    "value": {
+                      "message": "License assignment failed",
+                      "errors": [
+                        {
+                          "errorCode": 400112,
+                          "description": "Changing a user's Webex Calling license from Professional to Standard is not allowed. The following license(s) could not be applied as requested: {licenses}"
+                        }
+                      ],
+                      "trackingId": "NA_88b8b4ce-6338-4d3a-8d6c-22b37e62354f"
+                    }
+                  },
+                  "messengerLicenseManagement": {
+                    "summary": "Messenger license management not supported",
+                    "value": {
+                      "message": "License management not supported",
+                      "errors": [
+                        {
+                          "errorCode": 400118,
+                          "description": "User management of Messenger license {licenses} is not supported"
+                        }
+                      ],
+                      "trackingId": "NA_88b8b4ce-6338-4d3a-8d6c-22b37e62354f"
+                    }
+                  },
+                  "invalidSiteUrl": {
+                    "summary": "Invalid attendee site URLs",
+                    "value": {
+                      "message": "Invalid site URL",
+                      "errors": [
+                        {
+                          "errorCode": 400216,
+                          "description": "Request contains invalid attendee siteUrls: {siteUrl}"
+                        }
+                      ],
+                      "trackingId": "NA_88b8b4ce-6338-4d3a-8d6c-22b37e62354f"
+                    }
+                  },
+                  "conflictingCallingLicenses": {
+                    "summary": "Conflicting Webex Calling licenses",
+                    "value": {
+                      "message": "License conflict",
+                      "errors": [
+                        {
+                          "errorCode": 400404,
+                          "description": "User cannot have both Webex Calling Professional and Standard License together. The following license(s) could not be applied as requested: {licenses}"
+                        }
+                      ],
+                      "trackingId": "NA_88b8b4ce-6338-4d3a-8d6c-22b37e62354f"
+                    }
+                  },
+                  "callingStandardAttendantConflict": {
+                    "summary": "Webex Calling Standard and Attendant Console conflict",
+                    "value": {
+                      "message": "License conflict",
+                      "errors": [
+                        {
+                          "errorCode": 400406,
+                          "description": "User cannot have both Webex Calling Standard and Webex Attendant Console licenses together. The following license(s) could not be applied as requested: {licenses}"
+                        }
+                      ],
+                      "trackingId": "NA_88b8b4ce-6338-4d3a-8d6c-22b37e62354f"
+                    }
+                  },
+                  "callingStandardCXEssentialConflict": {
+                    "summary": "Webex Calling Standard and CX Essential conflict",
+                    "value": {
+                      "message": "License conflict",
+                      "errors": [
+                        {
+                          "errorCode": 400407,
+                          "description": "User cannot have both Webex Calling Standard and CX Essential licenses together. The following license(s) could not be applied as requested: {licenses}"
+                        }
+                      ],
+                      "trackingId": "NA_88b8b4ce-6338-4d3a-8d6c-22b37e62354f"
+                    }
+                  },
+                  "attendantConsolePrerequisite": {
+                    "summary": "Webex Attendant Console prerequisite missing",
+                    "value": {
+                      "message": "License prerequisite missing",
+                      "errors": [
+                        {
+                          "errorCode": 400408,
+                          "description": "User needs Webex Calling Professional license to be assigned before assigning Webex Attendant Console: {licenses}"
+                        }
+                      ],
+                      "trackingId": "NA_88b8b4ce-6338-4d3a-8d6c-22b37e62354f"
+                    }
+                  },
+                  "cxEssentialDowngrade": {
+                    "summary": "CX Essential to Webex Calling Standard downgrade not allowed",
+                    "value": {
+                      "message": "License downgrade not allowed",
+                      "errors": [
+                        {
+                          "errorCode": 400410,
+                          "description": "Changing a user's license from CX Essential to Webex Calling Standard is not allowed. The following license(s) could not be applied as requested: {licenses}"
+                        }
+                      ],
+                      "trackingId": "NA_88b8b4ce-6338-4d3a-8d6c-22b37e62354f"
+                    }
+                  },
+                  "missingCallingProperties": {
+                    "summary": "Missing calling properties",
+                    "value": {
+                      "message": "License properties missing",
+                      "errors": [
+                        {
+                          "errorCode": 400411,
+                          "description": "Each Webex Calling license should contain its own calling properties. The following license(s) do not have properties: {licenses}"
+                        }
+                      ],
+                      "trackingId": "NA_88b8b4ce-6338-4d3a-8d6c-22b37e62354f"
+                    }
+                  },
+                  "exclusiveLicenseConflict": {
+                    "summary": "Exclusive license conflict",
+                    "value": {
+                      "message": "License conflict",
+                      "errors": [
+                        {
+                          "errorCode": 400413,
+                          "description": "Could not apply the following license(s): {licenses} as the user can be assigned only one of licenses with the offer code from the list:"
+                        }
+                      ],
+                      "trackingId": "NA_88b8b4ce-6338-4d3a-8d6c-22b37e62354f"
+                    }
+                  },
+                  "freeMessagingPrerequisite": {
+                    "summary": "Free teams messaging prerequisite for paid messaging",
+                    "value": {
+                      "message": "License prerequisite missing",
+                      "errors": [
+                        {
+                          "errorCode": 700003,
+                          "description": "Free teams messaging mandatory for paid teams messaging license. The following license could not be applied as requested: {licenses}"
+                        }
+                      ],
+                      "trackingId": "NA_88b8b4ce-6338-4d3a-8d6c-22b37e62354f"
+                    }
+                  },
+                  "freeMeetingPrerequisite": {
+                    "summary": "Free teams meeting prerequisite for paid meeting",
+                    "value": {
+                      "message": "License prerequisite missing",
+                      "errors": [
+                        {
+                          "errorCode": 700004,
+                          "description": "Free teams meeting mandatory for paid teams meeting license. The following license could not be applied as requested: {licenses}"
+                        }
+                      ],
+                      "trackingId": "NA_88b8b4ce-6338-4d3a-8d6c-22b37e62354f"
+                    }
+                  },
+                  "messagingPrerequisiteForMeeting": {
+                    "summary": "Free teams messaging prerequisite for meeting",
+                    "value": {
+                      "message": "License prerequisite missing",
+                      "errors": [
+                        {
+                          "errorCode": 700005,
+                          "description": "Free teams messaging mandatory for teams meeting license. The following license(s) could not be applied as requested: {licenses}"
+                        }
+                      ],
+                      "trackingId": "NA_88b8b4ce-6338-4d3a-8d6c-22b37e62354f"
+                    }
+                  },
+                  "screenShareImplicit": {
+                    "summary": "Screen Share license cannot be removed",
+                    "value": {
+                      "message": "License removal not allowed",
+                      "errors": [
+                        {
+                          "errorCode": 700006,
+                          "description": "Screen Share {licenses} is implicitly assigned and cannot be removed"
+                        }
+                      ],
+                      "trackingId": "NA_88b8b4ce-6338-4d3a-8d6c-22b37e62354f"
+                    }
+                  }
+                }
+              }
+            }
           },
           "401": {
             "description": "Unauthorized: Authentication credentials were missing or incorrect."
@@ -4745,7 +4987,7 @@
           }
         },
         "summary": "Assign Licenses to Users",
-        "operationId": "Assign Licenses to Users",
+        "operationId": "Assign_Licenses_to_Users",
         "description": "Assign licenses and attendee `siteUrls` to existing users. Only an admin can assign licenses. Only existing users can be assigned a license. Assign meeting licenses to users outside your organization (Status will be pending until the user accepts the invite)\n\nAt least one of the following body parameters is required to assign license to the user: `email`, `personId`. For Calling license assignment, properties `phoneNumber` or `extension` are required. If `phoneNumber` is not provided then `locationId` is mandatory.\n\nWhen assigning licenses and attendee siteUrls to a user who does not belong to the organization, the licenses and siteUrls remain in pending state until the user accepts them. The `pendingLicenses` and `pendingSiteUrls` are part of the response.",
         "tags": [
           "Licenses"
@@ -33103,8 +33345,7 @@
             "description": "Operation type. The default operation is `add` if no operation is specified.\n * `remove` - Remove the license from the user\n * `add` - Assign the license to the user\n"
           },
           "properties": {
-            "$ref": "#/components/schemas/LicenseProperties",
-            "description": "Properties for the license. Either `phoneNumber` or `extension` are mandatory for assigning Webex Calling licenses. If `phoneNumber` is not provided then `locationId` is mandatory."
+            "$ref": "#/components/schemas/LicenseProperties"
           }
         }
       },
@@ -33223,6 +33464,74 @@
             "example": "133",
             "description": "Webex Calling extension of the user. Applicable to Webex Calling license."
           }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "A human readable description of the error."
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ErrorDetail"
+            },
+            "description": "An array of error details."
+          },
+          "trackingId": {
+            "type": "string",
+            "description": "A unique identifier to help with debugging."
+          }
+        }
+      },
+      "ErrorDetail": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "integer",
+            "description": "A specific error code identifying the type of error.",
+            "enum": [
+              400,
+              400000,
+              400112,
+              400118,
+              400216,
+              400404,
+              400406,
+              400407,
+              400408,
+              400410,
+              400411,
+              400413,
+              700003,
+              700004,
+              700005,
+              700006
+            ]
+          },
+          "description": {
+            "type": "string",
+            "description": "A detailed description of the specific error. Error descriptions by code:\n* 400: Unable to find location.\n* 400000: License not recognized {licenses}\n* 400112: Changing a user's Webex Calling license from Professional to Standard is not allowed. The following license(s) could not be applied as requested: {licenses}\n* 400118: User management of Messenger license {licenses} is not supported\n* 400216: Request contains invalid attendee siteUrls: {siteUrl}\n* 400404: User cannot have both Webex Calling Professional and Standard License together. The following license(s) could not be applied as requested: {licenses}\n* 400406: User cannot have both Webex Calling Standard and Webex Attendant Console licenses together. The following license(s) could not be applied as requested: {licenses}\n* 400407: User cannot have both Webex Calling Standard and CX Essential licenses together. The following license(s) could not be applied as requested: {licenses}\n* 400408: User needs Webex Calling Professional license to be assigned before assigning Webex Attendant Console: {licenses}\n* 400410: Changing a user's license from CX Essential to Webex Calling Standard is not allowed. The following license(s) could not be applied as requested: {licenses}\n* 400411: Each Webex Calling license should contain its own calling properties. The following license(s) do not have properties: {licenses}\n* 400413: Could not apply the following license(s): {licenses} as the user can be assigned only one of licenses with the offer code from the list:\n* 700003: Free teams messaging mandatory for paid teams messaging license. The following license could not be applied as requested: {licenses}\n* 700004: Free teams meeting mandatory for paid teams meeting license. The following license could not be applied as requested: {licenses}\n* 700005: Free teams messaging mandatory for teams meeting license. The following license(s) could not be applied as requested: {licenses}\n* 700006: Screen Share {licenses} is implicitly assigned and cannot be removed"
+          }
+        }
+      },
+      "LicenseError": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ErrorResponse"
+          }
+        ],
+        "example": {
+          "message": "License assignment failed",
+          "errors": [
+            {
+              "errorCode": 400112,
+              "description": "Changing a user's Webex Calling license from Professional to Standard is not allowed. The following license(s) could not be applied as requested: {licenses}"
+            }
+          ],
+          "trackingId": "NA_88b8b4ce-6338-4d3a-8d6c-22b37e62354f"
         }
       },
       "LivemeetingByCountryRequestBody": {
