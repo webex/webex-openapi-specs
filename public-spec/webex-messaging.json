@@ -1093,6 +1093,106 @@
         ]
       }
     },
+    "/hds/organizations/{organizationId}": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/orgDetailsResponse"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "orgId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8yYzNjOWY5NS03M2Q5LTQ0NjAtYTY2OC0wNDcxNjJmZjFiYWQ",
+                      "orgName": "HDS_Demo",
+                      "orgType": "Single Tenant",
+                      "orgMode": "Production",
+                      "clusters": [
+                        {
+                          "clusterId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DTFVTVEVSLzFlYjY1ZmRmLTk2NDMtNDE3Zi05OTc0LWFkNzJjYWUwZTEwZjpiMzdmNTgzYy1kZGRjLTQyOGItODJlNS1jYmU2ODFkYjQ5NjI",
+                          "clusterName": "cluster-1"
+                        },
+                        {
+                          "clusterId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DTFVTVEVSLzFlYjY1ZmRmLTk2NDMtNDE3Zi05OTc0LWFkNzJjYWUwZTEwZjpiMzdmNTgzYy1kZGRjLTQyOGItODJlNS1jYmU2ODFkYjQ5NJJ",
+                          "clusterName": "cluster-2"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or could not be otherwise processed. An accompanying error message will provide more details."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request was understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The requested URI is invalid, or the resource requested (such as a user) does not exist. This response is also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type, or with a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present to indicate how many seconds you should wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: The file(s) cannot be scanned for malware and must be force-downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given period of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, please contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond in time. If your query uses the max parameter, please try reducing its value."
+          }
+        },
+        "summary": "Retrieve details for an HDS organization",
+        "operationId": "getHDSOrganizationDetails",
+        "description": "Retrieve details for an HDS organization, such as the organization name, type of organization, and clusters in the organization",
+        "tags": [
+          "HDS"
+        ],
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "description": "Unique ID of the HDS organization.",
+            "required": true,
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8yYzNjOWY5NS03M2Q5LTQ0NjAtYTY2OC0wNDcxNjJmZjFiYWQ",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
     "/hds/clusters/{clusterId}": {
       "get": {
         "responses": {
@@ -1171,7 +1271,7 @@
             "description": "Precondition Required: The file(s) cannot be scanned for malware and must be force-downloaded."
           },
           "429": {
-            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+            "description": "Too Many Requests: Too many requests have been sent in a given period of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
           },
           "500": {
             "description": "Internal Server Error: Something went wrong on the server. If the issue persists, please contact the [Webex Developer Support team](/explore/support)."
@@ -1187,8 +1287,8 @@
           }
         },
         "summary": "Retrieve details for a specific HDS cluster",
-        "operationId": "getHdsClusterDetails",
-        "description": "Retrieve details for a specific HDS cluster such as cluster name, cluster status, upgrade schedule and HDS nodes in the cluster",
+        "operationId": "getHDSClusterDetails",
+        "description": "Retrieve details for a specific HDS cluster, such as the cluster name, cluster status, upgrade schedule, and HDS nodes in the cluster",
         "tags": [
           "HDS"
         ],
@@ -1199,6 +1299,313 @@
             "description": "Unique ID of the HDS cluster.",
             "required": true,
             "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DTFVTVEVSLzJjM2M5Zjk1LTczZDktNDQ2MC1hNjY4LTA0NzE2MmZmMWJhZDpmMWJmMGI1MC0yMDUyLTQ3ZmUtYjg3ZC01MTFjMmZlNzQ3MWI",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/hds/nodes/{nodeId}": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/nodeDetailsResponse"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "orgId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DTFVTVEVSLzFlYjY1ZmRmLTk2NDMtNDE3Zi05OTc0LWFkNzJVGNG",
+                      "clusters": [
+                        {
+                          "clusterId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DTFVTVEVSLzFlYjY1ZmRmLTk2NDMtNDE3Zi05OTc0LWFkNzJjYWUwZTEwZjpiMzdmNTgzYy1kZGRjLTQyOGItODJlNS1jYmU2ODFkYjQ5NjI",
+                          "clusterName": "Cluster Name ABC",
+                          "nodes": [
+                            {
+                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DTFVTVEVSLzM2ZDg5NGY3LTJiNTctNDNjMS1hY2VlLWQ0N2U2Nzc2MTQxNDo0NjdiNGIxZC1jZWI2LTQwN2EtYWZmOC1mMjIxZmFiNzhjNzI",
+                              "host": "xyz.abc.com",
+                              "availabilityDetails": {
+                                "nodeAvailability": "Online",
+                                "hdsHealthStatus": "Healthy / Unhealthy",
+                                "hdsUnhealthyReasons": [
+                                  "KMS unhealthy",
+                                  "Avalon unhealthy"
+                                ]
+                              },
+                              "releaseVersion": "2025.07.16.7042",
+                              "proxyType": "Explicit",
+                              "proxyStatus": "Enabled",
+                              "maintenanceMode": "On",
+                              "ovaDeploymentType": "Large",
+                              "ovaBuildType": "Dev"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or could not be otherwise processed. An accompanying error message will provide more details."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request was understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The requested URI is invalid, or the resource requested (such as a user) does not exist. This response is also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type, or with a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present to indicate how many seconds you should wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: The file(s) cannot be scanned for malware and must be force-downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given period of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, please contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond in time. If your query uses the max parameter, please try reducing its value."
+          }
+        },
+        "summary": "Retrieve details for a specific HDS node",
+        "operationId": "getHDSNodeDetails",
+        "description": "Retrieve details for a specific HDS node, such as host name, release version, proxy details, deployment and build type, availability details, etc.",
+        "tags": [
+          "HDS"
+        ],
+        "parameters": [
+          {
+            "name": "nodeId",
+            "in": "path",
+            "description": "Unique ID of the HDS node",
+            "required": true,
+            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/hds/organizations/{organizationId}/database/details": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/databaseDetailsResponse"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "orgId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DTFVTVEVSLzFlYjY1ZmRmLTk2NDMtNDE3Zi05OTc0LWFkNzJVGNG",
+                      "databases": [
+                        {
+                          "databaseType": "PostgreSQL",
+                          "databaseVersion": "PostgreSQL 16.9 (Ubuntu 16.9-1.pgdg24.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0, 64-bit"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or could not be otherwise processed. An accompanying error message will provide more details."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request was understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The requested URI is invalid, or the resource requested (such as a user) does not exist. This response is also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type, or with a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present to indicate how many seconds you should wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: The file(s) cannot be scanned for malware and must be force-downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given period of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, please contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond in time. If your query uses the max parameter, please try reducing its value."
+          }
+        },
+        "summary": "Retrieve details of Database information for an HDS organization",
+        "operationId": "getHDSOrganizationDatabaseDetails",
+        "description": "Retrieve details of database information for an HDS organization, such as database type and version used",
+        "tags": [
+          "HDS"
+        ],
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "description": "Unique ID of the HDS organization",
+            "required": true,
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8yYzNjOWY5NS03M2Q5LTQ0NjAtYTY2OC0wNDcxNjJmZjFiYWQ",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/hds/organizations/{organizationId}/multiTenant": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/multiTenantHDSOrgDetailsResponse"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "partnerOrgId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DTFVTVEVSLzFlYjY1ZmRmLTk2NDMtNDE3Zi05OTc0LWFkNzJVGNG",
+                      "tenants": [
+                        {
+                          "tenantOrgId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DTFVTVEVSLzFlYjY1ZmRmLTk2NDMtNDE3Zi05OTc0LWFCGCGCGH",
+                          "tenantName": "Tenant Org A",
+                          "cmkState": "CMK Managed",
+                          "tenantOrgState": "Setup complete"
+                        },
+                        {
+                          "tenantOrgId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DTFVTVEVSLzFlYjY1ZmRmLTk2NDMtNDE3Zi05OTVHHHFJYJYJKT",
+                          "tenantName": "Tenant Org B",
+                          "cmkState": "CMK Management pending",
+                          "tenantOrgState": "Setup incomplete"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or could not be otherwise processed. An accompanying error message will provide more details."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request was understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The requested URI is invalid, or the resource requested (such as a user) does not exist. This response is also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type, or with a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present to indicate how many seconds you should wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: The file(s) cannot be scanned for malware and must be force-downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given period of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, please contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond in time. If your query uses the max parameter, please try reducing its value."
+          }
+        },
+        "summary": "Retrieve details of Multi-Tenant HDS organization",
+        "operationId": "getHDSMultiTenantOrganizationDetails",
+        "description": "Retrieve details of Multi-Tenant HDS organization such as Organization Name and ID, CMK state and state of Tenants Organizations",
+        "tags": [
+          "HDS"
+        ],
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "description": "Unique ID of the HDS organization.",
+            "required": true,
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8yYzNjOWY5NS03M2Q5LTQ0NjAtYTY2OC0wNDcxNjJmZjFiYWQ",
             "schema": {
               "type": "string"
             }
@@ -1355,7 +1762,7 @@
             "description": "Precondition Required: The file(s) cannot be scanned for malware and must be force-downloaded."
           },
           "429": {
-            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+            "description": "Too Many Requests: Too many requests have been sent in a given period of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
           },
           "500": {
             "description": "Internal Server Error: Something went wrong on the server. If the issue persists, please contact the [Webex Developer Support team](/explore/support)."
@@ -1371,7 +1778,7 @@
           }
         },
         "summary": "Retrieve test results for a specific HDS node",
-        "operationId": "getNetworkTestResultsForHdsNode",
+        "operationId": "getNetworkTestResultsForHDSNode",
         "description": "Get the latest results of the network tests triggered for a single HDS node. The test results are generated as part of the Network Test execution on the node. The network tests include the Bandwidth Test, DNS Resolution Test, and HTTPS Connectivity Test.",
         "tags": [
           "HDS"
@@ -16605,6 +17012,65 @@
           }
         }
       },
+      "orgDetailsResponse": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/orgDetailsItems"
+            },
+            "description": "Response for organization details API"
+          }
+        }
+      },
+      "orgDetailsItems": {
+        "type": "object",
+        "properties": {
+          "orgId": {
+            "type": "string",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8yYzNjOWY5NS03M2Q5LTQ0NjAtYTY2OC0wNDcxNjJmZjFiYWQ=",
+            "description": "Unique ID of the organization."
+          },
+          "orgName": {
+            "type": "string",
+            "example": "HDS_Demo",
+            "description": "Name of the organization."
+          },
+          "orgType": {
+            "type": "string",
+            "example": "Single Tenant",
+            "description": "Type of the organization."
+          },
+          "orgMode": {
+            "type": "string",
+            "example": "Production",
+            "description": "Mode of the organization."
+          },
+          "clusters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/clusterSummary"
+            },
+            "description": "List of clusters in the organization."
+          }
+        }
+      },
+      "clusterSummary": {
+        "type": "object",
+        "properties": {
+          "clusterId": {
+            "type": "string",
+            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DTFVTVEVSLzFlYjY1ZmRmLTk2NDMtNDE3Zi05OTc0LWFkNzJjYWUwZTEwZjpiMzdmNTgzYy1kZGRjLTQyOGItODJlNS1jYmU2ODFkYjQ5NjI",
+            "description": "Unique ID of the cluster."
+          },
+          "clusterName": {
+            "type": "string",
+            "example": "cluster-1",
+            "description": "Name of the cluster."
+          }
+        }
+      },
       "clusterDetailsResponse": {
         "type": "object",
         "properties": {
@@ -16707,6 +17173,223 @@
             "type": "string",
             "example": "hds-node-1.example.com",
             "description": "Host Name or Host IP of the HDS node"
+          }
+        }
+      },
+      "nodeDetailsResponse": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/nodeDetailsItems"
+            },
+            "description": "Response for node details API"
+          }
+        }
+      },
+      "nodeDetailsItems": {
+        "type": "object",
+        "properties": {
+          "orgId": {
+            "type": "string",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8yYzNjOWY5NS03M2Q5LTQ0NjAtYTY2OC0wNDcxNjJmZjFiYWQ=",
+            "description": "Unique ID of the organization."
+          },
+          "clusters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/nodeDetailsCluster"
+            },
+            "description": "List of clusters in the organization."
+          }
+        }
+      },
+      "nodeDetailsCluster": {
+        "type": "object",
+        "properties": {
+          "clusterId": {
+            "type": "string",
+            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DTFVTVEVSLzJjM2M5Zjk1LTczZDktNDQ2MC1hNjY4LTA0NzE2MmZmMWJhZDpmMWJmMGI1MC0yMDUyLTQ3ZmUtYjg3ZC01MTFjMmZlNzQ3MWI",
+            "description": "Unique ID of the cluster."
+          },
+          "clusterName": {
+            "type": "string",
+            "example": "Cluster Name ABC",
+            "description": "Name of the cluster."
+          },
+          "nodes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/nodeDetails"
+            },
+            "description": "List of nodes in the cluster."
+          }
+        }
+      },
+      "nodeDetails": {
+        "type": "object",
+        "properties": {
+          "nodeId": {
+            "type": "string",
+            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+            "description": "Unique ID of the connector/node."
+          },
+          "host": {
+            "type": "string",
+            "example": "hds-node-1.example.com",
+            "description": "Host Name or Host IP of the HDS node"
+          },
+          "availabilityDetails": {
+            "type": "object",
+            "properties": {
+              "nodeAvailability": {
+                "type": "string",
+                "example": "Online",
+                "description": "Current availability of the HDS node"
+              },
+              "hdsHealthStatus": {
+                "type": "string",
+                "example": "Healthy / Unhealthy",
+                "description": "Health status of the HDS node"
+              },
+              "hdsUnhealthyReasons": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "example": "[\"KMS unhealthy\", \"Avalon unhealthy\"]"
+                },
+                "description": "List of reasons for unhealthy status of the HDS node"
+              }
+            }
+          },
+          "releaseVersion": {
+            "type": "string",
+            "example": "2025.07.16.7042",
+            "description": "The release version of the HDS node"
+          },
+          "proxyType": {
+            "type": "string",
+            "example": "Explicit",
+            "description": "Proxy type used by the HDS node"
+          },
+          "proxyStatus": {
+            "type": "string",
+            "example": "Enabled",
+            "description": "Current proxy status of the HDS node"
+          },
+          "maintenanceMode": {
+            "type": "string",
+            "example": "Off",
+            "description": "On indicates that the node is in maintenance mode, and Off indicates that the node is not in maintenance mode"
+          },
+          "ovaDeploymentType": {
+            "type": "string",
+            "example": "Large",
+            "description": "Deployment type of the HDS node"
+          },
+          "ovaBuildType": {
+            "type": "string",
+            "example": "Dev",
+            "description": "Build type of the HDS node"
+          }
+        }
+      },
+      "databaseDetailsResponse": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/databaseDetailsItems"
+            },
+            "description": "Response for database details API"
+          }
+        }
+      },
+      "databaseDetailsItems": {
+        "type": "object",
+        "properties": {
+          "orgId": {
+            "type": "string",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8yYzNjOWY5NS03M2Q5LTQ0NjAtYTY2OC0wNDcxNjJmZjFiYWQ=",
+            "description": "Unique ID of the organization."
+          },
+          "databases": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/databaseDetails"
+            },
+            "description": "List of databases in the organization."
+          }
+        }
+      },
+      "databaseDetails": {
+        "type": "object",
+        "properties": {
+          "databaseType": {
+            "type": "string",
+            "example": "PostgreSQL",
+            "description": "Type of the database."
+          },
+          "databaseVersion": {
+            "type": "string",
+            "example": "PostgreSQL 16.9 (Ubuntu 16.9-1.pgdg24.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0, 64-bit",
+            "description": "Version of the database."
+          }
+        }
+      },
+      "multiTenantHDSOrgDetailsResponse": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/multiTenantHDSOrgDetailsItems"
+            },
+            "description": "Response for multi-tenant HDS organization details API"
+          }
+        }
+      },
+      "multiTenantHDSOrgDetailsItems": {
+        "type": "object",
+        "properties": {
+          "partnerOrgId": {
+            "type": "string",
+            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DTFVTVEVSLzFlYjY1ZmRmLTk2NDMtNDE3Zi05OTc0LWFkNzJjYWUwZTEwZjpiMzdmNTgzYy1kZGRjLTQyOGItODJlNS1jYmU2ODFkYjQ5NjI",
+            "description": "Unique ID of the partner organization."
+          },
+          "tenants": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/tenantDetails"
+            },
+            "description": "List of tenant organizations under the partner organization."
+          }
+        }
+      },
+      "tenantDetails": {
+        "type": "object",
+        "properties": {
+          "tenantOrgId": {
+            "type": "string",
+            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DTFVTVEVSLzFlYjY1ZmRmLTk2NDMtNDE3Zi05OTc0LWFCGCGCGH",
+            "description": "Unique ID of the tenant organization."
+          },
+          "tenantName": {
+            "type": "string",
+            "example": "abcd",
+            "description": "Name of the tenant organization."
+          },
+          "cmkState": {
+            "type": "string",
+            "example": "CMK Managed",
+            "description": "Customer Managed Key (CMK) state of the tenant organization."
+          },
+          "tenantOrgState": {
+            "type": "string",
+            "example": "Setup complete",
+            "description": "Current state of the tenant organization."
           }
         }
       },
