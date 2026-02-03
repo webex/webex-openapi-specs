@@ -785,6 +785,18 @@
                   },
                   "meetings": {
                     "timezone": "\"America/Los_Angeles\""
+                  },
+                  "packages": {
+                    "limits": {
+                      "webex_calling": 50,
+                      "common_area_calling": 50,
+                      "webex_meetings": 50,
+                      "webex_suite": 50,
+                      "webex_voice": 50,
+                      "cx_essentials": 50,
+                      "webex_calling_standard": 50,
+                      "attendant_console": 50
+                    }
                   }
                 },
                 "subPartnerAdminEmail": "admin@subpartnerorg.com"
@@ -975,6 +987,49 @@
                             "description": "Customer timezone for meetings package."
                           }
                         }
+                      },
+                      "packages": {
+                        "type": "object",
+                        "properties": {
+                          "limits": {
+                            "type": "object",
+                            "properties": {
+                              "webex_calling": {
+                                "type": "number",
+                                "example": 50
+                              },
+                              "common_area_calling": {
+                                "type": "number",
+                                "example": 50
+                              },
+                              "webex_meetings": {
+                                "type": "number",
+                                "example": 50
+                              },
+                              "webex_suite": {
+                                "type": "number",
+                                "example": 50
+                              },
+                              "webex_voice": {
+                                "type": "number",
+                                "example": 50
+                              },
+                              "cx_essentials": {
+                                "type": "number",
+                                "example": 50
+                              },
+                              "webex_calling_standard": {
+                                "type": "number",
+                                "example": 50
+                              },
+                              "attendant_console": {
+                                "type": "number",
+                                "example": 50
+                              }
+                            },
+                            "description": "Packages followed by their respective limits."
+                          }
+                        }
                       }
                     }
                   },
@@ -1033,6 +1088,9 @@
                             "errorCode": 2560,
                             "description": "One or more Webex Calling services are unavailable due to maintenance, unable to start provisioning. Consult status.webex.com and retry later."
                           }
+                        ],
+                        "licenseIds": [
+                          "Y2lzY29zcGFyazovL3VzL0xJQ0VOU0UvYjdjNGRlZTgtODZmNi00YzAxLWJkYjMtMTM3MjM2ZWY3NGRmOlNMV0NBXzdmYTBkZjhjLTlmNTEtNGE1Zi05YzY4LTU1ODRlNWM2N2E0Yg"
                         ]
                       }
                     ]
@@ -1111,6 +1169,15 @@
             "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8wZTE4MmUxNS05ZmNhLTQ0NzgtYmEzOC1jNGFiMmUyN2FlZDA=",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "includePackageLicenseInfo",
+            "in": "query",
+            "description": "If specified as true, a list of licenseIds will be returned for all provisioned packages",
+            "example": "true",
+            "schema": {
+              "type": "boolean"
             }
           }
         ]
@@ -1245,6 +1312,18 @@
                   },
                   "meetings": {
                     "timezone": "\"America/Los_Angeles\""
+                  },
+                  "packages": {
+                    "limits": {
+                      "webex_calling": 50,
+                      "common_area_calling": 50,
+                      "webex_meetings": 50,
+                      "webex_suite": 50,
+                      "webex_voice": 50,
+                      "cx_essentials": 50,
+                      "webex_calling_standard": 50,
+                      "attendant_console": 50
+                    }
                   }
                 },
                 "subPartnerAdminEmail": "admin@subpartnerorg.com"
@@ -1394,6 +1473,49 @@
                             "type": "string",
                             "example": "\"America/Los_Angeles\"",
                             "description": "Customer timezone for meetings package."
+                          }
+                        }
+                      },
+                      "packages": {
+                        "type": "object",
+                        "properties": {
+                          "limits": {
+                            "type": "object",
+                            "properties": {
+                              "webex_calling": {
+                                "type": "number",
+                                "example": 50
+                              },
+                              "common_area_calling": {
+                                "type": "number",
+                                "example": 50
+                              },
+                              "webex_meetings": {
+                                "type": "number",
+                                "example": 50
+                              },
+                              "webex_suite": {
+                                "type": "number",
+                                "example": 50
+                              },
+                              "webex_voice": {
+                                "type": "number",
+                                "example": 50
+                              },
+                              "cx_essentials": {
+                                "type": "number",
+                                "example": 50
+                              },
+                              "webex_calling_standard": {
+                                "type": "number",
+                                "example": 50
+                              },
+                              "attendant_console": {
+                                "type": "number",
+                                "example": 50
+                              }
+                            },
+                            "description": "Packages followed by their respective limits."
                           }
                         }
                       }
@@ -1768,6 +1890,49 @@
                             "type": "string",
                             "example": "\"America/Los_Angeles\"",
                             "description": "Wholesale Customer timezone for meetings package."
+                          }
+                        }
+                      },
+                      "packages": {
+                        "type": "object",
+                        "properties": {
+                          "limits": {
+                            "type": "object",
+                            "properties": {
+                              "webex_calling": {
+                                "type": "number",
+                                "example": 50
+                              },
+                              "common_area_calling": {
+                                "type": "number",
+                                "example": 50
+                              },
+                              "webex_meetings": {
+                                "type": "number",
+                                "example": 50
+                              },
+                              "webex_suite": {
+                                "type": "number",
+                                "example": 50
+                              },
+                              "webex_voice": {
+                                "type": "number",
+                                "example": 50
+                              },
+                              "cx_essentials": {
+                                "type": "number",
+                                "example": 50
+                              },
+                              "webex_calling_standard": {
+                                "type": "number",
+                                "example": 50
+                              },
+                              "attendant_console": {
+                                "type": "number",
+                                "example": 50
+                              }
+                            },
+                            "description": "Packages followed by their respective limits."
                           }
                         }
                       }
