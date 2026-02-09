@@ -10453,7 +10453,7 @@
             "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
           }
         },
-        "summary": "List Recordings For Admin or Compliance Officer",
+        "summary": "List Recordings For an Admin or Compliance Officer",
         "operationId": "listRecordingsForAdminOrComplianceOfficer",
         "description": "List recordings for an admin or compliance officer. You can specify a date range, a parent meeting ID, and the maximum number of recordings to return.\n\nThe list returned is sorted in descending order by the date and time that the recordings were created.\n\nLong result sets are split into [pages](/docs/basics#pagination).\n\n* If `meetingId` is specified, only recordings associated with the specified meeting will be listed. Please note that when `meetingId` is specified, parameters of `siteUrl`, `from`, and `to` will be ignored.\n\n* If `siteUrl` is specified, all the recordings on the specified site are listed; otherwise, all the recordings on the admin user's or compliance officer's preferred site are listed. All the available Webex sites and the admin user's or compliance officer's preferred site can be retrieved by the [Get Site List](/docs/api/v1/meeting-preferences/get-site-list) API.\n\n#### Request Header\n\n* `timezone`: *[Time zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List) in conformance with the [IANA time zone database](https://www.iana.org/time-zones). The default is UTC if `timezone` is not defined.*",
         "tags": [
@@ -10472,21 +10472,19 @@
           {
             "name": "from",
             "in": "query",
-            "description": "Starting date and time (inclusive) for recordings to return, in any [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) compliant format. `from` cannot be after `to`. The interval between `from` and `to` must be within 30 days.",
+            "description": "Starting date and time (inclusive) for recordings to return, in any [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) compliant format. `from` cannot be after `to`. The interval between `from` and `to` must be within 30 days. If `to` is specified, the default value for `from` is `to` minus 7 days. If `to` is also not specified, the default value for `from` is current date and time minus 7 days.",
             "example": "2020-07-12T09:30:00+08:00",
             "schema": {
-              "type": "string",
-              "default": "If only `to` is specified, the default `from` value is 7 days before `to`; if no `to` or `from` is specified, the default `from` value is 7 days before current date and time."
+              "type": "string"
             }
           },
           {
             "name": "to",
             "in": "query",
-            "description": "Ending date and time (exclusive) for List recordings to return, in any [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) compliant format. `to` cannot be before `from`. The interval between `from` and `to` must be within 30 days.",
+            "description": "Ending date and time (exclusive) for List recordings to return, in any [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) compliant format. `to` cannot be before `from`. The interval between `from` and `to` must be within 30 days. If `from` is specified, the default value for `to` is `from` plus 7 days. If `from` is also not specified, the default value for `to` is the current date and time.",
             "example": "2020-07-31T09:30:00+08:00",
             "schema": {
-              "type": "string",
-              "default": "If `from` is specified, the default value is 7 days after `from`; if `from` is not specified, the default value is the current date and time."
+              "type": "string"
             }
           },
           {
@@ -11221,8 +11219,8 @@
           }
         },
         "summary": "Share a Recording",
-        "operationId": "updateRecordingShare",
-        "description": "Share or unshare a recording with other users by email addresses.",
+        "operationId": "updateRecordingShareById",
+        "description": "Share or unshare a recording with other users by recording ID and email addresses.",
         "tags": [
           "Recordings"
         ],
@@ -11250,10 +11248,97 @@
                 "removeEmails": [
                   "cherry@example.com",
                   "danielle@example.com"
-                ]
+                ],
+                "sendEmail": true
               },
               "schema": {
-                "$ref": "#/components/schemas/ShareRecordingObject"
+                "$ref": "#/components/schemas/ShareRecordingByIdObject"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/recordings/accessList": {
+      "post": {
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {},
+            "content": {}
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found",
+            "headers": {},
+            "content": {}
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Share a Recording Link",
+        "operationId": "updateRecordingShareByLink",
+        "description": "Share or unshare a recording with other users by recording link and email addresses.",
+        "tags": [
+          "Recordings"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "webShareLink": "https://example.webex.com/webappng/sites/example/recording/9edff068a1cb4965ac640627161beed1/playback",
+                "hostEmail": "john.andersen@example.com",
+                "addEmails": [
+                  "alex@example.com",
+                  "bob@example.com"
+                ],
+                "removeEmails": [
+                  "cherry@example.com",
+                  "danielle@example.com"
+                ],
+                "sendEmail": true
+              },
+              "schema": {
+                "$ref": "#/components/schemas/ShareRecordingByLinkObject"
               }
             }
           }
@@ -11419,7 +11504,7 @@
         },
         "summary": "List Group Recordings",
         "operationId": "listGroupRecordings",
-        "description": "List group recordings for a service app which has group recording access. You can specify a date range, the maximum number of recordings to return, and `personId` or `hostEmail` of whom the recordings will be retrieved.\n\n* The list returned is sorted in descending order by the date and time that the recordings were created.\n\n* Only recordings which are in the `available` status and not shared by others can be listed. Those in the `deleted` or `purged` status or shared by others can't be listed.\n\n* Long result sets are split into [pages](/docs/basics#pagination).\n\n* If `siteUrl` is specified, the API lists group recordings on the specified site; otherwise, the API lists group recordings on all the sites managed by the service app. All the sites managed by a service app can be retrieved by the [Get Site List](/docs/api/v1/meeting-preferences/get-site-list) API.\n\n* One of the parameters `personId` and `hostEmail` must be specified so that only recordings of meetings hosted by the person of `personId` or `hostEmail` will be returned.\n\n#### Request Header\n\n* `timezone`: [Time zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List) in conformance with the [IANA time zone database](https://www.iana.org/time-zones). The default is UTC if `timezone` is not defined.\n\n* `hostEmail`: Email of the user whose recordings will be retrieved. The `hostEmail` parameter is optional, but one of the two parameters `personId` and `hostEmail` must be specified.",
+        "description": "List group recordings for a service app which has group recording access. You can specify a date range, the maximum number of recordings to return, and `personId` or `hostEmail` of whom the recordings will be retrieved.\n\n* The list returned is sorted in descending order by the date and time that the recordings were created.\n\n* Only recordings which are in the `available` status and not shared by others can be listed. Those in the `deleted` or `purged` status or shared by others can't be listed.\n\n* Long result sets are split into [pages](/docs/basics#pagination).\n\n* If `siteUrl` is specified, the API lists group recordings on the specified site; otherwise, the API lists group recordings on all the sites managed by the service app. All the sites managed by a service app can be retrieved by the [Get Site List](/docs/api/v1/meeting-preferences/get-site-list) API.\n\n* One of the `personId` parameter and `hostEmail` header must be specified so that only recordings of meetings hosted by the person of `personId` or `hostEmail` will be returned.\n\n#### Request Header\n\n* `timezone`: [Time zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List) in conformance with the [IANA time zone database](https://www.iana.org/time-zones). The default is UTC if `timezone` is not defined.\n\n* `hostEmail`: Email of the user whose recordings will be retrieved. The `hostEmail` parameter is optional, but one of the `personId` parameter and `hostEmail` header must be specified.",
         "tags": [
           "Recordings"
         ],
@@ -11427,7 +11512,7 @@
           {
             "name": "personId",
             "in": "query",
-            "description": "Person ID of the user whose recordings will be retrieved. The person ID can be retrieved from the [People APIs](/docs/api/v1/people), e.g. [Lit People](/docs/api/v1/people/list-people). Note that a person ID retrieved from the People APIs is a Base64-encoded string, e.g. `Y2lzY29zcGFyazovL3VzL1BFT1BMRS9kNDdiMmU3ZC01ZTBmLTRmNjktYWVmNC1lNGZmOTBhZWE3Yzk`. The person ID in the raw UUID format which is the last part of the Base64-decoded string, e.g. `d47b2e7d-5e0f-4f69-aef4-e4ff90aea7c9`, is also supported. The `personId` parameter is optional, but one of the two parameters `personId` and `hostEmail` must be specified.",
+            "description": "Person ID of the user whose recordings will be retrieved. The person ID can be retrieved from the [People APIs](/docs/api/v1/people), e.g. [Lit People](/docs/api/v1/people/list-people). Note that a person ID retrieved from the People APIs is a Base64-encoded string, e.g. `Y2lzY29zcGFyazovL3VzL1BFT1BMRS9kNDdiMmU3ZC01ZTBmLTRmNjktYWVmNC1lNGZmOTBhZWE3Yzk`. The person ID in the raw UUID format which is the last part of the Base64-decoded string, e.g. `d47b2e7d-5e0f-4f69-aef4-e4ff90aea7c9`, is also supported. The `personId` parameter is optional, but one of the `personId` parameter and `hostEmail` header must be specified.",
             "required": false,
             "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS9kNDdiMmU3ZC01ZTBmLTRmNjktYWVmNC1lNGZmOTBhZWE3Yzk",
             "schema": {
@@ -11531,7 +11616,7 @@
           {
             "name": "hostEmail",
             "in": "header",
-            "description": "Email of the user whose recordings will be retrieved. The `hostEmail` parameter is optional, but one of the two parameters `personId` and `hostEmail` must be specified.",
+            "description": "Email of the user whose recordings will be retrieved. The `hostEmail` parameter is optional, but one of the `personId` parameter and `hostEmail` header must be specified.",
             "required": false,
             "schema": {
               "type": "string"
@@ -11633,7 +11718,7 @@
         },
         "summary": "Get Group Recording Details",
         "operationId": "getGroupRecordingById",
-        "description": "Retrieves details for a group recording for a service app which has group recording access.\n\n* Only recordings which are in the `available` status and not shared by others can be listed. Those in the `deleted` or `purged` status or shared by others can't be listed.\n\n* One of the parameters `personId` and `hostEmail` must be specified so that only recordings of meetings hosted by the person of `personId` or `hostEmail` will be returned.\n\n#### Request Header\n\n* `timezone`: *[Time zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List) in conformance with the [IANA time zone database](https://www.iana.org/time-zones). The default is UTC if `timezone` is not defined.*\n\n* `hostEmail`: Email of the user whose recordings will be retrieved. The `hostEmail` parameter is optional, but one of the two parameters `personId` and `hostEmail` must be specified.",
+        "description": "Retrieves details for a group recording for a service app which has group recording access.\n\n* Only recordings which are in the `available` status and not shared by others can be listed. Those in the `deleted` or `purged` status or shared by others can't be listed.\n\n* One of the `personId` parameter and `hostEmail` header must be specified so that only recordings of meetings hosted by the person of `personId` or `hostEmail` will be returned.\n\n#### Request Header\n\n* `timezone`: *[Time zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List) in conformance with the [IANA time zone database](https://www.iana.org/time-zones). The default is UTC if `timezone` is not defined.*\n\n* `hostEmail`: Email of the user whose recordings will be retrieved. The `hostEmail` parameter is optional, but one of the `personId` parameter and `hostEmail` header must be specified.",
         "tags": [
           "Recordings"
         ],
@@ -11641,7 +11726,7 @@
           {
             "name": "personId",
             "in": "query",
-            "description": "Person ID of the user whose recordings will be retrieved. The person ID can be retrieved from the [People APIs](/docs/api/v1/people), e.g. [Lit People](/docs/api/v1/people/list-people). Note that a person ID retrieved from the People APIs is a Base64-encoded string, e.g. `Y2lzY29zcGFyazovL3VzL1BFT1BMRS9kNDdiMmU3ZC01ZTBmLTRmNjktYWVmNC1lNGZmOTBhZWE3Yzk`. The person ID in the raw UUID format which is the last part of the Base64-decoded string, e.g. `d47b2e7d-5e0f-4f69-aef4-e4ff90aea7c9`, is also supported. The `personId` parameter is optional, but one of the two parameters `personId` and `hostEmail` must be specified.",
+            "description": "Person ID of the user whose recordings will be retrieved. The person ID can be retrieved from the [People APIs](/docs/api/v1/people), e.g. [Lit People](/docs/api/v1/people/list-people). Note that a person ID retrieved from the People APIs is a Base64-encoded string, e.g. `Y2lzY29zcGFyazovL3VzL1BFT1BMRS9kNDdiMmU3ZC01ZTBmLTRmNjktYWVmNC1lNGZmOTBhZWE3Yzk`. The person ID in the raw UUID format which is the last part of the Base64-decoded string, e.g. `d47b2e7d-5e0f-4f69-aef4-e4ff90aea7c9`, is also supported. The `personId` parameter is optional, but one of the `personId` parameter and `hostEmail` header must be specified.",
             "required": false,
             "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS9kNDdiMmU3ZC01ZTBmLTRmNjktYWVmNC1lNGZmOTBhZWE3Yzk",
             "schema": {
@@ -11671,7 +11756,7 @@
           {
             "name": "hostEmail",
             "in": "header",
-            "description": "Email of the user whose recordings will be retrieved. The `hostEmail` parameter is optional, but one of the two parameters `personId` and `hostEmail` must be specified.",
+            "description": "Email of the user whose recordings will be retrieved. The `hostEmail` parameter is optional, but one of the `personId` parameter and `hostEmail` header must be specified.",
             "required": false,
             "schema": {
               "type": "string"
@@ -30160,7 +30245,7 @@
           }
         }
       },
-      "ShareRecordingObject": {
+      "ShareRecordingByIdObject": {
         "type": "object",
         "properties": {
           "hostEmail": {
@@ -30181,6 +30266,43 @@
               "type": "string"
             },
             "description": "Email addresses of users to unshare the recording with. The maximum size of the array is `100`."
+          },
+          "sendEmail": {
+            "type": "boolean",
+            "description": "Whether to send email notifications to the users being shared. The default is `true`."
+          }
+        }
+      },
+      "ShareRecordingByLinkObject": {
+        "type": "object",
+        "properties": {
+          "hostEmail": {
+            "type": "string",
+            "example": "john.andersen@example.com",
+            "description": "Email address for the meeting host. This attribute should only be set if the user or application calling the API has the admin-level scopes. When used, the admin may specify the email of a user in a site they manage to be the meeting host. The field is not editable and is only used to share or unshare a recording link on behalf of the real meeting host."
+          },
+          "webShareLink": {
+            "type": "string",
+            "example": "https://example.webex.com/recordingservice/sites/example/recording/playback/1234567890abcdef1234567890abcdef",
+            "description": "The link for the recording to be shared or unshared."
+          },
+          "addEmails": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Email addresses of users to share the recording link with. The maximum size of the array is `100`."
+          },
+          "removeEmails": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Email addresses of users to unshare the recording link with. The maximum size of the array is `100`."
+          },
+          "sendEmail": {
+            "type": "boolean",
+            "description": "Whether to send email notifications to the users being shared. The default is `true`."
           }
         }
       },

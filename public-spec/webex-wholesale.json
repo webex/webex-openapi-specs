@@ -11290,7 +11290,7 @@
           }
         }
       },
-      "ShareRecordingObject": {
+      "ShareRecordingByIdObject": {
         "type": "object",
         "properties": {
           "hostEmail": {
@@ -11311,6 +11311,43 @@
               "type": "string"
             },
             "description": "Email addresses of users to unshare the recording with. The maximum size of the array is `100`."
+          },
+          "sendEmail": {
+            "type": "boolean",
+            "description": "Whether to send email notifications to the users being shared. The default is `true`."
+          }
+        }
+      },
+      "ShareRecordingByLinkObject": {
+        "type": "object",
+        "properties": {
+          "hostEmail": {
+            "type": "string",
+            "example": "john.andersen@example.com",
+            "description": "Email address for the meeting host. This attribute should only be set if the user or application calling the API has the admin-level scopes. When used, the admin may specify the email of a user in a site they manage to be the meeting host. The field is not editable and is only used to share or unshare a recording link on behalf of the real meeting host."
+          },
+          "webShareLink": {
+            "type": "string",
+            "example": "https://example.webex.com/recordingservice/sites/example/recording/playback/1234567890abcdef1234567890abcdef",
+            "description": "The link for the recording to be shared or unshared."
+          },
+          "addEmails": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Email addresses of users to share the recording link with. The maximum size of the array is `100`."
+          },
+          "removeEmails": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Email addresses of users to unshare the recording link with. The maximum size of the array is `100`."
+          },
+          "sendEmail": {
+            "type": "boolean",
+            "description": "Whether to send email notifications to the users being shared. The default is `true`."
           }
         }
       },
