@@ -1341,6 +1341,7 @@
                               "proxyType": "Explicit",
                               "proxyStatus": "Enabled",
                               "maintenanceMode": "On",
+                              "ntpSync": "Active",
                               "ovaDeploymentType": "Large",
                               "ovaBuildType": "Dev"
                             }
@@ -1779,7 +1780,7 @@
         },
         "summary": "Get test results for HDS node",
         "operationId": "getNetworkTestResultsForHDSNode",
-        "description": "Get the latest results of the network tests triggered for a single HDS node. The test results are generated as part of the Network Test execution on the node. The network tests include the Bandwidth Test, DNS Resolution Test, and HTTPS Connectivity Test.\nTo obtain the Node ID needed for this API, use the [Get cluster details API](</docs/api/v1/hds/get-cluster-details>)",
+        "description": "Get the latest results of the network tests triggered for a single HDS node. The test results are generated as part of the Network Test execution on the node. The network tests include the Bandwidth Test, DNS Resolution Test, and HTTPS Connectivity Test.\n The results from the latest test run are provided, covering up to the past 90 days if available.\nTo obtain the Node ID needed for this API, use the [Get cluster details API](</docs/api/v1/hds/get-cluster-details>)",
         "tags": [
           "HDS"
         ],
@@ -1807,6 +1808,137 @@
                 "Periodic",
                 "All"
               ]
+            }
+          }
+        ]
+      }
+    },
+    "/hds/clusters/{clusterId}/availability": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/clustersAvailabilityDetailsResponse"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "orgId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8yYzNjOWY5NS03M2Q5LTQ0NjAtYTY2OC0wNDcxNjJmZjFiYWQ",
+                      "clusters": [
+                        {
+                          "clusterId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DTFVTVEVSLzJjM2M5Zjk1LTczZDktNDQ2MC1hNjY4LTA0NzE2MmZmMWJhZDpmMWJmMGI1MC0yMDUyLTQ3ZmUtYjg3ZC01MTFjMmZlNzQ3MWI",
+                          "clusterName": "HDS Cluster 1",
+                          "availabilitySegments": [
+                            {
+                              "segmentStartTime": "2025-06-15T15:53:00Z",
+                              "segmentEndTime": "2025-06-16T16:53:00Z",
+                              "onlineNodeCount": 1,
+                              "offlineNodeCount": 1,
+                              "totalNodeCount": 2
+                            },
+                            {
+                              "segmentStartTime": "2025-06-16T16:53:00Z",
+                              "segmentEndTime": "2025-06-17T17:53:00Z",
+                              "onlineNodeCount": 2,
+                              "offlineNodeCount": 0,
+                              "totalNodeCount": 2
+                            }
+                          ]
+                        }
+                      ],
+                      "from": "2026-01-01T00:00:00Z",
+                      "to": "2026-01-02T00:00:00Z"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or could not be otherwise processed. An accompanying error message will provide more details."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request was understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The requested URI is invalid, or the resource requested (such as a user) does not exist. This response is also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type, or with a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present to indicate how many seconds you should wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: The file(s) cannot be scanned for malware and must be force-downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given period of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, please contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond in time. If your query uses the max parameter, please try reducing its value."
+          }
+        },
+        "summary": "Get availability details for HDS cluster",
+        "operationId": "getHDSClusterAvailabilityDetails",
+        "description": "Get the availability details for an HDS cluster, where each segment specifies the start and end times, as well as the number of online, offline, and total nodes within that segment.\nTo obtain the Cluster ID needed for this API, use the [Get organization details API](</docs/api/v1/hds/get-organization-details>)",
+        "tags": [
+          "HDS"
+        ],
+        "parameters": [
+          {
+            "name": "clusterId",
+            "in": "path",
+            "description": "Unique ID of the HDS cluster.",
+            "required": true,
+            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DTFVTVEVSLzJjM2M5Zjk1LTczZDktNDQ2MC1hNjY4LTA0NzE2MmZmMWJhZDpmMWJmMGI1MC0yMDUyLTQ3ZmUtYjg3ZC01MTFjMmZlNzQ3MWI",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "description": "The start date and time of the requested data in any [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) compliant format. The 'from' value cannot be later than the 'to' value, and it cannot be more than 1 day older than the current date and time.",
+            "required": true,
+            "example": "2021-09-15T15:53:00Z",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "The end date and time of the requested data in any [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) compliant format.",
+            "required": true,
+            "example": "2021-09-15T17:53:00Z",
+            "schema": {
+              "type": "string"
             }
           }
         ]
@@ -17320,6 +17452,11 @@
             "example": "Off",
             "description": "On indicates that the node is in maintenance mode, and Off indicates that the node is not in maintenance mode"
           },
+          "ntpSync": {
+            "type": "string",
+            "example": "Active",
+            "description": "NTP sync status of the HDS node"
+          },
           "ovaDeploymentType": {
             "type": "string",
             "example": "Large",
@@ -17571,6 +17708,89 @@
             "type": "string",
             "example": "Success",
             "description": "Result of the test for the service."
+          }
+        }
+      },
+      "clustersAvailabilityDetailsResponse": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/clustersAvailabilityDetailsItems"
+            },
+            "description": "Response for clusters availability details API"
+          }
+        }
+      },
+      "clustersAvailabilityDetailsItems": {
+        "type": "object",
+        "properties": {
+          "orgId": {
+            "type": "string",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8yYzNjOWY5NS03M2Q5LTQ0NjAtYTY2OC0wNDcxNjJmZjFiYWQ=",
+            "description": "Unique ID of the organization."
+          },
+          "clusters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/clusterDetailsWithAvailabilitySegments"
+            },
+            "description": "List of clusters with their availability details."
+          }
+        }
+      },
+      "clusterDetailsWithAvailabilitySegments": {
+        "type": "object",
+        "properties": {
+          "clusterId": {
+            "type": "string",
+            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DTFVTVEVSLzJjM2M5Zjk1LTczZDktNDQ2MC1hNjY4LTA0NzE2MmZmMWJhZDpmMWJmMGI1MC0yMDUyLTQ3ZmUtYjg3ZC01MTFjMmZlNzQ3MWI",
+            "description": "Unique ID of the cluster."
+          },
+          "clusterName": {
+            "type": "string",
+            "example": "HDS Cluster 1",
+            "description": "Name of the cluster."
+          },
+          "availabilitySegments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/availabilitySegment"
+            },
+            "description": "List of availability segments for the cluster."
+          }
+        }
+      },
+      "availabilitySegment": {
+        "type": "object",
+        "properties": {
+          "segmentStartTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2026-01-01T00:00:00Z",
+            "description": "Start time of the availability segment."
+          },
+          "segmentEndTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2026-01-02T00:00:00Z",
+            "description": "End time of the availability segment."
+          },
+          "onlineNodeCount": {
+            "type": "integer",
+            "example": 2,
+            "description": "Number of online nodes in the cluster in the segment."
+          },
+          "offlineNodeCount": {
+            "type": "integer",
+            "example": 0,
+            "description": "Number of offline nodes in the cluster in the segment."
+          },
+          "totalNodeCount": {
+            "type": "integer",
+            "example": 2,
+            "description": "Total number of nodes in the cluster in the segment."
           }
         }
       },

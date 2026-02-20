@@ -71665,7 +71665,7 @@
           },
           "origin": {
             "type": "string",
-            "description": "The contact center number, which is an ANI Outdial number, that will be used while making a call to the customer. This field is mandatory for ```EXECUTE_FLOW``` and ```OUTDIAL``` type while it is optional for ```CALLBACK```. If not provided for ```CALLBACK``` type, default out-dial ANI configuration will be used, maximum length 36 characters.",
+            "description": "The contact center number, which is an ANI Outdial number, that will be used while making a call to the customer. This field is mandatory for ```EXECUTE_FLOW``` and ```OUTDIAL``` type while it is optional for ```CALLBACK```. If not provided for ```CALLBACK``` type, default out-dial ANI configuration will be used, maximum length 36 characters. The origin value must exactly match one of the configured Outdial ANIs in the agent profile.",
             "example": "2147751364"
           },
           "callback": {
