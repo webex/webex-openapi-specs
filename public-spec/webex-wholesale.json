@@ -944,7 +944,7 @@
                                   "stateOrProvince": {
                                     "type": "string",
                                     "example": "\"CA\"",
-                                    "description": "State or Province of the customer. This attribute may be required in specific geographies, please refer to address section in the admin guide for more information."
+                                    "description": "State or Province of the customer in ISO 3166 format. This attribute may be required in specific geographies, please refer to address section in the admin guide for more information."
                                   },
                                   "zipOrPostalCode": {
                                     "type": "string",
@@ -1433,7 +1433,7 @@
                                   "stateOrProvince": {
                                     "type": "string",
                                     "example": "\"CA\"",
-                                    "description": "State or Province of the customer. This attribute may be required in specific geographies, please refer to address section in the admin guide for more information."
+                                    "description": "State or Province of the customer in ISO 3166 format. This attribute may be required in specific geographies, please refer to address section in the admin guide for more information."
                                   },
                                   "zipOrPostalCode": {
                                     "type": "string",
