@@ -32666,7 +32666,7 @@
           "RememberMyLoginIdDuration": {
             "type": "number",
             "example": 30,
-            "description": "Login duration in days, default is 30."
+            "description": "Specifies the number of days the user's login ID is remembered. Must be between 1 and 120 (inclusive)."
           }
         }
       },
@@ -32709,7 +32709,7 @@
           "RememberMyLoginIdDuration": {
             "type": "number",
             "example": 30,
-            "description": "Number of days the user's remember login Id preference is set. Default is 30 days."
+            "description": "Specifies the number of days the user's login ID is remembered. Must be between 1 and 120 (inclusive)."
           }
         }
       },
