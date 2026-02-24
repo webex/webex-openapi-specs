@@ -1850,7 +1850,7 @@
                                   "stateOrProvince": {
                                     "type": "string",
                                     "example": "\"CA\"",
-                                    "description": "State or Province of the Wholesale customer. This attribute may be required in specific geographies. Please refer to [Wholesale Customer Address Requirement](/docs/api/guides/webex-for-wholesale#wholesale-customer-address-requirement) for more information."
+                                    "description": "State or Province of the Wholesale customer in ISO 3166 format. This attribute may be required in specific geographies. Please refer to [Wholesale Customer Address Requirement](/docs/api/guides/webex-for-wholesale#wholesale-customer-address-requirement) for more information."
                                   },
                                   "zipOrPostalCode": {
                                     "type": "string",
