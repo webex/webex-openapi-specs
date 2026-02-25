@@ -32722,14 +32722,8 @@
           "minimumLowAlpha",
           "minimumSpecial",
           "minimumLength",
-          "maximumLength",
           "historyCount",
-          "minPasswordAge",
-          "maxPasswordAge",
-          "lockoutFailureCount",
-          "lockoutDuration",
-          "repeatCharCount",
-          "notAcceptableStrings"
+          "maxPasswordAge"
         ],
         "properties": {
           "schemas": {
@@ -32742,67 +32736,42 @@
           },
           "minimumNumeric": {
             "type": "string",
-            "example": "1",
+            "example": "",
             "description": "Minimum number of numeric characters in password"
           },
           "minimumCapAlpha": {
             "type": "string",
-            "example": "1",
+            "example": "",
             "description": "Minimum number of uppercase alphabetic character letters in password"
           },
           "minimumLowAlpha": {
             "type": "string",
-            "example": "1",
+            "example": "",
             "description": "Minimum number of lowercase alphabetic character letters in password"
           },
           "minimumSpecial": {
             "type": "string",
-            "example": "1",
-            "description": "Minimum number of special character included \"~!@#$%^&*()-_=+[]{}|;:,.<>/?\" in password"
+            "example": "",
+            "description": "Minimum number of special characters included \"~!@#$%^&*()-_=+[]{}|;:,.<>/?\" in password"
           },
           "minimumLength": {
             "type": "string",
-            "example": "8",
-            "description": "Minimum length of password"
-          },
-          "maximumLength": {
-            "type": "string",
-            "example": "256",
-            "description": "Maximum length of password, value of \"0\" means unlimited"
+            "example": "",
+            "description": "Minimum length of password. Must be between 8 and 256, inclusive."
           },
           "historyCount": {
             "type": "string",
-            "example": "3",
-            "description": "The number of former passwords in history, the new password can't be any one of them."
-          },
-          "minPasswordAge": {
-            "type": "string",
-            "example": "3",
-            "description": "User can reset password after \"X\" hours."
+            "example": "",
+            "description": "The number of former passwords in history, the new password can't be any one of them. Must be between 1 and 5, inclusive."
           },
           "maxPasswordAge": {
             "type": "string",
-            "example": "90000",
-            "description": "The password expired time, unit: day, that means user need to change password every \"X\" days."
-          },
-          "lockoutFailureCount": {
-            "type": "string",
-            "example": "3",
-            "description": "The number of times that a user may be allowed to attempt if failed to login. The user will be locked out on \"X\"+1 failed attempt."
-          },
-          "lockoutDuration": {
-            "type": "string",
-            "example": "10",
-            "description": "The locked out user will be unlocked after \"X\" minutes, if is \"0\", the account must remain locked until administrator resets the password."
-          },
-          "repeatCharCount": {
-            "type": "string",
-            "example": "3",
-            "description": "The password can not contain a substring in which the same character is repeated more than \"X\" times. \n For example: if value is \"3\", \"aaaa\" will not be acceptable."
+            "example": "",
+            "description": "The password expired time, unit: day, that means user need to change password every \"X\" days. Must be between 90 and 1825, inclusive."
           },
           "notAcceptableStrings": {
             "type": "string",
-            "example": "password,passwd,pass,webex,cisco,xebew,ocsic",
+            "example": "",
             "description": "The password can not be any one in this string list."
           }
         }
@@ -32810,19 +32779,6 @@
       "PasswordPolicyResponse": {
         "type": "object",
         "properties": {
-          "schemas": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "example": "urn:cisco:codev:identity:idbroker:pwdpolicy:schemas:1.0"
-            },
-            "description": "Output JSON schemas."
-          },
-          "url": {
-            "type": "string",
-            "example": "https://identity.webex.com/identity/idbconfig/123456/v1/PasswordPolicy",
-            "description": "The password policy location."
-          },
           "minimumNumeric": {
             "type": "string",
             "example": "8",
@@ -32846,52 +32802,22 @@
           "minimumLength": {
             "type": "string",
             "example": "8",
-            "description": "Minimum length of password."
-          },
-          "maximumLength": {
-            "type": "string",
-            "example": "256",
-            "description": "Maximum length of password, value of \"0\" means unlimited."
+            "description": "Minimum length of password. Must be between 8 and 256, inclusive."
           },
           "historyCount": {
             "type": "string",
             "example": "3",
-            "description": "The number of former password in history, the new password can't be any one of them."
-          },
-          "minPasswordAge": {
-            "type": "string",
-            "example": "3",
-            "description": "User can reset password after \"X\" hours."
+            "description": "The number of former password in history, the new password can't be any one of them. Must be between 1 and 5, inclusive."
           },
           "maxPasswordAge": {
             "type": "string",
-            "example": "90000",
-            "description": "The password expired time, unit: day, that means user need to change password every \"X\" days."
-          },
-          "lockoutFailureCount": {
-            "type": "string",
-            "example": "3",
-            "description": "The number of times that a user may be allowed to attempt to failed login , the user will be locked out on \"X\"+1 failed attempt."
-          },
-          "lockoutDuration": {
-            "type": "string",
-            "example": "10",
-            "description": "The locked out user will be unlocked after \"X\" minutes, if is \"0\", the account must remain locked until administrator resets the password."
-          },
-          "repeatCharCount": {
-            "type": "string",
-            "example": "3",
-            "description": "The password can not contain a substring which the same character is repeated more than \"X\" times, for example: if value is \"3\", \"aaaa\" will not be acceptable."
+            "example": "90",
+            "description": "The password expired time, unit: day, that means user need to change password every \"X\" days. Must be between 90 and 1825, inclusive."
           },
           "notAcceptableStrings": {
             "type": "string",
             "example": "password,passwd,pass,webex,cisco,xebew,ocsic",
             "description": "The password can not be any one in this string list."
-          },
-          "filterString": {
-            "type": "boolean",
-            "example": false,
-            "description": "If true, the password can not be user first name, last name and email."
           }
         }
       },
