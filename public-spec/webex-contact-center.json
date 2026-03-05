@@ -30,7 +30,7 @@
     }
   ],
   "paths": {
-    "/summary/list": {
+    "/generated-summaries/search": {
       "post": {
         "tags": [
           "Agent Summaries"
