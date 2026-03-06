@@ -432,6 +432,316 @@
         ]
       }
     },
+    "/telephony/config/devices/{deviceId}/availableMembers/count": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "totalCount"
+                  ],
+                  "properties": {
+                    "totalCount": {
+                      "type": "integer",
+                      "example": 100,
+                      "description": "The total count of members that can be assigned to the device."
+                    }
+                  }
+                },
+                "example": {
+                  "totalCount": 100
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Get Count of Members",
+        "operationId": "getCountOfMembers",
+        "description": "Get the count of members that can be assigned to the device.\n\nA device member can be either a person or a workspace.\n\nThis requires a full or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
+        "tags": [
+          "Device Call Settings"
+        ],
+        "parameters": [
+          {
+            "name": "deviceId",
+            "in": "path",
+            "description": "Unique identifier for the device.",
+            "required": true,
+            "example": "Y2lzY29zcGFyazovL3VybjpURUFNOnVzLWVhc3QtMV9pbnQxMy9DQUxMSU5HX0RFVklDRS8zMDAyZWJiZi1iMTVmLTQ1ODktYWNiZS1kZjY3OTA3MTU5NWE=",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orgId",
+            "in": "query",
+            "description": "Retrieves the count of available members on the device in this organization.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "memberName",
+            "in": "query",
+            "description": "Search (Contains) numbers based on member name.",
+            "example": "John",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "phoneNumber",
+            "in": "query",
+            "description": "Search (Contains) based on number.",
+            "example": "9828282867",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "locationId",
+            "in": "query",
+            "description": "Unique identifier for the location.",
+            "example": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzAwMDA1ZTAwLTUzYjQtNDBjMy1hN2FkLTU2NTBmZGRkZDUzYw",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "extension",
+            "in": "query",
+            "description": "Search (Contains) based on extension.",
+            "example": "1234",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "usageType",
+            "in": "query",
+            "description": "Search for members eligible to become the owner of the device, or share line on the device.\n * `DEVICE_OWNER` - Search for members eligible to become the owner of the device.\n * `SHARED_LINE` - Search for members eligible to share line on the device.",
+            "example": "SHARED_LINE",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "DEVICE_OWNER",
+                "SHARED_LINE"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "/telephony/config/devices/availableMembers/count": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "totalCount"
+                  ],
+                  "properties": {
+                    "totalCount": {
+                      "type": "integer",
+                      "example": 100,
+                      "description": "The total count of members that can be assigned to devices."
+                    }
+                  }
+                },
+                "example": {
+                  "totalCount": 100
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Get Count of Available Members",
+        "operationId": "getCountOfAvailableMembers",
+        "description": "Get the count of members that can be assigned to devices.\n\nA device member can be either a person or a workspace.\n\nThis requires a full or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
+        "tags": [
+          "Device Call Settings"
+        ],
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "query",
+            "description": "Retrieves the count of available members in this organization.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "memberName",
+            "in": "query",
+            "description": "Search (Contains) numbers based on member name.",
+            "example": "John",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "phoneNumber",
+            "in": "query",
+            "description": "Search (Contains) based on number.",
+            "example": "9828282867",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "locationId",
+            "in": "query",
+            "description": "Unique identifier for the location.",
+            "example": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzAwMDA1ZTAwLTUzYjQtNDBjMy1hN2FkLTU2NTBmZGRkZDUzYw",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "extension",
+            "in": "query",
+            "description": "Search (Contains) based on extension.",
+            "example": "1234",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "usageType",
+            "in": "query",
+            "description": "Search for members eligible to become the owner of the device, or share line on the device.\n * `DEVICE_OWNER` - Search for members eligible to become the owner of the device.\n * `SHARED_LINE` - Search for members eligible to share line on the device.",
+            "example": "SHARED_LINE",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "DEVICE_OWNER",
+                "SHARED_LINE"
+              ]
+            }
+          },
+          {
+            "name": "excludeVirtualLine",
+            "in": "query",
+            "description": "If true, filters out virtual lines from the available members list.",
+            "example": true,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "deviceLocationId",
+            "in": "query",
+            "description": "Unique identifier for the device's location. When specified, filters available members to those in the same location as the device.",
+            "example": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzAwMDA1ZTAwLTUzYjQtNDBjMy1hN2FkLTU2NTBmZGRkZDUzYw",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
     "/telephony/config/devices/{deviceId}/actions/applyChanges/invoke": {
       "post": {
         "responses": {
