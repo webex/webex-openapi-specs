@@ -18378,6 +18378,7 @@
           "attachmentActions",
           "businessTexts",
           "call_records",
+          "convergedRecordings",
           "file_transcodings",
           "files",
           "meetingMessages",
@@ -18388,7 +18389,7 @@
           "rooms",
           "tabs"
         ],
-        "description": " * `attachmentActions` - State changed on a card attachment\n * `businessTexts` - A user sent or received a SMS message\n * `call_records` - A Webex call was made to/from a user\n * `file_transcodings` - State change on a file preview\n * `files` - State changed on a file download\n * `meetingMessages` - State changed on a meeting message, i.e. message exchanged as part of a meeting\n * `meetings` - State change on a meeting ( here combined with type = 'ended' )\n * `meetingTranscripts` - State change on a automatic transcript resource for Webex Assistant\n * `memberships` - State changed on a memberships resource\n * `messages` - State changed on a messages resource\n * `rooms` - State changed on a space classification\n * `tabs` - State changed on a room tabs in a space\n"
+        "description": " * `attachmentActions` - State changed on a card attachment\n * `businessTexts` - A user sent or received a SMS message\n * `call_records` - A Webex call was made to/from a user\n * `convergedRecordings` - A Webex call was recorded for a user\n * `file_transcodings` - State change on a file preview\n * `files` - State changed on a file download\n * `meetingMessages` - State changed on a meeting message, i.e. message exchanged as part of a meeting\n * `meetings` - State change on a meeting ( here combined with type = 'ended' )\n * `meetingTranscripts` - State change on a automatic transcript resource for Webex Assistant\n * `memberships` - State changed on a memberships resource\n * `messages` - State changed on a messages resource\n * `rooms` - State changed on a space classification\n * `tabs` - State changed on a room tabs in a space\n"
       },
       "EventTypeEnum": {
         "type": "string",
