@@ -27,6 +27,10 @@
     {
       "name": "Callbacks",
       "description": "APIs for scheduling and managing callbacks for customers."
+    },
+    {
+      "name": "Tasks",
+      "description": "Task operations"
     }
   ],
   "paths": {
@@ -43693,6 +43697,176 @@
         }
       }
     },
+    "/v2/tasks": {
+      "post": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Create Task",
+        "description": "Creates a Work Item task. Requires `CJP_User` scope for authorization.",
+        "operationId": "createTaskV2Route",
+        "requestBody": {
+          "description": "Request body to create a Work Item task.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTaskV2Request"
+              },
+              "example": {
+                "orgId": "3a9126c3-a221-4612-9ece-49e47419ce7d",
+                "origin": {
+                  "id": "origin-001",
+                  "name": "Test Origin"
+                },
+                "destination": {
+                  "id": "workitem-testbizaddress",
+                  "type": "queue"
+                },
+                "mediaType": "workItem",
+                "channel": "WorkItem - TestChannel",
+                "direction": {
+                  "type": "INBOUND"
+                },
+                "flowSettings": {
+                  "flow1": "setting1"
+                },
+                "globalVariables": {
+                  "var1": "value1"
+                },
+                "mediaParams": {
+                  "type": "work-item-form",
+                  "message": {
+                    "aliasId": "workItem-alias",
+                    "workItemData": {
+                      "customerAccountId": "1",
+                      "customerAccountName": "Cisco"
+                    },
+                    "timestamp": 1700422300000
+                  }
+                },
+                "mediaMgr": "workitem-media-mgr",
+                "trackingId": "b9eb3b13-cc2c-42c7-8459-dd20301c5cf5",
+                "eventTime": 1767884826053
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The new task was successfully requested for creation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateTaskV2Response"
+                },
+                "example": {
+                  "meta": {
+                    "orgId": "3a9126c3-a221-4612-9ece-49e47419ce7d"
+                  },
+                  "data": {
+                    "id": "6096b287-d1a3-4bfa-84fb-3b6e10fc37a5"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized, Token is Invalid"
+          },
+          "403": {
+            "description": "Forbidden Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service Unavailable"
+          }
+        }
+      }
+    },
+    "/v2/tasks/{taskId}/messages": {
+      "post": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Update Task",
+        "description": "Appends a Work Item message to an existing task. This is an asynchronous operation. Requires `CJP_User` scope for authorization.",
+        "operationId": "updateTaskMessagesV2Route",
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "The unique ID of the Work Item task.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "UUID",
+              "minLength": 36,
+              "maxLength": 36
+            },
+            "example": "6096b287-d1a3-4bfa-84fb-3b6e10fc37a5"
+          }
+        ],
+        "requestBody": {
+          "description": "Request body for appending a task message.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTaskMessagesV2Request"
+              },
+              "example": {
+                "mediaParams": {
+                  "type": "work-item-form",
+                  "message": {
+                    "aliasId": "workItem-alias",
+                    "workItemData": {
+                      "customerAccountId": "2",
+                      "customerAccountName": "Microsoft"
+                    },
+                    "timestamp": 1772625803000
+                  },
+                  "outdialEntryPointId": "34ce2e26-e3eb-4f15-b648-6cb7eb2a3493"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "description": "The request is accepted for processing",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyResponse"
+                },
+                "example": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized, Token is Invalid"
+          },
+          "403": {
+            "description": "Forbidden Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service Unavailable"
+          }
+        }
+      }
+    },
     "/admin/v1/api/person/workspace-id/{workspaceId}/person-id/{personId}": {
       "delete": {
         "tags": [
@@ -72055,6 +72229,312 @@
             "example": "Technical Support Queue"
           }
         }
+      },
+      "CreateTaskV2Request": {
+        "description": "Request body for creating a Work Item task.",
+        "required": [
+          "orgId",
+          "origin",
+          "destination",
+          "mediaType",
+          "channel",
+          "direction",
+          "mediaParams",
+          "mediaMgr",
+          "trackingId",
+          "eventTime"
+        ],
+        "type": "object",
+        "properties": {
+          "orgId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Organization ID for the request.",
+            "example": "3a9126c3-a221-4612-9ece-49e47419ce7d"
+          },
+          "origin": {
+            "$ref": "#/components/schemas/WorkItemOrigin"
+          },
+          "destination": {
+            "$ref": "#/components/schemas/WorkItemDestination"
+          },
+          "mediaType": {
+            "type": "string",
+            "description": "Media type for Work Item requests.",
+            "enum": [
+              "workItem"
+            ],
+            "example": "workItem"
+          },
+          "channel": {
+            "type": "string",
+            "description": "Work Item channel name.",
+            "example": "WorkItem - TestChannel"
+          },
+          "direction": {
+            "$ref": "#/components/schemas/WorkItemDirection"
+          },
+          "flowSettings": {
+            "type": "object",
+            "description": "A schema-free key/value map for flow settings.",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "example": {
+              "flow1": "setting1"
+            }
+          },
+          "globalVariables": {
+            "type": "object",
+            "description": "A schema-free key/value map for global variables.",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "example": {
+              "var1": "value1"
+            }
+          },
+          "mediaParams": {
+            "$ref": "#/components/schemas/WorkItemMediaParams"
+          },
+          "mediaMgr": {
+            "type": "string",
+            "description": "Media manager identifier.",
+            "example": "workitem-media-mgr"
+          },
+          "trackingId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Tracking identifier for traceability.",
+            "example": "b9eb3b13-cc2c-42c7-8459-dd20301c5cf5"
+          },
+          "eventTime": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Event time in epoch milliseconds.",
+            "example": 1767884826053
+          }
+        }
+      },
+      "WorkItemOrigin": {
+        "description": "Origin details for the Work Item task.",
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Origin identifier.",
+            "example": "origin-001"
+          },
+          "name": {
+            "type": "string",
+            "description": "Origin name.",
+            "example": "Test Origin"
+          }
+        },
+        "example": {
+          "id": "origin-001",
+          "name": "Test Origin"
+        }
+      },
+      "WorkItemDestination": {
+        "description": "Destination details for the Work Item task.",
+        "type": "object",
+        "required": [
+          "id",
+          "type"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Destination identifier, for example queue ID or business address.",
+            "example": "workitem-testbizaddress"
+          },
+          "type": {
+            "type": "string",
+            "description": "Destination type.",
+            "example": "queue"
+          }
+        },
+        "example": {
+          "id": "workitem-testbizaddress",
+          "type": "queue"
+        }
+      },
+      "WorkItemDirection": {
+        "description": "Direction details for the Work Item task.",
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Direction type.",
+            "enum": [
+              "INBOUND",
+              "OUTBOUND"
+            ],
+            "example": "INBOUND"
+          }
+        },
+        "example": {
+          "type": "INBOUND"
+        }
+      },
+      "WorkItemMediaParams": {
+        "description": "Media parameters for Work Item payloads.",
+        "type": "object",
+        "required": [
+          "type",
+          "message"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Work Item payload type.",
+            "enum": [
+              "work-item-form"
+            ],
+            "example": "work-item-form"
+          },
+          "message": {
+            "$ref": "#/components/schemas/WorkItemMessage"
+          },
+          "outdialEntryPointId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Optional outdial entry point identifier used when applicable.",
+            "example": "34ce2e26-e3eb-4f15-b648-6cb7eb2a3493"
+          }
+        },
+        "example": {
+          "type": "work-item-form",
+          "message": {
+            "aliasId": "workItem-alias",
+            "workItemData": {
+              "customerAccountId": "1",
+              "customerAccountName": "Cisco"
+            },
+            "timestamp": 1700422300000
+          },
+          "outdialEntryPointId": "34ce2e26-e3eb-4f15-b648-6cb7eb2a3493"
+        }
+      },
+      "WorkItemMessage": {
+        "description": "Work Item message payload.",
+        "type": "object",
+        "required": [
+          "aliasId",
+          "workItemData",
+          "timestamp"
+        ],
+        "properties": {
+          "aliasId": {
+            "type": "string",
+            "description": "Alias identifier for the Work Item form schema.",
+            "example": "workItem-alias"
+          },
+          "workItemData": {
+            "type": "object",
+            "description": "Work Item data as key/value pairs.",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "example": {
+              "customerAccountId": "1",
+              "customerAccountName": "Cisco"
+            }
+          },
+          "timestamp": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Timestamp in epoch milliseconds.",
+            "example": 1700422300000
+          }
+        },
+        "example": {
+          "aliasId": "workItem-alias",
+          "workItemData": {
+            "customerAccountId": "1",
+            "customerAccountName": "Cisco"
+          },
+          "timestamp": 1700422300000
+        }
+      },
+      "CreateTaskV2Response": {
+        "description": "Response body after successful Work Item task creation.",
+        "type": "object",
+        "required": [
+          "meta",
+          "data"
+        ],
+        "properties": {
+          "meta": {
+            "type": "object",
+            "description": "Response metadata.",
+            "example": {
+              "orgId": "3a9126c3-a221-4612-9ece-49e47419ce7d"
+            },
+            "required": [
+              "orgId"
+            ],
+            "properties": {
+              "orgId": {
+                "type": "string",
+                "format": "uuid",
+                "description": "Organization ID inferred from the authorization token.",
+                "example": "3a9126c3-a221-4612-9ece-49e47419ce7d"
+              }
+            }
+          },
+          "data": {
+            "type": "object",
+            "description": "Response data.",
+            "example": {
+              "id": "6096b287-d1a3-4bfa-84fb-3b6e10fc37a5"
+            },
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "description": "Identifier of the created task.",
+                "example": "6096b287-d1a3-4bfa-84fb-3b6e10fc37a5"
+              }
+            }
+          }
+        },
+        "example": {
+          "meta": {
+            "orgId": "3a9126c3-a221-4612-9ece-49e47419ce7d"
+          },
+          "data": {
+            "id": "6096b287-d1a3-4bfa-84fb-3b6e10fc37a5"
+          }
+        }
+      },
+      "UpdateTaskMessagesV2Request": {
+        "description": "Request body for appending a message to an existing Work Item task.",
+        "type": "object",
+        "required": [
+          "mediaParams"
+        ],
+        "properties": {
+          "mediaParams": {
+            "$ref": "#/components/schemas/WorkItemMediaParams"
+          }
+        }
+      },
+      "EmptyResponse": {
+        "description": "Empty JSON response.",
+        "type": "object",
+        "additionalProperties": false,
+        "example": {}
       },
       "PatchRequest": {
         "type": "array",

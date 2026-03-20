@@ -39737,6 +39737,11 @@
             "example": "https://site4-example.webex.com/site4/j.php?MTID=md41817da6a55b0925530cb88b3577b1",
             "description": "Link to a meeting information page where the meeting client is launched if the meeting is ready to start or join."
           },
+          "registerLink": {
+            "type": "string",
+            "example": "https://site4-example.webex.com/weblink/register/ra1c92369995314c0db8d53b2a44d78f6",
+            "description": "Link to register a meeting which has enabled registration."
+          },
           "sipAddress": {
             "type": "string",
             "example": "123456789@site4-example.webex.com",
