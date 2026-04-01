@@ -12736,10 +12736,16 @@
           "webex_suite",
           "webex_voice",
           "cx_essentials",
+          "webex_calling_standard",
           "cisco_calling_plan",
-          "attendant_console"
+          "attendant_console",
+          "cx_premium_agent",
+          "cx_standard_agent",
+          "cx_voice_ports",
+          "cx_ai_assistant",
+          "webex_ai_agent"
         ],
-        "description": " * `common_area_calling` - Webex Common Area Calling Package.\n * `webex_calling` - Webex Calling Package.\n * `webex_meetings` - Webex Meetings Package.\n * `webex_suite` - Webex Suite Package.\n * `webex_voice` - Webex Voice Package.\n * `cx_essentials` - Customer Experience Essentials Package.\n * `cisco_calling_plan` - Cisco Calling Plan Package.\n * `attendant_console` - Attendant Console Package.\n"
+        "description": " * `common_area_calling` - Webex Common Area Calling Package.\n * `webex_calling` - Webex Calling Package.\n * `webex_meetings` - Webex Meetings Package.\n * `webex_suite` - Webex Suite Package.\n * `webex_voice` - Webex Voice Package.\n * `cx_essentials` - Customer Experience Essentials Package.\n * `webex_calling_standard` - Webex Calling Standard Package.\n * `cisco_calling_plan` - Cisco Calling Plan Package.\n * `attendant_console` - Attendant Console Package.\n * `cx_premium_agent` - Contact Center Premium Agent Package.\n * `cx_standard_agent` - Contact Center Standard Agent Package.\n * `cx_voice_ports` - Contact Center Voice Ports Package.\n * `cx_ai_assistant` - Contact Center AI Assistant Package.\n * `webex_ai_agent` - Webex AI Agent Package.\n"
       },
       "Address": {
         "type": "object",
@@ -12757,7 +12763,7 @@
           "city": {
             "type": "string",
             "example": "Milpitas",
-            "description": "City of the customer."
+            "description": "Customer's city."
           },
           "stateOrProvince": {
             "type": "string",
@@ -12772,7 +12778,7 @@
           "country": {
             "type": "string",
             "example": "`US`:",
-            "description": "ISO2 country code of the customer size = 2."
+            "description": "ISO2 country code of the customer, 2 characters. This attribute is used to determine the default Dial In number for the Webex Meeting Sites. Refer to the Address section of [help page](https://www.cisco.com/c/en/us/td/docs/voice_ip_comm/cloudCollaboration/wholesale_rtm/wbxbw_b_wholesale-rtm-solution-guide/wbxbw_m_overview-of-webex-wholesale.html#Cisco_Reference.dita_7875bb3e-10c0-4214-8173-7845db31c7a6) for more information."
           }
         }
       },
@@ -12863,7 +12869,7 @@
                 "description": "A textual description of the `infoCode`."
               }
             },
-            "description": "A list of ProvisioningPreCheckResponseInfo object."
+            "description": "A list of `ProvisioningPreCheckResponseInfo` objects."
           }
         }
       },
@@ -12886,18 +12892,8 @@
         "type": "object",
         "properties": {
           "name": {
-            "type": "string",
-            "enum": [
-              "common_area_calling",
-              "webex_calling",
-              "webex_meetings",
-              "webex_suite",
-              "webex_voice",
-              "cx_essentials",
-              "cisco_calling_plan",
-              "attendant_console"
-            ],
-            "description": "The Webex Wholesale Packages assigned to the customer.\n * `common_area_calling` - Webex Common Area Calling Package.\n * `webex_calling` - Webex Calling Package.\n * `webex_meetings` - Webex Meetings Package.\n * `webex_suite` - Webex Suite Package.\n * `webex_voice` - Webex Voice Package.\n * `cx_essentials` - Customer Experience Essentials Package.\n * `cisco_calling_plan` - Cisco Calling Plan Package.\n * `attendant_console` - Attendant Console Package.\n"
+            "$ref": "#/components/schemas/WholesalePackagesCustomer",
+            "description": "The Webex Wholesale Packages assigned to the customer."
           },
           "status": {
             "type": "string",
@@ -12922,6 +12918,14 @@
               "$ref": "#/components/schemas/Error"
             },
             "description": "List of errors that occurred during that last attempt to provision/update this customer.\n\n *Note:*\n\n+ This list captures errors that occurred during *asynchronous or background* provisioning of the customer, *after* the API has been accepted and 202 response returned.\n\n+ Any errors that occur during initial API request validation will be captured directly in error response with appropriate HTTP status code."
+          },
+          "licenseIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "Y2lzY29zcGFyazovL3VzL0xJQ0VOU0UvYjdjNGRlZTgtODZmNi00YzAxLWJkYjMtMTM3MjM2ZWY3NGRmOlNMV0NBXzdmYTBkZjhjLTlmNTEtNGE1Zi05YzY4LTU1ODRlNWM2N2E0Yg"
+            },
+            "description": "List of licenseIds for the package."
           }
         }
       },
@@ -12999,9 +13003,12 @@
           "webex_suite",
           "webex_voice",
           "cx_essentials",
-          "attendant_console"
+          "webex_calling_standard",
+          "attendant_console",
+          "cx_premium_agent",
+          "cx_standard_agent"
         ],
-        "description": " * `webex_calling` - Calling Basic Package.\n * `webex_meetings` - Meetings Package.\n * `webex_suite` - Suite Package.\n * `webex_voice` - Voice Package.\n * `cx_essentials` - Customer Experience Essentials Package.\n * `attendant_console` - Attendant Console Package.\n"
+        "description": " * `webex_calling` - Calling Basic Package.\n * `webex_meetings` - Meetings Package.\n * `webex_suite` - Suite Package.\n * `webex_voice` - Voice Package.\n * `cx_essentials` - Customer Experience Essentials Package.\n * `webex_calling_standard` - Webex Calling Standard Package.\n * `attendant_console` - Attendant Console Package.\n * `cx_premium_agent` - Contact Center Premium Agent Package.\n * `cx_standard_agent` - Contact Center Standard Agent Package.\n"
       },
       "Subscriber": {
         "type": "object",
@@ -13038,9 +13045,10 @@
               "webex_meetings",
               "webex_suite",
               "webex_voice",
-              "cx_essentials"
+              "cx_essentials",
+              "webex_calling_standard"
             ],
-            "description": "The Webex Wholesale Package assigned to the subscriber.\n * `webex_calling` - Calling Basic Package.\n * `webex_meetings` - Meetings Package.\n * `webex_suite` - Suite Package.\n * `webex_voice` - Voice Package.\n * `cx_essentials` - Customer Experience Essentials Package.\n"
+            "description": "The Webex Wholesale Package assigned to the subscriber.\n * `webex_calling` - Calling Basic Package.\n * `webex_meetings` - Meetings Package.\n * `webex_suite` - Suite Package.\n * `webex_voice` - Voice Package.\n * `cx_essentials` - Customer Experience Essentials Package.\n * `webex_calling_standard` - Webex Calling Standard Package.\n"
           },
           "packages": {
             "type": "array",
@@ -13110,7 +13118,7 @@
                 "description": "A textual description of the `infoCode`."
               }
             },
-            "description": "A list of ProvisioningPreCheckResponseInfo object."
+            "description": "A list of `ProvisioningPreCheckResponseInfo` objects."
           }
         }
       }
