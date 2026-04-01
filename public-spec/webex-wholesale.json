@@ -2441,7 +2441,7 @@
                       "cx_essentials",
                       "webex_calling_standard"
                     ],
-                    "description": "The Webex Wholesale package to be assigned to the subscriber. **NOTE:** This parameter will be deprecated soon. Please\n\nuse `packages` instead.\n * `webex_calling` - Calling Basic Package.\n * `webex_meetings` - Meetings Package.\n * `webex_suite` - Suite Package.\n * `webex_voice` - Voice Package.\n * `cx_essentials` - Customer Experience Essentials Package.\n * `webex_calling_standard` - Webex Calling Standard Package.\n"
+                    "description": "The Webex Wholesale package to be assigned to the subscriber. **NOTE:** This parameter will be deprecated soon. Please\n\nuse `packages` instead.\n * `webex_calling` - Calling Basic Package.\n * `webex_meetings` - Meetings Package.\n * `webex_suite` - Suite Package.\n * `webex_voice` - Voice Package.\n * `cx_essentials` - Customer Assist Package.\n * `webex_calling_standard` - Webex Calling Standard Package.\n"
                   },
                   "packages": {
                     "type": "array",
@@ -2960,7 +2960,7 @@
                       "cx_essentials",
                       "webex_calling_standard"
                     ],
-                    "description": "The Webex Wholesale package to be assigned to the subscriber. **NOTE:** This parameter will be deprecated soon. Please\n\nuse `packages` instead.\n * `webex_calling` - Calling Basic Package.\n * `webex_meetings` - Meetings Package.\n * `webex_suite` - Suite Package.\n * `webex_voice` - Voice Package.\n * `cx_essentials` - Customer Experience Essentials Package.\n * `webex_calling_standard` - Webex Calling Standard Package.\n"
+                    "description": "The Webex Wholesale package to be assigned to the subscriber. **NOTE:** This parameter will be deprecated soon. Please\n\nuse `packages` instead.\n * `webex_calling` - Calling Basic Package.\n * `webex_meetings` - Meetings Package.\n * `webex_suite` - Suite Package.\n * `webex_voice` - Voice Package.\n * `cx_essentials` - Customer Assist Package.\n * `webex_calling_standard` - Webex Calling Standard Package.\n"
                   },
                   "packages": {
                     "type": "array",
@@ -12745,7 +12745,7 @@
           "cx_ai_assistant",
           "webex_ai_agent"
         ],
-        "description": " * `common_area_calling` - Webex Common Area Calling Package.\n * `webex_calling` - Webex Calling Package.\n * `webex_meetings` - Webex Meetings Package.\n * `webex_suite` - Webex Suite Package.\n * `webex_voice` - Webex Voice Package.\n * `cx_essentials` - Customer Experience Essentials Package.\n * `webex_calling_standard` - Webex Calling Standard Package.\n * `cisco_calling_plan` - Cisco Calling Plan Package.\n * `attendant_console` - Attendant Console Package.\n * `cx_premium_agent` - Contact Center Premium Agent Package.\n * `cx_standard_agent` - Contact Center Standard Agent Package.\n * `cx_voice_ports` - Contact Center Voice Ports Package.\n * `cx_ai_assistant` - Contact Center AI Assistant Package.\n * `webex_ai_agent` - Webex AI Agent Package.\n"
+        "description": " * `common_area_calling` - Webex Common Area Calling Package.\n * `webex_calling` - Webex Calling Package.\n * `webex_meetings` - Webex Meetings Package.\n * `webex_suite` - Webex Suite Package.\n * `webex_voice` - Webex Voice Package.\n * `cx_essentials` - Customer Assist Package.\n * `webex_calling_standard` - Webex Calling Standard Package.\n * `cisco_calling_plan` - Cisco Calling Plan Package.\n * `attendant_console` - Attendant Console Package.\n * `cx_premium_agent` - Contact Center Premium Agent Package.\n * `cx_standard_agent` - Contact Center Standard Agent Package.\n * `cx_voice_ports` - Contact Center Voice Ports Package.\n * `cx_ai_assistant` - Contact Center AI Assistant Package.\n * `webex_ai_agent` - Webex AI Agent Package.\n"
       },
       "Address": {
         "type": "object",
@@ -13008,7 +13008,7 @@
           "cx_premium_agent",
           "cx_standard_agent"
         ],
-        "description": " * `webex_calling` - Calling Basic Package.\n * `webex_meetings` - Meetings Package.\n * `webex_suite` - Suite Package.\n * `webex_voice` - Voice Package.\n * `cx_essentials` - Customer Experience Essentials Package.\n * `webex_calling_standard` - Webex Calling Standard Package.\n * `attendant_console` - Attendant Console Package.\n * `cx_premium_agent` - Contact Center Premium Agent Package.\n * `cx_standard_agent` - Contact Center Standard Agent Package.\n"
+        "description": " * `webex_calling` - Calling Basic Package.\n * `webex_meetings` - Meetings Package.\n * `webex_suite` - Suite Package.\n * `webex_voice` - Voice Package.\n * `cx_essentials` - Customer Assist Package.\n * `webex_calling_standard` - Webex Calling Standard Package.\n * `attendant_console` - Attendant Console Package.\n * `cx_premium_agent` - Contact Center Premium Agent Package.\n * `cx_standard_agent` - Contact Center Standard Agent Package.\n"
       },
       "Subscriber": {
         "type": "object",
@@ -13048,7 +13048,7 @@
               "cx_essentials",
               "webex_calling_standard"
             ],
-            "description": "The Webex Wholesale Package assigned to the subscriber.\n * `webex_calling` - Calling Basic Package.\n * `webex_meetings` - Meetings Package.\n * `webex_suite` - Suite Package.\n * `webex_voice` - Voice Package.\n * `cx_essentials` - Customer Experience Essentials Package.\n * `webex_calling_standard` - Webex Calling Standard Package.\n"
+            "description": "The Webex Wholesale Package assigned to the subscriber.\n * `webex_calling` - Calling Basic Package.\n * `webex_meetings` - Meetings Package.\n * `webex_suite` - Suite Package.\n * `webex_voice` - Voice Package.\n * `cx_essentials` - Customer Assist Package.\n * `webex_calling_standard` - Webex Calling Standard Package.\n"
           },
           "packages": {
             "type": "array",
