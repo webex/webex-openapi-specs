@@ -5,7 +5,12 @@
     "version": "1.0.0",
     "description": "The Webex Meetings APIs enable developers to schedule, manage, and retrieve information about Webex meetings, webinars, and events. They provide endpoints for meeting creation, participant management, recordings, transcripts, in-meeting features such as chat and closed captions, and post-meeting analytics. Common use cases include integrating meeting scheduling into calendar apps, automating follow-ups with recordings and transcripts, embedding meeting controls in custom portals, and extracting insights for compliance or productivity analysis. The APIs support both real-time and asynchronous workflows for seamless collaboration."
   },
-  "tags": [],
+  "tags": [
+    {
+      "name": "slidoSecurePremium",
+      "description": "APIs for Slido Secure Premium integration with Webex Meetings."
+    }
+  ],
   "paths": {
     "/meetings/postMeetingChats": {
       "get": {
@@ -20422,46 +20427,51 @@
     "/slido/compliance/events": {
       "get": {
         "tags": [
-          "Slido Secure Premium"
+          "slidoSecurePremium"
         ],
         "description": "Lists events representing actions that occurred during a Slido Secure Premium session (creating a poll, modifying a poll, activating a poll, posting an answer, etc.)\n\nEvents capture who performed the action and on what resource.\n\nThe events are paginated by the server into pages of max 256 items per page without any order.\n\nThe events are available within 15 minutes after they happened.\n\nEvery resource has properties:\n* type - event type\n\n* ... event specific ids\n\n* ... event specific properties\n",
         "summary": "List Compliance Events",
-        "operationId": "List Compliance Events",
+        "operationId": "listComplianceEvents",
         "parameters": [
           {
             "schema": {
               "title": "org id",
               "pattern": "[a-z0-9-]*",
+              "minLength": 0,
               "maxLength": 128,
               "type": "string"
             },
             "in": "query",
             "name": "sessionOrgId",
             "required": true,
-            "description": "Webex organization UUID."
+            "description": "Webex organization UUID.",
+            "example": "a1111111-1a11-111a-1a11-1a1111a1111a"
           },
           {
             "schema": {
               "title": "session id",
               "pattern": "[a-z0-9-]*",
+              "minLength": 0,
               "maxLength": 128,
-              "type": "string",
-              "default": ""
+              "type": "string"
             },
             "in": "query",
             "name": "sessionId",
             "required": true,
-            "description": "Webex meeting instance ID (`{meetingSeriesId}_I_{conferenceId}`)."
+            "description": "Webex meeting instance ID (`{meetingSeriesId}_I_{conferenceId}`).",
+            "example": "abcdef0123456789abcdef0123456789_I_000000000000000000"
           },
           {
             "schema": {
+              "minLength": 0,
               "maxLength": 128,
               "type": "string"
             },
             "in": "query",
             "name": "start",
             "required": false,
-            "description": "Pagination token. Returned in the response body as the `next` property."
+            "description": "Pagination token. Returned in the response body as the `next` property.",
+            "example": "MTIzNDU2Nzg5MDEyMzQ1Ng"
           }
         ],
         "responses": {
@@ -20471,6 +20481,33 @@
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "example": {
+                    "items": [
+                      {
+                        "createdAtMs": 0,
+                        "sessionId": "abcdef0123456789abcdef0123456789_I_000000000000000000",
+                        "sessionOrgId": "a1111111-1a11-111a-1a11-1a1111a1111a",
+                        "userId": "u1111111-1u11-111u-1u11-1u1111u1111u",
+                        "data": {
+                          "type": "qaaQuestion",
+                          "sessionId": "abcdef0123456789abcdef0123456789_I_000000000000000000",
+                          "questionId": "q1111111-1q11-111q-1q11-1q1111q1111q",
+                          "createdAtMs": 0,
+                          "modifiedAtMs": 0,
+                          "isDeleted": false,
+                          "text": "What are we having for breakfast tonight?",
+                          "isAnonymous": false,
+                          "user": {
+                            "userId": "u1111111-1u11-111u-1u11-1u1111u1111u",
+                            "name": "John Doe",
+                            "unverifiedName": null
+                          },
+                          "status": "public"
+                        }
+                      }
+                    ],
+                    "next": "MTIzNDU2Nzg5MDEyMzQ1Ng"
+                  },
                   "properties": {
                     "items": {
                       "type": "array",
@@ -20484,20 +20521,22 @@
                             "title": "session id",
                             "description": "Webex meeting instance ID (`{meetingSeriesId}_I_{conferenceId}`).",
                             "pattern": "[a-z0-9-]*",
+                            "minLength": 0,
                             "maxLength": 128,
-                            "type": "string",
-                            "default": ""
+                            "type": "string"
                           },
                           "sessionOrgId": {
                             "title": "org id",
                             "description": "Webex organization UUID.",
                             "pattern": "[a-z0-9-]*",
+                            "minLength": 0,
                             "maxLength": 128,
                             "type": "string"
                           },
                           "userId": {
                             "title": "user id",
                             "pattern": "[a-z0-9-]*",
+                            "minLength": 0,
                             "maxLength": 128,
                             "type": "string"
                           },
@@ -20520,9 +20559,9 @@
                                     "title": "session id",
                                     "description": "Webex meeting instance ID (`{meetingSeriesId}_I_{conferenceId}`).",
                                     "pattern": "[a-z0-9-]*",
+                                    "minLength": 0,
                                     "maxLength": 128,
-                                    "type": "string",
-                                    "default": ""
+                                    "type": "string"
                                   },
                                   "createdAtMs": {
                                     "description": "Timestamp when the resource was created.",
@@ -20539,13 +20578,7 @@
                                   "anonymityEnabled": {
                                     "type": "boolean"
                                   }
-                                },
-                                "required": [
-                                  "type",
-                                  "sessionId",
-                                  "createdAtMs",
-                                  "modifiedAtMs"
-                                ]
+                                }
                               },
                               {
                                 "description": "Q&A section. Contains settings related to Q&A.",
@@ -20564,9 +20597,9 @@
                                     "title": "session id",
                                     "description": "Webex meeting instance ID (`{meetingSeriesId}_I_{conferenceId}`).",
                                     "pattern": "[a-z0-9-]*",
+                                    "minLength": 0,
                                     "maxLength": 128,
-                                    "type": "string",
-                                    "default": ""
+                                    "type": "string"
                                   },
                                   "createdAtMs": {
                                     "description": "Timestamp when the resource was created.",
@@ -20586,13 +20619,7 @@
                                   "moderation": {
                                     "type": "boolean"
                                   }
-                                },
-                                "required": [
-                                  "type",
-                                  "sessionId",
-                                  "createdAtMs",
-                                  "modifiedAtMs"
-                                ]
+                                }
                               },
                               {
                                 "description": "Q&A question.",
@@ -20611,13 +20638,14 @@
                                     "title": "session id",
                                     "description": "Webex meeting instance ID (`{meetingSeriesId}_I_{conferenceId}`).",
                                     "pattern": "[a-z0-9-]*",
+                                    "minLength": 0,
                                     "maxLength": 128,
-                                    "type": "string",
-                                    "default": ""
+                                    "type": "string"
                                   },
                                   "questionId": {
                                     "title": "qaaQuestion id",
                                     "pattern": "[a-z0-9-]*",
+                                    "minLength": 0,
                                     "maxLength": 128,
                                     "type": "string"
                                   },
@@ -20662,16 +20690,13 @@
                                       "type": "object",
                                       "properties": {
                                         "first": {
-                                          "type": "number",
-                                          "default": 0
+                                          "type": "number"
                                         },
                                         "last": {
-                                          "type": "number",
-                                          "default": 0
+                                          "type": "number"
                                         },
                                         "isEmoji": {
-                                          "type": "boolean",
-                                          "default": false
+                                          "type": "boolean"
                                         }
                                       },
                                       "required": [
@@ -20685,35 +20710,31 @@
                                     "type": "number"
                                   },
                                   "replyCount": {
-                                    "type": "object",
-                                    "properties": {
-                                      "public": {
-                                        "type": "number",
-                                        "default": 0
-                                      },
-                                      "private": {
-                                        "type": "number"
-                                      }
-                                    },
-                                    "required": [
-                                      "public"
-                                    ]
+                                    "type": "number"
                                   },
                                   "user": {
                                     "type": "object",
                                     "properties": {
-                                      "id": {
-                                        "type": "string",
-                                        "default": ""
+                                      "userId": {
+                                        "title": "user id",
+                                        "pattern": "[a-z0-9-]*",
+                                        "minLength": 0,
+                                        "maxLength": 128,
+                                        "type": "string"
                                       },
                                       "name": {
-                                        "type": "string",
-                                        "default": ""
+                                        "maxLength": 512,
+                                        "type": "string"
+                                      },
+                                      "unverifiedName": {
+                                        "maxLength": 512,
+                                        "type": "string"
                                       }
                                     },
                                     "required": [
-                                      "id",
-                                      "name"
+                                      "userId",
+                                      "name",
+                                      "unverifiedName"
                                     ]
                                   },
                                   "status": {
@@ -20738,14 +20759,7 @@
                                       }
                                     ]
                                   }
-                                },
-                                "required": [
-                                  "type",
-                                  "sessionId",
-                                  "questionId",
-                                  "createdAtMs",
-                                  "modifiedAtMs"
-                                ]
+                                }
                               },
                               {
                                 "description": "Reply to a Q&A question.",
@@ -20764,13 +20778,14 @@
                                     "title": "session id",
                                     "description": "Webex meeting instance ID (`{meetingSeriesId}_I_{conferenceId}`).",
                                     "pattern": "[a-z0-9-]*",
+                                    "minLength": 0,
                                     "maxLength": 128,
-                                    "type": "string",
-                                    "default": ""
+                                    "type": "string"
                                   },
                                   "questionId": {
                                     "title": "qaaQuestion id",
                                     "pattern": "[a-z0-9-]*",
+                                    "minLength": 0,
                                     "maxLength": 128,
                                     "type": "string"
                                   },
@@ -20789,29 +20804,39 @@
                                   "replyId": {
                                     "type": "string"
                                   },
-                                  "userId": {
-                                    "maxLength": 128,
-                                    "type": "string"
+                                  "user": {
+                                    "type": "object",
+                                    "properties": {
+                                      "userId": {
+                                        "title": "user id",
+                                        "pattern": "[a-z0-9-]*",
+                                        "minLength": 0,
+                                        "maxLength": 128,
+                                        "type": "string"
+                                      },
+                                      "name": {
+                                        "maxLength": 512,
+                                        "type": "string"
+                                      },
+                                      "unverifiedName": {
+                                        "maxLength": 512,
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "userId",
+                                      "name",
+                                      "unverifiedName"
+                                    ]
                                   },
-                                  "userName": {
-                                    "maxLength": 128,
-                                    "type": "string"
+                                  "isAnonymous": {
+                                    "type": "boolean"
                                   },
                                   "text": {
                                     "maxLength": 1000,
                                     "type": "string"
-                                  },
-                                  "isPublic": {
-                                    "type": "boolean"
                                   }
-                                },
-                                "required": [
-                                  "type",
-                                  "sessionId",
-                                  "questionId",
-                                  "createdAtMs",
-                                  "modifiedAtMs"
-                                ]
+                                }
                               },
                               {
                                 "description": "Action performed on a Q&A question. Actions include question approvals, rejections, answers, archivals, restorations, highlighting, unhighlighting, upvoting and removing an upvote.",
@@ -20830,13 +20855,14 @@
                                     "title": "session id",
                                     "description": "Webex meeting instance ID (`{meetingSeriesId}_I_{conferenceId}`).",
                                     "pattern": "[a-z0-9-]*",
+                                    "minLength": 0,
                                     "maxLength": 128,
-                                    "type": "string",
-                                    "default": ""
+                                    "type": "string"
                                   },
                                   "questionId": {
                                     "title": "qaaQuestion id",
                                     "pattern": "[a-z0-9-]*",
+                                    "minLength": 0,
                                     "maxLength": 128,
                                     "type": "string"
                                   },
@@ -20910,38 +20936,33 @@
                                       }
                                     ]
                                   }
-                                },
-                                "required": [
-                                  "type",
-                                  "sessionId",
-                                  "questionId",
-                                  "createdAtMs",
-                                  "modifiedAtMs"
-                                ]
+                                }
                               },
                               {
-                                "description": "Multiple choice question.",
+                                "description": "Poll is a basic unit of interaction for participants.\nPoll can be either a single question like text / poll or a composed interaction like quiz, survey.\nOwned by admins.\n",
                                 "additionalProperties": false,
                                 "type": "object",
                                 "properties": {
                                   "type": {
-                                    "title": "choiceQuestion type",
-                                    "description": "Multiple choice question.",
+                                    "title": "poll type",
+                                    "description": "Poll is a basic unit of interaction for participants.\nPoll can be either a single question like text / poll or a composed interaction like quiz, survey.\nOwned by admins.\n",
                                     "type": "string",
                                     "enum": [
-                                      "choiceQuestion"
+                                      "poll"
                                     ]
                                   },
                                   "sessionId": {
                                     "title": "session id",
                                     "description": "Webex meeting instance ID (`{meetingSeriesId}_I_{conferenceId}`).",
                                     "pattern": "[a-z0-9-]*",
+                                    "minLength": 0,
                                     "maxLength": 128,
                                     "type": "string"
                                   },
-                                  "questionId": {
-                                    "title": "choiceQuestion id",
+                                  "pollId": {
+                                    "title": "poll id",
                                     "pattern": "[a-z0-9-]*",
+                                    "minLength": 0,
                                     "maxLength": 128,
                                     "type": "string"
                                   },
@@ -20957,6 +20978,45 @@
                                     "description": "If `true` the resource was deleted.",
                                     "type": "boolean"
                                   },
+                                  "pollType": {
+                                    "description": "Poll type determines structure and behavior:\n- `simple`: Single question poll (choice, text). Question content is at poll level.\n- `survey`: Multiple questions answered in sequence. Questions are in `questions` record.",
+                                    "anyOf": [
+                                      {
+                                        "type": "string",
+                                        "enum": [
+                                          "simple"
+                                        ]
+                                      },
+                                      {
+                                        "type": "string",
+                                        "enum": [
+                                          "survey"
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  "questionType": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string",
+                                        "enum": [
+                                          "none"
+                                        ]
+                                      },
+                                      {
+                                        "type": "string",
+                                        "enum": [
+                                          "choice"
+                                        ]
+                                      },
+                                      {
+                                        "type": "string",
+                                        "enum": [
+                                          "text"
+                                        ]
+                                      }
+                                    ]
+                                  },
                                   "title": {
                                     "title": "Question title",
                                     "maxLength": 255,
@@ -20967,394 +21027,345 @@
                                     "maxLength": 1024,
                                     "type": "string"
                                   },
-                                  "activeResultId": {
-                                    "title": "choiceResult id",
-                                    "description": "A question carries an `activeResultId`, and answers embed this `resultId`.\nAnswers are aggregated into results based on the `resultId`.\nResetting the question's results is achieved by assigning a new `activeResultId` to the question, which creates a fresh space for the new result.",
-                                    "pattern": "[a-z0-9-]*",
-                                    "maxLength": 128,
-                                    "type": "string"
-                                  },
-                                  "isOpen": {
-                                    "title": "Is the question open for participant interaction?",
-                                    "description": "If `true`, participants can interact with the question.",
+                                  "hideNames": {
+                                    "title": "Hide respondent names",
                                     "type": "boolean"
                                   },
-                                  "revealResults": {
-                                    "title": "If `true`, the question results are revealed.",
-                                    "type": "boolean"
-                                  },
-                                  "order": {
-                                    "title": "Sort order of the question",
-                                    "description": "Overrides default sorting by `createdAtMs`.",
+                                  "maxAnswers": {
+                                    "title": "Explicit limit for number of answers per participant. 0 -> no explicit limit",
+                                    "description": "Applicable for questionType:text",
+                                    "minimum": 0,
+                                    "maximum": 50,
                                     "type": "number"
                                   },
                                   "options": {
-                                    "title": "Choice question options",
+                                    "title": "Question options",
+                                    "description": "Applicable for questionType:choice",
                                     "maxProperties": 50,
                                     "type": "object",
                                     "additionalProperties": {
                                       "type": "object",
                                       "properties": {
-                                        "id": {
-                                          "title": "choiceOption id",
-                                          "description": "Generated by the client. The ids must be unique only locally for this question.",
-                                          "pattern": "[a-z0-9-]*",
-                                          "maxLength": 128,
-                                          "type": "string",
-                                          "default": ""
-                                        },
                                         "title": {
                                           "title": "Option title",
                                           "maxLength": 255,
-                                          "type": "string",
-                                          "default": ""
+                                          "type": "string"
                                         },
                                         "isCorrect": {
                                           "title": "Marks correct answer",
                                           "description": "Meaningful only when `enableCorrectOptions` setting is `true`.",
-                                          "type": "boolean",
-                                          "default": false
+                                          "type": "boolean"
                                         },
                                         "order": {
                                           "title": "Sort order of the option",
-                                          "type": "number",
-                                          "default": 0
+                                          "type": "number"
                                         }
-                                      },
-                                      "required": [
-                                        "id",
-                                        "title",
-                                        "isCorrect",
-                                        "order"
-                                      ]
+                                      }
                                     }
                                   },
                                   "maxOptions": {
-                                    "title": "Maximal number of answered options. 0 - any, 1 -> 1, 2 -> 2, etc",
+                                    "title": "Maximum number of answered options. 0 - no explicit limit, 1 -> 1, 2 -> 2, etc.",
+                                    "description": "Applicable for questionType:choice",
                                     "minimum": 0,
+                                    "maximum": 50,
                                     "type": "number"
                                   },
                                   "enableCorrectOptions": {
+                                    "description": "Applicable for questionType:choice",
                                     "type": "boolean"
                                   },
                                   "revealCorrectOptions": {
-                                    "type": "boolean"
-                                  }
-                                },
-                                "required": [
-                                  "type",
-                                  "sessionId",
-                                  "questionId",
-                                  "createdAtMs",
-                                  "modifiedAtMs"
-                                ]
-                              },
-                              {
-                                "description": "Open text question.",
-                                "additionalProperties": false,
-                                "type": "object",
-                                "properties": {
-                                  "type": {
-                                    "title": "textQuestion type",
-                                    "description": "Open text question.",
-                                    "type": "string",
-                                    "enum": [
-                                      "textQuestion"
-                                    ]
-                                  },
-                                  "sessionId": {
-                                    "title": "session id",
-                                    "description": "Webex meeting instance ID (`{meetingSeriesId}_I_{conferenceId}`).",
-                                    "pattern": "[a-z0-9-]*",
-                                    "maxLength": 128,
-                                    "type": "string"
-                                  },
-                                  "questionId": {
-                                    "title": "textQuestion id",
-                                    "pattern": "[a-z0-9-]*",
-                                    "maxLength": 128,
-                                    "type": "string"
-                                  },
-                                  "createdAtMs": {
-                                    "description": "Timestamp when the resource was created.",
-                                    "type": "number"
-                                  },
-                                  "modifiedAtMs": {
-                                    "description": "Timestamp when the resource was last modified.",
-                                    "type": "number"
-                                  },
-                                  "isDeleted": {
-                                    "description": "If `true` the resource was deleted.",
+                                    "title": "Reveal correct isCorrect options property to participants.",
+                                    "description": "Applicable for questionType:choice",
                                     "type": "boolean"
                                   },
-                                  "title": {
-                                    "title": "Question title",
-                                    "maxLength": 255,
-                                    "type": "string"
-                                  },
-                                  "description": {
-                                    "title": "Question description",
-                                    "maxLength": 1024,
-                                    "type": "string"
-                                  },
-                                  "activeResultId": {
-                                    "title": "textResult id",
-                                    "description": "A question carries an `activeResultId`, and answers embed this `resultId`.\nAnswers are aggregated into results based on the `resultId`.\nResetting the question's results is achieved by assigning a new `activeResultId` to the question, which creates a fresh space for the new result.",
-                                    "pattern": "[a-z0-9-]*",
-                                    "maxLength": 128,
-                                    "type": "string"
-                                  },
-                                  "isOpen": {
-                                    "title": "Is the question open for participant interaction?",
-                                    "description": "If `true`, participants can interact with the question.",
+                                  "isLocked": {
+                                    "title": "Is question locked for interaction?",
+                                    "description": "If `true`, participants can not interact with the question.",
                                     "type": "boolean"
                                   },
                                   "revealResults": {
-                                    "title": "If `true`, the question results are revealed.",
+                                    "title": "Reveal results to participants",
                                     "type": "boolean"
                                   },
-                                  "order": {
-                                    "title": "Sort order of the question",
-                                    "description": "Overrides default sorting by `createdAtMs`.",
-                                    "type": "number"
-                                  },
-                                  "showNames": {
-                                    "title": "Show respondent names",
-                                    "type": "boolean"
-                                  },
-                                  "maxAnswers": {
-                                    "title": "Allow only one answer per participant. 0 -> inf",
-                                    "maximum": 1,
-                                    "minimum": 0,
-                                    "type": "number"
-                                  }
-                                },
-                                "required": [
-                                  "type",
-                                  "sessionId",
-                                  "questionId",
-                                  "createdAtMs",
-                                  "modifiedAtMs"
-                                ]
-                              },
-                              {
-                                "description": "Participant's answer to a multiple choice question.",
-                                "additionalProperties": false,
-                                "type": "object",
-                                "properties": {
-                                  "type": {
-                                    "title": "choiceAnswer type",
-                                    "description": "Participant's answer to a multiple choice question.",
-                                    "type": "string",
-                                    "enum": [
-                                      "choiceAnswer"
-                                    ]
-                                  },
-                                  "sessionId": {
-                                    "title": "session id",
-                                    "description": "Webex meeting instance ID (`{meetingSeriesId}_I_{conferenceId}`).",
-                                    "pattern": "[a-z0-9-]*",
-                                    "maxLength": 128,
-                                    "type": "string"
-                                  },
-                                  "userId": {
-                                    "title": "user id",
-                                    "pattern": "[a-z0-9-]*",
-                                    "maxLength": 128,
-                                    "type": "string"
-                                  },
-                                  "questionId": {
-                                    "title": "choiceQuestion id",
-                                    "pattern": "[a-z0-9-]*",
-                                    "maxLength": 128,
-                                    "type": "string"
-                                  },
-                                  "resultId": {
-                                    "title": "choiceResult id",
-                                    "description": "A question carries an `activeResultId`, and answers embed this `resultId`.\nAnswers are aggregated into results based on the `resultId`.\nResetting the question's results is achieved by assigning a new `activeResultId` to the question, which creates a fresh space for the new result.",
-                                    "pattern": "[a-z0-9-]*",
-                                    "maxLength": 128,
-                                    "type": "string"
-                                  },
-                                  "createdAtMs": {
-                                    "description": "Timestamp when the resource was created.",
-                                    "type": "number"
-                                  },
-                                  "modifiedAtMs": {
-                                    "description": "Timestamp when the resource was last modified.",
-                                    "type": "number"
-                                  },
-                                  "isDeleted": {
-                                    "description": "If `true` the resource was deleted.",
-                                    "type": "boolean"
-                                  },
-                                  "userName": {
-                                    "description": "Participant name. Populated by backend from the authentication token.",
-                                    "maxLength": 512,
-                                    "type": "string"
-                                  },
-                                  "isAnonymous": {
-                                    "description": "If `true`, the answer was posted anonymously.",
-                                    "type": "boolean"
-                                  },
-                                  "options": {
-                                    "title": "Choice options selected by the participant",
-                                    "type": "array",
-                                    "items": {
+                                  "questions": {
+                                    "title": "Poll questions",
+                                    "description": "Poll questions for survey. Questions are part of the poll body—fetched, created,\nand patched atomically with the poll. No separate pagination; all questions returned in single response (max: 50).",
+                                    "maxProperties": 50,
+                                    "type": "object",
+                                    "additionalProperties": {
                                       "type": "object",
                                       "properties": {
-                                        "id": {
-                                          "title": "choiceOption id",
-                                          "description": "Generated by the client. The ids must be unique only locally for this question.",
-                                          "pattern": "[a-z0-9-]*",
-                                          "maxLength": 128,
-                                          "type": "string",
-                                          "default": ""
+                                        "order": {
+                                          "title": "Sort order of the question",
+                                          "type": "number"
+                                        },
+                                        "isRequired": {
+                                          "title": "Is this question required to answer?",
+                                          "type": "boolean"
+                                        },
+                                        "questionType": {
+                                          "anyOf": [
+                                            {
+                                              "type": "string",
+                                              "enum": [
+                                                "none"
+                                              ]
+                                            },
+                                            {
+                                              "type": "string",
+                                              "enum": [
+                                                "choice"
+                                              ]
+                                            },
+                                            {
+                                              "type": "string",
+                                              "enum": [
+                                                "text"
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        "title": {
+                                          "title": "Question title",
+                                          "maxLength": 255,
+                                          "type": "string"
+                                        },
+                                        "description": {
+                                          "title": "Question description",
+                                          "maxLength": 1024,
+                                          "type": "string"
+                                        },
+                                        "hideNames": {
+                                          "title": "Hide respondent names",
+                                          "type": "boolean"
+                                        },
+                                        "maxAnswers": {
+                                          "title": "Explicit limit for number of answers per participant. 0 -> no explicit limit",
+                                          "description": "Applicable for questionType:text",
+                                          "minimum": 0,
+                                          "maximum": 50,
+                                          "type": "number"
+                                        },
+                                        "options": {
+                                          "title": "Question options",
+                                          "description": "Applicable for questionType:choice",
+                                          "maxProperties": 50,
+                                          "type": "object",
+                                          "additionalProperties": {
+                                            "type": "object",
+                                            "properties": {
+                                              "title": {
+                                                "title": "Option title",
+                                                "maxLength": 255,
+                                                "type": "string"
+                                              },
+                                              "isCorrect": {
+                                                "title": "Marks correct answer",
+                                                "description": "Meaningful only when `enableCorrectOptions` setting is `true`.",
+                                                "type": "boolean"
+                                              },
+                                              "order": {
+                                                "title": "Sort order of the option",
+                                                "type": "number"
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "maxOptions": {
+                                          "title": "Maximum number of answered options. 0 - no explicit limit, 1 -> 1, 2 -> 2, etc.",
+                                          "description": "Applicable for questionType:choice",
+                                          "minimum": 0,
+                                          "maximum": 50,
+                                          "type": "number"
+                                        },
+                                        "enableCorrectOptions": {
+                                          "description": "Applicable for questionType:choice",
+                                          "type": "boolean"
+                                        },
+                                        "revealCorrectOptions": {
+                                          "title": "Reveal correct isCorrect options property to participants.",
+                                          "description": "Applicable for questionType:choice",
+                                          "type": "boolean"
+                                        },
+                                        "isLocked": {
+                                          "title": "Is question locked for interaction?",
+                                          "description": "If `true`, participants can not interact with the question.",
+                                          "type": "boolean"
+                                        },
+                                        "revealResults": {
+                                          "title": "Reveal results to participants",
+                                          "type": "boolean"
                                         }
-                                      },
-                                      "required": [
-                                        "id"
-                                      ]
+                                      }
                                     }
+                                  },
+                                  "activePollResultId": {
+                                    "title": "pollResult id",
+                                    "description": "Poll carries `activePollResultId` and answers embed this `pollResultId`.\nAnswers are aggregated into results by the `pollResultId`.\nReset of question results is implemented as new `activePollResultId` assignment to the question,\nmaking new clean space for the result.",
+                                    "pattern": "[a-z0-9-]*",
+                                    "minLength": 0,
+                                    "maxLength": 128,
+                                    "type": "string"
+                                  },
+                                  "order": {
+                                    "title": "Sort order of the poll",
+                                    "description": "Overrides default sorting by `createdAtMs`.",
+                                    "type": "number"
                                   }
-                                },
-                                "required": [
-                                  "type",
-                                  "sessionId",
-                                  "userId",
-                                  "questionId",
-                                  "resultId",
-                                  "createdAtMs",
-                                  "modifiedAtMs"
-                                ]
+                                }
                               },
                               {
-                                "description": "Answer to an open text question.",
+                                "description": "Answer is a participant's response to a poll.\nOwned by participants.\nFor simple polls, answer content is at root level. For surveys, content is in questionAnswers.\n",
                                 "additionalProperties": false,
                                 "type": "object",
                                 "properties": {
                                   "type": {
-                                    "title": "textAnswer type",
-                                    "description": "Answer to an open text question.",
+                                    "title": "pollAnswer type",
+                                    "description": "Answer is a participant's response to a poll.\nOwned by participants.\nFor simple polls, answer content is at root level. For surveys, content is in questionAnswers.\n",
                                     "type": "string",
-                                    "default": "textAnswer",
                                     "enum": [
-                                      "textAnswer"
+                                      "pollAnswer"
                                     ]
                                   },
                                   "sessionId": {
                                     "title": "session id",
                                     "description": "Webex meeting instance ID (`{meetingSeriesId}_I_{conferenceId}`).",
                                     "pattern": "[a-z0-9-]*",
+                                    "minLength": 0,
                                     "maxLength": 128,
-                                    "type": "string",
-                                    "default": ""
+                                    "type": "string"
                                   },
                                   "userId": {
                                     "title": "user id",
                                     "pattern": "[a-z0-9-]*",
+                                    "minLength": 0,
                                     "maxLength": 128,
-                                    "type": "string",
-                                    "default": ""
+                                    "type": "string"
                                   },
-                                  "questionId": {
-                                    "title": "textQuestion id",
+                                  "pollId": {
+                                    "title": "poll id",
                                     "pattern": "[a-z0-9-]*",
+                                    "minLength": 0,
                                     "maxLength": 128,
-                                    "type": "string",
-                                    "default": ""
+                                    "type": "string"
                                   },
-                                  "resultId": {
-                                    "title": "textResult id",
-                                    "description": "A question carries an `activeResultId`, and answers embed this `resultId`.\nAnswers are aggregated into results based on the `resultId`.\nResetting the question's results is achieved by assigning a new `activeResultId` to the question, which creates a fresh space for the new result.",
+                                  "pollResultId": {
+                                    "title": "pollResult id",
+                                    "description": "Poll carries `activePollResultId` and answers embed this `pollResultId`.\nAnswers are aggregated into results by the `pollResultId`.\nReset of question results is implemented as new `activePollResultId` assignment to the question,\nmaking new clean space for the result.",
                                     "pattern": "[a-z0-9-]*",
+                                    "minLength": 0,
                                     "maxLength": 128,
-                                    "type": "string",
-                                    "default": ""
+                                    "type": "string"
                                   },
-                                  "textAnswerId": {
-                                    "title": "textAnswer id",
+                                  "pollAnswerId": {
+                                    "title": "pollAnswer id",
                                     "pattern": "[a-z0-9-]*",
+                                    "minLength": 0,
                                     "maxLength": 128,
-                                    "type": "string",
-                                    "default": ""
+                                    "type": "string"
                                   },
                                   "createdAtMs": {
                                     "description": "Timestamp when the resource was created.",
-                                    "type": "number",
-                                    "default": 0
+                                    "type": "number"
                                   },
                                   "modifiedAtMs": {
                                     "description": "Timestamp when the resource was last modified.",
-                                    "type": "number",
-                                    "default": 0
+                                    "type": "number"
                                   },
                                   "isDeleted": {
                                     "description": "If `true` the resource was deleted.",
                                     "type": "boolean"
-                                  },
-                                  "userName": {
-                                    "description": "Participant name. Populated by backend from the authentication token.",
-                                    "maxLength": 512,
-                                    "type": "string"
                                   },
                                   "isAnonymous": {
                                     "description": "If `true`, the answer was posted anonymously.",
                                     "type": "boolean"
                                   },
                                   "text": {
+                                    "description": "Applicable for questionType:text",
                                     "maxLength": 500,
                                     "type": "string"
+                                  },
+                                  "options": {
+                                    "title": "Options selected by the participant",
+                                    "description": "Applicable for questionType:choice",
+                                    "maxProperties": 50,
+                                    "type": "object",
+                                    "additionalProperties": {
+                                      "type": "object",
+                                      "properties": {}
+                                    }
+                                  },
+                                  "questionAnswers": {
+                                    "title": "Per-question answers",
+                                    "description": "Answer content for each question in a survey.\nKeyed by questionId matching poll.questions keys. Not used for simple polls.",
+                                    "maxProperties": 50,
+                                    "type": "object",
+                                    "additionalProperties": {
+                                      "title": "Question answer",
+                                      "description": "Answer content for a single question in a survey.",
+                                      "type": "object",
+                                      "properties": {
+                                        "text": {
+                                          "description": "Applicable for questionType:text",
+                                          "maxLength": 500,
+                                          "type": "string"
+                                        },
+                                        "options": {
+                                          "title": "Options selected by the participant",
+                                          "description": "Applicable for questionType:choice",
+                                          "maxProperties": 50,
+                                          "type": "object",
+                                          "additionalProperties": {
+                                            "type": "object",
+                                            "properties": {}
+                                          }
+                                        }
+                                      }
+                                    }
                                   }
-                                },
-                                "required": [
-                                  "type",
-                                  "sessionId",
-                                  "userId",
-                                  "questionId",
-                                  "resultId",
-                                  "textAnswerId",
-                                  "createdAtMs",
-                                  "modifiedAtMs"
-                                ]
+                                }
                               },
                               {
-                                "description": "Admin review of an answer to an open text question.",
+                                "description": "Poll answer review is admin review of a participant answer. Owned by admin.",
                                 "additionalProperties": false,
                                 "type": "object",
                                 "properties": {
                                   "type": {
-                                    "title": "textReview type",
-                                    "description": "Admin review of an answer to an open text question.",
+                                    "title": "pollAnswerReview type",
+                                    "description": "Poll answer review is admin review of a participant answer. Owned by admin.",
                                     "type": "string",
                                     "enum": [
-                                      "textReview"
+                                      "pollAnswerReview"
                                     ]
                                   },
                                   "sessionId": {
                                     "title": "session id",
                                     "description": "Webex meeting instance ID (`{meetingSeriesId}_I_{conferenceId}`).",
                                     "pattern": "[a-z0-9-]*",
-                                    "maxLength": 128,
-                                    "type": "string",
-                                    "default": ""
-                                  },
-                                  "questionId": {
-                                    "title": "textQuestion id",
-                                    "pattern": "[a-z0-9-]*",
+                                    "minLength": 0,
                                     "maxLength": 128,
                                     "type": "string"
                                   },
-                                  "resultId": {
-                                    "title": "textResult id",
-                                    "description": "A question carries an `activeResultId`, and answers embed this `resultId`.\nAnswers are aggregated into results based on the `resultId`.\nResetting the question's results is achieved by assigning a new `activeResultId` to the question, which creates a fresh space for the new result.",
+                                  "pollId": {
+                                    "title": "poll id",
                                     "pattern": "[a-z0-9-]*",
+                                    "minLength": 0,
                                     "maxLength": 128,
                                     "type": "string"
                                   },
-                                  "textAnswerId": {
-                                    "title": "textAnswer id",
+                                  "pollResultId": {
+                                    "title": "pollResult id",
+                                    "description": "Poll carries `activePollResultId` and answers embed this `pollResultId`.\nAnswers are aggregated into results by the `pollResultId`.\nReset of question results is implemented as new `activePollResultId` assignment to the question,\nmaking new clean space for the result.",
                                     "pattern": "[a-z0-9-]*",
+                                    "minLength": 0,
+                                    "maxLength": 128,
+                                    "type": "string"
+                                  },
+                                  "pollAnswerId": {
+                                    "title": "pollAnswer id",
+                                    "pattern": "[a-z0-9-]*",
+                                    "minLength": 0,
                                     "maxLength": 128,
                                     "type": "string"
                                   },
@@ -21387,17 +21398,37 @@
                                         ]
                                       }
                                     ]
+                                  },
+                                  "questions": {
+                                    "title": "Poll question review decisions",
+                                    "description": "Applicable for survey polls. Maps questionId to review decision for that question.",
+                                    "maxProperties": 50,
+                                    "type": "object",
+                                    "additionalProperties": {
+                                      "type": "object",
+                                      "properties": {
+                                        "approval": {
+                                          "anyOf": [
+                                            {
+                                              "description": "Neither approved, nor rejected.",
+                                              "type": "string",
+                                              "enum": [
+                                                "none"
+                                              ]
+                                            },
+                                            {
+                                              "description": "Answer is rejected.",
+                                              "type": "string",
+                                              "enum": [
+                                                "rejected"
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    }
                                   }
-                                },
-                                "required": [
-                                  "type",
-                                  "sessionId",
-                                  "questionId",
-                                  "resultId",
-                                  "textAnswerId",
-                                  "createdAtMs",
-                                  "modifiedAtMs"
-                                ]
+                                }
                               },
                               {
                                 "description": "Reference to an active poll question.",
@@ -21416,9 +21447,9 @@
                                     "title": "session id",
                                     "description": "Webex meeting instance ID (`{meetingSeriesId}_I_{conferenceId}`).",
                                     "pattern": "[a-z0-9-]*",
+                                    "minLength": 0,
                                     "maxLength": 128,
-                                    "type": "string",
-                                    "default": ""
+                                    "type": "string"
                                   },
                                   "createdAtMs": {
                                     "description": "Timestamp when the resource was created.",
@@ -21432,45 +21463,14 @@
                                     "description": "If `true` the resource was deleted.",
                                     "type": "boolean"
                                   },
-                                  "activePollRef": {
-                                    "additionalProperties": true,
-                                    "type": "object",
-                                    "properties": {
-                                      "type": {
-                                        "pattern": "[a-zA-Z0-9]*",
-                                        "maxLength": 64,
-                                        "type": "string",
-                                        "default": ""
-                                      },
-                                      "sessionId": {
-                                        "title": "session id",
-                                        "description": "Webex meeting instance ID (`{meetingSeriesId}_I_{conferenceId}`).",
-                                        "pattern": "[a-z0-9-]*",
-                                        "maxLength": 128,
-                                        "type": "string",
-                                        "default": ""
-                                      },
-                                      "questionId": {
-                                        "title": " id",
-                                        "pattern": "[a-z0-9-]*",
-                                        "maxLength": 128,
-                                        "type": "string",
-                                        "default": ""
-                                      }
-                                    },
-                                    "required": [
-                                      "type",
-                                      "sessionId",
-                                      "questionId"
-                                    ]
+                                  "activePollId": {
+                                    "title": "poll id",
+                                    "pattern": "[a-z0-9-]*",
+                                    "minLength": 0,
+                                    "maxLength": 128,
+                                    "type": "string"
                                   }
-                                },
-                                "required": [
-                                  "type",
-                                  "sessionId",
-                                  "createdAtMs",
-                                  "modifiedAtMs"
-                                ]
+                                }
                               }
                             ]
                           }
