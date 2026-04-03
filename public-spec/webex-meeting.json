@@ -297,7 +297,7 @@
           }
         },
         "summary": "List Meeting Closed Captions",
-        "operationId": "List Meeting Closed Captions",
+        "operationId": "getMeetingClosedCaptions",
         "description": "Lists closed captions of a finished [meeting instance](/docs/meetings#meeting-series-scheduled-meetings-and-meeting-instances) specified by `meetingId`.\n\n* Closed captions are ready 15 minutes after the meeting is finished.\n\n* Only **meeting instances** in state `ended` are supported for `meetingId`. **Meeting series**, **scheduled meetings** and `in-progress` **meeting instances** are not supported.\n\n* Currently, a meeting may have only one closed caption associated with its `meetingId`. The response is a closed captions array, which may contain multiple values to allow for future expansion, but currently only one closed caption is included in the response.",
         "tags": [
           "Closed Captions"
@@ -402,7 +402,7 @@
           }
         },
         "summary": "List Meeting Closed Caption Snippets",
-        "operationId": "List Meeting Closed Caption Snippets",
+        "operationId": "getMeetingClosedCaptionsSnippets",
         "description": "Lists snippets of a meeting closed caption specified by `closedCaptionId`.",
         "tags": [
           "Closed Captions"
@@ -490,7 +490,7 @@
           }
         },
         "summary": "Download Meeting Closed Caption Snippets",
-        "operationId": "Download Meeting Closed Caption Snippets",
+        "operationId": "downloadTranscript",
         "description": "Download meeting closed caption snippets from the meeting closed caption specified by `closedCaptionId` formatted either as a Video Text Track (.vtt) file or plain text (.txt) file.\n\n#### Request Header\n\n* `timezone`: *[Time zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List) for time stamps in response body, defined in conformance with the [IANA time zone database](https://www.iana.org/time-zones). The default value is `UTC` if not specified.*",
         "tags": [
           "Closed Captions"
@@ -36896,6 +36896,146 @@
             "type": "number",
             "example": 2000,
             "description": "Duration of the snippet in milliseconds."
+          }
+        }
+      },
+      "ControlsRequestObject": {
+        "type": "object",
+        "description": "One of `meetingId`, `meetingNumber`, or `webLink` must be specified.",
+        "properties": {
+          "meetingId": {
+            "type": "string",
+            "description": "Unique identifier for the meeting. Required if meetingNumber and webLink are not provided.",
+            "example": "089b137c3cf34b578896941e2d49dfe8"
+          },
+          "meetingNumber": {
+            "type": "string",
+            "description": "Meeting number. Required if meetingId and webLink are not provided.",
+            "example": "123456789"
+          },
+          "webLink": {
+            "type": "string",
+            "example": "https://site4-example.webex.com/site4/j.php?MTID=md41817da6a55b0925530cb88b3577b1",
+            "description": "Link to a meeting information page where the meeting client is launched if the meeting is ready to start or join. Required if meetingId and meetingNumber are not provided."
+          },
+          "streamOut": {
+            "type": "boolean",
+            "description": "Whether to enable stream out. It is an optional field and default value is true.",
+            "example": true
+          }
+        }
+      },
+      "ControlsResponseObject": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "WebSocket endpoint URL.",
+            "example": "wss://site4-example.webex.com/wbxrestfulapi/websocket"
+          },
+          "channelName": {
+            "type": "string",
+            "description": "Channel name for the WebSocket connection.",
+            "example": "089b137c3cf34b578896941e2d49dfe8.ba78e451-ba27-4bac-b099-5e4680bb30fb"
+          },
+          "expiresInSeconds": {
+            "type": "integer",
+            "description": "Seconds until the channel expires.",
+            "default": 300,
+            "example": 300
+          },
+          "streamOut": {
+            "type": "boolean",
+            "description": "Whether stream out is enabled.",
+            "example": true
+          }
+        },
+        "required": [
+          "url",
+          "channelName",
+          "expiresInSeconds",
+          "streamOut"
+        ]
+      },
+      "WebSocketConnectionObject": {
+        "type": "object",
+        "properties": {
+          "endpoint": {
+            "type": "string",
+            "description": "WebSocket endpoint URL, from the 'url' field in the API response.",
+            "example": "wss://site4-example.webex.com/wbxrestfulapi/websocket"
+          },
+          "headers": {
+            "type": "object",
+            "properties": {
+              "channelName": {
+                "type": "string",
+                "description": "WebSocket header 'channelName', from the 'channelName' field in the API response.",
+                "example": "089b137c3cf34b578896941e2d49dfe8.ba78e451-ba27-4bac-b099-5e4680bb30fb"
+              },
+              "Authorization": {
+                "type": "string",
+                "description": "WebSocket header 'Authorization', use your service app token."
+              },
+              "token": {
+                "type": "string",
+                "description": "WebSocket header 'token', from the 'token' field in the API response."
+              }
+            },
+            "required": [
+              "channelName",
+              "Authorization",
+              "token"
+            ]
+          },
+          "closedCaptionResponse": {
+            "type": "object",
+            "description": "Closed caption message received from the WebSocket.",
+            "example": {
+              "userName": "john.andersen@example.com",
+              "content": "Can you hear me?",
+              "sequenceNumber": 19,
+              "timestamp": 1772603822410,
+              "id": "954b53be-4ae9-43c8-4a28-20e349ae5235"
+            }
+          },
+          "pingResponse": {
+            "type": "object",
+            "description": "Ping message received from the WebSocket.",
+            "example": {
+              "type": "ping"
+            }
+          }
+        },
+        "required": [
+          "endpoint",
+          "headers"
+        ]
+      },
+      "NotificationRequestObject": {
+        "type": "object",
+        "description": "One of `meetingId`, `meetingNumber`, or `webLink` must be specified.",
+        "properties": {
+          "meetingId": {
+            "type": "string",
+            "description": "Unique identifier for the meeting. Required if meetingNumber and webLink are not provided.",
+            "example": "089b137c3cf34b578896941e2d49dfe8"
+          },
+          "meetingNumber": {
+            "type": "string",
+            "description": "Meeting number. Required if meetingId and webLink are not provided.",
+            "example": "123456789"
+          },
+          "webLink": {
+            "type": "string",
+            "example": "https://site4-example.webex.com/site4/j.php?MTID=md41817da6a55b0925530cb88b3577b1",
+            "description": "Link to a meeting information page where the meeting client is launched if the meeting is ready to start or join. Required if meetingId and meetingNumber are not provided."
+          },
+          "announceAiNotification": {
+            "type": "boolean",
+            "description": "Whether to announce the AI notification.",
+            "default": true,
+            "example": true
           }
         }
       },
