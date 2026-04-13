@@ -81884,6 +81884,11 @@
             "type": "boolean",
             "description": "Flag; (true) for individual capture segments of main recording, (false) for a stitched capture.",
             "example": true
+          },
+          "includeVARecordings": {
+            "type": "boolean",
+            "description": "Flag; (true) for including virtual agent (VA) recordings, (false) for excluding virtual agent recordings. The default value is false.",
+            "example": false
           }
         }
       },
@@ -81997,7 +82002,7 @@
           },
           "participants": {
             "type": "array",
-            "description": "Comma separated list of CI user Id (UUID) of agents and masked customer contact email/phone details.",
+            "description": "Comma separated list of CI user Id (UUID) of agents, masked customer contact email/phone details and virtual agent id if any involved in the recording.",
             "example": [
               "e890a591-63f0-4984-a8f2-00e631368fb4",
               "+121****1219"
@@ -82008,18 +82013,23 @@
           },
           "channel1": {
             "type": "string",
-            "description": "Caller - channel contains caller audio only, Agent - channel contains agent audio only for main call and its segments",
-            "example": "Caller|Agent"
+            "description": "Caller - channel contains caller audio only, Agent - channel contains agent audio only for main call and its segments, VA - channel contains virtual agent audio only.",
+            "example": "Caller|Agent|VA"
           },
           "channel2": {
             "type": "string",
-            "description": "Agent if callType is consult.For main callType, Agent/Caller/Others based on number of participants.",
-            "example": "Caller|Agent|Others"
+            "description": "Agent if callType is consult. For main callType, Agent/Caller/VA/Others based on number of participants.",
+            "example": "Caller|Agent|VA|Others"
           },
           "callType": {
             "type": "string",
-            "description": "main if recording belongs to main call; consult if recording belongs to consult call",
-            "example": "main|consult"
+            "description": "main if recording belongs to main call; consult if recording belongs to consult call; va-main if recording belongs to virtual agent in main call; va-consult if recording belongs to virtual agent in consult call.",
+            "example": "main|consult|va-main|va-consult"
+          },
+          "sensitive": {
+            "type": "boolean",
+            "description": "Applicable only to virtual agent recordings. Flag; (true) indicates the virtual agent recording may contain sensitive information, (false) otherwise.",
+            "example": true
           }
         }
       },
