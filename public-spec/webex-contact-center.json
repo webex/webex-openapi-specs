@@ -6047,7 +6047,7 @@
             }
           }
         },
-        "deprecated": false
+        "deprecated": true
       }
     },
     "/organization/{orgid}/business-hours/{id}": {
@@ -10232,6 +10232,7 @@
         "summary": "Bulk export Address Book(s)",
         "description": "Export all Address Book(s) in a given organization.",
         "operationId": "bulkExport_22",
+        "deprecated": true,
         "parameters": [
           {
             "name": "orgid",
@@ -16263,6 +16264,7 @@
         "summary": "Bulk export Auxiliary Code(s)",
         "description": "Export all Auxiliary Code(s) in a given organization.",
         "operationId": "bulkExport_20",
+        "deprecated": true,
         "parameters": [
           {
             "name": "orgid",
@@ -17464,7 +17466,7 @@
             }
           }
         },
-        "deprecated": false
+        "deprecated": true
       }
     },
     "/organization/{orgid}/contact-number/{id}": {
@@ -18802,6 +18804,7 @@
         "summary": "Bulk export Contact Service Queue(s)",
         "description": "Export all Contact Service Queue(s) in a given organization.",
         "operationId": "bulkExport_14",
+        "deprecated": true,
         "parameters": [
           {
             "name": "orgid",
@@ -24320,7 +24323,7 @@
             }
           }
         },
-        "deprecated": false
+        "deprecated": true
       }
     },
     "/organization/{orgid}/desktop-layout/purge-inactive-entities": {
@@ -25366,6 +25369,7 @@
         "summary": "Bulk export Desktop Profile(s)",
         "description": "Export all Desktop Profile(s) in a given organization.",
         "operationId": "bulkExport_21",
+        "deprecated": true,
         "parameters": [
           {
             "name": "orgid",
@@ -27107,7 +27111,7 @@
             }
           }
         },
-        "deprecated": false
+        "deprecated": true
       }
     },
     "/organization/{orgid}/dial-number/numbers-only": {
@@ -28944,7 +28948,7 @@
             }
           }
         },
-        "deprecated": false
+        "deprecated": true
       }
     },
     "/organization/{orgid}/dial-plan/{id}": {
@@ -29999,7 +30003,7 @@
             }
           }
         },
-        "deprecated": false
+        "deprecated": true
       }
     },
     "/organization/{orgid}/entry-point/purge-inactive-entities": {
@@ -31045,7 +31049,7 @@
             }
           }
         },
-        "deprecated": false
+        "deprecated": true
       }
     },
     "/organization/{orgid}/cad-variable/purge-inactive-entities": {
@@ -32257,7 +32261,7 @@
             }
           }
         },
-        "deprecated": false
+        "deprecated": true
       }
     },
     "/organization/{orgid}/multimedia-profile/purge-inactive-entities": {
@@ -33390,7 +33394,7 @@
             }
           }
         },
-        "deprecated": false
+        "deprecated": true
       }
     },
     "/organization/{orgid}/outdial-ani/entry": {
@@ -36897,7 +36901,7 @@
             }
           }
         },
-        "deprecated": false
+        "deprecated": true
       }
     },
     "/organization/{orgid}/site/purge-inactive-entities": {
@@ -38030,7 +38034,7 @@
             }
           }
         },
-        "deprecated": false
+        "deprecated": true
       }
     },
     "/organization/{orgid}/skill/purge-inactive-entities": {
@@ -39173,7 +39177,7 @@
             }
           }
         },
-        "deprecated": false
+        "deprecated": true
       }
     },
     "/organization/{orgid}/skill-profile/{id}": {
@@ -40220,7 +40224,7 @@
             }
           }
         },
-        "deprecated": false
+        "deprecated": true
       }
     },
     "/organization/{orgid}/team/purge-inactive-entities": {
@@ -42830,6 +42834,7 @@
         "summary": "Bulk export User(s)",
         "description": "Export all User(s) in a given organization.",
         "operationId": "bulkExport_2",
+        "deprecated": true,
         "parameters": [
           {
             "name": "orgid",
@@ -44687,7 +44692,7 @@
             }
           }
         },
-        "deprecated": false
+        "deprecated": true
       }
     },
     "/organization/{orgid}/work-type/purge-inactive-entities": {
