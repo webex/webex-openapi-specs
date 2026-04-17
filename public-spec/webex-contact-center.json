@@ -93,8 +93,19 @@
                         "POST_CALL": {
                           "acc80d18-b1fb-4261-b44e-a46435eea1da:1bf3bd99-633b-401a-a3d4-61157a446809:c47d7c08-0776-4e38-a6bb-751d933a0c5d": {
                             "initialContactReason": "Broken tools appointment request",
+                            "additionalContext": "Customer mentioned they had previously tried to fix the tools themselves but were unsuccessful.",
+                            "additionalContactReasons": "Customer also asked about warranty coverage for the broken tools.",
                             "keyActionsTaken": "Scheduled an appointment with Doctor Petrophe for the caller",
-                            "resolution": "RESOLVED"
+                            "nextSteps": "Confirm appointment details via email and follow up on warranty inquiry.",
+                            "chosenWrapUpCode": "Appointment Scheduled",
+                            "proposedWrapUpCodes": [
+                              {
+                                "name": "Appointment Scheduled"
+                              },
+                              {
+                                "name": "Service Request"
+                              }
+                            ]
                           }
                         },
                         "MID_CALL": {
@@ -118,11 +129,20 @@
                       "summaries": {
                         "POST_CALL": {
                           "acc80d18-b1fb-4261-b44e-a46435eea1da:9d2a7879-8957-4cd6-a39c-46d4f21eaea5:c47d7c08-0776-4e38-a6bb-751d933a0c5d": {
-                            "additionalContext": "The match is next weekend and the caller represents a group looking for tickets.",
                             "initialContactReason": "The caller wants to buy tickets for a match.",
-                            "resolution": "UNRESOLVED",
+                            "additionalContext": "The match is next weekend and the caller represents a group looking for tickets.",
+                            "additionalContactReasons": "The caller also inquired about group discount options.",
                             "keyActionsTaken": "The agent checked ticket availability with teammates.\\nThe agent engaged with the caller about their request.",
-                            "nextSteps": "Agent will confirm ticket availability for fifteen tickets and get back to the caller."
+                            "nextSteps": "Agent will confirm ticket availability for fifteen tickets and get back to the caller.",
+                            "chosenWrapUpCode": "Ticket Inquiry",
+                            "proposedWrapUpCodes": [
+                              {
+                                "name": "Ticket Inquiry"
+                              },
+                              {
+                                "name": "Group Booking"
+                              }
+                            ]
                           }
                         },
                         "MID_CALL": {
@@ -146,11 +166,20 @@
                       "summaries": {
                         "POST_CALL": {
                           "acc80d18-b1fb-4261-b44e-a46435eea1da:9d2a7879-8957-4cd6-a39c-46d4f21eaea5:77e70d79-64b1-402e-9b84-b113ad71b06d": {
-                            "additionalContext": "Customer has a group of fifteen people and needs the tickets to be together.",
                             "initialContactReason": "Customer wants to buy tickets for an upcoming match.",
-                            "resolution": "RESOLVED",
+                            "additionalContext": "Customer has a group of fifteen people and needs the tickets to be together.",
+                            "additionalContactReasons": "Customer asked about group seating arrangements.",
                             "keyActionsTaken": "Checked availability of fifteen tickets for the match.\\nConfirmed grouped discount for the tickets.\\nProcessed the ticket purchase and confirmed ticket sending via email.",
-                            "nextSteps": "Send the tickets to the customer's email."
+                            "nextSteps": "Send the tickets to the customer's email.",
+                            "chosenWrapUpCode": "Ticket Purchase",
+                            "proposedWrapUpCodes": [
+                              {
+                                "name": "Ticket Purchase"
+                              },
+                              {
+                                "name": "Group Booking"
+                              }
+                            ]
                           }
                         }
                       },
@@ -63804,7 +63833,7 @@
         "properties": {
           "orgId": {
             "type": "string",
-            "description": "The organization ID."
+            "description": "The unique identifier of the organization to which the summarized interactions belong."
           },
           "searchType": {
             "type": "string",
@@ -63825,11 +63854,11 @@
         "properties": {
           "orgId": {
             "type": "string",
-            "description": "The organization ID."
+            "description": "The unique identifier of the organization to which the summarized interactions belong."
           },
           "interactionId": {
             "type": "string",
-            "description": "The interaction ID."
+            "description": "The unique identifier of a specific interaction."
           },
           "searchType": {
             "type": "string",
@@ -63850,11 +63879,11 @@
         "properties": {
           "orgId": {
             "type": "string",
-            "description": "The organization ID."
+            "description": "The unique identifier of the organization to which the summarized interactions belong."
           },
           "agentCiUserId": {
             "type": "string",
-            "description": "The agent CI user ID."
+            "description": "The CI (Common Identity) user ID of the agent associated with the summaries."
           },
           "searchType": {
             "type": "string",
@@ -63865,21 +63894,84 @@
           }
         }
       },
+      "PostCallSummary": {
+        "type": "object",
+        "properties": {
+          "initialContactReason": {
+            "type": "string",
+            "description": "The primary issue or request the customer contacted you about at the start of the interaction."
+          },
+          "additionalContext": {
+            "type": "string",
+            "description": "Relevant background details shared during the conversation that help explain the situation."
+          },
+          "additionalContactReasons": {
+            "type": "string",
+            "description": "Any new or secondary issues raised after the initial reason for contact."
+          },
+          "keyActionsTaken": {
+            "type": "string",
+            "description": "The main steps the agent took to investigate, resolve, or address the customer's request."
+          },
+          "nextSteps": {
+            "type": "string",
+            "description": "Clear follow-up actions and expected outcomes agreed upon before ending the interaction."
+          },
+          "chosenWrapUpCode": {
+            "type": "string",
+            "description": "The wrap-up reason code that was ultimately selected by the agent at the end of the interaction."
+          },
+          "proposedWrapUpCodes": {
+            "type": "array",
+            "nullable": true,
+            "description": "A list of wrap-up reasons suggested by the AI based on the interaction content. Each object contains a name field. Can return null, 1, or 2 objects.",
+            "items": {
+              "$ref": "#/components/schemas/ProposedWrapUpCode"
+            }
+          }
+        }
+      },
+      "MidCallSummary": {
+        "type": "object",
+        "properties": {
+          "reasonForTransferOrConsult": {
+            "type": "string",
+            "description": "The specific reason the interaction is being transferred or consulted."
+          },
+          "additionalContext": {
+            "type": "string",
+            "description": "Important information already gathered that the next agent needs to continue smoothly."
+          },
+          "keyActionsTaken": {
+            "type": "string",
+            "description": "Steps completed so far in the interaction before the transfer or consult occurred."
+          }
+        }
+      },
+      "ProposedWrapUpCode": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the proposed wrap-up reason."
+          }
+        }
+      },
       "SummaryListResponse": {
         "type": "object",
         "properties": {
           "orgId": {
             "type": "string",
-            "description": "The organization ID."
+            "description": "The unique identifier of the organization to which the summarized interactions belong."
           },
           "agentCiUserId": {
             "type": "string",
-            "description": "The agent CI user ID (used for AGENT search type).",
+            "description": "The CI (Common Identity) user ID of the agent associated with the summaries. Present when searchType is AGENT; otherwise null.",
             "nullable": true
           },
           "interactionId": {
             "type": "string",
-            "description": "The interaction ID (used for INTERACTION search type).",
+            "description": "The unique identifier of a specific interaction. Present when searchType is INTERACTION; otherwise null.",
             "nullable": true
           },
           "queueId": {
@@ -63892,13 +63984,20 @@
           },
           "summaries": {
             "type": "object",
-            "description": "Map of summaries where the first-level key is feature (e.g., MID_CALL, POST_CALL), the second-level key is a summary identifier, and the third-level map contains summary fields.",
-            "additionalProperties": {
-              "type": "object",
-              "additionalProperties": {
+            "description": "Map of summaries keyed by feature type (POST_CALL, MID_CALL). Each feature maps summary identifiers to their summary fields.",
+            "properties": {
+              "POST_CALL": {
                 "type": "object",
+                "description": "Post-call summaries keyed by summary identifier.",
                 "additionalProperties": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/PostCallSummary"
+                }
+              },
+              "MID_CALL": {
+                "type": "object",
+                "description": "Mid-call summaries keyed by summary identifier.",
+                "additionalProperties": {
+                  "$ref": "#/components/schemas/MidCallSummary"
                 }
               }
             }
@@ -63913,8 +64012,19 @@
             "POST_CALL": {
               "acc80d18-b1fb-4261-b44e-a46435eea1da:1bf3bd99-633b-401a-a3d4-61157a446809:c47d7c08-0776-4e38-a6bb-751d933a0c5d": {
                 "initialContactReason": "Broken tools appointment request",
+                "additionalContext": "Customer mentioned they had previously tried to fix the tools themselves but were unsuccessful.",
+                "additionalContactReasons": "Customer also asked about warranty coverage for the broken tools.",
                 "keyActionsTaken": "Scheduled an appointment with Doctor Petrophe for the caller",
-                "resolution": "RESOLVED"
+                "nextSteps": "Confirm appointment details via email and follow up on warranty inquiry.",
+                "chosenWrapUpCode": "Appointment Scheduled",
+                "proposedWrapUpCodes": [
+                  {
+                    "name": "Appointment Scheduled"
+                  },
+                  {
+                    "name": "Service Request"
+                  }
+                ]
               }
             },
             "MID_CALL": {
