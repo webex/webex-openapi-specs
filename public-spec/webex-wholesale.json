@@ -5383,7 +5383,8 @@
         "type": "object",
         "required": [
           "devices",
-          "maxDeviceCount"
+          "maxDeviceCount",
+          "maxOwnedDeviceCount"
         ],
         "properties": {
           "devices": {
@@ -5396,6 +5397,10 @@
           "maxDeviceCount": {
             "type": "number",
             "description": "Maximum number of devices a person can be assigned to."
+          },
+          "maxOwnedDeviceCount": {
+            "type": "number",
+            "description": "Maximum number of devices a person can own."
           }
         }
       },
@@ -6168,7 +6173,8 @@
         "type": "object",
         "required": [
           "devices",
-          "maxDeviceCount"
+          "maxDeviceCount",
+          "maxOwnedDeviceCount"
         ],
         "properties": {
           "devices": {
@@ -6181,6 +6187,10 @@
           "maxDeviceCount": {
             "type": "number",
             "description": "Maximum number of devices a workspace can be assigned to."
+          },
+          "maxOwnedDeviceCount": {
+            "type": "number",
+            "description": "Maximum number of devices a workspace can own."
           }
         }
       },
