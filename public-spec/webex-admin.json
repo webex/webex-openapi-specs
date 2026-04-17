@@ -7064,7 +7064,7 @@
         },
         "summary": "Get all customers managed by a partner admin",
         "operationId": "Get all customers managed by a partner admin",
-        "description": "Get all customer organizations managed by given partner admin, in the `managedBy` request parameter. The `managedBy` user typically has the role of a Partner Admin. In case where a Partner Full Admin or Partner Read-Only admin is selected an error like \"The user already has access to all customers managed by their partner organization.\" is shown as a Partner Admin (Full and Read-Only) is able to manage all customers by default.\n\nThis API can be invoked by Partner Full Admin and Partner Readonly Admin.\nSpecify the `personId` in the `managedBy` parameter in the URI.",
+        "description": "Get all customer organizations managed by given partner admin, in the `managedBy` request parameter. The `managedBy` user typically has the role of a Partner Admin. In case where a Partner Full Admin or Partner Read-Only admin is selected an error like \"The user already has access to all customers managed by their partner organization.\" is shown as a Partner Admin (Full and Read-Only) is able to manage all customers by default. This does not include customers managed through Customer Groups.\n\nThis API can be invoked by Partner Full Admin and Partner Readonly Admin.\nSpecify the `personId` in the `managedBy` parameter in the URI.",
         "tags": [
           "Partner Administrators"
         ],
@@ -7158,7 +7158,7 @@
         },
         "summary": "Get all partner admins assigned to a customer",
         "operationId": "Get all partner admins assigned to a customer",
-        "description": "For a given customer, get all the partner admins with their role details.\nThis API can be used by Partner Full Admins.\n\nSpecify the `orgId` in the path parameter.",
+        "description": "For a given customer, get all the partner admins with their role details. This does not include partner admins who have access through Customer Groups.\nThis API can be used by Partner Full Admins.\n\nSpecify the `orgId` in the path parameter.",
         "tags": [
           "Partner Administrators"
         ],
@@ -7316,7 +7316,7 @@
         },
         "summary": "Unassign partner admin from a customer",
         "operationId": "Unassign partner admin from a customer",
-        "description": "Unassign a specific partner admin from a customer organization. Unassigning a customer organization from a partner admin does not remove the role from the user.\nThis API can be used by Partner Full Admin.\n\nSpecify the `orgId` and the `personId` in the path param.",
+        "description": "Unassign a specific partner admin from a customer organization. Unassigning a customer organization from a partner admin does not remove the role from the user. If a partner admin is also managing the customer organization through a Customer Group, they will continue to have access.\nThis API can be used by Partner Full Admin.\n\nSpecify the `orgId` and the `personId` in the path param.",
         "tags": [
           "Partner Administrators"
         ],
