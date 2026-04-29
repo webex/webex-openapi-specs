@@ -23,6 +23,9 @@
     {
       "name": "Callbacks",
       "description": "APIs for scheduling and managing callbacks for customers."
+    },
+    {
+      "name": "Tasks"
     }
   ],
   "paths": {
@@ -86474,7 +86477,7 @@
             "example": "315fbb91-2288-427c-9588-ec764cd46ea4"
           },
           "mediaType": {
-            "description": "The media type for the request. The supported values are ```telephony```, ```chat```, ```social``` and ```email```.",
+            "description": "The media type for the request. The supported values are ```telephony```, ```chat```, ```social```, ```email``` and ```workItem```.",
             "type": "string",
             "example": "telephony"
           },
@@ -86820,7 +86823,7 @@
             "items": {
               "type": "string"
             },
-            "description": "It represents the channelType of the agent which can be set to ```telephony```,```chat```, ```social```, and ```email```.This would be sent for any channel types the agent wants to set the state on. In the event that the agent is setting more than one channel type states at once, it would send multiple state change requests .channelType is a list, and can include one or more channel types in the request.",
+            "description": "It represents the channelType of the agent which can be set to ```telephony```,```chat```, ```social```, ```email```, ```workItem``` and ```custom```. This would be sent for any channel types the agent wants to set the state on. In the event that the agent is setting more than one channel type states at once, it would send multiple state change requests .channelType is a list, and can include one or more channel types in the request.",
             "example": "[telephony, chat]"
           },
           "state": {
@@ -87256,18 +87259,21 @@
         "description": "Response body after successfully requesting a task creation.",
         "type": "object",
         "required": [
-          "orgId",
-          "id"
+          "meta",
+          "data"
         ],
         "properties": {
           "meta": {
             "type": "object",
             "description": "Response metadata.",
+            "required": [
+              "orgId"
+            ],
             "properties": {
               "orgId": {
                 "type": "string",
                 "format": "uuid",
-                "description": "Organization ID inferred from the authorization token.",
+                "description": "UUID of the organization, inferred from the authorization token.",
                 "example": "658d1102-8c11-4850-a809-d7a99cc1c22f"
               }
             }
@@ -87275,11 +87281,14 @@
           "data": {
             "type": "object",
             "description": "Response data.",
+            "required": [
+              "id"
+            ],
             "properties": {
               "id": {
                 "type": "string",
                 "format": "uuid",
-                "description": "ID of the created task. The lifecycle of the task can be tracked with this ID.",
+                "description": "UUID of the created task. Use this ID to monitor and manage the task lifecycle via subsequent API calls.",
                 "example": "768d1102-8c11-4850-a809-d7a99cc1c22e"
               }
             }
@@ -87602,6 +87611,433 @@
             "type": "string",
             "description": "Name of the last queue to which the task was assigned.",
             "example": "Technical Support Queue"
+          }
+        }
+      },
+      "CreateTaskRequestV2": {
+        "description": "Request body for creating a task.",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/WorkItem"
+          },
+          {
+            "$ref": "#/components/schemas/Telephony"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "channelType"
+        }
+      },
+      "Origin": {
+        "type": "object",
+        "description": "Origin of the task. For inbound `workItem` tasks, this represents the customer. For outbound `telephony` tasks, this may be the agent's information or a configured outbound ANI in the organization. Outbound ANI is applicable to `telephony` only.",
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identifier of the task originator. For inbound `workItem` tasks, this is typically the customer's identifier (e.g., email address). For outbound `telephony` tasks, this may be the agent's identifier or a configured outbound ANI in the organization.",
+            "example": "customer@domain.com"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "description": "Optional human-readable display name for the originator.",
+            "example": "Customer Name"
+          }
+        }
+      },
+      "Destination": {
+        "type": "object",
+        "description": "Destination for the task. Use `businessAddress` type for `workItem` tasks and `dialNumber` type for `telephony` tasks.",
+        "required": [
+          "id",
+          "type"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Destination identifier. For `workItem` tasks, this is the business address associated with the configured workItem channel entry point. For `telephony` tasks, this is the dial number to call. **Migrating from v1:** Previously the top-level `destination` field (plain string) for telephony.",
+            "example": "customer-support@biz.com"
+          },
+          "type": {
+            "type": "string",
+            "description": "Destination type. Use `businessAddress` for `workItem` tasks and `dialNumber` for `telephony` tasks.",
+            "enum": [
+              "businessAddress",
+              "dialNumber"
+            ],
+            "example": "businessAddress"
+          }
+        }
+      },
+      "FlowSettings": {
+        "type": "object",
+        "description": "Schema-free data map to pass specific data to the externalized flow settings. Supports a maximum of 15 tuples. Each tuple can have a key up to 200 bytes and a value up to 512 bytes.",
+        "additionalProperties": {
+          "type": "string"
+        },
+        "example": {
+          "flow1": "setting1"
+        }
+      },
+      "GlobalVariables": {
+        "type": "object",
+        "description": "Schema-free data map to pass specific data depending on the outbound type. Values are validated against the global variables configured in the organization. Supports a maximum of 30 tuples. Each tuple can have a key up to 200 bytes and a value up to 1024 bytes. **Migrating from v1:** Previously named `attributes`.",
+        "additionalProperties": {
+          "type": "string"
+        },
+        "example": {
+          "var1": "value1"
+        }
+      },
+      "WorkItem": {
+        "type": "object",
+        "description": "Request body to create an inbound `workItem` task via a configured workItem channel. The `channel` must reference an active configured workItem channel in the organization. `workItemData` within `channelParams` carries the structured form payload — up to 50 entries, with keys up to 100 UTF-8 bytes and values up to 1024 UTF-8 bytes.",
+        "required": [
+          "origin",
+          "destination",
+          "channelType",
+          "channel",
+          "channelParams"
+        ],
+        "properties": {
+          "origin": {
+            "title": "Origin",
+            "type": "object",
+            "description": "Origin of the task. For inbound `workItem` tasks, this represents the customer.",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Customer's identifier, such as an email address.",
+                "example": "customer@domain.com"
+              },
+              "name": {
+                "type": "string",
+                "nullable": true,
+                "description": "Optional human-readable display name for the customer.",
+                "example": "Customer Name"
+              }
+            }
+          },
+          "destination": {
+            "title": "Destination",
+            "type": "object",
+            "description": "Destination for the workItem task. The `type` must be `businessAddress`.",
+            "required": [
+              "id",
+              "type"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Business address associated with the configured workItem channel entry point.",
+                "example": "customer-support@biz.com"
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be `businessAddress` for `workItem` tasks.",
+                "enum": [
+                  "businessAddress",
+                  "dialNumber"
+                ],
+                "example": "businessAddress"
+              }
+            }
+          },
+          "channelType": {
+            "type": "string",
+            "enum": [
+              "workItem"
+            ],
+            "description": "Discriminator field. Must be `workItem` for custom channel task creation.",
+            "example": "workItem"
+          },
+          "channel": {
+            "type": "string",
+            "description": "Identifier of the configured workItem channel in the organization. Required for `workItem` requests.",
+            "example": "support-form"
+          },
+          "flowSettings": {
+            "$ref": "#/components/schemas/FlowSettings"
+          },
+          "globalVariables": {
+            "$ref": "#/components/schemas/GlobalVariables"
+          },
+          "channelParams": {
+            "$ref": "#/components/schemas/WorkItemParams"
+          }
+        },
+        "example": {
+          "origin": {
+            "id": "customer@domain.com",
+            "name": "Customer Name"
+          },
+          "destination": {
+            "id": "customer-support@biz.com",
+            "type": "businessAddress"
+          },
+          "channelType": "workItem",
+          "channel": "support-form",
+          "channelParams": {
+            "type": "work-item-form",
+            "message": {
+              "aliasId": "msg-001",
+              "workItemData": {
+                "name": "customer name",
+                "email": "customer@domain.com"
+              },
+              "timestamp": 1732786800000
+            }
+          }
+        }
+      },
+      "WorkItemParams": {
+        "type": "object",
+        "description": "Work item channel parameters.",
+        "required": [
+          "type",
+          "message"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "work-item-form"
+            ],
+            "description": "Must be `work-item-form` for work item channel parameters.",
+            "example": "work-item-form"
+          },
+          "message": {
+            "$ref": "#/components/schemas/WorkItemForm"
+          }
+        }
+      },
+      "WorkItemForm": {
+        "type": "object",
+        "description": "Work item message payload.",
+        "required": [
+          "aliasId",
+          "workItemData",
+          "timestamp"
+        ],
+        "properties": {
+          "aliasId": {
+            "type": "string",
+            "description": "Identifier of the work item message.",
+            "example": "msg-001"
+          },
+          "workItemData": {
+            "type": "object",
+            "description": "Structured key-value payload for the work item form. Maximum 50 entries; keys up to 100 UTF-8 bytes, values up to 1024 UTF-8 bytes.",
+            "maxProperties": 50,
+            "additionalProperties": {
+              "type": "string"
+            },
+            "example": {
+              "name": "customer name",
+              "email": "customer@domain.com"
+            }
+          },
+          "timestamp": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Unix epoch timestamp in milliseconds representing when the work item was originated.",
+            "example": 1732786800000
+          }
+        }
+      },
+      "Telephony": {
+        "type": "object",
+        "description": "Request body to create an outbound `telephony` task routed through a configured outdial entry point. `outdialEntryPointId` is required. When `callback` is provided, its `type` must be `immediate` and `origin` must be `web`.\n\n**Migrating from v1:** The following fields have been renamed or restructured — `entryPointId` → `channelParams.outdialEntryPointId`; `destination` (string) → `destination.id`; `origin` (string) → `origin.id`; `attributes` → `globalVariables`; `customAttributes` (SIP headers) → `channelParams.sipHeaders`; `mediaType` → `channelType`; `callback.callbackOrigin` → `channelParams.callback.origin`; `callback.callbackType` → `channelParams.callback.type`.",
+        "required": [
+          "origin",
+          "destination",
+          "channelType",
+          "channelParams"
+        ],
+        "properties": {
+          "origin": {
+            "title": "Origin",
+            "type": "object",
+            "description": "Origin of the outbound telephony task. May be the agent's information or a configured outbound ANI in the organization.",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Outbound ANI or agent identifier used for the telephony call.",
+                "example": "+18000000000"
+              },
+              "name": {
+                "type": "string",
+                "nullable": true,
+                "description": "Optional display name. May be omitted or null for telephony tasks.",
+                "example": null
+              }
+            }
+          },
+          "destination": {
+            "title": "Destination",
+            "type": "object",
+            "description": "Destination for the telephony task. The `type` must be `dialNumber`.",
+            "required": [
+              "id",
+              "type"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The dial number to call. **Migrating from v1:** Previously the top-level `destination` field (plain string).",
+                "example": "+19780000000"
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be `dialNumber` for `telephony` tasks.",
+                "enum": [
+                  "businessAddress",
+                  "dialNumber"
+                ],
+                "example": "dialNumber"
+              }
+            }
+          },
+          "channelType": {
+            "type": "string",
+            "enum": [
+              "telephony"
+            ],
+            "description": "Discriminator field. Must be `telephony` for voice task creation. **Migrating from v1:** Previously named `mediaType`.",
+            "example": "telephony"
+          },
+          "channel": {
+            "type": "string",
+            "nullable": true,
+            "description": "Not applicable for telephony tasks. May be omitted or set to `null`.",
+            "example": null
+          },
+          "flowSettings": {
+            "$ref": "#/components/schemas/FlowSettings"
+          },
+          "globalVariables": {
+            "$ref": "#/components/schemas/GlobalVariables"
+          },
+          "channelParams": {
+            "$ref": "#/components/schemas/TelephonyParams"
+          }
+        },
+        "example": {
+          "origin": {
+            "id": "+18000000000",
+            "name": null
+          },
+          "destination": {
+            "id": "+19780000000",
+            "type": "dialNumber"
+          },
+          "channelType": "telephony",
+          "channelParams": {
+            "type": "telephony",
+            "outdialEntryPointId": "aef6455f-ccd6-4261-bb00-e80f845c01b0",
+            "outboundType": "CALLBACK",
+            "callback": {
+              "type": "immediate",
+              "origin": "web",
+              "number": "+19780000000"
+            }
+          }
+        }
+      },
+      "TelephonyParams": {
+        "type": "object",
+        "description": "Telephony channel parameters.",
+        "required": [
+          "type",
+          "outdialEntryPointId",
+          "outboundType"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "telephony"
+            ],
+            "description": "Must be `telephony` for telephony channel parameters.",
+            "example": "telephony"
+          },
+          "outdialEntryPointId": {
+            "type": "string",
+            "description": "UUID of the entry point for the task. For `CALLBACK` and `OUTDIAL`, this must be an outbound entry point. For `EXECUTE_FLOW`, this must be an inbound entry point mapped to the flow to be triggered. **Migrating from v1:** Previously named `entryPointId`.",
+            "example": "aef6455f-ccd6-4261-bb00-e80f845c01b0"
+          },
+          "outboundType": {
+            "type": "string",
+            "description": "The outbound type for the task. Use `OUTDIAL` when the agent needs to make an outbound call to the customer. Use `CALLBACK` when scheduling a callback — `callback` field is required. Use `EXECUTE_FLOW` to trigger a predefined flow through an inbound entry point. Use `RECORD_GREETING` to record a personalized agent greeting.",
+            "enum": [
+              "CALLBACK",
+              "OUTDIAL",
+              "EXECUTE_FLOW",
+              "RECORD_GREETING"
+            ],
+            "example": "CALLBACK"
+          },
+          "callback": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CallbackParams"
+              }
+            ],
+            "nullable": true,
+            "description": "Required when `outboundType` is `CALLBACK`. Must be omitted or `null` for `OUTDIAL`, `EXECUTE_FLOW`, and `RECORD_GREETING`. When provided, `type` must be `immediate` and `origin` must be `web`. **Migrating from v1:** Previously a top-level `callback` object with fields `callbackType` and `callbackOrigin`; now nested under `channelParams`."
+          },
+          "sipHeaders": {
+            "type": "object",
+            "nullable": true,
+            "description": "Optional map of SIP headers forwarded to the telephony infrastructure for the call. Supports up to 20 headers (selected alphabetically if more than 20 are provided). Each key is converted to lowercase with hyphens retained. The payload is restricted to 1100 bytes to comply with RFC 3261 (UDP). Header values are not logged to ensure PII protection. **Migrating from v1:** Previously named `customAttributes`.",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "example": {
+              "X-Correlation-Id": "12345"
+            }
+          }
+        }
+      },
+      "CallbackParams": {
+        "type": "object",
+        "description": "Callback parameters for telephony tasks.",
+        "required": [
+          "type",
+          "origin"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Callback execution mode. Currently only `immediate` is supported. **Migrating from v1:** Previously named `callbackType`.",
+            "enum": [
+              "immediate"
+            ],
+            "example": "immediate"
+          },
+          "origin": {
+            "type": "string",
+            "description": "Channel that originated the callback request. The supported value is `web`. **Migrating from v1:** Previously named `callbackOrigin`.",
+            "enum": [
+              "web"
+            ],
+            "example": "web"
+          },
+          "number": {
+            "type": "string",
+            "nullable": true,
+            "description": "Optional callback number. Provided when the callback flow supplies a specific number to dial back.",
+            "example": "+19780000000"
           }
         }
       },
