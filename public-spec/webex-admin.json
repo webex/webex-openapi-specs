@@ -27836,7 +27836,7 @@
           },
           "email": {
             "type": "string",
-            "description": "Email of the user. Either Email or id is required in managedBy field",
+            "description": "Email of the user.",
             "example": "user@example.com"
           },
           "roles": {
@@ -32172,7 +32172,7 @@
           },
           "managedBy": {
             "type": "array",
-            "description": "Administrators of customer groups.",
+            "description": "Administrators of customer groups. Either `id` or `email` must be provided.",
             "items": {
               "$ref": "#/components/schemas/ManagedBy"
             }
@@ -32564,7 +32564,7 @@
       "AddManagedBy": {
         "type": "object",
         "additionalProperties": false,
-        "description": "Schema for adding an admin. Either 'id' or 'email' must be provided.",
+        "description": "Schema for adding an admin. Either `id` or `email` must be provided.",
         "properties": {
           "orgId": {
             "type": "string",
@@ -32604,7 +32604,7 @@
       "DeleteManagedBy": {
         "type": "object",
         "additionalProperties": false,
-        "description": "Schema for deleting an admin. Either 'id' or 'email' must be provided.",
+        "description": "Schema for deleting an admin. Either `id` or `email` must be provided.",
         "properties": {
           "orgId": {
             "type": "string",
