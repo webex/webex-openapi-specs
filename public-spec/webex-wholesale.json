@@ -8730,6 +8730,7 @@
           "connected_with_issues",
           "offline_expired",
           "activating",
+          "pending",
           "unknown",
           "offline_deep_sleep"
         ],
