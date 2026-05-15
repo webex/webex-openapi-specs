@@ -87442,7 +87442,7 @@
       },
       "Telephony": {
         "type": "object",
-        "description": "Request body to create an outbound `telephony` task routed through a configured outdial entry point. `outdialEntryPointId` is required. When `callback` is provided, its `type` must be `immediate` and `origin` must be `web`.\n\n**Migrating from v1:** The following fields have been renamed or restructured — `entryPointId` → `channelParams.outdialEntryPointId`; `destination` (string) → `destination.id`; `origin` (string) → `origin.id`; `attributes` → `globalVariables`; `customAttributes` (SIP headers) → `channelParams.sipHeaders`; `mediaType` → `channelType`; `callback.callbackOrigin` → `channelParams.callback.origin`; `callback.callbackType` → `channelParams.callback.type`.",
+        "description": "Request body to create an outbound `telephony` task routed through a configured entry point. `entryPointId` is required. When `callback` is provided, its `type` must be `immediate` and `origin` must be `web`.\n\n**Migrating from v1:** The following fields have been renamed or restructured — `entryPointId` → `channelParams.entryPointId`; `destination` (string) → `destination.id`; `origin` (string) → `origin.id`; `attributes` → `globalVariables`; `customAttributes` (SIP headers) → `channelParams.sipHeaders`; `mediaType` → `channelType`; `callback.callbackOrigin` → `channelParams.callback.origin`; `callback.callbackType` → `channelParams.callback.type`.",
         "required": [
           "origin",
           "destination",
@@ -87532,7 +87532,7 @@
           "channelType": "telephony",
           "channelParams": {
             "type": "telephony",
-            "outdialEntryPointId": "aef6455f-ccd6-4261-bb00-e80f845c01b0",
+            "entryPointId": "aef6455f-ccd6-4261-bb00-e80f845c01b0",
             "outboundType": "CALLBACK",
             "callback": {
               "type": "immediate",
@@ -87547,7 +87547,7 @@
         "description": "Telephony channel parameters.",
         "required": [
           "type",
-          "outdialEntryPointId",
+          "entryPointId",
           "outboundType"
         ],
         "properties": {
@@ -87559,9 +87559,9 @@
             "description": "Must be `telephony` for telephony channel parameters.",
             "example": "telephony"
           },
-          "outdialEntryPointId": {
+          "entryPointId": {
             "type": "string",
-            "description": "UUID of the entry point for the task. For `CALLBACK` and `OUTDIAL`, this must be an outbound entry point. For `EXECUTE_FLOW`, this must be an inbound entry point mapped to the flow to be triggered. **Migrating from v1:** Previously named `entryPointId`.",
+            "description": "UUID of the entry point for the task. For `CALLBACK` and `OUTDIAL`, this must be an outbound entry point. For `EXECUTE_FLOW`, this must be an inbound entry point mapped to the flow to be triggered. **Migrating from v1:** Previously a top-level field, now nested under `channelParams`.",
             "example": "aef6455f-ccd6-4261-bb00-e80f845c01b0"
           },
           "outboundType": {
