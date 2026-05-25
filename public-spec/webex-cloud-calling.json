@@ -16424,7 +16424,8 @@
                 "enabled": true,
                 "notifications": {
                   "enabled": true,
-                  "destination": "julie@example.com"
+                  "destination": "julie@example.com",
+                  "smsDestination": "+12025551212"
                 },
                 "sendAllCalls": {
                   "enabled": true
@@ -16490,7 +16491,8 @@
                   },
                   "notifications": {
                     "enabled": true,
-                    "destination": "julie@example.com"
+                    "destination": "julie@example.com",
+                    "smsDestination": "+12025551212"
                   },
                   "transferToNumber": {
                     "enabled": false
@@ -16646,7 +16648,8 @@
                 "enabled": true,
                 "notifications": {
                   "enabled": true,
-                  "destination": "julie@example.com"
+                  "destination": "julie@example.com",
+                  "smsDestination": "+12025551212"
                 },
                 "sendAllCalls": {
                   "enabled": true
@@ -16704,7 +16707,8 @@
                   },
                   "notifications": {
                     "enabled": true,
-                    "destination": "julie@example.com"
+                    "destination": "julie@example.com",
+                    "smsDestination": "+12025551212"
                   },
                   "transferToNumber": {
                     "enabled": false
@@ -85760,7 +85764,8 @@
                   },
                   "notifications": {
                     "enabled": true,
-                    "destination": "julie@example.com"
+                    "destination": "julie@example.com",
+                    "smsDestination": "+12025551212"
                   },
                   "transferToNumber": {
                     "enabled": false
@@ -85943,7 +85948,8 @@
                 "enabled": true,
                 "notifications": {
                   "enabled": true,
-                  "destination": "julie@example.com"
+                  "destination": "julie@example.com",
+                  "smsDestination": "+12025551212"
                 },
                 "sendAllCalls": {
                   "enabled": true
@@ -102399,7 +102405,8 @@
                   },
                   "notifications": {
                     "enabled": true,
-                    "destination": "julie@example.com"
+                    "destination": "julie@example.com",
+                    "smsDestination": "+12025551212"
                   },
                   "transferToNumber": {
                     "enabled": false
@@ -102583,7 +102590,8 @@
                 "enabled": true,
                 "notifications": {
                   "enabled": true,
-                  "destination": "julie@example.com"
+                  "destination": "julie@example.com",
+                  "smsDestination": "+12025551212"
                 },
                 "sendAllCalls": {
                   "enabled": true
@@ -110970,7 +110978,8 @@
                   },
                   "notifications": {
                     "enabled": true,
-                    "destination": "julie@example.com"
+                    "destination": "julie@example.com",
+                    "smsDestination": "+12025551212"
                   },
                   "transferToNumber": {
                     "enabled": false
@@ -111144,7 +111153,8 @@
                 "enabled": true,
                 "notifications": {
                   "enabled": true,
-                  "destination": "julie@example.com"
+                  "destination": "julie@example.com",
+                  "smsDestination": "+12025551212"
                 },
                 "sendAllCalls": {
                   "enabled": true
@@ -130475,12 +130485,17 @@
               "enabled": {
                 "type": "boolean",
                 "example": true,
-                "description": "Send of unanswered calls to voicemail is enabled or disabled."
+                "description": "Notifications for voicemails will be sent if enabled."
               },
               "destination": {
                 "type": "string",
-                "example": "2025551212@txt.att.net",
-                "description": "Email address to which the notification will be sent. For text messages, use an email to text message gateway like `2025551212@txt.example.net`."
+                "example": "julie@example.com",
+                "description": "Email address for notification delivery. For US/Canada text messages, use the `smsDestination` field rather than providing a SMS gateway address like `12025551212@txt.example.net` here."
+              },
+              "smsDestination": {
+                "type": "string",
+                "example": "+12025551212",
+                "description": "SMS destination for notification delivery. Must be a US or Canada phone number in E.164 format (e.g., +12025551212)."
               }
             },
             "description": "Settings for notifications when there are any new voicemails."
@@ -130648,12 +130663,17 @@
               "enabled": {
                 "type": "boolean",
                 "example": true,
-                "description": "Notifications for voicemails will be sent."
+                "description": "Notifications for voicemails will be sent if enabled. At least one of the destination or smsDestination fields must be configured when enabled."
               },
               "destination": {
                 "type": "string",
-                "example": "2025551212@txt.example.net",
-                "description": "Email address to which the notification will be sent. For text messages, use an email to text message gateway like `2025551212@txt.att.net`."
+                "example": "julie@example.com",
+                "description": "Email address for notification delivery. For US/Canada text messages, use the `smsDestination` field rather than providing a SMS gateway address like `12025551212@txt.example.net` here."
+              },
+              "smsDestination": {
+                "type": "string",
+                "example": "+12025551212",
+                "description": "SMS destination for notification delivery. Must be a US or Canada phone number in E.164 format (e.g., +12025551212)."
               }
             },
             "description": "Settings for notifications when there are any new voicemails."
