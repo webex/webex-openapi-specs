@@ -148324,6 +148324,946 @@
           }
         }
       },
+      "BulkDeleteDnisRequest": {
+        "type": "object",
+        "required": [
+          "items"
+        ],
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 99,
+            "example": [
+              "Y2lzY29zcGFyazovL3VzL0ROSVMvZTQ0NTE5OWEtNzlkYS00NWE1LTkyY2EtNDI1YzRmMzA0ZDk5"
+            ],
+            "description": "Array of DNIS IDs to be deleted."
+          }
+        }
+      },
+      "AvailableNumbersResponse": {
+        "type": "object",
+        "example": {
+          "phoneNumbers": [
+            {
+              "phoneNumber": "+12134567895",
+              "state": "ACTIVE",
+              "isMainNumber": false,
+              "telephonyType": "PSTN_NUMBER",
+              "tollFreeNumber": false,
+              "isServiceNumber": false
+            }
+          ]
+        },
+        "properties": {
+          "phoneNumbers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AvailablePhoneNumber"
+            },
+            "description": "List of available phone numbers.",
+            "example": [
+              {
+                "phoneNumber": "+12134567895",
+                "state": "ACTIVE",
+                "isMainNumber": false,
+                "telephonyType": "PSTN_NUMBER",
+                "tollFreeNumber": false,
+                "isServiceNumber": false
+              }
+            ]
+          }
+        }
+      },
+      "AvailablePhoneNumber": {
+        "type": "object",
+        "properties": {
+          "phoneNumber": {
+            "type": "string",
+            "example": "+12134567895",
+            "description": "The phone number."
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "INACTIVE"
+            ],
+            "example": "ACTIVE",
+            "description": "Defines whether the number is active or not."
+          },
+          "isMainNumber": {
+            "type": "boolean",
+            "example": false,
+            "description": "Flag to indicate if the number is used as location main number."
+          },
+          "telephonyType": {
+            "type": "string",
+            "example": "PSTN_NUMBER",
+            "description": "Define type of number. Currently API supports only PSTN_NUMBER."
+          },
+          "tollFreeNumber": {
+            "type": "boolean",
+            "example": false,
+            "description": "Flag to indicate if the number is toll free."
+          },
+          "isServiceNumber": {
+            "type": "boolean",
+            "example": false,
+            "description": "Flag to indicate if the number is a Service Number."
+          }
+        }
+      },
+      "DnisObject": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "ringPattern",
+          "customDnisAnnouncementSettingsEnabled"
+        ],
+        "example": {
+          "id": "Y2lzY29zcGFyazovL3VzL0ROSVMvZTQ0NTE5OWEtNzlkYS00NWE1LTkyY2EtNDI1YzRmMzA0ZDk5",
+          "name": "Support Line",
+          "phoneNumber": "+15551234567",
+          "extension": "1000",
+          "routingPrefix": "8501",
+          "esn": "85011000",
+          "ringPattern": "NORMAL",
+          "customDnisAnnouncementSettingsEnabled": false
+        },
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "Y2lzY29zcGFyazovL3VzL0ROSVMvZTQ0NTE5OWEtNzlkYS00NWE1LTkyY2EtNDI1YzRmMzA0ZDk5",
+            "description": "Unique identifier for the DNIS."
+          },
+          "name": {
+            "type": "string",
+            "example": "Support Line",
+            "description": "Name of the DNIS."
+          },
+          "phoneNumber": {
+            "type": "string",
+            "example": "+15551234567",
+            "description": "Phone number of the DNIS."
+          },
+          "extension": {
+            "type": "string",
+            "example": "1000",
+            "description": "Extension of the DNIS."
+          },
+          "routingPrefix": {
+            "type": "string",
+            "example": "8501",
+            "description": "Routing prefix (location dialing code) of the DNIS."
+          },
+          "esn": {
+            "type": "string",
+            "example": "85011000",
+            "description": "Enterprise Significant Number (ESN) of the DNIS."
+          },
+          "ringPattern": {
+            "type": "string",
+            "enum": [
+              "NORMAL",
+              "LONG_LONG",
+              "SHORT_SHORT_LONG",
+              "SHORT_LONG_SHORT"
+            ],
+            "example": "NORMAL",
+            "description": "Ring pattern of the DNIS."
+          },
+          "customDnisAnnouncementSettingsEnabled": {
+            "type": "boolean",
+            "example": false,
+            "description": "Use custom announcement settings for the DNIS. Enable custom announcement settings using Modify DNIS API. Modify custom announcement settings using Modify DNIS announcements API."
+          }
+        }
+      },
+      "CreateDnisRequest": {
+        "type": "object",
+        "required": [
+          "name",
+          "ringPattern"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40,
+            "example": "Support Line",
+            "description": "Name of the DNIS. Must be unique across the call queue."
+          },
+          "phoneNumber": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 23,
+            "example": "+15551234567",
+            "description": "Phone number of the DNIS. Must be a valid phone number from the same location. Either phoneNumber or extension is required."
+          },
+          "extension": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 20,
+            "example": "1000",
+            "description": "Extension of the DNIS. Either phoneNumber or extension is required."
+          },
+          "ringPattern": {
+            "type": "string",
+            "enum": [
+              "NORMAL",
+              "LONG_LONG",
+              "SHORT_SHORT_LONG",
+              "SHORT_LONG_SHORT"
+            ],
+            "example": "NORMAL",
+            "description": "Ring pattern of the DNIS."
+          }
+        }
+      },
+      "ModifyDnisRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40,
+            "example": "Support Line",
+            "description": "Name of the DNIS. Must be unique across the call queue."
+          },
+          "phoneNumber": {
+            "type": "string",
+            "maxLength": 23,
+            "nullable": true,
+            "example": "+15551234567",
+            "description": "Phone number of the DNIS. Set to `null` to remove the phone number."
+          },
+          "extension": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 20,
+            "nullable": true,
+            "example": "1000",
+            "description": "Extension of the DNIS. Set to `null` to remove the extension."
+          },
+          "ringPattern": {
+            "type": "string",
+            "enum": [
+              "NORMAL",
+              "LONG_LONG",
+              "SHORT_SHORT_LONG",
+              "SHORT_LONG_SHORT"
+            ],
+            "example": "NORMAL",
+            "description": "Ring pattern of the DNIS."
+          },
+          "customDnisAnnouncementSettingsEnabled": {
+            "type": "boolean",
+            "example": false,
+            "description": "Use custom announcement settings for the DNIS."
+          }
+        }
+      },
+      "DnisSettings": {
+        "type": "object",
+        "required": [
+          "distinctiveRingingEnabled",
+          "displayDnisNameAndNumberEnabled"
+        ],
+        "example": {
+          "distinctiveRingingEnabled": true,
+          "displayDnisNameAndNumberEnabled": true
+        },
+        "properties": {
+          "distinctiveRingingEnabled": {
+            "type": "boolean",
+            "example": true,
+            "description": "Whether distinctive ringing is enabled for the queue."
+          },
+          "displayDnisNameAndNumberEnabled": {
+            "type": "boolean",
+            "example": true,
+            "description": "Whether the DNIS name and number is displayed to agents."
+          }
+        }
+      },
+      "ModifyDnisSettings": {
+        "type": "object",
+        "properties": {
+          "distinctiveRingingEnabled": {
+            "type": "boolean",
+            "example": true,
+            "description": "Whether distinctive ringing is enabled for the queue."
+          },
+          "displayDnisNameAndNumberEnabled": {
+            "type": "boolean",
+            "example": true,
+            "description": "Whether the DNIS name and number is displayed to agents."
+          }
+        }
+      },
+      "AudioAnnouncementFile": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "Y2lzY29zcGFyazovL3VzL0FOTk9VTkNFTUVOVC9jZWRkODcwYS1lMTkzLTQxNmQtYmM3OS1mNzkyYmUyMzlhOGI",
+            "description": "Announcement file ID."
+          },
+          "fileName": {
+            "type": "string",
+            "example": "AUDIO_FILE.wav",
+            "description": "Name of the announcement file."
+          },
+          "mediaFileType": {
+            "type": "string",
+            "enum": [
+              "WAV"
+            ],
+            "example": "WAV",
+            "description": "Media file type of the announcement."
+          },
+          "level": {
+            "type": "string",
+            "enum": [
+              "ORGANIZATION",
+              "LOCATION",
+              "ENTITY"
+            ],
+            "example": "ORGANIZATION",
+            "description": "Level at which the announcement is defined."
+          },
+          "isTextToSpeech": {
+            "type": "boolean",
+            "example": false,
+            "description": "Whether the file is a text-to-speech file."
+          }
+        }
+      },
+      "MohMessageSource": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "example": true,
+            "description": "Whether the source is enabled."
+          },
+          "greeting": {
+            "type": "string",
+            "enum": [
+              "DEFAULT",
+              "CUSTOM",
+              "PLAYLIST"
+            ],
+            "example": "DEFAULT",
+            "description": "The greeting type."
+          },
+          "audioAnnouncementFiles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AudioAnnouncementFile"
+            },
+            "description": "List of audio announcement files.",
+            "example": [
+              {
+                "id": "Y2lzY29zcGFyazovL3VzL0FOTk9VTkNFTUVOVC9jZWRkODcwYS1lMTkzLTQxNmQtYmM3OS1mNzkyYmUyMzlhOGI",
+                "fileName": "AUDIO_FILE.wav",
+                "mediaFileType": "WAV",
+                "level": "ORGANIZATION",
+                "isTextToSpeech": false
+              }
+            ]
+          },
+          "audioPlaylistId": {
+            "type": "string",
+            "example": "Y2lzY29zcGFyazovL3VzL1BMQVlMSVNULzEyMzQ1Njc4OTBhYmNkZWY",
+            "description": "Audio playlist ID."
+          },
+          "audioPlaylistName": {
+            "type": "string",
+            "example": "Default Playlist",
+            "description": "Audio playlist name."
+          }
+        }
+      },
+      "AudioAnnouncementFileModify": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "Y2lzY29zcGFyazovL3VzL0FOTk9VTkNFTUVOVC9jZWRkODcwYS1lMTkzLTQxNmQtYmM3OS1mNzkyYmUyMzlhOGI",
+            "description": "Announcement file ID."
+          },
+          "fileName": {
+            "type": "string",
+            "example": "AUDIO_FILE.wav",
+            "description": "Name of the announcement file."
+          },
+          "mediaFileType": {
+            "type": "string",
+            "enum": [
+              "WAV"
+            ],
+            "example": "WAV",
+            "description": "Media file type of the announcement."
+          },
+          "level": {
+            "type": "string",
+            "enum": [
+              "ORGANIZATION",
+              "LOCATION",
+              "ENTITY"
+            ],
+            "example": "ORGANIZATION",
+            "description": "Level at which the announcement is defined."
+          }
+        }
+      },
+      "MohMessageSourceModify": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "example": true,
+            "description": "Whether the source is enabled."
+          },
+          "greeting": {
+            "type": "string",
+            "enum": [
+              "DEFAULT",
+              "CUSTOM"
+            ],
+            "example": "DEFAULT",
+            "description": "The greeting type."
+          },
+          "audioAnnouncementFiles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AudioAnnouncementFileModify"
+            },
+            "description": "List of audio announcement files.",
+            "example": [
+              {
+                "id": "Y2lzY29zcGFyazovL3VzL0FOTk9VTkNFTUVOVC9jZWRkODcwYS1lMTkzLTQxNmQtYmM3OS1mNzkyYmUyMzlhOGI",
+                "fileName": "AUDIO_FILE.wav",
+                "mediaFileType": "WAV",
+                "level": "ORGANIZATION"
+              }
+            ]
+          },
+          "audioPlaylistId": {
+            "type": "string",
+            "example": "Y2lzY29zcGFyazovL3VzL1BMQVlMSVNULzEyMzQ1Njc4OTBhYmNkZWY",
+            "description": "Audio playlist ID."
+          }
+        }
+      },
+      "DnisAnnouncementsGet": {
+        "type": "object",
+        "example": {
+          "customDnisAnnouncementSettingsEnabled": true,
+          "welcomeMessage": {
+            "enabled": true,
+            "alwaysEnabled": false,
+            "greeting": "DEFAULT"
+          },
+          "comfortMessage": {
+            "enabled": true,
+            "timeBetweenMessages": 30,
+            "greeting": "DEFAULT"
+          },
+          "comfortMessageBypass": {
+            "enabled": false,
+            "callWaitingAgeThreshold": 30,
+            "greeting": "DEFAULT"
+          },
+          "mohMessage": {
+            "normalSource": {
+              "enabled": true,
+              "greeting": "DEFAULT"
+            },
+            "alternateSource": {
+              "enabled": false,
+              "greeting": "DEFAULT"
+            }
+          },
+          "waitMessage": {
+            "enabled": false,
+            "waitMode": "TIME",
+            "handlingTime": 100,
+            "defaultHandlingTime": 5,
+            "queuePosition": 100,
+            "highVolumeMessageEnabled": false,
+            "estimatedWaitingTime": 10,
+            "callbackOptionEnabled": false,
+            "minimumEstimatedCallbackTime": 30,
+            "internationalCallbackEnabled": false,
+            "playUpdatedEstimatedWaitMessage": false
+          },
+          "whisperMessage": {
+            "enabled": false,
+            "greeting": "DEFAULT"
+          }
+        },
+        "properties": {
+          "customDnisAnnouncementSettingsEnabled": {
+            "type": "boolean",
+            "example": true,
+            "description": "Whether custom DNIS announcement settings are enabled for this DNIS."
+          },
+          "welcomeMessage": {
+            "type": "object",
+            "example": {
+              "enabled": true,
+              "alwaysEnabled": false,
+              "greeting": "DEFAULT"
+            },
+            "properties": {
+              "enabled": {
+                "type": "boolean",
+                "description": "Whether the welcome message is enabled."
+              },
+              "alwaysEnabled": {
+                "type": "boolean",
+                "description": "Whether to always play the welcome message."
+              },
+              "greeting": {
+                "type": "string",
+                "enum": [
+                  "DEFAULT",
+                  "CUSTOM"
+                ],
+                "description": "The greeting type."
+              },
+              "audioAnnouncementFiles": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AudioAnnouncementFile"
+                },
+                "description": "List of audio announcement files."
+              }
+            },
+            "description": "Welcome message settings."
+          },
+          "comfortMessage": {
+            "type": "object",
+            "example": {
+              "enabled": true,
+              "timeBetweenMessages": 30,
+              "greeting": "DEFAULT"
+            },
+            "properties": {
+              "enabled": {
+                "type": "boolean",
+                "description": "Whether the comfort message is enabled."
+              },
+              "timeBetweenMessages": {
+                "type": "integer",
+                "description": "Time between comfort messages in seconds."
+              },
+              "greeting": {
+                "type": "string",
+                "enum": [
+                  "DEFAULT",
+                  "CUSTOM"
+                ],
+                "description": "The greeting type."
+              },
+              "audioAnnouncementFiles": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AudioAnnouncementFile"
+                },
+                "description": "List of audio announcement files."
+              }
+            },
+            "description": "Comfort message settings."
+          },
+          "comfortMessageBypass": {
+            "type": "object",
+            "example": {
+              "enabled": false,
+              "callWaitingAgeThreshold": 30,
+              "greeting": "DEFAULT"
+            },
+            "properties": {
+              "enabled": {
+                "type": "boolean",
+                "description": "Whether the comfort message bypass is enabled."
+              },
+              "callWaitingAgeThreshold": {
+                "type": "integer",
+                "description": "Call waiting age threshold in seconds."
+              },
+              "greeting": {
+                "type": "string",
+                "enum": [
+                  "DEFAULT",
+                  "CUSTOM"
+                ],
+                "description": "The greeting type."
+              },
+              "audioAnnouncementFiles": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AudioAnnouncementFile"
+                },
+                "description": "List of audio announcement files."
+              }
+            },
+            "description": "Comfort message bypass settings."
+          },
+          "mohMessage": {
+            "type": "object",
+            "description": "Music on hold message settings.",
+            "example": {
+              "normalSource": {
+                "enabled": true,
+                "greeting": "DEFAULT"
+              },
+              "alternateSource": {
+                "enabled": false,
+                "greeting": "DEFAULT"
+              }
+            },
+            "properties": {
+              "normalSource": {
+                "$ref": "#/components/schemas/MohMessageSource"
+              },
+              "alternateSource": {
+                "$ref": "#/components/schemas/MohMessageSource"
+              }
+            }
+          },
+          "waitMessage": {
+            "type": "object",
+            "description": "Wait message settings.",
+            "example": {
+              "enabled": false,
+              "waitMode": "TIME"
+            },
+            "properties": {
+              "enabled": {
+                "type": "boolean",
+                "description": "Whether the wait message is enabled."
+              },
+              "waitMode": {
+                "type": "string",
+                "enum": [
+                  "TIME",
+                  "POSITION"
+                ],
+                "description": "Wait mode for the message."
+              },
+              "handlingTime": {
+                "type": "integer",
+                "description": "Maximum waiting time in minutes."
+              },
+              "defaultHandlingTime": {
+                "type": "integer",
+                "description": "Default handling time in minutes."
+              },
+              "queuePosition": {
+                "type": "integer",
+                "description": "Maximum queue position."
+              },
+              "highVolumeMessageEnabled": {
+                "type": "boolean",
+                "description": "Whether high volume message is enabled."
+              },
+              "estimatedWaitingTime": {
+                "type": "integer",
+                "description": "Time between estimated wait message updates in seconds."
+              },
+              "callbackOptionEnabled": {
+                "type": "boolean",
+                "description": "Whether callback option is enabled."
+              },
+              "minimumEstimatedCallbackTime": {
+                "type": "integer",
+                "description": "Minimum estimated callback time in minutes."
+              },
+              "internationalCallbackEnabled": {
+                "type": "boolean",
+                "description": "Whether international callback is enabled."
+              },
+              "playUpdatedEstimatedWaitMessage": {
+                "type": "boolean",
+                "description": "Whether to play updated estimated wait message."
+              }
+            }
+          },
+          "whisperMessage": {
+            "type": "object",
+            "description": "Whisper message settings.",
+            "example": {
+              "enabled": false,
+              "greeting": "DEFAULT"
+            },
+            "properties": {
+              "enabled": {
+                "type": "boolean",
+                "description": "Whether the whisper message is enabled."
+              },
+              "greeting": {
+                "type": "string",
+                "enum": [
+                  "DEFAULT",
+                  "CUSTOM"
+                ],
+                "description": "The greeting type."
+              },
+              "audioAnnouncementFiles": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AudioAnnouncementFile"
+                },
+                "description": "List of audio announcement files."
+              }
+            }
+          }
+        }
+      },
+      "DnisAnnouncementsModify": {
+        "type": "object",
+        "description": "Request body for modifying DNIS announcement settings. All fields are optional.",
+        "example": {
+          "customDnisAnnouncementSettingsEnabled": true,
+          "welcomeMessage": {
+            "enabled": true,
+            "greeting": "DEFAULT"
+          },
+          "comfortMessage": {
+            "enabled": true,
+            "timeBetweenMessages": 30,
+            "greeting": "DEFAULT"
+          }
+        },
+        "properties": {
+          "customDnisAnnouncementSettingsEnabled": {
+            "type": "boolean",
+            "example": true,
+            "description": "Whether custom DNIS announcement settings are enabled for this DNIS."
+          },
+          "welcomeMessage": {
+            "type": "object",
+            "example": {
+              "enabled": true,
+              "greeting": "DEFAULT"
+            },
+            "properties": {
+              "enabled": {
+                "type": "boolean",
+                "description": "Whether the welcome message is enabled."
+              },
+              "alwaysEnabled": {
+                "type": "boolean",
+                "description": "Whether to always play the welcome message."
+              },
+              "greeting": {
+                "type": "string",
+                "enum": [
+                  "DEFAULT",
+                  "CUSTOM"
+                ],
+                "description": "The greeting type."
+              },
+              "audioAnnouncementFiles": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AudioAnnouncementFileModify"
+                },
+                "description": "List of audio announcement files."
+              }
+            },
+            "description": "Welcome message settings."
+          },
+          "comfortMessage": {
+            "type": "object",
+            "example": {
+              "enabled": true,
+              "timeBetweenMessages": 30,
+              "greeting": "DEFAULT"
+            },
+            "properties": {
+              "enabled": {
+                "type": "boolean",
+                "description": "Whether the comfort message is enabled."
+              },
+              "timeBetweenMessages": {
+                "type": "integer",
+                "minimum": 10,
+                "maximum": 600,
+                "description": "Time between comfort messages in seconds."
+              },
+              "greeting": {
+                "type": "string",
+                "enum": [
+                  "DEFAULT",
+                  "CUSTOM"
+                ],
+                "description": "The greeting type."
+              },
+              "audioAnnouncementFiles": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AudioAnnouncementFileModify"
+                },
+                "description": "List of audio announcement files."
+              }
+            },
+            "description": "Comfort message settings."
+          },
+          "comfortMessageBypass": {
+            "type": "object",
+            "example": {
+              "enabled": false,
+              "callWaitingAgeThreshold": 30,
+              "greeting": "DEFAULT"
+            },
+            "properties": {
+              "enabled": {
+                "type": "boolean",
+                "description": "Whether the comfort message bypass is enabled."
+              },
+              "callWaitingAgeThreshold": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 120,
+                "description": "Minimum call waiting age in seconds before bypass plays."
+              },
+              "greeting": {
+                "type": "string",
+                "enum": [
+                  "DEFAULT",
+                  "CUSTOM"
+                ],
+                "description": "The greeting type."
+              },
+              "audioAnnouncementFiles": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AudioAnnouncementFileModify"
+                },
+                "description": "List of audio announcement files."
+              }
+            },
+            "description": "Comfort message bypass settings."
+          },
+          "mohMessage": {
+            "type": "object",
+            "description": "Music on hold message settings.",
+            "example": {
+              "normalSource": {
+                "enabled": true,
+                "greeting": "DEFAULT"
+              },
+              "alternateSource": {
+                "enabled": false,
+                "greeting": "DEFAULT"
+              }
+            },
+            "properties": {
+              "normalSource": {
+                "$ref": "#/components/schemas/MohMessageSourceModify"
+              },
+              "alternateSource": {
+                "$ref": "#/components/schemas/MohMessageSourceModify"
+              }
+            }
+          },
+          "waitMessage": {
+            "type": "object",
+            "description": "Wait message settings.",
+            "example": {
+              "enabled": false,
+              "waitMode": "TIME"
+            },
+            "properties": {
+              "enabled": {
+                "type": "boolean",
+                "description": "Whether the wait message is enabled."
+              },
+              "waitMode": {
+                "type": "string",
+                "enum": [
+                  "TIME",
+                  "POSITION"
+                ],
+                "description": "Wait mode for the message."
+              },
+              "handlingTime": {
+                "type": "integer",
+                "description": "Maximum waiting time in minutes."
+              },
+              "defaultHandlingTime": {
+                "type": "integer",
+                "description": "Default handling time in minutes."
+              },
+              "queuePosition": {
+                "type": "integer",
+                "description": "Maximum queue position."
+              },
+              "highVolumeMessageEnabled": {
+                "type": "boolean",
+                "description": "Whether high volume message is enabled."
+              },
+              "estimatedWaitingTime": {
+                "type": "integer",
+                "description": "Time between estimated wait message updates in seconds."
+              },
+              "callbackOptionEnabled": {
+                "type": "boolean",
+                "description": "Whether callback option is enabled."
+              },
+              "minimumEstimatedCallbackTime": {
+                "type": "integer",
+                "description": "Minimum estimated callback time in minutes."
+              },
+              "internationalCallbackEnabled": {
+                "type": "boolean",
+                "description": "Whether international callback is enabled."
+              },
+              "playUpdatedEstimatedWaitMessage": {
+                "type": "boolean",
+                "description": "Whether to play updated estimated wait message."
+              }
+            }
+          },
+          "whisperMessage": {
+            "type": "object",
+            "description": "Whisper message settings.",
+            "example": {
+              "enabled": false,
+              "greeting": "DEFAULT"
+            },
+            "properties": {
+              "enabled": {
+                "type": "boolean",
+                "description": "Whether the whisper message is enabled."
+              },
+              "greeting": {
+                "type": "string",
+                "enum": [
+                  "DEFAULT",
+                  "CUSTOM"
+                ],
+                "description": "The greeting type."
+              },
+              "audioAnnouncementFiles": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AudioAnnouncementFileModify"
+                },
+                "description": "List of audio announcement files."
+              }
+            }
+          }
+        }
+      },
       "GetCallRecordingObject": {
         "type": "object",
         "required": [
