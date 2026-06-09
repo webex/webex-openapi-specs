@@ -61398,13 +61398,88 @@
             }
           },
           "400": {
-            "description": "Incorrect fields in request"
+            "description": "Bad Request"
           },
           "401": {
-            "description": "Invalid or absent Authorization header"
+            "description": "Unauthorized, Token is Invalid"
           },
           "403": {
-            "description": "Invalid OAuth 2.0 Bearer Token"
+            "description": "Forbidden Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service Unavailable"
+          }
+        }
+      }
+    },
+    "/v1/organization/{orgId}/getValidCampaignTimes": {
+      "get": {
+        "tags": [
+          "Campaign Manager"
+        ],
+        "summary": "Get Valid Campaign Times",
+        "description": "Gets valid campaign times for a campaign and agent. This request is accepted for asynchronous processing. Requires 'cjp:user','cjp.config_write' scope and one of the following roles: 'cjp.admin','id_full_admin','atlas-portal.partner.salesadmin','atlas-portal.partner.provision_admin' for authorization.",
+        "operationId": "getValidCampaignTimesRoute",
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "path",
+            "description": "The organization ID for which valid campaign times are being requested.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          {
+            "name": "campaignId",
+            "in": "query",
+            "description": "The campaign ID for which valid campaign times are being requested.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "SalesCampaign_Prog"
+          },
+          {
+            "name": "agentId",
+            "in": "query",
+            "description": "The agent ID for whom valid campaign times are being requested.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "example": "123e4567-e89b-12d3-a456-426614174001"
+          },
+          {
+            "name": "trackingId",
+            "in": "query",
+            "description": "Optional tracking identifier for request tracing.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "example": "123e4567-e89b-12d3-a456-426614174002"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The valid campaign times request was accepted for processing."
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized, Token is Invalid"
+          },
+          "403": {
+            "description": "Forbidden Request"
           },
           "500": {
             "description": "Internal Server Error"
@@ -61456,13 +61531,13 @@
             "description": "The campaign was updated successfully"
           },
           "400": {
-            "description": "Incorrect fields in request"
+            "description": "Bad Request"
           },
           "401": {
-            "description": "Invalid or absent Authorization header"
+            "description": "Unauthorized, Token is Invalid"
           },
           "403": {
-            "description": "Invalid OAuth 2.0 Bearer Token"
+            "description": "Forbidden Request"
           },
           "500": {
             "description": "Internal Server Error"
@@ -61496,13 +61571,13 @@
             "description": "The campaign was stopped."
           },
           "400": {
-            "description": "Incorrect fields in request"
+            "description": "Bad Request"
           },
           "401": {
-            "description": "Invalid or absent Authorization header"
+            "description": "Unauthorized, Token is Invalid"
           },
           "403": {
-            "description": "Invalid OAuth 2.0 Bearer Token"
+            "description": "Forbidden Request"
           },
           "500": {
             "description": "Internal Server Error"
@@ -90660,6 +90735,9 @@
             },
             "description": "(Optional) The list of preview actions to be disabled for the agent when a preview campaign record is offered. Can be empty if no action should be disabled, otherwise should be one of \"SKIP\", \"REMOVE\" or both. The default is an empty list",
             "example": "[\"SKIP\", \"REMOVE\"]"
+          },
+          "validCampaignTimes": {
+            "$ref": "#/components/schemas/ValidCampaignTimes"
           }
         }
       },
@@ -90808,7 +90886,204 @@
             },
             "description": "(Optional) The list of preview actions to be disabled for the agent when a preview campaign record is offered. The list can be empty if no action should be disabled, otherwise it can be either \"SKIP\" or \"REMOVE\" or both. The default is an empty list",
             "example": "[\"SKIP\", \"REMOVE\"]"
+          },
+          "validCampaignTimes": {
+            "$ref": "#/components/schemas/ValidCampaignTimes"
           }
+        }
+      },
+      "ShiftTime": {
+        "type": "object",
+        "required": [
+          "start",
+          "end"
+        ],
+        "properties": {
+          "start": {
+            "type": "string",
+            "pattern": "^([0-1][0-9]|2[0-3]):[0-5][0-9]$",
+            "description": "The start time of the shift in 24-hour format (HH:MM). Must be earlier than the end time.",
+            "example": "09:00"
+          },
+          "end": {
+            "type": "string",
+            "pattern": "^([0-1][0-9]|2[0-3]):[0-5][0-9]$",
+            "description": "The end time of the shift in 24-hour format (HH:MM). Must be later than the start time.",
+            "example": "17:00"
+          }
+        }
+      },
+      "DateOverride": {
+        "type": "object",
+        "required": [
+          "date",
+          "shiftTimes"
+        ],
+        "properties": {
+          "date": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+            "description": "The specific date for which the shift schedule should be overridden, in YYYY-MM-DD format.",
+            "example": "2025-08-15"
+          },
+          "shiftTimes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ShiftTime"
+            },
+            "minItems": 0,
+            "description": "The list of shift times that apply on this specific date, overriding the weekly schedule. An empty array indicates no shifts are scheduled for this date (e.g., holidays, company closures)."
+          }
+        }
+      },
+      "WeeklyShiftSchedule": {
+        "type": "object",
+        "required": [
+          "monday",
+          "tuesday",
+          "wednesday",
+          "thursday",
+          "friday",
+          "saturday",
+          "sunday"
+        ],
+        "properties": {
+          "monday": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ShiftTime"
+            },
+            "description": "List of shift times for Monday. Can be empty if no shifts are scheduled."
+          },
+          "tuesday": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ShiftTime"
+            },
+            "description": "List of shift times for Tuesday. Can be empty if no shifts are scheduled."
+          },
+          "wednesday": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ShiftTime"
+            },
+            "description": "List of shift times for Wednesday. Can be empty if no shifts are scheduled."
+          },
+          "thursday": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ShiftTime"
+            },
+            "description": "List of shift times for Thursday. Can be empty if no shifts are scheduled."
+          },
+          "friday": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ShiftTime"
+            },
+            "description": "List of shift times for Friday. Can be empty if no shifts are scheduled."
+          },
+          "saturday": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ShiftTime"
+            },
+            "description": "List of shift times for Saturday. Can be empty if no shifts are scheduled."
+          },
+          "sunday": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ShiftTime"
+            },
+            "description": "List of shift times for Sunday. Can be empty if no shifts are scheduled."
+          }
+        }
+      },
+      "ValidCampaignTimes": {
+        "type": "object",
+        "description": "(Optional) Defines the valid operating hours for the campaign based on a weekly schedule and optional date-specific overrides. The campaign will only be active during the specified time windows.",
+        "required": [
+          "timeZone",
+          "weeklySchedule"
+        ],
+        "properties": {
+          "timeZone": {
+            "type": "string",
+            "description": "The IANA timezone name (e.g., 'America/New_York') that defines the timezone for all shift times in the schedule. This timezone is used to interpret the start and end times in the weekly schedule and date overrides.",
+            "example": "America/New_York"
+          },
+          "weeklySchedule": {
+            "$ref": "#/components/schemas/WeeklyShiftSchedule",
+            "description": "The recurring weekly schedule that defines when the campaign should be active. Each day of the week can have multiple shift time ranges."
+          },
+          "dateOverrides": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DateOverride"
+            },
+            "description": "Optional list of date-specific schedule overrides that take precedence over the weekly schedule for particular dates (e.g., holidays, special events)."
+          }
+        },
+        "example": {
+          "timeZone": "America/New_York",
+          "weeklySchedule": {
+            "monday": [
+              {
+                "start": "09:00",
+                "end": "13:00"
+              },
+              {
+                "start": "14:00",
+                "end": "18:00"
+              }
+            ],
+            "tuesday": [
+              {
+                "start": "09:00",
+                "end": "17:00"
+              }
+            ],
+            "wednesday": [
+              {
+                "start": "10:00",
+                "end": "14:00"
+              }
+            ],
+            "thursday": [
+              {
+                "start": "09:00",
+                "end": "13:00"
+              },
+              {
+                "start": "14:00",
+                "end": "18:00"
+              }
+            ],
+            "friday": [
+              {
+                "start": "09:00",
+                "end": "12:00"
+              }
+            ],
+            "saturday": [
+              {
+                "start": "10:00",
+                "end": "15:00"
+              }
+            ],
+            "sunday": []
+          },
+          "dateOverrides": [
+            {
+              "date": "2025-08-15",
+              "shiftTimes": [
+                {
+                  "start": "11:00",
+                  "end": "16:00"
+                }
+              ]
+            }
+          ]
         }
       },
       "RecordingBodyParams": {
