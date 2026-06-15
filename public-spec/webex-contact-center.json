@@ -57466,7 +57466,7 @@
         ],
         "summary": "Create Task",
         "description": "This feature is currently in Beta. Contact your Cisco team if you want access to this feature.\n\nCreates a new contact center task using the v2 task contract. The request body must include a `channelType` discriminator to select the task variant — `workItem` for structured form tasks, `customMessaging` for conversational messaging tasks, or `telephony` for voice tasks.\n\nOn success, returns a `201` response containing the task ID, which can be used to track the task lifecycle.\n\nRequires `cjp:task_write` OAuth scope. For partner-initiated inbound tasks (`workItem`, `customMessaging`), the `cjp:task_write` scope must be present in the partner application's access token. When an authenticated agent initiates an outdial (`telephony`) task, ensure the `cjp:task_write` scope is included in the agent's access token.",
-        "operationId": "CreateTaskRouteV2",
+        "operationId": "createTaskRouteV2",
         "parameters": [
           {
             "name": "Authorization",
@@ -57630,7 +57630,7 @@
           "Tasks"
         ],
         "summary": "Append Task Message",
-        "description": "This feature is currently in Beta. Contact your Cisco team if you want access to this feature.\n\nAppends an inbound message to an existing `customMessaging` task. Use this API after the initial task has been created through Create Task. Requires `cjp:task_write` OAuth scope. For partner-initiated inbound message appends, the `cjp:task_write` scope must be present in the partner application's access token.\n\nOn success, returns a `202` response containing the append event identifier as `data.id`. Partners can use this identifier to correlate subsequent webhook delivery for the appended message.",
+        "description": "This feature is currently in Beta. Contact your Cisco team if you want access to this feature.\n\nAppends an inbound message to an existing `workItem` or `customMessaging` task. Use this API after the initial task has been created through Create Task. Requires `cjp:task_write` OAuth scope. For partner-initiated inbound message appends, the `cjp:task_write` scope must be present in the partner application's access token.\n\nOn success, returns a `202` response containing the append event identifier as `data.id`. Partners can use this identifier to correlate subsequent webhook delivery for the appended message.",
         "operationId": "appendTaskMessageV2",
         "parameters": [
           {
@@ -57656,13 +57656,30 @@
           }
         ],
         "requestBody": {
-          "description": "Request body to append a message to an existing `customMessaging` task.",
+          "description": "Request body to append a message to an existing `workItem` or `customMessaging` task.",
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/TaskMessageRequest"
               },
               "examples": {
+                "workItem": {
+                  "summary": "Append a workItem message",
+                  "value": {
+                    "mediaType": "workItem",
+                    "channelParams": {
+                      "type": "work-item-form",
+                      "message": {
+                        "aliasId": "alias-wi-001",
+                        "workItemData": {
+                          "name": "customer name",
+                          "email": "customer@domain.com"
+                        },
+                        "timestamp": 1732786800000
+                      }
+                    }
+                  }
+                },
                 "customMessagingText": {
                   "summary": "Append a customMessaging text message",
                   "value": {
@@ -86429,6 +86446,14 @@
       "CreateTaskResponse": {
         "description": "Response body after successfully requesting a task creation.",
         "type": "object",
+        "example": {
+          "meta": {
+            "orgId": "658d1102-8c11-4850-a809-d7a99cc1c22f"
+          },
+          "data": {
+            "id": "768d1102-8c11-4850-a809-d7a99cc1c22e"
+          }
+        },
         "required": [
           "meta",
           "data"
@@ -87466,23 +87491,20 @@
         }
       },
       "TaskMessageRequest": {
-        "type": "object",
-        "description": "Request body to append an inbound `customMessaging` message to an existing task. Custom Messaging must be enabled for the organization. The API returns `403` if the capability is unavailable.",
-        "required": [
-          "mediaType",
-          "channelParams"
-        ],
-        "properties": {
-          "mediaType": {
-            "type": "string",
-            "enum": [
-              "customMessaging"
-            ],
-            "description": "Media type for this request. Must be `customMessaging`.",
-            "example": "customMessaging"
+        "description": "Request body to append an inbound message to an existing `workItem` or `customMessaging` task.",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/WorkItemAppendTaskRequest"
           },
-          "channelParams": {
-            "$ref": "#/components/schemas/CustomMessagingParams"
+          {
+            "$ref": "#/components/schemas/CustomMessageAppendTaskRequest"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "mediaType",
+          "mapping": {
+            "workItem": "#/components/schemas/WorkItemAppendTaskRequest",
+            "customMessaging": "#/components/schemas/CustomMessageAppendTaskRequest"
           }
         }
       },
@@ -87531,6 +87553,50 @@
                 "example": "123e4567-e89b-12d3-a456-426614174000"
               }
             }
+          }
+        }
+      },
+      "WorkItemAppendTaskRequest": {
+        "title": "WorkItem",
+        "type": "object",
+        "description": "Request body to append an inbound `workItem` message to an existing task.",
+        "required": [
+          "mediaType",
+          "channelParams"
+        ],
+        "properties": {
+          "mediaType": {
+            "type": "string",
+            "enum": [
+              "workItem"
+            ],
+            "description": "Media type for this request. Must be `workItem`.",
+            "example": "workItem"
+          },
+          "channelParams": {
+            "$ref": "#/components/schemas/WorkItemParams"
+          }
+        }
+      },
+      "CustomMessageAppendTaskRequest": {
+        "title": "CustomMessaging",
+        "type": "object",
+        "description": "Request body to append an inbound `customMessaging` message to an existing task. Custom Messaging must be enabled for the organization. The API returns `403` if the capability is unavailable.",
+        "required": [
+          "mediaType",
+          "channelParams"
+        ],
+        "properties": {
+          "mediaType": {
+            "type": "string",
+            "enum": [
+              "customMessaging"
+            ],
+            "description": "Media type for this request. Must be `customMessaging`.",
+            "example": "customMessaging"
+          },
+          "channelParams": {
+            "$ref": "#/components/schemas/CustomMessagingParams"
           }
         }
       },
