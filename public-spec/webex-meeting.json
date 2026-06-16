@@ -22238,7 +22238,7 @@
                           "clusterId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DTFVTVEVSLzFlYjY1ZmRmLTk2NDMtNDE3Zi05OTc0LWFkNzJjYWUwZTEwZjpiMzdmNTgzYy1kZGRjLTQyOGItODJlNS1jYmU2ODFkYjQ5NjI=",
                           "clusterName": "San Jose",
                           "hostNameOrIp": "xyz.abc.com",
-                          "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMWViNjVmZGYtOTY0My00MTdmLTk5NzQtYWQ3MmNhZTBlMTBmOmMyNTk0YmY2NDFmZTRkNTFiZDg3YThiMjYxYzg3NWY1",
+                          "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMWViNjVmZGYtOTY0My00MTdmLTk5NzQtYWQ3MmNhZTBlMTBmOm1mX21nbXRAYzI1OTRiZjY0MWZlNGQ1MWJkODdhOGIyNjFjODc1ZjU=",
                           "availabilitySegments": [
                             {
                               "noOfOnlineNodes": 1,
@@ -22375,7 +22375,7 @@
                           "clusterId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DTFVTVEVSLzFlYjY1ZmRmLTk2NDMtNDE3Zi05OTc0LWFkNzJjYWUwZTEwZjpiMzdmNTgzYy1kZGRjLTQyOGItODJlNS1jYmU2ODFkYjQ5NjI=",
                           "clusterName": "San Jose",
                           "hostNameOrIp": "xyz.abc.com",
-                          "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMWViNjVmZGYtOTY0My00MTdmLTk5NzQtYWQ3MmNhZTBlMTBmOmMyNTk0YmY2NDFmZTRkNTFiZDg3YThiMjYxYzg3NWY1",
+                          "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMWViNjVmZGYtOTY0My00MTdmLTk5NzQtYWQ3MmNhZTBlMTBmOm1mX21nbXRAYzI1OTRiZjY0MWZlNGQ1MWJkODdhOGIyNjFjODc1ZjU=",
                           "availabilitySegments": [
                             {
                               "segmentStartTime": "2021-09-15T15:53:00Z",
@@ -22509,7 +22509,7 @@
                           "clusterName": "banglore",
                           "nodes": [
                             {
-                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
                               "hostNameOrIP": "abc.company.com",
                               "mhmTestResults": [
                                 {
@@ -22554,7 +22554,7 @@
                               ]
                             },
                             {
-                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
                               "hostNameOrIP": "xyz.company.com",
                               "mhmTestResults": [
                                 {
@@ -22605,7 +22605,7 @@
                           "clusterName": "sanjose",
                           "nodes": [
                             {
-                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
                               "hostNameOrIP": "abc.company.com",
                               "mhmTestResults": [
                                 {
@@ -22650,7 +22650,7 @@
                               ]
                             },
                             {
-                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
                               "hostNameOrIP": "xyz.company.com",
                               "mhmTestResults": [
                                 {
@@ -22827,7 +22827,7 @@
                           "clusterName": "sanjose",
                           "nodes": [
                             {
-                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
                               "hostNameOrIP": "abc.company.com",
                               "mhmTestResults": [
                                 {
@@ -22872,7 +22872,7 @@
                               ]
                             },
                             {
-                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
                               "hostNameOrIP": "xyz.company.com",
                               "mhmTestResults": [
                                 {
@@ -23049,7 +23049,7 @@
                           "clusterName": "sanjose",
                           "nodes": [
                             {
-                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
                               "hostNameOrIP": "xyz.company.com",
                               "mhmTestResults": [
                                 {
@@ -23160,7 +23160,7 @@
             "in": "query",
             "description": "Unique ID of the Video Mesh node.",
             "required": true,
-            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
             "schema": {
               "type": "string"
             }
@@ -23987,7 +23987,7 @@
                           "clusterName": "banglore",
                           "nodes": [
                             {
-                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
                               "hostNameOrIP": "xyz.company.com",
                               "testResults": [
                                 {
@@ -24056,7 +24056,7 @@
                               ]
                             },
                             {
-                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
                               "hostNameOrIP": "abc.company.com",
                               "testResults": [
                                 {
@@ -24131,7 +24131,7 @@
                           "clusterName": "sanjose",
                           "nodes": [
                             {
-                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
                               "hostNameOrIP": "xyz.company.com",
                               "testResults": [
                                 {
@@ -24200,7 +24200,7 @@
                               ]
                             },
                             {
-                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
                               "hostNameOrIP": "abc.company.com",
                               "testResults": [
                                 {
@@ -24401,7 +24401,7 @@
                           "clusterName": "banglore",
                           "nodes": [
                             {
-                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
                               "hostNameOrIP": "xyz.company.com",
                               "testResults": [
                                 {
@@ -24470,7 +24470,7 @@
                               ]
                             },
                             {
-                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
                               "hostNameOrIP": "abc.company.com",
                               "testResults": [
                                 {
@@ -24671,7 +24671,7 @@
                           "clusterName": "banglore",
                           "nodes": [
                             {
-                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
                               "hostNameOrIP": "xyz.company.com",
                               "testResults": [
                                 {
@@ -24806,7 +24806,7 @@
             "in": "query",
             "description": "Unique ID of the Video Mesh node.",
             "required": true,
-            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
             "schema": {
               "type": "string"
             }
@@ -25152,11 +25152,11 @@
                   "clusterId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DTFVTVEVSLzJjM2M5Zjk1LTczZDktNDQ2MC1hNjY4LTA0NzE2MmZmMWJhZDpmMWJmMGI1MC0yMDUyLTQ3ZmUtYjg3ZC01MTFjMmZlNzQ3MWI=",
                   "nodes": [
                     {
-                      "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+                      "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
                       "status": "Dispatched"
                     },
                     {
-                      "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOWUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFjOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGU5OTc4Zjk5MDJl",
+                      "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOWUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFjOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZTk5NzhmOTkwMmU=",
                       "status": "Dispatched"
                     }
                   ]
@@ -25234,8 +25234,8 @@
               "example": {
                 "type": "MediaHealthMonitorTest",
                 "nodes": [
-                  "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOWUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFjOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGU5OTc4Zjk5MDJk",
-                  "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOWUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFjOjE1NmRmNzg5Yzg1NTRhYmNhZGVmZ2U5OTc4Zjk5MDJk"
+                  "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOWUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFjOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZTk5NzhmOTkwMmQ=",
+                  "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOWUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFjOm1mX21nbXRAMTU2ZGY3ODljODU1NGFiY2FkZWZnZTk5NzhmOTkwMmQ="
                 ]
               },
               "schema": {
@@ -25263,7 +25263,7 @@
                   "clusterId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DTFVTVEVSLzJjM2M5Zjk1LTczZDktNDQ2MC1hNjY4LTA0NzE2MmZmMWJhZDpmMWJmMGI1MC0yMDUyLTQ3ZmUtYjg3ZC01MTFjMmZlNzQ3MWk=",
                   "nodes": [
                     {
-                      "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+                      "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
                       "status": "Dispatched"
                     }
                   ]
@@ -25329,7 +25329,7 @@
             "in": "path",
             "description": "Unique ID of the Video Mesh node.",
             "required": true,
-            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
             "schema": {
               "type": "string"
             }
@@ -25366,11 +25366,11 @@
                   "clusterId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DTFVTVEVSLzJjM2M5Zjk1LTczZDktNDQ2MC1hNjY4LTA0NzE2MmZmMWJhZDpmMWJmMGI1MC0yMDUyLTQ3ZmUtYjg3ZC01MTFjMmZlNzQ3MWI=",
                   "nodes": [
                     {
-                      "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+                      "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
                       "status": "Dispatched"
                     },
                     {
-                      "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOWUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFjOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGU5OTc4Zjk5MDJl",
+                      "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOWUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFjOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZTk5NzhmOTkwMmU=",
                       "status": "Dispatched"
                     }
                   ]
@@ -25467,7 +25467,7 @@
                           "clusterName": "test_manual",
                           "nodes": [
                             {
-                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
                               "hostNameOrIP": "abc.company.com",
                               "mhmTestResults": [
                                 {
@@ -25590,7 +25590,7 @@
                           "clusterName": "sanjose",
                           "nodes": [
                             {
-                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
                               "hostNameOrIP": "abc.company.com",
                               "testResults": [
                                 {
@@ -25675,7 +25675,7 @@
                               ]
                             },
                             {
-                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
                               "hostNameOrIP": "xyz.company.com",
                               "testResults": [
                                 {
@@ -25766,7 +25766,7 @@
                           "clusterName": "shangai",
                           "nodes": [
                             {
-                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
                               "hostNameOrIP": "def.company.com",
                               "testResults": [
                                 {
@@ -25983,7 +25983,7 @@
                           "clusterName": "shangai",
                           "nodes": [
                             {
-                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
                               "hostNameOrIP": "def.company.com",
                               "testResults": [
                                 {
@@ -26200,7 +26200,7 @@
                           "clusterName": "shangai",
                           "nodes": [
                             {
-                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+                              "nodeId": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
                               "hostNameOrIP": "abc.company.com",
                               "testResults": [
                                 {
@@ -26351,7 +26351,7 @@
             "in": "query",
             "description": "Unique ID of the Video Mesh node.",
             "required": true,
-            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
             "schema": {
               "type": "string"
             }
@@ -47056,7 +47056,7 @@
           },
           "nodeId": {
             "type": "string",
-            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMWViNjVmZGYtOTY0My00MTdmLTk5NzQtYWQ3MmNhZTBlMTBmOmMyNTk0YmY2NDFmZTRkNTFiZDg3YThiMjYxYzg3NWY1",
+            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMWViNjVmZGYtOTY0My00MTdmLTk5NzQtYWQ3MmNhZTBlMTBmOm1mX21nbXRAYzI1OTRiZjY0MWZlNGQ1MWJkODdhOGIyNjFjODc1ZjU=",
             "description": "ID of the Video Mesh node."
           },
           "availabilitySegments": {
@@ -47094,7 +47094,7 @@
           },
           "nodeId": {
             "type": "string",
-            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMWViNjVmZGYtOTY0My00MTdmLTk5NzQtYWQ3MmNhZTBlMTBmOmMyNTk0YmY2NDFmZTRkNTFiZDg3YThiMjYxYzg3NWY1",
+            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMWViNjVmZGYtOTY0My00MTdmLTk5NzQtYWQ3MmNhZTBlMTBmOm1mX21nbXRAYzI1OTRiZjY0MWZlNGQ1MWJkODdhOGIyNjFjODc1ZjU=",
             "description": "ID of the Video Mesh node."
           },
           "availabilitySegments": {
@@ -47439,7 +47439,7 @@
         "properties": {
           "nodeId": {
             "type": "string",
-            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
             "description": "Unique ID of the Video Mesh node."
           },
           "hostNameOrIP": {
@@ -47468,7 +47468,7 @@
         "properties": {
           "nodeId": {
             "type": "string",
-            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
             "description": "Unique ID of the Video Mesh node."
           },
           "hostNameOrIP": {
@@ -48851,7 +48851,7 @@
         "properties": {
           "nodeId": {
             "type": "string",
-            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
             "description": "Unique ID of the Video Mesh node."
           },
           "hostNameOrIP": {
@@ -48873,7 +48873,7 @@
         "properties": {
           "nodeId": {
             "type": "string",
-            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
             "description": "Unique ID of the Video Mesh node."
           },
           "hostNameOrIP": {
@@ -49463,7 +49463,7 @@
         "properties": {
           "nodeId": {
             "type": "string",
-            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
             "description": " Unique ID of the Video Mesh node."
           },
           "hostNameOrIP": {
@@ -49620,7 +49620,7 @@
         "properties": {
           "nodeId": {
             "type": "string",
-            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
             "description": "Unique ID of the Video Mesh node."
           },
           "status": {
@@ -49639,7 +49639,7 @@
         "properties": {
           "nodeId": {
             "type": "string",
-            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOWUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFjOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGU5OTc4Zjk5MDJl",
+            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOWUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFjOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZTk5NzhmOTkwMmU=",
             "description": "Unique ID of the Video Mesh node."
           },
           "status": {
@@ -49683,7 +49683,7 @@
             "type": "array",
             "items": {
               "type": "string",
-              "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOWUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFjOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGU5OTc4Zjk5MDJk,Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOWUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFjOjE1NmRmNzg5Yzg1NTRhYmNhZGVmZ2U5OTc4Zjk5MDJk"
+              "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOWUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFjOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZTk5NzhmOTkwMmQ=,Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOWUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFjOm1mX21nbXRAMTU2ZGY3ODljODU1NGFiY2FkZWZnZTk5NzhmOTkwMmQ="
             },
             "description": "List of nodes to test."
           }
@@ -49888,7 +49888,7 @@
         "properties": {
           "nodeId": {
             "type": "string",
-            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
             "description": "Unique ID of the Video Mesh node."
           },
           "hostNameOrIP": {
@@ -49909,7 +49909,7 @@
         "properties": {
           "nodeId": {
             "type": "string",
-            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
             "description": "Unique ID of the Video Mesh node."
           },
           "hostNameOrIP": {
@@ -49930,7 +49930,7 @@
         "properties": {
           "nodeId": {
             "type": "string",
-            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOjE1NmRmNzg5Yzg1NTRkNTVhMjc1ZGY5OTc4Zjk5MDJk",
+            "example": "Y2lzY29zcGFyazovL3VzL0hZQlJJRF9DT05ORUNUT1IvMmMzYzlmOTUtNzNkOS00NDYwLWE2NjgtMDQ3MTYyZmYxYmFkOm1mX21nbXRAMTU2ZGY3ODljODU1NGQ1NWEyNzVkZjk5NzhmOTkwMmQ=",
             "description": "Unique ID of the Video Mesh node."
           },
           "hostNameOrIP": {
