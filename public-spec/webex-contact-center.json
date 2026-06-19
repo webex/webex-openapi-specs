@@ -95111,6 +95111,11 @@
             "type": "boolean",
             "description": "Flag; (true) for including virtual agent (VA) recordings, (false) for excluding virtual agent recordings. The default value is false.",
             "example": false
+          },
+          "includeScreenRecordings": {
+            "type": "boolean",
+            "description": "Flag; (true) will return screen recording if available else will return empty array, (false) will exclude screen recordings. The default value is false.",
+            "example": false
           }
         }
       },
@@ -95172,6 +95177,12 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TranscriptMulti"
+            }
+          },
+          "screenRecordings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScreenRecordingMulti"
             }
           }
         }
@@ -95297,6 +95308,68 @@
             "type": "string",
             "description": "Create time of capture(epoch timestamp)",
             "example": "1617373126000"
+          }
+        }
+      },
+      "ScreenRecordingMulti": {
+        "required": [
+          "id",
+          "attributes"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the screen recording.",
+            "example": "f13b9c64-0d72-4e8a-b5f1-9a6d3c2e7b15"
+          },
+          "attributes": {
+            "$ref": "#/components/schemas/ScreenRecordingAttributes"
+          }
+        }
+      },
+      "ScreenRecordingAttributes": {
+        "required": [
+          "fileName",
+          "filePath",
+          "startTime",
+          "stopTime",
+          "agentId",
+          "screenId"
+        ],
+        "type": "object",
+        "properties": {
+          "fileName": {
+            "type": "string",
+            "description": "The file name of the screen recording.",
+            "example": "3305322a-630c-4791-a068-4a751529c4d7-segment.wav"
+          },
+          "filePath": {
+            "type": "string",
+            "description": "Screen recording download URL.",
+            "example": "https://cjp-ccone-intgus1-media-storage-recording.s3.amazonaws.com/470c589d-ce3f-4afe-adec-575c73c0e472"
+          },
+          "startTime": {
+            "type": "integer",
+            "description": "Begin time of screen recording (epoch timestamp)",
+            "format": "int64",
+            "example": 1617373126000
+          },
+          "stopTime": {
+            "type": "integer",
+            "description": "End time of screen recording (epoch timestamp).",
+            "format": "int64",
+            "example": 1627373126000
+          },
+          "agentId": {
+            "type": "string",
+            "description": "The ID of the agent whose screen was recorded.",
+            "example": "e890a591-63f0-4984-a8f2-00e631368fb4"
+          },
+          "screenId": {
+            "type": "string",
+            "description": "The ID of the screen being recorded.",
+            "example": "2e8f4a19-7b35-4c6d-93a1-d5f0b7c2e855"
           }
         }
       }
