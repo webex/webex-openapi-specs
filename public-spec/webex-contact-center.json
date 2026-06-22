@@ -29526,9 +29526,9 @@
         "tags": [
           "Dial Plan"
         ],
-        "summary": "List Dial Plan(s)",
-        "description": "Retrieve a list of Dial Plan(s) in a given organization.",
-        "operationId": "getAllConfig_8",
+        "summary": "List Dial Plans",
+        "description": "Retrieve a list of Dial Plans in a given organization.\n\n**Deprecated:** Dial Plan configuration is deprecated. Dial Plan is no longer available as an Agent Profile setting, so agents can no longer  use them for agent dial number validation.",
+        "operationId": "getAllConfigDialPlan",
         "parameters": [
           {
             "name": "orgid",
@@ -29543,7 +29543,7 @@
           {
             "name": "filter",
             "in": "query",
-            "description": "Specify a filter based on which the results will be fetched. Supported filterable fields:  id. \n\nThe examples below show some search queries\n- id==\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\"\n- id!=\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\"\n- id=in=(\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\",\"a421e0b2-732e-46f3-a057-39160a53afb9\")\n- id=out=(\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\",\"a421e0b2-732e-46f3-a057-39160a53afb9\")\nThis parameter uses the RSQL query syntax, a URI-friendly format for expressing criteria for filtering REST entities. For more information about RSQL in general, see  <a href=\"https://www.here.com/docs/bundle/data-client-library-developer-guide-java-scala/page/client/rsql.html\">this reference</a>. For a list of supported operators, see <a href=\"https://github.com/perplexhub/rsql-jpa-specification#rsql-syntax-reference\">this syntax guide</a>.\n\nNote: values to be used in the filter syntax should not contain space, and if so kindly bound it with quotes to apply filter.\n",
+            "description": "Specify a filter based on which the results will be fetched. Supported filterable fields:  id. \n\nThe examples below show some search queries\n- id==\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\"\n- id!=\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\"\n- id=in=(\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\",\"a421e0b2-732e-46f3-a057-39160a53afb9\")\n- id=out=(\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\",\"a421e0b2-732e-46f3-a057-39160a53afb9\")\nThis parameter uses the RSQL query syntax, a URI-friendly format for expressing criteria for filtering REST entities. For more information about RSQL in general, see  <a href=\"https://www.here.com/docs/bundle/data-client-library-developer-guide-java-scala/page/client/rsql.html\">this reference</a>. For a list of supported operators, see <a href=\"https://github.com/perplexhub/rsql-jpa-specification#rsql-syntax-reference\">this syntax guide</a>.\n\nNote: values to be used in the filter syntax should not contain spaces. If they do, please enclose them in quotes to apply the filter.\n",
             "required": false,
             "schema": {
               "type": "string"
@@ -29553,7 +29553,7 @@
           {
             "name": "attributes",
             "in": "query",
-            "description": "Specify the attributes to be returned.Default all attributes are returned along with specified columns. All Attributes are supported",
+            "description": "Specify the attributes to be returned. By default, all attributes are returned along with the specified columns. All attributes are supported.",
             "required": false,
             "schema": {
               "type": "string",
@@ -29567,9 +29567,10 @@
             "description": "Defines the number of displayed page. The page number starts from 0.",
             "schema": {
               "type": "integer",
-              "example": 0,
-              "default": 0
-            }
+              "default": 0,
+              "example": 0
+            },
+            "example": 0
           },
           {
             "name": "pageSize",
@@ -29577,9 +29578,10 @@
             "description": "Defines the number of items to be displayed on a page. If the number specified is more than allowed max page size, the API will automatically adjust the page size to the max page size.",
             "schema": {
               "type": "integer",
-              "example": 100,
-              "default": 100
-            }
+              "default": 100,
+              "example": 100
+            },
+            "example": 100
           }
         ],
         "responses": {
@@ -29602,6 +29604,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "401",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "401",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -29612,6 +29629,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "403",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "403",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -29622,6 +29654,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "404",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "404",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -29632,6 +29679,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "429",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "429",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -29642,20 +29704,35 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "500",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "500",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
           }
         },
-        "deprecated": false
+        "deprecated": true
       },
       "post": {
         "tags": [
           "Dial Plan"
         ],
         "summary": "Create a new Dial Plan",
-        "description": "Create a new Dial Plan in a given organization.",
-        "operationId": "createConfig_15",
+        "description": "Create a new Dial Plan in a given organization.\n\n**Deprecated:** Dial Plan configuration is deprecated. Dial Plan is no longer available as an Agent Profile setting, so agents can no longer  use them for agent dial number validation.",
+        "operationId": "createConfigDialPlan",
         "parameters": [
           {
             "name": "orgid",
@@ -29695,6 +29772,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "400",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "400",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -29705,6 +29797,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "401",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "401",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -29715,6 +29822,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "403",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "403",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -29725,6 +29847,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "409",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "409",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -29735,6 +29872,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "429",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "429",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -29745,12 +29897,27 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "500",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "500",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
           }
         },
-        "deprecated": false
+        "deprecated": true
       }
     },
     "/organization/{orgid}/dial-plan/bulk": {
@@ -29758,9 +29925,9 @@
         "tags": [
           "Dial Plan"
         ],
-        "summary": "Bulk save Dial Plan(s)",
-        "description": "Create, Update or delete Dial Plan(s) in bulk in a given organization.",
-        "operationId": "saveAllConfig_13",
+        "summary": "Bulk save Dial Plans",
+        "description": "Create, Update or delete Dial Plans in bulk in a given organization.\n\n**Deprecated:** Dial Plan configuration is deprecated. Dial Plan is no longer available as an Agent Profile setting, so agents can no longer  use them for agent dial number validation.",
+        "operationId": "saveAllConfigDialPlan",
         "parameters": [
           {
             "name": "orgid",
@@ -29800,6 +29967,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "400",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "400",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -29810,6 +29992,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "401",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "401",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -29820,6 +30017,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "403",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "403",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -29830,6 +30042,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "409",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "409",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -29840,6 +30067,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "429",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "429",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -29850,111 +30092,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": false
-      }
-    },
-    "/organization/{orgid}/dial-plan/bulk-export": {
-      "get": {
-        "tags": [
-          "Dial Plan"
-        ],
-        "summary": "Bulk export Dial Plan(s)",
-        "description": "Export all Dial Plan(s) in a given organization.",
-        "operationId": "bulkExport_13",
-        "parameters": [
-          {
-            "name": "orgid",
-            "in": "path",
-            "description": "Organization ID to be used for this operation. The specified security token must have permission to interact with the organization.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba1"
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "description": "Defines the number of displayed page. The page number starts from 0.",
-            "schema": {
-              "type": "integer",
-              "example": 0,
-              "default": 0
-            }
-          },
-          {
-            "name": "pageSize",
-            "in": "query",
-            "description": "Defines the number of items to be displayed on a page. If the number specified is more than allowed max page size, the API will automatically adjust the page size to the max page size.",
-            "schema": {
-              "type": "integer",
-              "example": 100,
-              "default": 10
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/BulkExportDTODialPlanBulkExportDTO"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized Operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiErrorResponse"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Operation is forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiErrorResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Resource not found or URI is invalid",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiErrorResponse"
-                }
-              }
-            }
-          },
-          "429": {
-            "description": "Too many requests have been sent in a given amount of time and the request has been rate limited",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiErrorResponse"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "An Unexpected Error Occurred",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "500",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "500",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -29969,8 +30121,8 @@
           "Dial Plan"
         ],
         "summary": "Get specific Dial Plan by ID",
-        "description": "Retrieve an existing Dial Plan by ID in a given organization.",
-        "operationId": "getConfig_16",
+        "description": "Retrieve an existing Dial Plan by ID in a given organization.\n\n**Deprecated:** Dial Plan configuration is deprecated. Dial Plan is no longer available as an Agent Profile setting, so agents can no longer  use them for agent dial number validation.",
+        "operationId": "getConfigDialPlan",
         "parameters": [
           {
             "name": "orgid",
@@ -29990,7 +30142,7 @@
             "schema": {
               "type": "string"
             },
-            "example": "2f9eecc5-0472-4549"
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba2"
           }
         ],
         "responses": {
@@ -30010,6 +30162,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "401",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "401",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -30020,6 +30187,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "403",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "403",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -30030,6 +30212,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "404",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "404",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -30040,6 +30237,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "429",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "429",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -30050,20 +30262,35 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "500",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "500",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
           }
         },
-        "deprecated": false
+        "deprecated": true
       },
       "put": {
         "tags": [
           "Dial Plan"
         ],
         "summary": "Update specific Dial Plan by ID",
-        "description": "Update an existing Dial Plan by ID in a given organization.",
-        "operationId": "updateConfig_16",
+        "description": "Update an existing Dial Plan by ID in a given organization.\n\n**Deprecated:** Dial Plan configuration is deprecated. Dial Plan is no longer available as an Agent Profile setting, so agents can no longer  use them for agent dial number validation.",
+        "operationId": "updateConfigDialPlan",
         "parameters": [
           {
             "name": "orgid",
@@ -30083,7 +30310,7 @@
             "schema": {
               "type": "string"
             },
-            "example": "2f9eecc5-0472-4549"
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba2"
           }
         ],
         "requestBody": {
@@ -30113,6 +30340,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "400",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "400",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -30123,6 +30365,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "401",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "401",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -30133,6 +30390,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "403",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "403",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -30143,6 +30415,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "404",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "404",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -30153,6 +30440,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "412",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "412",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -30163,6 +30465,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "429",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "429",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -30173,20 +30490,35 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "500",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "500",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
           }
         },
-        "deprecated": false
+        "deprecated": true
       },
       "delete": {
         "tags": [
           "Dial Plan"
         ],
         "summary": "Delete specific Dial Plan by ID",
-        "description": "Delete an existing Dial Plan by ID in a given organization.",
-        "operationId": "deleteConfig_15",
+        "description": "Delete an existing Dial Plan by ID in a given organization.\n\n**Deprecated:** Dial Plan configuration is deprecated. Dial Plan is no longer available as an Agent Profile setting, so agents can no longer  use them for agent dial number validation.",
+        "operationId": "deleteConfigDialPlan",
         "parameters": [
           {
             "name": "orgid",
@@ -30206,7 +30538,7 @@
             "schema": {
               "type": "string"
             },
-            "example": "2f9eecc5-0472-4549"
+            "example": "2f9eecc5-0472-4549-9a83-2afdae0d4ba2"
           }
         ],
         "responses": {
@@ -30219,6 +30551,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "401",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "401",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -30229,6 +30576,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "403",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "403",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -30239,6 +30601,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "404",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "404",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -30249,6 +30626,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "412",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "412",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -30259,6 +30651,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "429",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "429",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -30269,12 +30676,27 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "500",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "500",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
           }
         },
-        "deprecated": false
+        "deprecated": true
       }
     },
     "/organization/{orgid}/dial-plan/{id}/incoming-references": {
@@ -30283,8 +30705,8 @@
           "Dial Plan"
         ],
         "summary": "List references for a specific Dial Plan",
-        "description": "Retrieve a list of all entities that have reference to an existing Dial Plan by ID in a given organization.",
-        "operationId": "getIncomingReferences_12",
+        "description": "Retrieve a list of all entities that have reference to an existing Dial Plan by ID in a given organization.\n\n**Deprecated:** Dial Plan configuration is deprecated. Dial Plan is no longer available as an Agent Profile setting, so agents can no longer  use them for agent dial number validation.",
+        "operationId": "getIncomingReferencesDialPlan",
         "parameters": [
           {
             "name": "orgid",
@@ -30322,9 +30744,10 @@
             "description": "Defines the number of displayed page. The page number starts from 0.",
             "schema": {
               "type": "integer",
-              "example": 0,
-              "default": 0
-            }
+              "default": 0,
+              "example": 0
+            },
+            "example": 0
           },
           {
             "name": "pageSize",
@@ -30332,9 +30755,10 @@
             "description": "Defines the number of items to be displayed on a page. If the number specified is more than allowed max page size, the API will automatically adjust the page size to the max page size.",
             "schema": {
               "type": "integer",
-              "example": 100,
-              "default": 100
-            }
+              "default": 100,
+              "example": 100
+            },
+            "example": 100
           }
         ],
         "responses": {
@@ -30354,6 +30778,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "401",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "401",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -30364,6 +30803,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "403",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "403",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -30374,6 +30828,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "404",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "404",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -30384,6 +30853,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "429",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "429",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -30394,12 +30878,27 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "500",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "500",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
           }
         },
-        "deprecated": false
+        "deprecated": true
       }
     },
     "/organization/{orgid}/v2/dial-plan": {
@@ -30407,9 +30906,9 @@
         "tags": [
           "Dial Plan"
         ],
-        "summary": "List Dial Plan(s)",
-        "description": "Retrieve a list of Dial Plan(s) in a given organization.",
-        "operationId": "getAllConfigWithMetaData_16",
+        "summary": "List Dial Plans",
+        "description": "Retrieve a list of Dial Plans in a given organization.\n\n**Deprecated:** Dial Plan configuration is deprecated. Dial Plan is no longer available as an Agent Profile setting, so agents can no longer  use them for agent dial number validation.",
+        "operationId": "getAllConfigWithMetaDataDialPlan",
         "parameters": [
           {
             "name": "orgid",
@@ -30424,7 +30923,7 @@
           {
             "name": "filter",
             "in": "query",
-            "description": "Specify a filter based on which the results will be fetched. All the fields are supported except: organizationId, createdTime, lastUpdatedTime \n\nThe examples below show some search queries\n- id==\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\"\n- id!=\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\"\n- id=in=(\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\",\"a421e0b2-732e-46f3-a057-39160a53afb9\")\n- id=out=(\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\",\"a421e0b2-732e-46f3-a057-39160a53afb9\")\nThis parameter uses the RSQL query syntax, a URI-friendly format for expressing criteria for filtering REST entities. For more information about RSQL in general, see  <a href=\"https://www.here.com/docs/bundle/data-client-library-developer-guide-java-scala/page/client/rsql.html\">this reference</a>. For a list of supported operators, see <a href=\"https://github.com/perplexhub/rsql-jpa-specification#rsql-syntax-reference\">this syntax guide</a>.\n\nNote: values to be used in the filter syntax should not contain space, and if so kindly bound it with quotes to apply filter.\n",
+            "description": "Specify a filter based on which the results will be fetched. All the fields are supported except: organizationId, createdTime, lastUpdatedTime \n\nThe examples below show some search queries\n- id==\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\"\n- id!=\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\"\n- id=in=(\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\",\"a421e0b2-732e-46f3-a057-39160a53afb9\")\n- id=out=(\"57efb0e6-5af0-4245-a67d-d3c5045cdb6e\",\"a421e0b2-732e-46f3-a057-39160a53afb9\")\nThis parameter uses the RSQL query syntax, a URI-friendly format for expressing criteria for filtering REST entities. For more information about RSQL in general, see  <a href=\"https://www.here.com/docs/bundle/data-client-library-developer-guide-java-scala/page/client/rsql.html\">this reference</a>. For a list of supported operators, see <a href=\"https://github.com/perplexhub/rsql-jpa-specification#rsql-syntax-reference\">this syntax guide</a>.\n\nNote: values to be used in the filter syntax should not contain spaces. If they do, please enclose them in quotes to apply the filter.\n",
             "required": false,
             "schema": {
               "type": "string"
@@ -30434,7 +30933,7 @@
           {
             "name": "attributes",
             "in": "query",
-            "description": "Specify the attributes to be returned.Default all attributes are returned along with specified columns. All Attributes are supported",
+            "description": "Specify the attributes to be returned. By default, all attributes are returned along with the specified columns. All attributes are supported.",
             "required": false,
             "schema": {
               "type": "string",
@@ -30458,9 +30957,10 @@
             "description": "Defines the number of displayed page. The page number starts from 0.",
             "schema": {
               "type": "integer",
-              "example": 0,
-              "default": 0
-            }
+              "default": 0,
+              "example": 0
+            },
+            "example": 0
           },
           {
             "name": "pageSize",
@@ -30468,9 +30968,10 @@
             "description": "Defines the number of items to be displayed on a page. If the number specified is more than allowed max page size, the API will automatically adjust the page size to the max page size.",
             "schema": {
               "type": "integer",
-              "example": 100,
-              "default": 100
-            }
+              "default": 100,
+              "example": 100
+            },
+            "example": 100
           }
         ],
         "responses": {
@@ -30490,6 +30991,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "401",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "401",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -30500,6 +31016,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "403",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "403",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -30510,6 +31041,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "404",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "404",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -30520,6 +31066,21 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "429",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "429",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -30530,12 +31091,27 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiErrorResponse"
+                },
+                "example": {
+                  "trackingId": "ccconfig_af9eecc5-0472-4549-9a83-2afdae0d4ba0",
+                  "error": {
+                    "key": "500",
+                    "reason": "Test reason",
+                    "message": [
+                      {
+                        "description": "Test error",
+                        "code": "500",
+                        "entity": "cc_user",
+                        "references": []
+                      }
+                    ]
+                  }
                 }
               }
             }
           }
         },
-        "deprecated": false
+        "deprecated": true
       }
     },
     "/organization/{orgid}/entry-point": {
@@ -81341,21 +81917,17 @@
         }
       },
       "DialPlanDTO": {
-        "required": [
-          "active",
-          "name",
-          "regularExpression"
-        ],
         "type": "object",
+        "description": "Dial Plan schema.",
         "properties": {
           "organizationId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "ID of the contact center organization. This field is required for all bulk save operations.",
+            "example": "f53c8b54-46ca-43f6-ba05-08426a46e23d",
             "maxLength": 36,
             "minLength": 32,
-            "pattern": "^[0-9a-fA-F]{8}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{12}$",
-            "type": "string",
-            "description": "ID of the contact center organization. It is required to define for the following operations - All bulk save operations",
-            "format": "uuid",
-            "example": "f53c8b54-46ca-43f6-ba05-08426a46e23d"
+            "pattern": "^[0-9a-fA-F]{8}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{12}$"
           },
           "id": {
             "type": "string",
@@ -81364,45 +81936,45 @@
           },
           "version": {
             "type": "integer",
-            "description": "The version of this resource. For a newly created resource, it will be 0 unless specified otherwise.",
             "format": "int32",
+            "description": "The version of this resource. For a newly created resource, it will be 0 unless specified otherwise.",
             "example": 1
           },
           "name": {
-            "maxLength": 80,
-            "minLength": 0,
-            "pattern": "^[a-zA-Z0-9,_\\-\\s]*$",
             "type": "string",
             "description": "Enter the name for the dial plan.",
-            "example": "Standard dial plan"
+            "example": "Standard dial plan",
+            "maxLength": 80,
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9,_\\-\\s]*$"
           },
           "description": {
-            "maxLength": 255,
-            "minLength": 0,
             "type": "string",
             "description": "A short description of the dial plan.",
-            "example": "Required for transferring calls to Queues"
+            "example": "Required for transferring calls to Queues",
+            "maxLength": 255,
+            "minLength": 0
           },
           "regularExpression": {
-            "maxLength": 255,
-            "minLength": 0,
             "type": "string",
             "description": "A regular expression specifies the format of the phone number and the characters that you can use while dialing a number.",
-            "example": "[0-9a-zA-Z]"
+            "example": "[0-9a-zA-Z]",
+            "maxLength": 255,
+            "minLength": 0
           },
           "prefix": {
-            "maxLength": 50,
-            "minLength": 0,
             "type": "string",
             "description": "(Optional) Enter a prefix that the system automatically adds to the phone number that the agent enters. For example, digit 1 for long-distance calls within the United States.",
-            "example": "1"
+            "example": "+1",
+            "maxLength": 50,
+            "minLength": 0
           },
           "strippedChars": {
-            "maxLength": 128,
-            "minLength": 0,
             "type": "string",
             "description": "Enter the characters that system removes from the phone number that the agent dials.For example, left and right parentheses, space, and hyphen.",
-            "example": "()"
+            "example": "()",
+            "maxLength": 128,
+            "minLength": 0
           },
           "active": {
             "type": "boolean",
@@ -81416,114 +81988,75 @@
           },
           "createdTime": {
             "type": "integer",
-            "description": "Creation time(in epoch millis) of this resource.",
             "format": "int64",
-            "readOnly": true,
-            "example": 1617536244000
+            "description": "This is the created time of the entity.",
+            "example": 123456789
           },
           "lastUpdatedTime": {
             "type": "integer",
-            "description": "Time(in epoch millis) when this resource was last updated.",
             "format": "int64",
-            "readOnly": true,
-            "example": 1617536244000
+            "description": "This is the updated time of the entity.",
+            "example": 123456789
           }
-        }
+        },
+        "required": [
+          "active",
+          "name",
+          "regularExpression"
+        ]
       },
       "BulkRequestDTODialPlanDTO": {
         "type": "object",
+        "description": "Bulk Request Dial Plan schema.",
         "properties": {
           "items": {
             "type": "array",
+            "description": "List of items in the bulk request.",
             "items": {
-              "$ref": "#/components/schemas/BulkRequestItemDTODialPlanDTO"
+              "$ref": "#/components/schemas/BulkRequestItemDTODialPlanDTO",
+              "description": "Item."
             }
           }
         }
       },
       "BulkRequestItemDTODialPlanDTO": {
         "type": "object",
+        "description": "List of items in the bulk request.",
         "properties": {
           "itemIdentifier": {
             "type": "integer",
-            "description": "Unique item identifier for a bulk operation.",
             "format": "int32",
+            "description": "Unique item identifier for a bulk operation.",
             "example": 10
           },
           "item": {
-            "$ref": "#/components/schemas/DialPlanDTO"
+            "$ref": "#/components/schemas/DialPlanDTO",
+            "description": "Item."
           },
           "requestAction": {
             "type": "string",
-            "description": "Identifier for action type. Possible values can be SAVE and DELETE.",
+            "description": "Identifier for action type. Possible values are `SAVE` and `DELETE`.",
             "example": "SAVE"
-          }
-        }
-      },
-      "BulkExportDTODialPlanBulkExportDTO": {
-        "type": "object",
-        "properties": {
-          "totalResources": {
-            "type": "integer",
-            "description": "Total number of items",
-            "format": "int32",
-            "example": 100
-          },
-          "pageNumber": {
-            "type": "integer",
-            "description": "Current page number",
-            "format": "int32",
-            "example": 0
-          },
-          "pageSize": {
-            "type": "integer",
-            "description": "Page size for current data set",
-            "format": "int32",
-            "example": 50
-          },
-          "rel": {
-            "type": "string",
-            "description": "Indicates whether more pages exist. When 'next' there are more pages available, otherwise 'last'.",
-            "example": "last"
-          },
-          "resources": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DialPlanBulkExportDTO"
-            }
-          }
-        }
-      },
-      "DialPlanBulkExportDTO": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "regularExpression": {
-            "type": "string"
-          },
-          "prefix": {
-            "type": "string"
-          },
-          "strippedChars": {
-            "type": "string"
           }
         }
       },
       "ResponseEnvelopeDialPlanDTO": {
         "type": "object",
+        "description": "Response Envelope Dial Plan schema.",
         "properties": {
           "meta": {
             "type": "object",
             "additionalProperties": {
-              "type": "object"
-            }
+              "description": "Meta additional property."
+            },
+            "description": "Additional properties for Meta."
           },
           "data": {
             "type": "array",
+            "description": "List of Data.",
             "items": {
-              "$ref": "#/components/schemas/DialPlanDTO"
+              "$ref": "#/components/schemas/DialPlanDTO",
+              "description": "Data item."
             }
           }
         }
