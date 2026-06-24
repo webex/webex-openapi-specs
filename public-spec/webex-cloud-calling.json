@@ -83926,6 +83926,7 @@
                     "voicemailEnabled": false,
                     "announcements": {
                       "greeting": "DEFAULT",
+                      "filename": "audio.wav",
                       "newNumber": {
                         "enabled": false
                       },
@@ -84860,7 +84861,7 @@
                   "$ref": "#/components/schemas/GetCallingBehaviorObject"
                 },
                 "example": {
-                  "behaviorType": null,
+                  "behaviorType": "NATIVE_WEBEX_TEAMS_CALLING",
                   "effectiveBehaviorType": "NATIVE_WEBEX_TEAMS_CALLING",
                   "profileId": "Y2lzY29zcGFyazovL3VzL0NBTExJTkdfUFJPRklMRS9iMzdmMmZiYS0yZTdjLTExZWItYTM2OC1kYmU0Yjc2NzFmZTk"
                 }
@@ -85957,43 +85958,7 @@
             "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
           },
           "502": {
-            "description": "Bad Gateway",
-            "headers": {},
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    },
-                    "errors": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "description": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    },
-                    "trackingId": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "example": {
-                  "message": "Bad Gateway.",
-                  "errors": [
-                    {
-                      "description": "Bad Gateway."
-                    }
-                  ],
-                  "trackingId": "NA_5154a8eb-41a7-4647-b89f-79aedae6e2e2"
-                }
-              }
-            }
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
           },
           "503": {
             "description": "Service Unavailable: Server is overloaded with requests. Try again later."
@@ -86171,43 +86136,7 @@
             "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
           },
           "502": {
-            "description": "Bad Gateway",
-            "headers": {},
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    },
-                    "errors": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "description": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    },
-                    "trackingId": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "example": {
-                  "message": "Bad Gateway.",
-                  "errors": [
-                    {
-                      "description": "Bad Gateway."
-                    }
-                  ],
-                  "trackingId": "NA_5154a8eb-41a7-4647-b89f-79aedae6e2e2"
-                }
-              }
-            }
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
           },
           "503": {
             "description": "Service Unavailable: Server is overloaded with requests. Try again later."
@@ -162608,7 +162537,7 @@
               "LOCATION_NUMBER",
               "CUSTOM"
             ],
-            "description": "Which type of outgoing Caller ID will be used. This setting is for the number portion.\n * `DIRECT_LINE` - Outgoing caller ID will show the caller's direct line number.\n * `LOCATION_NUMBER` - Outgoing caller ID will show the main number for the location.\n * `CUSTOM` - Outgoing caller ID will show the value from the customNumber field.\n"
+            "description": "Specifies which source will be used for the outgoing Caller ID phone number. The allowed values for the current virtual line can be retrieved from the [Read Caller ID Settings for a Virtual Line](/calling/docs/api/v1/virtual-line-call-settings/read-caller-id-settings-for-a-virtual-line) `types` field.\n * `DIRECT_LINE` - Outgoing caller ID will show the caller's direct line number.\n * `LOCATION_NUMBER` - Outgoing caller ID will show the main number for the location.\n * `CUSTOM` - Outgoing caller ID will show the value from the customNumber field.\n"
           },
           "customNumber": {
             "type": "string",
@@ -162859,22 +162788,20 @@
         "type": "object",
         "description": "Calling behavior settings for a person.",
         "required": [
-          "behaviorType",
-          "effectiveBehaviorType",
-          "profileId"
+          "effectiveBehaviorType"
         ],
         "properties": {
           "behaviorType": {
             "type": "string",
+            "nullable": true,
             "enum": [
               "NATIVE_WEBEX_TEAMS_CALLING",
               "CALL_WITH_APP_REGISTERED_FOR_CISCOTEL",
               "CALL_WITH_APP_REGISTERED_FOR_TEL",
               "CALL_WITH_APP_REGISTERED_FOR_WEBEXCALLTEL",
-              "NATIVE_SIP_CALL_TO_UCM",
-              "null"
+              "NATIVE_SIP_CALL_TO_UCM"
             ],
-            "description": "The current Calling Behavior setting for the person. If `null`, the effective Calling Behavior will be the Organization's current default.\n * `NATIVE_WEBEX_TEAMS_CALLING` - Calling in Webex or Hybrid Calling.\n * `CALL_WITH_APP_REGISTERED_FOR_CISCOTEL` - Cisco Jabber app\n * `CALL_WITH_APP_REGISTERED_FOR_TEL` - Third-Party app\n * `CALL_WITH_APP_REGISTERED_FOR_WEBEXCALLTEL` - Webex Calling app\n * `NATIVE_SIP_CALL_TO_UCM` - Calling in Webex (Unified CM)\n * `null` - Using the non-string value of `null` results in the organization-wide default calling behavior being in effect.\n"
+            "description": "The current Calling Behavior setting for the person. If `null`, the effective Calling Behavior will be the Organization's current default.\n * `NATIVE_WEBEX_TEAMS_CALLING` - Calling in Webex or Hybrid Calling.\n * `CALL_WITH_APP_REGISTERED_FOR_CISCOTEL` - Cisco Jabber app\n * `CALL_WITH_APP_REGISTERED_FOR_TEL` - Third-Party app\n * `CALL_WITH_APP_REGISTERED_FOR_WEBEXCALLTEL` - Webex Calling app\n * `NATIVE_SIP_CALL_TO_UCM` - Calling in Webex (Unified CM)\n"
           },
           "effectiveBehaviorType": {
             "type": "string",
@@ -162889,6 +162816,7 @@
           },
           "profileId": {
             "type": "string",
+            "nullable": true,
             "example": "Y2lzY29zcGFyazovL3VzL0NBTExJTkdfUFJPRklMRS9iMzdmMmZiYS0yZTdjLTExZWItYTM2OC1kYmU0Yjc2NzFmZTk",
             "description": "The UC Manager Profile ID."
           }
@@ -163556,15 +163484,15 @@
         "properties": {
           "behaviorType": {
             "type": "string",
+            "nullable": true,
             "enum": [
               "NATIVE_WEBEX_TEAMS_CALLING",
               "CALL_WITH_APP_REGISTERED_FOR_CISCOTEL",
               "CALL_WITH_APP_REGISTERED_FOR_TEL",
               "CALL_WITH_APP_REGISTERED_FOR_WEBEXCALLTEL",
-              "NATIVE_SIP_CALL_TO_UCM",
-              "null"
+              "NATIVE_SIP_CALL_TO_UCM"
             ],
-            "description": "The new Calling Behavior setting for the person (case-insensitive). If `null`, the effective Calling Behavior will be the Organization's current default.\n * `NATIVE_WEBEX_TEAMS_CALLING` - Calling in Webex or Hybrid Calling.\n * `CALL_WITH_APP_REGISTERED_FOR_CISCOTEL` - Cisco Jabber app\n * `CALL_WITH_APP_REGISTERED_FOR_TEL` - Third-Party app\n * `CALL_WITH_APP_REGISTERED_FOR_WEBEXCALLTEL` - Webex Calling app\n * `NATIVE_SIP_CALL_TO_UCM` - Calling in Webex (Unified CM)\n * `null` - The non-string value of `null` results in the organization-wide default calling behavior being in effect.\n"
+            "description": "The new Calling Behavior setting for the person (case-insensitive). If `null`, the effective Calling Behavior will be the Organization's current default.\n * `NATIVE_WEBEX_TEAMS_CALLING` - Calling in Webex or Hybrid Calling.\n * `CALL_WITH_APP_REGISTERED_FOR_CISCOTEL` - Cisco Jabber app\n * `CALL_WITH_APP_REGISTERED_FOR_TEL` - Third-Party app\n * `CALL_WITH_APP_REGISTERED_FOR_WEBEXCALLTEL` - Webex Calling app\n * `NATIVE_SIP_CALL_TO_UCM` - Calling in Webex (Unified CM)\n"
           },
           "profileId": {
             "type": "string",
@@ -169983,7 +169911,7 @@
               "LOCATION_NUMBER",
               "CUSTOM"
             ],
-            "description": "Which type of outgoing Caller ID will be used. This setting is for the number portion.\n * `DIRECT_LINE` - Outgoing caller ID shows the caller's direct line number.\n * `LOCATION_NUMBER` - Outgoing caller ID shows the main number for the location.\n * `CUSTOM` - Outgoing caller ID shows the value from the customNumber field.\n"
+            "description": "Specifies which source will be used for the outgoing Caller ID phone number. The allowed values for the current workspace can be retrieved from the [Read Caller ID Settings for a Workspace](/calling/docs/api/v1/workspace-call-settings-1-2/read-caller-id-settings-for-a-workspace) `types` field.\n * `DIRECT_LINE` - Outgoing caller ID shows the caller's direct line number.\n * `LOCATION_NUMBER` - Outgoing caller ID shows the main number for the location.\n * `CUSTOM` - Outgoing caller ID shows the value from the customNumber field.\n"
           },
           "customNumber": {
             "type": "string",
