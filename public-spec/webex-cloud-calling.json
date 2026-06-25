@@ -52117,7 +52117,8 @@
                       "level": "ORGANIZATION",
                       "isTextToSpeech": false
                     }
-                  ]
+                  ],
+                  "triggerPolicyWhenAllAgentsAreUnreachableEnabled": true
                 }
               }
             }
@@ -52170,7 +52171,7 @@
         },
         "summary": "Get Details for a Call Queue Stranded Calls",
         "operationId": "getCallQueueStrandedCalls",
-        "description": "Allow admin to view default/configured Stranded Calls settings.\n\nStranded-All agents logoff Policy: If the last agent staffing a queue “unjoins” the queue or signs out, then all calls in the queue become stranded.\nStranded-Unavailable Policy: This policy allows for the configuration of the processing of calls that are in a staffed queue when all agents are unavailable.\n\nRetrieving call queue Stranded Calls details requires a full or read-only administrator or location administrator auth token with a scope of `spark-admin:telephony_config_read`.",
+        "description": "Allow admin to view default/configured Stranded Calls settings, including whether the stranded calls queue policy will be triggered when all agents are unreachable.\n\nStranded-All agents logoff Policy: If the last agent staffing a queue “unjoins” the queue or signs out, then all calls in the queue become stranded.\nStranded-Unavailable Policy: This policy allows for the configuration of the processing of calls that are in a staffed queue when all agents are unavailable.\n\nRetrieving call queue Stranded Calls details requires a full or read-only administrator or location administrator auth token with a scope of `spark-admin:telephony_config_read`.",
         "tags": [
           "Features:  Call Queue"
         ],
@@ -52261,7 +52262,7 @@
         },
         "summary": "Update a Call Queue Stranded Calls Service",
         "operationId": "updateCallQueueStrandedCalls",
-        "description": "Update the designated Call Stranded Calls Service.\n\nAllow admin to modify configured Stranded Calls settings.\n\nUpdating a call queue stranded calls requires a full administrator or location administrator auth token with a scope of `spark-admin:telephony_config_write`.",
+        "description": "Update the designated Call Stranded Calls Service.\n\nAllow admin to modify configured Stranded Calls settings, including whether the stranded calls queue policy will be triggered when all agents are unreachable.\n\nUpdating a call queue stranded calls requires a full administrator or location administrator auth token with a scope of `spark-admin:telephony_config_write`.",
         "tags": [
           "Features:  Call Queue"
         ],
@@ -52322,7 +52323,8 @@
                     "mediaFileType": "WAV",
                     "level": "ORGANIZATION"
                   }
-                ]
+                ],
+                "triggerPolicyWhenAllAgentsAreUnreachableEnabled": true
               },
               "schema": {
                 "$ref": "#/components/schemas/ModifyCallQueueStrandedCallsObject"
@@ -148752,6 +148754,11 @@
               "$ref": "#/components/schemas/AudioAnnouncementFileFeatureGetObject"
             },
             "description": "List of Announcement Audio Files when `audioMessageSelection` is `CUSTOM`."
+          },
+          "triggerPolicyWhenAllAgentsAreUnreachableEnabled": {
+            "type": "boolean",
+            "example": true,
+            "description": "Trigger stranded calls queue policy when all agents are unreachable."
           }
         }
       },
@@ -149425,6 +149432,11 @@
               "$ref": "#/components/schemas/AudioAnnouncementFileFeatureObject"
             },
             "description": "List of pre-configured Announcement Audio Files when `audioMessageSelection` is `CUSTOM`."
+          },
+          "triggerPolicyWhenAllAgentsAreUnreachableEnabled": {
+            "type": "boolean",
+            "example": true,
+            "description": "Trigger stranded calls queue policy when all agents are unreachable."
           }
         }
       },
