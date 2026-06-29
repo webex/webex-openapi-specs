@@ -82532,6 +82532,7 @@
                       "service": "Teams",
                       "startDate": "2020-03-17",
                       "endDate": "2020-03-18",
+                      "timeZone": "Asia/Shanghai",
                       "siteList": "",
                       "created": "2020-05-27 17:02:43",
                       "createdBy": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mYzhjMWFhMS00OTM5LTQ2NjEtODAwMy1hYWE0MzFmZWM0ZmE",
@@ -82752,6 +82753,11 @@
                     "type": "string",
                     "example": "cisco.webex.com",
                     "description": "Sites belonging to user's organization. This attribute is needed for site-based templates."
+                  },
+                  "timeZone": {
+                    "type": "string",
+                    "example": "Asia/Shanghai",
+                    "description": "Time zone used for report date and time values. Use an IANA time zone name. This field is optional."
                   }
                 }
               }
@@ -82777,6 +82783,7 @@
                   "service": "Teams",
                   "startDate": "2020-02-23",
                   "endDate": "2020-03-24",
+                  "timeZone": "Asia/Shanghai",
                   "siteList": "cisco.webex.com",
                   "created": "2020-03-24 17:13:39",
                   "createdBy": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mYzhjMWFhMS00OTM5LTQ2NjEtODAwMy1hYWE0MzFmZWM0ZmE",
@@ -127331,6 +127338,11 @@
             "type": "string",
             "example": "cisco.webex.com",
             "description": "The site to which this report belongs to. This only exists if the report belongs to service `Webex`."
+          },
+          "timeZone": {
+            "type": "string",
+            "example": "Asia/Shanghai",
+            "description": "Time zone used for report date and time values. Use an IANA time zone name. The default value is `UTC` when not specified."
           },
           "created": {
             "type": "string",
