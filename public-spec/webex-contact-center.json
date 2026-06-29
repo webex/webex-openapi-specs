@@ -58368,7 +58368,7 @@
                   },
                   "example": [
                     {
-                      "activityName": "PlayMessage",
+                      "activityName": "play-message",
                       "displayName": "Play Message",
                       "category": "Voice",
                       "group": "action",
@@ -58430,12 +58430,12 @@
           {
             "name": "activityName",
             "in": "path",
-            "description": "Activity type name (e.g., `PlayMessage`, `QueueContact`).",
+            "description": "Activity type name (e.g., `play-message`, `queue-contact`).",
             "required": true,
             "schema": {
               "type": "string"
             },
-            "example": "PlayMessage"
+            "example": "play-message"
           }
         ],
         "responses": {
@@ -58474,7 +58474,7 @@
           "Activities"
         ],
         "summary": "Get Activity Input Choices",
-        "description": "Resolve choices for an activity input. Use this when an activity input requires a value from a predefined or dynamically resolved set (e.g., available queues, audio files, agents).\n\n**Modes:**\n- `list` — Returns the full set of allowed values for a static-choice input.\n- `search` — Returns matches for the supplied `query` string. Use for type-ahead UIs over large choice sets.\n- `validate` — Checks whether a single `value` is allowed and returns its label/metadata if so.\n- `dynamic` — Resolves cascading choices whose allowed values depend on one or more sibling inputs. Pass the relevant sibling values via `parent_inputs` (e.g., a queue list scoped to a previously selected team).\n\nScope: `cjp:config_read`",
+        "description": "Resolve choices for an activity input. Use this when an activity input requires a value from a predefined or dynamically resolved set (e.g., available queues, audio files, agents).\n\nThis endpoint is only valid for inputs that expose choices (an input whose definition includes `allowedValues` or a `choicesEndpoint`, as returned by `describeActivity`). Calling it for an input that does not support choices returns 400.\n\n**Modes:**\n- `list` — Returns the full set of allowed values for a static-choice input.\n- `search` — Returns matches for the supplied `query` string. Use for type-ahead UIs over large choice sets.\n- `validate` — Checks whether a single `value` is allowed and returns its label/metadata if so.\n- `dynamic` — Resolves cascading choices whose allowed values depend on one or more sibling inputs. Pass the relevant sibling values via `parent_inputs` (e.g., a queue list scoped to a previously selected team).\n\nScope: `cjp:config_read`",
         "operationId": "getActivityInputChoices",
         "parameters": [
           {
@@ -58505,17 +58505,17 @@
             "schema": {
               "type": "string"
             },
-            "example": "QueueContact"
+            "example": "queue-contact"
           },
           {
             "name": "inputName",
             "in": "path",
-            "description": "Input field name.",
+            "description": "Input field name. Must be an input that exposes choices (has `allowedValues` or a `choicesEndpoint`).",
             "required": true,
             "schema": {
               "type": "string"
             },
-            "example": "queue"
+            "example": "channelType"
           },
           {
             "name": "mode",
@@ -58862,7 +58862,7 @@
           {
             "name": "flowId",
             "in": "path",
-            "description": "ID of the flow/subflow to export.",
+            "description": "ID of the flow/subflow to publish.",
             "required": true,
             "schema": {
               "type": "string"
@@ -59142,7 +59142,7 @@
           "Flows"
         ],
         "summary": "Validate a Flow",
-        "description": "Dry-run validate a flow definition without persisting it. Use this to check correctness before importing.\n\nScope: `cjp:config_write`",
+        "description": "Dry-run validate a flow definition without persisting it. Use this to check correctness before importing.\n\nNote: validation is more lenient than import. A flow that passes `:validate` can still be rejected by `:import` (for example, a missing start activity), so a successful validation does not guarantee a successful import.\n\nScope: `cjp:config_write`",
         "operationId": "validateFlowV2",
         "parameters": [
           {
@@ -60819,88 +60819,6 @@
           },
           "500": {
             "description": "Export failed.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/{orgId}/functions/options": {
-      "get": {
-        "tags": [
-          "Functions"
-        ],
-        "summary": "List Function Options",
-        "description": "List the supported programming languages, runtimes, and corresponding wrapper code for custom functions. Filter by `language` or `runtime` to narrow the result.\n\nScope: `cjp:config_read`",
-        "operationId": "getFnOptions",
-        "parameters": [
-          {
-            "name": "orgId",
-            "in": "path",
-            "description": "Organization ID.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "8eb7da9a-c81c-4d13-b08b-38fdeb7330d8"
-          },
-          {
-            "name": "language",
-            "in": "query",
-            "description": "Filter by programming language (for example, `js`, `py`).",
-            "required": false,
-            "schema": {
-              "type": "string"
-            },
-            "example": "js"
-          },
-          {
-            "name": "runtime",
-            "in": "query",
-            "description": "Filter by runtime (for example, `nodejs22.x`, `python3.13`).",
-            "required": false,
-            "schema": {
-              "type": "string"
-            },
-            "example": "nodejs22.x"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Options retrieved successfully.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FnOptionsResp"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized.",
-            "content": {}
-          },
-          "404": {
-            "description": "No data found matching the supplied filters.",
-            "content": {}
-          },
-          "500": {
-            "description": "Internal Server Error.",
             "content": {
               "application/json": {
                 "schema": {
@@ -90818,7 +90736,7 @@
         "description": "Definition of an activity type, including its inputs, outputs, and named output ports.",
         "additionalProperties": true,
         "example": {
-          "activityName": "PlayMessage",
+          "activityName": "play-message",
           "displayName": "Play Message",
           "category": "Voice",
           "group": "action",
@@ -90830,8 +90748,8 @@
         "properties": {
           "activityName": {
             "type": "string",
-            "description": "Stable activity type identifier referenced by `FlowV2Node.activityName`.",
-            "example": "PlayMessage"
+            "description": "Stable activity type identifier referenced by a flow node's `properties.activityName`.",
+            "example": "play-message"
           },
           "displayName": {
             "type": "string",
@@ -92306,27 +92224,91 @@
       "FlowV2Metadata": {
         "title": "FlowV2Metadata",
         "type": "object",
-        "description": "Metadata returned for a flow on import, save draft, patch draft, and publish.",
+        "description": "Result envelope returned for a flow on import, save draft, and patch draft. The persisted flow document is returned under `flow` (the server-assigned flow ID is `flow.id`), alongside any preflight warnings raised during the operation.",
         "additionalProperties": true,
-        "example": {
-          "flowId": "661c7bc712eaf357de7e4aeb",
-          "version": 3,
-          "status": "Draft",
-          "name": "Customer_Support_Main",
-          "createdDate": "2026-01-15T09:12:00.000Z",
-          "lastModifiedDate": "2026-05-20T14:30:00.000Z"
-        },
         "properties": {
-          "flowId": {
+          "flow": {
+            "description": "The persisted flow document, including the server-assigned `id`.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FlowV2Summary"
+              }
+            ]
+          },
+          "preflightWarnings": {
+            "type": "array",
+            "description": "Non-blocking warnings raised while persisting the flow (for example, references that resolve but are flagged for review). Empty when there are none.",
+            "items": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "example": []
+          },
+          "preflightWarningsCount": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Number of entries in `preflightWarnings`.",
+            "example": 0
+          }
+        },
+        "example": {
+          "flow": {
+            "id": "661c7bc712eaf357de7e4aeb",
+            "orgId": "8eb7da9a-c81c-4d13-b08b-38fdeb7330d8",
+            "version": 0,
+            "flowType": "FLOW",
+            "name": "SamplePlayMessageFlow",
+            "description": "Minimal sample flow: greet the caller, then disconnect",
+            "status": "Draft",
+            "createdBy": "user@example.com",
+            "createdDate": "2026-01-15T09:12:00.000Z",
+            "lastModifiedBy": "user@example.com",
+            "lastModifiedDate": "2026-05-20T14:30:00.000Z"
+          },
+          "preflightWarnings": [],
+          "preflightWarningsCount": 0
+        }
+      },
+      "FlowV2Summary": {
+        "title": "FlowV2Summary",
+        "type": "object",
+        "description": "Server-side metadata for a persisted flow document.",
+        "additionalProperties": true,
+        "properties": {
+          "id": {
             "type": "string",
             "description": "Server-assigned flow ID.",
             "example": "661c7bc712eaf357de7e4aeb"
+          },
+          "orgId": {
+            "type": "string",
+            "description": "Organization ID that owns the flow.",
+            "example": "8eb7da9a-c81c-4d13-b08b-38fdeb7330d8"
           },
           "version": {
             "type": "integer",
             "format": "int64",
             "description": "Current version number of the flow document.",
-            "example": 3
+            "example": 0
+          },
+          "flowType": {
+            "type": "string",
+            "description": "Flow type. One of `FLOW` or `SUBFLOW`.",
+            "enum": [
+              "FLOW",
+              "SUBFLOW"
+            ],
+            "example": "FLOW"
+          },
+          "name": {
+            "type": "string",
+            "description": "Flow name.",
+            "example": "SamplePlayMessageFlow"
+          },
+          "description": {
+            "type": "string",
+            "description": "Human-readable description of the flow.",
+            "example": "Minimal sample flow: greet the caller, then disconnect"
           },
           "status": {
             "type": "string",
@@ -92337,10 +92319,10 @@
             ],
             "example": "Draft"
           },
-          "name": {
+          "createdBy": {
             "type": "string",
-            "description": "Flow name.",
-            "example": "Customer_Support_Main"
+            "description": "User ID that created the flow.",
+            "example": "user@example.com"
           },
           "createdDate": {
             "type": "string",
@@ -92348,12 +92330,30 @@
             "description": "Timestamp the flow was first created.",
             "example": "2026-01-15T09:12:00.000Z"
           },
+          "lastModifiedBy": {
+            "type": "string",
+            "description": "User ID that last modified the flow.",
+            "example": "user@example.com"
+          },
           "lastModifiedDate": {
             "type": "string",
             "format": "date-time",
             "description": "Timestamp the flow was last modified.",
             "example": "2026-05-20T14:30:00.000Z"
           }
+        },
+        "example": {
+          "id": "661c7bc712eaf357de7e4aeb",
+          "orgId": "8eb7da9a-c81c-4d13-b08b-38fdeb7330d8",
+          "version": 0,
+          "flowType": "FLOW",
+          "name": "SamplePlayMessageFlow",
+          "description": "Minimal sample flow: greet the caller, then disconnect",
+          "status": "Draft",
+          "createdBy": "user@example.com",
+          "createdDate": "2026-01-15T09:12:00.000Z",
+          "lastModifiedBy": "user@example.com",
+          "lastModifiedDate": "2026-05-20T14:30:00.000Z"
         }
       },
       "FlowV2Node": {
@@ -92440,7 +92440,7 @@
               "message": "Queue 'Main_Support_Quueue' was not found in the project."
             },
             {
-              "path": "/edges/4/from_port",
+              "path": "/edges/4/condition",
               "code": "INVALID_PORT",
               "message": "Activity 'PlayMessage' does not expose a port named 'onTimeout'."
             }
@@ -92523,7 +92523,7 @@
           },
           "upsert_edges": {
             "type": "array",
-            "description": "Edges to insert or replace, matched by `key`.",
+            "description": "Edges to insert or replace, matched by `id`.",
             "items": {
               "type": "object",
               "additionalProperties": true
@@ -92538,11 +92538,39 @@
           },
           "remove_edge_keys": {
             "type": "array",
-            "description": "Keys of edges to remove.",
+            "description": "Identifiers of edges to remove.",
             "items": {
               "type": "string"
             }
           }
+        },
+        "example": {
+          "upsert_nodes": [
+            {
+              "id": "node-welcome",
+              "name": "WelcomeMessage",
+              "activityType": "action",
+              "properties": {
+                "activityName": "play-message",
+                "prompt": {
+                  "promptType": "text",
+                  "text": "Thanks for calling. Please hold.",
+                  "textType": "text"
+                }
+              }
+            }
+          ],
+          "upsert_edges": [
+            {
+              "id": "edge-1",
+              "from": "NewContact",
+              "to": "WelcomeMessage",
+              "condition": "out",
+              "properties": {}
+            }
+          ],
+          "remove_node_names": [],
+          "remove_edge_keys": []
         }
       },
       "FnInputDef": {
@@ -92578,23 +92606,62 @@
       "FnListResponse": {
         "title": "FnListResponse",
         "type": "object",
-        "description": "Paginated list of custom functions.",
+        "description": "Paginated list of custom functions. Function metadata records are returned under `data`, with pagination details under `pageInfo`.",
         "additionalProperties": true,
         "properties": {
-          "items": {
+          "data": {
             "type": "array",
-            "description": "Page of custom function records.",
+            "description": "Page of custom function metadata records. Each entry carries metadata only; the source code is returned only when fetching a single function.",
             "items": {
-              "$ref": "#/components/schemas/FnDataResp"
+              "$ref": "#/components/schemas/FnMetadata"
             }
           },
-          "page": {
+          "pageInfo": {
+            "$ref": "#/components/schemas/PageInfo"
+          }
+        },
+        "example": {
+          "data": [
+            {
+              "id": "64f1b2c3d4e5f6a7b8c9d0e1",
+              "orgId": "8eb7da9a-c81c-4d13-b08b-38fdeb7330d8",
+              "name": "validateZipCode",
+              "description": "Returns true if the supplied US zip code is in a valid 5-digit format.",
+              "language": "js",
+              "selectedRuntime": "nodejs22.x",
+              "status": "Published",
+              "timeoutInSec": 3,
+              "tagVersionMap": {
+                "Dev": "1",
+                "Latest": "1"
+              },
+              "createdBy": "user@example.com",
+              "createdDate": "2026-05-28T14:23:01Z",
+              "lastModifiedBy": "user@example.com",
+              "lastModifiedDate": "2026-05-28T14:23:01Z"
+            }
+          ],
+          "pageInfo": {
+            "pageNumber": 0,
+            "pageSize": 100,
+            "totalElements": 1,
+            "totalPages": 1
+          }
+        }
+      },
+      "PageInfo": {
+        "title": "PageInfo",
+        "type": "object",
+        "description": "Pagination details for a paged list response.",
+        "additionalProperties": true,
+        "properties": {
+          "pageNumber": {
             "type": "integer",
             "format": "int32",
             "description": "Zero-based index of the returned page.",
             "example": 0
           },
-          "size": {
+          "pageSize": {
             "type": "integer",
             "format": "int32",
             "description": "Page size used by the query.",
@@ -92614,18 +92681,9 @@
           }
         },
         "example": {
-          "items": [
-            {
-              "id": "64f1b2c3d4e5f6a7b8c9d0e1",
-              "name": "validateZipCode",
-              "description": "Validates a US zip code.",
-              "language": "js",
-              "runtime": "nodejs22.x"
-            }
-          ],
-          "page": 0,
-          "size": 100,
-          "totalElements": 1,
+          "pageNumber": 0,
+          "pageSize": 100,
+          "totalElements": 42,
           "totalPages": 1
         }
       },
@@ -92648,7 +92706,7 @@
       "FnCreateReq": {
         "title": "FnCreateReq",
         "type": "object",
-        "description": "Source code and metadata of a custom function. `language` defaults to `js`. `runtime` defaults to the highest supported runtime for the chosen language; the full list of supported runtimes can be retrieved from `getFnOptions`. The `outputs` field is a stringified (escaped) JSON of output variable names mapped to sample values.",
+        "description": "Source code and metadata of a custom function. `language` defaults to `js`. `selectedRuntime` defaults to the highest supported runtime for the chosen language. The `outputs` field is a stringified (escaped) JSON of output variable names mapped to sample values.",
         "additionalProperties": true,
         "properties": {
           "name": {
@@ -92671,15 +92729,21 @@
             "default": "js",
             "example": "js"
           },
-          "runtime": {
+          "selectedRuntime": {
             "type": "string",
             "description": "Runtime identifier (case-sensitive). For example, `nodejs22.x` or `python3.13`. Defaults to the highest supported runtime for the chosen language.",
             "example": "nodejs22.x"
           },
+          "timeoutInSec": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Maximum execution time for the function, in seconds.",
+            "example": 3
+          },
           "sourceCode": {
             "type": "string",
-            "description": "Function source code as an escaped string.",
-            "example": "function handler(input) {\n  return /^\\d{5}$/.test(input.zip);\n}"
+            "description": "Function source code as an escaped string. The handler must be an exported async function `export const handle = async (request, response) => { ... }`. Read inputs from `request.inputs.*`, set the result via `response.data = { ... }`, and `return response`.",
+            "example": "export const handle = async (request, response) => {\n  response.data = { areaCode: String(request.inputs.ani || '').slice(-10).slice(0, 3) };\n  return response;\n}\n"
           },
           "inputs": {
             "type": "array",
@@ -92698,8 +92762,9 @@
           "name": "validateZipCode",
           "description": "Returns true if the supplied US zip code is in a valid 5-digit format.",
           "language": "js",
-          "runtime": "nodejs22.x",
-          "sourceCode": "function handler(input) {\n  return /^\\d{5}$/.test(input.zip);\n}",
+          "selectedRuntime": "nodejs22.x",
+          "timeoutInSec": 3,
+          "sourceCode": "export const handle = async (request, response) => {\n  response.data = { areaCode: String(request.inputs.ani || '').slice(-10).slice(0, 3) };\n  return response;\n}\n",
           "inputs": [
             {
               "name": "zip",
@@ -92710,16 +92775,21 @@
           "outputs": "{\"isValid\":true}"
         }
       },
-      "FnDataResp": {
-        "title": "FnDataResp",
+      "FnMetadata": {
+        "title": "FnMetadata",
         "type": "object",
-        "description": "A custom function record. Includes lifecycle metadata (`status`, `version`, `lockedBy`), declared `inputs`/`outputs`, and (unless `metaDataOnly=true` was supplied) the source code.",
+        "description": "Metadata for a custom function (no source code). Returned in list responses and inside the `fnMetadata` envelope of a single-function response.",
         "additionalProperties": true,
         "properties": {
           "id": {
             "type": "string",
             "description": "Function ID. Hexadecimal ObjectId.",
             "example": "64f1b2c3d4e5f6a7b8c9d0e1"
+          },
+          "orgId": {
+            "type": "string",
+            "description": "Organization ID that owns the function.",
+            "example": "8eb7da9a-c81c-4d13-b08b-38fdeb7330d8"
           },
           "name": {
             "type": "string",
@@ -92740,7 +92810,7 @@
             ],
             "example": "js"
           },
-          "runtime": {
+          "selectedRuntime": {
             "type": "string",
             "description": "Runtime identifier.",
             "example": "nodejs22.x"
@@ -92752,35 +92822,43 @@
               "Draft",
               "Published"
             ],
-            "example": "Draft"
+            "example": "Published"
           },
-          "version": {
+          "timeoutInSec": {
             "type": "integer",
-            "format": "int64",
-            "description": "Monotonically increasing version of the document.",
+            "format": "int32",
+            "description": "Maximum execution time for the function, in seconds.",
             "example": 3
           },
-          "sourceCode": {
-            "type": "string",
-            "description": "Function source code. Omitted when the request used `metaDataOnly=true`.",
-            "example": "function handler(input) {\n  return /^\\d{5}$/.test(input.zip);\n}"
-          },
-          "inputs": {
-            "type": "array",
-            "description": "Declared inputs of the function.",
-            "items": {
-              "$ref": "#/components/schemas/FnInputDef"
+          "tagVersionMap": {
+            "type": "object",
+            "description": "Map of publish tag to the function version it currently points to.",
+            "additionalProperties": true,
+            "example": {
+              "Dev": "1",
+              "Latest": "1"
             }
-          },
-          "outputs": {
-            "type": "string",
-            "description": "Stringified JSON of output variable names mapped to sample values.",
-            "example": "{\"isValid\":true}"
           },
           "lockedBy": {
             "type": "string",
             "description": "User ID currently holding the edit lock, or empty if unlocked.",
-            "example": "user-1234"
+            "example": ""
+          },
+          "createdBy": {
+            "type": "string",
+            "description": "User ID that created the function.",
+            "example": "user@example.com"
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp the function was created.",
+            "example": "2026-05-28T14:23:01Z"
+          },
+          "lastModifiedBy": {
+            "type": "string",
+            "description": "User ID that last modified the function.",
+            "example": "user@example.com"
           },
           "lastModifiedDate": {
             "type": "string",
@@ -92791,23 +92869,60 @@
         },
         "example": {
           "id": "64f1b2c3d4e5f6a7b8c9d0e1",
+          "orgId": "8eb7da9a-c81c-4d13-b08b-38fdeb7330d8",
           "name": "validateZipCode",
           "description": "Returns true if the supplied US zip code is in a valid 5-digit format.",
           "language": "js",
-          "runtime": "nodejs22.x",
-          "status": "Draft",
-          "version": 3,
-          "sourceCode": "function handler(input) {\n  return /^\\d{5}$/.test(input.zip);\n}",
-          "inputs": [
-            {
-              "name": "zip",
-              "dataType": "string",
-              "value": "94043"
-            }
-          ],
-          "outputs": "{\"isValid\":true}",
+          "selectedRuntime": "nodejs22.x",
+          "status": "Published",
+          "timeoutInSec": 3,
+          "tagVersionMap": {
+            "Dev": "1",
+            "Latest": "1"
+          },
           "lockedBy": "",
+          "createdBy": "user@example.com",
+          "createdDate": "2026-05-28T14:23:01Z",
+          "lastModifiedBy": "user@example.com",
           "lastModifiedDate": "2026-05-28T14:23:01Z"
+        }
+      },
+      "FnDataResp": {
+        "title": "FnDataResp",
+        "type": "object",
+        "description": "A single custom function. The source code is returned under `fnCode`, and all lifecycle metadata under `fnMetadata`.",
+        "additionalProperties": true,
+        "properties": {
+          "fnCode": {
+            "type": "string",
+            "description": "Function source code as an escaped string. The handler is an exported async function `export const handle = async (request, response) => { ... }`.",
+            "example": "export const handle = async (request, response) => {\n  response.data = { areaCode: String(request.inputs.ani || '').slice(-10).slice(0, 3) };\n  return response;\n}\n"
+          },
+          "fnMetadata": {
+            "$ref": "#/components/schemas/FnMetadata"
+          }
+        },
+        "example": {
+          "fnCode": "export const handle = async (request, response) => {\n  response.data = { areaCode: String(request.inputs.ani || '').slice(-10).slice(0, 3) };\n  return response;\n}\n",
+          "fnMetadata": {
+            "id": "64f1b2c3d4e5f6a7b8c9d0e1",
+            "orgId": "8eb7da9a-c81c-4d13-b08b-38fdeb7330d8",
+            "name": "validateZipCode",
+            "description": "Returns true if the supplied US zip code is in a valid 5-digit format.",
+            "language": "js",
+            "selectedRuntime": "nodejs22.x",
+            "status": "Published",
+            "timeoutInSec": 3,
+            "tagVersionMap": {
+              "Dev": "1",
+              "Latest": "1"
+            },
+            "lockedBy": "",
+            "createdBy": "user@example.com",
+            "createdDate": "2026-05-28T14:23:01Z",
+            "lastModifiedBy": "user@example.com",
+            "lastModifiedDate": "2026-05-28T14:23:01Z"
+          }
         }
       },
       "FnTestRequest": {
@@ -92920,57 +93035,6 @@
           "fileName": "validateZipCode.zip",
           "contentType": "application/zip",
           "content": "UEsDBBQAAAAIAA=="
-        }
-      },
-      "FnOptionsResp": {
-        "title": "FnOptionsResp",
-        "type": "object",
-        "description": "Supported languages, runtimes, and wrapper code for custom functions.",
-        "additionalProperties": true,
-        "properties": {
-          "languages": {
-            "type": "array",
-            "description": "List of supported language entries.",
-            "items": {
-              "type": "object",
-              "additionalProperties": true,
-              "properties": {
-                "language": {
-                  "type": "string",
-                  "description": "Language identifier.",
-                  "example": "js"
-                },
-                "runtimes": {
-                  "type": "array",
-                  "description": "Runtimes available for the language.",
-                  "items": {
-                    "type": "string"
-                  },
-                  "example": [
-                    "nodejs22.x",
-                    "nodejs20.x"
-                  ]
-                },
-                "wrapperCode": {
-                  "type": "string",
-                  "description": "Wrapper template that user code is embedded into when the function executes.",
-                  "example": "exports.handler = async (event) => { /* user code */ };"
-                }
-              }
-            }
-          }
-        },
-        "example": {
-          "languages": [
-            {
-              "language": "js",
-              "runtimes": [
-                "nodejs22.x",
-                "nodejs20.x"
-              ],
-              "wrapperCode": "exports.handler = async (event) => { /* user code */ };"
-            }
-          ]
         }
       },
       "FlowTemplate": {
