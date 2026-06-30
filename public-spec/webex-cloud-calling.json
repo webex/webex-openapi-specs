@@ -53327,9 +53327,9 @@
             "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
           }
         },
-        "summary": "Delete Bulk Supervisors",
+        "summary": "Delete the Call Queue or Customer Assist Supervisors",
         "operationId": "deleteBulkCallQueueSupervisors",
-        "description": "Deletes supervisors in bulk from an organization.\n\nSupervisors are users who manage agents and who perform functions including monitoring, coaching, and more.\n\nRequires a full administrator auth token with a scope of `spark-admin:telephony_config_write`.",
+        "description": "Delete the Call Queue or Customer Assist supervisors for an organization. Once you remove the supervisor, assigned agents will lose their supervisor assignments.\n\nSupervisors are users who manage agents and who perform functions including monitoring, coaching, and more.\n\nRequires a full administrator auth token with a scope of `spark-admin:telephony_config_write`.",
         "tags": [
           "Features:  Call Queue"
         ],
@@ -53352,6 +53352,7 @@
                   "Y2lzY29zcGFyazovL3VzL1BFT1BMRS80Y2I1M2ZmMy01NWViLTQ2MzYtYTE4ZC05NWVjZmFhM2E4NmY",
                   "Y2lzY29zcGFyazovL3VzL1BFT1BMRS8wNzY2ZDNjNC0xZTg1LTQ4YzgtYTFkZi1mMWUzYTAyMDg1MWE"
                 ],
+                "hasCxEssentials": true,
                 "deleteAll": false
               },
               "schema": {
@@ -150169,6 +150170,11 @@
               "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS80Y2I1M2ZmMy01NWViLTQ2MzYtYTE4ZC05NWVjZmFhM2E4NmY,Y2lzY29zcGFyazovL3VzL1BFT1BMRS8wNzY2ZDNjNC0xZTg1LTQ4YzgtYTFkZi1mMWUzYTAyMDg1MWE"
             },
             "description": "Array of supervisors IDs to be deleted."
+          },
+          "hasCxEssentials": {
+            "type": "boolean",
+            "example": true,
+            "description": "Delete the Customer Assist supervisors, when `true`. Otherwise delete the Call Queue supervisors. The default value is `false`."
           },
           "deleteAll": {
             "type": "boolean",
