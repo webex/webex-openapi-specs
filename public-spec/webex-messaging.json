@@ -7567,7 +7567,7 @@
         },
         "summary": "Create a Webhook",
         "operationId": "Create a Webhook",
-        "description": "Creates a webhook.\n\nTo learn more about how to create and use webhooks, see The [Webhooks Guide](/docs/api/guides/webhooks).",
+        "description": "Creates a webhook.\n\nTo learn more about how to create and use webhooks, see The [Webhooks Guide](/docs/api/guides/webhooks).\n\n**`applications` resource**: Org admins can subscribe to Bot, Integration, and Service App lifecycle events (`created`, `updated`, `deleted`) with `ownedBy: org`. Requires OAuth scope `application:webhooks_write` and `id_full_admin` role. Register one webhook per event. Filters are not supported for `applications` webhooks.\n\n**Security**: Use an HTTPS `targetUrl`. Validate callbacks with the webhook `secret` and `X-Spark-Signature` header. See the [Webhooks Guide](/docs/api/guides/webhooks) for signature verification.\n\n**Troubleshooting**:\n- `400 invalid field: resource` — `applications` webhooks may not be available in your environment; contact Webex support or your account team.\n- `403 Forbidden` — confirm org admin role, `application:webhooks_write` scope, and `ownedBy: org` for `applications` webhooks.\n- Invalid event — use `created`, `updated`, or `deleted` with `applications`; use `authorized` or `deauthorized` with `serviceApp`.",
         "tags": [
           "Webhooks"
         ],
@@ -7575,14 +7575,52 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "example": {
-                "name": "My Awesome Webhook",
-                "targetUrl": "https://example.com/mywebhook",
-                "resource": "messages",
-                "event": "created",
-                "filter": "roomId=Y2lzY29zcGFyazovL3VzL1JPT00vYmJjZWIxYWQtNDNmMS0zYjU4LTkxNDctZjE0YmIwYzRkMTU0",
-                "secret": "86dacc007724d8ea666f88fc77d918dad9537a15",
-                "ownedBy": "org"
+              "examples": {
+                "messageCreated": {
+                  "summary": "Message created webhook",
+                  "value": {
+                    "name": "My Awesome Webhook",
+                    "targetUrl": "https://example.com/mywebhook",
+                    "resource": "messages",
+                    "event": "created",
+                    "filter": "roomId=Y2lzY29zcGFyazovL3VzL1JPT00vYmJjZWIxYWQtNDNmMS0zYjU4LTkxNDctZjE0YmIwYzRkMTU0",
+                    "secret": "86dacc007724d8ea666f88fc77d918dad9537a15",
+                    "ownedBy": "org"
+                  }
+                },
+                "applicationsCreated": {
+                  "summary": "Applications created webhook (org admin)",
+                  "value": {
+                    "name": "Org Applications Created Webhook",
+                    "targetUrl": "https://example.com/webhooks/applications",
+                    "resource": "applications",
+                    "event": "created",
+                    "ownedBy": "org",
+                    "secret": "86dacc007724d8ea666f88fc77d918dad9537a15"
+                  }
+                },
+                "applicationsUpdated": {
+                  "summary": "Applications updated webhook (org admin)",
+                  "value": {
+                    "name": "Org Applications Updated Webhook",
+                    "targetUrl": "https://example.com/webhooks/applications",
+                    "resource": "applications",
+                    "event": "updated",
+                    "ownedBy": "org",
+                    "secret": "86dacc007724d8ea666f88fc77d918dad9537a15"
+                  }
+                },
+                "applicationsDeleted": {
+                  "summary": "Applications deleted webhook (org admin)",
+                  "value": {
+                    "name": "Org Applications Deleted Webhook",
+                    "targetUrl": "https://example.com/webhooks/applications",
+                    "resource": "applications",
+                    "event": "deleted",
+                    "ownedBy": "org",
+                    "secret": "86dacc007724d8ea666f88fc77d918dad9537a15"
+                  }
+                }
               },
               "schema": {
                 "type": "object",
@@ -7621,9 +7659,10 @@
                       "telephony_mwi",
                       "uc_counters",
                       "serviceApp",
+                      "applications",
                       "adminBatchJobs"
                     ],
-                    "description": "Resource type for the webhook. Creating a webhook requires 'read' scope on the resource the webhook is for.\n * `attachmentActions` - [Attachment Actions](/docs/api/v1/attachment-actions) resource.\n * `dataSources` - [data sources](/docs/api/v1/data-sources) resource.\n * `memberships` - [Memberships](/docs/api/v1/memberships) resource.\n * `messages` - [Messages](/docs/api/v1/messages) resource.\n * `rooms` - [Rooms](/docs/api/v1/rooms) resource.\n * `meetings` - [Meetings](/docs/api/v1/meetings) resource.\n * `recordings` - [Recordings](/docs/api/v1/recordings) resource.\n * `convergedRecordings` - [CallRecordings](/docs/api/v1/converged-recordings) resource.\n * `meetingParticipants` - [Meeting Participants](/docs/api/v1/meeting-participants) resource.\n * `meetingTranscripts` - [Meeting Transcripts](/docs/api/v1/meeting-transcripts) resource.\n * `telephony_calls` - [Webex Calling](/docs/webex-calling-overview) call resources.\n * `telephony_conference` - [Webex Calling](/docs/webex-calling-overview) conference controls resource.\n * `telephony_mwi` - [Webex Calling](/docs/webex-calling-overview) voicemail message waiting indicator resource.\n * `uc_counters` - Performance counter for a dedicated instance.\n * `serviceApp` - Service App authorization notification.\n * `adminBatchJobs` - Admin Batch Jobs notification.\n"
+                    "description": "Resource type for the webhook. Creating a webhook requires 'read' scope on the resource the webhook is for.\n * `attachmentActions` - [Attachment Actions](/docs/api/v1/attachment-actions) resource.\n * `dataSources` - [data sources](/docs/api/v1/data-sources) resource.\n * `memberships` - [Memberships](/docs/api/v1/memberships) resource.\n * `messages` - [Messages](/docs/api/v1/messages) resource.\n * `rooms` - [Rooms](/docs/api/v1/rooms) resource.\n * `meetings` - [Meetings](/docs/api/v1/meetings) resource.\n * `recordings` - [Recordings](/docs/api/v1/recordings) resource.\n * `convergedRecordings` - [CallRecordings](/docs/api/v1/converged-recordings) resource.\n * `meetingParticipants` - [Meeting Participants](/docs/api/v1/meeting-participants) resource.\n * `meetingTranscripts` - [Meeting Transcripts](/docs/api/v1/meeting-transcripts) resource.\n * `telephony_calls` - [Webex Calling](/docs/webex-calling-overview) call resources.\n * `telephony_conference` - [Webex Calling](/docs/webex-calling-overview) conference controls resource.\n * `telephony_mwi` - [Webex Calling](/docs/webex-calling-overview) voicemail message waiting indicator resource.\n * `uc_counters` - Performance counter for a dedicated instance.\n * `serviceApp` - Service App authorization notification (`authorized`, `deauthorized`). For application CRUD lifecycle events, use `applications` instead.\n * `applications` - Org-level lifecycle notifications for Bots, Integrations, and Service Apps (`created`, `updated`, `deleted`). Requires org admin authorization with `ownedBy: org`, OAuth scope `application:webhooks_write`, and `id_full_admin` role. Filters are not supported. Callback `data` contains the full application object (not a field-level diff on `updated`). See [Bots](/messaging/docs/bots), [Integrations](/create/docs/authentication), and [Service Apps](/admin/docs/api/v1/service-apps) for object shapes.\n * `adminBatchJobs` - Admin Batch Jobs notification.\n"
                   },
                   "event": {
                     "type": "string",
@@ -7645,7 +7684,7 @@
                   "filter": {
                     "type": "string",
                     "example": "roomId=Y2lzY29zcGFyazovL3VzL1JPT00vYmJjZWIxYWQtNDNmMS0zYjU4LTkxNDctZjE0YmIwYzRkMTU0",
-                    "description": "Filter that defines the webhook scope. See [Filtering Webhooks](/docs/api/guides/webhooks#filtering-webhooks) for more information. Please note that if a filter of `hostEmail`, `hostUserId`, `ownerEmail` or `ownerId` is specified, `ownedBy` must be set to `org`."
+                    "description": "Filter that defines the webhook scope. See [Filtering Webhooks](/docs/api/guides/webhooks#filtering-webhooks) for more information. Please note that if a filter of `hostEmail`, `hostUserId`, `ownerEmail` or `ownerId` is specified, `ownedBy` must be set to `org`. Filters are not supported for `applications` webhooks; omit `filter` or leave empty."
                   },
                   "secret": {
                     "type": "string",
@@ -7655,7 +7694,7 @@
                   "ownedBy": {
                     "type": "string",
                     "example": "org",
-                    "description": "Specify `org` when creating an org/admin level webhook. Supported for `meetings`, `recordings`, `convergedRecordings`,`meetingParticipants`, `meetingTranscripts`, `videoMeshAlerts`, `controlHubAlerts`, `rooms`, `messaging` and `adminBatchJobs` (for Compliance Officers and messages with file attachments only - see [inline file DLP](/docs/api/guides/webex-real-time-file-dlp-basics)) resources."
+                    "description": "Specify `org` when creating an org/admin level webhook. Supported for `meetings`, `recordings`, `convergedRecordings`,`meetingParticipants`, `meetingTranscripts`, `videoMeshAlerts`, `controlHubAlerts`, `rooms`, `messaging`, `applications`, and `adminBatchJobs` (for Compliance Officers and messages with file attachments only - see [inline file DLP](/docs/api/guides/webex-real-time-file-dlp-basics)) resources."
                   }
                 }
               }
@@ -7879,7 +7918,7 @@
                   "ownedBy": {
                     "type": "string",
                     "example": "org",
-                    "description": "Specify `org` when creating an org/admin level webhook. Supported for `meetings`, `recordings`, `convergedRecordings`, `meetingParticipants`, `meetingTranscripts`, `videoMeshAlerts`, `controlHubAlerts`, `rooms`, `messaging` and `adminBatchJobs`  (for Compliance Officers and messages with file attachments only - see [inline file DLP](/docs/api/guides/webex-real-time-file-dlp-basics)) resources."
+                    "description": "Specify `org` when creating an org/admin level webhook. Supported for `meetings`, `recordings`, `convergedRecordings`, `meetingParticipants`, `meetingTranscripts`, `videoMeshAlerts`, `controlHubAlerts`, `rooms`, `messaging`, `applications`, and `adminBatchJobs`  (for Compliance Officers and messages with file attachments only - see [inline file DLP](/docs/api/guides/webex-real-time-file-dlp-basics)) resources."
                   },
                   "status": {
                     "type": "string",
@@ -16578,9 +16617,10 @@
               "telephony_mwi",
               "uc_counters",
               "serviceApp",
+              "applications",
               "adminBatchJobs"
             ],
-            "description": "Resource type for the webhook. Creating a webhook requires 'read' scope on the resource the webhook is for.\n * `attachmentActions` - [Attachment Actions](/docs/api/v1/attachment-actions) resource.\n * `dataSources` - [data sources](/docs/api/v1/data-sources) resource.\n * `memberships` - [Memberships](/docs/api/v1/memberships) resource.\n * `messages` - [Messages](/docs/api/v1/messages) resource.\n * `rooms` - [Rooms](/docs/api/v1/rooms) resource.\n * `meetings` - [Meetings](/docs/api/v1/meetings) resource.\n * `recordings` - [Recordings](/docs/api/v1/recordings) resource.\n * `convergedRecordings` - [CallRecordings](/docs/api/v1/converged-recordings) resource.\n * `meetingParticipants` - [Meeting Participants](/docs/api/v1/meeting-participants) resource.\n * `meetingTranscripts` - [Meeting Transcripts](/docs/api/v1/meeting-transcripts) resource.\n * `telephony_calls` - [Webex Calling](/docs/webex-calling-overview) call resources.\n * `telephony_conference` - [Webex Calling](/docs/webex-calling-overview) conference controls resource.\n * `telephony_mwi` - [Webex Calling](/docs/webex-calling-overview) voicemail message waiting indicator resource.\n * `uc_counters` - Performance counter for a dedicated instance.\n * `serviceApp` - Service App authorization notification.\n * `adminBatchJobs` - Admin Batch Jobs notification.\n"
+            "description": "Resource type for the webhook. Creating a webhook requires 'read' scope on the resource the webhook is for.\n * `attachmentActions` - [Attachment Actions](/docs/api/v1/attachment-actions) resource.\n * `dataSources` - [data sources](/docs/api/v1/data-sources) resource.\n * `memberships` - [Memberships](/docs/api/v1/memberships) resource.\n * `messages` - [Messages](/docs/api/v1/messages) resource.\n * `rooms` - [Rooms](/docs/api/v1/rooms) resource.\n * `meetings` - [Meetings](/docs/api/v1/meetings) resource.\n * `recordings` - [Recordings](/docs/api/v1/recordings) resource.\n * `convergedRecordings` - [CallRecordings](/docs/api/v1/converged-recordings) resource.\n * `meetingParticipants` - [Meeting Participants](/docs/api/v1/meeting-participants) resource.\n * `meetingTranscripts` - [Meeting Transcripts](/docs/api/v1/meeting-transcripts) resource.\n * `telephony_calls` - [Webex Calling](/docs/webex-calling-overview) call resources.\n * `telephony_conference` - [Webex Calling](/docs/webex-calling-overview) conference controls resource.\n * `telephony_mwi` - [Webex Calling](/docs/webex-calling-overview) voicemail message waiting indicator resource.\n * `uc_counters` - Performance counter for a dedicated instance.\n * `serviceApp` - Service App authorization notification (`authorized`, `deauthorized`). For application CRUD lifecycle events, use `applications` instead.\n * `applications` - Org-level lifecycle notifications for Bots, Integrations, and Service Apps (`created`, `updated`, `deleted`). Requires org admin authorization with `ownedBy: org`, OAuth scope `application:webhooks_write`, and `id_full_admin` role. Filters are not supported. Callback `data` contains the full application object (not a field-level diff on `updated`). See [Bots](/messaging/docs/bots), [Integrations](/create/docs/authentication), and [Service Apps](/admin/docs/api/v1/service-apps) for object shapes.\n * `adminBatchJobs` - Admin Batch Jobs notification.\n"
           },
           "event": {
             "type": "string",
@@ -16625,7 +16665,7 @@
           "ownedBy": {
             "type": "string",
             "example": "org",
-            "description": "Specify `org` when creating an org/admin level webhook. Supported for `meetings`, `recordings`, `convergedRecordings`, `meetingParticipants`, `meetingTranscripts`, `videoMeshAlerts`, `controlHubAlerts`, `rooms`, `messaging` and `adminBatchJobs`  (for Compliance Officers and messages with file attachments only - see [inline file DLP](/docs/api/guides/webex-real-time-file-dlp-basics)) resources."
+            "description": "Specify `org` when creating an org/admin level webhook. Supported for `meetings`, `recordings`, `convergedRecordings`, `meetingParticipants`, `meetingTranscripts`, `videoMeshAlerts`, `controlHubAlerts`, `rooms`, `messaging`, `applications`, and `adminBatchJobs`  (for Compliance Officers and messages with file attachments only - see [inline file DLP](/docs/api/guides/webex-real-time-file-dlp-basics)) resources."
           }
         }
       },

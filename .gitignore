@@ -1,0 +1,5 @@
+# Spec Kit local tooling (not committed; others may add their own .specify/)
+.specify/
+
+# Cursor IDE local config and skills
+.cursor/
