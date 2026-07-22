@@ -57161,8 +57161,6 @@
               "example": {
                 "id": "Y2lzY29zcGFyazovL3VzL1JFQ09SRElOR19WRU5ET1IvMGE0MjY3NTQtYTQ3MC00YzJkLThiYTAtZmJjNjc3M2E4YTdj",
                 "orgDefaultEnabled": false,
-                "storageRegion": "US",
-                "orgStorageRegionEnabled": true,
                 "failureBehavior": "PROCEED_CALL_WITH_ANNOUNCEMENT",
                 "orgFailureBehaviorEnabled": true
               },
@@ -58021,7 +58019,6 @@
             "application/json": {
               "example": {
                 "vendorId": "Y2lzY29zcGFyazovL3VzL1JFQ09SRElOR19WRU5ET1IvMGE0MjY3NTQtYTQ3MC00YzJkLThiYTAtZmJjNjc3M2E4YTdj",
-                "storageRegion": "US",
                 "failureBehavior": "PROCEED_WITH_CALL_NO_ANNOUNCEMENT"
               },
               "schema": {
@@ -59764,6 +59761,454 @@
             }
           }
         ]
+      }
+    },
+    "/telephony/config/dataPolicies": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerDataPoliciesGetResponseObject"
+                },
+                "example": {
+                  "orgDataRegion": "IN",
+                  "allowEditEnabled": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Get the Data (Storage) Policy Settings for the Organization",
+        "operationId": "ReadDataPolicySettings",
+        "description": "Retrieve the settings for data (storage) policy region of the organization.\n\nData policies allow administrators to configure the storage region for organization data at the organization or location level.\n\nRetrieving data policy settings requires a user auth token with a scope of `spark-admin:telephony_config_read`.",
+        "tags": [
+          "Call Settings Configurable Storage Region"
+        ],
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "query",
+            "description": "Retrieve data policy settings from this organization.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi9lNTEzMTg1Zi01YTJmLTQ0OTUtYjM1Yi03MDY3YmY3Y2U0OGU",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "put": {
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {},
+            "content": {}
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Update the Data (Storage) Policy Settings for the Organization",
+        "operationId": "ModifyDataPolicySettings",
+        "description": "Modify the configurations for data (storage) policy region of the organization.\n\nData policies allow administrators to configure the storage region for organization data at the organization or location level.\n\nConfiguring data policy settings requires a user auth token with a scope of `spark-admin:telephony_config_write`.",
+        "tags": [
+          "Call Settings Configurable Storage Region"
+        ],
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "query",
+            "description": "Modify data policy settings for this organization.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi9lNTEzMTg1Zi01YTJmLTQ0OTUtYjM1Yi03MDY3YmY3Y2U0OGU",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "orgDataRegion": "US"
+              },
+              "schema": {
+                "$ref": "#/components/schemas/CustomerDataPoliciesPatchRequestObject"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/telephony/config/dataPolicies/regions": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataPolicyRegionsListGetObject"
+                },
+                "example": {
+                  "regions": [
+                    {
+                      "code": "JP",
+                      "name": "Japan",
+                      "isVoicemailStorageRestrictionEnabled": false
+                    },
+                    {
+                      "code": "US",
+                      "name": "United States",
+                      "isVoicemailStorageRestrictionEnabled": false
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Get All the Storage Regions Available for Configuring as Data Policy Region",
+        "operationId": "GetAvailableDataPolicyRegions",
+        "description": "Retrieve all the storage regions available for configuring data (storage) policy of an organization or organization's location.\n\nData policies allow administrators to configure the storage region for organization data at the organization or location level.\n\nRetrieving available data policy regions requires a user auth token with a scope of `spark-admin:telephony_config_read`.",
+        "tags": [
+          "Call Settings Configurable Storage Region"
+        ],
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "query",
+            "description": "Retrieve available data policy regions for this organization.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi9lNTEzMTg1Zi01YTJmLTQ0OTUtYjM1Yi03MDY3YmY3Y2U0OGU",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/telephony/config/locations/{locationId}/dataPolicies": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationDataPoliciesGetResponseObject"
+                },
+                "example": {
+                  "orgDataRegion": "JP",
+                  "locationDataRegion": "US",
+                  "useOrgDataRegionEnabled": false,
+                  "allowEditEnabled": true
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Get the Data (Storage) Policy Settings for the Organization's Location",
+        "operationId": "GetLocationDataPolicySettings",
+        "description": "Retrieve the settings for data (storage) policy region of the organization's location.\n\nData policies allow administrators to configure the storage region for organization data at the organization or location level.\n\nRetrieving location data policy settings requires a user auth token with a scope of `spark-admin:telephony_config_read`.",
+        "tags": [
+          "Call Settings Configurable Storage Region"
+        ],
+        "parameters": [
+          {
+            "name": "locationId",
+            "in": "path",
+            "description": "Fetch the data policy for this location.",
+            "required": true,
+            "example": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OL2NkMzNhMzA0LTdlYjgtNGVlOC04ZDhmLWFkNjA1YjVkNDQ2Zg",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orgId",
+            "in": "query",
+            "description": "Retrieve location data policy settings from this organization.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi9lNTEzMTg1Zi01YTJmLTQ0OTUtYjM1Yi03MDY3YmY3Y2U0OGU",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "put": {
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {},
+            "content": {}
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Update the Data (Storage) Policy Settings for the Organization's Location",
+        "operationId": "ModifyLocationDataPolicySettings",
+        "description": "Modify the configurations for data (storage) policy region of the organization's location.\n\nData policies allow administrators to configure the storage region for organization data at the organization or location level.\n\nConfiguring location data policy settings requires a user auth token with a scope of `spark-admin:telephony_config_write`.",
+        "tags": [
+          "Call Settings Configurable Storage Region"
+        ],
+        "parameters": [
+          {
+            "name": "locationId",
+            "in": "path",
+            "description": "Modify the data policy for this location.",
+            "required": true,
+            "example": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OL2NkMzNhMzA0LTdlYjgtNGVlOC04ZDhmLWFkNjA1YjVkNDQ2Zg",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orgId",
+            "in": "query",
+            "description": "Modify location data policy settings for this organization.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi9lNTEzMTg1Zi01YTJmLTQ0OTUtYjM1Yi03MDY3YmY3Y2U0OGU",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "locationDataRegion": "US",
+                "useOrgDataRegionEnabled": false
+              },
+              "schema": {
+                "$ref": "#/components/schemas/LocationDataPoliciesPatchObject"
+              }
+            }
+          }
+        }
       }
     },
     "/telephony/config/locations/{locationId}/features/hotDesking": {
@@ -153121,16 +153566,6 @@
             "example": true,
             "description": "Vendor is enabled by default."
           },
-          "storageRegion": {
-            "type": "string",
-            "example": "US",
-            "description": "Regions where call recordings are stored."
-          },
-          "orgStorageRegionEnabled": {
-            "type": "boolean",
-            "example": true,
-            "description": "Region-based call recording storage is enabled."
-          },
           "failureBehavior": {
             "description": "Type of failure behavior.",
             "allOf": [
@@ -153492,10 +153927,6 @@
           "vendorId": {
             "type": "string",
             "description": "Unique identifier of the vendor."
-          },
-          "storageRegion": {
-            "type": "string",
-            "description": "Call recording storage region. Only applicable for Webex as a vendor and isn't used for other vendors."
           },
           "failureBehavior": {
             "description": "Call recording failure behavior.",
@@ -154821,6 +155252,121 @@
             "type": "number",
             "example": 60,
             "description": "Wrap up timer value in seconds."
+          }
+        }
+      },
+      "CustomerDataPoliciesGetResponseObject": {
+        "type": "object",
+        "required": [
+          "orgDataRegion",
+          "allowEditEnabled"
+        ],
+        "properties": {
+          "orgDataRegion": {
+            "type": "string",
+            "example": "US",
+            "description": "(ISO 3166-1 alpha-2) Country Code configured as the storage region for the data policy of the Organization."
+          },
+          "allowEditEnabled": {
+            "type": "boolean",
+            "example": false,
+            "description": "If `true`, the storage region for the data policy of the Organization can be modified."
+          }
+        }
+      },
+      "CustomerDataPoliciesPatchRequestObject": {
+        "type": "object",
+        "properties": {
+          "orgDataRegion": {
+            "type": "string",
+            "example": "US",
+            "description": "(ISO 3166-1 alpha-2) Country Code to be configured as the storage region for the data policy of the Organization."
+          }
+        }
+      },
+      "DataPolicyRegion": {
+        "type": "object",
+        "required": [
+          "code",
+          "name",
+          "isVoicemailStorageRestrictionEnabled"
+        ],
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "US",
+            "description": "(ISO 3166-1 alpha-2) Country Code."
+          },
+          "name": {
+            "type": "string",
+            "example": "United States",
+            "description": "Name of the country corresponding to the (ISO 3166-1 alpha-2) Country Code."
+          },
+          "isVoicemailStorageRestrictionEnabled": {
+            "type": "boolean",
+            "example": false,
+            "description": "Indicates whether voicemail storage restriction is enabled for this region."
+          }
+        }
+      },
+      "DataPolicyRegionsListGetObject": {
+        "type": "object",
+        "required": [
+          "regions"
+        ],
+        "properties": {
+          "regions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DataPolicyRegion"
+            },
+            "description": "List containing all the available regions for the data policy configuration."
+          }
+        }
+      },
+      "LocationDataPoliciesGetResponseObject": {
+        "type": "object",
+        "required": [
+          "orgDataRegion",
+          "useOrgDataRegionEnabled",
+          "allowEditEnabled"
+        ],
+        "properties": {
+          "orgDataRegion": {
+            "type": "string",
+            "example": "US",
+            "description": "(ISO 3166-1 alpha-2) Country Code indicating the data policy region configured for the organization to which the location belongs to."
+          },
+          "locationDataRegion": {
+            "type": "string",
+            "nullable": true,
+            "example": "JP",
+            "description": "(ISO 3166-1 alpha-2) Country Code indicating the data policy region configured for the location."
+          },
+          "useOrgDataRegionEnabled": {
+            "type": "boolean",
+            "example": false,
+            "description": "Indicates whether the location is configured to use configuration same as the Organization's configuration for data (storage) policy region settings."
+          },
+          "allowEditEnabled": {
+            "type": "boolean",
+            "example": true,
+            "description": "If `true`, the storage region for the data policy of the Location can be modified."
+          }
+        }
+      },
+      "LocationDataPoliciesPatchObject": {
+        "type": "object",
+        "properties": {
+          "locationDataRegion": {
+            "type": "string",
+            "example": "JP",
+            "description": "(ISO 3166-1 alpha-2) Country Code to be configured as the data policy region for the location."
+          },
+          "useOrgDataRegionEnabled": {
+            "type": "boolean",
+            "example": false,
+            "description": "Whether location's data (storage) policy region to be used same as the one configured at the Organization's level."
           }
         }
       },
