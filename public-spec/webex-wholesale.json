@@ -13171,12 +13171,12 @@
         "properties": {
           "orgId": {
             "type": "string",
-            "example": "'Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE'",
+            "example": "\"Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE\"",
             "description": "The Organization ID for the sub-partner."
           },
           "subscriptionId": {
             "type": "string",
-            "example": "'Sub23452345'",
+            "example": "\"Sub23452345\"",
             "description": "The Wholesale Subscription ID of the partner."
           },
           "provisioningState": {
@@ -13194,7 +13194,7 @@
           },
           "billingStartDate": {
             "type": "string",
-            "example": "'2023",
+            "example": "\"2023\"",
             "description": "02-22T13:43:41.117Z' (string) - The date and time from which new billing for the sub-partner started."
           }
         }

@@ -57957,6 +57957,234 @@
         }
       }
     },
+    "/{orgId}/project/{projectId}/flows:search": {
+      "get": {
+        "tags": [
+          "Flows"
+        ],
+        "summary": "Search Flows",
+        "description": "Returns a list of flows in response. The search is case-sensitive.\n\nScope: `cjp:config_read`. Roles: [`Organizational Full Admin`, `Supervisor`, `Contact Center Service Admin`, `User Admin`]",
+        "operationId": "searchFlows",
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "path",
+            "description": "Organization ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "8eb7da9a-c81c-4d13-b08b-38fdeb7330d8"
+          },
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "Project ID. System generated value which is the same across orgs and environments. Always use: 5e5c9ad6d61f870d6d778c1b.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "5e5c9ad6d61f870d6d778c1b"
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "description": "Searches for flows with the given query. The search is case-sensitive.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "flow1"
+          },
+          {
+            "name": "flowType",
+            "in": "query",
+            "description": "Either of 'FLOW' or 'SUBFLOW' or 'ALL'. Default value is 'ALL'.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "ALL"
+            },
+            "example": "FLOW"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Defines the number of the displayed page. The page number starts from 0.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            },
+            "example": 0
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "Defines the number of items to be displayed on a page. If the number specified is more than allowed max page size, the API will automatically adjust the page size to the max page size.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            },
+            "example": 10
+          },
+          {
+            "name": "keyValueFilter",
+            "in": "query",
+            "description": "Filters results based on key-value pairs. Format: 'key1|value1,key2|value2'. This will add a filter on normalizedFlow collection directly instead of running query on atlas.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": ""
+            },
+            "example": "activityName|Queue,flowType|FLOW"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FlowSearchResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/{orgId}/project/{projectId}/flows/{flowId}": {
+      "delete": {
+        "tags": [
+          "Flows"
+        ],
+        "summary": "Delete a Flow or Subflow",
+        "description": "Permanently deletes a flow or subflow. Flows deleted via this API are removed permanently and cannot be recovered.\n\nScope: `cjp:config_write`. Roles: [`Organizational Full Admin`, `Contact Center Service Admin`]",
+        "operationId": "deleteFlowUsingDELETE",
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "path",
+            "description": "Organization ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "8eb7da9a-c81c-4d13-b08b-38fdeb7330d8"
+          },
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "Project ID. System generated value which is the same across orgs and environments. Always use: 5e5c9ad6d61f870d6d778c1b.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "5e5c9ad6d61f870d6d778c1b"
+          },
+          {
+            "name": "flowId",
+            "in": "path",
+            "description": "ID of the flow/subflow to delete.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "661c7bc712eaf357de7e4aeb"
+          },
+          {
+            "name": "force",
+            "in": "query",
+            "description": "If 'yes', the flow is deleted even if it is still referenced by other entities. Defaults to 'no'.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "no"
+            },
+            "example": "no"
+          },
+          {
+            "name": "skipRsEPCheck",
+            "in": "query",
+            "description": "If true, skips the check for routing strategy and entry point associations before deleting the flow.",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            },
+            "example": true
+          },
+          {
+            "name": "flowType",
+            "in": "query",
+            "description": "Either of 'FLOW' or 'SUBFLOW'.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "FLOW"
+            },
+            "example": "FLOW"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "example": "OK"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {}
+          }
+        }
+      }
+    },
     "/{orgId}/project/{projectId}/flows/{flowId}:publish": {
       "post": {
         "tags": [
@@ -92241,6 +92469,104 @@
         "type": "string",
         "description": "Lock/unlock acknowledgement. Returns the literal JSON string \"OK\" on success. Locks auto-expire after 15 minutes of inactivity.",
         "example": "OK"
+      },
+      "FlowSearchResponse": {
+        "title": "FlowSearchResponse",
+        "type": "object",
+        "description": "Paginated list of flows matching the search criteria.",
+        "example": {
+          "pageInfo": {
+            "currentPage": 0,
+            "totalRecords": 8,
+            "pageSize": 3,
+            "totalPages": 3
+          },
+          "data": [
+            {
+              "orgId": "8eb7da9a-c81c-4d13-b08b-38fdeb7330d8",
+              "id": "6501eae8d7974a1c1d4c25d3",
+              "name": "Test_Flow",
+              "flowType": "FLOW",
+              "lastModifiedDate": "2026-02-10T01:59:02.213Z"
+            }
+          ]
+        },
+        "properties": {
+          "pageInfo": {
+            "$ref": "#/components/schemas/FlowSearchPageInfo"
+          },
+          "data": {
+            "type": "array",
+            "description": "Flows matching the search criteria for the current page.",
+            "items": {
+              "$ref": "#/components/schemas/FlowSearchResult"
+            }
+          }
+        }
+      },
+      "FlowSearchPageInfo": {
+        "title": "FlowSearchPageInfo",
+        "type": "object",
+        "description": "Pagination metadata for a flow search response.",
+        "properties": {
+          "currentPage": {
+            "type": "integer",
+            "description": "Zero-based index of the current page.",
+            "format": "int32",
+            "example": 0
+          },
+          "totalRecords": {
+            "type": "integer",
+            "description": "Total number of flows matching the search criteria across all pages.",
+            "format": "int32",
+            "example": 8
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "Number of items on the current page.",
+            "format": "int32",
+            "example": 3
+          },
+          "totalPages": {
+            "type": "integer",
+            "description": "Total number of pages available for the search criteria.",
+            "format": "int32",
+            "example": 3
+          }
+        }
+      },
+      "FlowSearchResult": {
+        "title": "FlowSearchResult",
+        "type": "object",
+        "description": "Summary information for a flow returned by the search API.",
+        "properties": {
+          "orgId": {
+            "type": "string",
+            "description": "Organization ID.",
+            "example": "8eb7da9a-c81c-4d13-b08b-38fdeb7330d8"
+          },
+          "id": {
+            "type": "string",
+            "description": "Flow ID.",
+            "example": "6501eae8d7974a1c1d4c25d3"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the flow.",
+            "example": "Test_Flow"
+          },
+          "flowType": {
+            "type": "string",
+            "description": "Either of 'FLOW' or 'SUBFLOW'.",
+            "example": "FLOW"
+          },
+          "lastModifiedDate": {
+            "type": "string",
+            "description": "Date the flow was last modified.",
+            "format": "date-time",
+            "example": "2026-02-10T01:59:02.213Z"
+          }
+        }
       },
       "BasicFlow": {
         "title": "BasicFlow",
