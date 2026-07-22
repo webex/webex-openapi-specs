@@ -42610,7 +42610,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of objects returned to this maximum count.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -42619,7 +42619,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching objects.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -43152,6 +43152,166 @@
         }
       }
     },
+    "/telephony/config/announcements/{announcementId}/fileUri": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnnouncementFileUriResponse"
+                },
+                "example": {
+                  "fileUri": "cmf://customers/bf01164f-ed87-44d9-bc41-f63f26fb9663/media/urls/tmp/af01164f-ed87-44d9-bc41-f63f26fb8663"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Get Announcement File URI",
+        "operationId": "getAnnouncementFileUri",
+        "description": "Retrieve the `fileUri` for an existing binary announcement greeting at the organization level. Use the returned `fileUri` with the Get Media Download URL API to get URLs for downloading the announcement media file.\n\nThis API is part of the Announcement Repository with Media URLs feature, which optimizes the media file upload process by enabling direct S3 uploads and adds the ability to preview existing announcement audio files.\n\nThis API requires a full or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
+        "tags": [
+          "Features: Announcement Repository"
+        ],
+        "parameters": [
+          {
+            "name": "announcementId",
+            "in": "path",
+            "description": "Unique identifier of an announcement.",
+            "required": true,
+            "example": "Y2lzY29zcGFyazovL3VzL0FOTk9VTkNFTUVOVC8zMjAxNjRmNC1lNWEzLTQxZmYtYTMyNi02N2MwOThlNDFkMWQ",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orgId",
+            "in": "query",
+            "description": "Get announcement fileUri in this organization.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/telephony/config/announcements/uploadUrls/actions/generate/invoke": {
+      "post": {
+        "summary": "Generate Upload URL",
+        "operationId": "generateUploadUrl",
+        "description": "Generate a pre-signed S3 upload URL, KMS encryption key for uploading an announcement media file. And file URI to create announcement using the media file.\n\nTo encrypt and upload the announcement media file:\n\n1. Download the KMS key - Use the Webex Node.js SDK and provide `kmsKeyUri` to download the key from KMS.\n\n2. Encrypt media file - Use the jose library to encrypt the raw media file with the downloaded key.\n\n3. Upload the encrypted media file - Send a `PUT` request with encrypted media file to the `preSignedUrl`. The request must include following headers:\n\n- `x-amz-meta-contenttype`: The media MIME type, for example: `audio/wav`\n\n- `x-amz-meta-kmskeyuri`: The returned `kmsKeyUri`, for example: `kms://kms-cisco.wbx2.com/keys/b56642f3-d597-420c-8a55-41aaa8c5b6e7`\n\n- `x-amz-tagging`: `tmp=true`\n\nThis API is part of the Announcement Repository with Media URLs feature, which optimizes the media file upload process by enabling direct S3 uploads and adds the ability to preview existing announcement audio files.\n\nThis API requires a full administrator auth token with a scope of `spark-admin:telephony_config_write`.",
+        "tags": [
+          "Features: Announcement Repository"
+        ],
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "query",
+            "description": "Generate the upload URL for this organization.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateUploadUrlResponse"
+                },
+                "example": {
+                  "preSignedUrl": "https://s3.amazonaws.com/wxc-media/uploads/af01164f-ed87-44d9-bc41-f63f26fb8663?X-Amz-Signature=abc123",
+                  "kmsKeyUri": "kms://kms-cisco.wbx2.com/keys/b56642f3-d597-420c-8a55-41aaa8c5b6e7",
+                  "fileUri": "cmf://customers/bf01164f-ed87-44d9-bc41-f63f26fb9663/media/af01164f-ed87-44d9-bc41-f63f26fb8663"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        }
+      }
+    },
     "/telephony/config/locations/{locationId}/announcements": {
       "post": {
         "responses": {
@@ -43670,6 +43830,188 @@
                 "isTextToSpeech": false
               }
             }
+          }
+        }
+      }
+    },
+    "/telephony/config/locations/{locationId}/announcements/{announcementId}/fileUri": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnnouncementFileUriResponse"
+                },
+                "example": {
+                  "fileUri": "cmf://customers/bf01164f-ed87-44d9-bc41-f63f26fb9663/media/urls/tmp/af01164f-ed87-44d9-bc41-f63f26fb8663"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Get Location Announcement File URI",
+        "operationId": "getLocationAnnouncementFileUri",
+        "description": "Retrieve the `fileUri` for an existing binary announcement greeting at the location level. Use the returned `fileUri` with the Get Media Download URL API to get URLs for downloading the announcement media file.\n\nThis API is part of the Announcement Repository with Media URLs feature, which optimizes the media file upload process by enabling direct S3 uploads and adds the ability to preview existing announcement audio files.\n\nThis API requires a full or read-only administrator or location administrator auth token with a scope of `spark-admin:telephony_config_read`.",
+        "tags": [
+          "Features: Announcement Repository"
+        ],
+        "parameters": [
+          {
+            "name": "locationId",
+            "in": "path",
+            "description": "Unique identifier of a location where an announcement is stored.",
+            "required": true,
+            "example": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OL2U1MjQ0OGU5LTE1NjQtNDNlOS04YzY1LWMyYWMwNDY1ZWMwYw",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "announcementId",
+            "in": "path",
+            "description": "Unique identifier of an announcement.",
+            "required": true,
+            "example": "Y2lzY29zcGFyazovL3VzL0FOTk9VTkNFTUVOVC8zMjAxNjRmNC1lNWEzLTQxZmYtYTMyNi02N2MwOThlNDFkMWQ",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orgId",
+            "in": "query",
+            "description": "Get announcement fileUri for location in this organization.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/telephony/config/media/urls/{s3Path}": {
+      "get": {
+        "summary": "Get Media Download URL",
+        "operationId": "getMediaDownloadUrl",
+        "description": "Retrieve a pre-signed S3 download URL and KMS encryption key for a previously uploaded announcement media file identified by its S3 path.\n\nTo preview the announcement media file:\n\n1. Download the KMS key - Use the Webex Node.js SDK and provide `kmsKeyUri` to download the key from KMS.\n\n2. Download the encrypted media file - The encrypted media file content is stored in cloud and can be retrieved using `preSignedUrl`.\n\n3. Decrypt the media content - Use the jose library to decrypt the content downloaded from `preSignedUrl` using the downloaded key.\n\nThis API is part of the Announcement Repository with Media URLs feature, which optimizes the media file upload process and adds the ability to preview existing announcement audio files by generating pre-signed S3 download URLs.\n\nThis API requires a full or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
+        "tags": [
+          "Features: Announcement Repository"
+        ],
+        "parameters": [
+          {
+            "name": "s3Path",
+            "in": "path",
+            "description": "The storage path of the announcement media file. Use the value after `/media/urls/` in the `fileUri` returned by the Get Announcement File URI or Get Location Announcement File URI API. For example, if `fileUri` is `cmf://customers/bf01164f-ed87-44d9-bc41-f63f26fb9663/media/urls/tmp/af01164f-ed87-44d9-bc41-f63f26fb8663`, then `s3Path` is `tmp/af01164f-ed87-44d9-bc41-f63f26fb8663`.",
+            "required": true,
+            "example": "tmp/af01164f-ed87-44d9-bc41-f63f26fb8663",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orgId",
+            "in": "query",
+            "description": "Retrieve the media download URL for this organization.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetMediaUrlResponse"
+                },
+                "example": {
+                  "preSignedUrl": "https://s3.amazonaws.com/wxc-media/customers/bf01164f-ed87-44d9-bc41-f63f26fb9663/media/af01164f-ed87-44d9-bc41-f63f26fb8663?X-Amz-Signature=def456",
+                  "kmsKeyUri": "kms://kms-cisco.wbx2.com/keys/b56642f3-d597-420c-8a55-41aaa8c5b6e7"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "410": {
+            "description": "Gone: The requested media resource has expired and is no longer available."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
           }
         }
       }
@@ -44388,7 +44730,7 @@
           {
             "name": "orgId",
             "in": "query",
-            "description": "Retrieve auto attendant details from this organization.",
+            "description": "Retrieve the auto attendant details from this organization.",
             "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE",
             "schema": {
               "type": "string"
@@ -54160,7 +54502,7 @@
                     {
                       "id": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS81NzJjNWMwZS1jMDY4LTQ0NmItOWM0Ny04MjYwYTIzZTY0NmI",
                       "firstName": "Lobby",
-                      "lastName": ".",
+                      "lastName": "Space",
                       "phoneNumber": "+19458880334",
                       "routingPrefix": "8002",
                       "queueCount": 1,
@@ -54176,7 +54518,7 @@
                     {
                       "id": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mNWYxNTg1YS03MWM2LTQyZGEtYmRkNC1iMzYzYzlhYzQwZGI",
                       "firstName": "Quiet Room",
-                      "lastName": ".",
+                      "lastName": "Space",
                       "phoneNumber": "+19458880338",
                       "routingPrefix": "8003",
                       "queueCount": 1,
@@ -56951,7 +57293,7 @@
                   "members": [
                     {
                       "id": "Y2lzY29zcGFyazovL3VybjpURUFNOnVzLXdlc3QtMl9yL1BMQUNFL2U2OTczZDgyLWM1NTUtNDMwOC05NGU3LWI3ZWU2MjczY2YyMg",
-                      "lastName": ".",
+                      "lastName": "Last",
                       "firstName": "HQ-Shared-Device",
                       "type": "PLACE",
                       "licenseType": "WORKSPACE"
@@ -57300,7 +57642,7 @@
                   "members": [
                     {
                       "id": "Y2lzY29zcGFyazovL3VybjpURUFNOnVzLXdlc3QtMl9yL1BMQUNFL2U2OTczZDgyLWM1NTUtNDMwOC05NGU3LWI3ZWU2MjczY2YyMg",
-                      "lastName": ".",
+                      "lastName": "Last",
                       "firstName": "HQ-Shared-Device",
                       "type": "PLACE",
                       "licenseType": "WORKSPACE"
@@ -61043,7 +61385,7 @@
                   "alternateNumbers": [],
                   "language": "English",
                   "languageCode": "en-US",
-                  "callingFirstName": ".",
+                  "callingFirstName": "FirstName",
                   "callingLastName": "hgnME3",
                   "timeZone": "America/Los_Angeles",
                   "callPolicies": {
@@ -61178,7 +61520,7 @@
           {
             "name": "huntGroupId",
             "in": "path",
-            "description": "Retrieve settings for the hunt group with this identifier.",
+            "description": "Retrieve the settings for the hunt group with this identifier.",
             "required": true,
             "example": "Y2lzY29zcGFyazovL3VzL0hVTlRfR1JPVVAvYUhaaFpUTjJNRzh5YjBBMk5EazBNVEk1Tnk1cGJuUXhNQzVpWTJ4a0xuZGxZbVY0TG1OdmJRPT0",
             "schema": {
@@ -61188,7 +61530,7 @@
           {
             "name": "orgId",
             "in": "query",
-            "description": "Retrieve hunt group settings from this organization.",
+            "description": "Retrieve the hunt group settings from this organization.",
             "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE",
             "schema": {
               "type": "string"
@@ -66799,9 +67141,7 @@
             }
           }
         ]
-      }
-    },
-    "/telephony/config/virtualExtensionRanges/{extensionRangeId}/": {
+      },
       "put": {
         "responses": {
           "204": {
@@ -144987,8 +145327,7 @@
           "fileSize",
           "mediaFileType",
           "lastUpdated",
-          "level",
-          "location"
+          "level"
         ],
         "properties": {
           "id": {
@@ -145024,7 +145363,8 @@
           "level": {
             "type": "string",
             "enum": [
-              "LOCATION"
+              "LOCATION",
+              "ORGANIZATION"
             ],
             "description": "The level at which this announcement exists."
           },
@@ -145323,6 +145663,78 @@
           }
         }
       },
+      "AnnouncementFileUriResponse": {
+        "type": "object",
+        "description": "Response containing the URI of an announcement media file.",
+        "required": [
+          "fileUri"
+        ],
+        "properties": {
+          "fileUri": {
+            "type": "string",
+            "example": "cmf://customers/bf01164f-ed87-44d9-bc41-f63f26fb9663/media/urls/tmp/af01164f-ed87-44d9-bc41-f63f26fb8663",
+            "description": "URI of the announcement media file URLs. Use this value with the Get Media Download URL API to get URLs for downloading the announcement media file."
+          }
+        },
+        "example": {
+          "fileUri": "cmf://customers/bf01164f-ed87-44d9-bc41-f63f26fb9663/media/urls/tmp/af01164f-ed87-44d9-bc41-f63f26fb8663"
+        }
+      },
+      "GenerateUploadUrlResponse": {
+        "type": "object",
+        "description": "Response containing the information required to encrypt and upload an announcement media file.",
+        "required": [
+          "preSignedUrl",
+          "kmsKeyUri",
+          "fileUri"
+        ],
+        "properties": {
+          "preSignedUrl": {
+            "type": "string",
+            "description": "A pre-signed S3 URL for uploading the announcement media file. The URL is time-limited and should be used promptly.",
+            "example": "https://s3.amazonaws.com/wxc-media/uploads/af01164f-ed87-44d9-bc41-f63f26fb8663?X-Amz-Signature=abc123"
+          },
+          "kmsKeyUri": {
+            "type": "string",
+            "description": "The KMS key URI used to encrypt the media file before uploading to the pre-signed URL.",
+            "example": "kms://kms-cisco.wbx2.com/keys/b56642f3-d597-420c-8a55-41aaa8c5b6e7"
+          },
+          "fileUri": {
+            "type": "string",
+            "description": "A file URI that identifies the uploaded media. Use this URI when configuring announcements.",
+            "example": "cmf://customers/bf01164f-ed87-44d9-bc41-f63f26fb9663/media/af01164f-ed87-44d9-bc41-f63f26fb8663"
+          }
+        },
+        "example": {
+          "preSignedUrl": "https://s3.amazonaws.com/wxc-media/uploads/af01164f-ed87-44d9-bc41-f63f26fb8663?X-Amz-Signature=abc123",
+          "kmsKeyUri": "kms://kms-cisco.wbx2.com/keys/b56642f3-d597-420c-8a55-41aaa8c5b6e7",
+          "fileUri": "cmf://customers/bf01164f-ed87-44d9-bc41-f63f26fb9663/media/af01164f-ed87-44d9-bc41-f63f26fb8663"
+        }
+      },
+      "GetMediaUrlResponse": {
+        "type": "object",
+        "description": "Response containing the information required to download and decrypt an announcement media file.",
+        "required": [
+          "preSignedUrl",
+          "kmsKeyUri"
+        ],
+        "properties": {
+          "preSignedUrl": {
+            "type": "string",
+            "description": "A pre-signed S3 URL for downloading the announcement media file. The URL is time-limited and should be used promptly.",
+            "example": "https://s3.amazonaws.com/wxc-media/customers/bf01164f-ed87-44d9-bc41-f63f26fb9663/media/af01164f-ed87-44d9-bc41-f63f26fb8663?X-Amz-Signature=def456"
+          },
+          "kmsKeyUri": {
+            "type": "string",
+            "description": "The KMS key URI required to decrypt the media file downloaded from the pre-signed URL.",
+            "example": "kms://kms-cisco.wbx2.com/keys/b56642f3-d597-420c-8a55-41aaa8c5b6e7"
+          }
+        },
+        "example": {
+          "preSignedUrl": "https://s3.amazonaws.com/wxc-media/customers/bf01164f-ed87-44d9-bc41-f63f26fb9663/media/af01164f-ed87-44d9-bc41-f63f26fb8663?X-Amz-Signature=def456",
+          "kmsKeyUri": "kms://kms-cisco.wbx2.com/keys/b56642f3-d597-420c-8a55-41aaa8c5b6e7"
+        }
+      },
       "AlternateNumbersObject": {
         "type": "object",
         "required": [
@@ -145347,7 +145759,7 @@
               "SHORT_SHORT_LONG",
               "SHORT_LONG_SHORT"
             ],
-            "description": "Ring pattern that will be used for the alternate number."
+            "description": "Ring pattern that will be used for the alternate number.\n * `NORMAL` - Normal incoming ring pattern.\n * `LONG_LONG` - Incoming ring pattern of two long rings.\n * `SHORT_SHORT_LONG` - Incoming ring pattern of two short rings, followed by a short ring.\n * `SHORT_LONG_SHORT` - Incoming ring pattern of a short ring, followed by a long ring, followed by a short ring.\n"
           }
         }
       },
@@ -145778,8 +146190,6 @@
           "name",
           "enabled",
           "tollFreeNumber",
-          "firstName",
-          "lastName",
           "businessSchedule",
           "extensionDialing",
           "nameDialing",
@@ -145800,7 +146210,7 @@
           "enabled": {
             "type": "boolean",
             "example": true,
-            "description": "Flag to indicate if auto attendant number is enabled or not."
+            "description": "If `true` auto attendant is enabled."
           },
           "phoneNumber": {
             "type": "string",
@@ -145869,7 +146279,7 @@
               "ENTERPRISE",
               "GROUP"
             ],
-            "description": "Extension dialing setting. If the values are not set default will be set as `ENTERPRISE`."
+            "description": "Extension dialing setting. If the values are not set default will be set as `ENTERPRISE`.\n * `ENTERPRISE` - Enterprise (organization) level extension dialing.\n * `GROUP` - Group (location) level extension dialing.\n"
           },
           "nameDialing": {
             "type": "string",
@@ -145877,7 +146287,7 @@
               "ENTERPRISE",
               "GROUP"
             ],
-            "description": "Name dialing setting. If the values are not set default will be set as `ENTERPRISE`."
+            "description": "Name dialing setting. If the values are not set default will be set as `ENTERPRISE`.\n * `ENTERPRISE` - Enterprise (organization) level name dialing.\n * `GROUP` - Group (location) level name dialing.\n"
           },
           "timeZone": {
             "type": "string",
@@ -145973,12 +146383,12 @@
               "DEFAULT",
               "CUSTOM"
             ],
-            "description": "Greeting type defined for the auto attendant."
+            "description": "Greeting type defined for the auto attendant.\n * `DEFAULT` - Play default greeting.\n * `CUSTOM` - Play custom greeting.\n"
           },
           "extensionEnabled": {
             "type": "boolean",
             "example": true,
-            "description": "Flag to indicate if auto attendant extension is enabled or not."
+            "description": "If `true`, extension dialing without requiring a menu item is enabled."
           },
           "audioAnnouncementFile": {
             "$ref": "#/components/schemas/AudioAnnouncementFileGetObject",
@@ -146052,7 +146462,7 @@
               "*",
               "#"
             ],
-            "description": "Key assigned to specific menu configuration."
+            "description": "Key assigned to specific menu configuration.\n * `0` - When the 0 key is pressed, perform the operation specified by the `action` field.\n * `1` - When the 1 key is pressed, perform the operation specified by the `action` field.\n * `2` - When the 2 key is pressed, perform the operation specified by the `action` field.\n * `3` - When the 3 key is pressed, perform the operation specified by the `action` field.\n * `4` - When the 4 key is pressed, perform the operation specified by the `action` field.\n * `5` - When the 5 key is pressed, perform the operation specified by the `action` field.\n * `6` - When the 6 key is pressed, perform the operation specified by the `action` field.\n * `7` - When the 7 key is pressed, perform the operation specified by the `action` field.\n * `8` - When the 8 key is pressed, perform the operation specified by the `action` field.\n * `9` - When the 9 key is pressed, perform the operation specified by the `action` field.\n * `*` - When the * key is pressed, perform the operation specified by the `action` field.\n * `#` - When the # key is pressed, perform the operation specified by the `action` field.\n"
           },
           "action": {
             "type": "string",
@@ -146067,7 +146477,7 @@
               "REPEAT_MENU",
               "EXIT"
             ],
-            "description": "Action assigned to specific menu key configuration.\n * `PLAY_ANNOUNCEMENT` - Plays a recorded message and then returns to the current Auto Attendant menu.\n * `TRANSFER_WITH_PROMPT` - Transfers the call to the specified number, without playing a transfer prompt.\n * `TRANSFER_WITHOUT_PROMPT` - Plays the message and then transfers the call to the specified number.\n * `TRANSFER_TO_OPERATOR` - Plays the message and then transfers the call to the specified operator number.\n * `TRANSFER_TO_MAILBOX` - Prompts the user for an extension, and transfers the user to voice mailbox of the dialed extension.\n * `NAME_DIALING` - Brings the user into the automated name directory.\n * `EXTENSION_DIALING` - Prompts the user for an extension, and transfers the user.\n * `REPEAT_MENU` - Replays the Auto Attendant greeting.\n * `EXIT` - Terminates the call.\n"
+            "description": "Action assigned to specific menu key configuration.\n * `PLAY_ANNOUNCEMENT` - Plays a recorded message and then returns to the current Auto Attendant menu.\n * `TRANSFER_WITH_PROMPT` - Plays the message and then transfers the call to the specified number.\n * `TRANSFER_WITHOUT_PROMPT` - Transfers the call to the specified number, without playing a transfer prompt.\n * `TRANSFER_TO_OPERATOR` - Plays the message and then transfers the call to the specified operator number.\n * `TRANSFER_TO_MAILBOX` - Transfers the call to the configured mailbox, without playing a transfer prompt.\n * `NAME_DIALING` - Brings the user into the automated name directory.\n * `EXTENSION_DIALING` - Prompts the user for an extension, and transfers the user.\n * `REPEAT_MENU` - Replays the Auto Attendant greeting.\n * `EXIT` - Terminates the call.\n"
           },
           "description": {
             "type": "string",
@@ -146995,7 +147405,7 @@
           "noInputTimer": {
             "type": "string",
             "example": "10",
-            "description": "Interval the Auto Attendant service waits before timing out. By default, 10 seconds. Min value is 1 and max value is 60."
+            "description": "Interval the Auto Attendant service waits before timing out. By default, 10 seconds. Min value is 1, and max value is 60."
           },
           "actionToBePerformed": {
             "$ref": "#/components/schemas/ActionToBePerformedObject",
@@ -147219,9 +147629,6 @@
         "type": "object",
         "required": [
           "id",
-          "firstName",
-          "lastName",
-          "displayName",
           "type",
           "email"
         ],
@@ -147596,9 +148003,6 @@
         "type": "object",
         "required": [
           "id",
-          "firstName",
-          "lastName",
-          "displayName",
           "type",
           "email"
         ],
@@ -150893,9 +151297,6 @@
         "type": "object",
         "required": [
           "id",
-          "lastName",
-          "firstName",
-          "displayName",
           "type",
           "email",
           "hasCxEssentials"
@@ -151275,8 +151676,6 @@
         "type": "object",
         "required": [
           "id",
-          "firstName",
-          "lastName",
           "queueCount",
           "locationCount",
           "joinCount",
@@ -151337,7 +151736,7 @@
           },
           "unjoinCount": {
             "type": "number",
-            "description": "Denotes unjoin count for call queue agent."
+            "description": "Denotes the unjoin count for call queue agent."
           },
           "location": {
             "type": "object",
@@ -151377,8 +151776,6 @@
             "type": "object",
             "required": [
               "id",
-              "firstName",
-              "lastName",
               "location",
               "type"
             ],
@@ -153525,7 +153922,7 @@
             "description": "First name of the member."
           },
           "type": {
-            "description": "Type of member.",
+            "description": "Type of the member.",
             "allOf": [
               {
                 "$ref": "#/components/schemas/MemberType"
@@ -154925,12 +155322,12 @@
           "firstName": {
             "type": "string",
             "example": "John",
-            "description": "First name of the agent assigned to the particular location. Defaults to \".\"."
+            "description": "First name of the agent assigned to the particular location."
           },
           "displayName": {
             "type": "string",
             "example": "John Smith",
-            "description": "(string, optional) - Display name of the agent."
+            "description": "Display name of the agent."
           },
           "type": {
             "$ref": "#/components/schemas/UserType",
@@ -155623,7 +156020,7 @@
           "firstName": {
             "type": "string",
             "example": "Hakim",
-            "description": "First name to be shown when calls are forwarded out of this hunt group. Defaults to `.`. This field has been deprecated. Please use `directLineCallerIdName` and `dialByName` instead."
+            "description": "First name to be shown when calls are forwarded out of this hunt group. This field has been deprecated. Please use `directLineCallerIdName` and `dialByName` instead."
           },
           "lastName": {
             "type": "string",
@@ -155671,27 +156068,27 @@
           "id": {
             "type": "string",
             "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS80NDVkMzMzMC1mNjE3LTExZWItOWQyZS01NzViODE3ZGE1NmE",
-            "description": "ID of person, workspace or virtual line."
+            "description": "ID of a person, workspace or virtual line."
           },
           "firstName": {
             "type": "string",
             "example": "Hakim",
-            "description": "First name of person, workspace or virtual line."
+            "description": "First name of a person, workspace or virtual line."
           },
           "lastName": {
             "type": "string",
             "example": "Smith",
-            "description": "Last name of person, workspace or virtual line."
+            "description": "Last name of a person, workspace or virtual line."
           },
           "phoneNumber": {
             "type": "string",
             "example": "+15555551234",
-            "description": "Phone number of person, workspace or virtual line."
+            "description": "Phone number of a person, workspace or virtual line."
           },
           "extension": {
             "type": "string",
             "example": "1234",
-            "description": "Extension of person, workspace or virtual line."
+            "description": "Extension of a person, workspace or virtual line."
           },
           "routingPrefix": {
             "type": "string",
@@ -155706,7 +156103,7 @@
           "weight": {
             "type": "string",
             "example": "50",
-            "description": "Weight of person, workspace or virtual line. Only applied when call policy is `WEIGHTED`."
+            "description": "Weight of a person, workspace or virtual line. Only applied when call policy is `WEIGHTED`."
           }
         }
       },
@@ -156806,8 +157203,6 @@
         "type": "object",
         "required": [
           "id",
-          "firstName",
-          "lastName",
           "type"
         ],
         "properties": {
@@ -156838,12 +157233,12 @@
           "phoneNumber": {
             "type": "string",
             "example": "+15558675309",
-            "description": "Agent's phone number. Minimum length is 1. Maximum length is 23.  Either `phoneNumber` or `extension` is mandatory."
+            "description": "Agent's phone number. Minimum length is 1. Maximum length is 23. Either phoneNumber or extension is mandatory."
           },
           "extension": {
             "type": "string",
             "example": "7781",
-            "description": "Agent's extension. Minimum length is 2. Maximum length is 10.  Either `phoneNumber` or `extension` is mandatory."
+            "description": "Agent's extension. Minimum length is 2. Maximum length is 10. Either phoneNumber or extension is mandatory."
           },
           "routingPrefix": {
             "type": "string",
@@ -156865,8 +157260,6 @@
           "name",
           "language",
           "languageCode",
-          "firstName",
-          "lastName",
           "originatorCallerIdEnabled"
         ],
         "properties": {
@@ -157373,8 +157766,7 @@
           "extension",
           "esn",
           "phoneNumber",
-          "level",
-          "displayName"
+          "level"
         ],
         "properties": {
           "id": {
@@ -158036,7 +158428,7 @@
               "lastName": {
                 "type": "string",
                 "example": "Grey",
-                "description": "The member last name. Always contains `.` if the member is a place."
+                "description": "The member last name."
               },
               "memberId": {
                 "type": "string",
@@ -159259,8 +159651,6 @@
         "type": "object",
         "required": [
           "personId",
-          "firstName",
-          "lastName",
           "department",
           "phoneNumber",
           "extension",
@@ -160798,8 +161188,6 @@
         "required": [
           "id",
           "name",
-          "firstName",
-          "lastName",
           "enabled",
           "languageCode",
           "greeting",
@@ -160915,7 +161303,7 @@
               "destination": {
                 "type": "string",
                 "example": "user@flex2.cisco.com",
-                "description": "Notifications to be sent to provided email to SMS gateway."
+                "description": "Notifications to be sent to the provided email to SMS gateway."
               }
             },
             "description": "Message notifications"
