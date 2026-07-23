@@ -7,6 +7,10 @@
   },
   "tags": [
     {
+      "name": "AI Receptionist",
+      "description": "APIs for retrieving AI Receptionist sessions and conversational transcripts. Restricted to organization Full Administrators (CI role `id_full_admin`)."
+    },
+    {
       "name": "External Voicemail",
       "description": "Operations related to external voicemail Message Waiting Indicator (MWI) status."
     },
@@ -132048,6 +132052,366 @@
             "type": "boolean",
             "example": true,
             "description": "DECT serviceability password status. When `enabled` is set to `true`, the serviceability password can be used to manage DECT. When `enabled` is set to `false`, the serviceability password is disabled and the password owned and known by Cisco is required to perform serviceability and troubleshooting."
+          }
+        }
+      },
+      "Meta": {
+        "type": "object",
+        "description": "Pagination metadata.",
+        "properties": {
+          "limit": {
+            "type": "integer",
+            "description": "Maximum number of items returned per page.",
+            "example": 10
+          },
+          "offset": {
+            "type": "integer",
+            "description": "Zero-based index of the first item in the current page.",
+            "example": 0
+          },
+          "total_count": {
+            "type": "integer",
+            "description": "Total number of items available across all pages.",
+            "example": 1
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "description": "URL to the next page of results, or null if this is the last page."
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "description": "URL to the previous page of results, or null if this is the first page."
+          }
+        }
+      },
+      "SessionObject": {
+        "type": "object",
+        "description": "Represents a single AI Receptionist conversation session.",
+        "required": [
+          "id",
+          "interaction_id",
+          "state",
+          "created_at",
+          "updated_at",
+          "is_test"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique session identifier. Use as `sessionId` in the transcripts API."
+          },
+          "interaction_id": {
+            "type": "string",
+            "description": "Unique call identifier (This is same as call correlation ID in Control Hub troubleshooting)."
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "open",
+              "closed"
+            ],
+            "description": "State of the session."
+          },
+          "created_at": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Creation timestamp in epoch milliseconds."
+          },
+          "updated_at": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Last-updated timestamp in epoch milliseconds."
+          },
+          "is_test": {
+            "type": "boolean",
+            "description": "Indicates a test invocation. Always `false` for AI Receptionist."
+          }
+        }
+      },
+      "SessionsResponse": {
+        "type": "object",
+        "description": "Response containing a list of AI Receptionist sessions.",
+        "required": [
+          "meta",
+          "objects",
+          "transaction_id"
+        ],
+        "properties": {
+          "meta": {
+            "$ref": "#/components/schemas/Meta",
+            "description": "Pagination metadata for the response."
+          },
+          "objects": {
+            "type": "array",
+            "description": "List of session objects.",
+            "items": {
+              "$ref": "#/components/schemas/SessionObject"
+            }
+          },
+          "transaction_id": {
+            "type": "string",
+            "description": "Unique identifier for this API transaction."
+          }
+        }
+      },
+      "MessageText": {
+        "type": "object",
+        "description": "A text segment within a message.",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "Utterance text."
+          }
+        }
+      },
+      "KnowledgeBaseDocument": {
+        "type": "object",
+        "description": "A knowledge base document retrieved during tool execution.",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier of the knowledge base document."
+          },
+          "name": {
+            "type": "string",
+            "description": "Name or filename of the knowledge base document."
+          },
+          "score": {
+            "type": "number",
+            "description": "Relevance score of the document."
+          },
+          "text": {
+            "type": "string",
+            "description": "Extracted text content from the document."
+          }
+        }
+      },
+      "ToolInvocation": {
+        "type": "object",
+        "description": "Details of a tool invoked during the AI Receptionist conversation.",
+        "properties": {
+          "tool_id": {
+            "type": "string",
+            "description": "Unique identifier of the tool."
+          },
+          "tool_name": {
+            "type": "string",
+            "description": "Display name of the tool."
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of the tool response (e.g., tool_execution_response)."
+          },
+          "capability": {
+            "type": "string",
+            "description": "Capability type of the tool (e.g., custom_transfer)."
+          },
+          "description": {
+            "type": "string",
+            "description": "Human-readable description of the tool's purpose."
+          },
+          "state": {
+            "type": "string",
+            "description": "Execution state of the tool invocation (e.g., SUCCESS)."
+          },
+          "latency": {
+            "type": "integer",
+            "description": "Time in milliseconds taken to execute the tool."
+          },
+          "size": {
+            "type": "integer",
+            "description": "Size of the tool response in bytes."
+          },
+          "input": {
+            "type": "object",
+            "description": "Input parameters passed to the tool."
+          },
+          "kb_id": {
+            "type": "string",
+            "description": "Unique identifier of the knowledge base used."
+          },
+          "kb_name": {
+            "type": "string",
+            "description": "Name of the knowledge base used."
+          },
+          "kb_docs": {
+            "type": "array",
+            "description": "Knowledge base documents retrieved during tool execution.",
+            "items": {
+              "$ref": "#/components/schemas/KnowledgeBaseDocument"
+            }
+          },
+          "output": {
+            "type": "object",
+            "description": "Output returned by the tool."
+          },
+          "classification": {
+            "type": "array",
+            "description": "Classification results from the tool.",
+            "items": {
+              "type": "object"
+            }
+          },
+          "slots": {
+            "type": "array",
+            "description": "Slot values collected during tool execution.",
+            "items": {
+              "type": "object",
+              "description": "A slot object containing name-value pairs."
+            }
+          },
+          "requestId": {
+            "type": "string",
+            "description": "Request identifier for the tool invocation."
+          },
+          "transaction_id": {
+            "type": "string",
+            "description": "Transaction identifier for the tool invocation."
+          }
+        }
+      },
+      "MessageMetadata": {
+        "type": "object",
+        "description": "Metadata associated with a transcript message.",
+        "properties": {
+          "ai_name": {
+            "type": "string",
+            "description": "Name of the AI engine used.",
+            "example": "PRO"
+          },
+          "ai_version": {
+            "type": "string",
+            "description": "Version of the AI engine.",
+            "example": "1.0.0"
+          },
+          "chat_message_id": {
+            "type": "string",
+            "description": "Unique identifier of the chat message."
+          },
+          "engine_identifier": {
+            "type": "string",
+            "description": "Identifier of the AI engine.",
+            "example": "PRO"
+          },
+          "language": {
+            "type": "string",
+            "description": "Language code of the message (e.g., en-US, en-GB).",
+            "example": "en-US"
+          },
+          "latency": {
+            "type": "integer",
+            "description": "Response latency in milliseconds."
+          },
+          "parameters": {
+            "type": "object",
+            "nullable": true,
+            "description": "Additional parameters associated with the message."
+          },
+          "size": {
+            "type": "integer",
+            "description": "Size of the message in characters."
+          },
+          "tools": {
+            "type": "array",
+            "nullable": true,
+            "description": "List of tools invoked while processing this message.",
+            "items": {
+              "$ref": "#/components/schemas/ToolInvocation"
+            }
+          }
+        }
+      },
+      "TranscriptObject": {
+        "type": "object",
+        "description": "A single message in the AI Receptionist conversation transcript.",
+        "required": [
+          "id",
+          "transaction_id",
+          "user_type",
+          "message",
+          "metadata",
+          "error",
+          "created_at",
+          "updated_at"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier of the transcript message."
+          },
+          "transaction_id": {
+            "type": "string",
+            "description": "Transaction identifier grouping related messages."
+          },
+          "user_type": {
+            "type": "string",
+            "enum": [
+              "human",
+              "bot"
+            ],
+            "description": "Indicates whether the message is from the caller (human) or the AI Receptionist (bot)."
+          },
+          "message": {
+            "oneOf": [
+              {
+                "type": "string",
+                "description": "Plain text message (human utterance)."
+              },
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/MessageText"
+                },
+                "description": "Array of text objects (bot response)."
+              }
+            ],
+            "description": "Message content. For human messages this is a string; for bot messages it is an array of text objects."
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/MessageMetadata",
+            "description": "Additional metadata for the message."
+          },
+          "error": {
+            "type": "boolean",
+            "description": "Indicates whether an error occurred while processing this message."
+          },
+          "created_at": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Creation timestamp in epoch milliseconds."
+          },
+          "updated_at": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Last-updated timestamp in epoch milliseconds."
+          }
+        }
+      },
+      "TranscriptsResponse": {
+        "type": "object",
+        "description": "Response containing transcript messages for an AI Receptionist session.",
+        "required": [
+          "meta",
+          "objects",
+          "transaction_id"
+        ],
+        "properties": {
+          "meta": {
+            "$ref": "#/components/schemas/Meta",
+            "description": "Pagination metadata for the response."
+          },
+          "objects": {
+            "type": "array",
+            "description": "List of transcript message objects.",
+            "items": {
+              "$ref": "#/components/schemas/TranscriptObject"
+            }
+          },
+          "transaction_id": {
+            "type": "string",
+            "description": "Unique identifier for this API transaction."
           }
         }
       },
