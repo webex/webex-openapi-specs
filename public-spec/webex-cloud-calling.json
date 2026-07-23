@@ -41587,9 +41587,9 @@
             "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
           }
         },
-        "summary": "Get the Virtual Line's Emergency Callback settings",
-        "operationId": "Get the Virtual Line's Emergency Callback settings",
-        "description": "Retrieves the emergency callback number settings for a specific virtual line.\n\nVirtual line is a capability in Webex Calling that allows administrators to configure multiple lines for Webex Calling users.\n\nRetrieving the dependencies requires a full or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
+        "summary": "Get the Virtual Line's Emergency Callback Settings",
+        "operationId": "getVirtualLineEmergencyCallbackSettings",
+        "description": "Retrieve the emergency callback number settings for a specific virtual line.\n\nA virtual line is a capability in Webex Calling that allows administrators to configure multiple lines for Webex Calling users.\n\nRetrieving these settings requires a full or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
         "tags": [
           "Emergency Services Settings"
         ],
@@ -41597,7 +41597,7 @@
           {
             "name": "virtualLineId",
             "in": "path",
-            "description": "Unique identifier for the virtual line.",
+            "description": "The unique identifier for the virtual line.",
             "required": true,
             "example": "Y2lzY29zcGFyazovL3VzL1ZJUlRVQUxfTElORS84ZDRkMDNlYS03NTUzLTQ0NTgtYmI4OS02YzExNzgyMzA4OWY=",
             "schema": {
@@ -92818,7 +92818,7 @@
         "deprecated": true,
         "summary": "Search Shared-Line Appearance Members",
         "operationId": "searchSharedLineAppearanceMembers",
-        "description": "Get members available for shared-line assignment to a Webex Calling Apps Desktop device.\n\nThis API requires a full or user administrator or location administrator auth token with the `spark-admin:people_read` scope.",
+        "description": "Retrieve members available for shared-line assignment to a Webex Calling Apps Desktop device.\n\nThis API requires a full, user, or location administrator auth token with the `spark-admin:people_read` scope.",
         "tags": [
           "User Call Settings (2/2)"
         ],
@@ -92826,7 +92826,7 @@
           {
             "name": "personId",
             "in": "path",
-            "description": "A unique identifier for the person.",
+            "description": "Unique identifier for the person.",
             "required": true,
             "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS8wZTQ5NjAzNC1lNTQ1LTRmMmEtODI4ZC03MjhjYjJlNjNlMWQ",
             "schema": {
@@ -92838,7 +92838,7 @@
           {
             "name": "applicationId",
             "in": "path",
-            "description": "A unique identifier for the application.",
+            "description": "Unique identifier for the application.",
             "required": true,
             "example": "2lzY29zcGFyazovL3VzL0FQUExJQ0FUSU9OLzFmNWUwYWYzLTIwMjgtNDFkNS05OWI3LTVkNTQyMzI3Y2MwMA",
             "schema": {
@@ -92881,7 +92881,7 @@
           {
             "name": "name",
             "in": "query",
-            "description": "Search for users with names that match the query.",
+            "description": "Search for users whose names match the query.",
             "example": "john",
             "schema": {
               "type": "string",
@@ -92892,7 +92892,7 @@
           {
             "name": "number",
             "in": "query",
-            "description": "Search for users with numbers that match the query.",
+            "description": "Search for users whose numbers match the query.",
             "example": "1234567890",
             "schema": {
               "type": "string",
@@ -92914,7 +92914,7 @@
           {
             "name": "extension",
             "in": "query",
-            "description": "Search for users with extensions that match the query.",
+            "description": "Search for users whose extensions match the query.",
             "example": "1111",
             "schema": {
               "type": "string",
@@ -93018,7 +93018,7 @@
         "deprecated": true,
         "summary": "Get Shared-Line Appearance Members",
         "operationId": "getSharedLineAppearanceMembers",
-        "description": "Get primary and secondary members assigned to a shared line on a Webex Calling Apps Desktop device.\n\nThis API requires a full or user administrator or location administrator auth token with the `spark-admin:people_read` scope.",
+        "description": "Retrieve primary and secondary members assigned to a shared line on a Webex Calling Apps Desktop device.\n\nThis API requires a full, user, or location administrator auth token with the `spark-admin:people_read` scope.",
         "tags": [
           "User Call Settings (2/2)"
         ],
@@ -93026,7 +93026,7 @@
           {
             "name": "personId",
             "in": "path",
-            "description": "A unique identifier for the person.",
+            "description": "Unique identifier for the person.",
             "required": true,
             "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS8wZTQ5NjAzNC1lNTQ1LTRmMmEtODI4ZC03MjhjYjJlNjNlMWQ",
             "schema": {
@@ -93038,7 +93038,7 @@
           {
             "name": "applicationId",
             "in": "path",
-            "description": "A unique identifier for the application.",
+            "description": "Unique identifier for the application.",
             "required": true,
             "example": "2lzY29zcGFyazovL3VzL0FQUExJQ0FUSU9OLzFmNWUwYWYzLTIwMjgtNDFkNS05OWI3LTVkNTQyMzI3Y2MwMA",
             "schema": {
@@ -122625,8 +122625,6 @@
         "type": "object",
         "required": [
           "id",
-          "firstName",
-          "lastName",
           "primaryOwner",
           "port",
           "lineType",
@@ -123124,8 +123122,6 @@
         "type": "object",
         "required": [
           "id",
-          "firstName",
-          "lastName",
           "lineType",
           "allowCallDeclineEnabled",
           "memberType"
@@ -123925,9 +123921,7 @@
         "type": "object",
         "required": [
           "id",
-          "type",
-          "firstName",
-          "lastName"
+          "type"
         ],
         "properties": {
           "id": {
@@ -123942,12 +123936,12 @@
           "firstName": {
             "type": "string",
             "example": "Christian",
-            "description": "First name of device owner."
+            "description": "The first name of the device owner."
           },
           "lastName": {
             "type": "string",
             "example": "Smith",
-            "description": "Last name of device owner."
+            "description": "The last name of the device owner."
           }
         }
       },
@@ -131429,8 +131423,6 @@
         "type": "object",
         "required": [
           "id",
-          "firstName",
-          "lastName",
           "lineType",
           "memberType",
           "location"
@@ -144609,8 +144601,6 @@
           "directLineInfo": {
             "type": "object",
             "required": [
-              "firstName",
-              "lastName",
               "effectiveLevel",
               "quality"
             ],
@@ -144623,12 +144613,12 @@
               "firstName": {
                 "type": "string",
                 "example": "John",
-                "description": "First name of a user."
+                "description": "The first name of the user."
               },
               "lastName": {
                 "type": "string",
                 "example": "Smith",
-                "description": "Last name of a user."
+                "description": "The last name of the user."
               },
               "effectiveLevel": {
                 "$ref": "#/components/schemas/ECBNDirectLineEffectiveLevelType",
@@ -144661,12 +144651,12 @@
               "firstName": {
                 "type": "string",
                 "example": "John",
-                "description": "First name for the location. This field will be populated with group name when the `effectiveLevel` is `LOCATION_ECBN` or `LOCATION_NUMBER`."
+                "description": "The first name for the location. This field is populated with the group name when the `effectiveLevel` is `LOCATION_ECBN` or `LOCATION_NUMBER`."
               },
               "lastName": {
                 "type": "string",
                 "example": "Smith",
-                "description": "This field contains the location member's last name when the `effectiveLevel` is `LOCATION_ECBN`, the location is using a location member number, and the selected member is a user. This field will always return \".\" when the `effectiveLevel` is `LOCATION_ECBN`, the location is using the location member number, and the selected member is a place."
+                "description": "The location member's last name when the `effectiveLevel` is `LOCATION_ECBN`, the location is using a location member number, and the selected member is a user. This field will not be present when the `effectiveLevel` is `LOCATION_ECBN`, the location is using the location member number, and the selected member is a place."
               },
               "effectiveLevel": {
                 "$ref": "#/components/schemas/ECBNDirectLineEffectiveLevelType",
@@ -144699,12 +144689,12 @@
               "firstName": {
                 "type": "string",
                 "example": "James",
-                "description": "First name for the location member."
+                "description": "The first name of the location member."
               },
               "lastName": {
                 "type": "string",
                 "example": "Johnson",
-                "description": "Last name for the location member. This field will always return \".\" when `effectiveLevel` is `DIRECT_LINE` or `LOCATION_MEMBER_NUMBER`, and the selected member is a place."
+                "description": "The last name of the location member. This field will not be present when `effectiveLevel` is `DIRECT_LINE` or `LOCATION_MEMBER_NUMBER`, and the selected member is a place."
               },
               "memberId": {
                 "type": "string",
@@ -144768,10 +144758,6 @@
           },
           "directLineInfo": {
             "type": "object",
-            "required": [
-              "firstName",
-              "lastName"
-            ],
             "properties": {
               "phoneNumber": {
                 "type": "string",
@@ -144781,12 +144767,12 @@
               "firstName": {
                 "type": "string",
                 "example": "backUpworkspace",
-                "description": "First name of a user."
+                "description": "The first name of the user."
               },
               "lastName": {
                 "type": "string",
                 "example": ".",
-                "description": "Last name of a user."
+                "description": "The last name of the user."
               },
               "effectiveLevel": {
                 "$ref": "#/components/schemas/ECBNDirectLineEffectiveLevelType",
@@ -144806,10 +144792,6 @@
           },
           "locationECBNInfo": {
             "type": "object",
-            "required": [
-              "lastName",
-              "firstName"
-            ],
             "properties": {
               "phoneNumber": {
                 "type": "string",
@@ -144819,7 +144801,7 @@
               "lastName": {
                 "type": "string",
                 "example": ".",
-                "description": "Last name of the user or location member or `.`."
+                "description": "The last name of the user or location member."
               },
               "effectiveLevel": {
                 "$ref": "#/components/schemas/ECBNDirectLineEffectiveLevelType",
@@ -144837,17 +144819,13 @@
               "firstName": {
                 "type": "string",
                 "example": "backUpworkspace",
-                "description": "First name of the user or location member or group name."
+                "description": "The first name of the user, location member, or group name."
               }
             },
             "description": "Data relevant to the user/place/virtual line/hunt group selected for ECBN for this location."
           },
           "locationMemberInfo": {
             "type": "object",
-            "required": [
-              "firstName",
-              "lastName"
-            ],
             "properties": {
               "phoneNumber": {
                 "type": "string",
@@ -144857,12 +144835,12 @@
               "firstName": {
                 "type": "string",
                 "example": "backUpworkspace",
-                "description": "First name of a user."
+                "description": "The first name of the user."
               },
               "lastName": {
                 "type": "string",
                 "example": ".",
-                "description": "Last name of the user or location member or `.`."
+                "description": "The last name of the user or location member."
               },
               "memberId": {
                 "type": "string",
@@ -144960,10 +144938,6 @@
           },
           "directLineInfo": {
             "type": "object",
-            "required": [
-              "firstName",
-              "lastName"
-            ],
             "properties": {
               "phoneNumber": {
                 "type": "string",
@@ -144973,12 +144947,12 @@
               "firstName": {
                 "type": "string",
                 "example": "User1",
-                "description": "First name of the user."
+                "description": "The first name of the user."
               },
               "lastName": {
                 "type": "string",
                 "example": "User1LastName",
-                "description": "Last name of the user."
+                "description": "The last name of the user."
               },
               "effectiveLevel": {
                 "$ref": "#/components/schemas/ECBNDirectLineEffectiveLevelType",
@@ -144998,20 +144972,16 @@
           },
           "locationECBNInfo": {
             "type": "object",
-            "required": [
-              "firstName",
-              "lastName"
-            ],
             "properties": {
               "firstName": {
                 "type": "string",
                 "example": "group1",
-                "description": "First name of the user or location member or group name."
+                "description": "The first name of the user, location member, or group name."
               },
               "lastName": {
                 "type": "string",
                 "example": ".",
-                "description": "Last name of the user or location member or `.`."
+                "description": "The last name of the user or location member."
               },
               "phoneNumber": {
                 "type": "string",
@@ -145036,10 +145006,6 @@
           },
           "locationMemberInfo": {
             "type": "object",
-            "required": [
-              "firstName",
-              "lastName"
-            ],
             "properties": {
               "phoneNumber": {
                 "type": "string",
@@ -145049,12 +145015,12 @@
               "firstName": {
                 "type": "string",
                 "example": "workspace1",
-                "description": "First name of the user."
+                "description": "The first name of the user."
               },
               "lastName": {
                 "type": "string",
                 "example": ".",
-                "description": "Last name of the user or `.`."
+                "description": "The last name of the user."
               },
               "memberId": {
                 "type": "string",
@@ -164216,8 +164182,6 @@
           "types",
           "selected",
           "tollFreeLocationNumber",
-          "firstName",
-          "lastName",
           "blockInForwardCallsEnabled",
           "locationExternalCallerIdName"
         ],
@@ -164265,12 +164229,12 @@
           "firstName": {
             "type": "string",
             "example": "Hakim",
-            "description": "Virtual line's Caller ID first name. The characters `%`,  `+`, ``, `\"` and Unicode characters are not allowed. This field has been deprecated. Please use `directLineCallerIdName` and `dialByFirstName` instead."
+            "description": "The virtual line's Caller ID first name. The characters `%`,  `+`, ``, `\"` and Unicode characters are not allowed. This field has been deprecated. Please use `directLineCallerIdName` and `dialByFirstName` instead."
           },
           "lastName": {
             "type": "string",
             "example": "Gonzales",
-            "description": "Virtual line's Caller ID last name. The characters `%`,  `+`, ``, `\"` and Unicode characters are not allowed. This field has been deprecated. Please use `directLineCallerIdName` and `dialByLastName` instead."
+            "description": "The virtual line's Caller ID last name. The characters `%`,  `+`, ``, `\"` and Unicode characters are not allowed. This field has been deprecated. Please use `directLineCallerIdName` and `dialByLastName` instead."
           },
           "blockInForwardCallsEnabled": {
             "type": "boolean",
@@ -164986,9 +164950,6 @@
         "description": "Details of a monitored person, workspace, or virtual line.",
         "required": [
           "id",
-          "lastName",
-          "firstName",
-          "displayName",
           "type"
         ],
         "properties": {
@@ -166107,53 +166068,51 @@
         "type": "object",
         "required": [
           "id",
-          "firstName",
-          "lastName",
           "lineType"
         ],
         "properties": {
           "id": {
             "type": "string",
             "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS85ODhiYTQyOC0zMjMyLTRmNjItYjUyNS1iZDUzZmI4Nzc0MWE",
-            "description": "A unique member identifier."
+            "description": "Unique identifier for the member."
           },
           "firstName": {
             "type": "string",
             "example": "John",
-            "description": "First name of member."
+            "description": "First name of the member."
           },
           "lastName": {
             "type": "string",
             "example": "Doe",
-            "description": "Last name of member."
+            "description": "Last name of the member."
           },
           "phoneNumber": {
             "type": "string",
             "example": "1234567890",
-            "description": "Phone number of member. Currently, E.164 format is not supported."
+            "description": "Phone number of the member. Currently, E.164 format is not supported."
           },
           "extension": {
             "type": "string",
             "example": "0000",
-            "description": "Phone extension of member."
+            "description": "Phone extension of the member."
           },
           "routingPrefix": {
             "type": "string",
             "example": "1234",
-            "description": "Routing prefix of location."
+            "description": "Routing prefix of the location."
           },
           "esn": {
             "type": "string",
             "example": "12340000",
-            "description": "Routing prefix + extension of a person or workspace."
+            "description": "Routing prefix plus extension of a person or workspace."
           },
           "lineType": {
             "$ref": "#/components/schemas/LineType",
-            "description": "If the line is acting as a primary line or a shared line for this device."
+            "description": "Indicates if the line is acting as a primary line or a shared line for this device."
           },
           "location": {
             "$ref": "#/components/schemas/location",
-            "description": "Location object having a unique identifier for the location and its name."
+            "description": "Location object containing a unique identifier for the location and its name."
           }
         }
       },
@@ -166172,8 +166131,6 @@
         "type": "object",
         "required": [
           "id",
-          "firstName",
-          "lastName",
           "port",
           "primaryOwner",
           "lineType",
@@ -166192,51 +166149,51 @@
           "firstName": {
             "type": "string",
             "example": "John",
-            "description": "First name of person or workspace."
+            "description": "First name of the person or workspace."
           },
           "lastName": {
             "type": "string",
             "example": "Doe",
-            "description": "Last name of person or workspace."
+            "description": "Last name of the person or workspace."
           },
           "phoneNumber": {
             "type": "string",
             "example": "2056852221",
-            "description": "Phone number of a person or workspace. Currently, E.164 format is not supported. This will be supported in the future update."
+            "description": "Phone number of the person or workspace. Currently, E.164 format is not supported. This will be supported in a future update."
           },
           "extension": {
             "type": "string",
             "example": "1111",
-            "description": "Phone extension of a person or workspace."
+            "description": "Phone extension of the person or workspace."
           },
           "routingPrefix": {
             "type": "string",
             "example": "1234",
-            "description": "Routing prefix of location."
+            "description": "Routing prefix of the location."
           },
           "esn": {
             "type": "string",
             "example": "12341111",
-            "description": "Routing prefix + extension of a person or workspace."
+            "description": "Routing prefix plus extension of a person or workspace."
           },
           "port": {
             "type": "number",
             "minimum": 1,
             "example": 1,
-            "description": "Device port number assigned to a person or workspace."
+            "description": "Device port number assigned to the person or workspace."
           },
           "t38FaxCompressionEnabled `true`": {
             "type": "boolean",
-            "description": "T.38 Fax Compression setting. Valid only for ATA Devices. Overrides user level compression options."
+            "description": "T.38 Fax Compression setting. Valid only for ATA Devices. Overrides user-level compression options."
           },
           "primaryOwner": {
             "type": "string",
             "example": "true",
-            "description": "If `true` the person or the workspace is the owner of the device. Points to primary line/port of the device."
+            "description": "If `true`, the person or workspace is the owner of the device. Points to the primary line/port of the device."
           },
           "lineType": {
             "$ref": "#/components/schemas/LineType",
-            "description": "If the line is acting as a primary line or a shared line for this device."
+            "description": "Indicates if the line is acting as a primary line or a shared line for this device."
           },
           "lineWeight": {
             "type": "number",
@@ -166257,7 +166214,7 @@
           "hotlineEnabled": {
             "type": "boolean",
             "example": true,
-            "description": "Configure this line to automatically call a predefined number whenever taken off-hook. Once enabled, the line can only make calls to the predefined number set in hotlineDestination."
+            "description": "Configure this line to automatically call a predefined number whenever taken off-hook. Once enabled, the line can only make calls to the predefined number set in `hotlineDestination`."
           },
           "hotlineDestination": {
             "type": "string",
@@ -166267,7 +166224,7 @@
           "allowCallDeclineEnabled": {
             "type": "boolean",
             "example": true,
-            "description": "Set how a device behaves when a call is declined. When set to `true`, a call decline request is extended to all the endpoints on the device. When set to `false`, a call decline request is only declined at the current endpoint."
+            "description": "Set how a device behaves when a call is declined. When set to `true`, a call decline request is extended to all endpoints on the device. When set to `false`, a call decline request is only declined at the current endpoint."
           },
           "lineLabel": {
             "type": "string",
@@ -166276,11 +166233,11 @@
           },
           "memberType": {
             "$ref": "#/components/schemas/UserType",
-            "description": "If the member is of type `PEOPLE` or `PLACE`."
+            "description": "Indicates if the member is of type `PEOPLE` or `PLACE`."
           },
           "location": {
             "$ref": "#/components/schemas/location",
-            "description": "Location object having a unique identifier for the location and its name."
+            "description": "Location object containing a unique identifier for the location and its name."
           }
         }
       },
@@ -169936,8 +169893,6 @@
         "type": "object",
         "required": [
           "id",
-          "lastName",
-          "firstName",
           "externalCallerIdNamePolicy",
           "number",
           "location",
@@ -169952,12 +169907,12 @@
           "lastName": {
             "type": "string",
             "example": "Shen",
-            "description": "Last name for virtual line."
+            "description": "The last name of the virtual line."
           },
           "firstName": {
             "type": "string",
             "example": "Tom",
-            "description": "First name for virtual line."
+            "description": "The first name of the virtual line."
           },
           "callerIdLastName": {
             "type": "string",
@@ -170113,8 +170068,6 @@
         "type": "object",
         "required": [
           "id",
-          "firstName",
-          "lastName",
           "directorySearchEnabled",
           "announcementLanguage",
           "number",
@@ -170129,17 +170082,17 @@
           "firstName": {
             "type": "string",
             "example": "Bob",
-            "description": "First name defined for a virtual line. Minimum length is 1. Maximum length is 64."
+            "description": "The first name defined for the virtual line. Minimum length is 1. Maximum length is 64."
           },
           "lastName": {
             "type": "string",
             "example": "Smith",
-            "description": "Last name defined for a virtual line. Minimum length is 1. Maximum length is 64."
+            "description": "The last name defined for the virtual line. Minimum length is 1. Maximum length is 64."
           },
           "displayName": {
             "type": "string",
             "example": "Bob Smith",
-            "description": "Display name defined for a virtual line."
+            "description": "The display name defined for the virtual line."
           },
           "directorySearchEnabled": {
             "type": "boolean",
@@ -171919,8 +171872,6 @@
           "directNumber",
           "locationNumber",
           "tollFreeLocationNumber",
-          "displayName",
-          "displayDetail",
           "blockInForwardCallsEnabled",
           "externalCallerIdNamePolicy",
           "locationExternalCallerIdName"
