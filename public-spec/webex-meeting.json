@@ -438,7 +438,13 @@
             "description": "OK",
             "headers": {},
             "content": {
+              "application/json;charset=UTF-8": {
+                "example": "WEBVTT\n\n1\n00:00:20.904 --> 00:00:24.564\nThis is an s sample closed caption snippet.\n\n2\n00:00:31.014 --> 00:00:33.744\nTesting out download closed captions.\n"
+              },
               "text/vtt": {
+                "example": "WEBVTT\n\n1\n00:00:20.904 --> 00:00:24.564\nThis is an s sample closed caption snippet.\n\n2\n00:00:31.014 --> 00:00:33.744\nTesting out download closed captions.\n"
+              },
+              "text/plain": {
                 "example": "WEBVTT\n\n1\n00:00:20.904 --> 00:00:24.564\nThis is an s sample closed caption snippet.\n\n2\n00:00:31.014 --> 00:00:33.744\nTesting out download closed captions.\n"
               }
             }
@@ -6283,7 +6289,13 @@
             "description": "OK",
             "headers": {},
             "content": {
+              "application/json;charset=UTF-8": {
+                "example": "WEBVTT\n\n1\n00:00:20.904 --> 00:00:24.564\nThis is an s sample recording.\n\n2\n00:00:31.014 --> 00:00:33.744\nTesting out transcripts.\n"
+              },
               "text/vtt": {
+                "example": "WEBVTT\n\n1\n00:00:20.904 --> 00:00:24.564\nThis is an s sample recording.\n\n2\n00:00:31.014 --> 00:00:33.744\nTesting out transcripts.\n"
+              },
+              "text/plain": {
                 "example": "WEBVTT\n\n1\n00:00:20.904 --> 00:00:24.564\nThis is an s sample recording.\n\n2\n00:00:31.014 --> 00:00:33.744\nTesting out transcripts.\n"
               }
             }
