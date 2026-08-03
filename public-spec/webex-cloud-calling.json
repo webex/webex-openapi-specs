@@ -3020,6 +3020,7 @@
                   "$ref": "#/components/schemas/AiReceptionistTemplateListResponse"
                 },
                 "example": {
+                  "defaultTransparencyMessage": "Hi, I’m an AI receptionist. This interaction may be recorded and transcribed for troubleshooting purposes.",
                   "templates": [
                     {
                       "id": "Y2lzY29zcGFyazovL3VzL1RFTVBMQVRFL2EyYjNjNDU2LTc4OTAtMTIzNC01Njc4LTkwYWJjZGVmMTIzNA",
@@ -3126,7 +3127,8 @@
                   "name": "Clinic",
                   "goal": "As an AI receptionist for Shine Healthcare Clinic, your role is to help callers with necessary information regarding our services.",
                   "welcomeMessage": "Hello I am your AI Receptionist. How can I help you today?",
-                  "guideline": "1. Role Definition: You are a friendly assistant\n2. Context: User can only book or cancel appointment"
+                  "guideline": "1. Role Definition: You are a friendly assistant\n2. Context: User can only book or cancel appointment",
+                  "defaultTransparencyMessage": "Hi, I'm an AI receptionist. This interaction may be recorded and transcribed for troubleshooting purposes."
                 }
               }
             }
@@ -17219,11 +17221,17 @@
                     "name": "ITFDual",
                     "loginUrl": "https://www.itfdualportal.com"
                   },
-                  "recordingMode": "On Demand",
+                  "recordingMode": "Always",
                   "pauseResumeNotifyMethod": "Beep",
                   "announcementEnabled": true,
                   "warningToneEnabled": false,
-                  "warningToneDuration": 70
+                  "warningToneDuration": 70,
+                  "selectiveCallRecordingSettings": {
+                    "recordInboundInternalCallsEnabled": true,
+                    "recordInboundExternalCallsEnabled": true,
+                    "recordOutboundInternalCallsEnabled": false,
+                    "recordOutboundExternalCallsEnabled": true
+                  }
                 }
               }
             }
@@ -17301,11 +17309,17 @@
                     "name": "ITFDual",
                     "loginUrl": "https://www.itfdualportal.com"
                   },
-                  "recordingMode": "On Demand",
+                  "recordingMode": "Always with Pause/Resume",
                   "pauseResumeNotifyMethod": "Beep",
                   "announcementEnabled": true,
                   "warningToneEnabled": false,
-                  "warningToneDuration": 70
+                  "warningToneDuration": 70,
+                  "selectiveCallRecordingSettings": {
+                    "recordInboundInternalCallsEnabled": true,
+                    "recordInboundExternalCallsEnabled": true,
+                    "recordOutboundInternalCallsEnabled": false,
+                    "recordOutboundExternalCallsEnabled": true
+                  }
                 }
               }
             }
@@ -88128,6 +88142,12 @@
                 "example": {
                   "enabled": true,
                   "record": "Never",
+                  "selectiveCallRecordingSettings": {
+                    "recordInboundInternalCallsEnabled": true,
+                    "recordInboundExternalCallsEnabled": true,
+                    "recordOutboundInternalCallsEnabled": true,
+                    "recordOutboundExternalCallsEnabled": true
+                  },
                   "recordVoicemailEnabled": false,
                   "startStopAnnouncementEnabled": false,
                   "notification": {
@@ -88315,6 +88335,12 @@
               "example": {
                 "enabled": true,
                 "record": "Always with Pause/Resume",
+                "selectiveCallRecordingSettings": {
+                  "recordInboundInternalCallsEnabled": true,
+                  "recordInboundExternalCallsEnabled": true,
+                  "recordOutboundInternalCallsEnabled": true,
+                  "recordOutboundExternalCallsEnabled": true
+                },
                 "notification": {
                   "enabled": true,
                   "type": "Play Announcement"
@@ -105521,6 +105547,12 @@
                 "example": {
                   "enabled": true,
                   "record": "Never",
+                  "selectiveCallRecordingSettings": {
+                    "recordInboundInternalCallsEnabled": true,
+                    "recordInboundExternalCallsEnabled": true,
+                    "recordOutboundInternalCallsEnabled": true,
+                    "recordOutboundExternalCallsEnabled": true
+                  },
                   "recordVoicemailEnabled": false,
                   "notification": {
                     "enabled": false,
@@ -105701,6 +105733,12 @@
               "example": {
                 "enabled": true,
                 "record": "Never",
+                "selectiveCallRecordingSettings": {
+                  "recordInboundInternalCallsEnabled": true,
+                  "recordInboundExternalCallsEnabled": true,
+                  "recordOutboundInternalCallsEnabled": true,
+                  "recordOutboundExternalCallsEnabled": true
+                },
                 "notification": {
                   "enabled": true,
                   "type": "Play Announcement"
@@ -116368,6 +116406,12 @@
                 "example": {
                   "enabled": true,
                   "record": "Never",
+                  "selectiveCallRecordingSettings": {
+                    "recordInboundInternalCallsEnabled": true,
+                    "recordInboundExternalCallsEnabled": true,
+                    "recordOutboundInternalCallsEnabled": true,
+                    "recordOutboundExternalCallsEnabled": true
+                  },
                   "recordVoicemailEnabled": false,
                   "notification": {
                     "enabled": true,
@@ -116561,6 +116605,12 @@
               "example": {
                 "enabled": true,
                 "record": "Always with Pause/Resume",
+                "selectiveCallRecordingSettings": {
+                  "recordInboundInternalCallsEnabled": true,
+                  "recordInboundExternalCallsEnabled": true,
+                  "recordOutboundInternalCallsEnabled": true,
+                  "recordOutboundExternalCallsEnabled": true
+                },
                 "notification": {
                   "enabled": true,
                   "type": "Play Announcement"
@@ -135274,7 +135324,15 @@
       },
       "AiReceptionistTemplateListResponse": {
         "type": "object",
+        "required": [
+          "defaultTransparencyMessage"
+        ],
         "properties": {
+          "defaultTransparencyMessage": {
+            "type": "string",
+            "description": "Default transparency disclosure message for AI Receptionist. This message explicitly informs callers they are interacting with an AI system, ensuring compliance with EU AI Act transparency obligations for Limited Risk AI systems.",
+            "example": "Hi, I’m an AI receptionist. This interaction may be recorded and transcribed for troubleshooting purposes."
+          },
           "templates": {
             "type": "array",
             "items": {
@@ -135290,6 +135348,7 @@
           }
         },
         "example": {
+          "defaultTransparencyMessage": "Hi, I’m an AI receptionist. This interaction may be recorded and transcribed for troubleshooting purposes.",
           "templates": [
             {
               "id": "Y2lzY29zcGFyazovL3VzL1RFTVBMQVRFL2EyYjNjNDU2LTc4OTAtMTIzNC01Njc4LTkwYWJjZGVmMTIzNA",
@@ -135349,6 +135408,11 @@
             "type": "string",
             "description": "Guidelines for the AI receptionist to follow. This includes information like identity, role definition, context, behavior, etc.",
             "example": "1. Role Definition: You are a friendly assistant\n2. Context: User can only book or cancel appointment"
+          },
+          "defaultTransparencyMessage": {
+            "type": "string",
+            "description": "Default transparency disclosure message for AI Receptionist. This message explicitly informs callers they are interacting with an AI system, ensuring compliance with EU AI Act transparency obligations for Limited Risk AI systems.",
+            "example": "Hi, I'm an AI receptionist. This interaction may be recorded and transcribed for troubleshooting purposes."
           }
         },
         "example": {
@@ -135356,7 +135420,8 @@
           "name": "Clinic",
           "goal": "As an AI receptionist for Shine Healthcare Clinic, your role is to help callers with necessary information regarding our services.",
           "welcomeMessage": "Hello I am your AI Receptionist. How can I help you today?",
-          "guideline": "1. Role Definition: You are a friendly assistant\n2. Context: User can only book or cancel appointment"
+          "guideline": "1. Role Definition: You are a friendly assistant\n2. Context: User can only book or cancel appointment",
+          "defaultTransparencyMessage": "Hi, I'm an AI receptionist. This interaction may be recorded and transcribed for troubleshooting purposes."
         }
       },
       "AvailableNumbersListResponse": {
@@ -136066,6 +136131,10 @@
               "goal": "Assist callers with appointment scheduling",
               "welcomeMessage": "Welcome to Shine Healthcare Clinic",
               "guideline": "Be polite and professional"
+            },
+            "transparencySettings": {
+              "enabled": true,
+              "message": "Hi, I'm an AI receptionist. This interaction may be recorded and transcribed for troubleshooting purposes."
             }
           },
           "intentCount": 5
@@ -136369,6 +136438,14 @@
                 "$ref": "#/components/schemas/UpdateAiGuidelines"
               }
             ]
+          },
+          "transparencySettings": {
+            "description": "Transparency settings for AI Receptionist. Configures disclosure messages to inform callers they are interacting with an AI system, ensuring compliance with EU AI Act transparency obligations.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransparencySettings"
+              }
+            ]
           }
         }
       },
@@ -136400,6 +136477,14 @@
                 "$ref": "#/components/schemas/CreateAiGuidelines"
               }
             ]
+          },
+          "transparencySettings": {
+            "description": "Transparency settings for AI Receptionist. Configures disclosure messages to inform callers they are interacting with an AI system, ensuring compliance with EU AI Act transparency obligations.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransparencySettings"
+              }
+            ]
           }
         }
       },
@@ -136429,6 +136514,14 @@
             "allOf": [
               {
                 "$ref": "#/components/schemas/AiGuidelines"
+              }
+            ]
+          },
+          "transparencySettings": {
+            "description": "Transparency settings for AI Receptionist. Configures disclosure messages to inform callers they are interacting with an AI system, ensuring compliance with EU AI Act transparency obligations.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransparencySettingsResponse"
               }
             ]
           }
@@ -136599,6 +136692,47 @@
             "maxLength": 5096,
             "description": "Additional guidelines for the AI Agent. The combined length of `goal` and `guideline` must not exceed 5096 characters.",
             "example": "Be polite and professional"
+          }
+        }
+      },
+      "TransparencySettings": {
+        "type": "object",
+        "required": [
+          "enabled"
+        ],
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "description": "Flag to enable or disable transparency disclosure for AI Receptionist.",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "Custom transparency message to inform callers they are interacting with an AI system.",
+            "example": "Hi, I'm an AI receptionist. This interaction may be recorded and transcribed for troubleshooting purposes."
+          },
+          "disableReason": {
+            "type": "string",
+            "description": "Reason for disabling transparency disclosure.",
+            "example": "Organization operates outside EU jurisdiction"
+          }
+        }
+      },
+      "TransparencySettingsResponse": {
+        "type": "object",
+        "required": [
+          "enabled"
+        ],
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "description": "Flag to enable or disable transparency disclosure for AI Receptionist.",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "Custom transparency message to inform callers they are interacting with an AI system.",
+            "example": "Hi, I'm an AI receptionist. This interaction may be recorded and transcribed for troubleshooting purposes."
           }
         }
       },
@@ -142059,11 +142193,17 @@
             "name": "ITFDual",
             "loginUrl": "https://www.itfdualportal.com"
           },
-          "recordingMode": "On Demand",
+          "recordingMode": "Always",
           "pauseResumeNotifyMethod": "Beep",
           "announcementEnabled": true,
           "warningToneEnabled": false,
-          "warningToneDuration": 70
+          "warningToneDuration": 70,
+          "selectiveCallRecordingSettings": {
+            "recordInboundInternalCallsEnabled": true,
+            "recordInboundExternalCallsEnabled": true,
+            "recordOutboundInternalCallsEnabled": false,
+            "recordOutboundExternalCallsEnabled": true
+          }
         },
         "required": [
           "enabled",
@@ -142121,6 +142261,9 @@
             "type": "number",
             "example": 70,
             "description": "Duration of the warning tone in seconds. Duration can be configured between 10 and 1800 seconds."
+          },
+          "selectiveCallRecordingSettings": {
+            "$ref": "#/components/schemas/SelectiveCallRecordingSettings"
           }
         }
       },
@@ -142142,6 +142285,44 @@
           "Play Announcement"
         ],
         "description": " * `Beep` - A beep is played when call recording is paused or resumed.\n * `Play Announcement` - An announcement is played when call recording is paused or resumed.\n"
+      },
+      "SelectiveCallRecordingSettings": {
+        "type": "object",
+        "description": "Selective call recording settings. Applicable when `recordingMode` is set to either `Always` or `Always with Pause/Resume`.",
+        "required": [
+          "recordInboundInternalCallsEnabled",
+          "recordInboundExternalCallsEnabled",
+          "recordOutboundInternalCallsEnabled",
+          "recordOutboundExternalCallsEnabled"
+        ],
+        "example": {
+          "recordInboundInternalCallsEnabled": true,
+          "recordInboundExternalCallsEnabled": true,
+          "recordOutboundInternalCallsEnabled": true,
+          "recordOutboundExternalCallsEnabled": true
+        },
+        "properties": {
+          "recordInboundInternalCallsEnabled": {
+            "type": "boolean",
+            "example": true,
+            "description": "If `true`, inbound internal calls are recorded."
+          },
+          "recordInboundExternalCallsEnabled": {
+            "type": "boolean",
+            "example": true,
+            "description": "If `true`, inbound external calls are recorded."
+          },
+          "recordOutboundInternalCallsEnabled": {
+            "type": "boolean",
+            "example": true,
+            "description": "If `true`, outbound internal calls are recorded."
+          },
+          "recordOutboundExternalCallsEnabled": {
+            "type": "boolean",
+            "example": true,
+            "description": "If `true`, outbound external calls are recorded."
+          }
+        }
       },
       "UserProfileGetResponseObject": {
         "type": "object",
@@ -169149,6 +169330,34 @@
               }
             },
             "description": "Call Recording starts and stops announcement settings."
+          },
+          "selectiveCallRecordingSettings": {
+            "type": "object",
+            "required": [
+              "recordInboundInternalCallsEnabled",
+              "recordInboundExternalCallsEnabled",
+              "recordOutboundInternalCallsEnabled",
+              "recordOutboundExternalCallsEnabled"
+            ],
+            "properties": {
+              "recordInboundInternalCallsEnabled": {
+                "type": "boolean",
+                "description": "When `true`, inbound internal calls are recorded."
+              },
+              "recordInboundExternalCallsEnabled": {
+                "type": "boolean",
+                "description": "When `true`, inbound external calls are recorded."
+              },
+              "recordOutboundInternalCallsEnabled": {
+                "type": "boolean",
+                "description": "When `true`, outbound internal calls are recorded."
+              },
+              "recordOutboundExternalCallsEnabled": {
+                "type": "boolean",
+                "description": "When `true`, outbound external calls are recorded."
+              }
+            },
+            "description": "Settings for selective call recording based on call direction and type."
           }
         }
       },
@@ -169222,6 +169431,28 @@
               }
             },
             "description": "Call Recording starts and stops announcement settings."
+          },
+          "selectiveCallRecordingSettings": {
+            "type": "object",
+            "properties": {
+              "recordInboundInternalCallsEnabled": {
+                "type": "boolean",
+                "description": "When `true`, inbound internal calls are recorded."
+              },
+              "recordInboundExternalCallsEnabled": {
+                "type": "boolean",
+                "description": "When `true`, inbound external calls are recorded."
+              },
+              "recordOutboundInternalCallsEnabled": {
+                "type": "boolean",
+                "description": "When `true`, outbound internal calls are recorded."
+              },
+              "recordOutboundExternalCallsEnabled": {
+                "type": "boolean",
+                "description": "When `true`, outbound external calls are recorded."
+              }
+            },
+            "description": "Settings for selective call recording based on call direction and type. These settings only apply when `record` is set to `Always` or `Always with Pause/Resume`."
           }
         }
       },
