@@ -47128,7 +47128,7 @@
             }
           },
           "400": {
-            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+            "description": "Bad Request: The specified voice and language code do not match."
           },
           "401": {
             "description": "Unauthorized: Authentication credentials were missing or incorrect."
@@ -47366,11 +47366,13 @@
                   "voices": [
                     {
                       "id": "ashley",
-                      "label": "Ashley-Female"
+                      "label": "Ashley-Female",
+                      "languageCode": "en_us"
                     },
                     {
                       "id": "steve",
-                      "label": "Steve-Male"
+                      "label": "Steve-Male",
+                      "languageCode": "en_us"
                     }
                   ]
                 }
@@ -47410,11 +47412,21 @@
         },
         "summary": "List Text-to-Speech Voices",
         "operationId": "listTextToSpeechVoices",
-        "description": "Fetch a list of available text-to-speech voices. Use the returned voice ID in the generation request.\n\nText-to-speech (TTS) efficiently generates prompts, greetings, and announcements by converting written text into synthesized audio using the specified voice. The generated audio functions like a recorded WAV file, eliminating the need for manual recording.\n\nThis API requires a full or read-only administrator or location administrator auth token with a scope of `spark-admin:telephony_config_read`.",
+        "description": "Fetch a list of available text-to-speech voices. Use the returned voice ID and language code in the generation request.\n\nText-to-speech (TTS) efficiently generates prompts, greetings, and announcements by converting written text into synthesized audio using the specified voice. The generated audio functions like a recorded WAV file, eliminating the need for manual recording.\n\nThis API requires a full or read-only administrator or location administrator auth token with a scope of `spark-admin:telephony_config_read`.",
         "tags": [
           "Features: Announcement Repository"
         ],
         "parameters": [
+          {
+            "name": "languageCode",
+            "in": "query",
+            "description": "Language code used to filter the available text-to-speech voices. Use the Read the List of Announcement Languages API to retrieve supported language codes. If not specified, the default language code is `en_us`.",
+            "example": "en_us",
+            "schema": {
+              "type": "string",
+              "default": "en_us"
+            }
+          },
           {
             "name": "orgId",
             "in": "query",
@@ -151055,7 +151067,7 @@
           "languageCode": {
             "type": "string",
             "example": "en_us",
-            "description": "The language code used to generate the audio prompt. Use the Read the List of Announcement Languages API to retrieve supported language codes."
+            "description": "The language code used to generate the audio prompt. Use the List Text-to-Speech Voices API to retrieve the language code supported by the selected voice."
           }
         }
       },
@@ -151186,11 +151198,13 @@
           "voices": [
             {
               "id": "ashley",
-              "label": "Ashley-Female"
+              "label": "Ashley-Female",
+              "languageCode": "en_us"
             },
             {
               "id": "steve",
-              "label": "Steve-Male"
+              "label": "Steve-Male",
+              "languageCode": "en_us"
             }
           ]
         },
@@ -151203,11 +151217,13 @@
             "example": [
               {
                 "id": "ashley",
-                "label": "Ashley-Female"
+                "label": "Ashley-Female",
+                "languageCode": "en_us"
               },
               {
                 "id": "steve",
-                "label": "Steve-Male"
+                "label": "Steve-Male",
+                "languageCode": "en_us"
               }
             ],
             "items": {
@@ -151222,11 +151238,13 @@
         "description": "Text-to-Speech voice metadata.",
         "example": {
           "id": "ashley",
-          "label": "Ashley-Female"
+          "label": "Ashley-Female",
+          "languageCode": "en_us"
         },
         "required": [
           "id",
-          "label"
+          "label",
+          "languageCode"
         ],
         "properties": {
           "id": {
@@ -151238,6 +151256,11 @@
             "type": "string",
             "example": "Ashley-Female",
             "description": "The voice label, including the voice name and gender."
+          },
+          "languageCode": {
+            "type": "string",
+            "example": "en_us",
+            "description": "The language code supported by the voice."
           }
         }
       },
