@@ -13943,7 +13943,26 @@
                     "location": "https://example.com/v2/Groups/e9e30dba-f08f-4109-8486-d5c6a331660a"
                   },
                   "urn:scim:schemas:extension:cisco:webexidentity:2.0:Group": {
-                    "usage": "location",
+                    "usage": "policy",
+                    "inheritances": [
+                      {
+                        "type": "role",
+                        "value": "id_full_admin",
+                        "nested": false,
+                        "scope": [
+                          "user"
+                        ]
+                      },
+                      {
+                        "type": "location_role",
+                        "value": "location_full_admin",
+                        "nested": false,
+                        "locationId": "72e22cec-cc28-45b7-b3dc-eafe0f44a2bd",
+                        "scope": [
+                          "user"
+                        ]
+                      }
+                    ],
                     "owners": [
                       {
                         "value": "bb9e77e5-91c3-4006-87c7-c18d885174c7"
@@ -14057,6 +14076,25 @@
                 ],
                 "urn:scim:schemas:extension:cisco:webexidentity:2.0:Group": {
                   "usage": "policy",
+                  "inheritances": [
+                    {
+                      "type": "role",
+                      "value": "id_full_admin",
+                      "nested": false,
+                      "scope": [
+                        "user"
+                      ]
+                    },
+                    {
+                      "type": "location_role",
+                      "value": "location_full_admin",
+                      "nested": false,
+                      "locationId": "72e22cec-cc28-45b7-b3dc-eafe0f44a2bd",
+                      "scope": [
+                        "user"
+                      ]
+                    }
+                  ],
                   "owners": [
                     {
                       "value": "c5349664-9f3d-410b-8bd3-6c31f181f13d"
@@ -14127,7 +14165,26 @@
                         "location": "https://example.com/v2/Groups/6d26ba8b-8a07-465c-8e1a-c283eea9b4fd"
                       },
                       "urn:scim:schemas:extension:cisco:webexidentity:2.0:Group": {
-                        "usage": "location",
+                        "usage": "policy",
+                        "inheritances": [
+                          {
+                            "type": "role",
+                            "value": "id_full_admin",
+                            "nested": false,
+                            "scope": [
+                              "user"
+                            ]
+                          },
+                          {
+                            "type": "location_role",
+                            "value": "location_full_admin",
+                            "nested": false,
+                            "scope": [
+                              "user"
+                            ],
+                            "locationId": "72e22cec-cc28-45b7-b3dc-eafe0f44a2bd"
+                          }
+                        ],
                         "owners": [
                           {
                             "value": "bb9e77e5-91c3-4006-87c7-c18d885174c7"
@@ -14408,7 +14465,26 @@
                     "location": "https://example.com/v2/Groups/e9e30dba-f08f-4109-8486-d5c6a331660a"
                   },
                   "urn:scim:schemas:extension:cisco:webexidentity:2.0:Group": {
-                    "usage": "location",
+                    "usage": "policy",
+                    "inheritances": [
+                      {
+                        "type": "role",
+                        "value": "id_full_admin",
+                        "nested": false,
+                        "scope": [
+                          "user"
+                        ]
+                      },
+                      {
+                        "type": "location_role",
+                        "value": "location_full_admin",
+                        "nested": false,
+                        "scope": [
+                          "user"
+                        ],
+                        "locationId": "72e22cec-cc28-45b7-b3dc-eafe0f44a2bd"
+                      }
+                    ],
                     "owners": [
                       {
                         "value": "bb9e77e5-91c3-4006-87c7-c18d885174c7"
@@ -14558,6 +14634,17 @@
                   ],
                   "urn:scim:schemas:extension:cisco:webexidentity:2.0:Group": {
                     "usage": "policy",
+                    "inheritances": [
+                      {
+                        "type": "location_role",
+                        "value": "location_full_admin",
+                        "nested": false,
+                        "scope": [
+                          "user"
+                        ],
+                        "locationId": "72e22cec-cc28-45b7-b3dc-eafe0f44a2bd"
+                      }
+                    ],
                     "owners": [
                       {
                         "value": "bb9e77e5-91c3-4006-87c7-c18d885174c7"
@@ -14688,6 +14775,17 @@
                 ],
                 "urn:scim:schemas:extension:cisco:webexidentity:2.0:Group": {
                   "usage": "policy",
+                  "inheritances": [
+                    {
+                      "type": "location_role",
+                      "value": "location_full_admin",
+                      "nested": false,
+                      "scope": [
+                        "user"
+                      ],
+                      "locationId": "72e22cec-cc28-45b7-b3dc-eafe0f44a2bd"
+                    }
+                  ],
                   "owners": [
                     {
                       "value": "c5349664-9f3d-410b-8bd3-6c31f181f13d"
@@ -14750,7 +14848,26 @@
                     "location": "https://example.com/v2/Groups/e9e30dba-f08f-4109-8486-d5c6a331660a"
                   },
                   "urn:scim:schemas:extension:cisco:webexidentity:2.0:Group": {
-                    "usage": "location",
+                    "usage": "policy",
+                    "inheritances": [
+                      {
+                        "type": "role",
+                        "value": "id_full_admin",
+                        "nested": false,
+                        "scope": [
+                          "user"
+                        ]
+                      },
+                      {
+                        "type": "location_role",
+                        "value": "location_full_admin",
+                        "nested": false,
+                        "locationId": "72e22cec-cc28-45b7-b3dc-eafe0f44a2bd",
+                        "scope": [
+                          "user"
+                        ]
+                      }
+                    ],
                     "owners": [
                       {
                         "value": "bb9e77e5-91c3-4006-87c7-c18d885174c7"
@@ -14866,8 +14983,18 @@
                 "Operations": [
                   {
                     "op": "add",
-                    "path": "displayName",
-                    "value": "new attribute value"
+                    "path": "urn:scim:schemas:extension:cisco:webexidentity:2.0:Group.inheritances",
+                    "value": [
+                      {
+                        "type": "location_role",
+                        "value": "location_full_admin",
+                        "nested": false,
+                        "locationId": "72e22cec-cc28-45b7-b3dc-eafe0f44a2bd",
+                        "scope": [
+                          "user"
+                        ]
+                      }
+                    ]
                   }
                 ]
               },
@@ -34178,6 +34305,13 @@
                 },
                 "description": "The owners of this group."
               },
+              "inheritances": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/GroupInheritancesObject"
+                },
+                "description": "An array of inheritances"
+              },
               "managedBy": {
                 "type": "array",
                 "items": {
@@ -34228,8 +34362,10 @@
                   "description": "A string containing an attribute path describing the target of the operation."
                 },
                 "value": {
-                  "type": "string",
-                  "example": "new attribute value",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GroupInheritancesObject"
+                  },
                   "description": "New value."
                 }
               }
@@ -36394,6 +36530,13 @@
                 },
                 "description": "The owners of this group."
               },
+              "inheritances": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/GroupInheritancesObject"
+                },
+                "description": "An array of inheritances"
+              },
               "managedBy": {
                 "type": "array",
                 "items": {
@@ -36510,6 +36653,13 @@
                 "example": "AD",
                 "description": "The identifier of the source."
               },
+              "inheritances": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/GroupInheritancesObject"
+                },
+                "description": "An array of inheritances"
+              },
               "meta": {
                 "type": "object",
                 "required": [
@@ -36564,6 +36714,45 @@
               "$ref": "#/components/schemas/GetGroupResponse"
             },
             "description": "An array of group objects."
+          }
+        }
+      },
+      "GroupInheritancesObject": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "role",
+              "location_role"
+            ],
+            "example": "role",
+            "description": "Type of inheritance. Currently, `role` and `location_role` type is supported. Only `policy` usage supports inheritance."
+          },
+          "value": {
+            "type": "string",
+            "example": "id_full_admin",
+            "description": "The value of the inheritance. For the role type, this can be role names such as `id_full_admin`, `id_user_admin`, etc. For the location_role type, the value should be `location_full_admin`."
+          },
+          "nested": {
+            "type": "boolean",
+            "example": false,
+            "description": "Indicates whether this inheritance is nested."
+          },
+          "locationId": {
+            "type": "string",
+            "example": "72e22cec-cc28-45b7-b3dc-eafe0f44a2bd",
+            "description": "The ID of the location group."
+          },
+          "scope": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": [
+                "user"
+              ]
+            },
+            "description": "Indicates which types of entities can inherit this property."
           }
         }
       },
