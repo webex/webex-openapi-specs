@@ -12177,7 +12177,7 @@
                         "mode": "upcoming",
                         "startTime": "2026-10-01T00:00:00.000Z",
                         "endTime": "2026-10-02T00:00:00.000Z",
-                        "description": "Scheduled maintenance for the workspace."
+                        "message": "Scheduled maintenance for the workspace."
                       },
                       "customAttributes": {
                         "myKey": {
@@ -22975,6 +22975,10 @@
                 "type": "string",
                 "example": "2026-10-02T00:00:00.000Z",
                 "description": "The end of the planned maintenance period."
+              },
+              "message": {
+                "type": "string",
+                "description": "A custom message describing the planned maintenance."
               }
             }
           }
