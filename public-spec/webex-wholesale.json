@@ -764,6 +764,8 @@
                 "customerInfo": {
                   "name": "\"John's Pizza\"",
                   "primaryEmail": "\"john.anderson@acme.com\"",
+                  "adminFirstName": "\"John\"",
+                  "adminLastName": "\"Anderson\"",
                   "language": "'en'"
                 },
                 "provisioningParameters": {
@@ -889,6 +891,16 @@
                         "type": "string",
                         "example": "\"john.anderson@acme.com\"",
                         "description": "The primary email address of the customer."
+                      },
+                      "adminFirstName": {
+                        "type": "string",
+                        "example": "\"John\"",
+                        "description": "The first name of the customer administrator."
+                      },
+                      "adminLastName": {
+                        "type": "string",
+                        "example": "\"Anderson\"",
+                        "description": "The last name of the customer administrator."
                       },
                       "language": {
                         "type": "string",
