@@ -28,6 +28,10 @@
     },
     {
       "name": "User Call Settings (3/3)"
+    },
+    {
+      "name": "Webhook Interest Registrations",
+      "description": "Operations for managing client registrations that enable organization-wide emission of Webex Calling webhook events that are not emitted by default."
     }
   ],
   "paths": {
@@ -8583,6 +8587,118 @@
             }
           }
         }
+      }
+    },
+    "/telephony/queues/{queueId}/calls": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "items"
+                  ],
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/CallQueueCall"
+                      }
+                    }
+                  },
+                  "example": {
+                    "items": [
+                      {
+                        "callId": "Y2lzY29zcGFyazovL3VzL0NBTEwvQkNMRC9jYWxsaGFsZi00ODg6MA",
+                        "origCallId": "Y2lzY29zcGFyazovL3VzL0NBTEwvQkNMRC9jYWxsaGFsZi00ODg6MQ",
+                        "callSessionId": "MmFmNThiZjktYWE3Ny00NWE5LThiMDEtYzI4NDMxZWYwNzRm",
+                        "remoteParty": {
+                          "name": "John Smith",
+                          "number": "+12223334444",
+                          "privacyEnabled": false,
+                          "callType": "organization"
+                        },
+                        "addTime": "2016-04-21T17:00:00.000Z",
+                        "queueNumber": "+15559998888",
+                        "queueName": "Support Queue",
+                        "priority": "medium",
+                        "bounced": true
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "List Call Queue Calls",
+        "operationId": "listcallqueuecalls",
+        "description": "List the calls currently in the specified Call Queue. The returned calls follow the same format as the Call Queue events emitted by Webex Calling and include the caller details, position information (priority), and queue timing for each call currently waiting in the queue.",
+        "tags": [
+          "Call Controls",
+          "External Voicemail"
+        ],
+        "parameters": [
+          {
+            "name": "queueId",
+            "in": "path",
+            "description": "The unique identifier of the Call Queue whose calls are to be listed.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Y2lzY29z..."
+          }
+        ]
       }
     },
     "/telephony/calls/members/{memberId}/dial": {
@@ -112703,6 +112819,276 @@
         ]
       }
     },
+    "/telephony/webhookInterestRegistrations": {
+      "post": {
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {},
+            "content": {}
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Create a Webhook Interest Registration",
+        "operationId": "createWebhookInterestRegistration",
+        "description": "Adds or updates a webhook interest registration associated with the authenticated user and the client derived from the access token. At least one item in `interests` is required and `duration` is optional. The client identifier is not supplied in the request. If a registration does not already exist for the authenticated user and client, it is created; otherwise, it is updated with the incoming registration information.\n\nRegistrations are managed for a specific user and client, but registered interests apply to all applicable webhooks in the organization.\n\nThis API is reserved for administrators and requires the `spark-admin:calls_read` scope.",
+        "tags": [
+          "Webhook Interest Registrations"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "interests": [
+                  {
+                    "resource": "Agent"
+                  },
+                  {
+                    "actor": "Workspaces"
+                  }
+                ],
+                "duration": 30
+              },
+              "schema": {
+                "type": "object",
+                "required": [
+                  "interests"
+                ],
+                "properties": {
+                  "interests": {
+                    "type": "array",
+                    "description": "The collection of webhook interests for this registration. At least one interest is required. Each interest is either resource-based or actor-based (exactly one of `resource` or `actor` is set).",
+                    "items": {
+                      "$ref": "#/components/schemas/Interest"
+                    }
+                  },
+                  "duration": {
+                    "type": "integer",
+                    "example": 30,
+                    "description": "Optional time, in days, after which the registration expires. When omitted, the registration defaults to expire after 60 days."
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "interests",
+                    "expiresAt"
+                  ],
+                  "properties": {
+                    "interests": {
+                      "type": "array",
+                      "description": "The collection of webhook interests associated with the registration. Each interest is either resource-based or actor-based. At least one interest is always present in a successful response.",
+                      "items": {
+                        "$ref": "#/components/schemas/Interest"
+                      }
+                    },
+                    "expiresAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "example": "2026-08-01T00:00:00.000Z",
+                      "description": "The date/time at which the registration expires."
+                    }
+                  },
+                  "example": {
+                    "interests": [
+                      {
+                        "resource": "Agent"
+                      },
+                      {
+                        "actor": "Workspaces"
+                      }
+                    ],
+                    "expiresAt": "2026-08-01T00:00:00.000Z"
+                  }
+                },
+                "example": {
+                  "interests": [
+                    {
+                      "resource": "Agent"
+                    },
+                    {
+                      "actor": "Workspaces"
+                    }
+                  ],
+                  "expiresAt": "2026-08-01T00:00:00.000Z"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Get Webhook Interest Registration",
+        "operationId": "getWebhookInterestRegistration",
+        "description": "Returns the webhook interest registration associated with the authenticated user and the client derived from the access token, including the list of interests and the date/time at which the registration expires. The client identifier is not supplied by the caller.\n\nRegistrations are managed for a specific user and client, but registered interests apply to all applicable webhooks in the organization.\n\nThis API is reserved for administrators and requires the `spark-admin:calls_read` scope.",
+        "tags": [
+          "Webhook Interest Registrations"
+        ],
+        "parameters": []
+      },
+      "delete": {
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {},
+            "content": {}
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Delete Webhook Interest Registration",
+        "operationId": "deleteWebhookInterestRegistration",
+        "description": "Deletes the webhook interest registration associated with the authenticated user and the client derived from the access token. The client identifier is not supplied by the caller.\n\nRegistrations are managed for a specific user and client, but registered interests apply to all applicable webhooks in the organization.\n\nThis API is reserved for administrators and requires the `spark-admin:calls_read` scope.",
+        "tags": [
+          "Webhook Interest Registrations"
+        ],
+        "parameters": []
+      }
+    },
     "/workspaces/{workspaceId}/features/callForwarding": {
       "get": {
         "responses": {
@@ -137983,6 +138369,112 @@
             ],
             "description": "Indicates whether to SET or CLEAR the MWI status.",
             "example": "SET"
+          }
+        }
+      },
+      "CallQueueCall": {
+        "type": "object",
+        "required": [
+          "callId",
+          "callSessionId",
+          "remoteParty"
+        ],
+        "properties": {
+          "callId": {
+            "type": "string",
+            "example": "Y2lzY29zcGFyazovL3VzL0NBTEwvQkNMRC9jYWxsaGFsZi00ODg6MA",
+            "description": "The call identifier of the call currently in the queue."
+          },
+          "origCallId": {
+            "type": "string",
+            "example": "Y2lzY29zcGFyazovL3VzL0NBTEwvQkNMRC9jYWxsaGFsZi00ODg6MQ",
+            "description": "The call identifier of the original call that entered the queue. This differs from `callId` when the call currently in the queue is a new call leg derived from the original call - for example, a Call Queue callback, where `callId` is the new callback call and `origCallId` is the original call that entered the queue. Only present when it differs from the call's `callId`."
+          },
+          "callSessionId": {
+            "type": "string",
+            "example": "MmFmNThiZjktYWE3Ny00NWE5LThiMDEtYzI4NDMxZWYwNzRm",
+            "description": "A unique identifier for the call session the call belongs to. This can be used to correlate multiple calls that are part of the same call session."
+          },
+          "remoteParty": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PartyInformation"
+              }
+            ],
+            "description": "The remote party's details for the call waiting in the queue."
+          },
+          "addTime": {
+            "type": "string",
+            "example": "2016-04-21T17:00:00.000Z",
+            "description": "The date and time the call was added to the queue."
+          },
+          "removeTime": {
+            "type": "string",
+            "example": "2016-04-21T17:00:00.000Z",
+            "description": "The date and time the call was removed from the queue. Only present when the call has been removed from the queue."
+          },
+          "mandatoryEntrance": {
+            "type": "boolean",
+            "description": "Indicates whether the call entered the queue as a mandatory entrance."
+          },
+          "bounced": {
+            "type": "boolean",
+            "description": "Indicates whether the call has been bounced from an agent back to the queue."
+          },
+          "reordered": {
+            "type": "boolean",
+            "description": "Indicates whether the call has been reordered within the queue."
+          },
+          "preservedWaitTime": {
+            "type": "integer",
+            "example": 12000,
+            "description": "The wait time, in milliseconds, preserved for the call when it was moved between queues."
+          },
+          "queueNumber": {
+            "type": "string",
+            "example": "+15559998888",
+            "description": "The phone number of the Call Queue the call is waiting in."
+          },
+          "queueName": {
+            "type": "string",
+            "example": "Support Queue",
+            "description": "The name of the Call Queue the call is waiting in."
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "highest",
+              "high",
+              "medium",
+              "low"
+            ],
+            "example": "medium",
+            "description": "The priority of the call within the queue. Only present for premium Call Queues that assign a priority."
+          },
+          "answeringAgentId": {
+            "type": "string",
+            "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS9hMTlkODJhMi00ZTY5LTU5YWEtOWYyZi1iY2E2MzEwMTNhNjg=",
+            "description": "The identifier of the agent (person, workspace, or virtual line) who is answering, or has answered, the call. The resource type of this identifier is indicated by `answeringAgentType`. Only present when the call is being answered."
+          },
+          "answeringAgentType": {
+            "type": "string",
+            "enum": [
+              "PEOPLE",
+              "PLACE",
+              "VIRTUAL_LINE"
+            ],
+            "example": "PEOPLE",
+            "description": "The type of agent identified by `answeringAgentId`: `PEOPLE` for a user, `PLACE` for a workspace, and `VIRTUAL_LINE` for a virtual line. Only present when the call is being answered."
+          },
+          "answeringCallId": {
+            "type": "string",
+            "example": "Y2lzY29zcGFyazovL3VzL0NBTEwvQkNMRC9jYWxsaGFsZi00ODg6Mg",
+            "description": "The call identifier of the answering agent's terminating call. Use this value to correlate the queue call with other call events associated with the agent. Only present when the call is being answered."
+          },
+          "answeringNetworkCallId": {
+            "type": "string",
+            "example": "BW125602794300726-545022669@10.70.16.166",
+            "description": "The SIP Call-ID of the answering call. Only present when the call is being answered."
           }
         }
       },
@@ -176429,6 +176921,34 @@
           "type": "primary",
           "visible": true,
           "environmentType": "production"
+        }
+      },
+      "Interest": {
+        "type": "object",
+        "description": "A single webhook interest that enables event emission for an actor or resource category. Exactly one of `resource` or `actor` is set per interest entry.",
+        "properties": {
+          "resource": {
+            "type": "string",
+            "enum": [
+              "Hook Status",
+              "Agent",
+              "Services",
+              "Agent Monitoring",
+              "Queue",
+              "Queue Monitoring"
+            ],
+            "example": "Agent",
+            "description": "Resource-based interest. Set exactly one of `resource` or `actor` per interest entry.\n\n- `Hook Status` - Enables webhook events for the `telephony_hookstatus` resource.\n- `Agent` - Enables webhook events for the `telephony_agent` resource.\n- `Services` - Enables webhook events for the `telephony_services` resource.\n- `Agent Monitoring` - Enables webhook events for the `telephony_agentMonitoring` resource.\n- `Queue` - Enables webhook events for the `telephony_queue` resource.\n- `Queue Monitoring` - Enables webhook events for the `telephony_queueMonitoring` resource."
+          },
+          "actor": {
+            "type": "string",
+            "enum": [
+              "Workspaces",
+              "Virtual Lines"
+            ],
+            "example": "Workspaces",
+            "description": "Actor-based interest. Set exactly one of `resource` or `actor` per interest entry.\n\n- `Workspaces` - Enables telephony webhook events associated with workspace actors.\n- `Virtual Lines` - Enables telephony webhook events associated with virtual line actors."
+          }
         }
       },
       "CLIDPolicySelection": {
