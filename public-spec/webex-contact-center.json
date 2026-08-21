@@ -53117,7 +53117,7 @@
           "Notification"
         ],
         "summary": "Subscribe Notification",
-        "description": "Access this endpoint when the user has to register for a WebSocket Session. Requires 'cjp:user' scope or roles 'id_full_admin', 'id_readonly_admin', 'atlas-portal.partner.salesadmin', 'cjp.supervisor', 'cjp.admin', 'atlas-portal.partner.provision_admin', 'cloud-contact-center:pod_conv' for authorization",
+        "description": "Access this endpoint when the user has to register for a WebSocket Session. Requires one of the following accepted registration scopes: `cjp:user` or `cloud-contact-center:pod_conv`. The `cjp-hybrid-conn:read` scope is also accepted when CCE authentication is enabled. Tokens with only admin or partner roles and no accepted registration scope are rejected.",
         "operationId": "subscribeNotificationRoute",
         "parameters": [],
         "requestBody": {
@@ -53303,7 +53303,7 @@
           "Realtime"
         ],
         "summary": "Subscribe Realtime Notification",
-        "description": "Access this endpoint when the user has to register for a WebSocket Session to receive realtime events. Requires 'cjp:user' scope or roles 'id_full_admin', 'id_readonly_admin', 'atlas-portal.partner.salesadmin', 'atlas-portal.partner.helpdesk', 'cjp.supervisor', 'cjp.admin', 'atlas-portal.partner.provision_admin' for authorization",
+        "description": "Access this endpoint when the user has to register for a WebSocket Session to receive realtime events. Requires one of the following accepted registration scopes: `cjp:user` or `cloud-contact-center:pod_conv`. The `cjp-hybrid-conn:read` scope is also accepted when CCE authentication is enabled. Tokens with only admin or partner roles and no accepted registration scope are rejected.",
         "operationId": "subscribeRealtimeRoute",
         "parameters": [],
         "requestBody": {
@@ -88206,14 +88206,18 @@
           "subscriptionId": {
             "description": "Id used by client to subscribe to interested events.",
             "example": "AgentDesktop-ffffffac0f-39fa-4122-80d8-f2c2266e6391",
-            "format": "uuid"
+            "type": "string"
           }
         },
         "required": [
           "webSocketUrl",
           "subscriptionId"
         ],
-        "type": "object"
+        "type": "object",
+        "example": {
+          "webSocketUrl": "wss://api.wxcc-us1.cisco.com/v1/notification/subscription/AgentDesktop-ffffffac0f-39fa-4122-80d8-f2c2266e6391",
+          "subscriptionId": "AgentDesktop-ffffffac0f-39fa-4122-80d8-f2c2266e6391"
+        }
       },
       "QueueApiResponse": {
         "required": [
@@ -88372,14 +88376,18 @@
           "subscriptionId": {
             "description": "Id used by client to subscribe to interested events.",
             "example": "ExtensiveSupervisoryDesktop-ffffffac0f-39fa-4122-80d8-f2c2266e6391",
-            "format": "uuid"
+            "type": "string"
           }
         },
         "required": [
           "webSocketUrl",
           "subscriptionId"
         ],
-        "type": "object"
+        "type": "object",
+        "example": {
+          "webSocketUrl": "wss://api.wxcc-us1.cisco.com/v1/realtime/subscription/ExtensiveSupervisoryDesktop-ffffffac0f-39fa-4122-80d8-f2c2266e6391",
+          "subscriptionId": "ExtensiveSupervisoryDesktop-ffffffac0f-39fa-4122-80d8-f2c2266e6391"
+        }
       },
       "SearchRequest": {
         "type": "object",
