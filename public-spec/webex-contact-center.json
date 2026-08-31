@@ -63651,6 +63651,17 @@
             "example": "SalesCampaign_Prog"
           },
           {
+            "name": "interactionId",
+            "in": "query",
+            "description": "The unique identifier of the interaction associated with this request.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "example": "123e4567-e89b-12d3-a456-426614174003"
+          },
+          {
             "name": "agentId",
             "in": "query",
             "description": "The agent ID for whom valid campaign times are being requested.",
