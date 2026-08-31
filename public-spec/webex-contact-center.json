@@ -89149,7 +89149,7 @@
                 "fileName": "ContactSessionRecord_550e8400e29b41d4a716446655440000_1eb65fdf-9643-417f-9974-ad72cae0e10f_2025-12-23_2025-12-31.csv",
                 "fileSize": 102400,
                 "checksum": "a1b2c3d4e5f67890",
-                "downloadUrl": "https://api.intgus1.ciscoccservice.com/async-api/v1/reports/0f49a30b66f9415382ce2251f2ee194d/download"
+                "downloadUrl": "https://api.wxcc-us1.cisco.com/v1/usage-reports/0f49a30b66f9415382ce2251f2ee194d/download"
               }
             ],
             "items": {
@@ -89207,7 +89207,7 @@
           "downloadUrl": {
             "type": "string",
             "description": "Secure download URL for the file. Available only when the file status is completed.",
-            "example": "https://api.intgus1.ciscoccservice.com/v1/usage-reports/0f49a30b66f9415382ce2251f2ee194d/download"
+            "example": "https://api.wxcc-us1.cisco.com/v1/usage-reports/0f49a30b66f9415382ce2251f2ee194d/download"
           }
         }
       },
