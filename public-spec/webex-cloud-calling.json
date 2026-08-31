@@ -88504,6 +88504,12 @@
                 "startStopAnnouncement": {
                   "internalCallsEnabled": true,
                   "pstnCallsEnabled": true
+                },
+                "callRecordingAccessSettings": {
+                  "viewAndPlayRecordingsEnabled": true,
+                  "downloadRecordingsEnabled": true,
+                  "deleteRecordingsEnabled": true,
+                  "shareRecordingsEnabled": true
                 }
               },
               "schema": {
