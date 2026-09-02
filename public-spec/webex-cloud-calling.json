@@ -63350,6 +63350,184 @@
         ]
       }
     },
+    "/telephony/config/cxEssentials/agents/availableAgents": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AvailableAgentListGetObject"
+                },
+                "example": {
+                  "agents": [
+                    {
+                      "id": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS80YzFjOWE2YS1jYjZiLTRjYjItOWJkYi02YjkyZTA1ZTI4ZmY",
+                      "lastName": "Smith",
+                      "firstName": "John",
+                      "displayName": "John Smith",
+                      "type": "PEOPLE",
+                      "email": "john.smith@example.com",
+                      "hasCxEssentials": true,
+                      "phoneNumbers": [
+                        {
+                          "external": "+12165553518",
+                          "extension": "5024"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Get Available Agents",
+        "operationId": "getAvailableAgents",
+        "description": "List eligible people who can be assigned as Customer Assist agents.\n\nReturns people with a Webex Calling Professional license across all locations visible to the caller's authorization. Workspaces and virtual lines are not included.\n\nCalls from call queues are routed to assigned agents based on configuration. An agent can be assigned to one or more call queues and can be managed by supervisors.\n\nRetrieving this list requires a full, read-only or location administrator auth token with a scope of `spark-admin:telephony_config_read`.",
+        "tags": [
+          "Features: Customer Assist"
+        ],
+        "parameters": [
+          {
+            "name": "locationId",
+            "in": "query",
+            "description": "The location ID of the call queue. Temporary mandatory query parameter, used for performance reasons only and not a filter.",
+            "required": true,
+            "example": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzMxMTYx",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orgId",
+            "in": "query",
+            "description": "List available agents for this organization. If omitted, uses the organization associated with the OAuth token.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "hasCxEssentials",
+            "in": "query",
+            "description": "Filter agents by Customer Assist license status. When `true`, returns only agents with Customer Assist license. When `false`, returns only agents with Customer Experience Basic license. When omitted, returns all eligible agents regardless of license type.",
+            "example": true,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "max",
+            "in": "query",
+            "description": "Limit the number of objects returned to this maximum count.",
+            "example": 2000,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 2000,
+              "default": 2000
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": "Start at the zero-based offset in the list of matching objects.",
+            "example": 0,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9999,
+              "default": 0
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Filter agents by name. Supports partial matching. Multiple values can be provided to search for agents matching any of the specified names.",
+            "example": "John",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "style": "form",
+            "explode": true
+          },
+          {
+            "name": "phoneNumbers",
+            "in": "query",
+            "description": "Filter agents by phone number. Supports partial matching. Multiple values can be provided to search for agents matching any of the specified phone numbers.",
+            "example": "+1216555",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "style": "form",
+            "explode": true
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Sort order for the results. Supported fields are `firstName`, `lastName`, `displayName`, and `extension`. Use `asc` or `desc` suffix to specify direction (e.g., `lastName asc`). Default is `lastName asc`.",
+            "example": "lastName asc",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
     "/telephony/config/dataPolicies": {
       "get": {
         "responses": {
@@ -153856,13 +154034,13 @@
         "properties": {
           "external": {
             "type": "string",
-            "example": "+19075552859",
-            "description": "Phone number of a person, workspace or virtual line."
+            "example": "+12143456103",
+            "description": "Phone number of a person."
           },
           "extension": {
             "type": "string",
-            "example": "8080",
-            "description": "Extension of a person, workspace or virtual line."
+            "example": "23234",
+            "description": "Extension of a person."
           }
         }
       },
@@ -156635,37 +156813,35 @@
         "properties": {
           "id": {
             "type": "string",
-            "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS80NDVkMzMzMC1mNjE3LTExZWItOWQyZS01NzViODE3ZGE1NmE",
-            "description": "ID of a person, workspace or virtual line."
+            "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS80YzFjOWE2YS1jYjZiLTRjYjItOWJkYi02YjkyZTA1ZTI4ZmY",
+            "description": "ID of a person."
           },
           "lastName": {
             "type": "string",
-            "example": "Brown",
-            "description": "Last name of a person, workspace or virtual line."
+            "example": "Smith",
+            "description": "Last name of a person."
           },
           "firstName": {
             "type": "string",
             "example": "John",
-            "description": "First name of a person, workspace or virtual line."
+            "description": "First name of a person."
           },
           "displayName": {
             "type": "string",
-            "example": "johnBrown",
-            "description": "Display name of a person, workspace or virtual line."
+            "example": "John Smith",
+            "description": "Display name of a person."
           },
           "type": {
             "type": "string",
             "enum": [
-              "PEOPLE",
-              "PLACE",
-              "VIRTUAL_LINE"
+              "PEOPLE"
             ],
-            "description": "Type of the person, workspace or virtual line.\n * `PEOPLE` - Object is a user.\n * `PLACE` - Object is a place.\n * `VIRTUAL_LINE` - Object is a virtual line.\n"
+            "description": "Type of the person.\n * `PEOPLE` - Object is a user.\n"
           },
           "email": {
             "type": "string",
-            "example": "john.brown@example.com",
-            "description": "Email of a person, workspace or virtual line."
+            "example": "johnsmith@gmail.com",
+            "description": "Email of a person."
           },
           "hasCxEssentials": {
             "type": "boolean",
@@ -156677,7 +156853,7 @@
             "items": {
               "$ref": "#/components/schemas/GetUserNumberItemObject"
             },
-            "description": "List of phone numbers of a person, workspace or virtual line."
+            "description": "List of phone numbers of a person."
           }
         }
       },
