@@ -58436,7 +58436,6 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of objects returned to this maximum count.",
-            "required": true,
             "example": "5",
             "schema": {
               "type": "number"
@@ -58446,7 +58445,6 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching objects.",
-            "required": true,
             "example": "0",
             "schema": {
               "type": "number"
