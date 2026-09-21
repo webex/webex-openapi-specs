@@ -30300,7 +30300,8 @@
                   "messageExpiryEnabled": false,
                   "numberOfDaysForMessageExpiry": 10,
                   "strictDeletionEnabled": false,
-                  "voiceMessageForwardingEnabled": true
+                  "voiceMessageForwardingEnabled": true,
+                  "voicePortalAccessVmDepositEnabled": true
                 }
               }
             }
@@ -30446,7 +30447,8 @@
                 "messageExpiryEnabled": false,
                 "numberOfDaysForMessageExpiry": 10,
                 "strictDeletionEnabled": false,
-                "voiceMessageForwardingEnabled": true
+                "voiceMessageForwardingEnabled": true,
+                "voicePortalAccessVmDepositEnabled": true
               },
               "schema": {
                 "$ref": "#/components/schemas/PutVoicemailSettingsObject"
@@ -149932,6 +149934,13 @@
       },
       "GetVoicemailSettingsObject": {
         "type": "object",
+        "example": {
+          "messageExpiryEnabled": false,
+          "numberOfDaysForMessageExpiry": 10,
+          "strictDeletionEnabled": false,
+          "voiceMessageForwardingEnabled": true,
+          "voicePortalAccessVmDepositEnabled": true
+        },
         "required": [
           "messageExpiryEnabled",
           "numberOfDaysForMessageExpiry",
@@ -149941,6 +149950,7 @@
         "properties": {
           "messageExpiryEnabled": {
             "type": "boolean",
+            "example": false,
             "description": "When enabled, you can set the deletion conditions for expired messages."
           },
           "numberOfDaysForMessageExpiry": {
@@ -149950,12 +149960,18 @@
           },
           "strictDeletionEnabled": {
             "type": "boolean",
+            "example": false,
             "description": "When enabled, all read and unread voicemail messages will be deleted based on the time frame you set. When disabled, all unread voicemail messages will be kept."
           },
           "voiceMessageForwardingEnabled": {
             "type": "boolean",
             "example": true,
             "description": "When enabled, people in the organization can configure the email forwarding of voicemails."
+          },
+          "voicePortalAccessVmDepositEnabled": {
+            "type": "boolean",
+            "example": true,
+            "description": "This field allows the callers to access the voice portal by pressing the * key during the voicemail deposit or after sending a message."
           }
         }
       },
@@ -150064,6 +150080,11 @@
             "type": "boolean",
             "example": true,
             "description": "Set to `true` to allow people to configure the email forwarding of voicemails."
+          },
+          "voicePortalAccessVmDepositEnabled": {
+            "type": "boolean",
+            "example": true,
+            "description": "This field allows the callers to access the voice portal by pressing the * key during the voicemail deposit or after sending a message."
           }
         }
       },
