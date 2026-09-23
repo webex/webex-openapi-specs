@@ -30301,7 +30301,7 @@
                   "numberOfDaysForMessageExpiry": 10,
                   "strictDeletionEnabled": false,
                   "voiceMessageForwardingEnabled": true,
-                  "voicePortalAccessVmDepositEnabled": true
+                  "voicePortalAccessVMDepositEnabled": true
                 }
               }
             }
@@ -30448,7 +30448,7 @@
                 "numberOfDaysForMessageExpiry": 10,
                 "strictDeletionEnabled": false,
                 "voiceMessageForwardingEnabled": true,
-                "voicePortalAccessVmDepositEnabled": true
+                "voicePortalAccessVMDepositEnabled": true
               },
               "schema": {
                 "$ref": "#/components/schemas/PutVoicemailSettingsObject"
@@ -149939,7 +149939,7 @@
           "numberOfDaysForMessageExpiry": 10,
           "strictDeletionEnabled": false,
           "voiceMessageForwardingEnabled": true,
-          "voicePortalAccessVmDepositEnabled": true
+          "voicePortalAccessVMDepositEnabled": true
         },
         "required": [
           "messageExpiryEnabled",
@@ -149968,7 +149968,7 @@
             "example": true,
             "description": "When enabled, people in the organization can configure the email forwarding of voicemails."
           },
-          "voicePortalAccessVmDepositEnabled": {
+          "voicePortalAccessVMDepositEnabled": {
             "type": "boolean",
             "example": true,
             "description": "This field allows the callers to access the voice portal by pressing the * key during the voicemail deposit or after sending a message."
@@ -150081,7 +150081,7 @@
             "example": true,
             "description": "Set to `true` to allow people to configure the email forwarding of voicemails."
           },
-          "voicePortalAccessVmDepositEnabled": {
+          "voicePortalAccessVMDepositEnabled": {
             "type": "boolean",
             "example": true,
             "description": "This field allows the callers to access the voice portal by pressing the * key during the voicemail deposit or after sending a message."
