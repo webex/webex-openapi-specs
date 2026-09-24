@@ -10,6 +10,10 @@
       "name": "Agent Summaries"
     },
     {
+      "name": "External Data Updates",
+      "description": "Operations for updating the data associated with a task from external systems."
+    },
+    {
       "name": "Search Metadata",
       "description": "Discover fields and capabilities supported by the Webex Contact Center Search API."
     },
@@ -56287,6 +56291,241 @@
         }
       }
     },
+    "/v1/data/updateExternal": {
+      "put": {
+        "tags": [
+          "External Data Updates"
+        ],
+        "summary": "Update Task Global Variables",
+        "description": "Updates numeric global variable values associated with a completed Webex Contact Center task. The request must identify the organization and task along with its start and end timestamps. The task should have ended within two days prior to the time of making the request.",
+        "externalDocs": {
+          "description": "Webex Contact Center API documentation",
+          "url": "https://developer.webex.com/webex-contact-center/docs/api/"
+        },
+        "operationId": "updateTaskGlobalVariables",
+        "security": [
+          {
+            "bearer-key": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "X-ORGANIZATION-ID",
+            "in": "header",
+            "description": "Organization identifier used for partner or delegated access.",
+            "required": false,
+            "example": "3dae8fdd-06e2-411a-9035-51f3719f5b65",
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "minLength": 36,
+              "maxLength": 36,
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+              "example": "3dae8fdd-06e2-411a-9035-51f3719f5b65"
+            }
+          },
+          {
+            "name": "TrackingId",
+            "in": "header",
+            "description": "Optional identifier used for request traceability, debugging, and error reporting.",
+            "required": false,
+            "example": "UPDATE-GV-9bcdc696-57fa-4e91-b5aa-57a66a347c23",
+            "schema": {
+              "type": "string",
+              "example": "UPDATE-GV-9bcdc696-57fa-4e91-b5aa-57a66a347c23"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "When using Try It, replace the example timestamps with values from a task that ended within the preceding two days.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Accepted. The request passed configuration-level validation and was accepted for processing. Additional interaction-level validation may occur after acceptance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ApiSuccessResponse"
+                    }
+                  ],
+                  "example": {
+                    "trackingId": "c1a4fcef-aee2-4dea-8977-29f594760552",
+                    "response": {
+                      "key": "202",
+                      "message": [
+                        {
+                          "description": "Request has been accepted."
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. The request is missing required data or contains invalid organization, task, timestamp, update type, or global-variable information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ApiErrorResponse"
+                    }
+                  ],
+                  "example": {
+                    "trackingId": "c1a4fcef-aee2-4dea-8977-29f594760552",
+                    "error": {
+                      "key": "400",
+                      "message": [
+                        {
+                          "description": "The request contains an invalid updateType."
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ApiErrorResponse"
+                    }
+                  ],
+                  "example": {
+                    "trackingId": "c1a4fcef-aee2-4dea-8977-29f594760552",
+                    "error": {
+                      "key": "401",
+                      "message": [
+                        {
+                          "description": "Authentication credentials are missing or invalid."
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden. The caller does not have the required scopes or roles.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ApiErrorResponse"
+                    }
+                  ],
+                  "example": {
+                    "trackingId": "c1a4fcef-aee2-4dea-8977-29f594760552",
+                    "error": {
+                      "key": "403",
+                      "message": [
+                        {
+                          "description": "The caller does not have the required permissions."
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "423": {
+            "description": "Locked. The API is disabled by a feature flag or service kill switch.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ApiErrorResponse"
+                    }
+                  ],
+                  "example": {
+                    "trackingId": "c1a4fcef-aee2-4dea-8977-29f594760552",
+                    "error": {
+                      "key": "423",
+                      "message": [
+                        {
+                          "description": "The API is currently locked."
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests. The organization has exceeded the rate limit of five requests per second.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ApiErrorResponse"
+                    }
+                  ],
+                  "example": {
+                    "trackingId": "c1a4fcef-aee2-4dea-8977-29f594760552",
+                    "error": {
+                      "key": "429",
+                      "message": [
+                        {
+                          "description": "The rate limit was exceeded."
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ApiErrorResponse"
+                    }
+                  ],
+                  "example": {
+                    "trackingId": "c1a4fcef-aee2-4dea-8977-29f594760552",
+                    "error": {
+                      "key": "500",
+                      "message": [
+                        {
+                          "description": "The service was unable to process the request."
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/notification/subscribe": {
       "post": {
         "tags": [
@@ -92617,6 +92856,224 @@
             "description": "The estimated wait time in milli seconds.",
             "format": "double",
             "example": 20349.12
+          }
+        }
+      },
+      "UpdateRequest": {
+        "type": "object",
+        "description": "Request payload for updating task global variables.",
+        "required": [
+          "orgId",
+          "updateType",
+          "data"
+        ],
+        "properties": {
+          "orgId": {
+            "type": "string",
+            "description": "Organization identifier. It must correspond to the organization associated with the bearer token or the `X-ORGANIZATION-ID` header.",
+            "format": "uuid",
+            "minLength": 36,
+            "maxLength": 36,
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+            "example": "3dae8fdd-06e2-411a-9035-51f3719f5b65"
+          },
+          "updateType": {
+            "type": "string",
+            "description": "Specifies the update type. This value must be `contact` for the global variables update.",
+            "enum": [
+              "contact"
+            ],
+            "example": "contact"
+          },
+          "data": {
+            "type": "array",
+            "description": "Array containing the task data to update. Each request may contain only one task.",
+            "minItems": 1,
+            "maxItems": 1,
+            "example": [
+              {
+                "id": "315fbb91-2288-427c-9588-ec764cd46ea4",
+                "startTimestamp": "2026-09-22T10:00:00.000Z",
+                "endTimestamp": "2026-09-22T10:30:00.000Z",
+                "globalVariables": [
+                  {
+                    "name": "UpSell",
+                    "value": 12
+                  },
+                  {
+                    "name": "CustomerHappiness",
+                    "value": 7.5
+                  }
+                ]
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/DataToBeUpdated"
+            }
+          }
+        },
+        "example": {
+          "orgId": "3dae8fdd-06e2-411a-9035-51f3719f5b65",
+          "updateType": "contact",
+          "data": [
+            {
+              "id": "315fbb91-2288-427c-9588-ec764cd46ea4",
+              "startTimestamp": "2026-09-22T10:00:00.000Z",
+              "endTimestamp": "2026-09-22T10:30:00.000Z",
+              "globalVariables": [
+                {
+                  "name": "UpSell",
+                  "value": 12
+                },
+                {
+                  "name": "CustomerHappiness",
+                  "value": 7.5
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "DataToBeUpdated": {
+        "type": "object",
+        "description": "Data to update for the specified task.",
+        "required": [
+          "id",
+          "startTimestamp",
+          "endTimestamp",
+          "globalVariables"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier of the task to update (`taskId`).",
+            "format": "uuid",
+            "minLength": 36,
+            "maxLength": 36,
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+            "example": "315fbb91-2288-427c-9588-ec764cd46ea4"
+          },
+          "startTimestamp": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$",
+            "description": "Task start timestamp in UTC using `yyyy-MM-dd'T'HH:mm:ss.SSS'Z'` format.",
+            "example": "2026-09-22T10:00:00.000Z"
+          },
+          "endTimestamp": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$",
+            "description": "Task end timestamp in UTC using `yyyy-MM-dd'T'HH:mm:ss.SSS'Z'` format. The task must have ended within the preceding two days.",
+            "example": "2026-09-22T10:30:00.000Z"
+          },
+          "globalVariables": {
+            "type": "array",
+            "description": "Global variables to be updated. This array must contain a maximum of 30 entries.",
+            "minItems": 1,
+            "maxItems": 30,
+            "example": [
+              {
+                "name": "UpSell",
+                "value": 12
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/GlobalVariable"
+            }
+          }
+        }
+      },
+      "GlobalVariable": {
+        "type": "object",
+        "description": "Represents a numeric global variable as configured for the organization in Control Hub.",
+        "required": [
+          "name",
+          "value"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the global variable.",
+            "example": "UpSell"
+          },
+          "value": {
+            "type": "number",
+            "description": "Numeric value of the global variable. Integer, long, and double values are supported.",
+            "example": 12
+          }
+        }
+      },
+      "ApiSuccessResponse": {
+        "type": "object",
+        "required": [
+          "trackingId",
+          "response"
+        ],
+        "properties": {
+          "trackingId": {
+            "type": "string",
+            "description": "Identifier used to trace the request within the application logs.",
+            "example": "c1a4fcef-aee2-4dea-8977-29f594760552"
+          },
+          "response": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SuccessDetails"
+              }
+            ],
+            "description": "Details confirming that the request was accepted.",
+            "example": {
+              "key": "202",
+              "message": [
+                {
+                  "description": "Request has been accepted."
+                }
+              ]
+            }
+          }
+        }
+      },
+      "SuccessDetails": {
+        "type": "object",
+        "required": [
+          "key",
+          "message"
+        ],
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "HTTP status code confirming request acceptance.",
+            "enum": [
+              "202"
+            ],
+            "example": "202"
+          },
+          "message": {
+            "type": "array",
+            "description": "One or more messages describing the result.",
+            "minItems": 1,
+            "example": [
+              {
+                "description": "Request has been accepted."
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/OperationMessage"
+            }
+          }
+        }
+      },
+      "OperationMessage": {
+        "type": "object",
+        "required": [
+          "description"
+        ],
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "Human-readable description of the result.",
+            "example": "Request has been accepted."
           }
         }
       },
