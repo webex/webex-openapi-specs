@@ -42940,7 +42940,8 @@
                       "supportsApplyChangesEnabled": false,
                       "allowConfigureLinesEnabled": true,
                       "allowConfigurePhoneSettingsEnabled": false,
-                      "supportsHotlineEnabled": false
+                      "supportsHotlineEnabled": false,
+                      "supportsVirtualLineEnabled": false
                     },
                     {
                       "model": "DMS Polycom EE400",
@@ -42978,7 +42979,8 @@
                       "supportsApplyChangesEnabled": true,
                       "allowConfigureLinesEnabled": true,
                       "allowConfigurePhoneSettingsEnabled": true,
-                      "supportsHotlineEnabled": true
+                      "supportsHotlineEnabled": true,
+                      "supportsVirtualLineEnabled": true
                     }
                   ]
                 }
@@ -140281,7 +140283,8 @@
               "supportsApplyChangesEnabled": false,
               "allowConfigureLinesEnabled": true,
               "allowConfigurePhoneSettingsEnabled": false,
-              "supportsHotlineEnabled": false
+              "supportsHotlineEnabled": false,
+              "supportsVirtualLineEnabled": false
             },
             {
               "model": "DMS Polycom EE400",
@@ -140319,7 +140322,8 @@
               "supportsApplyChangesEnabled": true,
               "allowConfigureLinesEnabled": true,
               "allowConfigurePhoneSettingsEnabled": true,
-              "supportsHotlineEnabled": true
+              "supportsHotlineEnabled": true,
+              "supportsVirtualLineEnabled": true
             }
           ]
         },

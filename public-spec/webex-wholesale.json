@@ -8185,7 +8185,8 @@
               "supportsApplyChangesEnabled": false,
               "allowConfigureLinesEnabled": true,
               "allowConfigurePhoneSettingsEnabled": false,
-              "supportsHotlineEnabled": false
+              "supportsHotlineEnabled": false,
+              "supportsVirtualLineEnabled": false
             },
             {
               "model": "DMS Polycom EE400",
@@ -8223,7 +8224,8 @@
               "supportsApplyChangesEnabled": true,
               "allowConfigureLinesEnabled": true,
               "allowConfigurePhoneSettingsEnabled": true,
-              "supportsHotlineEnabled": true
+              "supportsHotlineEnabled": true,
+              "supportsVirtualLineEnabled": true
             }
           ]
         },
@@ -8284,7 +8286,8 @@
           "supportsApplyChangesEnabled",
           "allowConfigureLinesEnabled",
           "allowConfigurePhoneSettingsEnabled",
-          "supportsHotlineEnabled"
+          "supportsHotlineEnabled",
+          "supportsVirtualLineEnabled"
         ],
         "properties": {
           "model": {
@@ -8430,6 +8433,11 @@
           "supportsHotlineEnabled": {
             "type": "boolean",
             "description": "Enables / disables hotline support."
+          },
+          "supportsVirtualLineEnabled": {
+            "type": "boolean",
+            "example": true,
+            "description": "Indicates whether the device supports virtual line configuration."
           },
           "maxNumberOfLineAppearances": {
             "type": "number",
