@@ -65151,7 +65151,8 @@
                       "name": "RCDN",
                       "id": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzZhZjk4ZGViLWVlZGItNGFmYi1hMDAzLTEzNzgyYjdjODAxYw"
                     },
-                    "type": "PEOPLE"
+                    "type": "PEOPLE",
+                    "agentACDState": "AVAILABLE"
                   },
                   "queues": [
                     {
