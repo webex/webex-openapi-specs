@@ -64604,7 +64604,7 @@
           "Journey - Customer Identification API"
         ],
         "summary": "Add/Remove/Replace details of a Person",
-        "description": "The Patch Api can be used to add/remove identities(email, phone, customerId) or replace firstName and lastName of an Individual. We support only add, replace and remove operations. \n\nFor a more information on Patch Requests, see this  [JSON PATCH guide](https://jsonpatch.com). \n\nRole and Scope: Requires id full admin role with cjp:config_write or any role with cjp:user or cjp:config_write scope.",
+        "description": "The Patch Api can be used to add/remove identities (email, phone, customerId, temporaryId, and socialId) or replace firstName and lastName of an Individual. We support only add, replace, and remove operations. \n\nFor more information on Patch Requests, see this [JSON PATCH guide](https://jsonpatch.com). \n\nRole and Scope: Requires id full admin role with cjp:config_write or any role with cjp:user or cjp:config_write scope.",
         "operationId": "addRemoveAliases",
         "parameters": [
           {
@@ -99311,18 +99311,18 @@
         "properties": {
           "op": {
             "type": "string",
-            "description": "The operation to be performed ",
-            "example": "update",
+            "description": "The operation to be performed",
+            "example": "replace",
             "enum": [
               "add",
-              "update",
-              "remove"
+              "remove",
+              "replace"
             ]
           },
           "path": {
             "type": "string",
-            "description": "A JSON-Pointer",
-            "example": "/name"
+            "description": "A JSON-Pointer. Allowed paths depend on the operation: `add` supports `/phone/-`, `/email/-`, `/customerId/-`, `/temporaryId/-`, and `/socialId/-`; `remove` supports `/phone/{index}`, `/email/{index}`, `/customerId/{index}`, `/temporaryId/{index}`, and `/socialId/{index}`; `replace` supports `/firstName` and `/lastName`.",
+            "example": "/firstName"
           },
           "value": {
             "type": "string",
@@ -99515,6 +99515,16 @@
             "description": "Customer Id",
             "example": [
               "234"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "socialId": {
+            "type": "array",
+            "description": "Social Id",
+            "example": [
+              "johndoe@gmail.com,+12342342345"
             ],
             "items": {
               "type": "string"
