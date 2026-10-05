@@ -161579,8 +161579,7 @@
         "required": [
           "name",
           "fileUri",
-          "fileName",
-          "isTextToSpeech"
+          "fileName"
         ],
         "properties": {
           "name": {
@@ -161606,8 +161605,9 @@
           },
           "isTextToSpeech": {
             "type": "boolean",
+            "nullable": true,
             "example": false,
-            "description": "Indicates whether the announcement is text-to-speech."
+            "description": "Indicates whether the announcement is text-to-speech. If omitted or set to null or false, the announcement is stored as non-text-to-speech and text-to-speech metadata, such as the text, voice, and language, is not retained."
           }
         }
       },
