@@ -39584,6 +39584,7 @@
                   "serviceType": "calling",
                   "storageRegion": "US",
                   "status": "available",
+                  "transcriptLanguage": "en",
                   "serviceData": {
                     "locationId": "02a43ee9-17ae-4e0c-9e79-720e3a6503fd",
                     "callSessionId": "c61b357e-8f53-4d97-9cd2-ae3202796fb0"
@@ -143456,6 +143457,11 @@
             "type": "string",
             "example": "United States",
             "description": "Storage location for recording within Webex datacenters."
+          },
+          "transcriptLanguage": {
+            "type": "string",
+            "example": "en",
+            "description": "The language of the recording's transcript. This attribute is only present when a transcript is available for the recording."
           },
           "serviceData": {
             "type": "object",
