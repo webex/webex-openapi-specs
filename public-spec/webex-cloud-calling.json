@@ -64231,21 +64231,33 @@
                       "lastName": ".",
                       "firstName": "Barn61",
                       "extension": "1060",
-                      "esn": "1060"
+                      "esn": "1060",
+                      "location": {
+                        "id": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OL2E4Nzg4MGFjLTQ4NDItNGZlMy1hOWZlLWFlMzU5ZTgzOGY2Mw",
+                        "name": "San Jose"
+                      }
                     },
                     {
                       "id": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS85NTA4OTc4ZC05YmFkLTRmYWEtYTljNC0wOWQ4NWQ4ZmRjZTY",
                       "lastName": "user",
                       "firstName": "test",
                       "extension": "892827",
-                      "esn": "892827"
+                      "esn": "892827",
+                      "location": {
+                        "id": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OL2E4Nzg4MGFjLTQ4NDItNGZlMy1hOWZlLWFlMzU5ZTgzOGY2Mw",
+                        "name": "San Jose"
+                      }
                     },
                     {
                       "id": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS9iZjE5YWQzMC00NzAyLTQ3NWMtOTg0Ni1lM2M0M2Y1NGFlYzk",
                       "lastName": ".",
                       "firstName": "Test9",
                       "routingPrefix": "34543",
-                      "phoneNumber": "+19729989982"
+                      "phoneNumber": "+19729989982",
+                      "location": {
+                        "id": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OL2E4Nzg4MGFjLTQ4NDItNGZlMy1hOWZlLWFlMzU5ZTgzOGY2Mw",
+                        "name": "San Jose"
+                      }
                     }
                   ]
                 }
@@ -166895,6 +166907,22 @@
             "type": "string",
             "example": "+1972998998",
             "description": "Primary phone number of the agent."
+          },
+          "location": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OL2E4Nzg4MGFjLTQ4NDItNGZlMy1hOWZlLWFlMzU5ZTgzOGY2Mw",
+                "description": "Agent's location ID."
+              },
+              "name": {
+                "type": "string",
+                "example": "San Jose",
+                "description": "Agent's location name."
+              }
+            },
+            "description": "Location of the agent."
           }
         }
       },
