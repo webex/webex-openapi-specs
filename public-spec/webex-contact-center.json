@@ -65945,17 +65945,6 @@
             "example": "491fed1e-de7f-11ef-9cd2-0242ac120002"
           },
           {
-            "name": "skipValidation",
-            "in": "query",
-            "description": "If true, the flow's pre-publish validation is skipped. Use with care.",
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "default": false
-            },
-            "example": false
-          },
-          {
             "name": "flowType",
             "in": "query",
             "description": "Either of 'FLOW' or 'SUBFLOW'.",
