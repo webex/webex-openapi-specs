@@ -65450,7 +65450,7 @@
         },
         "summary": "Update an Agent's Settings for One or More Call Queue or Customer Assist Queues",
         "operationId": "updateAgentCallQueueSettings",
-        "description": "Modify an agent's call queue settings for an organization.\n\nCalls from the call queue are routed to agents based on configuration. \nAn agent can be assigned to one or more call queues and can be managed by supervisors.\n\nThis operation requires a full administrator auth token with a scope of `spark-admin:telephony_config_write`.",
+        "description": "Modify an agent's call queue settings for an organization.\n\nCalls from the call queue are routed to agents based on configuration. \nAn agent can be assigned to one or more call queues and can be managed by supervisors.\n\nThis operation requires a full administrator auth token with a scope of `spark-admin:telephony_config_write`.\n\nThe `agentACDState` request property is available when the `wxc_customerassist_webex_server_server_CALL-217518` feature toggle is enabled.",
         "tags": [
           "Features:  Call Queue"
         ],
@@ -65490,14 +65490,15 @@
               "example": {
                 "settings": [
                   {
-                    "queueId": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS85NTA4OTc4ZC05YmFkLTRmYWEtYTljNC0wOWQ4NWQ4ZmRjZTY",
+                    "queueId": "Y2lzY29zcGFyazovL3VzL0NBTExfUVVFVUUvZjM4NDIxZGYtN2MxOC00NGI1LThlNmQtNDFmZTEyMTFlZDFk",
                     "joinEnabled": true
                   },
                   {
-                    "queueId": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS9iYzIyMTRlNi0zYzdlLTRkZDAtOTc3Yy0zNzRlOWE2ZDk4MWM",
+                    "queueId": "Y2lzY29zcGFyazovL3VzL0NBTExfUVVFVUUvOTUwODk3OGQtOWJhZC00ZmFhLWE5YzQtMDlkODVkOGZkY2U2",
                     "joinEnabled": false
                   }
-                ]
+                ],
+                "agentACDState": "AVAILABLE"
               },
               "schema": {
                 "$ref": "#/components/schemas/ModifyAgentsForCallQueueObject"
@@ -151088,7 +151089,7 @@
           "UNAVAILABLE",
           "WRAP_UP"
         ],
-        "description": " * `SIGN_IN` - Agent has signed in.\n * `SIGN_OUT` - Agent has signed out.\n * `AVAILABLE` - Agent is available.\n * `UNAVAILABLE` - Agent is unavailable.\n * `WRAP_UP` - Agent has wrapped up.\n"
+        "description": "The Automatic Call Distribution (ACD) state of the call queue agent.\n * `SIGN_IN` - Signs the agent in to call queue service so the agent can receive queue calls when available.\n * `SIGN_OUT` - Signs the agent out of call queue service so the agent does not receive queue calls.\n * `AVAILABLE` - Marks the signed-in agent as ready to receive routed queue calls.\n * `UNAVAILABLE` - Marks the agent as unavailable for routed queue calls.\n * `WRAP_UP` - Places the agent in wrap-up after a call, making the agent unavailable for new queue calls while completing post-call work.\n"
       },
       "MonitoringSettingsGetResponseObject": {
         "type": "object",
@@ -167445,6 +167446,9 @@
           "settings"
         ],
         "properties": {
+          "agentACDState": {
+            "$ref": "#/components/schemas/AgentACDStateType"
+          },
           "settings": {
             "type": "array",
             "items": {
