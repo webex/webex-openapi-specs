@@ -4264,7 +4264,7 @@
                 "$ref": "#/components/schemas/CreateAiReceptionistIntentRequest"
               },
               "example": {
-                "name": "Physical Therapy",
+                "name": "PhysicalTherapy",
                 "description": "Connect the caller to knowledgeable representative if they seek assistance with Physical Therapy",
                 "transferTo": {
                   "contactType": "PEOPLE",
@@ -4406,7 +4406,7 @@
                 },
                 "example": {
                   "id": "Y2lzY29zcGFyazovL3VzL0lOVEVOVC82OGVhZTIyNDQ3NDZiZDJlMjJiZGY2ODY",
-                  "name": "Physical Therapy",
+                  "name": "PhysicalTherapy",
                   "description": "Connect the caller to knowledgeable representative if they seek assistance with Physical Therapy",
                   "transferTo": {
                     "contactType": "PEOPLE",
@@ -4531,7 +4531,7 @@
                 "$ref": "#/components/schemas/ModifyAiReceptionistIntentRequest"
               },
               "example": {
-                "name": "For Physical Therapy",
+                "name": "ForPhysicalTherapy",
                 "description": "Connect the caller to knowledgeable representative if they seek assistance with Physical Therapy",
                 "transferTo": {
                   "contactType": "PEOPLE",
@@ -146135,7 +146135,7 @@
           "name": {
             "type": "string",
             "description": "Name of the intent.",
-            "example": "Transfer to Support"
+            "example": "TransferToSupport"
           },
           "transferTo": {
             "description": "Transfer destination for the intent.",
@@ -146197,10 +146197,11 @@
         "properties": {
           "name": {
             "type": "string",
-            "description": "Name of the intent.",
+            "description": "Name of the intent. 1–64 characters; can only contain alphanumeric characters, hyphens (-), and underscores (_).",
             "minLength": 1,
             "maxLength": 64,
-            "example": "Physical Therapy"
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "example": "PhysicalTherapy"
           },
           "description": {
             "type": "string",
@@ -146219,10 +146220,11 @@
         "properties": {
           "name": {
             "type": "string",
-            "description": "Name of the intent.",
+            "description": "New name of the intent. 1–64 characters; can only contain alphanumeric characters, hyphens (-), and underscores (_).",
             "minLength": 1,
             "maxLength": 64,
-            "example": "For Physical Therapy"
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "example": "ForPhysicalTherapy"
           },
           "description": {
             "type": "string",
@@ -146296,7 +146298,7 @@
           "name": {
             "type": "string",
             "description": "Name of the intent.",
-            "example": "Physical Therapy"
+            "example": "PhysicalTherapy"
           },
           "description": {
             "type": "string",
