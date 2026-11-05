@@ -65450,7 +65450,7 @@
         },
         "summary": "Update an Agent's Settings for One or More Call Queue or Customer Assist Queues",
         "operationId": "updateAgentCallQueueSettings",
-        "description": "Modify an agent's call queue settings for an organization.\n\nCalls from the call queue are routed to agents based on configuration. \nAn agent can be assigned to one or more call queues and can be managed by supervisors.\n\nThis operation requires a full administrator auth token with a scope of `spark-admin:telephony_config_write`.\n\nThe `agentACDState` request property is available when the `wxc_customerassist_webex_server_server_CALL-217518` feature toggle is enabled.",
+        "description": "Modify an agent's call queue settings for an organization.\n\nCalls from the call queue are routed to agents based on configuration. \nAn agent can be assigned to one or more call queues and can be managed by supervisors.\n\nThis operation requires a full administrator auth token with a scope of `spark-admin:telephony_config_write`.\n\nThe `agentACDState`.",
         "tags": [
           "Features:  Call Queue"
         ],
