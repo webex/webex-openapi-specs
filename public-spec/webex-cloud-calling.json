@@ -5937,6 +5937,238 @@
         }
       }
     },
+    "/telephony/config/locations/{locationId}/aiReceptionists/{aiReceptionistId}/callRecordings": {
+      "get": {
+        "summary": "Get Call Recording Settings for an AI Receptionist",
+        "operationId": "getCallRecordingSettingsForAnAIReceptionist",
+        "description": "Retrieve Call Recording settings for an AI Receptionist.\n\nThe Call Recording feature provides a hosted mechanism to record the calls placed and received on the Carrier platform for replay and archival. This feature is helpful for quality assurance, security, training, and more.\n\nThis API requires a full or read-only administrator auth token with a scope of `spark-admin:telephony_config_read`.",
+        "tags": [
+          "AI Receptionist for Webex Calling",
+          "AI Receptionist"
+        ],
+        "parameters": [
+          {
+            "name": "locationId",
+            "in": "path",
+            "required": true,
+            "description": "Location in which the AI Receptionist exists.",
+            "example": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzgyMjI4MWVkLWUyMmItMTYxNi1hOTYyLTExYTY2OTExYTY2OQ",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "aiReceptionistId",
+            "in": "path",
+            "required": true,
+            "description": "Retrieve Call Recording settings for this AI Receptionist.",
+            "example": "Y2lzY29zcGFyazovL3VzL0FJX1JFQ0VQVElPTklTVC82MDEyNGU1MC03MWNkLTQ2N2QtODkzZS1mMGY5MDc0YWYyYjc",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orgId",
+            "in": "query",
+            "description": "Retrieve Call Recording settings for an AI Receptionist in this organization.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AIReceptionistCallRecordingGetResponse"
+                },
+                "example": {
+                  "enabled": true,
+                  "startAnnouncement": {
+                    "internalCallsEnabled": true,
+                    "pstnCallsEnabled": true
+                  },
+                  "repeat": {
+                    "enabled": true,
+                    "interval": 20
+                  },
+                  "postCallRecordingSettings": {
+                    "transcriptEnabled": true,
+                    "summaryAndActionItemsEnabled": false
+                  },
+                  "serviceProvider": "WSWYZ25455",
+                  "externalGroup": "WSWYZ25455L31161",
+                  "externalIdentifier": "a34iidrh5o@64941297.int10.bcld.webex.com"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        }
+      },
+      "put": {
+        "summary": "Update Call Recording Settings for an AI Receptionist",
+        "operationId": "updateCallRecordingSettingsForAnAIReceptionist",
+        "description": "Update Call Recording settings for an AI Receptionist.\n\nThe Call Recording feature provides a hosted mechanism to record the calls placed and received on the Carrier platform for replay and archival. This feature is helpful for quality assurance, security, training, and more.\n\nThis API requires a full administrator auth token with a scope of `spark-admin:telephony_config_write`.",
+        "tags": [
+          "AI Receptionist for Webex Calling",
+          "AI Receptionist"
+        ],
+        "parameters": [
+          {
+            "name": "locationId",
+            "in": "path",
+            "required": true,
+            "description": "Location in which the AI Receptionist exists.",
+            "example": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzgyMjI4MWVkLWUyMmItMTYxNi1hOTYyLTExYTY2OTExYTY2OQ",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "aiReceptionistId",
+            "in": "path",
+            "required": true,
+            "description": "Update Call Recording settings for this AI Receptionist.",
+            "example": "Y2lzY29zcGFyazovL3VzL0FJX1JFQ0VQVElPTklTVC82MDEyNGU1MC03MWNkLTQ2N2QtODkzZS1mMGY5MDc0YWYyYjc",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orgId",
+            "in": "query",
+            "description": "Update Call Recording settings for an AI Receptionist in this organization.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AIReceptionistCallRecordingPutRequest"
+              },
+              "example": {
+                "enabled": true,
+                "startAnnouncement": {
+                  "internalCallsEnabled": true,
+                  "pstnCallsEnabled": false
+                },
+                "repeat": {
+                  "enabled": true,
+                  "interval": 30
+                },
+                "postCallRecordingSettings": {
+                  "transcriptEnabled": true,
+                  "summaryAndActionItemsEnabled": true
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served. An accompanying error message will explain further."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a user, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        }
+      }
+    },
     "/telephony/calls/dial": {
       "post": {
         "responses": {
@@ -146596,7 +146828,8 @@
           "id",
           "name",
           "enabled",
-          "intentCount"
+          "intentCount",
+          "callRecordingEnabled"
         ],
         "properties": {
           "id": {
@@ -146674,6 +146907,11 @@
             "type": "integer",
             "description": "Number of intents configured for this AI Receptionist",
             "example": 5
+          },
+          "callRecordingEnabled": {
+            "type": "boolean",
+            "description": "Flag to indicate if call recording is enabled for AI Receptionist.",
+            "example": true
           }
         },
         "example": {
@@ -146726,7 +146964,8 @@
               "message": "Hi, I'm an AI receptionist. This interaction may be recorded and transcribed for troubleshooting purposes."
             }
           },
-          "intentCount": 5
+          "intentCount": 5,
+          "callRecordingEnabled": true
         }
       },
       "UpdateAlternateNumber": {
@@ -148176,6 +148415,182 @@
           "transaction_id": {
             "type": "string",
             "description": "Unique identifier for this API transaction."
+          }
+        }
+      },
+      "AIReceptionistCallRecordingGetResponse": {
+        "type": "object",
+        "required": [
+          "enabled",
+          "startAnnouncement",
+          "repeat",
+          "postCallRecordingSettings",
+          "serviceProvider",
+          "externalGroup",
+          "externalIdentifier"
+        ],
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "description": "`true` if call recording is enabled for the AI Receptionist.",
+            "example": true
+          },
+          "startAnnouncement": {
+            "$ref": "#/components/schemas/StartAnnouncement"
+          },
+          "repeat": {
+            "$ref": "#/components/schemas/Repeat"
+          },
+          "postCallRecordingSettings": {
+            "$ref": "#/components/schemas/PostCallRecordingSettings"
+          },
+          "serviceProvider": {
+            "type": "string",
+            "description": "Service provider identifier used for the third-party recording integration.",
+            "example": "WSWYZ25455"
+          },
+          "externalGroup": {
+            "type": "string",
+            "description": "Group utilized by the service provider providing call recording service.",
+            "example": "WSWYZ25455L31161"
+          },
+          "externalIdentifier": {
+            "type": "string",
+            "description": "Unique identifier utilized by the service provider providing call recording service.",
+            "example": "a34iidrh5o@64941297.int10.bcld.webex.com"
+          }
+        }
+      },
+      "AIReceptionistCallRecordingPutRequest": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "description": "`true` if call recording is enabled for the AI Receptionist.",
+            "example": true
+          },
+          "startAnnouncement": {
+            "$ref": "#/components/schemas/StartAnnouncementPatch"
+          },
+          "repeat": {
+            "$ref": "#/components/schemas/RepeatPatch"
+          },
+          "postCallRecordingSettings": {
+            "$ref": "#/components/schemas/PostCallRecordingSettingsPatch"
+          }
+        }
+      },
+      "PostCallRecordingSettings": {
+        "type": "object",
+        "required": [
+          "transcriptEnabled",
+          "summaryAndActionItemsEnabled"
+        ],
+        "description": "Post call recording settings for AI-powered features.",
+        "properties": {
+          "transcriptEnabled": {
+            "type": "boolean",
+            "description": "When `true`, call transcription is enabled.",
+            "example": true
+          },
+          "summaryAndActionItemsEnabled": {
+            "type": "boolean",
+            "description": "When `true`, AI-generated summary and action items are enabled.",
+            "example": false
+          }
+        }
+      },
+      "PostCallRecordingSettingsPatch": {
+        "type": "object",
+        "description": "Post call recording settings for AI-powered features.",
+        "properties": {
+          "transcriptEnabled": {
+            "type": "boolean",
+            "description": "When `true`, call transcription is enabled.",
+            "example": true
+          },
+          "summaryAndActionItemsEnabled": {
+            "type": "boolean",
+            "description": "When `true`, AI-generated summary and action items are enabled.",
+            "example": true
+          }
+        }
+      },
+      "Repeat": {
+        "type": "object",
+        "required": [
+          "enabled",
+          "interval"
+        ],
+        "description": "Beep sound plays periodically during recording.",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "description": "`true` when ongoing call recording tone will be played at the designated interval.",
+            "example": true
+          },
+          "interval": {
+            "type": "integer",
+            "description": "Interval at which warning tone \"beep\" will be played. This interval is an integer from 10 to 80 seconds in increments of 10.",
+            "example": 20,
+            "minimum": 10,
+            "maximum": 80,
+            "multipleOf": 10
+          }
+        }
+      },
+      "RepeatPatch": {
+        "type": "object",
+        "description": "Beep sound plays periodically during recording.",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "description": "`true` when ongoing call recording tone will be played at the designated interval.",
+            "example": true
+          },
+          "interval": {
+            "type": "integer",
+            "description": "Interval at which warning tone \"beep\" will be played. This interval is an integer from 10 to 80 seconds in increments of 10.",
+            "example": 30,
+            "minimum": 10,
+            "maximum": 80,
+            "multipleOf": 10
+          }
+        }
+      },
+      "StartAnnouncement": {
+        "type": "object",
+        "required": [
+          "internalCallsEnabled",
+          "pstnCallsEnabled"
+        ],
+        "description": "Call Recording start announcement settings.",
+        "properties": {
+          "internalCallsEnabled": {
+            "type": "boolean",
+            "description": "When `true`, an announcement is played when call recording starts for internal calls.",
+            "example": true
+          },
+          "pstnCallsEnabled": {
+            "type": "boolean",
+            "description": "When `true`, an announcement is played when call recording starts for PSTN calls.",
+            "example": true
+          }
+        }
+      },
+      "StartAnnouncementPatch": {
+        "type": "object",
+        "description": "Call Recording start announcement settings.",
+        "properties": {
+          "internalCallsEnabled": {
+            "type": "boolean",
+            "description": "When `true`, an announcement is played when call recording starts for internal calls.",
+            "example": true
+          },
+          "pstnCallsEnabled": {
+            "type": "boolean",
+            "description": "When `true`, an announcement is played when call recording starts for PSTN calls.",
+            "example": false
           }
         }
       },
