@@ -161,7 +161,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the maximum number of events in the response. The maximum value is `200`.",
-            "example": "100",
+            "example": 100,
             "schema": {
               "type": "number",
               "default": 100
@@ -171,7 +171,7 @@
             "name": "offset",
             "in": "query",
             "description": "Offset from the first result that you want to fetch.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -1790,7 +1790,7 @@
                   "$ref": "#/components/schemas/ArchiveUserQueryResponse"
                 },
                 "example": {
-                  "totalResults": "1",
+                  "totalResults": 1,
                   "schemas": [
                     "urn:scim:schemas:core:1.0",
                     "urn:scim:schemas:extension:cisco:commonidentity:1.0"
@@ -3119,7 +3119,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the maximum number of events in the response. Value must be between 1 and 1000, inclusive.",
-            "example": "100",
+            "example": 100,
             "schema": {
               "type": "number",
               "default": 100
@@ -3510,7 +3510,7 @@
             "name": "includeMembers",
             "in": "query",
             "description": "Optionally return group members in the response. The maximum number of members returned is 500.",
-            "example": "false",
+            "example": false,
             "schema": {
               "type": "boolean"
             }
@@ -3519,7 +3519,7 @@
             "name": "startIndex",
             "in": "query",
             "description": "The index to start for group pagination.",
-            "example": "1",
+            "example": 1,
             "schema": {
               "type": "number"
             }
@@ -3528,7 +3528,7 @@
             "name": "count",
             "in": "query",
             "description": "Specifies the desired number of search results per page.",
-            "example": "100",
+            "example": 100,
             "schema": {
               "type": "number"
             }
@@ -3744,10 +3744,10 @@
             "name": "includeMembers",
             "in": "query",
             "description": "Include the members as part of the response.",
-            "example": "true",
+            "example": true,
             "schema": {
               "type": "boolean",
-              "default": "false"
+              "default": false
             }
           }
         ]
@@ -3921,7 +3921,7 @@
             "name": "startIndex",
             "in": "query",
             "description": "The index to start for group pagination.",
-            "example": "1",
+            "example": 1,
             "schema": {
               "type": "number"
             }
@@ -3930,7 +3930,7 @@
             "name": "count",
             "in": "query",
             "description": "Non-negative integer that specifies the desired number of search results per page. Maximum value for the count is 500.",
-            "example": "100",
+            "example": 100,
             "schema": {
               "type": "number"
             }
@@ -6952,7 +6952,7 @@
             "name": "limit",
             "in": "query",
             "description": "Limit the maximum number of contact in the response.\n        + Default: 100\n",
-            "example": "100",
+            "example": 100,
             "schema": {
               "type": "number"
             }
@@ -6997,7 +6997,7 @@
                       "displayName": "simizhan1",
                       "emails": [
                         {
-                          "type": "WORK",
+                          "type": "work",
                           "value": "simizhan1@example.com"
                         }
                       ],
@@ -13302,7 +13302,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the maximum number of resource group memberships in the response.",
-            "example": "100",
+            "example": 100,
             "schema": {
               "type": "number",
               "default": 100
@@ -20386,7 +20386,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the maximum number of events in the response. The maximum value is `1000`.",
-            "example": "100",
+            "example": 100,
             "schema": {
               "type": "number",
               "default": 100
@@ -20396,7 +20396,9 @@
             "name": "eventCategories",
             "in": "query",
             "description": "List events, by event categories.",
-            "example": "LOGINS",
+            "example": [
+              "LOGINS"
+            ],
             "schema": {
               "type": "array",
               "items": {
@@ -20775,7 +20777,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the maximum number of errors in the response.",
-            "example": "100",
+            "example": 100,
             "schema": {
               "type": "number",
               "default": 50
@@ -21495,7 +21497,7 @@
             "name": "max",
             "in": "query",
             "description": "Value must be between 1 and 100, inclusive.",
-            "example": "100",
+            "example": 100,
             "schema": {
               "type": "number"
             }
@@ -21706,7 +21708,7 @@
             "name": "max",
             "in": "query",
             "description": "Value must be between 1 and 100, inclusive.",
-            "example": "100",
+            "example": 100,
             "schema": {
               "type": "number"
             }

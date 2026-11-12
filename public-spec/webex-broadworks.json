@@ -497,7 +497,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of enterprises returned in the search, up to 1000.",
-            "example": "10",
+            "example": 10,
             "schema": {
               "type": "number",
               "default": 100
@@ -960,7 +960,7 @@
                       "created": "2019-10-18T14:26:16.000Z",
                       "lastStatusChange": "2020-03-18T16:05:34.000Z",
                       "provisioningId": "ZjViMzYxODctYzhkZC00NzI3LThiMmYtZjljNDQ3ZjI5MDQ2OjQyODVmNTk0LTViNTEtNDdiZS05Mzk2LTZjMzZlMmFkODNhNQ",
-                      "selfActivated": "false"
+                      "selfActivated": false
                     }
                   ]
                 }
@@ -1105,7 +1105,7 @@
             "name": "selfActivated",
             "in": "query",
             "description": "Indicates if the subscriber was self activated, rather than provisioned via these APIs.",
-            "example": "false",
+            "example": false,
             "schema": {
               "type": "boolean"
             }
@@ -1114,7 +1114,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the maximum number of subscribers returned in the search response, up to 100 per page. Refer to the [Pagination](/docs/basics#pagination) section of [Webex REST API Basics](/docs/basics).",
-            "example": "10",
+            "example": 10,
             "schema": {
               "type": "integer",
               "default": 50
@@ -1147,7 +1147,7 @@
                   "created": "2019-10-18T14:26:16.000Z",
                   "lastStatusChange": "2020-03-18T16:05:34.000Z",
                   "provisioningId": "ZjViMzYxODctYzhkZC00NzI3LThiMmYtZjljNDQ3ZjI5MDQ2OjQyODVmNTk0LTViNTEtNDdiZS05Mzk2LTZjMzZlMmFkODNhNQ",
-                  "selfActivated": "false"
+                  "selfActivated": false
                 }
               }
             }
@@ -1332,7 +1332,7 @@
                   "created": "2019-10-18T14:26:16.000Z",
                   "lastStatusChange": "2020-03-18T16:05:34.000Z",
                   "provisioningId": "ZjViMzYxODctYzhkZC00NzI3LThiMmYtZjljNDQ3ZjI5MDQ2OjQyODVmNTk0LTViNTEtNDdiZS05Mzk2LTZjMzZlMmFkODNhNQ",
-                  "selfActivated": "false"
+                  "selfActivated": false
                 }
               }
             }
@@ -1428,7 +1428,7 @@
                   "created": "2019-10-18T14:26:16.000Z",
                   "lastStatusChange": "2020-03-18T16:05:34.000Z",
                   "provisioningId": "ZjViMzYxODctYzhkZC00NzI3LThiMmYtZjljNDQ3ZjI5MDQ2OjQyODVmNTk0LTViNTEtNDdiZS05Mzk2LTZjMzZlMmFkODNhNQ",
-                  "selfActivated": "false"
+                  "selfActivated": false
                 }
               }
             }

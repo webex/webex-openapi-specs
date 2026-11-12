@@ -85535,7 +85535,9 @@
           "overlapsWith": {
             "type": "array",
             "description": "(Optional) Used to list the overlapping holidays.",
-            "example": "holidays",
+            "example": [
+              "holidays"
+            ],
             "items": {
               "type": "string",
               "description": "(Optional) Used to list the overlapping holidays.",
@@ -87221,7 +87223,7 @@
             "example": "Morning Shift Monitoring",
             "maxLength": 80,
             "minLength": 1,
-            "pattern": "^[a-zA-Z\\d-_\\s]+$"
+            "pattern": "^[a-zA-Z\\d_\\s-]+$"
           },
           "timezone": {
             "type": "string",
@@ -87476,7 +87478,7 @@
             "example": "Morning Shift Monitoring",
             "maxLength": 80,
             "minLength": 1,
-            "pattern": "^[a-zA-Z\\d-_\\s]+$"
+            "pattern": "^[a-zA-Z\\d_\\s-]+$"
           },
           "timezone": {
             "type": "string",
@@ -93996,7 +93998,7 @@
             "example": "Department1",
             "maxLength": 80,
             "minLength": 1,
-            "pattern": "^[a-zA-Z\\d-_\\s]+$"
+            "pattern": "^[a-zA-Z\\d_\\s-]+$"
           },
           "description": {
             "type": "string",
@@ -94290,7 +94292,7 @@
           "name": {
             "maxLength": 80,
             "minLength": 1,
-            "pattern": "^[a-zA-Z\\d-_\\s]+$",
+            "pattern": "^[a-zA-Z\\d_\\s-]+$",
             "type": "string",
             "description": "Indicates the name of the site. Generally, it is the name of the geographical location. It is required only during a create or an update operation.",
             "example": "California"
@@ -100272,7 +100274,7 @@
           "isExtension": {
             "description": "It indicates if the dialNumber field is full number or extension. It is set to false by default.",
             "type": "boolean",
-            "example": "false"
+            "example": false
           },
           "roles": {
             "description": "It represents the current role of the user. The user can either be an ```agent``` or a ```supervisor```.",
@@ -109687,8 +109689,8 @@
       },
       "BEARER_TOKEN_FROM_CI": {
         "type": "http",
-        "in": "header",
-        "scheme": "bearer"
+        "scheme": "bearer",
+        "description": "Access token, sent in the `Authorization` header as `Bearer <token>`."
       },
       "Bearer": {
         "type": "http",

@@ -1975,7 +1975,7 @@
                   "Y2lzY29zcGFyazovL3VzL0RFQ1RfREVWX0hBTkRTRVQvYjE0MDYyOWUtZTExMy00ODQyLWIxMmMtMDVjODEwYTRjYjIz",
                   "Y2lzY29zcGFyazovL3VzL0RFQ1RfREVWX1NUQVRJT04vYjVhMTQxN2ItZGNiYi00MGMzLWE3YWQtNTY1MGZkZGRkNQ"
                 ],
-                "deleteAll": "true"
+                "deleteAll": true
               },
               "schema": {
                 "$ref": "#/components/schemas/DECTNetworkHandsetsDeleteItem"
@@ -2470,7 +2470,7 @@
             "name": "start",
             "in": "query",
             "description": "Specifies the offset from the first result that you want to fetch.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -2479,7 +2479,7 @@
             "name": "max",
             "in": "query",
             "description": "Specifies the maximum number of records that you want to fetch.",
-            "example": "100",
+            "example": 100,
             "schema": {
               "type": "number",
               "default": 2000
@@ -2534,7 +2534,7 @@
             "name": "excludeVirtualLine",
             "in": "query",
             "description": "If true, search results will exclude virtual lines in the member list. NOTE: Virtual lines cannot be assigned as the primary line.",
-            "example": "true",
+            "example": true,
             "schema": {
               "type": "boolean"
             }
@@ -2669,7 +2669,7 @@
                   "$ref": "#/components/schemas/DECTServiceabilityPassword"
                 },
                 "example": {
-                  "enabled": "true"
+                  "enabled": true
                 }
               }
             }
@@ -2852,7 +2852,7 @@
           "content": {
             "application/json": {
               "example": {
-                "enabled": "true"
+                "enabled": true
               },
               "schema": {
                 "$ref": "#/components/schemas/DECTServiceabilityPassword"
@@ -15360,7 +15360,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching objects.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -15369,7 +15369,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of objects returned to this maximum count.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -15918,7 +15918,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of objects returned to this maximum count.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -15927,7 +15927,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching objects.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -16185,7 +16185,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of objects returned to this maximum count.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -16194,7 +16194,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching objects.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -16887,7 +16887,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of objects returned to this maximum count.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -16896,7 +16896,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching objects.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -17519,7 +17519,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of objects returned to this maximum count.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -17528,7 +17528,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching objects.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -18173,7 +18173,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of objects returned to this maximum count.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -18182,7 +18182,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching objects.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -18318,7 +18318,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of objects returned to this maximum count.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -18327,7 +18327,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching objects.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -18463,7 +18463,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of objects returned to this maximum count.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -18472,7 +18472,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching objects.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -18614,7 +18614,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of objects returned to this maximum count.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -18623,7 +18623,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching objects.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -18744,7 +18744,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching objects.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -18753,7 +18753,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of objects returned to this maximum count.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -18785,7 +18785,9 @@
             "name": "locationId",
             "in": "query",
             "description": "Return the list of Route Lists matching the location id.",
-            "example": "36e1e3f5-ba81-44b4-9dd5-b22ee4f5022d",
+            "example": [
+              "36e1e3f5-ba81-44b4-9dd5-b22ee4f5022d"
+            ],
             "schema": {
               "type": "array",
               "items": {
@@ -19390,7 +19392,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching objects.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -19399,7 +19401,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of objects returned to this maximum count.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -19535,7 +19537,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching objects.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -19544,7 +19546,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of objects returned to this maximum count.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -19789,7 +19791,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of objects returned to this maximum count.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -19798,7 +19800,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching objects.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -44361,7 +44363,7 @@
                 "advisoryTypes": {
                   "moreSharedAppearancesEnabled": true,
                   "fewSharedAppearancesEnabled": true,
-                  "moreMonitorAppearancesEnabled": "true",
+                  "moreMonitorAppearancesEnabled": true,
                   "moreCPEAppearancesEnabled": "true",
                   "moreModeManagementAppearancesEnabled": true
                 }
@@ -44507,7 +44509,7 @@
                 "advisoryTypes": {
                   "moreSharedAppearancesEnabled": true,
                   "fewSharedAppearancesEnabled": true,
-                  "moreMonitorAppearancesEnabled": "true",
+                  "moreMonitorAppearancesEnabled": true,
                   "moreCPEAppearancesEnabled": "true",
                   "moreModeManagementAppearancesEnabled": true
                 }
@@ -45536,7 +45538,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of jobs. Default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -45545,7 +45547,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of jobs returned to this maximum count. Default is 2000.",
-            "example": "100",
+            "example": 100,
             "schema": {
               "type": "number"
             }
@@ -45788,7 +45790,7 @@
             "name": "start",
             "in": "query",
             "description": "Specifies the offset from the first result that you want to fetch. Default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -45797,7 +45799,7 @@
             "name": "max",
             "in": "query",
             "description": "Specifies the maximum number of records that you want to fetch. Default is 2000",
-            "example": "100",
+            "example": 100,
             "schema": {
               "type": "number"
             }
@@ -45818,7 +45820,7 @@
                 },
                 "example": {
                   "layoutMode": "CUSTOM",
-                  "userReorderEnabled": "true",
+                  "userReorderEnabled": true,
                   "lineKeys": [
                     {
                       "lineKeyIndex": 1,
@@ -46015,7 +46017,7 @@
             "application/json": {
               "example": {
                 "layoutMode": "CUSTOM",
-                "userReorderEnabled": "true",
+                "userReorderEnabled": true,
                 "lineKeys": [
                   {
                     "lineKeyIndex": 1,
@@ -48987,7 +48989,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the maximum number of devices in the response.",
-            "example": "100",
+            "example": 100,
             "schema": {
               "type": "number"
             }
@@ -50412,7 +50414,7 @@
             "name": "start",
             "in": "query",
             "description": "Specifies the offset from the first result that you want to fetch.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -50421,7 +50423,7 @@
             "name": "max",
             "in": "query",
             "description": "Specifies the maximum number of records that you want to fetch.",
-            "example": "100",
+            "example": 100,
             "schema": {
               "type": "number",
               "default": 2000
@@ -55211,7 +55213,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of objects returned to this maximum count.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -55220,7 +55222,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching objects.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -56914,7 +56916,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of phone numbers returned to this maximum count. The default is 2000.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -56923,7 +56925,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching phone numbers. The default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -57063,7 +57065,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of phone numbers returned to this maximum count. The default is 2000.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -57072,7 +57074,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching phone numbers. The default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -57231,7 +57233,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of phone numbers returned to this maximum count. The default is 2000.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -57240,7 +57242,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching phone numbers. The default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -58729,7 +58731,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of call parks returned to this maximum count. Default is 2000.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -58738,7 +58740,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching call parks. Default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -59012,7 +59014,7 @@
                           "extension": "8080",
                           "routingPrefix": "1234",
                           "esn": "12348080",
-                          "primary": "true"
+                          "primary": true
                         }
                       ]
                     },
@@ -59302,7 +59304,7 @@
                           "extension": "8080",
                           "routingPrefix": "1234",
                           "esn": "12348080",
-                          "primary": "true"
+                          "primary": true
                         }
                       ]
                     },
@@ -59413,7 +59415,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of available agents returned to this maximum count.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -59422,7 +59424,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching available agents.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -59571,7 +59573,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of available recall hunt groups returned to this maximum count.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -59580,7 +59582,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching available recall hunt groups.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -59938,7 +59940,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of objects returned to this maximum count.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -59947,7 +59949,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching objects.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -60523,7 +60525,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of call pickups returned to this maximum count. Default is 2000.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -60532,7 +60534,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching call pickups. Default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -61217,7 +61219,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of available agents returned to this maximum count.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -61226,7 +61228,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching available agents.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -61400,7 +61402,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of objects returned to this maximum count.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -61409,7 +61411,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching objects.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -64555,7 +64557,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of phone numbers returned to this maximum count. The default is 2000.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -64564,7 +64566,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching phone numbers. The default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -64704,7 +64706,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of phone numbers returned to this maximum count. The default is 2000.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -64713,7 +64715,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching phone numbers. The default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -64872,7 +64874,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of phone numbers returned to this maximum count. The default is 2000.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -64881,7 +64883,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching phone numbers. The default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -65030,7 +65032,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of objects returned to this maximum count.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -65039,7 +65041,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching objects.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -65192,7 +65194,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of objects returned to this maximum count.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -65201,7 +65203,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching objects.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -65690,7 +65692,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of objects returned to this maximum count.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -65699,7 +65701,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching objects.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -66003,7 +66005,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of objects returned to this maximum count.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -66012,7 +66014,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching objects.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -66172,7 +66174,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of objects returned to this maximum count.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -66181,7 +66183,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching objects.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -66428,7 +66430,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of objects returned to this maximum count.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -66437,7 +66439,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching objects.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -66617,7 +66619,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of objects returned to this maximum count.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -66626,7 +66628,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching objects.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -73005,7 +73007,9 @@
             "name": "name",
             "in": "query",
             "description": "Filter agents by name. Supports partial matching. Multiple values can be provided to search for agents matching any of the specified names.",
-            "example": "John",
+            "example": [
+              "John"
+            ],
             "schema": {
               "type": "array",
               "items": {
@@ -73019,7 +73023,9 @@
             "name": "phoneNumbers",
             "in": "query",
             "description": "Filter agents by phone number. Supports partial matching. Multiple values can be provided to search for agents matching any of the specified phone numbers.",
-            "example": "+1216555",
+            "example": [
+              "+1216555"
+            ],
             "schema": {
               "type": "array",
               "items": {
@@ -74017,7 +74023,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of objects returned to this maximum count.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -74026,7 +74032,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching objects.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -75500,7 +75506,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of phone numbers returned to this maximum count. The default is 2000.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -75509,7 +75515,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching phone numbers. The default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -75649,7 +75655,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of phone numbers returned to this maximum count. The default is 2000.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -75658,7 +75664,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching phone numbers. The default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -75817,7 +75823,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of phone numbers returned to this maximum count. The default is 2000.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -75826,7 +75832,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching phone numbers. The default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -77099,7 +77105,7 @@
             "name": "limitToOrgLevelEnabled",
             "in": "query",
             "description": "If true, only return `operating modes` defined at the organization level.",
-            "example": "true",
+            "example": true,
             "schema": {
               "type": "boolean"
             }
@@ -77117,7 +77123,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching objects.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -78269,7 +78275,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of phone numbers returned to this maximum count. The default is 2000.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -78278,7 +78284,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching phone numbers. The default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -78442,7 +78448,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of objects returned to this maximum count. Default is 2000",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -78451,7 +78457,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching objects. Default is 0",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -79111,7 +79117,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of phone numbers returned to this maximum count. The default is 2000.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -79120,7 +79126,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching phone numbers. The default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -79260,7 +79266,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of phone numbers returned to this maximum count. The default is 2000.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -79269,7 +79275,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching phone numbers. The default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -79998,7 +80004,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of virtual extensions returned to this maximum count. Default is 10.",
-            "example": "10",
+            "example": 10,
             "schema": {
               "type": "number"
             }
@@ -80007,7 +80013,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching virtual extensions. Default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -80070,7 +80076,7 @@
             "name": "orgLevelOnly",
             "in": "query",
             "description": "Filter the list of virtual extensions by organization level. If orgLevelOnly is true, return only the organization level virtual extensions.",
-            "example": "true",
+            "example": true,
             "schema": {
               "type": "boolean"
             }
@@ -80835,7 +80841,7 @@
             "name": "max",
             "in": "query",
             "description": "Maximum number of results to return.",
-            "example": "10",
+            "example": 10,
             "schema": {
               "type": "number"
             }
@@ -80844,7 +80850,7 @@
             "name": "start",
             "in": "query",
             "description": "The starting index of the results to return.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -80889,7 +80895,7 @@
             "name": "orgLevelOnly",
             "in": "query",
             "description": "Filter the list of virtual extension ranges by organization level. If `orgLevelOnly` is true, return only the organization level virtual extension ranges.",
-            "example": "true",
+            "example": true,
             "schema": {
               "type": "boolean"
             }
@@ -81581,7 +81587,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the maximum number of locations in the response.",
-            "example": "100",
+            "example": 100,
             "schema": {
               "type": "number"
             }
@@ -81590,7 +81596,7 @@
             "name": "start",
             "in": "query",
             "description": "Specify the offset from the first result that you want to fetch.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -83589,7 +83595,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of objects returned to this maximum count.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -83598,7 +83604,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching objects.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -83759,7 +83765,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of phone numbers returned to this maximum count. The default is 2000.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -83768,7 +83774,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching phone numbers. The default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -83938,7 +83944,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of phone numbers returned to this maximum count. The default is 2000.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -83947,7 +83953,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching phone numbers. The default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -84093,7 +84099,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of phone numbers returned to this maximum count. The default is 2000.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -84102,7 +84108,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching phone numbers. The default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -84274,7 +84280,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of phone numbers returned to this maximum count. The default is 2000.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -84283,7 +84289,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching phone numbers. The default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -84451,7 +84457,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of phone numbers returned to this maximum count. The default is 2000.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -84460,7 +84466,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching phone numbers. The default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -84863,7 +84869,7 @@
             "name": "searchCriteriaModeOr",
             "in": "query",
             "description": "When `true`, results matching any one of the search criteria are included. The value can only be `true` or not included in the request. Specifying `searchCriteriaModeOr` without any search criteria, or setting it to `false` results in an `ErrorResponse`. If no search criteria is specified, all results are returned.",
-            "example": "true",
+            "example": true,
             "schema": {
               "type": "boolean"
             }
@@ -85242,7 +85248,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of phone numbers returned to this maximum count. The default is 2000.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -85251,7 +85257,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching phone numbers. The default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -88274,7 +88280,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of objects returned to this maximum count.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -88283,7 +88289,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching objects.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -90228,7 +90234,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the maximum number of events in the response. The maximum value is `200`.",
-            "example": "100",
+            "example": 100,
             "schema": {
               "type": "number",
               "default": 100
@@ -90238,7 +90244,7 @@
             "name": "start",
             "in": "query",
             "description": "Offset from the first result that you want to fetch.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -90261,7 +90267,7 @@
                   "id": "a7dd4d39-4a78-4516-955f-7810dbe379cf",
                   "name": "Voicemail Group Name",
                   "phoneNumber": "+16066412147",
-                  "extension": "1273",
+                  "extension": 1273,
                   "routingPrefix": "123",
                   "esn": "1231273",
                   "tollFreeNumber": "false",
@@ -90483,7 +90489,7 @@
               "example": {
                 "name": "Voicemail Group Name",
                 "phoneNumber": "+16066412147",
-                "extension": "1273",
+                "extension": 1273,
                 "firstName": "rcdnfTest",
                 "lastName": "rcdnlTest",
                 "passcode": "1234",
@@ -90722,7 +90728,7 @@
               "example": {
                 "name": "Voicemail Group Name",
                 "phoneNumber": "+16066412147",
-                "extension": "1273",
+                "extension": 1273,
                 "firstName": "rcdnfTest",
                 "lastName": "rcdnlTest",
                 "passcode": "1373",
@@ -90880,7 +90886,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of phone numbers returned to this maximum count. The default is 2000.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -90889,7 +90895,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching phone numbers. The default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -91029,7 +91035,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of phone numbers returned to this maximum count. The default is 2000.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -91038,7 +91044,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching phone numbers. The default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -91178,7 +91184,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of phone numbers returned to this maximum count. The default is 2000.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -91187,7 +91193,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching phone numbers. The default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -101779,7 +101785,7 @@
             "name": "preferE164Format",
             "in": "query",
             "description": "Return phone numbers in E.164 format.",
-            "example": "true",
+            "example": true,
             "schema": {
               "type": "boolean"
             }
@@ -102317,7 +102323,7 @@
                           "extension": "8083",
                           "routingPrefix": "1234",
                           "esn": "12348083",
-                          "primary": "true"
+                          "primary": true
                         }
                       ]
                     }
@@ -102605,7 +102611,7 @@
             "name": "start",
             "in": "query",
             "description": "Specifies the offset from the first result that you want to fetch.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -102614,7 +102620,7 @@
             "name": "max",
             "in": "query",
             "description": "Specifies the maximum number of records that you want to fetch.",
-            "example": "100",
+            "example": 100,
             "schema": {
               "type": "number",
               "default": 2000
@@ -118199,7 +118205,9 @@
             "name": "locationId",
             "in": "query",
             "description": "Return the list of virtual lines matching these location ids. Example for multiple values - `?locationId=locId1&locationId=locId2`.",
-            "example": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzhmZjMwMjg2LWVhMzMtNDc2Ny1iMTBmLWQ2MWIyNzFhMDVlZg",
+            "example": [
+              "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzhmZjMwMjg2LWVhMzMtNDc2Ny1iMTBmLWQ2MWIyNzFhMDVlZg"
+            ],
             "schema": {
               "type": "array",
               "items": {
@@ -118213,7 +118221,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of objects returned to this maximum count.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -118222,7 +118230,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching objects.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -118231,7 +118239,9 @@
             "name": "id",
             "in": "query",
             "description": "Return the list of virtual lines matching these virtualLineIds. Example for multiple values - `?id=id1&id=id2`.",
-            "example": "Y2lzY29zcGFyazovL3VzL1ZJUlRVQUxfUFJPRklMRS84ZDRkMDNlYS03NTUzLTQ0NTgtYmI4OS02YzExNzgyMzA4OWY",
+            "example": [
+              "Y2lzY29zcGFyazovL3VzL1ZJUlRVQUxfUFJPRklMRS84ZDRkMDNlYS03NTUzLTQ0NTgtYmI4OS02YzExNzgyMzA4OWY"
+            ],
             "schema": {
               "type": "array",
               "items": {
@@ -118245,7 +118255,9 @@
             "name": "ownerName",
             "in": "query",
             "description": "Return the list of virtual lines matching these owner names. Example for multiple values - `?ownerName=name1&ownerName=name2`.",
-            "example": "Bob Smith",
+            "example": [
+              "Bob Smith"
+            ],
             "schema": {
               "type": "array",
               "items": {
@@ -118259,7 +118271,9 @@
             "name": "phoneNumber",
             "in": "query",
             "description": "Return the list of virtual lines matching these phone numbers. Example for multiple values - `?phoneNumber=number1&phoneNumber=number2`.",
-            "example": "+15558675311",
+            "example": [
+              "+15558675311"
+            ],
             "schema": {
               "type": "array",
               "items": {
@@ -118273,7 +118287,9 @@
             "name": "locationName",
             "in": "query",
             "description": "Return the list of virtual lines matching the location names. Example for multiple values - `?locationName=loc1&locationName=loc2`.",
-            "example": "Boston",
+            "example": [
+              "Boston"
+            ],
             "schema": {
               "type": "array",
               "items": {
@@ -118287,7 +118303,9 @@
             "name": "order",
             "in": "query",
             "description": "Return the list of virtual lines based on the order. Default sort will be in an Ascending order. Maximum 3 orders allowed at a time. Example for multiple values - `?order=order1&order=order2`.",
-            "example": "lastName",
+            "example": [
+              "lastName"
+            ],
             "schema": {
               "type": "array",
               "items": {
@@ -118301,7 +118319,7 @@
             "name": "hasDeviceAssigned",
             "in": "query",
             "description": "If `true`, includes only virtual lines with devices assigned. When not explicitly specified, the default includes both virtual lines with devices assigned and not assigned.",
-            "example": "true",
+            "example": true,
             "schema": {
               "type": "boolean"
             }
@@ -118319,7 +118337,7 @@
             "name": "hasDnAssigned",
             "in": "query",
             "description": "If `true`, includes only virtual lines with an assigned directory number, also known as a Dn. When not explicitly specified, the default includes both virtual lines with a Dn assigned and not assigned.",
-            "example": "true",
+            "example": true,
             "schema": {
               "type": "boolean"
             }
@@ -118760,7 +118778,7 @@
                   "firstName": "Bob",
                   "lastName": "Smith",
                   "displayName": "Bob Smith",
-                  "directorySearchEnabled": "true",
+                  "directorySearchEnabled": true,
                   "announcementLanguage": "French",
                   "timeZone": "Africa/Algiers",
                   "number": {
@@ -119159,7 +119177,7 @@
           "content": {
             "application/json": {
               "example": {
-                "enabled": "true"
+                "enabled": true
               },
               "schema": {
                 "$ref": "#/components/schemas/DirectorySearchObject"
@@ -124096,7 +124114,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of phone numbers returned to this maximum count. The default is 2000.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -124105,7 +124123,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching phone numbers. The default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -124264,7 +124282,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of phone numbers returned to this maximum count. The default is 2000.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -124273,7 +124291,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching phone numbers. The default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -124427,7 +124445,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of phone numbers returned to this maximum count. The default is 2000.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -124436,7 +124454,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching phone numbers. The default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -124606,7 +124624,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of phone numbers returned to this maximum count. The default is 2000.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -124615,7 +124633,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching phone numbers. The default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -124783,7 +124801,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of phone numbers returned to this maximum count. The default is 2000.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -124792,7 +124810,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching phone numbers. The default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -130239,7 +130257,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of phone numbers returned to this maximum count. The default is 2000.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -130248,7 +130266,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching phone numbers. The default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -130418,7 +130436,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of phone numbers returned to this maximum count. The default is 2000.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -130427,7 +130445,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching phone numbers. The default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -130595,7 +130613,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of phone numbers returned to this maximum count. The default is 2000.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -130604,7 +130622,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching phone numbers. The default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -130781,7 +130799,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of phone numbers returned to this maximum count. The default is 2000.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -130790,7 +130808,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching phone numbers. The default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -133350,7 +133368,7 @@
               "example": {
                 "enabled": true,
                 "ringBaseLocationFirstEnabled": true,
-                "baseLocationNumberOfRings": "2",
+                "baseLocationNumberOfRings": 2,
                 "continueIfBaseLocationIsBusyEnabled": true,
                 "callsToVoicemailEnabled": true,
                 "phoneNumbers": [
@@ -136773,7 +136791,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of phone numbers returned to this maximum count. The default is 2000.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -136782,7 +136800,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching phone numbers. The default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -136919,7 +136937,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the number of phone numbers returned to this maximum count. The default is 2000.",
-            "example": "5",
+            "example": 5,
             "schema": {
               "type": "number"
             }
@@ -136928,7 +136946,7 @@
             "name": "start",
             "in": "query",
             "description": "Start at the zero-based offset in the list of matching phone numbers. The default is 0.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }

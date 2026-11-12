@@ -129,7 +129,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the maximum number of meeting chats in the response, up to 100.",
-            "example": "100",
+            "example": 100,
             "schema": {
               "type": "number",
               "default": 10
@@ -139,7 +139,7 @@
             "name": "offset",
             "in": "query",
             "description": "Offset from the first result that you want to fetch.",
-            "example": "0",
+            "example": 0,
             "schema": {
               "type": "number"
             }
@@ -665,7 +665,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the maximum number of meeting invitees in the response, up to 100.",
-            "example": "100",
+            "example": 100,
             "schema": {
               "type": "number",
               "default": 10
@@ -1279,10 +1279,10 @@
             "name": "sendEmail",
             "in": "query",
             "description": "If `true`, send an email to the invitee.",
-            "example": "true",
+            "example": true,
             "schema": {
               "type": "boolean",
-              "default": "true"
+              "default": true
             }
           }
         ]
@@ -1486,7 +1486,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the maximum number of participants in the response, up to 100.",
-            "example": "100",
+            "example": 100,
             "schema": {
               "type": "number",
               "default": 10
@@ -2534,7 +2534,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the maximum number of respondents in a meeting in the response, up to 100.",
-            "example": "10",
+            "example": 10,
             "schema": {
               "type": "number",
               "default": 10
@@ -2661,7 +2661,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the maximum number of respondents in a specified question in the response, up to 100.",
-            "example": "10",
+            "example": 10,
             "schema": {
               "type": "number",
               "default": 10
@@ -4639,7 +4639,7 @@
             "in": "query",
             "description": "Whether or not to change user's default site. ***Note***: `defaultSite` should be set to true for the user's single default site",
             "required": true,
-            "example": "true",
+            "example": true,
             "schema": {
               "type": "boolean"
             }
@@ -4947,7 +4947,7 @@
             "name": "max",
             "in": "query",
             "description": "Limits the maximum number of answers in the response, up to 100.",
-            "example": "10",
+            "example": 10,
             "schema": {
               "type": "number",
               "default": 10
@@ -5080,7 +5080,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the maximum number of Q&A's answers in the response, up to 100.",
-            "example": "100",
+            "example": 100,
             "schema": {
               "type": "number",
               "default": 10
@@ -7007,7 +7007,7 @@
                   "items": [
                     {
                       "meetingId": "089b137c3cf34b578896941e2d49dfe8_I_146987372776523573",
-                      "meetingNumber": "123456789",
+                      "meetingNumber": 123456789,
                       "meetingTitle": "John's Meeting",
                       "displayName": "John Andersen",
                       "email": "john.andersen@example.com",
@@ -28158,7 +28158,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the maximum number of webhooks in the response.",
-            "example": "100",
+            "example": 100,
             "schema": {
               "type": "number",
               "default": 100

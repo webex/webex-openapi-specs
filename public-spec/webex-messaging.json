@@ -954,7 +954,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the maximum number of events in the response. Value must be between 1 and 1000, inclusive.",
-            "example": "100",
+            "example": 100,
             "schema": {
               "type": "number",
               "default": 100
@@ -2572,7 +2572,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the maximum number of memberships in the response.",
-            "example": "100",
+            "example": 100,
             "schema": {
               "type": "number",
               "default": 100
@@ -3131,7 +3131,9 @@
             "name": "mentionedPeople",
             "in": "query",
             "description": "List messages with these people mentioned, by ID. Use `me` as a shorthand for the current API user. Only `me` or the person ID of the current user may be specified. Bots must include this parameter to list messages in group rooms (spaces).",
-            "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS8yNDlmNzRkOS1kYjhhLTQzY2EtODk2Yi04NzllZDI0MGFjNTM",
+            "example": [
+              "Y2lzY29zcGFyazovL3VzL1BFT1BMRS8yNDlmNzRkOS1kYjhhLTQzY2EtODk2Yi04NzllZDI0MGFjNTM"
+            ],
             "schema": {
               "type": "array",
               "items": {
@@ -3163,7 +3165,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the maximum number of messages in the response. Cannot exceed 100 if used with `mentionedPeople`.",
-            "example": "100",
+            "example": 100,
             "schema": {
               "type": "number",
               "default": 50
@@ -5807,7 +5809,7 @@
             "name": "orgPublicSpaces",
             "in": "query",
             "description": "Shows the org's public spaces joined and unjoined. When set the result list is sorted by the `madePublic` timestamp.",
-            "example": "true",
+            "example": true,
             "schema": {
               "type": "boolean"
             }
@@ -5848,7 +5850,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the maximum number of rooms in the response. Value must be between 1 and 1000, inclusive.",
-            "example": "100",
+            "example": 100,
             "schema": {
               "type": "number",
               "default": 100
@@ -6995,7 +6997,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the maximum number of teams in the response.",
-            "example": "100",
+            "example": 100,
             "schema": {
               "type": "number",
               "default": 100
@@ -7477,7 +7479,7 @@
             "name": "max",
             "in": "query",
             "description": "Limit the maximum number of webhooks in the response.",
-            "example": "100",
+            "example": 100,
             "schema": {
               "type": "number",
               "default": 100
