@@ -20653,7 +20653,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/preferredAnswerEndpointInformation"
+                  "$ref": "#/components/schemas/PreferredAnswerEndpointInformation"
                 },
                 "example": {
                   "endpoints": [
@@ -20760,7 +20760,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/preferredAnswerEndpointInformation"
+                  "$ref": "#/components/schemas/PreferredAnswerEndpointInformation"
                 },
                 "example": {
                   "endpoints": [
@@ -20843,7 +20843,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/preferredAnswerEndpoint"
+                  "$ref": "#/components/schemas/PreferredAnswerEndpoint"
                 },
                 "example": {
                   "id": "Y2lzY29z...",
@@ -20964,7 +20964,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/preferredAnswerEndpoint"
+                  "$ref": "#/components/schemas/PreferredAnswerEndpoint"
                 },
                 "example": {
                   "id": "Y2lzY29z...",
@@ -42800,7 +42800,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/deviceList"
+                  "$ref": "#/components/schemas/DeviceList"
                 },
                 "example": {
                   "devices": [
@@ -43019,7 +43019,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/placeDeviceList"
+                  "$ref": "#/components/schemas/PlaceDeviceList"
                 },
                 "example": {
                   "devices": [
@@ -43239,7 +43239,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/supportedDevicesObject"
+                  "$ref": "#/components/schemas/SupportedDevicesObject"
                 },
                 "example": {
                   "upgradeChannelList": [
@@ -43866,7 +43866,7 @@
                     "lineKeyTemplates": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/lineKeyTemplatesResponse"
+                        "$ref": "#/components/schemas/LineKeyTemplatesResponse"
                       },
                       "description": "Array of Line Key Templates."
                     }
@@ -45564,7 +45564,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/jobIdResponseObject"
+                  "$ref": "#/components/schemas/JobIdResponseObject"
                 },
                 "example": {
                   "name": "calldevicesettings",
@@ -46981,7 +46981,7 @@
                     "backgroundImages": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/listBackgroundImagesObject"
+                        "$ref": "#/components/schemas/ListBackgroundImagesObject"
                       },
                       "description": "Array of background images."
                     },
@@ -47088,7 +47088,7 @@
                     "items": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/deleteImageResponseSuccessObject"
+                        "$ref": "#/components/schemas/DeleteImageResponseSuccessObject"
                       },
                       "description": "Array of deleted images."
                     },
@@ -47127,7 +47127,7 @@
                     "items": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/deleteImageResponseObject"
+                        "$ref": "#/components/schemas/DeleteImageResponseObject"
                       },
                       "description": "Array of deleted images."
                     },
@@ -47245,7 +47245,7 @@
                   "backgroundImages": {
                     "type": "array",
                     "items": {
-                      "$ref": "#/components/schemas/deleteImageRequestObject"
+                      "$ref": "#/components/schemas/DeleteImageRequestObject"
                     },
                     "description": "Array of images to be deleted."
                   }
@@ -47402,7 +47402,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/userDeviceCount"
+                  "$ref": "#/components/schemas/UserDeviceCount"
                 },
                 "example": {
                   "totalDeviceCount": 3,
@@ -93403,7 +93403,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/jobIdResponseObject"
+                  "$ref": "#/components/schemas/JobIdResponseObject"
                 },
                 "example": {
                   "name": "managenumbers",
@@ -130045,7 +130045,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/callRecordingResponse"
+                  "$ref": "#/components/schemas/CallRecordingResponse"
                 },
                 "example": {
                   "vendorId": "53dc4c87-8408-4882-9570-dca2bcdb9280",
@@ -138898,7 +138898,7 @@
           "ata": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/ataObject"
+                "$ref": "#/components/schemas/AtaObject"
               }
             ],
             "description": "Applicable device settings for an ATA device."
@@ -138906,7 +138906,7 @@
           "mpp": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/mppObject"
+                "$ref": "#/components/schemas/MppObject"
               }
             ],
             "description": "Applicable device settings for an MPP device."
@@ -138914,7 +138914,7 @@
           "wifi": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/wifiObject"
+                "$ref": "#/components/schemas/WifiObject"
               }
             ],
             "description": "Applicable device settings for a WiFi device."
@@ -138927,7 +138927,7 @@
           "ata": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/ataObjectDevice"
+                "$ref": "#/components/schemas/AtaObjectDevice"
               }
             ],
             "description": "Applicable device settings for an ATA device."
@@ -138935,7 +138935,7 @@
           "mpp": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/mppObjectDevice"
+                "$ref": "#/components/schemas/MppObjectDevice"
               }
             ],
             "description": "Applicable device settings for an MPP device."
@@ -138943,7 +138943,7 @@
           "wifi": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/wifiObjectDevice"
+                "$ref": "#/components/schemas/WifiObjectDevice"
               }
             ],
             "description": "Applicable device settings for a WiFi device."
@@ -138956,7 +138956,7 @@
           "ata": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/ataObject"
+                "$ref": "#/components/schemas/AtaObject"
               }
             ],
             "description": "Settings that are applicable to ATA devices."
@@ -138964,7 +138964,7 @@
           "dect": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/dectObject"
+                "$ref": "#/components/schemas/DectObject"
               }
             ],
             "description": "Settings that are applicable to DECT devices."
@@ -138972,7 +138972,7 @@
           "mpp": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/mppObject"
+                "$ref": "#/components/schemas/MppObject"
               }
             ],
             "description": "Settings that are applicable to MPP devices."
@@ -138980,7 +138980,7 @@
           "wifi": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/wifiObject"
+                "$ref": "#/components/schemas/WifiObject"
               }
             ],
             "description": "Settings that are applicable to WiFi."
@@ -139783,7 +139783,7 @@
           "location": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/location"
+                "$ref": "#/components/schemas/Location"
               }
             ],
             "description": "Location object having a unique identifier for the location and its name."
@@ -140239,7 +140239,7 @@
           "location": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/location"
+                "$ref": "#/components/schemas/Location"
               }
             ],
             "description": "Location object having a unique identifier for the location and its name."
@@ -140819,7 +140819,7 @@
           }
         }
       },
-      "ataObject": {
+      "AtaObject": {
         "type": "object",
         "required": [
           "audioCodecPriority",
@@ -140901,7 +140901,7 @@
           }
         }
       },
-      "ataObjectDevice": {
+      "AtaObjectDevice": {
         "type": "object",
         "required": [
           "audioCodecPriority",
@@ -140983,7 +140983,7 @@
           }
         }
       },
-      "dectObject": {
+      "DectObject": {
         "type": "object",
         "required": [
           "audioCodecPriority",
@@ -141048,7 +141048,7 @@
           }
         }
       },
-      "deviceList": {
+      "DeviceList": {
         "type": "object",
         "required": [
           "devices",
@@ -141059,7 +141059,7 @@
           "devices": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/devices"
+              "$ref": "#/components/schemas/Devices"
             },
             "description": "Array of devices available to person."
           },
@@ -141073,7 +141073,7 @@
           }
         }
       },
-      "deviceOwner": {
+      "DeviceOwner": {
         "type": "object",
         "required": [
           "id",
@@ -141105,7 +141105,7 @@
           }
         }
       },
-      "devices": {
+      "Devices": {
         "type": "object",
         "required": [
           "id",
@@ -141171,7 +141171,7 @@
           "owner": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/deviceOwner"
+                "$ref": "#/components/schemas/DeviceOwner"
               }
             ],
             "description": "Owner of device."
@@ -141194,7 +141194,7 @@
         ],
         "description": " * `DEVICE` - The endpoint is a device.\n * `APPLICATION` - The endpoint is a application.\n"
       },
-      "jobIdResponseObject": {
+      "JobIdResponseObject": {
         "type": "object",
         "required": [
           "name",
@@ -141308,8 +141308,9 @@
           }
         }
       },
-      "location": {
+      "Location": {
         "type": "object",
+        "description": "Location associated with the hot desking member.",
         "required": [
           "id",
           "name"
@@ -141317,17 +141318,21 @@
         "properties": {
           "id": {
             "type": "string",
-            "example": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzJiNDkyZmZkLTRjNGItNGVmNS04YzAzLWE1MDYyYzM4NDA5Mw",
-            "description": "Location identifier associated with the members."
+            "description": "Unique identifier for the location.",
+            "example": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzJiNDkyZmZkLTRjNGItNGVmNS04YzAzLWE1MDYyYzM4NDA5Mw"
           },
           "name": {
             "type": "string",
-            "example": "MainOffice",
-            "description": "Location name associated with the member."
+            "description": "Name of the location.",
+            "example": "Main Office"
           }
+        },
+        "example": {
+          "id": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzJiNDkyZmZkLTRjNGItNGVmNS04YzAzLWE1MDYyYzM4NDA5Mw",
+          "name": "Main Office"
         }
       },
-      "mppObject": {
+      "MppObject": {
         "type": "object",
         "required": [
           "pnacEnabled",
@@ -141689,7 +141694,7 @@
           }
         }
       },
-      "mppObjectDevice": {
+      "MppObjectDevice": {
         "type": "object",
         "required": [
           "pnacEnabled",
@@ -142060,7 +142065,7 @@
           }
         }
       },
-      "placeDeviceList": {
+      "PlaceDeviceList": {
         "type": "object",
         "required": [
           "devices",
@@ -142071,7 +142076,7 @@
           "devices": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/placeDevices"
+              "$ref": "#/components/schemas/PlaceDevices"
             },
             "description": "Array of devices associated with a workspace."
           },
@@ -142085,7 +142090,7 @@
           }
         }
       },
-      "placeDevices": {
+      "PlaceDevices": {
         "type": "object",
         "required": [
           "id",
@@ -142143,7 +142148,7 @@
           "owner": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/deviceOwner"
+                "$ref": "#/components/schemas/DeviceOwner"
               }
             ],
             "description": "Owner of the device."
@@ -142158,7 +142163,7 @@
           }
         }
       },
-      "wifiObject": {
+      "WifiObject": {
         "type": "object",
         "required": [
           "audioCodecPriority",
@@ -142198,7 +142203,7 @@
           }
         }
       },
-      "wifiObjectDevice": {
+      "WifiObjectDevice": {
         "type": "object",
         "required": [
           "audioCodecPriority",
@@ -142586,7 +142591,7 @@
           }
         }
       },
-      "lineKeyTemplatesResponse": {
+      "LineKeyTemplatesResponse": {
         "type": "object",
         "required": [
           "id",
@@ -142986,7 +142991,7 @@
           }
         }
       },
-      "listBackgroundImagesObject": {
+      "ListBackgroundImagesObject": {
         "type": "object",
         "required": [
           "backgroundImageUrl",
@@ -143005,7 +143010,7 @@
           }
         }
       },
-      "deleteImageResponseObject": {
+      "DeleteImageResponseObject": {
         "type": "object",
         "required": [
           "fileName",
@@ -143053,7 +143058,7 @@
           }
         }
       },
-      "deleteImageResponseSuccessObject": {
+      "DeleteImageResponseSuccessObject": {
         "type": "object",
         "required": [
           "fileName",
@@ -143081,7 +143086,7 @@
           }
         }
       },
-      "deleteImageRequestObject": {
+      "DeleteImageRequestObject": {
         "type": "object",
         "required": [
           "fileName"
@@ -143099,7 +143104,7 @@
           }
         }
       },
-      "userDeviceCount": {
+      "UserDeviceCount": {
         "type": "object",
         "required": [
           "totalDeviceCount",
@@ -143906,7 +143911,7 @@
           }
         }
       },
-      "stepExecutionStatusesObject": {
+      "StepExecutionStatusesObject": {
         "type": "object",
         "required": [
           "id",
@@ -143917,24 +143922,24 @@
         ],
         "properties": {
           "id": {
-            "type": "number",
-            "example": 3624681,
+            "type": "integer",
+            "example": 1172935,
             "description": "Unique identifier that identifies each step in a job."
           },
           "startTime": {
             "type": "string",
-            "example": "2023-05-30T13:04:00.469Z",
-            "description": "The date and time with seconds, the step execution has started in UTC format."
+            "example": "2022-08-24T06:18:31.203Z",
+            "description": "Step execution start time in UTC format."
           },
           "endTime": {
             "type": "string",
-            "example": "2023-05-30T13:04:03.245Z",
-            "description": "The date and time with seconds, the step execution has ended in UTC format."
+            "example": "2022-08-24T06:18:32.823Z",
+            "description": "Step execution end time in UTC format."
           },
           "lastUpdated": {
             "type": "string",
-            "example": "2023-05-30T13:04:03.574Z",
-            "description": "The date and time with seconds, the step has last updated in UTC format."
+            "example": "2022-08-24T06:18:32.823Z",
+            "description": "Last updated time for a step in UTC format."
           },
           "statusMessage": {
             "type": "string",
@@ -143962,13 +143967,13 @@
           },
           "name": {
             "type": "string",
-            "example": "moveusersvalidateAndMove",
+            "example": "manageNumbersDeciderStep",
             "description": "Step name."
           },
           "timeElapsed": {
             "type": "string",
-            "example": "PT2.752S",
-            "description": "Time lapsed in seconds since the job execution started."
+            "example": "PT1.62S",
+            "description": "Time lapsed since the step execution started."
           }
         }
       },
@@ -144125,7 +144130,7 @@
           }
         }
       },
-      "supportedDevicesObject": {
+      "SupportedDevicesObject": {
         "type": "object",
         "required": [
           "devices",
@@ -144299,7 +144304,7 @@
           "owner": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/deviceOwner"
+                "$ref": "#/components/schemas/DeviceOwner"
               }
             ],
             "description": "Owner of the device."
@@ -145011,30 +145016,6 @@
             "example": "2024-08-29T20:00:00Z",
             "description": "The end time of the booking."
           }
-        }
-      },
-      "Location": {
-        "type": "object",
-        "description": "Location associated with the hot desking member.",
-        "required": [
-          "id",
-          "name"
-        ],
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "Unique identifier for the location.",
-            "example": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzJiNDkyZmZkLTRjNGItNGVmNS04YzAzLWE1MDYyYzM4NDA5Mw"
-          },
-          "name": {
-            "type": "string",
-            "description": "Name of the location.",
-            "example": "Main Office"
-          }
-        },
-        "example": {
-          "id": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzJiNDkyZmZkLTRjNGItNGVmNS04YzAzLWE1MDYyYzM4NDA5Mw",
-          "name": "Main Office"
         }
       },
       "PutCommonLocationObject": {
@@ -149019,7 +149000,7 @@
           "location": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/location"
+                "$ref": "#/components/schemas/Location"
               }
             ],
             "description": "Location object having a unique identifier for the location and its name."
@@ -149075,7 +149056,7 @@
           "lines": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/lines"
+              "$ref": "#/components/schemas/Lines"
             },
             "description": "Array of lines associated with the handset. Maximum: 2 lines."
           }
@@ -149150,7 +149131,7 @@
           "lines": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/lines"
+              "$ref": "#/components/schemas/Lines"
             },
             "description": "Array of lines associated to the handset up to a maximum of 2."
           }
@@ -149201,7 +149182,7 @@
           }
         }
       },
-      "lines": {
+      "Lines": {
         "type": "object",
         "required": [
           "memberId",
@@ -149254,7 +149235,7 @@
           "location": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/location"
+                "$ref": "#/components/schemas/Location"
               }
             ],
             "description": "Location object including a unique identifier for the location and its name."
@@ -149409,7 +149390,7 @@
           "location": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/location"
+                "$ref": "#/components/schemas/Location"
               }
             ],
             "description": "Location details of the handset line member."
@@ -149525,7 +149506,7 @@
           "location": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/location"
+                "$ref": "#/components/schemas/Location"
               }
             ],
             "description": "Location of the DECT network."
@@ -156676,7 +156657,7 @@
           }
         }
       },
-      "executive": {
+      "Executive": {
         "type": "object",
         "description": "Details of an executive for whom the assistant can manage calls.",
         "example": {
@@ -156689,6 +156670,8 @@
         },
         "required": [
           "id",
+          "directNumber",
+          "extension",
           "optInEnabled"
         ],
         "properties": {
@@ -156700,16 +156683,16 @@
           "firstName": {
             "type": "string",
             "example": "John",
-            "description": "First name of the executive."
+            "description": "Unicode first name of the executive. Is null if not available or if the name is a single ‘.’ or ‘-’."
           },
           "lastName": {
             "type": "string",
             "example": "Doe",
-            "description": "Last name of the executive."
+            "description": "Unicode last name of the executive. Is null if not available or if the name is a single ‘.’ or ‘-’."
           },
           "directNumber": {
             "type": "string",
-            "example": "+91-6557765419",
+            "example": "+916557765419",
             "description": "Direct number of the executive."
           },
           "extension": {
@@ -156720,7 +156703,7 @@
           "optInEnabled": {
             "type": "boolean",
             "example": true,
-            "description": "If `true`, the executive assistant opted in to the executive pool."
+            "description": "If `true`, the assistant has opted in to handle calls for the executive."
           }
         }
       },
@@ -157867,7 +157850,7 @@
           }
         }
       },
-      "preferredAnswerEndpointInformation": {
+      "PreferredAnswerEndpointInformation": {
         "type": "object",
         "description": "Response object for the preferred answer endpoint information.",
         "example": {
@@ -157893,18 +157876,20 @@
           "endpoints": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/endpoints"
+              "$ref": "#/components/schemas/Endpoints"
             },
             "description": "Array of endpoints available to the person."
           }
         }
       },
-      "endpoints": {
+      "Endpoints": {
         "type": "object",
+        "description": "Details of an endpoint available to the person.",
         "required": [
           "id",
           "type",
-          "name"
+          "name",
+          "isPreferredAnswerEndpoint"
         ],
         "properties": {
           "id": {
@@ -157913,17 +157898,17 @@
             "description": "Unique identifier for the endpoint."
           },
           "type": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/DeviceType"
-              }
-            ],
-            "description": "Enumeration that indicates if the endpoint is of type `DEVICE` or `APPLICATION`."
+            "$ref": "#/components/schemas/DeviceType"
           },
           "name": {
             "type": "string",
             "example": "Cisco 8865 (Phone in reception area)",
             "description": "The `name` field in the response is calculated using device tag. Admins have the ability to set tags for devices. If a `name=<value>` tag is set, for example “name=home phone“, then the `<value>` is included in the `name` field of the API response. In this example “home phone”."
+          },
+          "isPreferredAnswerEndpoint": {
+            "type": "boolean",
+            "example": true,
+            "description": "Indicates if this endpoint has been set as the preferred answer endpoint."
           }
         }
       },
@@ -157941,7 +157926,7 @@
           }
         }
       },
-      "preferredAnswerEndpoint": {
+      "PreferredAnswerEndpoint": {
         "type": "object",
         "description": "Details of the preferred answer endpoint.",
         "example": {
@@ -158148,13 +158133,13 @@
           "availableCallerIds": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/availableCallerIds"
+              "$ref": "#/components/schemas/AvailableCallerIds"
             },
             "description": "A List of available caller IDs."
           }
         }
       },
-      "availableCallerIds": {
+      "AvailableCallerIds": {
         "type": "object",
         "description": "Details of an available caller ID.",
         "required": [
@@ -164454,7 +164439,7 @@
           "orgPrefix": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/orgPrefixObject"
+                "$ref": "#/components/schemas/OrgPrefixObject"
               }
             ],
             "description": "Represents whether the customer is 'Webex Calling' or not."
@@ -164496,7 +164481,7 @@
           }
         }
       },
-      "orgPrefixObject": {
+      "OrgPrefixObject": {
         "type": "string",
         "enum": [
           "wxc",
@@ -168509,7 +168494,7 @@
           "mediaFileType": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/mediaType"
+                "$ref": "#/components/schemas/MediaType"
               }
             ],
             "description": "Media file type of the announcement."
@@ -168517,7 +168502,7 @@
           "level": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/level"
+                "$ref": "#/components/schemas/Level"
               }
             ],
             "description": "Level where the announcement is created."
@@ -168528,7 +168513,7 @@
           }
         }
       },
-      "mediaType": {
+      "MediaType": {
         "type": "string",
         "enum": [
           "WMA",
@@ -168538,7 +168523,7 @@
         ],
         "description": " * `WMA` - WMA File Extension.\n * `WAV` - WAV File Extension.\n * `GP` - 3GP File Extension.\n * `MOV` - MOV File Extension.\n"
       },
-      "level": {
+      "Level": {
         "type": "string",
         "enum": [
           "ORGANIZATION",
@@ -180015,13 +180000,13 @@
           "virtualExtensionRangeValidationStatus": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/virtualExtensionRangeValidationStatusObject"
+              "$ref": "#/components/schemas/VirtualExtensionRangeValidationStatusObject"
             },
             "description": "Array of virtual extension range validation status. This is set only when the `status` is `ERRORS`."
           }
         }
       },
-      "virtualExtensionRangeValidationStatusObject": {
+      "VirtualExtensionRangeValidationStatusObject": {
         "type": "object",
         "required": [
           "errorCode",
@@ -180744,7 +180729,7 @@
           "extensionStatus": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/extentionStatusObject"
+              "$ref": "#/components/schemas/ExtentionStatusObject"
             }
           }
         }
@@ -180944,7 +180929,7 @@
           }
         }
       },
-      "extentionStatusObject": {
+      "ExtentionStatusObject": {
         "type": "object",
         "required": [
           "extension",
@@ -184304,13 +184289,13 @@
           "numberList": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/numberItem"
+              "$ref": "#/components/schemas/NumberItem"
             },
             "description": "Numbers on which to execute the operation."
           }
         }
       },
-      "jobListResponseObject": {
+      "JobListResponseObject": {
         "type": "object",
         "required": [
           "id",
@@ -184712,7 +184697,7 @@
           }
         }
       },
-      "numberItem": {
+      "NumberItem": {
         "type": "object",
         "required": [
           "locationId",
@@ -188710,6 +188695,53 @@
           }
         }
       },
+      "endpoints": {
+        "type": "object",
+        "required": [
+          "id",
+          "type",
+          "name"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "Y2lzY29z...",
+            "description": "Unique identifier for the endpoint."
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DeviceType"
+              }
+            ],
+            "description": "Enumeration that indicates if the endpoint is of type `DEVICE` or `APPLICATION`."
+          },
+          "name": {
+            "type": "string",
+            "example": "Cisco 8865 (Phone in reception area)",
+            "description": "The `name` field in the response is calculated using device tag. Admins have the ability to set tags for devices. If a `name=<value>` tag is set, for example “name=home phone“, then the `<value>` is included in the `name` field of the API response. In this example “home phone”."
+          }
+        }
+      },
+      "location": {
+        "type": "object",
+        "required": [
+          "id",
+          "name"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzJiNDkyZmZkLTRjNGItNGVmNS04YzAzLWE1MDYyYzM4NDA5Mw",
+            "description": "Location identifier associated with the members."
+          },
+          "name": {
+            "type": "string",
+            "example": "MainOffice",
+            "description": "Location name associated with the member."
+          }
+        }
+      },
       "ErrorOrImpactItem": {
         "type": "object",
         "required": [
@@ -189220,6 +189252,72 @@
               "$ref": "#/components/schemas/UserItem"
             },
             "description": "List of users to be moved."
+          }
+        }
+      },
+      "stepExecutionStatusesObject": {
+        "type": "object",
+        "required": [
+          "id",
+          "lastUpdated",
+          "statusMessage",
+          "name",
+          "timeElapsed"
+        ],
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 3624681,
+            "description": "Unique identifier that identifies each step in a job."
+          },
+          "startTime": {
+            "type": "string",
+            "example": "2023-05-30T13:04:00.469Z",
+            "description": "The date and time with seconds, the step execution has started in UTC format."
+          },
+          "endTime": {
+            "type": "string",
+            "example": "2023-05-30T13:04:03.245Z",
+            "description": "The date and time with seconds, the step execution has ended in UTC format."
+          },
+          "lastUpdated": {
+            "type": "string",
+            "example": "2023-05-30T13:04:03.574Z",
+            "description": "The date and time with seconds, the step has last updated in UTC format."
+          },
+          "statusMessage": {
+            "type": "string",
+            "enum": [
+              "STARTING",
+              "STARTED",
+              "COMPLETED",
+              "FAILED",
+              "UNKNOWN",
+              "ABANDONED"
+            ],
+            "description": "Displays status for a step.\n * `STARTING` - Job has started.\n * `STARTED` - Job is in progress.\n * `COMPLETED` - Job has completed.\n * `FAILED` - Job has failed.\n * `UNKNOWN` - Job status is unknown.\n * `ABANDONED` - Job has been abandoned (manually stopped).\n"
+          },
+          "exitCode": {
+            "type": "string",
+            "enum": [
+              "UNKNOWN",
+              "COMPLETED",
+              "FAILED",
+              "STOPPED",
+              "COMPLETED_WITH_ERRORS",
+              "COMPLETED_WITH_PENDING_ORDERS"
+            ],
+            "description": "Exit Code for a step.\n * `UNKNOWN` - Job is in progress.\n * `COMPLETED` - Job has completed successfully.\n * `FAILED` - Job has failed.\n * `STOPPED` - Job has been stopped.\n * `COMPLETED_WITH_ERRORS` - Job has completed with errors.\n * `COMPLETED_WITH_PENDING_ORDERS` - Job has completed with pending number orders.\n"
+          },
+          "name": {
+            "type": "string",
+            "example": "moveusersvalidateAndMove",
+            "description": "Step name."
+          },
+          "timeElapsed": {
+            "type": "string",
+            "example": "PT2.752S",
+            "description": "Time lapsed in seconds since the job execution started."
           }
         }
       },
@@ -191681,56 +191779,6 @@
           }
         }
       },
-      "Executive": {
-        "type": "object",
-        "description": "Details of an executive for whom the assistant can manage calls.",
-        "example": {
-          "id": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS8zZWQzNDg0MS0yZTkwLTQ4OGEtYmVmZi1iNTk0OTA1ODFkNWM",
-          "firstName": "John",
-          "lastName": "Doe",
-          "directNumber": "+91-6557765419",
-          "extension": "10079",
-          "optInEnabled": true
-        },
-        "required": [
-          "id",
-          "directNumber",
-          "extension",
-          "optInEnabled"
-        ],
-        "properties": {
-          "id": {
-            "type": "string",
-            "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS8zZWQzNDg0MS0yZTkwLTQ4OGEtYmVmZi1iNTk0OTA1ODFkNWM",
-            "description": "Unique identifier of the executive."
-          },
-          "firstName": {
-            "type": "string",
-            "example": "John",
-            "description": "Unicode first name of the executive. Is null if not available or if the name is a single ‘.’ or ‘-’."
-          },
-          "lastName": {
-            "type": "string",
-            "example": "Doe",
-            "description": "Unicode last name of the executive. Is null if not available or if the name is a single ‘.’ or ‘-’."
-          },
-          "directNumber": {
-            "type": "string",
-            "example": "+916557765419",
-            "description": "Direct number of the executive."
-          },
-          "extension": {
-            "type": "string",
-            "example": "10079",
-            "description": "Extension number of the executive."
-          },
-          "optInEnabled": {
-            "type": "boolean",
-            "example": true,
-            "description": "If `true`, the assistant has opted in to handle calls for the executive."
-          }
-        }
-      },
       "PersonAnonymousCallRejectGet": {
         "type": "object",
         "example": {
@@ -193064,7 +193112,7 @@
           "owner": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/deviceOwner"
+                "$ref": "#/components/schemas/DeviceOwner"
               }
             ],
             "description": "Owner of the device."
@@ -197496,7 +197544,7 @@
         ],
         "description": " * `ALL_NUMBERS` - Criteria applies to all incoming numbers.\n * `SPECIFIC_NUMBERS` - Criteria applies only for specific incoming numbers.\n * `ANY_INTERNAL` - Criteria applies to all internal incoming numbers.\n * `ANY_EXTERNAL` - Criteria applies to all external incoming numbers.\n"
       },
-      "callRecordingResponse": {
+      "CallRecordingResponse": {
         "type": "object",
         "properties": {
           "vendorId": {

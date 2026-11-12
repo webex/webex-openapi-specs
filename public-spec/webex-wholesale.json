@@ -3466,7 +3466,7 @@
           "ata": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/ataObject"
+                "$ref": "#/components/schemas/AtaObject"
               }
             ],
             "description": "Applicable device settings for an ATA device."
@@ -3474,7 +3474,7 @@
           "mpp": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/mppObject"
+                "$ref": "#/components/schemas/MppObject"
               }
             ],
             "description": "Applicable device settings for an MPP device."
@@ -3482,7 +3482,7 @@
           "wifi": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/wifiObject"
+                "$ref": "#/components/schemas/WifiObject"
               }
             ],
             "description": "Applicable device settings for a WiFi device."
@@ -3495,7 +3495,7 @@
           "ata": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/ataObjectDevice"
+                "$ref": "#/components/schemas/AtaObjectDevice"
               }
             ],
             "description": "Applicable device settings for an ATA device."
@@ -3503,7 +3503,7 @@
           "mpp": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/mppObjectDevice"
+                "$ref": "#/components/schemas/MppObjectDevice"
               }
             ],
             "description": "Applicable device settings for an MPP device."
@@ -3511,7 +3511,7 @@
           "wifi": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/wifiObjectDevice"
+                "$ref": "#/components/schemas/WifiObjectDevice"
               }
             ],
             "description": "Applicable device settings for a WiFi device."
@@ -3524,7 +3524,7 @@
           "ata": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/ataObject"
+                "$ref": "#/components/schemas/AtaObject"
               }
             ],
             "description": "Settings that are applicable to ATA devices."
@@ -3532,7 +3532,7 @@
           "dect": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/dectObject"
+                "$ref": "#/components/schemas/DectObject"
               }
             ],
             "description": "Settings that are applicable to DECT devices."
@@ -3540,7 +3540,7 @@
           "mpp": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/mppObject"
+                "$ref": "#/components/schemas/MppObject"
               }
             ],
             "description": "Settings that are applicable to MPP devices."
@@ -3548,7 +3548,7 @@
           "wifi": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/wifiObject"
+                "$ref": "#/components/schemas/WifiObject"
               }
             ],
             "description": "Settings that are applicable to WiFi."
@@ -4351,7 +4351,7 @@
           "location": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/location"
+                "$ref": "#/components/schemas/Location"
               }
             ],
             "description": "Location object having a unique identifier for the location and its name."
@@ -4808,7 +4808,7 @@
           "location": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/location"
+                "$ref": "#/components/schemas/Location"
               }
             ],
             "description": "Location object having a unique identifier for the location and its name."
@@ -5368,7 +5368,7 @@
           }
         }
       },
-      "ataObject": {
+      "AtaObject": {
         "type": "object",
         "required": [
           "audioCodecPriority",
@@ -5450,7 +5450,7 @@
           }
         }
       },
-      "ataObjectDevice": {
+      "AtaObjectDevice": {
         "type": "object",
         "required": [
           "audioCodecPriority",
@@ -5532,7 +5532,7 @@
           }
         }
       },
-      "dectObject": {
+      "DectObject": {
         "type": "object",
         "required": [
           "audioCodecPriority",
@@ -5597,7 +5597,7 @@
           }
         }
       },
-      "deviceList": {
+      "DeviceList": {
         "type": "object",
         "required": [
           "devices",
@@ -5608,7 +5608,7 @@
           "devices": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/devices"
+              "$ref": "#/components/schemas/Devices"
             },
             "description": "Array of devices available to person."
           },
@@ -5622,7 +5622,7 @@
           }
         }
       },
-      "deviceOwner": {
+      "DeviceOwner": {
         "type": "object",
         "required": [
           "id",
@@ -5651,7 +5651,7 @@
           }
         }
       },
-      "devices": {
+      "Devices": {
         "type": "object",
         "required": [
           "id",
@@ -5717,7 +5717,7 @@
           "owner": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/deviceOwner"
+                "$ref": "#/components/schemas/DeviceOwner"
               }
             ],
             "description": "Owner of device."
@@ -5745,7 +5745,7 @@
         ],
         "description": " * `MPP` - Cisco Multiplatform Phone\n * `ATA` - Analog Telephone Adapters\n * `GENERIC_SIP` - GENERIC Session Initiation Protocol\n * `ESIM` - Esim Supported Webex Go\n * `ROOM_OS` - Cisco Webex Room OS and the Room Series device\n * `MOBILE` - Mobile\n * `DESK_PHONE` - Desk Phone\n"
       },
-      "jobIdResponseObject": {
+      "JobIdResponseObject": {
         "type": "object",
         "required": [
           "name",
@@ -5849,26 +5849,63 @@
           }
         }
       },
-      "location": {
+      "Location": {
         "type": "object",
         "required": [
-          "id",
-          "name"
+          "address",
+          "countryCode",
+          "latitude",
+          "longitude"
         ],
         "properties": {
           "id": {
             "type": "string",
-            "example": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzJiNDkyZmZkLTRjNGItNGVmNS04YzAzLWE1MDYyYzM4NDA5Mw",
-            "description": "Location identifier associated with the members."
+            "example": "Y2lzY29zcGFyazovL3VybjpURUFNOnVzLWVhc3QtMV9pbnQxMy9XT1JLU1BBQ0VfTE9DQVRJT04vM2E2ZmYzNzMtNjhhNy00NGU0LTkxZDYtYTI3NDYwZTBhYzVjIzUxOWY2N2E1LTlkOTktNGM2My04YTA5LWI5MTcxY2M2NmJkMQ==",
+            "description": "Unique identifier for the location."
           },
-          "name": {
+          "locationId": {
             "type": "string",
-            "example": "MainOffice",
-            "description": "Location name associated with the member."
+            "example": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzA2OWEzMDY2LTgwNjMtNDI0Zi05YmE0LTBhZDdhMmYxMzNjNQ",
+            "description": "The ID to use for this location in the [/locations API](/docs/api/v1/locations)"
+          },
+          "displayName": {
+            "type": "string",
+            "example": "Cisco Barcelona",
+            "description": "A friendly name for the location."
+          },
+          "address": {
+            "type": "string",
+            "example": "Carrer de Pere IV, Barcelona, Spain",
+            "description": "The location address."
+          },
+          "countryCode": {
+            "type": "string",
+            "example": "ES",
+            "description": "The location country code (ISO 3166-1)."
+          },
+          "cityName": {
+            "type": "string",
+            "example": "Barcelona",
+            "description": "The location city name."
+          },
+          "latitude": {
+            "type": "number",
+            "example": 41.406615,
+            "description": "The location latitude."
+          },
+          "longitude": {
+            "type": "number",
+            "example": 2.200717,
+            "description": "The location longitude."
+          },
+          "notes": {
+            "type": "string",
+            "example": "A note about the location",
+            "description": "Notes associated with the location."
           }
         }
       },
-      "mppObject": {
+      "MppObject": {
         "type": "object",
         "required": [
           "pnacEnabled",
@@ -6230,7 +6267,7 @@
           }
         }
       },
-      "mppObjectDevice": {
+      "MppObjectDevice": {
         "type": "object",
         "required": [
           "pnacEnabled",
@@ -6601,7 +6638,7 @@
           }
         }
       },
-      "placeDeviceList": {
+      "PlaceDeviceList": {
         "type": "object",
         "required": [
           "devices",
@@ -6612,7 +6649,7 @@
           "devices": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/placeDevices"
+              "$ref": "#/components/schemas/PlaceDevices"
             },
             "description": "Array of devices associated with a workspace."
           },
@@ -6626,7 +6663,7 @@
           }
         }
       },
-      "placeDevices": {
+      "PlaceDevices": {
         "type": "object",
         "required": [
           "id",
@@ -6684,7 +6721,7 @@
           "owner": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/deviceOwner"
+                "$ref": "#/components/schemas/DeviceOwner"
               }
             ],
             "description": "Owner of the device."
@@ -6699,7 +6736,7 @@
           }
         }
       },
-      "wifiObject": {
+      "WifiObject": {
         "type": "object",
         "required": [
           "audioCodecPriority",
@@ -6739,7 +6776,7 @@
           }
         }
       },
-      "wifiObjectDevice": {
+      "WifiObjectDevice": {
         "type": "object",
         "required": [
           "audioCodecPriority",
@@ -7127,7 +7164,7 @@
           }
         }
       },
-      "lineKeyTemplatesResponse": {
+      "LineKeyTemplatesResponse": {
         "type": "object",
         "required": [
           "id",
@@ -7527,7 +7564,7 @@
           }
         }
       },
-      "listBackgroundImagesObject": {
+      "ListBackgroundImagesObject": {
         "type": "object",
         "required": [
           "backgroundImageUrl",
@@ -7546,7 +7583,7 @@
           }
         }
       },
-      "deleteImageResponseObject": {
+      "DeleteImageResponseObject": {
         "type": "object",
         "required": [
           "fileName",
@@ -7594,7 +7631,7 @@
           }
         }
       },
-      "deleteImageResponseSuccessObject": {
+      "DeleteImageResponseSuccessObject": {
         "type": "object",
         "required": [
           "fileName",
@@ -7622,7 +7659,7 @@
           }
         }
       },
-      "deleteImageRequestObject": {
+      "DeleteImageRequestObject": {
         "type": "object",
         "required": [
           "fileName"
@@ -7640,7 +7677,7 @@
           }
         }
       },
-      "userDeviceCount": {
+      "UserDeviceCount": {
         "type": "object",
         "required": [
           "totalDeviceCount",
@@ -8368,7 +8405,7 @@
           "stepExecutionStatuses": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/stepExecutionStatusesObject"
+              "$ref": "#/components/schemas/StepExecutionStatusesObject"
             },
             "description": "Status of each step within a job."
           }
@@ -8406,7 +8443,7 @@
           }
         }
       },
-      "stepExecutionStatusesObject": {
+      "StepExecutionStatusesObject": {
         "type": "object",
         "required": [
           "id"
@@ -8629,7 +8666,7 @@
           }
         }
       },
-      "supportedDevicesObject": {
+      "SupportedDevicesObject": {
         "type": "object",
         "required": [
           "devices",
@@ -9631,62 +9668,6 @@
             "type": "string",
             "example": "2024-08-29T20:00:00Z",
             "description": "The end time of the booking."
-          }
-        }
-      },
-      "Location": {
-        "type": "object",
-        "required": [
-          "address",
-          "countryCode",
-          "latitude",
-          "longitude"
-        ],
-        "properties": {
-          "id": {
-            "type": "string",
-            "example": "Y2lzY29zcGFyazovL3VybjpURUFNOnVzLWVhc3QtMV9pbnQxMy9XT1JLU1BBQ0VfTE9DQVRJT04vM2E2ZmYzNzMtNjhhNy00NGU0LTkxZDYtYTI3NDYwZTBhYzVjIzUxOWY2N2E1LTlkOTktNGM2My04YTA5LWI5MTcxY2M2NmJkMQ==",
-            "description": "Unique identifier for the location."
-          },
-          "locationId": {
-            "type": "string",
-            "example": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzA2OWEzMDY2LTgwNjMtNDI0Zi05YmE0LTBhZDdhMmYxMzNjNQ",
-            "description": "The ID to use for this location in the [/locations API](/docs/api/v1/locations)"
-          },
-          "displayName": {
-            "type": "string",
-            "example": "Cisco Barcelona",
-            "description": "A friendly name for the location."
-          },
-          "address": {
-            "type": "string",
-            "example": "Carrer de Pere IV, Barcelona, Spain",
-            "description": "The location address."
-          },
-          "countryCode": {
-            "type": "string",
-            "example": "ES",
-            "description": "The location country code (ISO 3166-1)."
-          },
-          "cityName": {
-            "type": "string",
-            "example": "Barcelona",
-            "description": "The location city name."
-          },
-          "latitude": {
-            "type": "number",
-            "example": 41.406615,
-            "description": "The location latitude."
-          },
-          "longitude": {
-            "type": "number",
-            "example": 2.200717,
-            "description": "The location longitude."
-          },
-          "notes": {
-            "type": "string",
-            "example": "A note about the location",
-            "description": "Notes associated with the location."
           }
         }
       },
