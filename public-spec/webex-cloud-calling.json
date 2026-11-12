@@ -53126,6 +53126,7 @@
     "/telephony/config/announcements/playlists/{playListId}/usage": {
       "get": {
         "summary": "Get Playlist Usage",
+        "description": "Get Playlist Usage",
         "operationId": "getPlaylistUsage",
         "tags": [
           "Call Queue Settings with Playlist Settings"

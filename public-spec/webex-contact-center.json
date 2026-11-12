@@ -100715,7 +100715,10 @@
               "type": "string"
             },
             "description": "It represents the channelType of the agent which can be set to ```telephony```,```chat```, ```social```, ```email```, ```workItem``` and ```customMessaging```. This would be sent for any channel types the agent wants to set the state on. In the event that the agent is setting more than one channel type states at once, it would send multiple state change requests .channelType is a list, and can include one or more channel types in the request. Note: `customMessaging` requires the `wxcc_digital_byoc` feature flag to be enabled for the organization.",
-            "example": "[telephony, chat]"
+            "example": [
+              "telephony",
+              "chat"
+            ]
           },
           "state": {
             "description": "It represents the current state of the user. Can be set to ```Available``` or ```Idle``` or ```LoggedOut``` or ```Reserved``` or ```Engaged``` or ```EngagedOther``` .",
@@ -107446,7 +107449,10 @@
               "type": "string"
             },
             "description": "(Optional) The list of preview actions to be disabled for the agent when a preview campaign record is offered. Can be empty if no action should be disabled, otherwise should be one of \"SKIP\", \"REMOVE\" or both. The default is an empty list",
-            "example": "[\"SKIP\", \"REMOVE\"]"
+            "example": [
+              "SKIP",
+              "REMOVE"
+            ]
           },
           "validCampaignTimes": {
             "$ref": "#/components/schemas/ValidCampaignTimes"
@@ -107597,7 +107603,10 @@
               "type": "string"
             },
             "description": "(Optional) The list of preview actions to be disabled for the agent when a preview campaign record is offered. The list can be empty if no action should be disabled, otherwise it can be either \"SKIP\" or \"REMOVE\" or both. The default is an empty list",
-            "example": "[\"SKIP\", \"REMOVE\"]"
+            "example": [
+              "SKIP",
+              "REMOVE"
+            ]
           },
           "validCampaignTimes": {
             "$ref": "#/components/schemas/ValidCampaignTimes"

@@ -33599,7 +33599,7 @@
           }
         }
       },
-      "Authorizations Collection Response": {
+      "AuthorizationsCollectionResponse": {
         "type": "object",
         "properties": {
           "items": {
