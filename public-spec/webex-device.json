@@ -8158,7 +8158,7 @@
           }
         },
         "summary": "List Device Configurations for device",
-        "operationId": "List Device Configurations for device",
+        "operationId": "listDeviceConfigurationsForDevice",
         "description": "Lists all device configurations associated with the given device ID. Administrators can list configurations for all devices within an organization.",
         "tags": [
           "Device Configurations"
@@ -8354,7 +8354,7 @@
           }
         },
         "summary": "Update Device Configurations",
-        "operationId": "Update Device Configurations",
+        "operationId": "updateDeviceConfigurations",
         "description": "Edit configurations for the device specified by device ID.",
         "tags": [
           "Device Configurations"
@@ -8525,7 +8525,7 @@
           }
         },
         "summary": "List Devices",
-        "operationId": "List Devices",
+        "operationId": "listDevices",
         "description": "Lists all active Webex devices associated with the authenticated user, such as devices activated in personal mode. This requires the `spark:devices_read` scope. Administrators can list all devices within their organization. This requires an administrator auth token with the `spark-admin:devices_read` scope.",
         "tags": [
           "Devices"
@@ -8840,7 +8840,7 @@
           }
         },
         "summary": "Create a Device by MAC Address",
-        "operationId": "Create a Device by MAC Address",
+        "operationId": "createADeviceByMACAddress",
         "description": "Create a phone by its MAC address in a specific workspace or for a person.\n\nSpecify the `mac`, `model` and either `workspaceId` or `personId`.\n\n* You can get the `model` from the [supported devices](/docs/api/v1/device-call-settings/read-the-list-of-supported-devices) API.\n\n* Either `workspaceId` or `personId` should be provided. If both are supplied, the request will be invalid.\n\n* The `password` field is only required for third party devices. You can obtain the required third party phone configuration from [here](/docs/api/v1/beta-device-call-settings-with-third-party-device-support/get-third-party-device).\n\n<div><Callout type=\"warning\">Adding a device to a person with a Webex Calling Standard license will disable Webex Calling across their Webex mobile, tablet, desktop, and browser applications.</Callout></div><br><div><Callout type=\"warning\">When adding devices to a Webex Calling Professional licensed person or workspace, wait for each API call to finish before starting the next. This prevents race conditions that can cause errors when assigning primary versus secondary device status.</Callout></div>",
         "tags": [
           "Devices"
@@ -9091,7 +9091,7 @@
           }
         },
         "summary": "Delete a Device",
-        "operationId": "Delete a Device",
+        "operationId": "deleteADevice",
         "description": "Deletes a device, by ID. Deleting your own device requires an auth token with the `spark:devices_write` scope. Deleting any other device in the organization will require an administrator auth token with the `spark-admin:devices_write` scope.\n\nSpecify the device ID in the `deviceId` parameter in the URI.\n\n<div><Callout type=\"warning\">Deleting a device from a person with a Webex Calling Standard license will enable Webex Calling across their Webex mobile, tablet, desktop, and browser applications.</Callout></div>",
         "tags": [
           "Devices"
@@ -9223,7 +9223,7 @@
           }
         },
         "summary": "Modify Device Tags",
-        "operationId": "Modify Device Tags",
+        "operationId": "modifyDeviceTags",
         "description": "Create, delete or update tags on a device. For your own device, this requires an auth token with the `spark:devices_write` scope. An auth token with the `spark-admin:devices_write` scope is required to operate on other devices within the organization.\n\nSpecify the device ID in the `deviceId` parameter in the URI.\n\nInclude only the tag array in the request body, no other device attributes can be changed. This action will overwrite any previous tags. A common approach is to first [GET the devices's details](/docs/api/v1/devices/get-device-details), make changes to the `tags` array, and then PATCH the new complete array with this endpoint.",
         "tags": [
           "Devices"
@@ -9358,7 +9358,7 @@
           }
         },
         "summary": "Create a Device Activation Code",
-        "operationId": "Create a Device Activation Code",
+        "operationId": "createADeviceActivationCode",
         "description": "Generate an activation code for a device in a specific workspace by `workspaceId` or for a person by `personId`. This requires an auth token with the `spark-admin:devices_write` scope, and either `identity:placeonetimepassword_create` (allows creating activation codes for workspaces only) or `identity:one_time_password` (allows creating activation codes for workspaces or persons).\n\n* Adding a device to a workspace with calling type `none` or `thirdPartySipCalling` will reset the workspace calling type to `freeCalling`.\n\n* Either `workspaceId` or `personId` should be provided. If both are supplied, the request will be invalid.\n\n* If no `model` is supplied, the `code` returned will only be accepted on RoomOS devices.\n\n* If your device is a phone, you must provide the `model` as a field. You can get the `model` from the [supported devices](/docs/api/v1/device-call-settings/read-the-list-of-supported-devices) API.\n\n<div><Callout type=\"warning\">Adding a device to a person with a Webex Calling Standard license will disable Webex Calling across their Webex mobile, tablet, desktop, and browser applications.</Callout></div><br><div><Callout type=\"warning\">When adding devices to a Webex Calling Professional licensed person or workspace, wait for each API call to finish before starting the next. This prevents race conditions that can cause errors when assigning primary versus secondary device status.</Callout></div>",
         "tags": [
           "Devices"
@@ -9478,7 +9478,7 @@
           }
         },
         "summary": "List Sessions",
-        "operationId": "List Sessions",
+        "operationId": "listSessions",
         "description": "List hot desk sessions.\n\nUse query parameters to filter the response.\nThe `orgId` parameter is for use by partner administrators acting on a managed organization.\nThe `personId` and `workspaceId` parameters are optional and are used to filter the response to only include sessions for a specific person or workspace.\nWhen used together they are used as an AND filter.",
         "tags": [
           "Hot Desk"
@@ -9569,7 +9569,7 @@
           }
         },
         "summary": "Delete Session",
-        "operationId": "Delete Session",
+        "operationId": "deleteSession",
         "description": "Delete a hot desk session.",
         "tags": [
           "Hot Desk"
@@ -10676,7 +10676,7 @@
           }
         },
         "summary": "List Workspace Locations",
-        "operationId": "List Workspace Locations",
+        "operationId": "listWorkspaceLocations",
         "description": "<div><Callout type=\"warning\">The Workspace Locations API is deprecated and will be decommissioned November 30, 2024. Please use the [/locations API](/docs/api/v1/locations) for future projects, and use `locationId` instead of `workspaceLocationId` when interacting with device or workspace APIs.</Callout></div>\n\nList workspace locations. Use query parameters to filter the response. The `orgId` parameter can only be used by admin users of another\norganization (such as partners). The `displayName`, `address`, `countryCode` and `cityName` parameters are all optional.\nRequires an administrator auth token with the `spark-admin:workspace_locations_read` scope.",
         "tags": [
           "Workspace Locations"
@@ -10801,7 +10801,7 @@
           }
         },
         "summary": "Create a Workspace Location",
-        "operationId": "Create a Workspace Location",
+        "operationId": "createAWorkspaceLocation",
         "description": "<div><Callout type=\"warning\">The Workspace Locations API is deprecated and will be decommissioned November 30, 2024. Please use the [/locations API](/docs/api/v1/locations) for future projects, and use `locationId` instead of `workspaceLocationId` when interacting with device or workspace APIs.</Callout></div>\n\nCreate a location. The `cityName` and `notes` parameters are optional, and omitting them will result in the creation of a location without values for those attributes.\nRequires an administrator auth token with the `spark-admin:workspace_locations_write` scope.",
         "tags": [
           "Workspace Locations"
@@ -10900,7 +10900,7 @@
           }
         },
         "summary": "Get a Workspace Location Details",
-        "operationId": "Get a Workspace Location Details",
+        "operationId": "getAWorkspaceLocationDetails",
         "description": "<div><Callout type=\"warning\">The Workspace Locations API is deprecated and will be decommissioned November 30, 2024. Please use the [/locations API](/docs/api/v1/locations) for future projects, and use `locationId` instead of `workspaceLocationId` when interacting with device or workspace APIs.</Callout></div>\n\nShows details for a location, by ID. Specify the location ID in the `locationId` parameter in the URI.\nRequires an administrator auth token with the `spark-admin:workspace_locations_read` scope.",
         "tags": [
           "Workspace Locations"
@@ -10990,7 +10990,7 @@
           }
         },
         "summary": "Update a Workspace Location",
-        "operationId": "Update a Workspace Location",
+        "operationId": "updateAWorkspaceLocation",
         "description": "<div><Callout type=\"warning\">The Workspace Locations API is deprecated and will be decommissioned November 30, 2024. Please use the [/locations API](/docs/api/v1/locations) for future projects, and use `locationId` instead of `workspaceLocationId` when interacting with device or workspace APIs.</Callout></div>\n\nUpdates details for a location, by ID. Specify the location ID in the `locationId` parameter in the URI. The request should include all details for the location returned in a previous call to [Get Workspace Location Details](/docs/api/v1/workspace-locations/get-a-workspace-location-details). Omitting the optional `cityName` or `notes` fields will result in those fields no longer being defined for the location.\nRequires an administrator auth token with the `spark-admin:workspace_locations_write` scope.",
         "tags": [
           "Workspace Locations"
@@ -11082,7 +11082,7 @@
           }
         },
         "summary": "Delete a Workspace Location",
-        "operationId": "Delete a Workspace Location",
+        "operationId": "deleteAWorkspaceLocation",
         "description": "<div><Callout type=\"warning\">The Workspace Locations API is deprecated and will be decommissioned November 30, 2024. Please use the [/locations API](/docs/api/v1/locations) for future projects, and use `locationId` instead of `workspaceLocationId` when interacting with device or workspace APIs.</Callout></div>\n\nDeletes a location, by ID. The workspaces associated to that location will no longer have a location, but a new location can be reassigned to them.\nRequires an administrator auth token with the `spark-admin:workspace_locations_write` scope.",
         "tags": [
           "Workspace Locations"
@@ -11173,7 +11173,7 @@
           }
         },
         "summary": "List Workspace Location Floors",
-        "operationId": "List Workspace Location Floors",
+        "operationId": "listWorkspaceLocationFloors",
         "description": "<div><Callout type=\"warning\">The Workspace Locations API is deprecated and will be decommissioned November 30, 2024. Please use the [/locations API](/docs/api/v1/locations) for future projects, and use `locationId` instead of `workspaceLocationId` when interacting with device or workspace APIs.</Callout></div>\n\nList workspace location floors.\nRequires an administrator auth token with the `spark-admin:workspace_locations_read` scope.",
         "tags": [
           "Workspace Locations"
@@ -11258,7 +11258,7 @@
           }
         },
         "summary": "Create a Workspace Location Floor",
-        "operationId": "Create a Workspace Location Floor",
+        "operationId": "createAWorkspaceLocationFloor",
         "description": "<div><Callout type=\"warning\">The Workspace Locations API is deprecated and will be decommissioned November 30, 2024. Please use the [/locations API](/docs/api/v1/locations) for future projects, and use `locationId` instead of `workspaceLocationId` when interacting with device or workspace APIs.</Callout></div>\n\nCreate a new floor in the given location. The `displayName` parameter is optional, and omitting it will result in the creation of a floor without that value set.\nRequires an administrator auth token with the `spark-admin:workspace_locations_write` scope.",
         "tags": [
           "Workspace Locations"
@@ -11358,7 +11358,7 @@
           }
         },
         "summary": "Get a Workspace Location Floor Details",
-        "operationId": "Get a Workspace Location Floor Details",
+        "operationId": "getAWorkspaceLocationFloorDetails",
         "description": "<div><Callout type=\"warning\">The Workspace Locations API is deprecated and will be decommissioned November 30, 2024. Please use the [/locations API](/docs/api/v1/locations) for future projects, and use `locationId` instead of `workspaceLocationId` when interacting with device or workspace APIs.</Callout></div>\n\nShows details for a floor, by ID. Specify the floor ID in the `floorId` parameter in the URI.\nRequires an administrator auth token with the `spark-admin:workspace_locations_read` scope.",
         "tags": [
           "Workspace Locations"
@@ -11453,7 +11453,7 @@
           }
         },
         "summary": "Update a Workspace Location Floor",
-        "operationId": "Update a Workspace Location Floor",
+        "operationId": "updateAWorkspaceLocationFloor",
         "description": "<div><Callout type=\"warning\">The Workspace Locations API is deprecated and will be decommissioned November 30, 2024. Please use the [/locations API](/docs/api/v1/locations) for future projects, and use `locationId` instead of `workspaceLocationId` when interacting with device or workspace APIs.</Callout></div>\n\nUpdates details for a floor, by ID. Specify the floor ID in the `floorId` parameter in the URI. Include all details for the floor returned by a previous call to [Get Workspace Location Floor Details](/docs/api/v1/workspace-locations/get-a-workspace-location-details). Omitting the optional `displayName` field will result in that field no longer being defined for the floor.\nRequires an administrator auth token with the `spark-admin:workspace_locations_write` scope.",
         "tags": [
           "Workspace Locations"
@@ -11549,7 +11549,7 @@
           }
         },
         "summary": "Delete a Workspace Location Floor",
-        "operationId": "Delete a Workspace Location Floor",
+        "operationId": "deleteAWorkspaceLocationFloor",
         "description": "<div><Callout type=\"warning\">The Workspace Locations API is deprecated and will be decommissioned November 30, 2024. Please use the [/locations API](/docs/api/v1/locations) for future projects, and use `locationId` instead of `workspaceLocationId` when interacting with device or workspace APIs.</Callout></div>\n\nDeletes a floor, by ID.\nRequires an administrator auth token with the `spark-admin:workspace_locations_write` scope.",
         "tags": [
           "Workspace Locations"
@@ -11650,7 +11650,7 @@
           }
         },
         "summary": "Workspace Metrics",
-        "operationId": "Workspace Metrics",
+        "operationId": "workspaceMetrics",
         "description": "Get metric data for the specified workspace and metric name, optionally aggregated over a specified time period.\n\n* The `workspaceId` and `metricName` parameters indicate which workspace to fetch metrics for and what kind of metrics to get.\n\n* When executing an aggregated query, the result bucket start times will be truncated to the start of an hour or a day, depending on\nthe aggregation interval. However, the buckets will not contain data from outside the requested time range. For example, when\npassing `from=2020-10-21T10:34:56.000Z` and `aggregation=hourly`, the first output bucket would start at `2020-10-21T10:00:00.000Z`,\nbut the bucket would only aggregate data timestamped after `10:34:56`.\n\n* For aggregation modes `none` and `hourly`, the maximum time span is 48 hours. For aggregation mode `daily`, the maximum\ntime span is 30 days.\n\n* If the aggregation mode query parameter is set to `none`, the returned data in the response will be an array of items with the `deviceId`, `timestamp` and the raw `value`.\n\n* If the aggregation mode is `hourly` or `daily`, the returned data in the response will be an array of items with the `start` and `end` of the aggregation time bucket, and the `mean`, `max` and `min` values of the requested value. Note that zeroes and negative values are ignored. For example, this means that the `peopleCount` mean value should be interpreted as the average number of people in the room _when it is in use_.",
         "tags": [
           "Workspace Metrics"
@@ -11824,7 +11824,7 @@
           }
         },
         "summary": "Workspace Duration Metrics",
-        "operationId": "Workspace Duration Metrics",
+        "operationId": "workspaceDurationMetrics",
         "description": "Get metrics for how much time a workspace has been in the state given by the `measurement` parameter.\n\nFor example, if the measurement is  `timeBooked` then the duration for which the workspace has been booked is returned. The `workspaceId` parameter indicates which workspace to fetch metrics for. If no `measurement` is given, the default value is `timeUsed`.\n\n* When executing a query, the result bucket start times will default to the start of an hour or a day, depending on\nthe aggregation interval. However, the buckets will not contain data from outside the requested time range. For example, when\npassing `from=2020-10-21T10:34:56.000Z` and `aggregation=hourly`, the first output bucket would start at `2020-10-21T10:00:00.000Z`,\nbut the bucket would only aggregate data timestamped after `10:34:56`.\n\n* For aggregation mode `hourly`, the maximum time span is 48 hours. For aggregation mode `daily`, the maximum\ntime span is 30 days.",
         "tags": [
           "Workspace Metrics"
@@ -11944,7 +11944,7 @@
           }
         },
         "summary": "Personalize a Workspace",
-        "operationId": "Personalize a Workspace",
+        "operationId": "personalizeAWorkspace",
         "description": "Initializes the personalization for a given workspace for the user email provided.\n\nThe personalization process is asynchronous and thus a background task is created when this endpoint is invoked.\nAfter successful invocation of this endpoint a personalization task status URL will be returned in the `Location` header, which will point to the [Get Personalization Task](/docs/api/v1/workspace-personalization/get-personalization-task) endpoint for this workspace.\nThe task should be completed in approximately 30 seconds.",
         "tags": [
           "Workspace Personalization"
@@ -12037,7 +12037,7 @@
           }
         },
         "summary": "Get Personalization Task",
-        "operationId": "Get Personalization Task",
+        "operationId": "getPersonalizationTask",
         "description": "Returns the status of a personalization task for a given workspace.\n\nWhilst in progress the endpoint will return `Accepted` and provide a `Retry-After` header indicating the number of seconds a client should wait before retrying.\n\nUpon completion of the task, the endpoint will return `OK` with a body detailing if the personalization was successful and an error description if appropriate.",
         "tags": [
           "Workspace Personalization"
@@ -13279,7 +13279,7 @@
           }
         },
         "summary": "Query Status",
-        "operationId": "Query Status",
+        "operationId": "queryStatus",
         "description": "Query the current status of the Webex RoomOS Device. You specify the target device in the `deviceId` parameter in the URI. The target device is queried for statuses according to the expression in the `name` parameter.\n\nSee the [xAPI section of the Device Developers Guide](/docs/api/guides/device-developers-guide#xapi) or the [xAPI Command Reference](https://roomos.cisco.com/xapi) for a description of status expressions.",
         "tags": [
           "xAPI"
@@ -13489,7 +13489,7 @@
           }
         },
         "summary": "Query Schema",
-        "operationId": "Query Schema",
+        "operationId": "querySchema",
         "description": "Query the schema for statuses and commands of Webex RoomOS Devices. You specify the target devices in the `deviceId` parameter in the URI. Querying command schemas requires the `spark:xapi_commands` scope and querying status schemas requires the `spark:xapi_statuses` scope.\n\nIf no `status` or `command` expressions are specified, the full schema is returned, including both status and command schemas. If you specify any expression, the response is limited to only the types you queried for. For example, if you provide a `status` expression but no `command` expression, only status schemas will be included in the result.\n\nSee the [xAPI section of the Device Developers Guide](/docs/api/guides/device-developers-guide#xapi) or the [xAPI Command Reference](https://roomos.cisco.com/xapi) for a description of status and command expressions.",
         "tags": [
           "xAPI"
@@ -13697,7 +13697,7 @@
           }
         },
         "summary": "Execute Command",
-        "operationId": "Execute Command",
+        "operationId": "executeCommand",
         "description": "Executes a command on the Webex RoomOS Device. Specify the command to execute in the `commandName` URI parameter.\n\nSee the [xAPI section of the Device Developers Guide](/docs/devices#xapi) for a description of command expressions.",
         "tags": [
           "xAPI"

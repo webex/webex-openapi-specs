@@ -92,7 +92,7 @@
           }
         },
         "summary": "List BroadWorks Billing Reports",
-        "operationId": "List BroadWorks Billing Reports",
+        "operationId": "listBroadWorksBillingReports",
         "description": "Search for reports. There are a number of filter options which can be combined in a single request.",
         "tags": [
           "BroadWorks Billing Reports"
@@ -191,7 +191,7 @@
           }
         },
         "summary": "Create a BroadWorks Billing Report",
-        "operationId": "Create a BroadWorks Billing Report",
+        "operationId": "createABroadWorksBillingReport",
         "description": "Generate a monthly reconciliation report.\n\n<div>\n<Callout type='info'>\nPartners who have moved to extended wholesale subscription model should generate reports via [Wholesale Billing Reports](/docs/api/v1/wholesale-billing).\n</Callout>\n</div>",
         "tags": [
           "BroadWorks Billing Reports"
@@ -290,7 +290,7 @@
           }
         },
         "summary": "Get a BroadWorks Billing Report",
-        "operationId": "Get a BroadWorks Billing Report",
+        "operationId": "getABroadWorksBillingReport",
         "description": "Retrieve a specific billing reconciliation report.",
         "tags": [
           "BroadWorks Billing Reports"
@@ -362,7 +362,7 @@
           }
         },
         "summary": "Delete a BroadWorks Billing Report",
-        "operationId": "Delete a BroadWorks Billing Report",
+        "operationId": "deleteABroadWorksBillingReport",
         "description": "Delete a monthly reconciliation report using a report ID.",
         "tags": [
           "BroadWorks Billing Reports"
@@ -469,7 +469,7 @@
           }
         },
         "summary": "List BroadWorks Enterprises",
-        "operationId": "List BroadWorks Enterprises",
+        "operationId": "listBroadWorksEnterprises",
         "description": "List the provisioned enterprises for a Service Provider. This API also lets a Service Provider search for their provisioned enterprises on Webex. A search on enterprises can be performed by either a full or partial enterprise identifier.",
         "tags": [
           "BroadWorks Enterprises"
@@ -573,7 +573,7 @@
           }
         },
         "summary": "Update Directory Sync for a BroadWorks Enterprise",
-        "operationId": "Update Directory Sync for a BroadWorks Enterprise",
+        "operationId": "updateDirectorySyncForABroadWorksEnterprise",
         "description": "This API lets a Partner Admin enable or disable directory sync for the customer's Broadworks enterprise on Webex.",
         "tags": [
           "BroadWorks Enterprises"
@@ -679,7 +679,7 @@
           }
         },
         "summary": "Trigger Directory Sync for an Enterprise",
-        "operationId": "Trigger Directory Sync for an Enterprise",
+        "operationId": "triggerDirectorySyncForAnEnterprise",
         "description": "This API lets a Partner Admin trigger a directory sync for the customer's Broadworks enterprise on Webex.",
         "tags": [
           "BroadWorks Enterprises"
@@ -796,7 +796,7 @@
           }
         },
         "summary": "Get Directory Sync Status for an Enterprise",
-        "operationId": "Get Directory Sync Status for an Enterprise",
+        "operationId": "getDirectorySyncStatusForAnEnterprise",
         "description": "This API lets a Partner Admin get the most recent directory sync status for a customer's Broadworks enterprise on Webex.",
         "tags": [
           "BroadWorks Enterprises"
@@ -887,7 +887,7 @@
           }
         },
         "summary": "Trigger Directory Sync for a User",
-        "operationId": "Trigger Directory Sync for a User",
+        "operationId": "triggerDirectorySyncForAUser",
         "description": "This API lets a Partner Admin trigger a directory sync for an external user (real or virtual user) on Broadworks enterprise with Webex.",
         "tags": [
           "BroadWorks Enterprises"
@@ -1014,7 +1014,7 @@
           }
         },
         "summary": "List BroadWorks Subscribers",
-        "operationId": "List BroadWorks Subscribers",
+        "operationId": "listBroadWorksSubscribers",
         "description": "This API lets a Service Provider search for their associated subscribers. There are a number of filter options that can be combined in a single request.",
         "tags": [
           "BroadWorks Subscribers"
@@ -1199,7 +1199,7 @@
           }
         },
         "summary": "Provision a BroadWorks Subscriber",
-        "operationId": "Provision a BroadWorks Subscriber",
+        "operationId": "provisionABroadWorksSubscriber",
         "description": "Provision a new BroadWorks subscriber for Webex services.\n\nThis API lets a Service Provider map a BroadWorks subscriber to a new or existing Webex user and assign the required licenses and entitlements for Webex and Meetings.",
         "tags": [
           "BroadWorks Subscribers"
@@ -1384,7 +1384,7 @@
           }
         },
         "summary": "Get a BroadWorks Subscriber",
-        "operationId": "Get a BroadWorks Subscriber",
+        "operationId": "getABroadWorksSubscriber",
         "description": "This API lets a Service Provider retrieve details of a provisioned BroadWorks subscriber on Webex.",
         "tags": [
           "BroadWorks Subscribers"
@@ -1480,7 +1480,7 @@
           }
         },
         "summary": "Update a BroadWorks Subscriber",
-        "operationId": "Update a BroadWorks Subscriber",
+        "operationId": "updateABroadWorksSubscriber",
         "description": "This API lets a Service Provider update certain details of a provisioned BroadWorks subscriber\non Webex.\n\n<div>\n        <Callout type='info'>The updated items will not be immediately reflected in the response body, but can be subsequently obtained via the [Get a BroadWorks Subscriber](/docs/api/v1/broadworks-subscribers/get-a-broadworks-subscriber) API once the status has transitioned from the updating state to the provisioned state.</Callout>\n</div>",
         "tags": [
           "BroadWorks Subscribers"
@@ -1613,7 +1613,7 @@
           }
         },
         "summary": "Remove a BroadWorks Subscriber",
-        "operationId": "Remove a BroadWorks Subscriber",
+        "operationId": "removeABroadWorksSubscriber",
         "description": "This API will allow a Service Provider to remove the mapping between a BroadWorks Subscriber and Webex user.",
         "tags": [
           "BroadWorks Subscribers"
@@ -1702,7 +1702,7 @@
           }
         },
         "summary": "Precheck a Broadworks Subscriber Provisioning",
-        "operationId": "Precheck a Broadworks Subscriber Provisioning",
+        "operationId": "precheckABroadworksSubscriberProvisioning",
         "description": "Verify the likely success of provisioning a broadworks subscriber.\n\n<div>\n<Callout type='info'>\nThe Prerequisite for using this API is to have at least one Broadworks Cluster configured against partner using Partner Hub. The Provisioning Precheck APIs supports two variants of Broadworks Provisioning Precheck Requests. Please refer to [Using the Provisioning Precheck API](/docs/api/guides/webex-for-broadworks-developers-guide#using-the-precheck-provisioning-api) section in [Webex for BroadWorks](/docs/api/guides/webex-for-broadworks-developers-guide) guide for more information.\n</Callout>\n</div>",
         "tags": [
           "BroadWorks Subscribers"
@@ -1860,7 +1860,7 @@
           }
         },
         "summary": "Send Consent User Move Email to Pending Broadworks Subscribers",
-        "operationId": "Send Consent User Move Email to Pending Broadworks Subscribers",
+        "operationId": "sendConsentUserMoveEmailToPendingBroadworksSubscribers",
         "description": "Allows a Service Provider to send the user consent move email to a subscriber who is currently in `pending_user_migration` state.",
         "tags": [
           "BroadWorks Subscribers"

@@ -112,7 +112,7 @@
           }
         },
         "summary": "List Admin Audit Events",
-        "operationId": "List Admin Audit Events",
+        "operationId": "listAdminAuditEvents",
         "description": "List admin audit events in your organization. Several query parameters are available to filter the response.\n\nLong result sets will be split into [pages](/docs/basics#pagination).\n\n**NOTE**: A maximum of one year of audit events can be returned per request.",
         "tags": [
           "Admin Audit Events"
@@ -257,7 +257,7 @@
           }
         },
         "summary": "List Admin Audit Event Categories",
-        "operationId": "List Admin Audit Event Categories",
+        "operationId": "listAdminAuditEventCategories",
         "description": "Get the list of all admin event categories.",
         "tags": [
           "Admin Audit Events"
@@ -419,7 +419,7 @@
           }
         },
         "summary": "Delete authorization of org and client ID",
-        "operationId": "Delete authorization of org and client ID",
+        "operationId": "deleteAuthorizationOfOrgAndClientID",
         "description": "Deletes an authorization by org ID and client ID.",
         "tags": [
           "Authorizations"
@@ -502,7 +502,7 @@
           }
         },
         "summary": "Delete authorization",
-        "operationId": "Delete authorization",
+        "operationId": "deleteAuthorization",
         "description": "Deletes an authorization by authorization ID.\n\nSpecify the authorization Id in the `authorizationId` parameter in the URI, which was listed in the list resource.",
         "tags": [
           "Authorizations"
@@ -922,7 +922,7 @@
           }
         },
         "summary": "List classifications",
-        "operationId": "List classifications",
+        "operationId": "listClassifications",
         "description": "List all the space classifications configured in your org.",
         "tags": [
           "Classifications"
@@ -1047,7 +1047,7 @@
           "Data Sources"
         ],
         "description": "Register a data source with the Webex BYODS system. Authenticate using a Service App with the `spark-admin:datasource_write` scope.\nSchema IDs determine the types of data Webex sends to the DAP and the expected responses. Use the Data Source Schemas endpoints to inspect the available schemas.",
-        "operationId": "Register a Data Source",
+        "operationId": "registerADataSource",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1180,7 +1180,7 @@
           "Data Sources"
         ],
         "description": "Lists all data sources registered by the Service App. Requires the `spark-admin:datasource_read` scope.",
-        "operationId": "Retrieve All Data Sources",
+        "operationId": "retrieveAllDataSources",
         "summary": "Retrieve All Data Sources"
       }
     },
@@ -1270,7 +1270,7 @@
           "Data Sources"
         ],
         "description": "Lists the available data source schemas. A valid API access token is required, but no specific scope is needed.",
-        "operationId": "Retrieve Data Source Schemas",
+        "operationId": "retrieveDataSourceSchemas",
         "summary": "Retrieve Data Source Schemas"
       }
     },
@@ -1388,7 +1388,7 @@
           "Data Sources"
         ],
         "description": "Retrieves details for a specific data source schema by schema ID. A valid API access token is required, but no specific scope is needed.",
-        "operationId": "Retrieve Details of a Specific Data Source Schema",
+        "operationId": "retrieveDetailsOfASpecificDataSourceSchema",
         "summary": "Retrieve Details of a Specific Data Source Schema"
       }
     },
@@ -1461,7 +1461,7 @@
           "Data Sources"
         ],
         "description": "Deletes a data source by ID.\n\nSpecify the data source ID in the `dataSourceId` URI parameter.",
-        "operationId": "Delete a Data Source",
+        "operationId": "deleteADataSource",
         "summary": "Delete a Data Source"
       },
       "get": {
@@ -1592,7 +1592,7 @@
           "Data Sources"
         ],
         "description": "Retrieves details for a data source by ID. Use a Service App token with the `spark-admin:datasource_read` scope.",
-        "operationId": "Retrieve Data Source Details",
+        "operationId": "retrieveDataSourceDetails",
         "summary": "Retrieve Data Source Details"
       },
       "put": {
@@ -1723,7 +1723,7 @@
           "Data Sources"
         ],
         "description": "Updates a data source. The fields you can update are `audience`, `subject`, `nonce`, `url`, and `tokenLifetimeMinutes`.\nYou can set `status` from `active` to `disabled` only if you provide an `errorMessage`, which may be shown to the customer administrator in Control Hub.\nUpdate tokens before they expire to prevent service interruption.",
-        "operationId": "Update a Data Source",
+        "operationId": "updateADataSource",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1967,7 +1967,7 @@
           }
         },
         "summary": "Get Domain Verification Token",
-        "operationId": "Get Domain Verification Token",
+        "operationId": "getDomainVerificationToken",
         "description": "This endpoint helps generate a token for a given domain within the specified organization. The user needs to add this token as a 'TXT' record to the DNS server.\n\n**Possible Error:**\n\n- 409: The request encountered a resource conflict. This error occurs if the domain is either claimed by another organization or by the same organization.\n\n**Authorization:**\n\nAn 'OAuth' token issued by the 'Identity Broker' is required to access this endpoint. The token must include one of the following scopes:\n\n- `Identity:Organization`\n\n- `identity:organizations_rw`\n\n**Administrator Roles:**\n\nThe following administrators can use this API:\n\n- `id_full_admin`",
         "tags": [
           "API - Domain Management"
@@ -2070,7 +2070,7 @@
           }
         },
         "summary": "Verify Domain",
-        "operationId": "Verify Domain",
+        "operationId": "verifyDomain",
         "description": "This endpoint helps verify a given domain within the specified organization. This API verifies domain ownership by looking up and validating the 'TXT' record for the domain.\nOnce verified, domain enforcement will be applied to the organization. Any users in the organization whose email domain doesn't match one of the verified domains will be marked as transient.\n\nIf you want to verify and claim the domain, just set the 'claimDomain' parameter to true. By default, it's set to false, which will only verify the domain.\n\n**Possible Errors:**\n\n- 400: The request was a Bad Request. The domain can't be verified. This error happens if the user didn't request a token before trying to verify the domain.\n\n- 409: The request resulted in a resource conflict. This error occurs if the domain has already been claimed by another organization.\n\n**Authorization:**\n\nAn 'OAuth' token issued by the 'Identity Broker' is required to access this endpoint. The token must include one of the following scopes:\n\n- `Identity:Organization`\n\n- `identity:organizations_rw`\n\n**Administrator Roles:**\n\nThe following administrators can use this API:\n\n- `id_full_admin`",
         "tags": [
           "API - Domain Management"
@@ -2180,7 +2180,7 @@
           }
         },
         "summary": "Claim Domain",
-        "operationId": "Claim Domain",
+        "operationId": "claimDomain",
         "description": "This endpoint helps claim the given domain within the specified organization. The domain needs to be verified before it can be claimed.\n\n**Note**\n<callout type=\"warning\">\n\nThere's an organization-level boolean flag called 'enforceVerifiedDomains'. If this flag is set to false, we won't put any user in the organization into a transient state when verifying or claiming a domain.\nCustomers can still create users within the organization who don't use the verified domains as their email. However, if the flag is set to true, all users in the organization must use one of the verified domains as their email.\nThis flag defines whether the organization enforces user email verification within the organization. If set to true, all users inside the organization must use one of the verified domains.\nThis flag is effective only after the admin has verified at least one email domain.\n</callout>\n\n**Possible Error:**\n\n- 400: The request was a Bad Request. This error occurs if the domain is not verified.\n\n**Authorization:**\n\nAn 'OAuth' token issued by the 'Identity Broker' is required to access this endpoint. The token must include one of the following scopes:\n\n- `Identity:Organization`\n\n- `identity:organizations_rw`\n\n**Administrator Roles:**\n\nThe following administrators can use this API:\n\n- `id_full_admin`",
         "tags": [
           "API - Domain Management"
@@ -2289,7 +2289,7 @@
           }
         },
         "summary": "Unverify Domain",
-        "operationId": "Unverify Domain",
+        "operationId": "unverifyDomain",
         "description": "After you unclaim the domain, it will still be verified. Domain enforcement will still apply to the organization. The unverify endpoint helps to remove the domain ownership verification for the organization.\n\n**Possible Error:**\n\n- 400: The request was a Bad Request. The domain cannot be unverified. This error occurs if the domain is still claimed.\n\n- 404: The request was Not Found. This error occurs if the domain is not associated with the organization.\n\n**Authorization:**\n\nAn 'OAuth' token issued by the 'Identity Broker' is required to access this endpoint. The token must include one of the following scopes:\n\n- `Identity:Organization`\n\n- `identity:organizations_rw`\n\n**Administrator Roles:**\n\nThe following administrators can use this API:\n\n- `id_full_admin`",
         "tags": [
           "API - Domain Management"
@@ -2376,7 +2376,7 @@
           }
         },
         "summary": "Unclaim Domain",
-        "operationId": "Unclaim Domain",
+        "operationId": "unclaimDomain",
         "description": "This API is used to unclaim a domain for the organization. The domain will remain verified, and domain enforcement will still apply to the given organization.\n\n**Possible Error:**\n\n- 400: The request was a Bad Request. The domain cannot be unclaimed. This error occurs if the requested parameter is invalid.\n\n**Authorization:**\n\nAn 'OAuth' token issued by the 'Identity Broker' is required to access this endpoint. The token must include one of the following scopes:\n\n- `Identity:Organization`\n\n- `identity:organizations_rw`\n\n**Administrator Roles:**\n\nThe following administrators can use this API:\n\n- `id_full_admin`",
         "tags": [
           "API - Domain Management"
@@ -2480,7 +2480,7 @@
           }
         },
         "summary": "Get an organization",
-        "operationId": "Get an organization",
+        "operationId": "getAnOrganization",
         "description": "<br/>\n\n**Authorization**\n\nOAuth token rendered by identity broker.\n\n<br/>\n\nOne of the following OAuth scopes is required:\n\n- `identity:organizations_rw`\n\n- `identity:organizations_read`\n\n<br/>",
         "tags": [
           "Identity Organization"
@@ -2571,7 +2571,7 @@
           }
         },
         "summary": "Update an organization",
-        "operationId": "Update an organization",
+        "operationId": "updateAnOrganization",
         "description": "<br/>\n\n**Authorization**\n\nOAuth token rendered by identity broker.\n\n<br/>\n\nOne of the following OAuth scopes is required:\n\n- `identity:organizations_rw`\n\n<br/>\n\nThe following administrators can use this API:\n\n- `id_full_admin`\n\n<br/>\n\n**Usage**:\n\n1. Input JSON must contain schema: \"urn:cisco:codev:identity:organization:core:1.0\".",
         "tags": [
           "Identity Organization"
@@ -2679,7 +2679,7 @@
           }
         },
         "summary": "Update Organization Authentication Configuration Settings",
-        "operationId": "Update Organization Authentication Configuration Settings",
+        "operationId": "updateOrganizationAuthenticationConfigurationSettings",
         "description": "Update the authentication configuration details, by organizationID.\nSpecify the organization ID in the `orgId` parameter in the URI.\n\n<br/>\n\n**Authorization**\n\nOAuth token rendered by identity broker.\n\n<br/>\n\nOne of the following OAuth scopes is required:\n\n- `identity:organizations_rw`\n\n<br/>\n\nThe following administrators can use this API:\n\n- `id_full_admin`\n\n<br/>\n\n**Usage**:\n\n1. Input JSON must contain schema: \"urn:cisco:codev:identity:idbroker:authnconfig:schemas:1.0\".",
         "tags": [
           "Identity Organization"
@@ -2786,7 +2786,7 @@
           }
         },
         "summary": "Update Organization Password Policy",
-        "operationId": "Update Organization Password Policy",
+        "operationId": "updateOrganizationPasswordPolicy",
         "description": "Update Organization Password Policy, by organizationID.\nSpecify the organization ID in the `orgId` parameter in the URI.\n\n<br/>\n\n**Authorization**\n\nOAuth token rendered by identity broker.\n\n<br/>\n\nOne of the following OAuth scopes is required:\n\n- `identity:organizations_rw`\n\n<br/>\n\nThe following administrators can use this API:\n\n- `id_full_admin`\n\n<br/>\n\n**Usage**:\n\n1. Input JSON must contain schema: \"urn:cisco:codev:identity:idbroker:pwdpolicy:schemas:1.0\".",
         "tags": [
           "Identity Organization"
@@ -2892,7 +2892,7 @@
           }
         },
         "summary": "Generate OTP",
-        "operationId": "Generate OTP",
+        "operationId": "generateOTP",
         "description": "This API allows an admin to generate a One-Time Password (OTP) for user accounts with `userNameType` set as `partner-upn`. The OTP is used by users to log in to any Webex application, whereupon they are asked to change their password.\nThe OTP generated by this API has a default length of 6 digits and expires in 7 days.\n\nSeveral OTPs can be active for the same user. When the user successfully uses an OTP, all other OTPs are automatically revoked.\n\nThe creation of OTPs is logged in the [Admin Audit Events](https://developer.webex.com/docs/api/v1/admin-audit-events).\n\n**Possible Error:**\n\n- 403: The request was forbidden. OTP generation is restricted to users with a `userNameType` of `partner-upn`. This error occurs if the user does not meet the required criteria for OTP generation.\n\n**Authorization:**\n\nAn OAuth token issued by the Identity Broker is required to access this endpoint. The token must include one of the following scopes:\n\n- `Identity:one_time_password`\nor\n\n- `Identity:Config`\n\n**Administrator Roles:**\n\nThe following administrators have permission to use this API:\n\n- `Org Full Admin`: Can generate OTPs for non-email-type users in their organization.\n\n- `Partner Full Admin`: Can generate OTPs for User/Machine Accounts in Customer Orgs.\n\n- `Org User Admin`: Can generate OTPs for User/Machine Accounts within their organization.",
         "tags": [
           "Identity Organization"
@@ -3043,7 +3043,7 @@
           }
         },
         "summary": "List Events",
-        "operationId": "List Events",
+        "operationId": "listEvents",
         "description": "List events in your organization. Several query parameters are available to filter the events returned in the response.\n\nLong result sets will be split into [pages](/docs/basics#pagination).",
         "tags": [
           "Events"
@@ -3252,7 +3252,7 @@
           }
         },
         "summary": "Get Event Details",
-        "operationId": "Get Event Details",
+        "operationId": "getEventDetails",
         "description": "Shows details for an event, by event ID.\n\nSpecify the event ID in the `eventId` parameter in the URI.",
         "tags": [
           "Events"
@@ -3347,7 +3347,7 @@
           }
         },
         "summary": "Create a Group",
-        "operationId": "Create a Group",
+        "operationId": "createAGroup",
         "description": "Create a new group for a given organization. The group may optionally be created with group members.",
         "tags": [
           "Groups"
@@ -3455,7 +3455,7 @@
           }
         },
         "summary": "List and Search Groups",
-        "operationId": "List and Search Groups",
+        "operationId": "listAndSearchGroups",
         "description": "List groups in your organization.\n\n* Set the `includeMembers` parameter to `true` to return group members. The total number of members returned is limited to 500.\n\n* Use the `startIndex` and `count` parameters to page through result set.\n\n* To search for a specific group use the `filter` parameter.\n\n* Use `sortBy` parameter to sort the responses by `id` or `displayName`.",
         "tags": [
           "Groups"
@@ -3612,7 +3612,7 @@
           }
         },
         "summary": "Update a Group",
-        "operationId": "Update a Group",
+        "operationId": "updateAGroup",
         "description": "Update the group details, by ID.\n\nSpecify the group ID in the `groupId` parameter in the URI.",
         "tags": [
           "Groups"
@@ -3724,7 +3724,7 @@
           }
         },
         "summary": "Get Group Details",
-        "operationId": "Get Group Details",
+        "operationId": "getGroupDetails",
         "description": "Get details for a group, by ID.\n\nOptionally, the members may be retrieved with this request. The maximum number of members returned is 500.",
         "tags": [
           "Groups"
@@ -3806,7 +3806,7 @@
           }
         },
         "summary": "Delete a Group",
-        "operationId": "Delete a Group",
+        "operationId": "deleteAGroup",
         "description": "Remove a group from the system.\n\nSpecify the group ID in the `groupId` parameter in the URI.",
         "tags": [
           "Groups"
@@ -3901,7 +3901,7 @@
           }
         },
         "summary": "Get Group Members",
-        "operationId": "Get Group Members",
+        "operationId": "getGroupMembers",
         "description": "Gets the members of a group.\n\n* The default maximum members returned is 500.\n\n* Control parameters is available to page through the members and to control the size of the results.",
         "tags": [
           "Groups"
@@ -4007,7 +4007,7 @@
           }
         },
         "summary": "Create a Guest",
-        "operationId": "Create a Guest",
+        "operationId": "createAGuest",
         "description": "Create a new token for a single guest user. The Service App that creates the guest must have the scope `guest-issuer:write`.\n\nGuests are implicitly created by retrieving the guest access token.\n\nRepeated calls to this API with the same `subject` will create additional tokens without invalidating previous ones. Tokens are valid until the `expiresIn`.\n\nGuests can be renamed by supplying the same `subject` and changing the `displayName.`\n\nTo retrieve a new token for an existing guest, please provide the existing guest's `subject`. Tokens are valid until `expiresIn`.",
         "tags": [
           "Guest Management"
@@ -4107,7 +4107,7 @@
           }
         },
         "summary": "Get Guest Count",
-        "operationId": "Get Guest Count",
+        "operationId": "getGuestCount",
         "description": "To retrieve the number of guests, the scopes `guest-issuer:read` or `guest-issuer:write` are needed.",
         "tags": [
           "Guest Management"
@@ -4270,7 +4270,7 @@
           }
         },
         "summary": "Historical Data related to Messaging",
-        "operationId": "Historical Data related to Messaging",
+        "operationId": "historicalDataRelatedToMessaging",
         "description": "Returns daily aggregates of various metrics related to Webex messaging.\n\n<div><Callout type=\"error\">The base URL for these APIs is **analytics.webexapis.com**, which does not work with the **Try It** feature. </Callout></div>",
         "tags": [
           "Historical Analytics APIs"
@@ -4454,7 +4454,7 @@
           }
         },
         "summary": "Historical Data related to Room Devices",
-        "operationId": "Historical Data related to Room Devices",
+        "operationId": "historicalDataRelatedToRoomDevices",
         "description": "Returns daily aggregates of various metrics related to Room Devices.\n\n<div><Callout type=\"error\">The base URL for these APIs is **analytics.webexapis.com**, which does not work with the **Try It** feature. </Callout></div>",
         "tags": [
           "Historical Analytics APIs"
@@ -4695,7 +4695,7 @@
           }
         },
         "summary": "Historical Data related to Meetings",
-        "operationId": "Historical Data related to Meetings",
+        "operationId": "historicalDataRelatedToMeetings",
         "description": "Return aggregates of various metrics related to meetings for a given Webex site over a specified time range.\n\n<div><Callout type=\"error\">The base URL for these APIs is **analytics.webexapis.com**, which does not work with the **Try It** feature.</Callout></div>",
         "tags": [
           "Historical Analytics APIs"
@@ -4805,7 +4805,7 @@
           }
         },
         "summary": "List Hybrid Clusters",
-        "operationId": "List Hybrid Clusters",
+        "operationId": "listHybridClusters",
         "description": "List hybrid clusters for an organization. If no `orgId` is specified, the default is the organization of the authenticated user.\n\nOnly an admin auth token with the `spark-admin:hybrid_clusters_read` scope can list clusters.",
         "tags": [
           "Hybrid Clusters"
@@ -4890,7 +4890,7 @@
           }
         },
         "summary": "Get Hybrid Cluster Details",
-        "operationId": "Get Hybrid Cluster Details",
+        "operationId": "getHybridClusterDetails",
         "description": "Shows details for a hybrid cluster, by ID.\n\nOnly an admin auth token with the `spark-admin:hybrid_clusters_read` scope can see cluster details.",
         "tags": [
           "Hybrid Clusters"
@@ -5003,7 +5003,7 @@
           }
         },
         "summary": "List Hybrid Connectors",
-        "operationId": "List Hybrid Connectors",
+        "operationId": "listHybridConnectors",
         "description": "List hybrid connectors for an organization. If no `orgId` is specified, the default is the organization of the authenticated user.\n\nOnly an admin auth token with the `spark-admin:hybrid_connectors_read` scope can list connectors.",
         "tags": [
           "Hybrid Connectors"
@@ -5102,7 +5102,7 @@
           }
         },
         "summary": "Get Hybrid Connector Details",
-        "operationId": "Get Hybrid Connector Details",
+        "operationId": "getHybridConnectorDetails",
         "description": "Shows details for a hybrid connector, by ID.\n\nOnly an admin auth token with the `spark-admin:hybrid_connectors_read` scope can see connector details.",
         "tags": [
           "Hybrid Connectors"
@@ -5197,7 +5197,7 @@
           }
         },
         "summary": "List Licenses",
-        "operationId": "List_Licenses",
+        "operationId": "listLicenses",
         "description": "List all licenses for a given organization.  If no `orgId` is specified, the default is the organization of the authenticated user.\n\nResponse properties that are not applicable to the license will not be present in the response.",
         "tags": [
           "Licenses"
@@ -5301,7 +5301,7 @@
           }
         },
         "summary": "Get License Details",
-        "operationId": "Get_License_Details",
+        "operationId": "getLicenseDetails",
         "description": "Shows details for a license, by ID.\n\nSpecify the license ID in the `licenseId` parameter in the URI.\nUse the optional query parameter `includeAssignedTo` to get a list of all objects that are assigned with the license. The objects include but not limited to, users including external users. Long result sets will be split into [pages](/docs/basics#pagination).\n\nResponse properties that are not applicable to the license will not be present in the response.",
         "tags": [
           "Licenses"
@@ -5674,7 +5674,7 @@
           }
         },
         "summary": "Assign Licenses to Users",
-        "operationId": "Assign_Licenses_to_Users",
+        "operationId": "assignLicensesToUsers",
         "description": "Assign licenses and attendee `siteUrls` to existing users. Only an admin can assign licenses. Only existing users can be assigned a license. Assign meeting licenses to users outside your organization (Status will be pending until the user accepts the invite)\n\nAt least one of the following body parameters is required to assign license to the user: `email`, `personId`. For Calling license assignment, properties `phoneNumber` or `extension` are required. If `phoneNumber` is not provided then `locationId` is mandatory.\n\nWhen assigning licenses and attendee siteUrls to a user who does not belong to the organization, the licenses and siteUrls remain in pending state until the user accepts them. The `pendingLicenses` and `pendingSiteUrls` are part of the response.",
         "tags": [
           "Licenses"
@@ -6175,7 +6175,7 @@
           }
         },
         "summary": "Create a Contact",
-        "operationId": "Create a Contact",
+        "operationId": "createAContact",
         "description": "Creating a new contact for a given organization requires an org admin role.\n\nAt least one of the following body parameters: `phoneNumbers`, `emails`, `sipAddresses` is required to create a new contact for source \"CH\",\n`displayName` is required to create a new contact for source \"Webex4Broadworks\".\n\nUse the optional `groupIds` field to add group IDs in an array within the organisation contact. This will become a group contact.",
         "tags": [
           "Organization Contacts"
@@ -6359,7 +6359,7 @@
           }
         },
         "summary": "Get a Contact",
-        "operationId": "Get a Contact",
+        "operationId": "getAContact",
         "description": "Shows details for an organization contact by ID.\nSpecify the organization ID in the `orgId` parameter in the URI, and specify the contact ID in the `contactId` parameter in the URI.\n\n**NOTE**:\nThe `orgId` used in the path for this API are the org UUIDs. They follow a xxxx-xxxx-xxxx-xxxx pattern. If you have an orgId in base64 encoded format (starting with Y2.....) you need to base64 decode the id and extract the UUID from the slug, before you use it in your API call.",
         "tags": [
           "Organization Contacts"
@@ -6630,7 +6630,7 @@
           }
         },
         "summary": "Update a Contact",
-        "operationId": "Update a Contact",
+        "operationId": "updateAContact",
         "description": "Update details for contact by ID. Only an admin can update a contact.\nSpecify the organization ID in the `orgId` parameter in the URI, and specify the contact ID in the `contactId` parameter in the URI.\n\nUse the optional `groupIds` field to update the group IDs by changing the existing array. You can add or remove one or all groups. To remove all associated groups, pass an empty array in the `groupIds` field.",
         "tags": [
           "Organization Contacts"
@@ -6765,7 +6765,7 @@
           }
         },
         "summary": "Delete a Contact",
-        "operationId": "Delete a Contact",
+        "operationId": "deleteAContact",
         "description": "Remove a contact from the organization. Only an admin can remove a contact.\n\nSpecify the organization ID in the `orgId` parameter in the URI, and specify the contact ID in the `contactId` parameter in the URI.",
         "tags": [
           "Organization Contacts"
@@ -6914,7 +6914,7 @@
           }
         },
         "summary": "List Contacts",
-        "operationId": "List Contacts",
+        "operationId": "listContacts",
         "description": "List contacts in the organization. The default limit is `100`.\n\n`keyword` can be the value of \"displayName\", \"firstName\", \"lastName\", \"email\". An empty string of `keyword` means get all contacts.\n\n`groupIds` is a comma separated list group IDs. Results are filtered based on those group IDs.\n\nLong result sets will be split into [pages](/docs/basics#pagination).",
         "tags": [
           "Organization Contacts"
@@ -7074,7 +7074,7 @@
           }
         },
         "summary": "Bulk Create or Update Contacts",
-        "operationId": "Bulk Create or Update Contacts",
+        "operationId": "bulkCreateOrUpdateContacts",
         "description": "Create or update contacts in bulk. Update an existing contact by specifying the contact ID in the `contactId` parameter in the request body.",
         "tags": [
           "Organization Contacts"
@@ -7202,7 +7202,7 @@
           }
         },
         "summary": "Bulk Delete Contacts",
-        "operationId": "Bulk Delete Contacts",
+        "operationId": "bulkDeleteContacts",
         "description": "Delete contacts in bulk.",
         "tags": [
           "Organization Contacts"
@@ -7306,7 +7306,7 @@
           }
         },
         "summary": "List Organizations",
-        "operationId": "List Organizations",
+        "operationId": "listOrganizations",
         "description": "List all organizations visible by your account. The results will not be [paginated](/docs/basics#pagination).",
         "tags": [
           "Organizations"
@@ -7380,7 +7380,7 @@
           }
         },
         "summary": "Get Organization Details",
-        "operationId": "Get Organization Details",
+        "operationId": "getOrganizationDetails",
         "description": "Shows details for an organization, by ID.\n\nSpecify the org ID in the `orgId` parameter in the URI.",
         "tags": [
           "Organizations"
@@ -7452,7 +7452,7 @@
           }
         },
         "summary": "Delete Organization",
-        "operationId": "Delete Organization",
+        "operationId": "deleteOrganization",
         "description": "Deletes an organization, by ID. It may take up to 10 minutes for the organization to be deleted after the response is returned.\n<br/><br/>\nSpecify the org ID in the `orgId` parameter in the URI.\n\n<div><Callout type=\"warning\">Deleting your organization permanently deletes all of the information associated with your organization and is irreversible.</Callout></div>\n\nDeleting an Organization may fail with a HTTP 409 Conflict response and encounter one or more of the errors described below. Resolve these conditions to allow the delete to succeed.\n<br/><br/>\n\n+ Org cannot be deleted as it has Linked sites.\n\n+ Org cannot be deleted as it has active subscriptions or licenses.\n\n+ Org cannot be deleted as [Directory Synchronization](https://developer.webex.com/docs/api/v1/broadworks-enterprises/get-directory-sync-status-for-an-enterprise) is enabled.\n\n+ Org cannot be deleted as it has more than 1 user.\n\n+ Org cannot be deleted as it has more than 1 managed by relationship.\n\n+ Org cannot be deleted as it has managed orgs.\n\n<div>\n<Callout type='info'>When deleting a Webex for BroadWorks Organization with BroadWorks Directory Synchronization enabled, a prerequisite is to disable BroadWorks Directory Synchronization for the given Organization. Refer to the [Organization Deletion](https://developer.webex.com/docs/api/guides/webex-for-broadworks-developers-guide#organization-deletion) section of the [Webex for BroadWorks](/docs/api/guides/webex-for-broadworks-developers-guide) guide for more information.</Callout>\n</div>",
         "tags": [
           "Organizations"
@@ -7540,7 +7540,7 @@
           }
         },
         "summary": "Get all customers managed by a partner admin",
-        "operationId": "Get all customers managed by a partner admin",
+        "operationId": "getAllCustomersManagedByAPartnerAdmin",
         "description": "Get all customer organizations managed by given partner admin, in the `managedBy` request parameter. The `managedBy` user typically has the role of a Partner Admin. In case where a Partner Full Admin or Partner Read-Only admin is selected an error like \"The user already has access to all customers managed by their partner organization.\" is shown as a Partner Admin (Full and Read-Only) is able to manage all customers by default. This does not include customers managed through Customer Groups.\n\nThis API can be invoked by Partner Full Admin and Partner Readonly Admin.\nSpecify the `personId` in the `managedBy` parameter in the URI.",
         "tags": [
           "Partner Administrators"
@@ -7634,7 +7634,7 @@
           }
         },
         "summary": "Get all partner admins assigned to a customer",
-        "operationId": "Get all partner admins assigned to a customer",
+        "operationId": "getAllPartnerAdminsAssignedToACustomer",
         "description": "For a given customer, get all the partner admins with their role details. This does not include partner admins who have access through Customer Groups.\nThis API can be used by Partner Full Admins.\n\nSpecify the `orgId` in the path parameter.",
         "tags": [
           "Partner Administrators"
@@ -7708,7 +7708,7 @@
           }
         },
         "summary": "Assign partner admin to a customer",
-        "operationId": "Assign partner admin to a customer",
+        "operationId": "assignPartnerAdminToACustomer",
         "description": "Assign a specific Partner Admin to a customer organization. The partner admin is a user that has the Partner Administrator role.\nOther partner roles, such as Partner Full Administrator are not applicable for this API, since this role manages all customer organizations.\n\nThis API can be used b a Partner Full Admin.\n\nSpecify the `orgId` and the `personId` in the path param.",
         "tags": [
           "Partner Administrators"
@@ -7792,7 +7792,7 @@
           }
         },
         "summary": "Unassign partner admin from a customer",
-        "operationId": "Unassign partner admin from a customer",
+        "operationId": "unassignPartnerAdminFromACustomer",
         "description": "Unassign a specific partner admin from a customer organization. Unassigning a customer organization from a partner admin does not remove the role from the user. If a partner admin is also managing the customer organization through a Customer Group, they will continue to have access.\nThis API can be used by Partner Full Admin.\n\nSpecify the `orgId` and the `personId` in the path param.",
         "tags": [
           "Partner Administrators"
@@ -7876,7 +7876,7 @@
           }
         },
         "summary": "Revoke all partner admin roles for a given person ID",
-        "operationId": "Revoke all partner admin roles for a given person ID",
+        "operationId": "revokeAllPartnerAdminRolesForAGivenPersonID",
         "description": "Revoke all partner administrator roles from a user, thereby revoking access to Partner Hub and all managed customer organizations.\nThis action does not grant or revoke Control Hub administrator roles (e.g. Full Administrator, User and Device Administrator, etc.).\nThis API can be used by Partner Full Admin.\nSpecify the `personId` in the path param.",
         "tags": [
           "Partner Administrators"
@@ -8562,7 +8562,7 @@
           }
         },
         "summary": "List People",
-        "operationId": "List People",
+        "operationId": "listPeople",
         "description": "List people in your organization. For most users, either the `email` or `displayName` parameter is required. Admin users can omit these fields and list all users in their organization.\n\nResponse properties associated with a user's presence status, such as `status` or `lastActivity`, will only be returned for people within your organization or an organization you manage. Presence information will not be returned if the authenticated user has [disabled status sharing](https://help.webex.com/nkzs6wl/). Calling /people frequently to poll `status` information for a large set of users will quickly lead to `429` errors and throttling of such requests and is therefore discouraged.\n\nAdmin users can include `Webex Calling` (BroadCloud) user details in the response by specifying `callingData` parameter as `true`. Admin users can list all users in a location. Admin users will receive an enriched payload with additional administrative fields like `licenses`,`roles`, `locations` etc. These fields are shown when accessing a user via GET /people/{id}, not when doing a GET /people?id=\n\nLookup by `email` is only supported for people within the same org or where a partner admin relationship is in place.\n\nLookup by `roles` is only supported for Admin users for the people within the same org.\n\nLong result sets will be split into [pages](/docs/basics#pagination).",
         "tags": [
           "People"
@@ -8774,7 +8774,7 @@
           }
         },
         "summary": "Create a Person",
-        "operationId": "Create a Person",
+        "operationId": "createAPerson",
         "description": "Create a new user account for a given organization. Only an admin can create a new user account.\n\nAt least one of the following body parameters is required to create a new user: `displayName`, `firstName`, `lastName`.\n\nCurrently, users may have only one email address associated with their account. The `emails` parameter is an array, which accepts multiple values to allow for future expansion, but currently only one email address will be used for the new user.\n\nAdmin users can include `Webex calling` (BroadCloud) user details in the response by specifying `callingData` parameter as true. It may happen that the POST request with calling data returns a 400 status, but the person was created still. One way to get into this state is if an invalid phone number is assigned to a user. The people API aggregates calls to several other microservices, and one may have failed. A best practice is to check if the user exists before retrying. This can be done with the user's email address and a GET /people.\n\nWhen doing attendee management, append `#attendee` to the `siteUrl` parameter (e.g. `mysite.webex.com#attendee`) to make the new user an attendee for a site.\n\n**NOTES**:\n\n* For creating a `Webex Calling` user, you must provide `phoneNumbers` or `extension`, `locationId`, and `licenses` string in the same request.\n\n* `SipAddresses` are asigned via an asynchronous process. This means that the POST response may not show the SIPAddresses immediately. Instead you can verify them with a separate GET to /people, after they were newly configured.\n\n* When assigning multiple licenses in a single request, the system will assign all valid and available licenses. If any requested licenses cannot be assigned, the operation will continue with the remaining licenses. As a result, it is possible that not all requested licenses are assigned to the user.",
         "tags": [
           "People"
@@ -9126,7 +9126,7 @@
           }
         },
         "summary": "Get Person Details",
-        "operationId": "Get Person Details",
+        "operationId": "getPersonDetails",
         "description": "Shows details for a person, by ID.\n\nResponse properties associated with a user's presence status, such as `status` or `lastActivity`, will only be displayed for people within your organization or an organization you manage. Presence information will not be shown if the authenticated user has [disabled status sharing](https://help.webex.com/nkzs6wl/).\n\nAdmin users can include `Webex Calling` (BroadCloud) user details in the response by specifying `callingData` parameter as `true`.\n\nSpecify the person ID in the `personId` parameter in the URI.",
         "tags": [
           "People"
@@ -9279,7 +9279,7 @@
           }
         },
         "summary": "Update a Person",
-        "operationId": "Update a Person",
+        "operationId": "updateAPerson",
         "description": "Update details for a person, by ID.\n\nSpecify the person ID in the `personId` parameter in the URI. Only an admin can update a person details.\n\nInclude all details for the person. This action expects all user details to be present in the request. A common approach is to first [GET the person's details](/docs/api/v1/people/get-person-details), make changes, then PUT both the changed and unchanged values.\n\nAdmin users can include `Webex Calling` (BroadCloud) user details in the response by specifying `callingData` parameter as true.\n\nWhen doing attendee management, to update a user from host role to an attendee for a site append `#attendee` to the respective `siteUrl` and remove the meeting host license for this site from the license array.\nTo update a person from an attendee role to a host for a site, add the meeting license for this site in the meeting array, and remove that site from the `siteurl` parameter.\n\nTo remove the attendee privilege for a user on a meeting site, remove the `sitename#attendee` from the `siteUrl`s array. The `showAllTypes` parameter must be set to `true`.\n\n**NOTE**:\n\n* When assigning a Webex Calling license, either a telephone number or extension must already be assigned to the person or provided in the request payload.\n\n* When `callingData` is set to `true`, a Webex Calling license must be included in the `licenses` array.\n\n* The `locationId` can only be set when assigning a calling license to a user. It cannot be changed if a user is already an existing calling user.\n\n* The `extension` field should be used to update the Webex Calling extension for a person. The extension value should not include the location routing prefix. The `work_extension` type in the `phoneNumbers` object as seen in the response payload of [List People](/docs/api/v1/people/list-people) or [Get Person Details](/docs/api/v1/people/get-person-details), cannot be used to set the Webex Calling extension for a person.\n\n* When updating a user with multiple email addresses using a PUT request, ensure that the primary email address is listed first in the array. Note that the order of email addresses returned by a GET request is not guaranteed..\n\n* The People API is a combination of several microservices, each responsible for specific attributes of a person. As a result, a PUT request that returns an error response code may still have altered some values of the person's data. Therefore, it is recommended to perform a GET request after encountering an error to verify the current state of the resource. \n\n* Some licenses are implicitly assigned by the system and cannot be admin controlled. They are necessary for the baseline function of the Webex system. If you get an error about implicitly assigned licensed that cannot be removed, please ensure you have the corresponding license in your PUT request.\n\n* When assigning multiple licenses in a single request, the system will assign all valid and available licenses. If any requested licenses cannot be assigned, the operation will continue with the remaining licenses. As a result, it is possible that not all requested licenses are assigned to the user.",
         "tags": [
           "People"
@@ -9594,7 +9594,7 @@
           }
         },
         "summary": "Delete a Person",
-        "operationId": "Delete a Person",
+        "operationId": "deleteAPerson",
         "description": "Remove a person from the system.\n\n**Required Administrator Roles:**\n\nThe following administrators have permission to use this API:\n\n**Customer Organization:**\n- Full administrator\n- User administrator\n\n**Partner/External Access:**\n- External full administrator\n\n**Note:** External read-only administrators, provisioning administrators, and device administrators cannot delete users.\n\nSpecify the person ID in the `personId` parameter in the URI.",
         "tags": [
           "People"
@@ -9734,7 +9734,7 @@
           }
         },
         "summary": "Get My Own Details",
-        "operationId": "Get My Own Details",
+        "operationId": "getMyOwnDetails",
         "description": "Get profile details for the authenticated user. This is the same as GET `/people/{personId}` using the Person ID associated with your Auth token.\n\nAdmin users can include `Webex Calling` (BroadCloud) user details in the response by specifying `callingData` parameter as true.",
         "tags": [
           "People"
@@ -9860,7 +9860,7 @@
           }
         },
         "summary": "List of Recording Audit Report Summaries",
-        "operationId": "List of Recording Audit Report Summaries",
+        "operationId": "listOfRecordingAuditReportSummaries",
         "description": "Lists of recording audit report summaries. You can specify a date range and the maximum number of recording audit report summaries to return.\n\nOnly recording audit report summaries of meetings hosted by or shared with the authenticated user will be listed.\n\nThe list returned is sorted in descending order by the date and time that the recordings were created.\n\nLong result sets are split into [pages](/docs/basics#pagination).\n\n* If `siteUrl` is specified, the recording audit report summaries of the specified site will be listed; otherwise, recording audit report summaries of the user's preferred site will be listed. All available Webex sites and the preferred site of the user can be retrieved by the `Get Site List` API.\n\n#### Request Header\n\n* `timezone`: [Time zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List) in conformance with the [IANA time zone database](https://www.iana.org/time-zones). The default is UTC if `timezone` is not defined.",
         "tags": [
           "Recording Report"
@@ -10033,7 +10033,7 @@
           }
         },
         "summary": "Get Recording Audit Report Details",
-        "operationId": "Get Recording Audit Report Details",
+        "operationId": "getRecordingAuditReportDetails",
         "description": "Retrieves details for a recording audit report with a specified recording ID.\n\nOnly recording audit report details of meetings hosted by or shared with the authenticated user may be retrieved.\n\n#### Request Header\n\n* `timezone`: [Time zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List) in conformance with the [IANA time zone database](https://www.iana.org/time-zones). The default is UTC if `timezone` is not defined.",
         "tags": [
           "Recording Report"
@@ -10184,7 +10184,7 @@
           }
         },
         "summary": "List Meeting Archive Summaries",
-        "operationId": "List Meeting Archive Summaries",
+        "operationId": "listMeetingArchiveSummaries",
         "description": "Lists of meeting archive summaries. You can specify a date range and the maximum number of meeting archive summaries to return.\n\nMeeting archive summaries are only available to full administrators, not even the meeting host.\n\nThe list returned is sorted in descending order by the date and time that the archives were created.\n\nLong result sets are split into [pages](/docs/basics#pagination).\n\n* If `siteUrl` is specified, the meeting archive summaries of the specified site will be listed; otherwise, meeting archive summaries of the user's preferred site will be listed. All available Webex sites and the preferred site of the user can be retrieved by the `Get Site List` API.\n\n#### Request Header\n\n* `timezone`: [Time zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List) in conformance with the [IANA time zone database](https://www.iana.org/time-zones). The default is UTC if `timezone` is not defined.",
         "tags": [
           "Recording Report"
@@ -10469,7 +10469,7 @@
           }
         },
         "summary": "Get Meeting Archive Details",
-        "operationId": "Get Meeting Archive Details",
+        "operationId": "getMeetingArchiveDetails",
         "description": "Retrieves details for a meeting archive report with a specified archive ID, which contains recording metadata.\n\nMeeting archive details are only available to full administrators, not even the meeting host.\n\n#### Request Header\n\n* `timezone`: [Time zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List) in conformance with the [IANA time zone database](https://www.iana.org/time-zones). The default is UTC if `timezone` is not defined.",
         "tags": [
           "Recording Report"
@@ -12746,7 +12746,7 @@
           }
         },
         "summary": "List Report Templates",
-        "operationId": "List Report Templates",
+        "operationId": "listReportTemplates",
         "description": "List all the available report templates that can be generated.\n\nCSV (comma separated value) reports for Webex services are only supported for organizations based in the North American region. Organizations based in other regions will return blank CSV files for any Webex reports.\n\n#### Validation Fields\n\nEach template includes validation rules that specify which fields are required when generating a report using the [Reports API](/docs/api/v1/reports). The possible validation field values are:\n\n- **templateId**: The unique identifier of the report template to use. This is always required when creating a report.\n- **siteList**: A comma-separated list of Webex sites (e.g., \"cisco.webex.com\"). Required for site-based templates, typically for Webex Meetings reports.\n- **subIds**: Subscription IDs for the report. Required for certain enterprise agreement templates, particularly for Webex Onboarding service reports.\n- **startDate**: The start date for the report data range in YYYY-MM-DD format. Required for date-range based templates.\n- **endDate**: The end date for the report data range in YYYY-MM-DD format. Required for date-range based templates.\n\nWhen creating a report, ensure you provide all fields marked as \"required\": \"yes\" in the template's validation rules.",
         "tags": [
           "Report Templates"
@@ -13251,7 +13251,7 @@
           }
         },
         "summary": "List Resource Group Memberships",
-        "operationId": "List Resource Group Memberships",
+        "operationId": "listResourceGroupMemberships",
         "description": "Lists all resource group memberships for an organization.\n\nUse query parameters to filter the response.",
         "tags": [
           "Resource Group Memberships"
@@ -13532,7 +13532,7 @@
           }
         },
         "summary": "Get Resource Group Membership Details",
-        "operationId": "Get Resource Group Membership Details",
+        "operationId": "getResourceGroupMembershipDetails",
         "description": "Shows details for a resource group membership, by ID.\n\nSpecify the resource group membership ID in the `resourceGroupMembershipId` URI parameter.",
         "tags": [
           "Resource Group Memberships"
@@ -13618,7 +13618,7 @@
           }
         },
         "summary": "Update a Resource Group Membership",
-        "operationId": "Update a Resource Group Membership",
+        "operationId": "updateAResourceGroupMembership",
         "description": "Updates a resource group membership, by ID.\n\nSpecify the resource group membership ID in the `resourceGroupMembershipId` URI parameter.\n\nOnly the `resourceGroupId` can be changed with this action. Resource group memberships with a `status` of \"pending\" cannot be updated. For more information about resource group memberships, see the [Managing Hybrid Services](/docs/api/guides/managing-hybrid-services-licenses#webex-resource-groups) guide.",
         "tags": [
           "Resource Group Memberships"
@@ -13761,7 +13761,7 @@
           }
         },
         "summary": "List Resource Groups",
-        "operationId": "List Resource Groups",
+        "operationId": "listResourceGroups",
         "description": "List resource groups.\n\nUse query parameters to filter the response.",
         "tags": [
           "Resource Groups"
@@ -13845,7 +13845,7 @@
           }
         },
         "summary": "Get Resource Group Details",
-        "operationId": "Get Resource Group Details",
+        "operationId": "getResourceGroupDetails",
         "description": "Shows details for a resource group, by ID.\n\nSpecify the resource group ID in the `resourceGroupId` parameter in the URI.",
         "tags": [
           "Resource Groups"
@@ -13933,7 +13933,7 @@
           }
         },
         "summary": "List Roles",
-        "operationId": "List Roles",
+        "operationId": "listRoles",
         "description": "List all roles. Must be called by an admin user.",
         "tags": [
           "Roles"
@@ -14006,7 +14006,7 @@
           }
         },
         "summary": "Get Role Details",
-        "operationId": "Get Role Details",
+        "operationId": "getRoleDetails",
         "description": "Shows details for a role, by ID.\n\nSpecify the role ID in the `roleId` parameter in the URI.",
         "tags": [
           "Roles"
@@ -14111,7 +14111,7 @@
           }
         },
         "summary": "User bulk API",
-        "operationId": "User bulk API",
+        "operationId": "userBulkAPI",
         "description": "<br/>\n\n**Authorization**\n\nOAuth token rendered by Identity Broker.\n\n<br/>\n\nOne of the following OAuth scopes is required:\n\n- `identity:people_rw`\n\n<br/>\n\n**Usage**:\n\n1. The input JSON must conform to the following schema: 'urn:ietf:params:scim:api:messages:2.0:BulkRequest'.\n\n1. The request must be accompanied with a body in JSON format according to the standard SCIM schema definition.\n   The maximum number of operations in a request is 100; an error is thrown if the limit is exceeded.\n\n1. `failOnErrors` parameter\n\n   An integer specifies the number of errors that the service provider will accept before the operation is terminated and an error response is returned.\n   It is OPTIONAL in a request.\n   Maximum number of operations allowed to fail before the server stops processing the request. The value must be between 1 and 100.\n\n1. `operations` parameter\n\n   Contains a list of bulk operations for POST/PATCH/DELETE operations. (REQUIRED)\n    + `operations.method`\n\n      The HTTP method of the current operation. Possible values are POST, PATCH or DELETE.\n    + `operations.path`\n\n      The Resource's relative path. If the method is POST the value must specify a Resource type endpoint;\n      e.g., /Users or /Groups whereas all other method values must specify the path to a specific Resource;\n      e.g., /Users/2819c223-7f76-453a-919d-413861904646.\n    + `operations.data`\n\n      The Resource data as it would appear for a single POST or PATCH Resource operation.\n      It is REQUIRED in a request when method is POST and PATCH.\n      Refer to corresponding wiki for SCIM 2.0 POST, PATCH and DELETE API.\n    + `operations.bulkId`\n\n      The transient identifier of a newly created resource, unique within a bulk request and created by the client.\n      The bulkId serves as a surrogate resource id enabling clients to uniquely identify newly created resources in the response and cross-reference new resources in and across operations within a bulk request.\n      It is REQUIRED when \"method\" is \"POST\".",
         "tags": [
           "Bulk Manage SCIM 2 Users and Groups"
@@ -14292,7 +14292,7 @@
           }
         },
         "summary": "Create a group",
-        "operationId": "Create a group",
+        "operationId": "createAGroup",
         "description": "Create a new group for a given organization. The group may optionally be created with group members.\n\n<br/>\n\n**Authorization**\n\nOAuth token returned by Identity Broker.\n\n<br/>\n\nOne of the following OAuth scopes is required:\n\n- `identity:people_rw`\n\n<br/>\n\nThe following administrators can use this API:\n\n- `id_full_admin`\n\n- `id_group_admin`\n\n<br/>\n\n**Usage**:\n\n1. The input JSON must conform to one of the following schemas:\n    - `urn:ietf:params:scim:schemas:core:2.0:Group`\n    - `urn:scim:schemas:extension:cisco:webexidentity:2.0:Group`\n\n1. Unrecognized schemas (ID/section) are ignored.\n\n1. Read-only attributes provided as input values are ignored.",
         "tags": [
           "SCIM 2 Groups"
@@ -14575,7 +14575,7 @@
           }
         },
         "summary": "Search groups",
-        "operationId": "Search groups",
+        "operationId": "searchGroups",
         "description": "Retrieve a list of groups in the organization.\n\nLong result sets are split into [pages](/docs/basics#pagination).\n\n<br/>\n\n**Authorization**\n\nAn OAuth token rendered by Identity Broker.\n\n<br/>\n\nOne of the following OAuth scopes is required:\n\n- `identity:people_rw`\n\n- `identity:people_read`\n\n<br/>\n\nThe following administrators can use this API:\n\n- `id_full_admin`\n\n- `id_group_admin`\n\n- `id_readonly_admin`\n\n- `id_device_admin`",
         "tags": [
           "SCIM 2 Groups"
@@ -14814,7 +14814,7 @@
           }
         },
         "summary": "Get a group",
-        "operationId": "Get a group",
+        "operationId": "getAGroup",
         "description": "Retrieve details for a group, by ID.\n\nOptionally, members can be retrieved with this request. The maximum number of members returned is 500.\n\n<br/>\n\n**Authorization**\n\nOAuth token rendered by Identity Broker.\n\n<br/>\n\nOne of the following OAuth scopes is required:\n\n- `identity:people_rw`\n\n- `identity:people_read`\n\n<br/>\n\nThe following administrators can use this API:\n\n- `id_full_admin`\n\n- `id_group_admin`\n\n- `id_readonly_admin`\n\n- `id_device_admin`",
         "tags": [
           "SCIM 2 Groups"
@@ -14981,7 +14981,7 @@
           }
         },
         "summary": "Update a group with PUT",
-        "operationId": "Update a group with PUT",
+        "operationId": "updateAGroupWithPUT",
         "description": "Replace the contents of the Group.\n\nSpecify the group ID in the `groupId` parameter in the URI.\n\n<br/>\n\n**Authorization**\n\nOAuth token returned by Identity Broker.\n\n<br/>\n\nOne of the following OAuth scopes is required:\n\n- `identity:people_rw`\n\n<br/>\n\nThe following administrators can use this API:\n\n- `id_full_admin`\n\n- `id_group_admin`\n\n<br/>\n\n**Usage**:\n\n1. The input JSON must conform to one of the following schemas:\n    - `urn:ietf:params:scim:schemas:core:2.0:Group`\n    - `urn:scim:schemas:extension:cisco:webexidentity:2.0:Group`\n\n1. Unrecognized schemas (ID/section) are ignored.\n\n1. Read-only attributes provided as input values are ignored.\n\n1. The group `id` is not changed.\n\n1. All attributes are cleaned up if a new value is not provided by the client.\n\n1. The values, `meta` and `created` are not changed.",
         "tags": [
           "SCIM 2 Groups"
@@ -15197,7 +15197,7 @@
           }
         },
         "summary": "Update a group with PATCH",
-        "operationId": "Update a group with PATCH",
+        "operationId": "updateAGroupWithPATCH",
         "description": "Update group attributes with PATCH.\n\nSpecify the group ID in the `groupId` parameter in the URI.\n\n<br/>\n\n**Authorization**\n\nOAuth token returned by Identity Broker.\n\n<br/>\n\nOne of the following OAuth scopes is required:\n\n- `identity:people_rw`\n\n<br/>\n\nThe following administrators can use this API:\n\n- `id_full_admin`\n\n- `id_group_admin`\n\n<br/>\n\n**Usage**:\n\n1. The input JSON must conform to one of the following schemas:\n    - `urn:ietf:params:scim:schemas:core:2.0:Group`\n    - `urn:scim:schemas:extension:cisco:webexidentity:2.0:Group`\n\n1. Unrecognized schemas (ID/section) are ignored.\n\n1. Read-only attributes provided as input values are ignored.\n\n1. Each operation on an attribute must be compatible with the attribute's mutability.\n\n1. Each PATCH operation represents a single action to be applied to the\n   same SCIM resource specified by the request URI. Operations are\n   applied sequentially in the order they appear in the array. Each\n   operation in the sequence is applied to the target resource; the\n   resulting resource becomes the target of the next operation.\n   Evaluation continues until all operations are successfully applied or\n   until an error condition is encountered.\n\n<br/>\n\n**Add operations**:\n\nThe `add` operation is used to add a new attribute value to an existing resource. The operation must contain a `value` member whose content specifies the value to be added. The value may be a quoted value, or it may be a JSON object containing the sub-attributes of the complex attribute specified in the operation's `path`. The result of the add operation depends upon the target location indicated by `path` references:\n\n<br/>\n\n- If omitted, the target location is assumed to be the resource itself. The `value` parameter contains a set of attributes to be added to the resource.\n\n- If the target location does not exist, the attribute and value are added.\n\n- If the target location specifies a complex attribute, a set of sub-attributes shall be specified in the `value` parameter.\n\n- If the target location specifies a multi-valued attribute, a new value is added to the attribute.\n\n- If the target location specifies a single-valued attribute, the existing value is replaced.\n\n- If the target location specifies an attribute that does not exist (has no value), the attribute is added with the new value.\n\n- If the target location exists, the value is replaced.\n\n- If the target location already contains the value specified, no changes should be made to the resource.\n\n<br/>\n\n**Replace operations**:\n\nThe `replace` operation replaces the value at the target location specified by the `path`. The operation performs the following functions, depending on the target location specified by `path`:\n\n<br/>\n\n- If the `path` parameter is omitted, the target is assumed to be the resource itself. In this case, the `value` attribute shall contain a list of one or more attributes that are to be replaced.\n\n- If the target location is a single-value attribute, the value of the attribute is replaced.\n\n- If the target location is a multi-valued attribute and no filter is specified, the attribute and all values are replaced.\n\n- If the target location path specifies an attribute that does not exist, the service provider shall treat the operation as an \"add\".\n\n- If the target location specifies a complex attribute, a set of sub-attributes SHALL be specified in the `value` parameter, which replaces any existing values or adds where an attribute did not previously exist. Sub-attributes that are not specified in the `value` parameters are left unchanged.\n\n- If the target location is a multi-valued attribute and a value selection (\"valuePath\") filter is specified that matches one or more values of the multi-valued attribute, then all matching record values will be replaced.\n\n- If the target location is a complex multi-valued attribute with a value selection filter (\"valuePath\") and a specific sub-attribute (e.g., \"addresses[type eq \"work\"].streetAddress\"), the matching sub-attribute of all matching records is replaced.\n\n- If the target location is a multi-valued attribute for which a value selection filter (\"valuePath\") has been supplied and no record match was made, the service provider will indicate the failure by returning HTTP status code 400 and a `scimType` error code of `noTarget`.\n\n<br/>\n\n**Remove operations**:\n\nThe `remove` operation removes the value at the target location specified by the required attribute `path`. The operation performs the following functions, depending on the target location specified by `path`:\n\n<br/>\n\n- If `path` is unspecified, the operation fails with HTTP status code 400 and a \"scimType\" error code of \"noTarget\".\n\n- If the target location is a single-value attribute, the attribute and its associated value is removed, and the attribute will be considered unassigned.\n\n- If the target location is a multi-valued attribute and no filter is specified, the attribute and all values are removed, and the attribute SHALL be considered unassigned.\n\n- If the target location is a multi-valued attribute and a complex filter is specified comparing a `value`, the values matched by the filter are removed. If no other values remain after the removal of the selected values, the multi-valued attribute will be considered unassigned.\n\n- If the target location is a complex multi-valued attribute and a complex filter is specified based on the attribute`s sub-attributes, the matching records are removed. Sub-attributes whose values have been removed will be considered unassigned. If the complex multi-valued attribute has no remaining records, the attribute will be considered unassigned.",
         "tags": [
           "SCIM 2 Groups"
@@ -15310,7 +15310,7 @@
           }
         },
         "summary": "Delete a group",
-        "operationId": "Delete a group",
+        "operationId": "deleteAGroup",
         "description": "Remove a group from the system.\n\nSpecify the group ID in the `groupId` parameter in the URI.\n\n<br/>\n\n**Authorization**\n\nOAuth token rendered by Identity Broker.\n\n<br/>\n\nOne of the following OAuth scopes is required:\n\n- `identity:people_rw`\n\n<br/>\n\nThe following administrators can use this API:\n\n- `id_full_admin`\n\n- `id_group_admin`",
         "tags": [
           "SCIM 2 Groups"
@@ -15421,7 +15421,7 @@
           }
         },
         "summary": "Get Group Members",
-        "operationId": "Get Group Members",
+        "operationId": "getGroupMembers",
         "description": "Returns the members of a group.\n\n- The default maximum number of members returned is 500.\n\n- Control parameters are available to page through the members and to control the size of the results.\n\n- Long result sets are split into [pages](/docs/basics#pagination).\n\n**Note**\nLocation groups are different from SCIM groups. You cannot search for identities in a location via groups.\n\n<br/>\n\n**Authorization**\n\nOAuth token returned by the Identity Broker.\n\n<br/>\n\nOne of the following OAuth scopes is required:\n\n- `identity:people_rw`\n\n- `identity:people_read`\n\n<br/>\n\nThe following administrators can use this API:\n\n- `id_full_admin`\n\n- `id_group_admin`\n\n- `id_readonly_admin`\n\n- `id_device_admin`",
         "tags": [
           "SCIM 2 Groups"
@@ -15951,7 +15951,7 @@
           }
         },
         "summary": "Get Group Schema",
-        "operationId": "Get Group Schema",
+        "operationId": "getGroupSchema",
         "description": "This API allows the service client to get all the `Group` schemas information from CI.\n\n**Authorization:**\n\nOAuth token rendered by Identity Broker.\n\nOne of the following OAuth scopes is required:\n\n- `identity:people_rw`\n\n- `identity:organizations_rw`\n\nThe following administrators can use this API:\n\n- `id_full_admin`\n\n- `id_user_admin`\n\n- `id_readonly_admin`\n\n- `id_device_admin`",
         "tags": [
           "SCIM 2 Schemas"
@@ -18846,7 +18846,7 @@
           }
         },
         "summary": "Get User Schema",
-        "operationId": "Get User Schema",
+        "operationId": "getUserSchema",
         "description": "This API allows the service client to get all the `User` schemas information from CI.\n\n**Authorization:**\n\nOAuth token rendered by Identity Broker.\n\nOne of the following OAuth scopes is required:\n\n- `identity:people_rw`\n\n- `identity:organizations_rw`\n\nThe following administrators can use this API:\n\n- `id_full_admin`\n\n- `id_user_admin`\n\n- `id_readonly_admin`\n\n- `id_device_admin`",
         "tags": [
           "SCIM 2 Schemas"
@@ -19028,7 +19028,7 @@
           }
         },
         "summary": "Get Schema using Group Schema ID",
-        "operationId": "Get Schema using Group Schema ID",
+        "operationId": "getSchemaUsingGroupSchemaID",
         "description": "This API allows the service client to get the Group/User Schema using `Schema Id` from CI.\n\nExample:\n\n- `urn:ietf:params:scim:schemas:core:2.0:Group` is one of the `Group Schema Id`. Using this particular ID, we can fetch all information related to it.\n\n- `urn:ietf:params:scim:schemas:extension:enterprise:2.0:User` is one of the `User Schema Id`. Using this particular ID, we can fetch all information related to it.\n\n**Authorization:**\n\nOAuth token rendered by Identity Broker.\n\nOne of the following OAuth scopes is required:\n\n- `identity:people_rw`\n\n- `identity:organizations_rw`\n\nThe following administrators can use this API:\n\n- `id_full_admin`\n\n- `id_user_admin`\n\n- `id_readonly_admin`\n\n- `id_device_admin`",
         "tags": [
           "SCIM 2 Schemas"
@@ -19248,7 +19248,7 @@
           }
         },
         "summary": "Create a user",
-        "operationId": "Create a user",
+        "operationId": "createAUser",
         "description": "The SCIM 2 /Users API provides a programmatic way to manage users in Webex Identity using The Internet Engineering Task Force standard SCIM 2.0 standard as specified by [RFC 7643 SCIM 2.0 Core Schema ](https://datatracker.ietf.org/doc/html/rfc7643) and [RFC 7644 SCIM 2.0 Core Protocol](https://datatracker.ietf.org/doc/html/rfc7644).  The WebEx SCIM 2.0  APIs allow clients supporting the SCIM 2.0 standard to manage users, and groups within Webex.  Webex supports the following SCIM 2.0 Schemas:\n\n• urn:ietf:params:scim:schemas:core:2.0:User\n\n• urn:ietf:params:scim:schemas:extension:enterprise:2.0:User\n\n• urn:scim:schemas:extension:cisco:webexidentity:2.0:User\n\n<br/>\n\n**Authorization**\n\nOAuth token rendered by Identity Broker.\n\n<br/>\n\nOne of the following OAuth scopes is required:\n\n- `identity:people_rw`\n\n<br/>\n\nThe following administrators can use this API:\n\n- `id_full_admin`\n\n- `id_user_admin`\n\n<br/>\n\n**Usage**:\n\n1. Input JSON must contain schema: \"urn:ietf:params:scim:schemas:core:2.0:User\".\n\n2. Support 3 schemas :\n    - \"urn:ietf:params:scim:schemas:core:2.0:User\"\n    - \"urn:ietf:params:scim:schemas:extension:enterprise:2.0:User\"\n    - \"urn:scim:schemas:extension:cisco:webexidentity:2.0:User\"\n\n3. Unrecognized schemas (ID/section) are ignored.\n\n4. Read-only attributes provided as input values are ignored.\n\n The following roles cannot be assigned to a user:\n\n1. Location Admin\n\n2. Webex Site Admin",
         "tags": [
           "SCIM 2 Users"
@@ -19442,7 +19442,7 @@
           }
         },
         "summary": "Search users",
-        "operationId": "Search users",
+        "operationId": "searchUsers",
         "description": "<br/>\n\n**Authorization**\n\nOAuth token rendered by Identity Broker.\n\n<br/>\n\nOne of the following OAuth scopes is required:\n\n- `identity:people_rw`\n\n- `identity:people_read`\n\n<br/>\n\nThe following administrators can use this API:\n\n- `id_full_admin`\n\n- `id_user_admin`\n\n- `id_readonly_admin`\n\n- `id_device_admin`\n\n<br/>",
         "tags": [
           "SCIM 2 Users"
@@ -19612,7 +19612,7 @@
           }
         },
         "summary": "Get a user",
-        "operationId": "Get a user",
+        "operationId": "getAUser",
         "description": "<br/>\n\n**Authorization**\n\nOAuth token rendered by Identity Broker.\n\n<br/>\n\nOne of the following OAuth scopes is required:\n\n- `identity:people_rw`\n\n- `identity:people_read`\n\n<br/>\n\nThe following administrators can use this API:\n\n- `id_full_admin`\n\n- `id_user_admin`\n\n- `id_readonly_admin`\n\n- `id_device_admin`\n\n<br/>",
         "tags": [
           "SCIM 2 Users"
@@ -19700,7 +19700,7 @@
           }
         },
         "summary": "Update a user with PUT",
-        "operationId": "Update a user with PUT",
+        "operationId": "updateAUserWithPUT",
         "description": "<br/>\n\n**Authorization**\n\nOAuth token rendered by Identity Broker.\n\n<br/>\n\nOne of the following OAuth scopes is required:\n\n- `identity:people_rw`\n\n<br/>\n\nThe following administrators can use this API:\n\n- `id_full_admin`\n\n- `id_user_admin`\n\n<br/>\n\n**Usage**:\n\n1. Input JSON must contain schema: \"urn:ietf:params:scim:schemas:core:2.0:User\".\n\n2. Support 3 schemas :\n    - \"urn:ietf:params:scim:schemas:core:2.0:User\"\n    - \"urn:ietf:params:scim:schemas:extension:enterprise:2.0:User\"\n    - \"urn:scim:schemas:extension:cisco:webexidentity:2.0:User\"\n\n3. Unrecognized schemas (ID/section) are ignored.\n\n4. Read-only attributes provided as input values are ignored.\n\n5. User `id` will not be changed.\n\n6. `meta`.`created` will not be changed.\n\n7. The PUT API replaces the contents of the user's data with the data in the request body.  All attributes specified in the request body will replace all existing attributes for the `userId` specified in the URL.  Should you wish to replace or change some attributes as opposed to all attributes please refer to the SCIM PATCH operation https://developer.webex.com/docs/api/v1/scim2-user/update-a-user-with-patch.\n\n<br/>\n\n**NOTE**:\n\nOnce a user's role or managed roles are changed, all tokens associated with that user will be invalidated.",
         "tags": [
           "SCIM 2 Users"
@@ -20037,7 +20037,7 @@
           }
         },
         "summary": "Update a user with PATCH",
-        "operationId": "Update a user with PATCH",
+        "operationId": "updateAUserWithPATCH",
         "description": "<br/>\n\n**Authorization**\n\nOAuth token rendered by Identity Broker.\n\n<br/>\n\nOne of the following OAuth scopes is required:\n\n- `identity:people_rw`\n\n<br/>\n\nThe following administrators can use this API:\n\n- `id_full_admin`\n\n- `id_user_admin`\n\n<br/>\n\n**Usage**:\n\n1. The PATCH API replaces individual attributes and roles of the user's data in the request body.\n   The PATCH API supports `add`, `remove`, and `replace` operations on any individual\n   attribute or role allowing only specific attributes of the user's object to be modified.\n\n2. Each operation against an attribute must be compatible with the attribute's mutability.\n\n3. Each PATCH operation represents a single action to be applied to the\n   same SCIM resource specified by the request URI.  Operations are\n   applied sequentially in the order they appear in the array.  Each\n   operation in the sequence is applied to the target resource; the\n   resulting resource becomes the target of the next operation.\n   Evaluation continues until all operations are successfully applied or\n   until an error condition is encountered.\n\n<br/>\n\n**Add operations**:\n\nThe `add` operation adds a new attribute value to an existing resource.\nThe operation must contain a `value` member whose content specifies the value to be added.\nThe value may be a quoted value, or it may be a JSON object containing the sub-attributes of the complex attribute specified in the operation's `path`.\nThe result of the add operation depends upon the target `path` reference locations:\n\n<br/>\n\n- If omitted, the target location is assumed to be the resource itself.  The `value` parameter contains a set of attributes to be added to the resource.\n\n- If the target location does not exist, the attribute and value are added.\n\n- If the target location specifies a complex attribute, a set of sub-attributes shall be specified in the `value` parameter.\n\n- If the target location specifies a multi-valued attribute, a new value is added to the attribute.\n\n- If the target location specifies a single-valued attribute, the existing value is replaced.\n\n- If the target location specifies an attribute that does not exist (has no value), the attribute is added with the new value.\n\n- If the target location exists, the value is replaced.\n\n- If the target location already contains the value specified, no changes should be made to the resource.\n\n<br/>\n\n**Replace operations**:\n\nThe `replace` operation replaces the value at the target location specified by the `path`.\nThe operation performs the following functions, depending on the target location specified by `path`:\n\n<br/>\n\n- If the `path` parameter is omitted, the target is assumed to be the resource itself.  In this case, the `value` attribute shall contain a list of one or more attributes to be replaced.\n\n- If the target location is a single-value attribute, the value of the attribute is replaced.\n\n- If the target location is a multi-valued attribute and no filter is specified, the attribute and all values are replaced.\n\n- If the target location path specifies an attribute that does not exist, the service provider shall treat the operation as an \"add\".\n\n- If the target location specifies a complex attribute, a set of sub-attributes SHALL be specified in the `value` parameter, which replaces any existing values or adds where an attribute did not previously exist.  Sub-attributes not specified in the `value` parameters are left unchanged.\n\n- If the target location is a multi-valued attribute and a value selection (\"valuePath\") filter is specified that matches one or more values of the multi-valued attribute, then all matching record values will be replaced.\n\n- If the target location is a complex multi-valued attribute with a value selection filter (\"valuePath\") and a specific sub-attribute (e.g., \"addresses[type eq \"work\"].streetAddress\"), the matching sub-attribute of all matching records is replaced.\n\n- If the target location is a multi-valued attribute for which a value selection filter (\"valuePath\") has been supplied and no record match was made, the service provider will return failure as HTTP status code 400 and a `scimType` error code of \"noTarget\".\n\n<br/>\n\n**Remove operations**:\n\nThe `remove` operation removes the value at the target location specified by the required attribute `path`.  The operation performs the following functions, depending on the target location specified by `path`:\n\n<br/>\n\n- If `path` is unspecified, the operation fails with HTTP status code 400 and a \"scimType\" error code of \"noTarget\".\n\n- If the target location is a single-value attribute, the attribute and its associated value is removed, and the attribute will be considered unassigned.\n\n- If the target location is a multi-valued attribute and no filter is specified, the attribute and all values are removed, and the attribute SHALL be considered unassigned.\n\n- If the target location is a multi-valued attribute and a complex filter is specified comparing a `value`, the values matched by the filter are removed.  If no other values remain after the removal of the selected values, the multi-valued attribute will be considered unassigned.\n\n- If the target location is a complex multi-valued attribute and a complex filter is specified based on the attribute's sub-attributes, the matching records are removed.  Sub-attributes whose values have been removed will be considered unassigned.  If the complex multi-valued attribute has no remaining records, the attribute will be considered unassigned.\n\n The following roles cannot be assigned to a user:\n\n1. Location Admin\n\n2. Webex Site Admin \n\n<br/>\n\n**NOTE**:\n\nOnce a user's role or managed roles are changed, all tokens associated with that user will be invalidated.",
         "tags": [
           "SCIM 2 Users"
@@ -20146,7 +20146,7 @@
           }
         },
         "summary": "Delete a user",
-        "operationId": "Delete a user",
+        "operationId": "deleteAUser",
         "description": "<br/>\n\n**Authorization**\n\nOAuth token rendered by Identity Broker.\n\n<br/>\n\nOne of the following OAuth scopes is required:\n\n- `identity:people_rw`\n\n<br/>\n\nThe following administrators can use this API:\n\n- `id_full_admin`\n\n- `id_user_admin`\n\n<br/>",
         "tags": [
           "SCIM 2 Users"
@@ -20236,7 +20236,7 @@
           }
         },
         "summary": "Get Me",
-        "operationId": "Get Me",
+        "operationId": "getMe",
         "description": "<br/>\n\n**Authorization**\n\nOAuth token rendered by Identity Broker.\n\n<br/>\n\nOne of the following OAuth scopes is required:\n\n- `identity:people_rw`\n\n- `identity:people_read`\n\n<br/>\n\nThe API can be used by any user to retrieve user information using their own access token.\n\n<br/>",
         "tags": [
           "SCIM 2 Users"
@@ -20337,7 +20337,7 @@
           }
         },
         "summary": "List Security Audit Events",
-        "operationId": "List Security Audit Events",
+        "operationId": "listSecurityAuditEvents",
         "description": "List Security Audit Events. This API currently returns user sign-in and sign-out data.\nTo call this API the `audit:events_read` scope must be selected for the Integration or Service App and authorized by a Full Admin.\n\nSeveral query parameters are available to filter the response.\n\nLong result sets will be split into multiple [pages](/docs/basics#pagination)\n\n**NOTE**: A maximum of one year of audit events can be returned per request.",
         "tags": [
           "Security Audit Events"
@@ -20501,7 +20501,7 @@
           }
         },
         "summary": "Initiate Bulk Activation Email Resend Job",
-        "operationId": "Initiate Bulk Activation Email Resend Job",
+        "operationId": "initiateBulkActivationEmailResendJob",
         "description": "Initiate a bulk activation email resend job that sends an activation email to all eligible users in an organization. Only a single instance of the job can be running for an organization.\n\nRequires a full or user administrator auth token with a scope of `spark-admin:people_write`.",
         "tags": [
           "Send Activation Email"
@@ -20633,7 +20633,7 @@
           }
         },
         "summary": "Get Bulk Activation Email Resend Job Status",
-        "operationId": "Get Bulk Activation Email Resend Job Status",
+        "operationId": "getBulkActivationEmailResendJobStatus",
         "description": "Get the details of an activation email resend job by its job ID.\n\nRequires a full or user administrator auth token with a scope of `spark-admin:people_write` or read-only administrator auth token with a scope of `spark-admin:people_read`.",
         "tags": [
           "Send Activation Email"
@@ -20747,7 +20747,7 @@
           }
         },
         "summary": "Get Bulk Activation Email Resend Job Errors",
-        "operationId": "Get Bulk Activation Email Resend Job Errors",
+        "operationId": "getBulkActivationEmailResendJobErrors",
         "description": "Get errors of an activation email resend job by its job ID.\n\nRequires a full or user administrator auth token with a scope of `spark-admin:people_write` or read-only administrator auth token with a scope of `spark-admin:people_read`.",
         "tags": [
           "Send Activation Email"
@@ -21001,7 +21001,7 @@
           }
         },
         "summary": "Get an Organization Setting",
-        "operationId": "Get an Organization Setting",
+        "operationId": "getAnOrganizationSetting",
         "description": "This endpoint retrieves the specified setting for the given organization and is accessible with the scope 'identity:organizations_read'.",
         "tags": [
           "Settings"
@@ -21096,7 +21096,7 @@
           }
         },
         "summary": "Create or Update an Organization Setting",
-        "operationId": "Create or Update an Organization Setting",
+        "operationId": "createOrUpdateAnOrganizationSetting",
         "description": "This endpoint creates or updates the specified setting for the given organization; however, the 'name' of the setting cannot be modified. It is accessible with the scope 'identity:organizations_rw'.",
         "tags": [
           "Settings"
@@ -21198,7 +21198,7 @@
           }
         },
         "summary": "Retrieve all customer tags",
-        "operationId": "Retrieve all customer tags",
+        "operationId": "retrieveAllCustomerTags",
         "description": "Retrieves all tags which are being used by any customer organizations. Once a tag is unassigned from the last customer, it is automatically removed and is not returned by this API.\nThis API can be used by a partner full admin, a read-only partner, or an partner admin. \nThe `type` can have the value ORGANIZATION or SUBSCRIPTION. If not provided, the value is ORGANIZATION",
         "tags": [
           "Partner Tags"
@@ -21287,7 +21287,7 @@
           }
         },
         "summary": "Create or Replace existing customer tags with the provided ones",
-        "operationId": "Create or Replace existing customer tags with the provided ones",
+        "operationId": "createOrReplaceExistingCustomerTagsWithTheProvidedOnes",
         "description": "Assign or replace tag(s) which for a customer organization. If the tag doesn't already exist, a new one is created and assigned to the customer automatically.\nThis API can be used by partner full admins and partner admins. \nEach tag has a character limit of 25. Currently, there is a limit of 5 tags per organization when creating tags. To remove all the tags, pass an empty array.\nSpecify the customer organization ID in the `orgId` parameter in the URI.",
         "tags": [
           "Partner Tags"
@@ -21384,7 +21384,7 @@
           }
         },
         "summary": "Get customer organization's tags",
-        "operationId": "Get customer organization's tags",
+        "operationId": "getCustomerOrganizationSTags",
         "description": "Retrieve tags associated with a customer organization based on the `orgId` provided.\nThis API can be used by a partner full admin, a read-only partner, or an partner admin. \nSpecify the customer orgId in the `orgId` parameter in the URI.",
         "tags": [
           "Partner Tags"
@@ -21477,7 +21477,7 @@
           }
         },
         "summary": "Fetch all customers for a given set of tags",
-        "operationId": "Fetch all customers for a given set of tags",
+        "operationId": "fetchAllCustomersForAGivenSetOfTags",
         "description": "For a set of tags, retrieve all customer organizations that match any one of the tags.\nThis API can be used by a partner full admin, a read-only partner, or an partner admin.",
         "tags": [
           "Partner Tags"
@@ -21575,7 +21575,7 @@
           }
         },
         "summary": "Create or Replace existing subscription tags with the provided ones",
-        "operationId": "Create or Replace existing subscription tags with the provided ones",
+        "operationId": "createOrReplaceExistingSubscriptionTagsWithTheProvidedOnes",
         "description": "Assign or replace tags specific to each subscription for an organization. Each organization may have one or more subscriptions.\nThis API can be used by partner full admins and partner admins. \nCurrently there is a limit of 5 tags per subscription when creating tags. To remove all the tags, pass an empty array.\nSpecify the customer organization ID in the `orgId` parameter in the URI and subscription ID in `subscriptionId` parameter",
         "tags": [
           "Partner Tags"
@@ -21688,7 +21688,7 @@
           }
         },
         "summary": "Subscription List on a given tag name or a set of tags",
-        "operationId": "Subscription List on a given tag name or a set of tags",
+        "operationId": "subscriptionListOnAGivenTagNameOrASetOfTags",
         "description": "For a partner organization fetch all it's subscriptions with their tag list for a given tag names.\nThis API can be used by partner full admins, partner admins and admin read-only partners.",
         "tags": [
           "Partner Tags"
@@ -21786,7 +21786,7 @@
           }
         },
         "summary": "Fetch a Subscription",
-        "operationId": "Fetch a Subscription",
+        "operationId": "fetchASubscription",
         "description": "For a given partner org, customer org and external subscription id, fetch subscription details with its associated tags.\nThis API can be used by partner full admins, partner admins and admin read-only partners.",
         "tags": [
           "Partner Tags"
@@ -21891,7 +21891,7 @@
           }
         },
         "summary": "List Workspace Locations",
-        "operationId": "List Workspace Locations",
+        "operationId": "listWorkspaceLocations",
         "description": "<div><Callout type=\"warning\">The Workspace Locations API is deprecated and will be decommissioned November 30, 2024. Please use the [/locations API](/docs/api/v1/locations) for future projects, and use `locationId` instead of `workspaceLocationId` when interacting with device or workspace APIs.</Callout></div>\n\nList workspace locations. Use query parameters to filter the response. The `orgId` parameter can only be used by admin users of another\norganization (such as partners). The `displayName`, `address`, `countryCode` and `cityName` parameters are all optional.\nRequires an administrator auth token with the `spark-admin:workspace_locations_read` scope.",
         "tags": [
           "Workspace Locations"
@@ -22016,7 +22016,7 @@
           }
         },
         "summary": "Create a Workspace Location",
-        "operationId": "Create a Workspace Location",
+        "operationId": "createAWorkspaceLocation",
         "description": "<div><Callout type=\"warning\">The Workspace Locations API is deprecated and will be decommissioned November 30, 2024. Please use the [/locations API](/docs/api/v1/locations) for future projects, and use `locationId` instead of `workspaceLocationId` when interacting with device or workspace APIs.</Callout></div>\n\nCreate a location. The `cityName` and `notes` parameters are optional, and omitting them will result in the creation of a location without values for those attributes.\nRequires an administrator auth token with the `spark-admin:workspace_locations_write` scope.",
         "tags": [
           "Workspace Locations"
@@ -22115,7 +22115,7 @@
           }
         },
         "summary": "Get a Workspace Location Details",
-        "operationId": "Get a Workspace Location Details",
+        "operationId": "getAWorkspaceLocationDetails",
         "description": "<div><Callout type=\"warning\">The Workspace Locations API is deprecated and will be decommissioned November 30, 2024. Please use the [/locations API](/docs/api/v1/locations) for future projects, and use `locationId` instead of `workspaceLocationId` when interacting with device or workspace APIs.</Callout></div>\n\nShows details for a location, by ID. Specify the location ID in the `locationId` parameter in the URI.\nRequires an administrator auth token with the `spark-admin:workspace_locations_read` scope.",
         "tags": [
           "Workspace Locations"
@@ -22205,7 +22205,7 @@
           }
         },
         "summary": "Update a Workspace Location",
-        "operationId": "Update a Workspace Location",
+        "operationId": "updateAWorkspaceLocation",
         "description": "<div><Callout type=\"warning\">The Workspace Locations API is deprecated and will be decommissioned November 30, 2024. Please use the [/locations API](/docs/api/v1/locations) for future projects, and use `locationId` instead of `workspaceLocationId` when interacting with device or workspace APIs.</Callout></div>\n\nUpdates details for a location, by ID. Specify the location ID in the `locationId` parameter in the URI. The request should include all details for the location returned in a previous call to [Get Workspace Location Details](/docs/api/v1/workspace-locations/get-a-workspace-location-details). Omitting the optional `cityName` or `notes` fields will result in those fields no longer being defined for the location.\nRequires an administrator auth token with the `spark-admin:workspace_locations_write` scope.",
         "tags": [
           "Workspace Locations"
@@ -22297,7 +22297,7 @@
           }
         },
         "summary": "Delete a Workspace Location",
-        "operationId": "Delete a Workspace Location",
+        "operationId": "deleteAWorkspaceLocation",
         "description": "<div><Callout type=\"warning\">The Workspace Locations API is deprecated and will be decommissioned November 30, 2024. Please use the [/locations API](/docs/api/v1/locations) for future projects, and use `locationId` instead of `workspaceLocationId` when interacting with device or workspace APIs.</Callout></div>\n\nDeletes a location, by ID. The workspaces associated to that location will no longer have a location, but a new location can be reassigned to them.\nRequires an administrator auth token with the `spark-admin:workspace_locations_write` scope.",
         "tags": [
           "Workspace Locations"
@@ -22388,7 +22388,7 @@
           }
         },
         "summary": "List Workspace Location Floors",
-        "operationId": "List Workspace Location Floors",
+        "operationId": "listWorkspaceLocationFloors",
         "description": "<div><Callout type=\"warning\">The Workspace Locations API is deprecated and will be decommissioned November 30, 2024. Please use the [/locations API](/docs/api/v1/locations) for future projects, and use `locationId` instead of `workspaceLocationId` when interacting with device or workspace APIs.</Callout></div>\n\nList workspace location floors.\nRequires an administrator auth token with the `spark-admin:workspace_locations_read` scope.",
         "tags": [
           "Workspace Locations"
@@ -22473,7 +22473,7 @@
           }
         },
         "summary": "Create a Workspace Location Floor",
-        "operationId": "Create a Workspace Location Floor",
+        "operationId": "createAWorkspaceLocationFloor",
         "description": "<div><Callout type=\"warning\">The Workspace Locations API is deprecated and will be decommissioned November 30, 2024. Please use the [/locations API](/docs/api/v1/locations) for future projects, and use `locationId` instead of `workspaceLocationId` when interacting with device or workspace APIs.</Callout></div>\n\nCreate a new floor in the given location. The `displayName` parameter is optional, and omitting it will result in the creation of a floor without that value set.\nRequires an administrator auth token with the `spark-admin:workspace_locations_write` scope.",
         "tags": [
           "Workspace Locations"
@@ -22573,7 +22573,7 @@
           }
         },
         "summary": "Get a Workspace Location Floor Details",
-        "operationId": "Get a Workspace Location Floor Details",
+        "operationId": "getAWorkspaceLocationFloorDetails",
         "description": "<div><Callout type=\"warning\">The Workspace Locations API is deprecated and will be decommissioned November 30, 2024. Please use the [/locations API](/docs/api/v1/locations) for future projects, and use `locationId` instead of `workspaceLocationId` when interacting with device or workspace APIs.</Callout></div>\n\nShows details for a floor, by ID. Specify the floor ID in the `floorId` parameter in the URI.\nRequires an administrator auth token with the `spark-admin:workspace_locations_read` scope.",
         "tags": [
           "Workspace Locations"
@@ -22668,7 +22668,7 @@
           }
         },
         "summary": "Update a Workspace Location Floor",
-        "operationId": "Update a Workspace Location Floor",
+        "operationId": "updateAWorkspaceLocationFloor",
         "description": "<div><Callout type=\"warning\">The Workspace Locations API is deprecated and will be decommissioned November 30, 2024. Please use the [/locations API](/docs/api/v1/locations) for future projects, and use `locationId` instead of `workspaceLocationId` when interacting with device or workspace APIs.</Callout></div>\n\nUpdates details for a floor, by ID. Specify the floor ID in the `floorId` parameter in the URI. Include all details for the floor returned by a previous call to [Get Workspace Location Floor Details](/docs/api/v1/workspace-locations/get-a-workspace-location-details). Omitting the optional `displayName` field will result in that field no longer being defined for the floor.\nRequires an administrator auth token with the `spark-admin:workspace_locations_write` scope.",
         "tags": [
           "Workspace Locations"
@@ -22764,7 +22764,7 @@
           }
         },
         "summary": "Delete a Workspace Location Floor",
-        "operationId": "Delete a Workspace Location Floor",
+        "operationId": "deleteAWorkspaceLocationFloor",
         "description": "<div><Callout type=\"warning\">The Workspace Locations API is deprecated and will be decommissioned November 30, 2024. Please use the [/locations API](/docs/api/v1/locations) for future projects, and use `locationId` instead of `workspaceLocationId` when interacting with device or workspace APIs.</Callout></div>\n\nDeletes a floor, by ID.\nRequires an administrator auth token with the `spark-admin:workspace_locations_write` scope.",
         "tags": [
           "Workspace Locations"
@@ -22865,7 +22865,7 @@
           }
         },
         "summary": "Workspace Metrics",
-        "operationId": "Workspace Metrics",
+        "operationId": "workspaceMetrics",
         "description": "Get metric data for the specified workspace and metric name, optionally aggregated over a specified time period.\n\n* The `workspaceId` and `metricName` parameters indicate which workspace to fetch metrics for and what kind of metrics to get.\n\n* When executing an aggregated query, the result bucket start times will be truncated to the start of an hour or a day, depending on\nthe aggregation interval. However, the buckets will not contain data from outside the requested time range. For example, when\npassing `from=2020-10-21T10:34:56.000Z` and `aggregation=hourly`, the first output bucket would start at `2020-10-21T10:00:00.000Z`,\nbut the bucket would only aggregate data timestamped after `10:34:56`.\n\n* For aggregation modes `none` and `hourly`, the maximum time span is 48 hours. For aggregation mode `daily`, the maximum\ntime span is 30 days.\n\n* If the aggregation mode query parameter is set to `none`, the returned data in the response will be an array of items with the `deviceId`, `timestamp` and the raw `value`.\n\n* If the aggregation mode is `hourly` or `daily`, the returned data in the response will be an array of items with the `start` and `end` of the aggregation time bucket, and the `mean`, `max` and `min` values of the requested value. Note that zeroes and negative values are ignored. For example, this means that the `peopleCount` mean value should be interpreted as the average number of people in the room _when it is in use_.",
         "tags": [
           "Workspace Metrics"
@@ -23039,7 +23039,7 @@
           }
         },
         "summary": "Workspace Duration Metrics",
-        "operationId": "Workspace Duration Metrics",
+        "operationId": "workspaceDurationMetrics",
         "description": "Get metrics for how much time a workspace has been in the state given by the `measurement` parameter.\n\nFor example, if the measurement is  `timeBooked` then the duration for which the workspace has been booked is returned. The `workspaceId` parameter indicates which workspace to fetch metrics for. If no `measurement` is given, the default value is `timeUsed`.\n\n* When executing a query, the result bucket start times will default to the start of an hour or a day, depending on\nthe aggregation interval. However, the buckets will not contain data from outside the requested time range. For example, when\npassing `from=2020-10-21T10:34:56.000Z` and `aggregation=hourly`, the first output bucket would start at `2020-10-21T10:00:00.000Z`,\nbut the bucket would only aggregate data timestamped after `10:34:56`.\n\n* For aggregation mode `hourly`, the maximum time span is 48 hours. For aggregation mode `daily`, the maximum\ntime span is 30 days.",
         "tags": [
           "Workspace Metrics"

@@ -86,7 +86,7 @@
           }
         },
         "summary": "Create an Attachment Action",
-        "operationId": "Create an Attachment Action",
+        "operationId": "createAnAttachmentAction",
         "description": "Create a new attachment action.",
         "tags": [
           "Attachment Actions"
@@ -188,7 +188,7 @@
           }
         },
         "summary": "Get Attachment Action Details",
-        "operationId": "Get Attachment Action Details",
+        "operationId": "getAttachmentActionDetails",
         "description": "Shows details for a attachment action, by ID.\n\nSpecify the attachment action ID in the `id` URI parameter.",
         "tags": [
           "Attachment Actions"
@@ -290,7 +290,7 @@
           }
         },
         "summary": "List ECM folder",
-        "operationId": "List ECM folder",
+        "operationId": "listECMFolder",
         "description": "Lists the ECM folder of a room specified by the `roomId` query parameter.",
         "tags": [
           "ECM folder linking"
@@ -380,7 +380,7 @@
           }
         },
         "summary": "Create an ECM folder configuration",
-        "operationId": "Create an ECM folder configuration",
+        "operationId": "createAnECMFolderConfiguration",
         "description": "Adds an existing ECM folder to a room as (default or reference) file storage. There is no data validation happening for the request. Please ensure the correct `driveId` and `itemId.` These can be collected from the MS Graph API. The `contentUrl` and `displayName` are used only for user convenience. The folder will be configured with the MS folder name as `displayName`, and the `contentURL` may be updated or corrected as needed. To assess final configuration, please make a GET request on the linkedFolder.",
         "tags": [
           "ECM folder linking"
@@ -518,7 +518,7 @@
           }
         },
         "summary": "Get ECM Folder Details",
-        "operationId": "Get ECM Folder Details",
+        "operationId": "getECMFolderDetails",
         "description": "Get details for a room ECM folder with the specified folder id.",
         "tags": [
           "ECM folder linking"
@@ -608,7 +608,7 @@
           }
         },
         "summary": "Update an ECM Linked Folder",
-        "operationId": "Update an ECM Linked Folder",
+        "operationId": "updateAnECMLinkedFolder",
         "description": "Updates the configuration of the specified Room folder. There is no data validation happening for the request. Please ensure the correct `driveId` and `itemId.` These can be collected from the MS Graph API. The `contentUrl` and `displayName` are used only for user convenience. The folder will be configured with the MS folder name as `displayName`, and the `contentURL` may be updated or corrected as needed. To assess final configuration, please make a GET request on the linkedFolder.",
         "tags": [
           "ECM folder linking"
@@ -737,7 +737,7 @@
           }
         },
         "summary": "Unlink an ECM linked folder",
-        "operationId": "Unlink an ECM linked folder",
+        "operationId": "unlinkAnECMLinkedFolder",
         "description": "Unlinks the room-linked folder with the specified ID from the space.",
         "tags": [
           "ECM folder linking"
@@ -878,7 +878,7 @@
           }
         },
         "summary": "List Events",
-        "operationId": "List Events",
+        "operationId": "listEvents",
         "description": "List events in your organization. Several query parameters are available to filter the events returned in the response.\n\nLong result sets will be split into [pages](/docs/basics#pagination).",
         "tags": [
           "Events"
@@ -1087,7 +1087,7 @@
           }
         },
         "summary": "Get Event Details",
-        "operationId": "Get Event Details",
+        "operationId": "getEventDetails",
         "description": "Shows details for an event, by event ID.\n\nSpecify the event ID in the `eventId` parameter in the URI.",
         "tags": [
           "Events"
@@ -2535,7 +2535,7 @@
           }
         },
         "summary": "List Memberships",
-        "operationId": "List Memberships",
+        "operationId": "listMemberships",
         "description": "Lists all room memberships. By default, lists memberships for rooms to which the authenticated user belongs.\n\nUse query parameters to filter the response.\n\nUse `roomId` to list memberships for a room, by ID.\n\n**NOTE**: For moderated team spaces, the list of memberships will include only the space moderators if the user is a team member but not a direct participant of the space.\n\nUse either `personId` or `personEmail` to filter the results. The `roomId` parameter is required when using these parameters.\n\nWhen the requester is a compliance officer, they can query by `personId` or `personEmail` **WITHOUT** specifying a `roomId`. The response will include **ALL** memberships for the user where a space is owned by an org to which the user belongs.\n\nLong result sets will be split into [pages](/docs/basics#pagination).",
         "tags": [
           "Memberships"
@@ -2653,7 +2653,7 @@
           }
         },
         "summary": "Create a Membership",
-        "operationId": "Create a Membership",
+        "operationId": "createAMembership",
         "description": "Add someone to a room by Person ID or email address, optionally making them a moderator. Compliance Officers cannot add people to empty (team) spaces.",
         "tags": [
           "Memberships"
@@ -2775,7 +2775,7 @@
           }
         },
         "summary": "Get Membership Details",
-        "operationId": "Get Membership Details",
+        "operationId": "getMembershipDetails",
         "description": "Get details for a membership by ID.\n\nSpecify the membership ID in the `membershipId` URI parameter.",
         "tags": [
           "Memberships"
@@ -2866,7 +2866,7 @@
           }
         },
         "summary": "Update a Membership",
-        "operationId": "Update a Membership",
+        "operationId": "updateAMembership",
         "description": "Updates properties for a membership by ID.\n\nSpecify the membership ID in the `membershipId` URI parameter.",
         "tags": [
           "Memberships"
@@ -2966,7 +2966,7 @@
           }
         },
         "summary": "Delete a Membership",
-        "operationId": "Delete a Membership",
+        "operationId": "deleteAMembership",
         "description": "Deletes a membership by ID.\n\nSpecify the membership ID in the `membershipId` URI parameter.\n\nThe membership for the last moderator of a [Team](/docs/api/v1/teams)'s General space may not be deleted; [promote another user](/docs/api/v1/team-memberships/update-a-team-membership) to team moderator first.",
         "tags": [
           "Memberships"
@@ -3102,7 +3102,7 @@
           }
         },
         "summary": "List Messages",
-        "operationId": "List Messages",
+        "operationId": "listMessages",
         "description": "Lists all messages in a room.  Each message will include content attachments if present.\n\nThe list sorts the messages in descending order by creation date.\n\nLong result sets will be split into [pages](/docs/basics#pagination).",
         "tags": [
           "Messages"
@@ -3281,7 +3281,7 @@
           }
         },
         "summary": "Create a Message",
-        "operationId": "Create a Message",
+        "operationId": "createAMessage",
         "description": "Post a plain text or [rich text](/docs/basics#formatting-messages) message, and optionally, a [file attachment](/docs/basics#message-attachments) attachment, to a room.\n\nThe `files` parameter is an array, which accepts multiple values to allow for future expansion, but currently only one file may be included with the message. File previews are only rendered for attachments of 1MB or less.",
         "tags": [
           "Messages"
@@ -3484,7 +3484,7 @@
           }
         },
         "summary": "List Direct Messages",
-        "operationId": "List Direct Messages",
+        "operationId": "listDirectMessages",
         "description": "List all messages in a 1:1 (direct) room. Use the `personId` or `personEmail` query parameter to specify the room. Each message will include content attachments if present.\n\nThe list sorts the messages in descending order by creation date.",
         "tags": [
           "Messages"
@@ -3627,7 +3627,7 @@
           }
         },
         "summary": "Edit a Message",
-        "operationId": "Edit a Message",
+        "operationId": "editAMessage",
         "description": "Update a message you have posted not more than 10 times.\n\nSpecify the `messageId` of the message you want to edit.\n\nEdits of messages containing files or attachments are not currently supported.\nIf a user attempts to edit a message containing files or attachments a `400 Bad Request` will be returned by the API with a message stating that the feature is currently unsupported.\n\nThere is also a maximum number of times a user can edit a message. The maximum currently supported is 10 edits per message.\n    If a user attempts to edit a message greater that the maximum times allowed the API will return 400 Bad Request with a message stating the edit limit has been reached.\n\nWhile only the `roomId` and `text` or `markdown` attributes are *required* in the request body, a common pattern for editing message is to first call `GET /messages/{id}` for the message you wish to edit and to then update the `text` or `markdown` attribute accordingly, passing the updated message object in the request body of the `PUT /messages/{id}` request.\nWhen this pattern is used on a message that included markdown, the `html` attribute must be deleted prior to making the `PUT` request.",
         "tags": [
           "Messages"
@@ -3780,7 +3780,7 @@
           }
         },
         "summary": "Get Message Details",
-        "operationId": "Get Message Details",
+        "operationId": "getMessageDetails",
         "description": "Show details for a message, by message ID.\n\nSpecify the message ID in the `messageId` parameter in the URI.",
         "tags": [
           "Messages"
@@ -3852,7 +3852,7 @@
           }
         },
         "summary": "Delete a Message",
-        "operationId": "Delete a Message",
+        "operationId": "deleteAMessage",
         "description": "Delete a message, by message ID.\n\nSpecify the message ID in the `messageId` parameter in the URI.",
         "tags": [
           "Messages"
@@ -4003,7 +4003,7 @@
           }
         },
         "summary": "List People",
-        "operationId": "List People",
+        "operationId": "listPeople",
         "description": "List people in your organization. For most users, either the `email` or `displayName` parameter is required. Admin users can omit these fields and list all users in their organization.\n\nResponse properties associated with a user's presence status, such as `status` or `lastActivity`, will only be returned for people within your organization or an organization you manage. Presence information will not be returned if the authenticated user has [disabled status sharing](https://help.webex.com/nkzs6wl/). Calling /people frequently to poll `status` information for a large set of users will quickly lead to `429` errors and throttling of such requests and is therefore discouraged.\n\nAdmin users can include `Webex Calling` (BroadCloud) user details in the response by specifying `callingData` parameter as `true`. Admin users can list all users in a location. Admin users will receive an enriched payload with additional administrative fields like `licenses`,`roles`, `locations` etc. These fields are shown when accessing a user via GET /people/{id}, not when doing a GET /people?id=\n\nLookup by `email` is only supported for people within the same org or where a partner admin relationship is in place.\n\nLookup by `roles` is only supported for Admin users for the people within the same org.\n\nLong result sets will be split into [pages](/docs/basics#pagination).",
         "tags": [
           "People"
@@ -4215,7 +4215,7 @@
           }
         },
         "summary": "Create a Person",
-        "operationId": "Create a Person",
+        "operationId": "createAPerson",
         "description": "Create a new user account for a given organization. Only an admin can create a new user account.\n\nAt least one of the following body parameters is required to create a new user: `displayName`, `firstName`, `lastName`.\n\nCurrently, users may have only one email address associated with their account. The `emails` parameter is an array, which accepts multiple values to allow for future expansion, but currently only one email address will be used for the new user.\n\nAdmin users can include `Webex calling` (BroadCloud) user details in the response by specifying `callingData` parameter as true. It may happen that the POST request with calling data returns a 400 status, but the person was created still. One way to get into this state is if an invalid phone number is assigned to a user. The people API aggregates calls to several other microservices, and one may have failed. A best practice is to check if the user exists before retrying. This can be done with the user's email address and a GET /people.\n\nWhen doing attendee management, append `#attendee` to the `siteUrl` parameter (e.g. `mysite.webex.com#attendee`) to make the new user an attendee for a site.\n\n**NOTES**:\n\n* For creating a `Webex Calling` user, you must provide `phoneNumbers` or `extension`, `locationId`, and `licenses` string in the same request.\n\n* `SipAddresses` are asigned via an asynchronous process. This means that the POST response may not show the SIPAddresses immediately. Instead you can verify them with a separate GET to /people, after they were newly configured.\n\n* When assigning multiple licenses in a single request, the system will assign all valid and available licenses. If any requested licenses cannot be assigned, the operation will continue with the remaining licenses. As a result, it is possible that not all requested licenses are assigned to the user.",
         "tags": [
           "People"
@@ -4567,7 +4567,7 @@
           }
         },
         "summary": "Get Person Details",
-        "operationId": "Get Person Details",
+        "operationId": "getPersonDetails",
         "description": "Shows details for a person, by ID.\n\nResponse properties associated with a user's presence status, such as `status` or `lastActivity`, will only be displayed for people within your organization or an organization you manage. Presence information will not be shown if the authenticated user has [disabled status sharing](https://help.webex.com/nkzs6wl/).\n\nAdmin users can include `Webex Calling` (BroadCloud) user details in the response by specifying `callingData` parameter as `true`.\n\nSpecify the person ID in the `personId` parameter in the URI.",
         "tags": [
           "People"
@@ -4720,7 +4720,7 @@
           }
         },
         "summary": "Update a Person",
-        "operationId": "Update a Person",
+        "operationId": "updateAPerson",
         "description": "Update details for a person, by ID.\n\nSpecify the person ID in the `personId` parameter in the URI. Only an admin can update a person details.\n\nInclude all details for the person. This action expects all user details to be present in the request. A common approach is to first [GET the person's details](/docs/api/v1/people/get-person-details), make changes, then PUT both the changed and unchanged values.\n\nAdmin users can include `Webex Calling` (BroadCloud) user details in the response by specifying `callingData` parameter as true.\n\nWhen doing attendee management, to update a user from host role to an attendee for a site append `#attendee` to the respective `siteUrl` and remove the meeting host license for this site from the license array.\nTo update a person from an attendee role to a host for a site, add the meeting license for this site in the meeting array, and remove that site from the `siteurl` parameter.\n\nTo remove the attendee privilege for a user on a meeting site, remove the `sitename#attendee` from the `siteUrl`s array. The `showAllTypes` parameter must be set to `true`.\n\n**NOTE**:\n\n* When assigning a Webex Calling license, either a telephone number or extension must already be assigned to the person or provided in the request payload.\n\n* When `callingData` is set to `true`, a Webex Calling license must be included in the `licenses` array.\n\n* The `locationId` can only be set when assigning a calling license to a user. It cannot be changed if a user is already an existing calling user.\n\n* The `extension` field should be used to update the Webex Calling extension for a person. The extension value should not include the location routing prefix. The `work_extension` type in the `phoneNumbers` object as seen in the response payload of [List People](/docs/api/v1/people/list-people) or [Get Person Details](/docs/api/v1/people/get-person-details), cannot be used to set the Webex Calling extension for a person.\n\n* When updating a user with multiple email addresses using a PUT request, ensure that the primary email address is listed first in the array. Note that the order of email addresses returned by a GET request is not guaranteed..\n\n* The People API is a combination of several microservices, each responsible for specific attributes of a person. As a result, a PUT request that returns an error response code may still have altered some values of the person's data. Therefore, it is recommended to perform a GET request after encountering an error to verify the current state of the resource. \n\n* Some licenses are implicitly assigned by the system and cannot be admin controlled. They are necessary for the baseline function of the Webex system. If you get an error about implicitly assigned licensed that cannot be removed, please ensure you have the corresponding license in your PUT request.\n\n* When assigning multiple licenses in a single request, the system will assign all valid and available licenses. If any requested licenses cannot be assigned, the operation will continue with the remaining licenses. As a result, it is possible that not all requested licenses are assigned to the user.",
         "tags": [
           "People"
@@ -5035,7 +5035,7 @@
           }
         },
         "summary": "Delete a Person",
-        "operationId": "Delete a Person",
+        "operationId": "deleteAPerson",
         "description": "Remove a person from the system.\n\n**Required Administrator Roles:**\n\nThe following administrators have permission to use this API:\n\n**Customer Organization:**\n- Full administrator\n- User administrator\n\n**Partner/External Access:**\n- External full administrator\n\n**Note:** External read-only administrators, provisioning administrators, and device administrators cannot delete users.\n\nSpecify the person ID in the `personId` parameter in the URI.",
         "tags": [
           "People"
@@ -5175,7 +5175,7 @@
           }
         },
         "summary": "Get My Own Details",
-        "operationId": "Get My Own Details",
+        "operationId": "getMyOwnDetails",
         "description": "Get profile details for the authenticated user. This is the same as GET `/people/{personId}` using the Person ID associated with your Auth token.\n\nAdmin users can include `Webex Calling` (BroadCloud) user details in the response by specifying `callingData` parameter as true.",
         "tags": [
           "People"
@@ -5274,7 +5274,7 @@
           }
         },
         "summary": "List Room Tabs",
-        "operationId": "List Room Tabs",
+        "operationId": "listRoomTabs",
         "description": "Lists all Room Tabs of a room specified by the `roomId` query parameter.",
         "tags": [
           "Room Tabs"
@@ -5361,7 +5361,7 @@
           }
         },
         "summary": "Create a Room Tab",
-        "operationId": "Create a Room Tab",
+        "operationId": "createARoomTab",
         "description": "Add a tab with a specified URL to a room.",
         "tags": [
           "Room Tabs"
@@ -5475,7 +5475,7 @@
           }
         },
         "summary": "Get Room Tab Details",
-        "operationId": "Get Room Tab Details",
+        "operationId": "getRoomTabDetails",
         "description": "Get details for a Room Tab with the specified room tab ID.",
         "tags": [
           "Room Tabs"
@@ -5562,7 +5562,7 @@
           }
         },
         "summary": "Update a Room Tab",
-        "operationId": "Update a Room Tab",
+        "operationId": "updateARoomTab",
         "description": "Updates the content URL of the specified Room Tab ID.",
         "tags": [
           "Room Tabs"
@@ -5670,7 +5670,7 @@
           }
         },
         "summary": "Delete a Room Tab",
-        "operationId": "Delete a Room Tab",
+        "operationId": "deleteARoomTab",
         "description": "Deletes a Room Tab with the specified ID.",
         "tags": [
           "Room Tabs"
@@ -5777,7 +5777,7 @@
           }
         },
         "summary": "List Rooms",
-        "operationId": "List Rooms",
+        "operationId": "listRooms",
         "description": "List rooms to which the authenticated user belongs to.\n\nThe `title` of the room for 1:1 rooms will be the display name of the other person. Please use the [memberships API](https://developer.webex.com/docs/api/v1/memberships) to list the people in the space.\n\nLong result sets will be split into [pages](/docs/basics#pagination).\n\nKnown Limitations:\nThe underlying database does not support natural sorting by `lastactivity` and will only sort on limited set of results, which are pulled from the database in order of `roomId`. For users or bots in more than 3000 spaces this can result in anomalies such as spaces that have had recent activity not being returned in the results when sorting by `lastacivity`.",
         "tags": [
           "Rooms"
@@ -5935,7 +5935,7 @@
           }
         },
         "summary": "Create a Room",
-        "operationId": "Create a Room",
+        "operationId": "createARoom",
         "description": "Creates a room. The authenticated user is automatically added as a member of the room. See the [Memberships API](/docs/api/v1/memberships) to learn how to add more people to the room.\n\nTo create a 1:1 room, use the [Create Messages](/docs/api/v1/messages/create-a-message) endpoint to send a message directly to another person by using the `toPersonId` or `toPersonEmail` parameters.\n\nBots are not able to create and simultaneously classify a room. A bot may update a space classification after a person of the same owning organization joined the space as the first human user.\nA space can only be put into announcement mode when it is locked.",
         "tags": [
           "Rooms"
@@ -6076,7 +6076,7 @@
           }
         },
         "summary": "Get Room Details",
-        "operationId": "Get Room Details",
+        "operationId": "getRoomDetails",
         "description": "Shows details for a room, by ID.\n\nThe `title` of the room for 1:1 rooms will be the display name of the other person. When a Compliance Officer lists 1:1 rooms, the \"other\" person cannot be determined. This means that the room's title may not be filled in and instead shows \"Empty Title\". Please use the [memberships API](https://developer.webex.com/docs/api/v1/memberships) to list the other person in the space.\n\nSpecify the room ID in the `roomId` parameter in the URI.",
         "tags": [
           "Rooms"
@@ -6171,7 +6171,7 @@
           }
         },
         "summary": "Update a Room",
-        "operationId": "Update a Room",
+        "operationId": "updateARoom",
         "description": "Updates details for a room, by ID.\n\nSpecify the room ID in the `roomId` parameter in the URI.\nA space can only be put into announcement mode when it is locked.\nAny space participant or compliance officer can convert a space from public to private. Only a compliance officer can convert a space from private to public and only if the space is classified with the lowest category (usually `public`), and the space has a description.\nTo remove a `description` please use a space character ` ` by itself.\n\n<div><Callout type=\"info\">When using this method for moving a space under a team, ensure that all moderators in the space are also team members. If a moderator is not part of the team, demote or remove them as a moderator. Alternatively, add the non-team moderators to the team. This ensures compliance with the requirement that all space moderators must be team members for successful operation execution.\n</Callout></div>\n\n<div><Callout type=\"info\">A Compliance Officer who is not a member of a space can only update the `classificationId`, `isAnnouncementOnly`, `description`, and `isPublic` fields.\n</Callout></div>",
         "tags": [
           "Rooms"
@@ -6303,7 +6303,7 @@
           }
         },
         "summary": "Delete a Room",
-        "operationId": "Delete a Room",
+        "operationId": "deleteARoom",
         "description": "Deletes a room, by ID. Deleted rooms cannot be recovered.\nAs a security measure to prevent accidental deletion, when a non moderator deletes the room they are removed from the room instead.\n\nDeleting a room that is part of a team will archive the room instead.\n\nA Compliance Officer has no special privileges, i.e. they cannot delete rooms they are not part of.\n\nSpecify the room ID in the `roomId` parameter in the URI.",
         "tags": [
           "Rooms"
@@ -6392,7 +6392,7 @@
           }
         },
         "summary": "Get Room Meeting Details",
-        "operationId": "Get Room Meeting Details",
+        "operationId": "getRoomMeetingDetails",
         "description": "<div>\n<callout type=\"warning\">\nThe meetingInfo API is deprecated and will be EOL on Jan 31, 2025. Meetings in the WSMP must be scheduled and licensed via the meetings backend.\nThe [Create a Meeting](/docs/api/v1/meetings/create-a-meeting) endpoint will provide the SIP address for the meeting to call.\n</callout>\n</div>\n\nShows Webex meeting details for a room such as the SIP address, meeting URL, toll-free and toll dial-in numbers.\n\nSpecify the room ID in the `roomId` parameter in the URI.",
         "tags": [
           "Rooms"
@@ -6709,7 +6709,7 @@
           }
         },
         "summary": "Get Team Membership Details",
-        "operationId": "Get Team Membership Details",
+        "operationId": "getTeamMembershipDetails",
         "description": "Shows details for a team membership, by ID.\n\nSpecify the team membership ID in the `membershipId` URI parameter.",
         "tags": [
           "Team Memberships"
@@ -6797,7 +6797,7 @@
           }
         },
         "summary": "Update a Team Membership",
-        "operationId": "Update a Team Membership",
+        "operationId": "updateATeamMembership",
         "description": "Updates a team membership, by ID.\n\nSpecify the team membership ID in the `membershipId` URI parameter.",
         "tags": [
           "Team Memberships"
@@ -6891,7 +6891,7 @@
           }
         },
         "summary": "Delete a Team Membership",
-        "operationId": "Delete a Team Membership",
+        "operationId": "deleteATeamMembership",
         "description": "Deletes a team membership, by ID.\n\nSpecify the team membership ID in the `membershipId` URI parameter.\n\nThe team membership for the last moderator of a team may not be deleted; [promote another user](/docs/api/v1/team-memberships/update-a-team-membership) to team moderator first.",
         "tags": [
           "Team Memberships"
@@ -6987,7 +6987,7 @@
           }
         },
         "summary": "List Teams",
-        "operationId": "List Teams",
+        "operationId": "listTeams",
         "description": "Lists teams to which the authenticated user belongs.",
         "tags": [
           "Teams"
@@ -7071,7 +7071,7 @@
           }
         },
         "summary": "Create a Team",
-        "operationId": "Create a Team",
+        "operationId": "createATeam",
         "description": "Creates a team.\n\nThe authenticated user is automatically added as a member of the team. See the [Team Memberships API](/docs/api/v1/team-memberships) to learn how to add more people to the team.",
         "tags": [
           "Teams"
@@ -7174,7 +7174,7 @@
           }
         },
         "summary": "Get Team Details",
-        "operationId": "Get Team Details",
+        "operationId": "getTeamDetails",
         "description": "Shows details for a team, by ID.\n\nSpecify the team ID in the `teamId` parameter in the URI.",
         "tags": [
           "Teams"
@@ -7267,7 +7267,7 @@
           }
         },
         "summary": "Update a Team",
-        "operationId": "Update a Team",
+        "operationId": "updateATeam",
         "description": "Updates details for a team, by ID.\n\nSpecify the team ID in the `teamId` parameter in the URI.",
         "tags": [
           "Teams"
@@ -7367,7 +7367,7 @@
           }
         },
         "summary": "Delete a Team",
-        "operationId": "Delete a Team",
+        "operationId": "deleteATeam",
         "description": "Deletes a team, by ID.\n\nSpecify the team ID in the `teamId` parameter in the URI.",
         "tags": [
           "Teams"
@@ -7469,7 +7469,7 @@
           }
         },
         "summary": "List Webhooks",
-        "operationId": "List Webhooks",
+        "operationId": "listWebhooks",
         "description": "List all of your webhooks.",
         "tags": [
           "Webhooks"
@@ -7568,7 +7568,7 @@
           }
         },
         "summary": "Create a Webhook",
-        "operationId": "Create a Webhook",
+        "operationId": "createAWebhook",
         "description": "Creates a webhook.\n\nTo learn more about how to create and use webhooks, see The [Webhooks Guide](/docs/api/guides/webhooks).",
         "tags": [
           "Webhooks"
@@ -7739,7 +7739,7 @@
           }
         },
         "summary": "Get Webhook Details",
-        "operationId": "Get Webhook Details",
+        "operationId": "getWebhookDetails",
         "description": "Shows details for a webhook, by ID.\n\nSpecify the webhook ID in the `webhookId` parameter in the URI.",
         "tags": [
           "Webhooks"
@@ -7829,7 +7829,7 @@
           }
         },
         "summary": "Update a Webhook",
-        "operationId": "Update a Webhook",
+        "operationId": "updateAWebhook",
         "description": "Updates a webhook, by ID. You cannot use this call to deactivate a webhook, only to activate a webhook that was auto deactivated.\nThe fields that can be updated are `name`, `targetURL`, `secret` and `status`. All other fields, if supplied, are ignored.\n\nSpecify the webhook ID in the `webhookId` parameter in the URI.",
         "tags": [
           "Webhooks"
@@ -7950,7 +7950,7 @@
           }
         },
         "summary": "Delete a Webhook",
-        "operationId": "Delete a Webhook",
+        "operationId": "deleteAWebhook",
         "description": "Deletes a webhook, by ID.\n\nSpecify the webhook ID in the `webhookId` parameter in the URI.",
         "tags": [
           "Webhooks"

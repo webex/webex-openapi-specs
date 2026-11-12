@@ -59012,7 +59012,7 @@
           "Data Sources"
         ],
         "description": "Register a data source with the Webex BYODS system. Authenticate using a Service App with the `spark-admin:datasource_write` scope.\nSchema IDs determine the types of data Webex sends to the DAP and the expected responses. Use the Data Source Schemas endpoints to inspect the available schemas.",
-        "operationId": "Register a Data Source",
+        "operationId": "registerADataSource",
         "requestBody": {
           "content": {
             "application/json": {
@@ -59145,7 +59145,7 @@
           "Data Sources"
         ],
         "description": "Lists all data sources registered by the Service App. Requires the `spark-admin:datasource_read` scope.",
-        "operationId": "Retrieve All Data Sources",
+        "operationId": "retrieveAllDataSources",
         "summary": "Retrieve All Data Sources"
       }
     },
@@ -59235,7 +59235,7 @@
           "Data Sources"
         ],
         "description": "Lists the available data source schemas. A valid API access token is required, but no specific scope is needed.",
-        "operationId": "Retrieve Data Source Schemas",
+        "operationId": "retrieveDataSourceSchemas",
         "summary": "Retrieve Data Source Schemas"
       }
     },
@@ -59353,7 +59353,7 @@
           "Data Sources"
         ],
         "description": "Retrieves details for a specific data source schema by schema ID. A valid API access token is required, but no specific scope is needed.",
-        "operationId": "Retrieve Details of a Specific Data Source Schema",
+        "operationId": "retrieveDetailsOfASpecificDataSourceSchema",
         "summary": "Retrieve Details of a Specific Data Source Schema"
       }
     },
@@ -59426,7 +59426,7 @@
           "Data Sources"
         ],
         "description": "Deletes a data source by ID.\n\nSpecify the data source ID in the `dataSourceId` URI parameter.",
-        "operationId": "Delete a Data Source",
+        "operationId": "deleteADataSource",
         "summary": "Delete a Data Source"
       },
       "get": {
@@ -59557,7 +59557,7 @@
           "Data Sources"
         ],
         "description": "Retrieves details for a data source by ID. Use a Service App token with the `spark-admin:datasource_read` scope.",
-        "operationId": "Retrieve Data Source Details",
+        "operationId": "retrieveDataSourceDetails",
         "summary": "Retrieve Data Source Details"
       },
       "put": {
@@ -59688,7 +59688,7 @@
           "Data Sources"
         ],
         "description": "Updates a data source. The fields you can update are `audience`, `subject`, `nonce`, `url`, and `tokenLifetimeMinutes`.\nYou can set `status` from `active` to `disabled` only if you provide an `errorMessage`, which may be shown to the customer administrator in Control Hub.\nUpdate tokens before they expire to prevent service interruption.",
-        "operationId": "Update a Data Source",
+        "operationId": "updateADataSource",
         "requestBody": {
           "content": {
             "application/json": {

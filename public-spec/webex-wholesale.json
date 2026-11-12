@@ -93,7 +93,7 @@
           }
         },
         "summary": "List Wholesale Billing Reports",
-        "operationId": "List Wholesale Billing Reports",
+        "operationId": "listWholesaleBillingReports",
         "description": "Search for associated wholesale billing reconciliation reports.",
         "tags": [
           "Wholesale Billing Reports"
@@ -249,7 +249,7 @@
           }
         },
         "summary": "Create a Wholesale Billing Report",
-        "operationId": "Create a Wholesale Billing Report",
+        "operationId": "createAWholesaleBillingReport",
         "description": "Generate a wholesale billing reconciliation report.",
         "tags": [
           "Wholesale Billing Reports"
@@ -374,7 +374,7 @@
           }
         },
         "summary": "Get a Wholesale Billing Report",
-        "operationId": "Get a Wholesale Billing Report",
+        "operationId": "getAWholesaleBillingReport",
         "description": "Retrieve a specific wholesale billing reconciliation report.",
         "tags": [
           "Wholesale Billing Reports"
@@ -446,7 +446,7 @@
           }
         },
         "summary": "Delete a Wholesale Billing Report",
-        "operationId": "Delete a Wholesale Billing Report",
+        "operationId": "deleteAWholesaleBillingReport",
         "description": "Delete a monthly reconciliation report by report ID.",
         "tags": [
           "Wholesale Billing Reports"
@@ -591,7 +591,7 @@
           }
         },
         "summary": "List Wholesale Customers",
-        "operationId": "List Wholesale Customers",
+        "operationId": "listWholesaleCustomers",
         "description": "Return a list of wholesale customers. There are a number of filter options, which can be combined in a single request.",
         "tags": [
           "Wholesale Provisioning"
@@ -729,7 +729,7 @@
           }
         },
         "summary": "Provision a Wholesale Customer",
-        "operationId": "Provision a Wholesale Customer",
+        "operationId": "provisionAWholesaleCustomer",
         "description": "Provision a Wholesale customer for Cisco Webex services.\n\nThis API will allow a Service Provider to map the Wholesale customer and assign the required licenses and entitlements for Webex, Calling and Meetings.\n\nThe Wholesale customer provisioning is asynchronous and thus a background task is created when this endpoint is invoked.\n\n**packages Note:**\n\n* `cisco_calling_plan` is dependent on: `common_area_calling`, `webex_calling`, `webex_suite`, `webex_voice`, `cx_essentials`, `webex_calling_standard`\n\n* `attendant_console` is dependent on: `webex_calling`, `webex_suite`, `cx_essentials`, `webex_voice`\n\n<div>\n        <Callout type='info'>After successful invocation of this endpoint a URL will be returned in the `Location` header, which will point to the [Get a Wholesale Customer](/docs/api/v1/wholesale-provisioning/get-a-wholesale-customer) endpoint for this customer.</Callout>\n</div>",
         "tags": [
           "Wholesale Provisioning"
@@ -1160,7 +1160,7 @@
           }
         },
         "summary": "Get a Wholesale Customer",
-        "operationId": "Get a Wholesale Customer",
+        "operationId": "getAWholesaleCustomer",
         "description": "Retrieves details of a provisioned Wholesale customer on Cisco Webex.",
         "tags": [
           "Wholesale Provisioning"
@@ -1265,7 +1265,7 @@
           }
         },
         "summary": "Update a Wholesale Customer",
-        "operationId": "Update a Wholesale Customer",
+        "operationId": "updateAWholesaleCustomer",
         "description": "Updates certain details of a provisioned Wholesale customer for Cisco Webex services.\n\nThe Wholesale customer provisioning is asynchronous and thus a background task is created when this endpoint is invoked.\n\n**packages Note:**\n\n* `cisco_calling_plan` is dependent on: `common_area_calling`, `webex_calling`, `webex_suite`, `webex_voice`, `cx_essentials`, `webex_calling_standard`\n\n* `attendant_console` is dependent on: `webex_calling`, `webex_suite`, `cx_essentials`, `webex_voice`\n\n<div>\n        <Callout type='info'>After successful invocation of this endpoint a URL will be returned in the `Location` header, which will point to the [Get a Wholesale Customer](/docs/api/v1/wholesale-provisioning/get-a-wholesale-customer) endpoint for this customer.</Callout>\n</div>",
         "tags": [
           "Wholesale Provisioning"
@@ -1601,7 +1601,7 @@
           }
         },
         "summary": "Remove a Wholesale Customer",
-        "operationId": "Remove a Wholesale Customer",
+        "operationId": "removeAWholesaleCustomer",
         "description": "Removes the mapping between a Wholesale Customer and a Cisco Webex organization..",
         "tags": [
           "Wholesale Provisioning"
@@ -1699,7 +1699,7 @@
           }
         },
         "summary": "Precheck a Wholesale Customer Provisioning",
-        "operationId": "Precheck a Wholesale Customer Provisioning",
+        "operationId": "precheckAWholesaleCustomerProvisioning",
         "description": "Allows the Partner sales team to verify likely success of provisioning a Wholesale customer.\n\n**packages Note:**\n\n* `cisco_calling_plan` is dependent on: `common_area_calling`, `webex_calling`, `webex_suite`, `webex_voice`, `cx_essentials`, `webex_calling_standard`\n\n* `attendant_console` is dependent on: `webex_calling`, `webex_suite`, `cx_essentials`, `webex_voice`\n\n<div>\n<Callout type='info'>\nThe Prerequisite for using this API is to have `wxc-wholesale` entitlement or `webex-wholesale-partner-testing` setting enabled for the Partner Organization. The Provisioning Precheck APIs supports two variants of Wholesale Customer Provisioning Precheck Requests. Please refer to [Using the Provisioning Precheck APIs](/docs/api/guides/webex-for-wholesale#using-the-precheck-provisioning-api) section in [Webex for Wholesale](/docs/api/guides/webex-for-wholesale) guide for more information.\n</Callout>\n</div>",
         "tags": [
           "Wholesale Provisioning"
@@ -2038,7 +2038,7 @@
           }
         },
         "summary": "List Wholesale Sub-partners",
-        "operationId": "List Wholesale Sub-partners",
+        "operationId": "listWholesaleSubPartners",
         "description": "Lists all of the associated sub-partners. There are a number of filter and pagination options that can be combined in a single request.",
         "tags": [
           "Wholesale Provisioning"
@@ -2167,7 +2167,7 @@
           }
         },
         "summary": "List Wholesale Subscribers",
-        "operationId": "List Wholesale Subscribers",
+        "operationId": "listWholesaleSubscribers",
         "description": "Allows a Service Provider to search for their associated subscribers. There are a number of filter options, which can be combined in a single request.",
         "tags": [
           "Wholesale Provisioning"
@@ -2394,7 +2394,7 @@
           }
         },
         "summary": "Provision a Wholesale Subscriber",
-        "operationId": "Provision a Wholesale Subscriber",
+        "operationId": "provisionAWholesaleSubscriber",
         "description": "Provision a new Wholesale subscriber for Cisco Webex services.\n\nThis API allows a Service Provider to map the Wholesale subscriber to a Cisco Webex Wholesale customer and assign the required licenses and entitlements for Webex, Calling and Meetings.\n\n**Note:**\n\n* If this subscriber is an existing Webex Calling entitled user, the `locationId`, `primaryPhoneNumber` and `extension` are optional and if provided are ignored.\n\n**packages Note:**\n\n* `attendant_console` is dependent on: `webex_calling`, `webex_suite`, `cx_essentials`, `webex_voice`\n\n<div>\n<Callout type='info'>\nEither `packages` or `package` field is required but not both.\n</Callout>\n</div>",
         "tags": [
           "Wholesale Provisioning"
@@ -2582,7 +2582,7 @@
           }
         },
         "summary": "Get a Wholesale Subscriber",
-        "operationId": "Get a Wholesale Subscriber",
+        "operationId": "getAWholesaleSubscriber",
         "description": "Retrieves details of a provisioned Wholesale subscriber on Cisco Webex.",
         "tags": [
           "Wholesale Provisioning"
@@ -2689,7 +2689,7 @@
           }
         },
         "summary": "Update a Wholesale Subscriber",
-        "operationId": "Update a Wholesale Subscriber",
+        "operationId": "updateAWholesaleSubscriber",
         "description": "Updates certain details of a provisioned Wholesale subscriber.\n\n**Note:**\n\n* The `provisioningParameters` attributes should only be supplied when changing from the webex_meetings package to any calling-enabled package.\n\n* Even in that scenario, if this subscriber is an existing Webex Calling entitled user, these attributes are optional and if provided are ignored.\n\n**packages Note:**\n\n* `attendant_console` is dependent on: `webex_calling`, `webex_suite`, `cx_essentials`, `webex_voice`\n\n<div>\n<Callout type='info'>\nEither `packages` or `package` field is required but not both.\n</Callout>\n</div>",
         "tags": [
           "Wholesale Provisioning"
@@ -2826,7 +2826,7 @@
           }
         },
         "summary": "Remove a Wholesale Subscriber",
-        "operationId": "Remove a Wholesale Subscriber",
+        "operationId": "removeAWholesaleSubscriber",
         "description": "Removes the mapping between Wholesale Subscriber and a Webex user.",
         "tags": [
           "Wholesale Provisioning"
@@ -2924,7 +2924,7 @@
           }
         },
         "summary": "Precheck a Wholesale Subscriber Provisioning",
-        "operationId": "Precheck a Wholesale Subscriber Provisioning",
+        "operationId": "precheckAWholesaleSubscriberProvisioning",
         "description": "Allows the Partner sales team to verify likely success of provisioning a wholesale subscriber.\n**packages Note:**\n\n* `attendant_console` is dependent on: `webex_calling`, `webex_suite`, `cx_essentials`, `webex_voice`\n\n<div>\n<Callout type='info'>\nThe Prerequisite for using this API is to have `wxc-wholesale` entitlement or `webex-wholesale-partner-testing` setting enabled for the Partner Organization. The Provisioning Precheck APIs supports three variants of Wholesale Subscriber Provisioning Precheck Requests. Please refer to [Using the Provisioning Precheck API](/docs/api/guides/webex-for-wholesale#using-the-precheck-provisioning-api) section in [Webex for Wholesale](/docs/api/guides/webex-for-wholesale) guide for more information.\n</Callout>\n</div>\n\n<div>\n<Callout type='info'>\nEither `packages` or `package` field is required but not both.\n</Callout>\n</div>",
         "tags": [
           "Wholesale Provisioning"
@@ -3080,7 +3080,7 @@
           }
         },
         "summary": "Send Consent User Move Email to Pending Wholesale Subscribers",
-        "operationId": "Send Consent User Move Email to Pending Wholesale Subscribers",
+        "operationId": "sendConsentUserMoveEmailToPendingWholesaleSubscribers",
         "description": "Allows a Service Provider to send the user consent move email to a subscriber who is currently in `pending_user_migration` state.",
         "tags": [
           "Wholesale Provisioning"
