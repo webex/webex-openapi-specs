@@ -3489,7 +3489,7 @@
                   "moreSharedAppearancesEnabled": true,
                   "fewSharedAppearancesEnabled": true,
                   "moreMonitorAppearancesEnabled": true,
-                  "moreCPEAppearancesEnabled": "true",
+                  "moreCPEAppearancesEnabled": true,
                   "moreModeManagementAppearancesEnabled": true
                 }
               },
@@ -3635,7 +3635,7 @@
                   "moreSharedAppearancesEnabled": true,
                   "fewSharedAppearancesEnabled": true,
                   "moreMonitorAppearancesEnabled": true,
-                  "moreCPEAppearancesEnabled": "true",
+                  "moreCPEAppearancesEnabled": true,
                   "moreModeManagementAppearancesEnabled": true
                 }
               },

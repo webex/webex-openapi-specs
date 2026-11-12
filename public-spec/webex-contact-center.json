@@ -100890,7 +100890,6 @@
         }
       },
       "ScheduleCallbackResponse": {
-        "type": "object",
         "$ref": "#/components/schemas/CallbackSchedule"
       },
       "CallbackSchedule": {
@@ -101121,9 +101120,12 @@
             "example": "2147751364"
           },
           "callback": {
-            "type": "object",
             "description": "Callback details. Required only when outboundType is set to ```CALLBACK```.",
-            "$ref": "#/components/schemas/CallbackDetails"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CallbackDetails"
+              }
+            ]
           },
           "customAttributes": {
             "type": "object",

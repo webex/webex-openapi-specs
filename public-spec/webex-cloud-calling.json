@@ -44364,7 +44364,7 @@
                   "moreSharedAppearancesEnabled": true,
                   "fewSharedAppearancesEnabled": true,
                   "moreMonitorAppearancesEnabled": true,
-                  "moreCPEAppearancesEnabled": "true",
+                  "moreCPEAppearancesEnabled": true,
                   "moreModeManagementAppearancesEnabled": true
                 }
               },
@@ -44510,7 +44510,7 @@
                   "moreSharedAppearancesEnabled": true,
                   "fewSharedAppearancesEnabled": true,
                   "moreMonitorAppearancesEnabled": true,
-                  "moreCPEAppearancesEnabled": "true",
+                  "moreCPEAppearancesEnabled": true,
                   "moreModeManagementAppearancesEnabled": true
                 }
               },
@@ -59031,7 +59031,7 @@
                           "extension": "8081",
                           "routingPrefix": "1234",
                           "esn": "12348081",
-                          "primary": "true"
+                          "primary": true
                         }
                       ]
                     }
@@ -59321,7 +59321,7 @@
                           "extension": "8081",
                           "routingPrefix": "1234",
                           "esn": "12348081",
-                          "primary": "true"
+                          "primary": true
                         }
                       ]
                     }
@@ -90270,7 +90270,7 @@
                   "extension": 1273,
                   "routingPrefix": "123",
                   "esn": "1231273",
-                  "tollFreeNumber": "false",
+                  "tollFreeNumber": false,
                   "firstName": "rcdnfTest",
                   "lastName": "rcdnlTest",
                   "enabled": true,
@@ -164256,13 +164256,19 @@
             "description": "Extension of the user."
           },
           "type": {
-            "type": "string",
-            "$ref": "#/components/schemas/ExtensionType",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ExtensionType"
+              }
+            ],
             "description": "Type of User Extension."
           },
           "lineOwnerType": {
-            "type": "string",
-            "$ref": "#/components/schemas/LineOwnerType",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LineOwnerType"
+              }
+            ],
             "description": "Type of the line owner. Indicates whether the line is owned by a person, workspace, or virtual line."
           },
           "lineOwnerId": {
