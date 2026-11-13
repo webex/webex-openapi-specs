@@ -36,7 +36,7 @@
     },
     {
       "name": "User Call Settings (3/3)",
-      "description": "APIs for retrieving and managing Webex Calling services and settings, including anonymous call rejection, simultaneous ring, hot desking, outbound billing, answer settings, preferred answer endpoints, and shared voicemail memberships."
+      "description": "APIs for managing Webex Calling settings for users."
     },
     {
       "name": "Virtual Line Call Settings",
@@ -27287,7 +27287,8 @@
                       "id": "Y2lzY29zcGFyazovL3VzL0NSSVRFUklBL1oxNzU0MzgzODQzNTA5NzY",
                       "scheduleName": "CustomHoliday(Group)",
                       "source": "ALL_NUMBERS",
-                      "notificationEnabled": false
+                      "notificationEnabled": true,
+                      "ringPattern": "LONG_LONG"
                     }
                   ]
                 }
@@ -27342,7 +27343,7 @@
         },
         "summary": "Get Priority Alert Settings",
         "operationId": "getMyPriorityAlertSettings",
-        "description": "Get Priority Alert Settings for the authenticated user.\n\nPriority alert allows you to set up a unique ringtone based on predefined criteria. This is helpful, when the user wants to be quickly notified that a specific phone number is calling.\n\nThis API requires a user auth token with a scope of `spark:telephony_config_read`.",
+        "description": "Get Priority Alert Settings for the authenticated user.\n\nPriority alert allows you to set up a distinctive ringtone based on predefined criteria. This is helpful, when the user wants to be quickly notified that a specific phone number is calling.\n\nThis API requires a user auth token with a scope of `spark:telephony_config_read`.",
         "tags": [
           "Call Settings For Me With UserHub Phase2"
         ],
@@ -27424,7 +27425,7 @@
       "post": {
         "summary": "Add a Priority Alert Criteria",
         "operationId": "createMyPriorityAlertCriteria",
-        "description": "Create a Priority Alert Criteria for the authenticated user.\n\nPriority alert allows you to set up a unique ringtone based on predefined criteria. This is helpful, when the user wants to be quickly notified that a specific phone number is calling.\n\nThis API requires a user auth token with a scope of `spark:telephony_config_write`.",
+        "description": "Create a Priority Alert Criteria for the authenticated user.\n\nPriority alert allows you to set up a distinctive ringtone based on predefined criteria. This is helpful, when the user wants to be quickly notified that a specific phone number is calling.\n\nThis API requires a user auth token with a scope of `spark:telephony_config_write`.",
         "tags": [
           "Call Settings For Me With UserHub Phase2"
         ],
@@ -27433,7 +27434,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PriorityAlertCriteriaPatch"
+                "$ref": "#/components/schemas/PriorityAlertCriteriaPost"
               },
               "example": {
                 "scheduleName": "Holiday V2",
@@ -27442,13 +27443,14 @@
                 "callsFrom": "ANY_PHONE_NUMBER",
                 "anonymousCallersEnabled": true,
                 "unavailableCallersEnabled": false,
-                "notificationEnabled": true
+                "notificationEnabled": true,
+                "ringPattern": "LONG_LONG"
               }
             }
           }
         },
         "responses": {
-          "200": {
+          "201": {
             "description": "Priority Alert Criteria created successfully. Returns the criteria ID.",
             "content": {
               "application/json": {
@@ -27510,7 +27512,8 @@
                   "phoneNumbers": [
                     "+16177817765"
                   ],
-                  "notificationEnabled": false
+                  "notificationEnabled": true,
+                  "ringPattern": "LONG_LONG"
                 }
               }
             }
@@ -27563,7 +27566,7 @@
         },
         "summary": "Get Priority Alert Criteria Settings",
         "operationId": "getMyPriorityAlertCriteriaSettings",
-        "description": "Get Priority Alert Criteria Settings for the authenticated user.\n\nPriority alert allows you to set up a unique ringtone based on predefined criteria. This is helpful, when the user wants to be quickly notified that a specific phone number is calling.\n\nThis API requires a user auth token with a scope of `spark:telephony_config_read`.",
+        "description": "Get Priority Alert Criteria Settings for the authenticated user.\n\nPriority alert allows you to set up a distinctive ringtone based on predefined criteria. This is helpful, when the user wants to be quickly notified that a specific phone number is calling.\n\nThis API requires a user auth token with a scope of `spark:telephony_config_read`.",
         "tags": [
           "Call Settings For Me With UserHub Phase2"
         ],
@@ -27633,7 +27636,7 @@
         },
         "summary": "Modify Settings for a Priority Alert Criteria",
         "operationId": "updateMyPriorityAlertCriteriaSettings",
-        "description": "Modify Priority Alert Criteria Settings for the authenticated user.\n\nPriority alert allows you to set up a unique ringtone based on predefined criteria. This API allows modifying attributes such as name, phoneNumbers etc for a particular criteria.\n\nThis API requires a user auth token with a scope of `spark:telephony_config_write`.",
+        "description": "Modify Priority Alert Criteria Settings for the authenticated user.\n\nPriority alert allows you to set up a distinctive ringtone based on predefined criteria. This API allows modifying attributes such as name, phoneNumbers etc for a particular criteria.\n\nThis API requires a user auth token with a scope of `spark:telephony_config_write`.",
         "tags": [
           "Call Settings For Me With UserHub Phase2"
         ],
@@ -27659,10 +27662,11 @@
                 "callsFrom": "SELECT_PHONE_NUMBERS",
                 "anonymousCallersEnabled": true,
                 "unavailableCallersEnabled": true,
-                "notificationEnabled": false,
+                "notificationEnabled": true,
                 "phoneNumbers": [
                   "+16177817766"
-                ]
+                ],
+                "ringPattern": "LONG_LONG"
               },
               "schema": {
                 "$ref": "#/components/schemas/PriorityAlertCriteriaPatch"
@@ -118387,11 +118391,207 @@
         }
       }
     },
+    "/telephony/config/people/{personId}/priorityAlert": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Priority Alert Settings retrieved successfully for the person.",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PriorityAlertGet"
+                },
+                "example": {
+                  "enabled": false,
+                  "criteria": [
+                    {
+                      "id": "Y2lzY29zcGFyazovL3VzL0NSSVRFUklBL1oxNzU0MzgzODQzNTA5NzY",
+                      "scheduleName": "CustomHoliday(Group)",
+                      "source": "ALL_NUMBERS",
+                      "notificationEnabled": true,
+                      "ringPattern": "LONG_LONG"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a person, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Get Priority Alert Settings for a Person",
+        "operationId": "getPersonPriorityAlertSettings",
+        "description": "Get Priority Alert Settings for a person.\n\nPriority alert allows setting up a distinctive ringtone based on predefined criteria. This is helpful when a person wants to be quickly notified that a specific phone number is calling.\n\nThis API requires a full, user, read-only, or location administrator auth token with a scope of `spark-admin:telephony_config_read`.",
+        "tags": [
+          "User Call Settings (3/3)"
+        ],
+        "parameters": [
+          {
+            "name": "personId",
+            "in": "path",
+            "description": "A unique identifier for the person.",
+            "required": true,
+            "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS85OThhMThhYi1kZjY5LTQ5MWYtYmViZi03MzUxMGE3ODI5N2I",
+            "schema": {
+              "type": "string",
+              "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS85OThhMThhYi1kZjY5LTQ5MWYtYmViZi03MzUxMGE3ODI5N2I"
+            }
+          },
+          {
+            "name": "orgId",
+            "in": "query",
+            "description": "Optional target organization identifier. Defaults to the token's organization if not provided. A partner administrator must provide this value to specify the target organization.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE",
+            "schema": {
+              "type": "string",
+              "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE"
+            }
+          }
+        ]
+      },
+      "put": {
+        "responses": {
+          "204": {
+            "description": "Priority Alert Settings updated successfully for the person."
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a person, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "405": {
+            "description": "Method Not Allowed: The request was made to a resource using an HTTP request method that is not supported."
+          },
+          "409": {
+            "description": "Conflict: The request could not be processed because it conflicts with some established rule of the system. For example, a person may not be added to a room more than once."
+          },
+          "410": {
+            "description": "Gone: The requested resource is no longer available."
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request was made to a resource without specifying a media type or used a media type that is not supported."
+          },
+          "423": {
+            "description": "Locked: The requested resource is temporarily unavailable. A Retry-After header may be present that specifies how many seconds you need to wait before attempting the request again."
+          },
+          "428": {
+            "description": "Precondition Required: File(s) cannot be scanned for malware and need to be force downloaded."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
+          },
+          "502": {
+            "description": "Bad Gateway: The server received an invalid response from an upstream server while processing the request. Try again later."
+          },
+          "503": {
+            "description": "Service Unavailable: Server is overloaded with requests. Try again later."
+          },
+          "504": {
+            "description": "Gateway Timeout: An upstream server failed to respond on time. If your query uses max parameter, please try to reduce it."
+          }
+        },
+        "summary": "Modify Priority Alert Settings for a Person",
+        "operationId": "updatePersonPriorityAlertSettings",
+        "description": "Update Priority Alert Settings for a person.\n\nPriority alert allows setting up a distinctive ringtone based on predefined criteria. This is helpful when a person wants to be quickly notified that a specific phone number is calling.\n\nThis API requires a full, user, or location administrator auth token with a scope of `spark-admin:telephony_config_write`.",
+        "tags": [
+          "User Call Settings (3/3)"
+        ],
+        "parameters": [
+          {
+            "name": "personId",
+            "in": "path",
+            "description": "A unique identifier for the person.",
+            "required": true,
+            "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS85OThhMThhYi1kZjY5LTQ5MWYtYmViZi03MzUxMGE3ODI5N2I",
+            "schema": {
+              "type": "string",
+              "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS85OThhMThhYi1kZjY5LTQ5MWYtYmViZi03MzUxMGE3ODI5N2I"
+            }
+          },
+          {
+            "name": "orgId",
+            "in": "query",
+            "description": "Optional target organization identifier. Defaults to the token's organization if not provided. A partner administrator must provide this value to specify the target organization.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE",
+            "schema": {
+              "type": "string",
+              "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "enabled": false
+              },
+              "schema": {
+                "$ref": "#/components/schemas/PriorityAlertPatch"
+              }
+            }
+          }
+        }
+      }
+    },
     "/telephony/config/people/{personId}/priorityAlert/criteria": {
       "post": {
         "summary": "Add a Priority Alert Criterion for a Person",
         "operationId": "createPersonPriorityAlertCriteria",
-        "description": "Create a Priority Alert criterion for a person.\n\nPriority alert allows setting up a distinctive ringtone based on predefined criteria. This is helpful when a person wants to be quickly notified that a specific phone number is calling.\n\nThis API requires a full, user, or location administrator auth token with a scope of `spark-admin:telephony_config_write`.\n\n",
+        "description": "Create a Priority Alert criterion for a person.\n\nPriority alert allows setting up a distinctive ringtone based on predefined criteria. This is helpful when a person wants to be quickly notified that a specific phone number is calling.\n\nThis API requires a full, user, or location administrator auth token with a scope of `spark-admin:telephony_config_write`.",
         "tags": [
           "User Call Settings (3/3)"
         ],
@@ -118430,7 +118630,10 @@
                 "scheduleType": "businessHours",
                 "scheduleLevel": "PEOPLE",
                 "callsFrom": "ANY_PHONE_NUMBER",
-                "notificationEnabled": true
+                "anonymousCallersEnabled": true,
+                "unavailableCallersEnabled": false,
+                "notificationEnabled": true,
+                "ringPattern": "LONG_LONG"
               }
             }
           }
@@ -118498,7 +118701,8 @@
                   "phoneNumbers": [
                     "+16177817765"
                   ],
-                  "notificationEnabled": true
+                  "notificationEnabled": true,
+                  "ringPattern": "LONG_LONG"
                 }
               }
             }
@@ -118551,7 +118755,7 @@
         },
         "summary": "Get Priority Alert Criterion Settings for a Person",
         "operationId": "getPersonPriorityAlertCriteriaSettings",
-        "description": "Get Priority Alert criterion settings for a person.\n\nPriority alert allows setting up a distinctive ringtone based on predefined criteria. This is helpful when a person wants to be quickly notified that a specific phone number is calling.\n\nThis API requires a full, user, read-only, or location administrator auth token with a scope of `spark-admin:telephony_config_read`.\n\n.",
+        "description": "Get Priority Alert criterion settings for a person.\n\nPriority alert allows setting up a distinctive ringtone based on predefined criteria. This is helpful when a person wants to be quickly notified that a specific phone number is calling.\n\nThis API requires a full, user, read-only, or location administrator auth token with a scope of `spark-admin:telephony_config_read`.",
         "tags": [
           "User Call Settings (3/3)"
         ],
@@ -118643,7 +118847,7 @@
         },
         "summary": "Modify Priority Alert Criterion for a Person",
         "operationId": "updatePersonPriorityAlertCriteriaSettings",
-        "description": "Modify Priority Alert criterion settings for a person.\n\nPriority alert allows setting up a distinctive ringtone based on predefined criteria. This API allows modifying attributes such as name, phoneNumbers etc. for a particular criterion.\n\nThis API requires a full, user, or location administrator auth token with a scope of `spark-admin:telephony_config_write`.\n\n.",
+        "description": "Modify Priority Alert criterion settings for a person.\n\nPriority alert allows setting up a distinctive ringtone based on predefined criteria. This API allows modifying attributes such as name, phoneNumbers etc. for a particular criterion.\n\nThis API requires a full, user, or location administrator auth token with a scope of `spark-admin:telephony_config_write`.",
         "tags": [
           "User Call Settings (3/3)"
         ],
@@ -118694,12 +118898,78 @@
                 "notificationEnabled": true,
                 "phoneNumbers": [
                   "+16177817766"
-                ]
+                ],
+                "ringPattern": "LONG_LONG"
               },
               "schema": {
                 "$ref": "#/components/schemas/PriorityAlertCriteriaPatch"
               }
             }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a Priority Alert Criterion for a Person",
+        "operationId": "deletePersonPriorityAlertCriteria",
+        "description": "Delete a Priority Alert criterion for a person.\n\nPriority alert allows setting up a distinctive ringtone based on predefined criteria. This API removes a specific criterion by its unique identifier.\n\nThis API requires a full, user, or location administrator auth token with a scope of `spark-admin:telephony_config_write`.",
+        "tags": [
+          "User Call Settings (3/3)"
+        ],
+        "parameters": [
+          {
+            "name": "personId",
+            "in": "path",
+            "description": "A unique identifier for the person.",
+            "required": true,
+            "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS85OThhMThhYi1kZjY5LTQ5MWYtYmViZi03MzUxMGE3ODI5N2I",
+            "schema": {
+              "type": "string",
+              "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS85OThhMThhYi1kZjY5LTQ5MWYtYmViZi03MzUxMGE3ODI5N2I"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Y2lzY29zcGFyazovL3VzL0NSSVRFUklBL1oxNzU0MzgzODQzNTA5NzY"
+            },
+            "example": "Y2lzY29zcGFyazovL3VzL0NSSVRFUklBL1oxNzU0MzgzODQzNTA5NzY",
+            "description": "Unique identifier for the priority alert criterion."
+          },
+          {
+            "name": "orgId",
+            "in": "query",
+            "description": "Optional target organization identifier. Defaults to the token's organization if not provided. A partner administrator must provide this value to specify the target organization.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE",
+            "schema": {
+              "type": "string",
+              "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Priority Alert criterion deleted successfully. No content is returned."
+          },
+          "400": {
+            "description": "Bad Request: The request was invalid or cannot be otherwise served."
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials were missing or incorrect."
+          },
+          "403": {
+            "description": "Forbidden: The request is understood, but it has been refused or access is not allowed."
+          },
+          "404": {
+            "description": "Not Found: The URI requested is invalid or the resource requested, such as a person, does not exist. Also returned when the requested format is not supported by the requested method."
+          },
+          "429": {
+            "description": "Too Many Requests: Too many requests have been sent in a given amount of time and the request has been rate limited. A Retry-After header should be present that specifies how many seconds you need to wait before a successful request can be made."
+          },
+          "500": {
+            "description": "Internal Server Error: Something went wrong on the server. If the issue persists, feel free to contact the [Webex Developer Support team](/explore/support)."
           }
         }
       }
@@ -137569,7 +137839,7 @@
       "get": {
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Priority Alert Settings retrieved successfully for the workspace.",
             "headers": {},
             "content": {
               "application/json": {
@@ -137583,7 +137853,8 @@
                       "id": "Y2lzY29zcGFyazovL3VzL0NSSVRFUklBLzg2NTAxZDFlLTg1MWMtNDgwYi1hZmE2LTA5MTU4NzQ3NzdmZQ",
                       "scheduleName": "Business Vacation",
                       "source": "ALL_NUMBERS",
-                      "notificationEnabled": true
+                      "notificationEnabled": true,
+                      "ringPattern": "LONG_LONG"
                     }
                   ]
                 }
@@ -137762,7 +138033,7 @@
       "get": {
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Priority Alert Criteria Settings retrieved for the workspace.",
             "headers": {},
             "content": {
               "application/json": {
@@ -137781,7 +138052,8 @@
                     "+19075552859",
                     "+19186663950"
                   ],
-                  "notificationEnabled": true
+                  "notificationEnabled": true,
+                  "ringPattern": "LONG_LONG"
                 }
               }
             }
@@ -137873,7 +138145,7 @@
       "put": {
         "responses": {
           "204": {
-            "description": "No Content",
+            "description": "Priority Alert Criteria Settings updated successfully for the workspace.",
             "headers": {},
             "content": {}
           },
@@ -137974,7 +138246,8 @@
                   "+19064441748",
                   "+19186663950"
                 ],
-                "notificationEnabled": false
+                "notificationEnabled": true,
+                "ringPattern": "LONG_LONG"
               },
               "schema": {
                 "$ref": "#/components/schemas/PlacePriorityAlertCriteriaPatch"
@@ -138079,7 +138352,7 @@
       "post": {
         "responses": {
           "201": {
-            "description": "Created",
+            "description": "Priority Alert Criteria created successfully. Returns the criteria ID.",
             "headers": {},
             "content": {
               "application/json": {
@@ -138188,7 +138461,8 @@
                   "+19064441748",
                   "+19186663950"
                 ],
-                "notificationEnabled": false
+                "notificationEnabled": true,
+                "ringPattern": "LONG_LONG"
               },
               "schema": {
                 "$ref": "#/components/schemas/PlacePriorityAlertCriteriaPost"
@@ -155997,6 +156271,9 @@
       "ResponseId": {
         "type": "object",
         "description": "Response object that contains the unique identifier for the created or updated criteria.",
+        "required": [
+          "id"
+        ],
         "properties": {
           "id": {
             "type": "string",
@@ -161883,7 +162160,8 @@
       "PriorityAlertGet": {
         "type": "object",
         "required": [
-          "enabled"
+          "enabled",
+          "criteria"
         ],
         "properties": {
           "enabled": {
@@ -161907,8 +162185,15 @@
           "id": "Y2lzY29zcGFyazovL3VzL0NSSVRFUklBL1oxNzU0MzgzODQzNTA5NzY",
           "scheduleName": "CustomHoliday(Group)",
           "source": "ALL_NUMBERS",
-          "notificationEnabled": false
+          "notificationEnabled": true,
+          "ringPattern": "LONG_LONG"
         },
+        "required": [
+          "id",
+          "scheduleName",
+          "source",
+          "notificationEnabled"
+        ],
         "properties": {
           "id": {
             "type": "string",
@@ -161917,21 +162202,33 @@
           },
           "scheduleName": {
             "type": "string",
-            "description": "Name of the schedule associated with the criteria.",
+            "description": "Name of the schedule associated with the criterion.",
             "example": "CustomHoliday(Group)"
           },
           "notificationEnabled": {
             "type": "boolean",
-            "description": "Determines whether priority alerting is applied for calls matching this criteria. If `true`, priority alerting is applied. If `false`, this criteria acts as a 'Don't Alert' rule, preventing priority alerting. Criteria with `notificationEnabled` set to `false` (Don't Alert) take precedence over criteria with `notificationEnabled` set to `true` (Alert).",
+            "description": "Determines whether priority alerting is applied for calls matching this criterion. If `true`, priority alerting is applied. If `false`, this criterion acts as a 'Don't Alert' rule, preventing priority alerting. Criteria with `notificationEnabled` set to `false` (Don't Alert) take precedence over criteria with `notificationEnabled` set to `true` (Alert).",
             "example": false
           },
           "source": {
             "type": "string",
             "enum": [
               "ALL_NUMBERS",
-              "SPECIFIC_NUMBERS"
+              "SPECIFIC_NUMBERS",
+              "ANY_INTERNAL"
             ],
-            "description": "Type of the source.\n * `ALL_NUMBERS` - User wants to be notified for calls from Any Phone Number.\n * `SPECIFIC_NUMBERS` - User wants to be notified for calls from Select Phone Numbers.\n"
+            "description": "Identifies which incoming calls this criterion applies to. `ALL_NUMBERS` is equivalent to `ANY_PHONE_NUMBER` and `SPECIFIC_NUMBERS` is equivalent to `SELECT_PHONE_NUMBERS` in the criterion detail APIs.\n * `ALL_NUMBERS` - Criterion applies to any external phone number.\n * `SPECIFIC_NUMBERS` - Criterion applies to specific phone numbers.\n * `ANY_INTERNAL` - Criterion applies to any internal phone number.\n"
+          },
+          "ringPattern": {
+            "type": "string",
+            "description": "Distinctive ringtone pattern for incoming calls matching this criterion.\n * `NORMAL` - Standard ring pattern.\n * `LONG_LONG` - Two long rings.\n * `SHORT_LONG_SHORT` - Short ring, long ring, short ring.\n * `SHORT_SHORT_LONG` - Two short rings followed by a long ring.\n",
+            "enum": [
+              "NORMAL",
+              "LONG_LONG",
+              "SHORT_LONG_SHORT",
+              "SHORT_SHORT_LONG"
+            ],
+            "example": "LONG_LONG"
           }
         }
       },
@@ -161961,7 +162258,8 @@
           "phoneNumbers": [
             "+16177817765"
           ],
-          "notificationEnabled": true
+          "notificationEnabled": true,
+          "ringPattern": "LONG_LONG"
         },
         "required": [
           "id",
@@ -162002,9 +162300,10 @@
             "type": "string",
             "enum": [
               "ANY_PHONE_NUMBER",
-              "SELECT_PHONE_NUMBERS"
+              "SELECT_PHONE_NUMBERS",
+              "ANY_INTERNAL"
             ],
-            "description": "Identifies which incoming calls this criterion applies to. `ANY_PHONE_NUMBER` is equivalent to `ALL_NUMBERS` and `SELECT_PHONE_NUMBERS` is equivalent to `SPECIFIC_NUMBERS` in the priority alert settings API.\n * `ANY_PHONE_NUMBER` - Criterion applies to any phone number.\n * `SELECT_PHONE_NUMBERS` - Criterion applies to selected phone numbers.\n"
+            "description": "Identifies which incoming calls this criterion applies to. `ANY_PHONE_NUMBER` is equivalent to `ALL_NUMBERS` and `SELECT_PHONE_NUMBERS` is equivalent to `SPECIFIC_NUMBERS` in the priority alert settings API.\n * `ANY_PHONE_NUMBER` - Criterion applies to any external phone number.\n * `SELECT_PHONE_NUMBERS` - Criterion applies to selected phone numbers.\n * `ANY_INTERNAL` - Criterion applies to any internal phone number.\n"
           },
           "anonymousCallersEnabled": {
             "type": "boolean",
@@ -162028,6 +162327,17 @@
             "type": "boolean",
             "description": "Determines whether priority alerting is applied for calls matching this criterion. If `true`, priority alerting is applied. If `false`, this criterion acts as a 'Don't Alert' rule, preventing priority alerting. Criteria with `notificationEnabled` set to `false` (Don't Alert) take precedence over criteria with `notificationEnabled` set to `true` (Alert).",
             "example": false
+          },
+          "ringPattern": {
+            "type": "string",
+            "description": "Distinctive ringtone pattern for incoming calls matching this criterion.\n * `NORMAL` - Standard ring pattern.\n * `LONG_LONG` - Two long rings.\n * `SHORT_LONG_SHORT` - Short ring, long ring, short ring.\n * `SHORT_SHORT_LONG` - Two short rings followed by a long ring.\n",
+            "enum": [
+              "NORMAL",
+              "LONG_LONG",
+              "SHORT_LONG_SHORT",
+              "SHORT_SHORT_LONG"
+            ],
+            "example": "LONG_LONG"
           }
         }
       },
@@ -162043,7 +162353,8 @@
           "notificationEnabled": true,
           "phoneNumbers": [
             "+16177817766"
-          ]
+          ],
+          "ringPattern": "LONG_LONG"
         },
         "description": "Request body for updating priority alert criterion settings.",
         "properties": {
@@ -162076,9 +162387,10 @@
             "type": "string",
             "enum": [
               "ANY_PHONE_NUMBER",
-              "SELECT_PHONE_NUMBERS"
+              "SELECT_PHONE_NUMBERS",
+              "ANY_INTERNAL"
             ],
-            "description": "Identifies which incoming calls this criterion applies to. Omit it to preserve the existing call source selection. When set to `SELECT_PHONE_NUMBERS`, `anonymousCallersEnabled`, `unavailableCallersEnabled`, and `phoneNumbers` are required, and at least one phone number or caller flag must be provided. `ANY_PHONE_NUMBER` is equivalent to `ALL_NUMBERS` and `SELECT_PHONE_NUMBERS` is equivalent to `SPECIFIC_NUMBERS` in the priority alert settings API.\n * `ANY_PHONE_NUMBER` - Criterion applies to any phone number.\n * `SELECT_PHONE_NUMBERS` - Criterion applies to selected phone numbers.\n"
+            "description": "Identifies which incoming calls this criterion applies to. Omit it to preserve the existing call source selection. When set to `SELECT_PHONE_NUMBERS`, `anonymousCallersEnabled`, `unavailableCallersEnabled`, and `phoneNumbers` are required, and at least one phone number or caller flag must be provided. `ANY_PHONE_NUMBER` is equivalent to `ALL_NUMBERS` and `SELECT_PHONE_NUMBERS` is equivalent to `SPECIFIC_NUMBERS` in the priority alert settings API.\n * `ANY_PHONE_NUMBER` - Criterion applies to any external phone number.\n * `SELECT_PHONE_NUMBERS` - Criterion applies to selected phone numbers.\n * `ANY_INTERNAL` - Criterion applies to any internal source.\n"
           },
           "anonymousCallersEnabled": {
             "type": "boolean",
@@ -162104,6 +162416,17 @@
             "type": "boolean",
             "description": "Determines whether priority alerting is applied for calls matching this criterion. Omit it to preserve the current value. This field cannot be cleared with `null`. If `true`, priority alerting is applied. If `false`, this criterion acts as a 'Don't Alert' rule, preventing priority alerting. Criteria with `notificationEnabled` set to `false` (Don't Alert) take precedence over criteria with `notificationEnabled` set to `true` (Alert).",
             "example": false
+          },
+          "ringPattern": {
+            "type": "string",
+            "description": "The distinctive ringtone pattern applied to incoming calls that match the priority alert criterion, allowing the person to distinguish priority calls from regular calls by their ringtone pattern. Omit it to preserve the current value. This field cannot be cleared with `null`.\n * `NORMAL` - Standard ring pattern.\n * `LONG_LONG` - Two long rings.\n * `SHORT_LONG_SHORT` - Short ring, long ring, short ring.\n * `SHORT_SHORT_LONG` - Two short rings followed by a long ring.\n",
+            "enum": [
+              "NORMAL",
+              "LONG_LONG",
+              "SHORT_LONG_SHORT",
+              "SHORT_SHORT_LONG"
+            ],
+            "example": "LONG_LONG"
           }
         }
       },
@@ -165574,6 +165897,98 @@
           "transferNumber": "+14126525012",
           "alerting": "ALERT_ME_FIRST",
           "alertMeFirstNumberOfRings": 3
+        }
+      },
+      "PriorityAlertCriteriaPost": {
+        "type": "object",
+        "example": {
+          "scheduleName": "Holiday V2",
+          "scheduleType": "holidays",
+          "scheduleLevel": "LOCATION",
+          "callsFrom": "SELECT_PHONE_NUMBERS",
+          "anonymousCallersEnabled": true,
+          "unavailableCallersEnabled": true,
+          "notificationEnabled": true,
+          "phoneNumbers": [
+            "+16177817766"
+          ],
+          "ringPattern": "LONG_LONG"
+        },
+        "required": [
+          "callsFrom",
+          "notificationEnabled"
+        ],
+        "description": "Request body for creating a priority alert criterion.",
+        "properties": {
+          "scheduleName": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 40,
+            "description": "Name of the schedule to be associated with the criterion. When provided with a non-empty value, `scheduleType` and `scheduleLevel` must also be provided. Omit this field or set it to an empty string to create the criterion without a schedule association. When no schedule is associated, the criterion is active every day, all day. Valid schedule names are 1 to 40 characters. An empty string is allowed in POST requests only to create a criterion without a schedule association.",
+            "example": "Holiday V2"
+          },
+          "scheduleType": {
+            "type": "string",
+            "enum": [
+              "businessHours",
+              "holidays"
+            ],
+            "description": "Type of the schedule. Provide this with a non-empty `scheduleName` and matching `scheduleLevel`. Omit it when `scheduleName` is omitted, `null`, or an empty string.\n * `businessHours` - The Schedule type that specifies the business or working hours during the day.\n * `holidays` - The Schedule type that specifies the days when your organization is not open.\n"
+          },
+          "scheduleLevel": {
+            "type": "string",
+            "enum": [
+              "PEOPLE",
+              "LOCATION",
+              "ORGANIZATION"
+            ],
+            "description": "This indicates the level of the schedule specified by `scheduleName`. Provide this with a non-empty `scheduleName` and matching `scheduleType`. Omit it when `scheduleName` is omitted, `null`, or an empty string.\n * `PEOPLE` - The schedule is at the person level.\n * `LOCATION` - The schedule is at the location level.\n * `ORGANIZATION` - The schedule is at the organization level.\n"
+          },
+          "callsFrom": {
+            "type": "string",
+            "enum": [
+              "ANY_PHONE_NUMBER",
+              "SELECT_PHONE_NUMBERS",
+              "ANY_INTERNAL"
+            ],
+            "description": "Identifies which incoming calls this criterion applies to. When set to `SELECT_PHONE_NUMBERS`, `anonymousCallersEnabled`, `unavailableCallersEnabled`, and `phoneNumbers` are required, and at least one phone number or caller flag must be provided. `ANY_PHONE_NUMBER` is equivalent to `ALL_NUMBERS` and `SELECT_PHONE_NUMBERS` is equivalent to `SPECIFIC_NUMBERS` in the priority alert settings API.\n * `ANY_PHONE_NUMBER` - Criterion applies to any external phone number.\n * `SELECT_PHONE_NUMBERS` - Criterion applies to selected phone numbers.\n * `ANY_INTERNAL` - Criterion applies to any internal source.\n"
+          },
+          "anonymousCallersEnabled": {
+            "type": "boolean",
+            "description": "Indicates whether anonymous callers are included in this criterion. Required when `callsFrom` is `SELECT_PHONE_NUMBERS`; omit otherwise.",
+            "example": true
+          },
+          "unavailableCallersEnabled": {
+            "type": "boolean",
+            "description": "Indicates whether unavailable callers are included in this criterion. Required when `callsFrom` is `SELECT_PHONE_NUMBERS`; omit otherwise.",
+            "example": true
+          },
+          "phoneNumbers": {
+            "type": "array",
+            "minItems": 0,
+            "maxItems": 12,
+            "description": "List of phone numbers for this criterion. Required when `callsFrom` is `SELECT_PHONE_NUMBERS`; omit otherwise. An empty array is allowed only when `anonymousCallersEnabled` or `unavailableCallersEnabled` is `true`.",
+            "items": {
+              "type": "string",
+              "description": "Phone number that the criterion applies to."
+            }
+          },
+          "notificationEnabled": {
+            "type": "boolean",
+            "description": "Determines whether priority alerting is applied for calls matching this criterion. This field is required and cannot be `null`. If `true`, priority alerting is applied. If `false`, this criterion acts as a 'Don't Alert' rule, preventing priority alerting. Criteria with `notificationEnabled` set to `false` (Don't Alert) take precedence over criteria with `notificationEnabled` set to `true` (Alert).",
+            "example": false
+          },
+          "ringPattern": {
+            "type": "string",
+            "description": "The distinctive ringtone pattern applied to incoming calls that match the priority alert criterion, allowing the person to distinguish priority calls from regular calls by their ringtone pattern. Defaults to `LONG_LONG` when omitted.\n * `NORMAL` - Standard ring pattern.\n * `LONG_LONG` - Two long rings.\n * `SHORT_LONG_SHORT` - Short ring, long ring, short ring.\n * `SHORT_SHORT_LONG` - Two short rings followed by a long ring.\n",
+            "enum": [
+              "NORMAL",
+              "LONG_LONG",
+              "SHORT_LONG_SHORT",
+              "SHORT_SHORT_LONG"
+            ],
+            "example": "LONG_LONG"
+          }
         }
       },
       "OrganizationSchedule": {
@@ -196716,85 +197131,6 @@
         ],
         "description": "Endpoint resource type returned by the API.\n\n * `CALLING_DEVICE` - A physical Webex Calling device registered to the person.\n * `APPLICATION` - A software application such as Webex App registered to the person.\n * `HOTDESKING_GUEST` - A hot desking guest endpoint for the person.\n"
       },
-      "PriorityAlertCriteriaPost": {
-        "type": "object",
-        "example": {
-          "scheduleName": "Holiday V2",
-          "scheduleType": "holidays",
-          "scheduleLevel": "LOCATION",
-          "callsFrom": "SELECT_PHONE_NUMBERS",
-          "anonymousCallersEnabled": true,
-          "unavailableCallersEnabled": true,
-          "notificationEnabled": true,
-          "phoneNumbers": [
-            "+16177817766"
-          ]
-        },
-        "required": [
-          "callsFrom",
-          "notificationEnabled"
-        ],
-        "description": "Request body for creating a priority alert criterion.",
-        "properties": {
-          "scheduleName": {
-            "type": "string",
-            "minLength": 0,
-            "maxLength": 40,
-            "description": "Name of the schedule to be associated with the criterion. When provided with a non-empty value, `scheduleType` and `scheduleLevel` must also be provided. Omit this field or set it to an empty string to create the criterion without a schedule association. When no schedule is associated, the criterion is active every day, all day. Valid schedule names are 1 to 40 characters. An empty string is allowed in POST requests only to create a criterion without a schedule association.",
-            "example": "Holiday V2"
-          },
-          "scheduleType": {
-            "type": "string",
-            "enum": [
-              "businessHours",
-              "holidays"
-            ],
-            "description": "Type of the schedule. Provide this with a non-empty `scheduleName` and matching `scheduleLevel`. Omit it when `scheduleName` is omitted or an empty string.\n * `businessHours` - The Schedule type that specifies the business or working hours during the day.\n * `holidays` - The Schedule type that specifies the days when your organization is not open.\n"
-          },
-          "scheduleLevel": {
-            "type": "string",
-            "enum": [
-              "PEOPLE",
-              "LOCATION",
-              "ORGANIZATION"
-            ],
-            "description": "This indicates the level of the schedule specified by `scheduleName`. Provide this with a non-empty `scheduleName` and matching `scheduleType`. Omit it when `scheduleName` is omitted or an empty string.\n * `PEOPLE` - The schedule is at the person level.\n * `LOCATION` - The schedule is at the location level.\n * `ORGANIZATION` - The schedule is at the organization level.\n"
-          },
-          "callsFrom": {
-            "type": "string",
-            "enum": [
-              "ANY_PHONE_NUMBER",
-              "SELECT_PHONE_NUMBERS"
-            ],
-            "description": "Identifies which incoming calls this criterion applies to. When set to `SELECT_PHONE_NUMBERS`, `anonymousCallersEnabled`, `unavailableCallersEnabled`, and `phoneNumbers` are required, and at least one phone number or caller flag must be provided. `ANY_PHONE_NUMBER` is equivalent to `ALL_NUMBERS` and `SELECT_PHONE_NUMBERS` is equivalent to `SPECIFIC_NUMBERS` in the priority alert settings API.\n * `ANY_PHONE_NUMBER` - Criterion applies to any phone number.\n * `SELECT_PHONE_NUMBERS` - Criterion applies to selected phone numbers.\n"
-          },
-          "anonymousCallersEnabled": {
-            "type": "boolean",
-            "description": "Indicates whether anonymous callers are included in this criterion. Required when `callsFrom` is `SELECT_PHONE_NUMBERS`; omit otherwise.",
-            "example": true
-          },
-          "unavailableCallersEnabled": {
-            "type": "boolean",
-            "description": "Indicates whether unavailable callers are included in this criterion. Required when `callsFrom` is `SELECT_PHONE_NUMBERS`; omit otherwise.",
-            "example": true
-          },
-          "phoneNumbers": {
-            "type": "array",
-            "minItems": 0,
-            "maxItems": 12,
-            "description": "List of phone numbers for this criterion. Required when `callsFrom` is `SELECT_PHONE_NUMBERS`; omit otherwise. An empty array is allowed only when `anonymousCallersEnabled` or `unavailableCallersEnabled` is `true`.",
-            "items": {
-              "type": "string",
-              "description": "Phone number that the criterion applies to."
-            }
-          },
-          "notificationEnabled": {
-            "type": "boolean",
-            "description": "Determines whether priority alerting is applied for calls matching this criterion. This field is required and cannot be `null`. If `true`, priority alerting is applied. If `false`, this criterion acts as a 'Don't Alert' rule, preventing priority alerting. Criteria with `notificationEnabled` set to `false` (Don't Alert) take precedence over criteria with `notificationEnabled` set to `true` (Alert).",
-            "example": false
-          }
-        }
-      },
       "ScheduleTypeResponse": {
         "type": "string",
         "enum": [
@@ -200912,6 +201248,7 @@
         "type": "object",
         "required": [
           "id",
+          "scheduleName",
           "source",
           "notificationEnabled"
         ],
@@ -200930,14 +201267,26 @@
             "type": "string",
             "enum": [
               "ALL_NUMBERS",
-              "SPECIFIC_NUMBERS"
+              "SPECIFIC_NUMBERS",
+              "ANY_INTERNAL"
             ],
-            "description": "If criteria are applicable for calls from any phone number or specific phone number.\n * `ALL_NUMBERS` - Indicates that priority alert criteria apply for all incoming numbers.\n * `SPECIFIC_NUMBERS` - Indicates priority alert criteria only apply to specific incoming numbers.\n"
+            "description": "If criteria are applicable for calls from any phone number or specific phone number. `ALL_NUMBERS` is equivalent to `ANY_PHONE_NUMBER` and `SPECIFIC_NUMBERS` is equivalent to `SELECT_PHONE_NUMBERS` in the criteria detail APIs.\n * `ALL_NUMBERS` - Indicates that priority alert criteria apply for all incoming external numbers.\n * `SPECIFIC_NUMBERS` - Indicates priority alert criteria only apply to specific incoming numbers.\n * `ANY_INTERNAL` - Indicates that priority alert criteria apply for any internal call.\n"
           },
           "notificationEnabled": {
             "type": "boolean",
             "example": true,
-            "description": "When set to `true` notification is enabled for calls that meet the current criteria. Criteria with `notificationEnabled` set to `false` take priority."
+            "description": "Determines whether priority alerting is applied for calls matching this criteria. If `true`, priority alerting is applied. If `false`, this criteria acts as a 'Don't Alert' rule, preventing priority alerting. Criteria with `notificationEnabled` set to `false` (Don't Alert) take precedence over criteria with `notificationEnabled` set to `true` (Alert)."
+          },
+          "ringPattern": {
+            "type": "string",
+            "description": "Distinctive ringtone pattern for incoming calls matching this criteria.\n * `NORMAL` - Standard ring pattern.\n * `LONG_LONG` - Two long rings.\n * `SHORT_LONG_SHORT` - Short ring, long ring, short ring pattern.\n * `SHORT_SHORT_LONG` - Two short rings followed by one long ring.\n",
+            "enum": [
+              "NORMAL",
+              "LONG_LONG",
+              "SHORT_LONG_SHORT",
+              "SHORT_SHORT_LONG"
+            ],
+            "example": "LONG_LONG"
           }
         }
       },
@@ -200945,7 +201294,10 @@
         "type": "object",
         "required": [
           "id",
-          "callsFrom"
+          "callsFrom",
+          "anonymousCallersEnabled",
+          "unavailableCallersEnabled",
+          "notificationEnabled"
         ],
         "properties": {
           "id": {
@@ -200985,25 +201337,40 @@
           "anonymousCallersEnabled": {
             "type": "boolean",
             "example": true,
-            "description": "When `true`, enables calls from anonymous callers."
+            "description": "When `true`, enables calls from anonymous callers. Only applicable when `callsFrom` is `SELECT_PHONE_NUMBERS`."
           },
           "unavailableCallersEnabled": {
             "type": "boolean",
             "example": true,
-            "description": "When `true`, enables calls even if callers are unavailable."
+            "description": "When `true`, enables calls even if callers are unavailable. Only applicable when `callsFrom` is `SELECT_PHONE_NUMBERS`."
           },
           "phoneNumbers": {
             "type": "array",
             "items": {
               "type": "string",
-              "example": "+19075552859,+19186663950"
+              "example": "+19075552859"
             },
-            "description": "the list of phone numbers that will checked against incoming calls for a match."
+            "example": [
+              "+19075552859",
+              "+19186663950"
+            ],
+            "description": "The list of phone numbers that will be checked against incoming calls for a match. Only applicable when `callsFrom` is `SELECT_PHONE_NUMBERS`."
           },
           "notificationEnabled": {
             "type": "boolean",
             "example": true,
-            "description": "When set to `true` priority alerting criteria is enabled for calls that meet the current criteria. Criteria with `notificationEnabled` set to `false` take priority."
+            "description": "Determines whether priority alerting is applied for calls matching this criteria. If `true`, priority alerting is applied. If `false`, this criteria acts as a 'Don't Alert' rule, preventing priority alerting. Criteria with `notificationEnabled` set to `false` (Don't Alert) take precedence over criteria with `notificationEnabled` set to `true` (Alert)."
+          },
+          "ringPattern": {
+            "type": "string",
+            "description": "Distinctive ringtone pattern for incoming calls matching this criterion.\n * `NORMAL` - Standard ring pattern.\n * `LONG_LONG` - Two long rings.\n * `SHORT_LONG_SHORT` - Short ring, long ring, short ring.\n * `SHORT_SHORT_LONG` - Two short rings followed by a long ring.\n",
+            "enum": [
+              "NORMAL",
+              "LONG_LONG",
+              "SHORT_LONG_SHORT",
+              "SHORT_SHORT_LONG"
+            ],
+            "example": "LONG_LONG"
           }
         }
       },
@@ -201019,7 +201386,7 @@
             "minLength": 0,
             "maxLength": 40,
             "example": "Business Vacation",
-            "description": "Name of the schedule which determines when the priority alert is in effect."
+            "description": "Name of the schedule to be associated with the criterion. When provided with a non-empty value, `scheduleType` and `scheduleLevel` must also be provided. Omit this field or set it to an empty string to create the criterion without a schedule association. When no schedule is associated, the criterion is active every day, all day. Valid schedule names are 1 to 40 characters. An empty string is allowed in POST requests only to create a criterion without a schedule association."
           },
           "scheduleType": {
             "allOf": [
@@ -201027,7 +201394,7 @@
                 "$ref": "#/components/schemas/ScheduleTypeSelection"
               }
             ],
-            "description": "The Schedule type whether `businessHours` or `holidays`."
+            "description": "Type of the schedule. Provide this with a non-empty `scheduleName` and matching `scheduleLevel`. Omit it when `scheduleName` is omitted, `null`, or an empty string.\n * `businessHours` - The Schedule type that specifies the business or working hours during the day.\n * `holidays` - The Schedule type that specifies the days when your organization is not open.\n"
           },
           "scheduleLevel": {
             "allOf": [
@@ -201035,7 +201402,7 @@
                 "$ref": "#/components/schemas/PlaceScheduleLevel"
               }
             ],
-            "description": "The Schedule level."
+            "description": "This indicates the level of the schedule specified by `scheduleName`. Provide this with a non-empty `scheduleName` and matching `scheduleType`. Omit it when `scheduleName` is omitted, `null`, or an empty string.\n * `GROUP` - The schedule is at the location level.\n"
           },
           "callsFrom": {
             "allOf": [
@@ -201043,30 +201410,45 @@
                 "$ref": "#/components/schemas/CallsFromType"
               }
             ],
-            "description": "Indicates whether to apply priority alert for calls from Any Phone Number or Select Phone Numbers."
+            "description": "Identifies which incoming calls this criterion applies to. When set to `SELECT_PHONE_NUMBERS`, `anonymousCallersEnabled`, `unavailableCallersEnabled`, and `phoneNumbers` are required, and at least one phone number or caller flag must be provided. `ANY_PHONE_NUMBER` is equivalent to `ALL_NUMBERS` and `SELECT_PHONE_NUMBERS` is equivalent to `SPECIFIC_NUMBERS` in the priority alert settings API.\n * `ANY_PHONE_NUMBER` - Criterion applies to any external phone number.\n * `SELECT_PHONE_NUMBERS` - Criterion applies to selected phone numbers.\n * `ANY_INTERNAL` - Criterion applies to any internal source.\n"
           },
           "anonymousCallersEnabled": {
             "type": "boolean",
             "example": true,
-            "description": "When `true`, enables calls from anonymous callers. Value for this attribute is required if `callsFrom` is `SELECT_PHONE_NUMBERS`."
+            "description": "Indicates whether anonymous callers are included in this criterion. Required when `callsFrom` is `SELECT_PHONE_NUMBERS`; omit otherwise."
           },
           "unavailableCallersEnabled": {
             "type": "boolean",
             "example": true,
-            "description": "When `true`, enables calls even if callers are unavailable. Value for this attribute is required if `callsFrom` is `SELECT_PHONE_NUMBERS`."
+            "description": "Indicates whether unavailable callers are included in this criterion. Required when `callsFrom` is `SELECT_PHONE_NUMBERS`; omit otherwise."
           },
           "phoneNumbers": {
             "type": "array",
             "items": {
               "type": "string",
-              "example": "+19064441748,+19186663950"
+              "example": "+19064441748"
             },
-            "description": "the list of phone numbers that will checked against incoming calls for a match. Value for this attribute is required if `callsFrom` is `SELECT_PHONE_NUMBERS`."
+            "example": [
+              "+19064441748",
+              "+19186663950"
+            ],
+            "description": "List of phone numbers for this criterion. Required when `callsFrom` is `SELECT_PHONE_NUMBERS`; omit otherwise. An empty array is allowed only when `anonymousCallersEnabled` or `unavailableCallersEnabled` is `true`."
           },
           "notificationEnabled": {
             "type": "boolean",
             "example": true,
-            "description": "When set to `true` priority alerting criteria is enabled for calls that meet the current criteria. Criteria with `notificationEnabled` set to `false` take priority."
+            "description": "Determines whether priority alerting is applied for calls matching this criterion. This field is required and cannot be `null`. If `true`, priority alerting is applied. If `false`, this criterion acts as a 'Don't Alert' rule, preventing priority alerting. Criteria with `notificationEnabled` set to `false` (Don't Alert) take precedence over criteria with `notificationEnabled` set to `true` (Alert)."
+          },
+          "ringPattern": {
+            "type": "string",
+            "description": "The distinctive ringtone pattern applied to incoming calls that match the priority alert criterion. Defaults to `LONG_LONG` when omitted.\n * `NORMAL` - Standard ring pattern.\n * `LONG_LONG` - Two long rings.\n * `SHORT_LONG_SHORT` - Short ring, long ring, short ring.\n * `SHORT_SHORT_LONG` - Two short rings followed by a long ring.\n",
+            "enum": [
+              "NORMAL",
+              "LONG_LONG",
+              "SHORT_LONG_SHORT",
+              "SHORT_SHORT_LONG"
+            ],
+            "example": "LONG_LONG"
           }
         }
       },
@@ -201075,8 +201457,11 @@
         "properties": {
           "scheduleName": {
             "type": "string",
+            "nullable": true,
+            "minLength": 0,
+            "maxLength": 40,
             "example": "Business Vacation",
-            "description": "Name of the schedule which determines when the priority alert is in effect."
+            "description": "Name of the schedule to be associated with the criterion. When provided with a non-empty value, `scheduleType` and `scheduleLevel` must also be provided. Set `scheduleName` to `null` or an empty string to remove the current schedule association. When no schedule is associated, the criterion is active every day, all day. Omit it to preserve the existing schedule. Valid schedule names are 1 to 40 characters. An empty string is allowed in modify requests only to remove the schedule association."
           },
           "scheduleType": {
             "allOf": [
@@ -201084,7 +201469,7 @@
                 "$ref": "#/components/schemas/ScheduleTypeSelection"
               }
             ],
-            "description": "The Schedule type whether `businessHours` or `holidays`."
+            "description": "Type of the schedule. Provide this with a non-empty `scheduleName` and matching `scheduleLevel`. Omit it when `scheduleName` is omitted or used to clear the schedule. This field is not independently clearable.\n * `businessHours` - The Schedule type that specifies the business or working hours during the day.\n * `holidays` - The Schedule type that specifies the days when your organization is not open.\n"
           },
           "scheduleLevel": {
             "allOf": [
@@ -201092,7 +201477,7 @@
                 "$ref": "#/components/schemas/PlaceScheduleLevel"
               }
             ],
-            "description": "The Schedule level."
+            "description": "This indicates the level of the schedule specified by `scheduleName`. Provide this with a non-empty `scheduleName` and matching `scheduleType`. Omit it when `scheduleName` is omitted or used to clear the schedule. This field is not independently clearable.\n * `GROUP` - The schedule is at the location level.\n"
           },
           "callsFrom": {
             "allOf": [
@@ -201100,30 +201485,45 @@
                 "$ref": "#/components/schemas/CallsFromType"
               }
             ],
-            "description": "Indicates whether to apply priority alert for calls from Any Phone Number or Select Phone Numbers."
+            "description": "Identifies which incoming calls this criterion applies to. Omit it to preserve the existing call source selection. When set to `SELECT_PHONE_NUMBERS`, `anonymousCallersEnabled`, `unavailableCallersEnabled`, and `phoneNumbers` are required, and at least one phone number or caller flag must be provided. `ANY_PHONE_NUMBER` is equivalent to `ALL_NUMBERS` and `SELECT_PHONE_NUMBERS` is equivalent to `SPECIFIC_NUMBERS` in the priority alert settings API.\n * `ANY_PHONE_NUMBER` - Criterion applies to any external phone number.\n * `SELECT_PHONE_NUMBERS` - Criterion applies to selected phone numbers.\n * `ANY_INTERNAL` - Criterion applies to any internal source.\n"
           },
           "anonymousCallersEnabled": {
             "type": "boolean",
             "example": true,
-            "description": "When `true`, enables calls from anonymous callers."
+            "description": "Indicates whether anonymous callers are included in this criterion. Required when `callsFrom` is `SELECT_PHONE_NUMBERS`; omit otherwise."
           },
           "unavailableCallersEnabled": {
             "type": "boolean",
             "example": true,
-            "description": "When `true`, enables calls even if callers are unavailable."
+            "description": "Indicates whether unavailable callers are included in this criterion. Required when `callsFrom` is `SELECT_PHONE_NUMBERS`; omit otherwise."
           },
           "phoneNumbers": {
             "type": "array",
             "items": {
               "type": "string",
-              "example": "+19064441748,+19186663950"
+              "example": "+19064441748"
             },
-            "description": "the list of phone numbers that will checked against incoming calls for a match."
+            "example": [
+              "+19064441748",
+              "+19186663950"
+            ],
+            "description": "List of phone numbers to update for this criterion. Required when `callsFrom` is `SELECT_PHONE_NUMBERS`; omit otherwise. An empty array is allowed only when `anonymousCallersEnabled` or `unavailableCallersEnabled` is `true`."
           },
           "notificationEnabled": {
             "type": "boolean",
             "example": true,
-            "description": "When set to `true` priority alerting criteria is enabled for calls that meet the current criteria. Criteria with `notificationEnabled` set to `false` take priority."
+            "description": "Determines whether priority alerting is applied for calls matching this criterion. Omit it to preserve the current value. This field cannot be cleared with `null`. If `true`, priority alerting is applied. If `false`, this criterion acts as a 'Don't Alert' rule, preventing priority alerting. Criteria with `notificationEnabled` set to `false` (Don't Alert) take precedence over criteria with `notificationEnabled` set to `true` (Alert)."
+          },
+          "ringPattern": {
+            "type": "string",
+            "description": "The distinctive ringtone pattern applied to incoming calls that match the priority alert criterion. Omit it to preserve the current value.\n * `NORMAL` - Standard ring pattern.\n * `LONG_LONG` - Two long rings.\n * `SHORT_LONG_SHORT` - Short ring, long ring, short ring.\n * `SHORT_SHORT_LONG` - Two short rings followed by a long ring.\n",
+            "enum": [
+              "NORMAL",
+              "LONG_LONG",
+              "SHORT_LONG_SHORT",
+              "SHORT_SHORT_LONG"
+            ],
+            "example": "LONG_LONG"
           }
         }
       },
