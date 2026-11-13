@@ -23,6 +23,10 @@
       "description": "Webex Calling call and media-quality metrics."
     },
     {
+      "name": "Export Schedule Usage Jobs",
+      "description": "Create and manage CSV exports of references to one schedule."
+    },
+    {
       "name": "Features: Call Recording",
       "description": "Webex Calling Call Recording settings, including organization- and location-level vendor configuration, terms of service, compliance announcements, and custom call recording announcements."
     },
@@ -52501,6 +52505,521 @@
                 "$ref": "#/components/schemas/PutECBNObject"
               }
             }
+          }
+        }
+      }
+    },
+    "/telephony/config/jobs/schedules/exportUsage": {
+      "post": {
+        "summary": "Create Export Schedule Usage Job",
+        "operationId": "createExportScheduleUsageJob",
+        "description": "Starts an export job for a business hours or holiday schedule and returns the job details. Use the job status API to check its progress and retrieve the CSV download URL when the export is complete.\n\nA schedule can be used by different people and calling services. Schedule usage export creates a CSV report showing which ones use the selected schedule. For an organization-level schedule, the report can include usage across the organization or be limited to one location. For a location-level schedule, it includes usage within that location.\n\nA full administrator token with spark-admin:telephony_config_write is required.\n\nSelect exactly one schedule using level, scheduleId and type. For ORGANIZATION, omit locationId or set it to null for no location filter, or supply a nonblank locationId to filter consumers. For LOCATION, a non-null, nonblank locationId is required. Unknown request fields are rejected.\n\nAfter acceptance, dependency failures are reported through job status and itemized errors; no partial CSV is uploaded. Retrieve a fresh signed download URL through Get Job Status when the file is available.",
+        "tags": [
+          "Export Schedule Usage Jobs"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrgId"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted. The export job was created. Poll the URL in the Location header.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreatedExportScheduleUsageJob"
+                },
+                "examples": {
+                  "created": {
+                    "summary": "New organization schedule export",
+                    "value": {
+                      "name": "exportscheduleusage",
+                      "id": "Y2lzY29zcGFyazovL3VzL0pPQl9JRC80NDQ0NDQ0NC00NDQ0LTQ0NDQtODQ0NC00NDQ0NDQ0NDQ0NDQ",
+                      "trackingId": "EXPORT_USAGE_EXAMPLE_1",
+                      "sourceUserId": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS81NTU1NTU1NS01NTU1LTQ1NTUtODU1NS01NTU1NTU1NTU1NTU",
+                      "sourceCustomerId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8xMTExMTExMS0xMTExLTQxMTEtODExMS0xMTExMTExMTExMTE",
+                      "targetCustomerId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8xMTExMTExMS0xMTExLTQxMTEtODExMS0xMTExMTExMTExMTE",
+                      "instanceId": 238972,
+                      "jobExecutionStatus": [],
+                      "latestExecutionStatus": "STARTING"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "Location": {
+                "description": "URL of the job status resource, containing its encoded JOB_ID. This is not the CSV download URL.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "https://webexapis.com/v1/telephony/config/jobs/schedules/exportUsage/Y2lzY29zcGFyazovL3VzL0pPQl9JRC80NDQ0NDQ0NC00NDQ0LTQ0NDQtODQ0NC00NDQ0NDQ0NDQ0NDQ"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. Request JSON or parameters are invalid. The request is rejected before a job starts or invalid pagination reaches storage."
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid."
+          },
+          "403": {
+            "description": "Forbidden. The caller lacks the required administrator role, scope or permission."
+          },
+          "404": {
+            "description": "Not Found. The target organization could not be found."
+          },
+          "429": {
+            "description": "Too Many Requests. The service-wide executing job limit has been reached. Wait at least 30 seconds, check the job status, and retry.",
+            "headers": {
+              "Retry-After": {
+                "description": "Minimum number of seconds to wait before retrying.",
+                "schema": {
+                  "type": "integer"
+                },
+                "example": 30
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The service could not complete the request."
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "description": "Schedule and optional location filter for the export.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateExportScheduleUsageJobRequest"
+              },
+              "examples": {
+                "organization": {
+                  "summary": "Organization schedule without a location filter",
+                  "value": {
+                    "level": "ORGANIZATION",
+                    "scheduleId": "Y2lzY29zcGFyazovL3VzL1NDSEVEVUxFLzMzMzMzMzMzLTMzMzMtNDMzMy04MzMzLTMzMzMzMzMzMzMzMw",
+                    "type": "businessHours"
+                  }
+                },
+                "organizationFiltered": {
+                  "summary": "Organization schedule filtered to one location",
+                  "value": {
+                    "level": "ORGANIZATION",
+                    "locationId": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzIyMjIyMjIyLTIyMjItNDIyMi04MjIyLTIyMjIyMjIyMjIyMg",
+                    "scheduleId": "Y2lzY29zcGFyazovL3VzL1NDSEVEVUxFLzMzMzMzMzMzLTMzMzMtNDMzMy04MzMzLTMzMzMzMzMzMzMzMw",
+                    "type": "businessHours"
+                  }
+                },
+                "organizationNullFilter": {
+                  "summary": "Organization schedule with an explicit null location filter",
+                  "value": {
+                    "level": "ORGANIZATION",
+                    "locationId": null,
+                    "scheduleId": "Y2lzY29zcGFyazovL3VzL1NDSEVEVUxFLzMzMzMzMzMzLTMzMzMtNDMzMy04MzMzLTMzMzMzMzMzMzMzMw",
+                    "type": "holidays"
+                  }
+                },
+                "location": {
+                  "summary": "Location-level holiday schedule",
+                  "value": {
+                    "level": "LOCATION",
+                    "locationId": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzIyMjIyMjIyLTIyMjItNDIyMi04MjIyLTIyMjIyMjIyMjIyMg",
+                    "scheduleId": "Y2lzY29zcGFyazovL3VzL1NDSEVEVUxFLzMzMzMzMzMzLTMzMzMtNDMzMy04MzMzLTMzMzMzMzMzMzMzMw",
+                    "type": "holidays"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "List Export Schedule Usage Jobs",
+        "operationId": "listExportScheduleUsageJobs",
+        "description": "Lists the jobs that export the people and services using a business hours or holiday schedule. Each job runs asynchronously and produces a CSV when it completes. Use this operation to view export jobs for the target organization and check their current status.\n\nA schedule can be used by different people and calling services. Schedule usage export creates a CSV report showing which ones use the selected schedule. For an organization-level schedule, the report can include usage across the organization or be limited to one location. For a location-level schedule, it includes usage within that location.\n\nAn authorized administrator token with spark-admin:telephony_config_read is required.\n\nUse start and max to paginate job history. Invalid ranges return 400. The response body contains items only; follow the next-page Link header when present. A starting position above 10,000 is rejected, including one in a returned next-page link.\n\nIf a job's full status cannot be retrieved, that item has latestExecutionStatus UNKNOWN and may omit tracking and source/target identity fields. This operation does not generate signed CSV download URLs; use Get Job Status.",
+        "tags": [
+          "Export Schedule Usage Jobs"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrgId"
+          },
+          {
+            "$ref": "#/components/parameters/Start"
+          },
+          {
+            "$ref": "#/components/parameters/Max"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. Export jobs for the target organization.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExportScheduleUsageJobList"
+                },
+                "examples": {
+                  "jobs": {
+                    "summary": "A completed export job",
+                    "value": {
+                      "items": [
+                        {
+                          "name": "exportscheduleusage",
+                          "id": "Y2lzY29zcGFyazovL3VzL0pPQl9JRC80NDQ0NDQ0NC00NDQ0LTQ0NDQtODQ0NC00NDQ0NDQ0NDQ0NDQ",
+                          "trackingId": "EXPORT_USAGE_EXAMPLE_1",
+                          "sourceUserId": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS81NTU1NTU1NS01NTU1LTQ1NTUtODU1NS01NTU1NTU1NTU1NTU",
+                          "sourceCustomerId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8xMTExMTExMS0xMTExLTQxMTEtODExMS0xMTExMTExMTExMTE",
+                          "targetCustomerId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8xMTExMTExMS0xMTExLTQxMTEtODExMS0xMTExMTExMTExMTE",
+                          "instanceId": 238972,
+                          "jobExecutionStatus": [
+                            {
+                              "id": 436272,
+                              "createdTime": "2026-10-14T12:00:00.000Z",
+                              "startTime": "2026-10-14T12:00:01.000Z",
+                              "endTime": "2026-10-14T12:00:05.000Z",
+                              "lastUpdated": "2026-10-14T12:00:05.000Z",
+                              "timeElapsed": "PT4S",
+                              "statusMessage": "COMPLETED",
+                              "exitCode": "COMPLETED",
+                              "stepExecutionStatuses": [
+                                {
+                                  "id": 436273,
+                                  "name": "exportScheduleUsageStep",
+                                  "startTime": "2026-10-14T12:00:01.000Z",
+                                  "endTime": "2026-10-14T12:00:05.000Z",
+                                  "lastUpdated": "2026-10-14T12:00:05.000Z",
+                                  "timeElapsed": "PT4S",
+                                  "statusMessage": "COMPLETED",
+                                  "exitCode": "COMPLETED"
+                                }
+                              ]
+                            }
+                          ],
+                          "latestExecutionStatus": "COMPLETED",
+                          "latestExecutionExitCode": "COMPLETED",
+                          "csvFile": "schedule-usage.csv"
+                        }
+                      ]
+                    }
+                  },
+                  "unknown": {
+                    "summary": "Job whose full status could not be retrieved",
+                    "value": {
+                      "items": [
+                        {
+                          "name": "exportscheduleusage",
+                          "id": "Y2lzY29zcGFyazovL3VzL0pPQl9JRC80NDQ0NDQ0NC00NDQ0LTQ0NDQtODQ0NC00NDQ0NDQ0NDQ0NDQ",
+                          "instanceId": 0,
+                          "jobExecutionStatus": null,
+                          "latestExecutionStatus": "UNKNOWN"
+                        }
+                      ]
+                    }
+                  },
+                  "empty": {
+                    "summary": "No export jobs",
+                    "value": {
+                      "items": []
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "description": "Next-page URL with rel=\"next\", when another page is available. Follow the complete URL. Links whose start exceeds 10,000 will return HTTP 400.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "<https://webexapis.com/v1/telephony/config/jobs/schedules/exportUsage?start=50&max=50>; rel=\"next\""
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. Request JSON or parameters are invalid. The request is rejected before a job starts or invalid pagination reaches storage."
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid."
+          },
+          "403": {
+            "description": "Forbidden. The caller lacks the required administrator role, scope or permission."
+          },
+          "404": {
+            "description": "Not Found. The target organization could not be found."
+          },
+          "500": {
+            "description": "Internal Server Error. The service could not complete the request."
+          }
+        }
+      }
+    },
+    "/telephony/config/jobs/schedules/exportUsage/{jobId}": {
+      "get": {
+        "summary": "Get Export Schedule Usage Job Status",
+        "operationId": "getExportScheduleUsageJobStatus",
+        "description": "Gets the current status of a job that exports the people and services using a business hours or holiday schedule. Use the encoded job ID returned when the export job was created. When the export is complete and the CSV is available, the response includes a signed URL to download it.\n\nA schedule can be used by different people and calling services. Schedule usage export creates a CSV report showing which ones use the selected schedule. For an organization-level schedule, the report can include usage across the organization or be limited to one location. For a location-level schedule, it includes usage within that location.\n\nAn authorized administrator token with spark-admin:telephony_config_read is required.\n\nThe Location response header identifies this job status resource. Query parameters are not included in that header. csvFileDownloadUrl is temporary; request status again to obtain a fresh URL when the CSV is available.",
+        "tags": [
+          "Export Schedule Usage Jobs"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/JobId"
+          },
+          {
+            "$ref": "#/components/parameters/OrgId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. Current job status and a fresh download URL when the CSV is available.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExportScheduleUsageJobStatus"
+                },
+                "examples": {
+                  "completed": {
+                    "summary": "Completed export with execution history and CSV",
+                    "value": {
+                      "name": "exportscheduleusage",
+                      "id": "Y2lzY29zcGFyazovL3VzL0pPQl9JRC80NDQ0NDQ0NC00NDQ0LTQ0NDQtODQ0NC00NDQ0NDQ0NDQ0NDQ",
+                      "trackingId": "EXPORT_USAGE_EXAMPLE_1",
+                      "sourceUserId": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS81NTU1NTU1NS01NTU1LTQ1NTUtODU1NS01NTU1NTU1NTU1NTU",
+                      "sourceCustomerId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8xMTExMTExMS0xMTExLTQxMTEtODExMS0xMTExMTExMTExMTE",
+                      "targetCustomerId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8xMTExMTExMS0xMTExLTQxMTEtODExMS0xMTExMTExMTExMTE",
+                      "instanceId": 238972,
+                      "jobExecutionStatus": [
+                        {
+                          "id": 436272,
+                          "createdTime": "2026-10-14T12:00:00.000Z",
+                          "startTime": "2026-10-14T12:00:01.000Z",
+                          "endTime": "2026-10-14T12:00:05.000Z",
+                          "lastUpdated": "2026-10-14T12:00:05.000Z",
+                          "timeElapsed": "PT4S",
+                          "statusMessage": "COMPLETED",
+                          "exitCode": "COMPLETED",
+                          "stepExecutionStatuses": [
+                            {
+                              "id": 436273,
+                              "name": "exportScheduleUsageStep",
+                              "startTime": "2026-10-14T12:00:01.000Z",
+                              "endTime": "2026-10-14T12:00:05.000Z",
+                              "lastUpdated": "2026-10-14T12:00:05.000Z",
+                              "timeElapsed": "PT4S",
+                              "statusMessage": "COMPLETED",
+                              "exitCode": "COMPLETED"
+                            }
+                          ]
+                        }
+                      ],
+                      "latestExecutionStatus": "COMPLETED",
+                      "latestExecutionExitCode": "COMPLETED",
+                      "csvFile": "schedule-usage.csv",
+                      "csvFileDownloadUrl": "https://example.com/schedule-usage.csv?signature=example"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "Location": {
+                "description": "URL of the job status resource, containing its encoded JOB_ID. This is not the CSV download URL.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "https://webexapis.com/v1/telephony/config/jobs/schedules/exportUsage/Y2lzY29zcGFyazovL3VzL0pPQl9JRC80NDQ0NDQ0NC00NDQ0LTQ0NDQtODQ0NC00NDQ0NDQ0NDQ0NDQ"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid."
+          },
+          "403": {
+            "description": "Forbidden. The caller lacks the required administrator role, scope or permission."
+          },
+          "404": {
+            "description": "Not Found. The job does not exist or is unavailable to the target organization."
+          },
+          "500": {
+            "description": "Internal Server Error. The service could not complete the request."
+          }
+        }
+      }
+    },
+    "/telephony/config/jobs/schedules/exportUsage/{jobId}/actions/pause/invoke": {
+      "post": {
+        "summary": "Pause Export Schedule Usage Job",
+        "operationId": "pauseExportScheduleUsageJob",
+        "description": "Pauses a job that exports the people and services using a business hours or holiday schedule. Use the encoded job ID returned when the export job was created. The request asks the job to stop processing so that it can be resumed later. Check the job status to confirm that it has stopped.\n\nA schedule can be used by different people and calling services. Schedule usage export creates a CSV report showing which ones use the selected schedule. For an organization-level schedule, the report can include usage across the organization or be limited to one location. For a location-level schedule, it includes usage within that location.\n\nA full administrator token with spark-admin:telephony_config_write is required.\n\nFor STARTING or STARTED, the job normally moves through STOPPING to STOPPED. Repeating a pause for STOPPING or STOPPED is accepted. For COMPLETED, FAILED, ABANDONED or UNKNOWN, the request is accepted without changing the state. Racing state changes can return 409.\n\nA 202 response does not guarantee that distributed processing has already stopped. Poll Get Job Status.",
+        "tags": [
+          "Export Schedule Usage Jobs"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/JobId"
+          },
+          {
+            "$ref": "#/components/parameters/OrgId"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted. The pause request was accepted. No response body."
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid."
+          },
+          "403": {
+            "description": "Forbidden. The caller lacks the required administrator role, scope or permission."
+          },
+          "404": {
+            "description": "Not Found. The job does not exist or is unavailable to the target organization."
+          },
+          "409": {
+            "description": "Conflict. The job state changed or the job lock prevents the requested action."
+          },
+          "500": {
+            "description": "Internal Server Error. The service could not complete the request."
+          }
+        }
+      }
+    },
+    "/telephony/config/jobs/schedules/exportUsage/{jobId}/actions/resume/invoke": {
+      "post": {
+        "summary": "Resume Export Schedule Usage Job",
+        "operationId": "resumeExportScheduleUsageJob",
+        "description": "Resumes a paused job that exports the people and services using a business hours or holiday schedule. Use the encoded job ID returned when the export job was created. Resuming requests that the stopped export continue processing.\n\nA schedule can be used by different people and calling services. Schedule usage export creates a CSV report showing which ones use the selected schedule. For an organization-level schedule, the report can include usage across the organization or be limited to one location. For a location-level schedule, it includes usage within that location.\n\nA full administrator token with spark-admin:telephony_config_write is required.\n\nA STOPPED or FAILED job can be restarted. A 202 response means a new execution was submitted; it may not yet be running. Poll Get Job Status.\n\nLock contention returns 409. The service-wide executing job limit returns 429 with Retry-After: 30. Repeated or racing requests can return 409 or 500 depending on when the state is checked. Active, completed, abandoned or unknown executions, or missing execution history, can currently return 500. Check job status before retrying.",
+        "tags": [
+          "Export Schedule Usage Jobs"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/JobId"
+          },
+          {
+            "$ref": "#/components/parameters/OrgId"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted. A new execution was submitted. No response body."
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid."
+          },
+          "403": {
+            "description": "Forbidden. The caller lacks the required administrator role, scope or permission."
+          },
+          "404": {
+            "description": "Not Found. The job does not exist or is unavailable to the target organization."
+          },
+          "409": {
+            "description": "Conflict. The job state changed or the job lock prevents the requested action."
+          },
+          "429": {
+            "description": "Too Many Requests. The service-wide executing job limit has been reached. Wait at least 30 seconds, check the job status, and retry.",
+            "headers": {
+              "Retry-After": {
+                "description": "Minimum number of seconds to wait before retrying.",
+                "schema": {
+                  "type": "integer"
+                },
+                "example": 30
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. The service could not complete the request."
+          }
+        }
+      }
+    },
+    "/telephony/config/jobs/schedules/exportUsage/{jobId}/errors": {
+      "get": {
+        "summary": "List Export Schedule Usage Job Errors",
+        "operationId": "listExportScheduleUsageJobErrors",
+        "description": "Returns itemized errors reported while exporting schedule usage for an organization. Clients can use these errors to identify schedule records that could not be processed and determine what needs to be corrected.\n\nA schedule can be used by different people and calling services. Schedule usage export creates a CSV report showing which ones use the selected schedule. For an organization-level schedule, the report can include usage across the organization or be limited to one location. For a location-level schedule, it includes usage within that location.\n\nAn authorized administrator token with spark-admin:telephony_config_read is required.\n\nUse max to choose the page size. The response always contains an items array; items is empty when no errors were recorded. When a Link header with rel=\"next\" is returned, follow the complete URL unchanged. Its storage continuation values are opaque; do not construct or modify them. Numeric start offsets are not supported by this operation.",
+        "tags": [
+          "Export Schedule Usage Jobs"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/JobId"
+          },
+          {
+            "$ref": "#/components/parameters/OrgId"
+          },
+          {
+            "$ref": "#/components/parameters/Max"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. Itemized export errors.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExportScheduleUsageJobErrors"
+                },
+                "examples": {
+                  "errors": {
+                    "summary": "Schedule was not found",
+                    "value": {
+                      "items": [
+                        {
+                          "itemNumber": 0,
+                          "item": "44444444-4444-4444-8444-444444444444_0_66666666-6666-4666-8666-666666666666",
+                          "errorType": "ERROR",
+                          "error": {
+                            "key": "404",
+                            "message": [
+                              {
+                                "description": "The requested schedule was not found for this organization or location.",
+                                "code": "NOT_FOUND"
+                              }
+                            ]
+                          },
+                          "trackingId": "EXPORT_USAGE_EXAMPLE_1"
+                        }
+                      ]
+                    }
+                  },
+                  "empty": {
+                    "summary": "No recorded errors",
+                    "value": {
+                      "items": []
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "description": "Next-page URL with rel=\"next\", when more errors are available. Follow the complete URL unchanged; continuation values are opaque.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "<https://webexapis.com/v1/telephony/config/jobs/schedules/exportUsage/Y2lzY29zcGFyazovL3VzL0pPQl9JRC80NDQ0NDQ0NC00NDQ0LTQ0NDQtODQ0NC00NDQ0NDQ0NDQ0NDQ/errors?page=opaque-example&bucket=0&max=50>; rel=\"next\""
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. Request JSON or parameters are invalid. The request is rejected before a job starts or invalid pagination reaches storage."
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid."
+          },
+          "403": {
+            "description": "Forbidden. The caller lacks the required administrator role, scope or permission."
+          },
+          "404": {
+            "description": "Not Found. The job does not exist or is unavailable to the target organization."
+          },
+          "500": {
+            "description": "Internal Server Error. The service could not complete the request."
           }
         }
       }
@@ -168662,6 +169181,660 @@
           }
         }
       },
+      "CreateExportScheduleUsageJobRequest": {
+        "type": "object",
+        "description": "Select exactly one business hours or holiday schedule to export. An organization schedule can optionally be filtered to one location. A location schedule requires its location.",
+        "oneOf": [
+          {
+            "type": "object",
+            "description": "Organization schedule with no location filter, a null filter, or a nonblank location filter.",
+            "properties": {
+              "level": {
+                "type": "string",
+                "description": "Schedule scope.\n\n- `ORGANIZATION`: An organization-level schedule. Usage can include the whole organization or be limited to one location.",
+                "enum": [
+                  "ORGANIZATION"
+                ],
+                "example": "ORGANIZATION"
+              },
+              "locationId": {
+                "type": "string",
+                "description": "Encoded LOCATION ID. For ORGANIZATION, omission or null applies no location filter; a supplied non-null value must be nonblank. For LOCATION, this field is required, non-null and nonblank, and identifies the schedule's location.",
+                "nullable": true,
+                "minLength": 1,
+                "pattern": "\\S",
+                "example": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzIyMjIyMjIyLTIyMjItNDIyMi04MjIyLTIyMjIyMjIyMjIyMg"
+              },
+              "scheduleId": {
+                "type": "string",
+                "description": "Encoded SCHEDULE ID identifying the single schedule whose usage is exported.",
+                "minLength": 1,
+                "pattern": "\\S",
+                "example": "Y2lzY29zcGFyazovL3VzL1NDSEVEVUxFLzMzMzMzMzMzLTMzMzMtNDMzMy04MzMzLTMzMzMzMzMzMzMzMw"
+              },
+              "type": {
+                "type": "string",
+                "description": "Schedule type. Values are case sensitive.\n\n- `businessHours`: A schedule defining normal operating hours.\n- `holidays`: A schedule defining holiday dates or periods.",
+                "enum": [
+                  "businessHours",
+                  "holidays"
+                ],
+                "example": "businessHours"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "level",
+              "scheduleId",
+              "type"
+            ],
+            "title": "Organization Schedule Export"
+          },
+          {
+            "type": "object",
+            "description": "Location schedule with a required non-null location ID.",
+            "required": [
+              "level",
+              "scheduleId",
+              "type",
+              "locationId"
+            ],
+            "properties": {
+              "level": {
+                "type": "string",
+                "description": "Schedule scope.\n\n- `LOCATION`: A location-level schedule. Usage is limited to the location specified by locationId.",
+                "enum": [
+                  "LOCATION"
+                ],
+                "example": "LOCATION"
+              },
+              "locationId": {
+                "type": "string",
+                "description": "Encoded LOCATION ID. For ORGANIZATION, omission or null applies no location filter; a supplied non-null value must be nonblank. For LOCATION, this field is required, non-null and nonblank, and identifies the schedule's location.",
+                "nullable": false,
+                "minLength": 1,
+                "pattern": "\\S",
+                "example": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzIyMjIyMjIyLTIyMjItNDIyMi04MjIyLTIyMjIyMjIyMjIyMg"
+              },
+              "scheduleId": {
+                "type": "string",
+                "description": "Encoded SCHEDULE ID identifying the single schedule whose usage is exported.",
+                "minLength": 1,
+                "pattern": "\\S",
+                "example": "Y2lzY29zcGFyazovL3VzL1NDSEVEVUxFLzMzMzMzMzMzLTMzMzMtNDMzMy04MzMzLTMzMzMzMzMzMzMzMw"
+              },
+              "type": {
+                "type": "string",
+                "description": "Schedule type. Values are case sensitive.\n\n- `businessHours`: A schedule defining normal operating hours.\n- `holidays`: A schedule defining holiday dates or periods.",
+                "enum": [
+                  "businessHours",
+                  "holidays"
+                ],
+                "example": "businessHours"
+              }
+            },
+            "additionalProperties": false,
+            "title": "Location Schedule Export"
+          }
+        ]
+      },
+      "StepExecutionStatus": {
+        "type": "object",
+        "description": "Status of one step within an execution.",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Numeric execution identifier. This value is not Hydra encoded.",
+            "example": 436272,
+            "format": "int64"
+          },
+          "startTime": {
+            "type": "string",
+            "description": "UTC time the execution started. Omitted before it starts.",
+            "format": "date-time",
+            "nullable": true,
+            "example": "2026-10-14T12:00:01.000Z"
+          },
+          "endTime": {
+            "type": "string",
+            "description": "UTC time the execution ended. Omitted while it has not ended.",
+            "format": "date-time",
+            "nullable": true,
+            "example": "2026-10-14T12:00:05.000Z"
+          },
+          "lastUpdated": {
+            "type": "string",
+            "description": "UTC time the execution status was last updated.",
+            "format": "date-time",
+            "nullable": true,
+            "example": "2026-10-14T12:00:05.000Z"
+          },
+          "timeElapsed": {
+            "type": "string",
+            "description": "Elapsed execution time as an ISO 8601 duration.",
+            "nullable": true,
+            "example": "PT4S"
+          },
+          "statusMessage": {
+            "type": "string",
+            "description": "Step execution state.\n\n- `STARTING`: The step execution is preparing to run.\n- `STARTED`: The step execution is running.\n- `STOPPING`: The step execution is processing a request to stop.\n- `STOPPED`: The step execution stopped before completion.\n- `COMPLETED`: The step execution finished successfully.\n- `FAILED`: The step execution ended with an error.\n- `ABANDONED`: The step execution was abandoned and cannot be restarted.\n- `UNKNOWN`: The state of the step execution could not be determined.",
+            "enum": [
+              "STARTING",
+              "STARTED",
+              "STOPPING",
+              "STOPPED",
+              "COMPLETED",
+              "FAILED",
+              "ABANDONED",
+              "UNKNOWN"
+            ],
+            "nullable": true,
+            "example": "COMPLETED"
+          },
+          "exitCode": {
+            "type": "string",
+            "description": "Execution result. Common values are UNKNOWN, EXECUTING, COMPLETED, NOOP, FAILED and STOPPED. Additional job-specific values are possible.",
+            "nullable": true,
+            "example": "COMPLETED"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the executed job step.",
+            "nullable": true,
+            "example": "exportScheduleUsageStep"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "JobExecutionStatus": {
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "Unique identifier that identifies each instance of the job."
+          },
+          "startTime": {
+            "type": "string",
+            "description": "Job execution start time in UTC format."
+          },
+          "endTime": {
+            "type": "string",
+            "description": "Job execution end time in UTC format."
+          },
+          "lastUpdated": {
+            "type": "string",
+            "description": "Last updated time (in UTC format) post one of the step execution completion."
+          },
+          "statusMessage": {
+            "type": "string",
+            "description": "Displays status for overall steps that are part of the job."
+          },
+          "exitCode": {
+            "type": "string",
+            "description": "Exit Code for a job."
+          },
+          "createdTime": {
+            "type": "string",
+            "description": "Job creation time in UTC format."
+          },
+          "stepExecutionStatuses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StepExecutionStatuses"
+            },
+            "description": "Status of each step within a job."
+          }
+        }
+      },
+      "ExportScheduleUsageJob": {
+        "type": "object",
+        "description": "Export job information. A list item whose full status cannot be retrieved contains its job ID and latestExecutionStatus UNKNOWN; tracking and source/target identity fields may be omitted.",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Job type identified by this response.\n\n- `exportscheduleusage`: A job that exports the people and calling services using the selected schedule to a CSV report.",
+            "enum": [
+              "exportscheduleusage"
+            ],
+            "example": "exportscheduleusage"
+          },
+          "id": {
+            "type": "string",
+            "description": "Encoded JOB_ID returned by Create. Supply this same encoded ID to status, action and errors operations.",
+            "example": "Y2lzY29zcGFyazovL3VzL0pPQl9JRC80NDQ0NDQ0NC00NDQ0LTQ0NDQtODQ0NC00NDQ0NDQ0NDQ0NDQ"
+          },
+          "trackingId": {
+            "type": "string",
+            "description": "Support tracking identifier. May be omitted for an UNKNOWN fallback list item.",
+            "example": "EXPORT_USAGE_EXAMPLE_1"
+          },
+          "sourceUserId": {
+            "type": "string",
+            "description": "Encoded PEOPLE ID of the initiating user. May be omitted for an UNKNOWN fallback list item.",
+            "example": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS81NTU1NTU1NS01NTU1LTQ1NTUtODU1NS01NTU1NTU1NTU1NTU"
+          },
+          "sourceCustomerId": {
+            "type": "string",
+            "description": "Encoded ORGANIZATION ID of the initiating organization. May be omitted for an UNKNOWN fallback list item.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8xMTExMTExMS0xMTExLTQxMTEtODExMS0xMTExMTExMTExMTE"
+          },
+          "targetCustomerId": {
+            "type": "string",
+            "description": "Encoded ORGANIZATION ID owning the job. May be omitted for an UNKNOWN fallback list item.",
+            "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8xMTExMTExMS0xMTExLTQxMTEtODExMS0xMTExMTExMTExMTE"
+          },
+          "instanceId": {
+            "type": "integer",
+            "description": "Numeric Batch job instance identifier. The UNKNOWN fallback leaves this at 0.",
+            "example": 238972,
+            "format": "int64"
+          },
+          "jobExecutionStatus": {
+            "type": "array",
+            "description": "Execution history and step details when available.",
+            "items": {
+              "$ref": "#/components/schemas/JobExecutionStatus"
+            },
+            "nullable": true,
+            "example": [
+              {
+                "id": 436272,
+                "createdTime": "2026-10-14T12:00:00.000Z",
+                "startTime": "2026-10-14T12:00:01.000Z",
+                "endTime": "2026-10-14T12:00:05.000Z",
+                "lastUpdated": "2026-10-14T12:00:05.000Z",
+                "timeElapsed": "PT4S",
+                "statusMessage": "COMPLETED",
+                "exitCode": "COMPLETED",
+                "stepExecutionStatuses": [
+                  {
+                    "id": 436273,
+                    "name": "exportScheduleUsageStep",
+                    "startTime": "2026-10-14T12:00:01.000Z",
+                    "endTime": "2026-10-14T12:00:05.000Z",
+                    "lastUpdated": "2026-10-14T12:00:05.000Z",
+                    "timeElapsed": "PT4S",
+                    "statusMessage": "COMPLETED",
+                    "exitCode": "COMPLETED"
+                  }
+                ]
+              }
+            ]
+          },
+          "latestExecutionStatus": {
+            "type": "string",
+            "description": "State of the latest job execution.\n\n- `STARTING`: The latest job execution is preparing to run.\n- `STARTED`: The latest job execution is running.\n- `STOPPING`: The latest job execution is processing a request to stop.\n- `STOPPED`: The latest job execution stopped before completion. The job can be resumed.\n- `COMPLETED`: The latest job execution finished successfully.\n- `FAILED`: The latest job execution ended with an error.\n- `ABANDONED`: The latest job execution was abandoned and cannot be restarted.\n- `UNKNOWN`: The state of the latest job execution could not be determined. In a job list, this can also mean that the full job status could not be retrieved.",
+            "enum": [
+              "STARTING",
+              "STARTED",
+              "STOPPING",
+              "STOPPED",
+              "COMPLETED",
+              "FAILED",
+              "ABANDONED",
+              "UNKNOWN"
+            ],
+            "example": "COMPLETED"
+          },
+          "latestExecutionExitCode": {
+            "type": "string",
+            "description": "Latest execution result. Common values are UNKNOWN, EXECUTING, COMPLETED, NOOP, FAILED and STOPPED; this is an open string.",
+            "nullable": true,
+            "example": "COMPLETED"
+          },
+          "csvFile": {
+            "type": "string",
+            "description": "Generated CSV file reference when available. The file contains Name, Location and Type columns.",
+            "nullable": true,
+            "example": "schedule-usage.csv"
+          },
+          "csvFileDownloadUrl": {
+            "type": "string",
+            "description": "Temporary signed CSV download URL when available. The field is omitted or null when no usable URL is available. Get Job Status generates a fresh URL when a file is available. The list operation does not generate one; use Get Job Status to obtain a download URL.",
+            "nullable": true,
+            "example": "https://example.com/schedule-usage.csv?signature=example",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "name",
+          "id",
+          "instanceId",
+          "latestExecutionStatus"
+        ]
+      },
+      "CreatedExportScheduleUsageJob": {
+        "description": "Details of the accepted export job.",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ExportScheduleUsageJob"
+          },
+          {
+            "type": "object",
+            "required": [
+              "trackingId",
+              "sourceUserId",
+              "sourceCustomerId",
+              "targetCustomerId"
+            ]
+          }
+        ],
+        "example": {
+          "name": "exportscheduleusage",
+          "id": "Y2lzY29zcGFyazovL3VzL0pPQl9JRC80NDQ0NDQ0NC00NDQ0LTQ0NDQtODQ0NC00NDQ0NDQ0NDQ0NDQ",
+          "trackingId": "EXPORT_USAGE_EXAMPLE_1",
+          "sourceUserId": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS81NTU1NTU1NS01NTU1LTQ1NTUtODU1NS01NTU1NTU1NTU1NTU",
+          "sourceCustomerId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8xMTExMTExMS0xMTExLTQxMTEtODExMS0xMTExMTExMTExMTE",
+          "targetCustomerId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8xMTExMTExMS0xMTExLTQxMTEtODExMS0xMTExMTExMTExMTE",
+          "instanceId": 238972,
+          "jobExecutionStatus": [],
+          "latestExecutionStatus": "STARTING"
+        }
+      },
+      "ExportScheduleUsageJobStatus": {
+        "description": "Current job status. Get Job Status supplies a fresh signed download URL when the CSV file is available.",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ExportScheduleUsageJob"
+          },
+          {
+            "type": "object",
+            "required": [
+              "trackingId",
+              "sourceUserId",
+              "sourceCustomerId",
+              "targetCustomerId"
+            ]
+          }
+        ],
+        "example": {
+          "name": "exportscheduleusage",
+          "id": "Y2lzY29zcGFyazovL3VzL0pPQl9JRC80NDQ0NDQ0NC00NDQ0LTQ0NDQtODQ0NC00NDQ0NDQ0NDQ0NDQ",
+          "trackingId": "EXPORT_USAGE_EXAMPLE_1",
+          "sourceUserId": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS81NTU1NTU1NS01NTU1LTQ1NTUtODU1NS01NTU1NTU1NTU1NTU",
+          "sourceCustomerId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8xMTExMTExMS0xMTExLTQxMTEtODExMS0xMTExMTExMTExMTE",
+          "targetCustomerId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8xMTExMTExMS0xMTExLTQxMTEtODExMS0xMTExMTExMTExMTE",
+          "instanceId": 238972,
+          "jobExecutionStatus": [
+            {
+              "id": 436272,
+              "createdTime": "2026-10-14T12:00:00.000Z",
+              "startTime": "2026-10-14T12:00:01.000Z",
+              "endTime": "2026-10-14T12:00:05.000Z",
+              "lastUpdated": "2026-10-14T12:00:05.000Z",
+              "timeElapsed": "PT4S",
+              "statusMessage": "COMPLETED",
+              "exitCode": "COMPLETED",
+              "stepExecutionStatuses": [
+                {
+                  "id": 436273,
+                  "name": "exportScheduleUsageStep",
+                  "startTime": "2026-10-14T12:00:01.000Z",
+                  "endTime": "2026-10-14T12:00:05.000Z",
+                  "lastUpdated": "2026-10-14T12:00:05.000Z",
+                  "timeElapsed": "PT4S",
+                  "statusMessage": "COMPLETED",
+                  "exitCode": "COMPLETED"
+                }
+              ]
+            }
+          ],
+          "latestExecutionStatus": "COMPLETED",
+          "latestExecutionExitCode": "COMPLETED",
+          "csvFile": "schedule-usage.csv",
+          "csvFileDownloadUrl": "https://example.com/schedule-usage.csv?signature=example"
+        }
+      },
+      "ExportScheduleUsageJobList": {
+        "type": "object",
+        "description": "Hydra list response. Pagination is provided by the Link header.",
+        "properties": {
+          "items": {
+            "type": "array",
+            "description": "Export jobs for the organization.",
+            "items": {
+              "$ref": "#/components/schemas/ExportScheduleUsageJob"
+            },
+            "example": [
+              {
+                "name": "exportscheduleusage",
+                "id": "Y2lzY29zcGFyazovL3VzL0pPQl9JRC80NDQ0NDQ0NC00NDQ0LTQ0NDQtODQ0NC00NDQ0NDQ0NDQ0NDQ",
+                "trackingId": "EXPORT_USAGE_EXAMPLE_1",
+                "sourceUserId": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS81NTU1NTU1NS01NTU1LTQ1NTUtODU1NS01NTU1NTU1NTU1NTU",
+                "sourceCustomerId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8xMTExMTExMS0xMTExLTQxMTEtODExMS0xMTExMTExMTExMTE",
+                "targetCustomerId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8xMTExMTExMS0xMTExLTQxMTEtODExMS0xMTExMTExMTExMTE",
+                "instanceId": 238972,
+                "jobExecutionStatus": [
+                  {
+                    "id": 436272,
+                    "createdTime": "2026-10-14T12:00:00.000Z",
+                    "startTime": "2026-10-14T12:00:01.000Z",
+                    "endTime": "2026-10-14T12:00:05.000Z",
+                    "lastUpdated": "2026-10-14T12:00:05.000Z",
+                    "timeElapsed": "PT4S",
+                    "statusMessage": "COMPLETED",
+                    "exitCode": "COMPLETED",
+                    "stepExecutionStatuses": [
+                      {
+                        "id": 436273,
+                        "name": "exportScheduleUsageStep",
+                        "startTime": "2026-10-14T12:00:01.000Z",
+                        "endTime": "2026-10-14T12:00:05.000Z",
+                        "lastUpdated": "2026-10-14T12:00:05.000Z",
+                        "timeElapsed": "PT4S",
+                        "statusMessage": "COMPLETED",
+                        "exitCode": "COMPLETED"
+                      }
+                    ]
+                  }
+                ],
+                "latestExecutionStatus": "COMPLETED",
+                "latestExecutionExitCode": "COMPLETED",
+                "csvFile": "schedule-usage.csv"
+              }
+            ]
+          }
+        },
+        "required": [
+          "items"
+        ],
+        "example": {
+          "items": [
+            {
+              "name": "exportscheduleusage",
+              "id": "Y2lzY29zcGFyazovL3VzL0pPQl9JRC80NDQ0NDQ0NC00NDQ0LTQ0NDQtODQ0NC00NDQ0NDQ0NDQ0NDQ",
+              "trackingId": "EXPORT_USAGE_EXAMPLE_1",
+              "sourceUserId": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS81NTU1NTU1NS01NTU1LTQ1NTUtODU1NS01NTU1NTU1NTU1NTU",
+              "sourceCustomerId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8xMTExMTExMS0xMTExLTQxMTEtODExMS0xMTExMTExMTExMTE",
+              "targetCustomerId": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi8xMTExMTExMS0xMTExLTQxMTEtODExMS0xMTExMTExMTExMTE",
+              "instanceId": 238972,
+              "jobExecutionStatus": [
+                {
+                  "id": 436272,
+                  "createdTime": "2026-10-14T12:00:00.000Z",
+                  "startTime": "2026-10-14T12:00:01.000Z",
+                  "endTime": "2026-10-14T12:00:05.000Z",
+                  "lastUpdated": "2026-10-14T12:00:05.000Z",
+                  "timeElapsed": "PT4S",
+                  "statusMessage": "COMPLETED",
+                  "exitCode": "COMPLETED",
+                  "stepExecutionStatuses": [
+                    {
+                      "id": 436273,
+                      "name": "exportScheduleUsageStep",
+                      "startTime": "2026-10-14T12:00:01.000Z",
+                      "endTime": "2026-10-14T12:00:05.000Z",
+                      "lastUpdated": "2026-10-14T12:00:05.000Z",
+                      "timeElapsed": "PT4S",
+                      "statusMessage": "COMPLETED",
+                      "exitCode": "COMPLETED"
+                    }
+                  ]
+                }
+              ],
+              "latestExecutionStatus": "COMPLETED",
+              "latestExecutionExitCode": "COMPLETED",
+              "csvFile": "schedule-usage.csv"
+            }
+          ]
+        }
+      },
+      "JobErrorMessage": {
+        "type": "object",
+        "description": "Details of a recorded export failure.",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "Human-readable failure description.",
+            "example": "The requested schedule was not found for this organization or location."
+          },
+          "code": {
+            "type": "string",
+            "description": "Batch error category when available, such as NOT_FOUND, INVALID_JOB_DATA, AUTHORIZATION_FAILURE, DEPENDENT_APPLICATION_ERROR, RESOURCE_UNDER_LOAD or SERVICE_COMMUNICATION_ERROR.",
+            "nullable": true,
+            "example": "NOT_FOUND"
+          }
+        },
+        "required": [
+          "description"
+        ]
+      },
+      "JobErrorDetails": {
+        "type": "object",
+        "description": "Error key and messages recorded for an export failure.",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "HTTP-style key associated with the failed operation.",
+            "example": "404"
+          },
+          "message": {
+            "type": "array",
+            "description": "Messages recorded for the error. The array can be empty if stored message details could not be decoded.",
+            "items": {
+              "$ref": "#/components/schemas/JobErrorMessage"
+            },
+            "example": [
+              {
+                "description": "The requested schedule was not found for this organization or location.",
+                "code": "NOT_FOUND"
+              }
+            ]
+          }
+        },
+        "required": [
+          "key",
+          "message"
+        ],
+        "example": {
+          "key": "404",
+          "message": [
+            {
+              "description": "The requested schedule was not found for this organization or location.",
+              "code": "NOT_FOUND"
+            }
+          ]
+        }
+      },
+      "ExportScheduleUsageJobError": {
+        "type": "object",
+        "description": "One itemized error recorded while exporting schedule usage.",
+        "properties": {
+          "itemNumber": {
+            "type": "integer",
+            "description": "Record or line number associated with the error. Job-level errors use 0.",
+            "example": 0,
+            "minimum": 0
+          },
+          "item": {
+            "type": "string",
+            "description": "Generated identifier of the stored error record.",
+            "example": "44444444-4444-4444-8444-444444444444_0_66666666-6666-4666-8666-666666666666"
+          },
+          "errorType": {
+            "type": "string",
+            "description": "Severity of the recorded issue.\n\n- `ERROR`: An error recorded while processing the export.\n- `WARN`: A warning recorded while processing the export.",
+            "enum": [
+              "ERROR",
+              "WARN"
+            ],
+            "default": "ERROR",
+            "example": "ERROR"
+          },
+          "error": {
+            "$ref": "#/components/schemas/JobErrorDetails"
+          },
+          "trackingId": {
+            "type": "string",
+            "description": "Tracking identifier captured for the failed request.",
+            "example": "EXPORT_USAGE_EXAMPLE_1"
+          }
+        },
+        "required": [
+          "itemNumber",
+          "item",
+          "errorType",
+          "error",
+          "trackingId"
+        ]
+      },
+      "ExportScheduleUsageJobErrors": {
+        "type": "object",
+        "description": "Hydra errors response. Follow the complete next-page URL in the Link header unchanged.",
+        "properties": {
+          "items": {
+            "type": "array",
+            "description": "Recorded errors. An empty array means that no errors were recorded.",
+            "items": {
+              "$ref": "#/components/schemas/ExportScheduleUsageJobError"
+            },
+            "example": [
+              {
+                "itemNumber": 0,
+                "item": "44444444-4444-4444-8444-444444444444_0_66666666-6666-4666-8666-666666666666",
+                "errorType": "ERROR",
+                "error": {
+                  "key": "404",
+                  "message": [
+                    {
+                      "description": "The requested schedule was not found for this organization or location.",
+                      "code": "NOT_FOUND"
+                    }
+                  ]
+                },
+                "trackingId": "EXPORT_USAGE_EXAMPLE_1"
+              }
+            ]
+          }
+        },
+        "required": [
+          "items"
+        ],
+        "example": {
+          "items": [
+            {
+              "itemNumber": 0,
+              "item": "44444444-4444-4444-8444-444444444444_0_66666666-6666-4666-8666-666666666666",
+              "errorType": "ERROR",
+              "error": {
+                "key": "404",
+                "message": [
+                  {
+                    "description": "The requested schedule was not found for this organization or location.",
+                    "code": "NOT_FOUND"
+                  }
+                ]
+              },
+              "trackingId": "EXPORT_USAGE_EXAMPLE_1"
+            }
+          ]
+        }
+      },
       "AnnouncementPlaylistResponse": {
         "type": "object",
         "required": [
@@ -184103,49 +185276,6 @@
               }
             ],
             "description": "Job statistics."
-          }
-        }
-      },
-      "JobExecutionStatus": {
-        "type": "object",
-        "required": [
-          "id"
-        ],
-        "properties": {
-          "id": {
-            "type": "number",
-            "description": "Unique identifier that identifies each instance of the job."
-          },
-          "startTime": {
-            "type": "string",
-            "description": "Job execution start time in UTC format."
-          },
-          "endTime": {
-            "type": "string",
-            "description": "Job execution end time in UTC format."
-          },
-          "lastUpdated": {
-            "type": "string",
-            "description": "Last updated time (in UTC format) post one of the step execution completion."
-          },
-          "statusMessage": {
-            "type": "string",
-            "description": "Displays status for overall steps that are part of the job."
-          },
-          "exitCode": {
-            "type": "string",
-            "description": "Exit Code for a job."
-          },
-          "createdTime": {
-            "type": "string",
-            "description": "Job creation time in UTC format."
-          },
-          "stepExecutionStatuses": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StepExecutionStatuses"
-            },
-            "description": "Status of each step within a job."
           }
         }
       },
@@ -202183,6 +203313,54 @@
       }
     },
     "parameters": {
+      "OrgId": {
+        "name": "orgId",
+        "in": "query",
+        "description": "ID of the organization within which the workspace resides. Only admin users of another organization, such as partners, may use this parameter because the default is the same organization as the token used to access the API.",
+        "required": false,
+        "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE",
+        "schema": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "description": "ID of the organization within which the workspace resides.",
+          "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE"
+        }
+      },
+      "JobId": {
+        "name": "jobId",
+        "in": "path",
+        "required": true,
+        "description": "Encoded JOB_ID returned when the export job was created.",
+        "schema": {
+          "type": "string"
+        },
+        "example": "Y2lzY29zcGFyazovL3VzL0pPQl9JRC80NDQ0NDQ0NC00NDQ0LTQ0NDQtODQ0NC00NDQ0NDQ0NDQ0NDQ"
+      },
+      "Start": {
+        "name": "start",
+        "in": "query",
+        "description": "Zero-based number of jobs to skip. Values outside 0 through 10,000 return HTTP 400. This bound limits access to job history, not the records processed within an export.",
+        "schema": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000,
+          "default": 0
+        },
+        "example": 0
+      },
+      "Max": {
+        "name": "max",
+        "in": "query",
+        "description": "Maximum number of records to return. Values outside 1 through 250 return HTTP 400.",
+        "schema": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 250,
+          "default": 50
+        },
+        "example": 50
+      },
       "personId": {
         "name": "personId",
         "in": "path",
@@ -202313,20 +203491,6 @@
           "maxLength": 128,
           "description": "Unique identifier for the virtual line.",
           "example": "Y2lzY29zcGFyazovL3VzL1ZJUlRVQUxfTElORS85Y2JmYjYxZi00ZGM0LTQ1NWItYmMzYS00NmI4YmY5YjQzNzk"
-        }
-      },
-      "OrgId": {
-        "name": "orgId",
-        "in": "query",
-        "description": "ID of the organization within which the workspace resides. Only admin users of another organization, such as partners, may use this parameter because the default is the same organization as the token used to access the API.",
-        "required": false,
-        "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE",
-        "schema": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 128,
-          "description": "ID of the organization within which the workspace resides.",
-          "example": "Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi85NmFiYzJhYS0zZGNjLTExZTUtYTE1Mi1mZTM0ODE5Y2RjOWE"
         }
       },
       "WorkspaceId": {
