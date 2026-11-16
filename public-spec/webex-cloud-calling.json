@@ -2950,6 +2950,18 @@
               "maxLength": 23,
               "example": "+1350434"
             }
+          },
+          {
+            "name": "agentId",
+            "in": "query",
+            "description": "Filter AI receptionists by agent identifier.",
+            "example": "Y2lzY29zcGFyazovL3VzL0FJX0FHRU5ULzY4ZWFlMjI0NDc0NmJkMmUyMmJkZjY4Ng",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "example": "Y2lzY29zcGFyazovL3VzL0FJX0FHRU5ULzY4ZWFlMjI0NDc0NmJkMmUyMmJkZjY4Ng"
+            }
           }
         ],
         "responses": {
@@ -2976,6 +2988,7 @@
                       "extension": "42182",
                       "routingPrefix": "1234",
                       "esn": "123442182",
+                      "agentId": "Y2lzY29zcGFyazovL3VzL0FJX0FHRU5ULzY4ZWFlMjI0NDc0NmJkMmUyMmJkZjY4Ng",
                       "location": {
                         "id": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzgyMjI4MWVkLWUyMmItMTYxNi1hOTYyLTExYTY2OTExYTY2OQ",
                         "name": "San Jose"
@@ -152668,6 +152681,7 @@
                 "extension": "42182",
                 "routingPrefix": "1234",
                 "esn": "123442182",
+                "agentId": "Y2lzY29zcGFyazovL3VzL0FJX0FHRU5ULzY4ZWFlMjI0NDc0NmJkMmUyMmJkZjY4Ng",
                 "location": {
                   "id": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzgyMjI4MWVkLWUyMmItMTYxNi1hOTYyLTExYTY2OTExYTY2OQ",
                   "name": "San Jose"
@@ -152685,6 +152699,7 @@
               "extension": "42182",
               "routingPrefix": "1234",
               "esn": "123442182",
+              "agentId": "Y2lzY29zcGFyazovL3VzL0FJX0FHRU5ULzY4ZWFlMjI0NDc0NmJkMmUyMmJkZjY4Ng",
               "location": {
                 "id": "Y2lzY29zcGFyazovL3VzL0xPQ0FUSU9OLzgyMjI4MWVkLWUyMmItMTYxNi1hOTYyLTExYTY2OTExYTY2OQ",
                 "name": "San Jose"
@@ -152730,6 +152745,11 @@
             "type": "string",
             "description": "Routing prefix + extension of the AI Receptionist. If the location has no routing prefix, this will only be the extension. If the AI Receptionist has no extension, this field will not be present.",
             "example": "123442182"
+          },
+          "agentId": {
+            "type": "string",
+            "description": "Unique identifier for the AI agent associated with this AI receptionist.",
+            "example": "Y2lzY29zcGFyazovL3VzL0FJX0FHRU5ULzY4ZWFlMjI0NDc0NmJkMmUyMmJkZjY4Ng"
           },
           "location": {
             "description": "Location of the AI Receptionist.",
