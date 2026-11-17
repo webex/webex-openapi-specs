@@ -101151,7 +101151,7 @@
                     "voicemailEnabled": false,
                     "announcements": {
                       "greeting": "DEFAULT",
-                      "filename": "audio.wav",
+                      "fileName": "audio.wav",
                       "newNumber": {
                         "enabled": false
                       },
@@ -102469,7 +102469,7 @@
         }
       }
     },
-    "/people/{personId}/features/executiveAssistant": {
+    "/telephony/config/people/{personId}/executive": {
       "get": {
         "responses": {
           "200": {
